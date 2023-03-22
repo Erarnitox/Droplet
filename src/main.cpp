@@ -17,10 +17,8 @@ auto main() -> int {
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) {
 		if(dpp::run_once<struct register_bot_commands>()) {
-			for(auto& command : global_command_list) { 
-				bot.global_command_create(
-					command	
-				);
+			for(auto& command : global_command_list) {
+				bot.global_command_create(command);
 			}
 		}
 	});
