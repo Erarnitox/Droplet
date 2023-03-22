@@ -1,0 +1,40 @@
+{
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "version": 3,
+    "configurePresets": [
+      {
+        "name": "debug",
+        "displayName": "(Linux) Ninja and Clang",
+        "description": "Erarnitox's recommended settings for a debug build. Uses clang and Ninja",
+        "generator": "Ninja",
+        "binaryDir": "${sourceDir}/debug",
+        "cacheVariables": {
+            "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/debug",
+            "CMAKE_C_COMPILER": "clang",
+            "CMAKE_CXX_COMPILER": "clang++",
+			"CMAKE_BUILD_WITH_INSTALL_RPATH": false 
+        }
+      },
+      {
+        "name": "release",
+        "displayName": "(Linux) Ninja and Clang",
+        "description": "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
+        "generator": "Ninja",
+        "binaryDir": "${sourceDir}/release",
+        "cacheVariables": {
+            "CMAKE_EXPORT_COMPILE_COMMANDS": false,
+            "CMAKE_BUILD_TYPE": "RelMinSize",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/release",
+            "CMAKE_C_COMPILER": "clang",
+            "CMAKE_CXX_COMPILER": "clang++",
+			"CMAKE_BUILD_WITH_INSTALL_RPATH": false 
+        }
+      }
+    ]
+  }

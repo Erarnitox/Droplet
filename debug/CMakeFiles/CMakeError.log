@@ -1,0 +1,24 @@
+Performing C++ SOURCE FILE Test HAVE_SINGLE_PARAMETER_SETNAME_NP failed with the following output:
+Change Dir: /home/me/Projects/DropSoft/DropletDiscordBot/debug/CMakeFiles/CMakeScratch/TryCompile-qtoZsm
+
+Run Build Command(s):/usr/bin/ninja cmTC_f9031 && [1/2] Building CXX object CMakeFiles/cmTC_f9031.dir/src.cxx.o
+FAILED: CMakeFiles/cmTC_f9031.dir/src.cxx.o 
+/usr/bin/clang++ -DHAVE_SINGLE_PARAMETER_SETNAME_NP   -MD -MT CMakeFiles/cmTC_f9031.dir/src.cxx.o -MF CMakeFiles/cmTC_f9031.dir/src.cxx.o.d -o CMakeFiles/cmTC_f9031.dir/src.cxx.o -c /home/me/Projects/DropSoft/DropletDiscordBot/debug/CMakeFiles/CMakeScratch/TryCompile-qtoZsm/src.cxx
+/home/me/Projects/DropSoft/DropletDiscordBot/debug/CMakeFiles/CMakeScratch/TryCompile-qtoZsm/src.cxx:4:3: error: no matching function for call to 'pthread_setname_np'
+                pthread_setname_np("ThreadName");
+                ^~~~~~~~~~~~~~~~~~
+/usr/include/pthread.h:463:12: note: candidate function not viable: requires 2 arguments, but 1 was provided
+extern int pthread_setname_np (pthread_t __target_thread, const char *__name)
+           ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+
+	#include <thread>
+	int main() {
+		pthread_setname_np("ThreadName");
+		return 0;
+	}
+
