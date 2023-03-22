@@ -1,5 +1,6 @@
 #include <dpp/appcommand.h>
 #include "main.hpp"
+#include "resource_man.hpp"
 
 //////////////////////////////////////////////////////////////////////////////
 // MAIN FUNCTION
@@ -11,7 +12,7 @@ auto main() -> int {
 
 	// list of slash commands
 	std::vector<dpp::slashcommand> global_command_list;
-	register_global_slash_commands(global_command_list);
+	register_global_slash_commands(global_command_list, bot);
 
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) {
@@ -56,13 +57,13 @@ auto read_bot_token(const std::string& file) -> std::string {
 //////////////////////////////////////////////////////////////////////////////
 // RGISTER ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list) -> void {
-
+auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
+	resource_man::register_global_slash_commands(command_list, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
 auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
-
+	resource_man::handle_global_slash_commands(event);
 }
