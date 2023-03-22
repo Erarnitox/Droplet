@@ -1,70 +1,68 @@
-#include <dpp/dpp.h>
-#include <string>
+#include <dpp/appcommand.h>
+#include "main.hpp"
 
-const std::string BOT_TOKEN{ std::string("MTA3MTE0OTYxMjMwNTQ5ODE2Mg.GNiJSY.1EVEMLFlkOJfGFvbC5hy00fdKm7IRyXZj_mENs") };
-
+//////////////////////////////////////////////////////////////////////////////
+// MAIN FUNCTION
+//////////////////////////////////////////////////////////////////////////////
 auto main() -> int {
-	dpp::cluster bot(BOT_TOKEN);
+	// initialize bot
+	dpp::cluster bot(read_bot_token("bot_token.txt"));
+	bot.on_log(dpp::utility::cout_logger());
 
-	//message listener
-	bot.on_message_create([&bot](const dpp::message_create_t& event) {
-			if(event.msg.content == "!info") {
+	// list of slash commands
+	std::vector<dpp::slashcommand> global_command_list;
+	register_global_slash_commands(global_command_list);
 
-				//create an embed
-				dpp::embed embed = dpp::embed().
-					set_color(dpp::colors::sti_blue).
-					set_title("DropSoft").
-					set_url("https://www.dropsoft.org").
-					set_author("DropSoft", "https://dropsoft.org", 
-							"https://www.dropsoft.org/img/logo.png").
-					set_description("DropSoft").
-					set_thumbnail("https://www.dropsoft.org/img/logo.png").
-					add_field(
-						"Hello there!",
-						"This is a test"
-					).
-					add_field(
-						"Inline field",
-						"Some value",
-						true
-					).
-					add_field(
-						"another inline",
-						"drop drop"
-					).
-					set_image("https://www.dropsoft.org/img/logo.png").
-					set_footer(dpp::embed_footer().set_text("DropSoft all the way!").
-					set_icon("https://www.dropsoft.org/img/logo.png")).
-					set_timestamp(time(0));
-	
-				bot.message_create(dpp::message(event.msg.channel_id, embed).
-					set_reference(event.msg.id));
-				}
-
-				//send files
-				if(event.msg.content == "!file") {
-					dpp::message msg(event.msg.channel_id, "hey there!");
-					msg.add_file("test.txt", dpp::utility::read_file(""));
-					bot.message_create(msg);
-			}
-	});
-
-	//command listener
-	bot.on_slashcommand([](const dpp::slashcommand_t& event) {
-			if(event.command.get_command_name() == "drop") {
-				event.reply("Just a drop of Water in an endless sea");
-			}
-	});
-
-	//command registration
-	bot.on_ready([&bot](const dpp::ready_t& event) {
-			if(dpp::run_once<struct register_bot_commands>()) {
+	// register slash commands
+	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) {
+		if(dpp::run_once<struct register_bot_commands>()) {
+			for(auto& command : global_command_list) { 
 				bot.global_command_create(
-						dpp::slashcommand("drop", "Run to see what it does!", bot.me.id)
+					command	
 				);
 			}
+		}
 	});
 
+	// handle slash commands
+	bot.on_slashcommand([](const dpp::slashcommand_t& event) {
+			handle_global_slash_commands(event);
+	});
+
+	// start execution of the bot
 	bot.start(dpp::st_wait);
 	return 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// READ BOT TOKEN FROM FILE
+//////////////////////////////////////////////////////////////////////////////
+auto read_bot_token(const std::string& file) -> std::string { 
+	std::ifstream file_stream(file);
+	std::string bot_token;
+	
+	if(file_stream.is_open()) {
+		file_stream >> bot_token;	
+	} else {
+		throw("ERROR: bot token file could not be opened!");
+	}
+
+	if(bot_token.size() < 1)
+		throw("ERROR: NO bot token found!");
+
+	return bot_token;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// RGISTER ALL GLOBAL SLASH COMMANDS
+//////////////////////////////////////////////////////////////////////////////
+auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list) -> void {
+
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// HANDLE ALL GLOBAL SLASH COMMANDS
+//////////////////////////////////////////////////////////////////////////////
+auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
+
 }
