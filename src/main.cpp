@@ -1,4 +1,3 @@
-#include <dpp/appcommand.h>
 #include "main.hpp"
 #include "resource_man.hpp"
 
@@ -17,15 +16,13 @@ auto main() -> int {
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) {
 		if(dpp::run_once<struct register_bot_commands>()) {
-			for(auto& command : global_command_list) {
-				bot.global_command_create(command);
-			}
+			bot.global_bulk_command_create(global_command_list);
 		}
 	});
 
 	// handle slash commands
-	bot.on_slashcommand([](const dpp::slashcommand_t& event) {
-			handle_global_slash_commands(event);
+	bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) {
+			handle_global_slash_commands(event, bot);
 	});
 
 	// start execution of the bot
@@ -57,11 +54,12 @@ auto read_bot_token(const std::string& file) -> std::string {
 //////////////////////////////////////////////////////////////////////////////
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
 	resource_man::register_global_slash_commands(command_list, bot);
+	core::register_global_slash_commands(command_list, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
+auto handle_global_slash_commands(const dpp::slashcommand_t& event, const dpp::cluster& bot) -> void {
 	resource_man::handle_global_slash_commands(event);
 }

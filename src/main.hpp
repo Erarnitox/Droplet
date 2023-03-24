@@ -15,4 +15,4 @@
 
 auto read_bot_token(const std::string& file) -> std::string;
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void;
-auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void;
+auto handle_global_slash_commands(const dpp::slashcommand_t& event, const dpp::cluster& bot) -> void;

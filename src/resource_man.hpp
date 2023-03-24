@@ -28,7 +28,7 @@ namespace resource_man {
             { "Misc / Other", "misc" }
         };
 
-	    dpp::slashcommand res_command("resman", "Resource collection managemant", bot.me.id);
+	    dpp::slashcommand res_command("resources", "Resource collection managemant", bot.me.id);
 	    
         // action option
         res_command.add_option(
@@ -36,7 +36,6 @@ namespace resource_man {
 	            .add_choice(dpp::command_option_choice("add", std::string("action_add")))
 	            .add_choice(dpp::command_option_choice("delete", std::string("action_del")))
 	            .add_choice(dpp::command_option_choice("list", std::string("action_list")))
-                .add_choice(dpp::command_option_choice())
         );
 
         // category option
@@ -70,16 +69,24 @@ namespace resource_man {
     }
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
-        if (event.command.get_command_name() == "resman") {
-	            std::string action{ std::get<std::string>(event.get_parameter("animal")) };
-                std::string category{ std::get<std::string>(event.get_parameter("category")) };
-                std::string index{ std::get<std::string>(event.get_parameter("index")) };
-                std::string link{ std::get<std::string>(event.get_parameter("link")) };
-                std::string description{ std::get<std::string>(event.get_parameter("description")) };
-	           
-                if(action == "add") {
-	                event.reply(std::string("Resource added: ") + link);
-                }
-	        }
+        if (event.command.get_command_name() == "resources") {
+	        auto action{ std::get<std::string>(event.get_parameter("action")) };
+            auto category{ std::get<std::string>(event.get_parameter("category")) };
+            auto index{ std::get<std::string>(event.get_parameter("index")) };
+            auto link{ std::get<std::string>(event.get_parameter("link")) };
+            auto description{ std::get<std::string>(event.get_parameter("description")) };
+	        
+            std::cout << "Resource command got used!" << std::endl;
+            event.reply("Testing...");
+            return;
+            
+            if(action == "add") {
+	            event.reply(std::string("Resource added: ") + link);
+            } else if(action == "delete") {
+                event.reply(std::string("Resource deleted at: ") + index);
+            } else if(action == "list") {
+                event.reply(std::string("Not implemented yet!" ) + category);
+            }
+	    }
     }
 }
