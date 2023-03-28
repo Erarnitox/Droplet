@@ -1,6 +1,5 @@
 #pragma once
 
-#include <dpp/appcommand.h>
 #include <dpp/dpp.h>
 
 namespace resource_man {
@@ -76,12 +75,14 @@ namespace resource_man {
             auto link{ std::get<std::string>(event.get_parameter("link")) };
             auto description{ std::get<std::string>(event.get_parameter("description")) };
 	        
-            if(action == "action_add") {
-	            event.reply(std::string("Resource added: ") + link);
-            } else if(action == "delete") {
-                event.reply(std::string("Resource deleted at: ") + index);
-            } else if(action == "list") {
-                event.reply(std::string("Not implemented yet!" ) + category);
+            if(action.size() < 1){
+                event.reply(std::string("Please specifiy an action you want to perform!"));
+            } else if(action == "action_add") {
+	            event.reply(std::string("Resource added: "));
+            } else if(action == "action_del") {
+                event.reply(std::string("Resource deleted"));
+            } else if(action == "action_list") {
+                event.reply(std::string("Not implemented yet!" ));
             }
 	    }
     }
