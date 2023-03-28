@@ -67,6 +67,7 @@ auto read_bot_token(const std::string& file) -> std::string {
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
 	resource_man::register_global_slash_commands(command_list, bot);
 	core::register_global_slash_commands(command_list, bot);
+	user_man::register_global_slash_commands(command_list, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -75,6 +76,7 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
 	resource_man::handle_global_slash_commands(event);
 	core::handle_global_slash_commands(event, bot);
+	user_man::handle_global_slash_commands(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
