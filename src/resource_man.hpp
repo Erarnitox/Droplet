@@ -76,11 +76,7 @@ namespace resource_man {
             auto link{ std::get<std::string>(event.get_parameter("link")) };
             auto description{ std::get<std::string>(event.get_parameter("description")) };
 	        
-            std::cout << "Resource command got used!" << std::endl;
-            event.reply("Testing...");
-            return;
-            
-            if(action == "add") {
+            if(action == "action_add") {
 	            event.reply(std::string("Resource added: ") + link);
             } else if(action == "delete") {
                 event.reply(std::string("Resource deleted at: ") + index);
