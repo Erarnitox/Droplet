@@ -14,7 +14,13 @@ namespace user_man{
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
         if (event.command.get_command_name() == "user_info") {
-            event.reply("Not implemented yet!");
+            auto mentioned_user{ std::get<std::string>(event.get_parameter("user")) };
+            
+            //const dpp::guild_member& member{ event.command.get_guild().members.find(mentioned_user) };
+
+            event.reply(std::string("Information about ") + mentioned_user);
+
+
         }
     }
 

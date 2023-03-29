@@ -1,3 +1,4 @@
+#include <dpp/colors.h>
 #pragma #once
 
 #include <vector>
@@ -24,7 +25,7 @@ namespace core {
         if (event.command.get_command_name() == "help") {
             /* create the embed */
 	        dpp::embed embed{ dpp::embed()
-	                .set_color(dpp::colors::deep_sea)
+	                .set_color(dpp::colors::discord_black)
 	                .set_title("CyberDrop - Help")
 	                .set_url("https://cyberdrop.dropsoft.org/")
 	                .set_description("Usage Information for the CyberDrop Discord bot")
@@ -34,12 +35,17 @@ namespace core {
 	                        "A resouce manager to keep track of shared resources. Added resources can be found on https://dropsoft.org/resources"
 	                )
                     .add_field(
+                        "/user_info",
+                        "Query information about a user"
+                    )
+                    .add_field(
                         "/set_channel (ADMIN ONLY)",
                         "Configure channels for bot usage"
                     )
             };
 	 
 	        /* reply with the created embed */
+            event.reply("Here is the usage manual!");
 	        bot.message_create(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
             return;
         }
