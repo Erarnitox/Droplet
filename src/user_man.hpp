@@ -17,31 +17,62 @@ namespace user_man{
             auto mentioned_user{ std::get<std::string>(event.get_parameter("user")) };
             
             //const dpp::guild_member& member{ event.command.get_guild().members.find(mentioned_user) };
+            // find the mentioned user:
+            for(const auto& member : event.command.get_guild().members) {
+                const auto& user{ member.second.get_user() };
 
-            event.reply(std::string("Information about ") + mentioned_user);
+                bot.message_create(dpp::message(event.command.channel_id, "user:" + user->get_mention()));
 
+                if(user->get_mention() == mentioned_user) {
+                    /* create the embed */
+	                dpp::embed embed{ dpp::embed()
+	                    .set_color(dpp::colors::deep_sea)
+	                    .set_title("Information about " + user->username)
+                        .set_image(user->get_avatar_url())
+                        .add_field("Number of guilds", std::to_string(user->refcount))
+                    };
 
+                    /* reply with the created embed */
+	                event.reply(dpp::message(event.command.channel_id, embed));
+                    return;
+                }
+            }
+
+            event.reply(std::string("There is no information about ") + mentioned_user);
         }
     }
 
     auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
-          /* create the embed */
-	        dpp::embed embed{ dpp::embed()
-	                .set_color(dpp::colors::deep_sea)
-	                .set_title(event.adding_guild->name)
-	                .set_description(std::string("Welcome ") 
-                        + event.added.get_mention()
-                        + " to "
-                        + event.adding_guild->name 
-                    )
-                    .set_image(event.added.get_avatar_url())
-            };
+        /* create the embed */
+	    dpp::embed embed{ dpp::embed()
+	        .set_color(dpp::colors::deep_sea)
+	        .set_title(event.adding_guild->name)
+	        .set_description(std::string("Welcome ") 
+                + event.added.get_mention()
+                + " to "
+                + event.adding_guild->name
+            )
+            .set_image(event.added.get_avatar_url())
+        };
 	 
-	        /* reply with the created embed */
-	        bot.message_create(dpp::message(core::welcome_channels.at(event.adding_guild->id), embed));
+	    /* reply with the created embed */
+	    bot.message_create(dpp::message(core::welcome_channels.at(event.adding_guild->id), embed));
     }
 
     auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
-
+        /* create the embed */
+	    dpp::embed embed{ dpp::embed()
+	        .set_color(dpp::colors::red)
+	        .set_title(event.removing_guild->name)
+	        .set_description(std::string("Goodbye! ") 
+                + event.removed->get_mention()
+                + " just left "
+                + event.removing_guild->name
+            )
+            .set_image(event.removed->get_avatar_url())
+        };
+	 
+	    /* reply with the created embed */
+	    bot.message_create(dpp::message(core::welcome_channels.at(event.removing_guild->id), embed));
     }
 }
