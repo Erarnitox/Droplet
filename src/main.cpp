@@ -33,8 +33,8 @@ auto main() -> int {
 	});
 
 	// handle slash commands
-	bot.on_slashcommand([&bot](const dpp::slashcommand_t& event) -> void {
-			handle_global_slash_commands(event, bot);
+	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
+			handle_global_slash_commands(event, bot, global_command_list);
 	});
 
 	// start execution of the bot
@@ -73,9 +73,14 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
+auto handle_global_slash_commands(
+	const dpp::slashcommand_t& event, 
+	dpp::cluster& bot, 
+	const std::vector<dpp::slashcommand>& command_list
+) -> void {
+
 	resource_man::handle_global_slash_commands(event);
-	core::handle_global_slash_commands(event, bot);
+	core::handle_global_slash_commands(event, bot, command_list);
 	user_man::handle_global_slash_commands(event, bot);
 }
 

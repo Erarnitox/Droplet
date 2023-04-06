@@ -18,7 +18,7 @@ auto read_bot_token(const std::string& file) -> std::string;
 
 // resource management
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void;
-auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void;
+auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list) -> void;
 
 // user management
 auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void;
