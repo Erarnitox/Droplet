@@ -5,6 +5,7 @@
 #include <thread>
 #include <chrono>
 
+#include <fmt/core.h>
 #include <dpp/dpp.h>
 
 #include "language_server.hpp"
