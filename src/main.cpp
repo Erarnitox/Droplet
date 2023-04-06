@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include "database.hpp"
 #include "resource_man.hpp"
 #include "user_man.hpp"
 #include <dpp/dispatcher.h>
@@ -10,6 +11,9 @@ auto main() -> int {
 	// initialize bot
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 	bot.on_log(dpp::utility::cout_logger());
+
+	// connect to the Database
+	//Database::connect();
 
 	// list of slash commands
 	std::vector<dpp::slashcommand> global_command_list;

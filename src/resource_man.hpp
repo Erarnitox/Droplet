@@ -1,6 +1,7 @@
 #pragma once
 
 #include <dpp/dpp.h>
+#include "core.hpp"
 
 namespace resource_man {
     auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
@@ -47,6 +48,11 @@ namespace resource_man {
             res_command.add_option(co);
         }
 
+        // title option
+        res_command.add_option(
+	        dpp::command_option(dpp::co_string, "title", "The title of the resource", false)
+	    );
+
         // index option
         res_command.add_option(
 	        dpp::command_option(dpp::co_string, "index", "The index of the resource", false)
@@ -69,20 +75,21 @@ namespace resource_man {
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
         if (event.command.get_command_name() == "resources") {
-	        auto action{ std::get<std::string>(event.get_parameter("action")) };
-            auto category{ std::get<std::string>(event.get_parameter("category")) };
-            auto index{ std::get<std::string>(event.get_parameter("index")) };
-            auto link{ std::get<std::string>(event.get_parameter("link")) };
-            auto description{ std::get<std::string>(event.get_parameter("description")) };
+	        const auto& action{ std::get<std::string>(event.get_parameter("action")) };
+            const auto& category{ std::get<std::string>(event.get_parameter("category")) };
+            const auto& title{ std::get<std::string>(event.get_parameter("title")) };
+            const auto& index{ std::get<std::string>(event.get_parameter("index")) };
+            const auto& link{ std::get<std::string>(event.get_parameter("link")) };
+            const auto& description{ std::get<std::string>(event.get_parameter("description")) };
 	        
             if(action.size() < 1){
-                event.reply(std::string("Please specifiy an action you want to perform!"));
+                core::timed_reply(event, "Please specify an action!", 100);
             } else if(action == "action_add") {
-	            event.reply(std::string("Resource added: "));
+	            // <title> <link> <category> [description]
             } else if(action == "action_del") {
-                event.reply(std::string("Resource deleted"));
+                // event.reply(std::string("Resource deleted"));
             } else if(action == "action_list") {
-                event.reply(std::string("Not implemented yet!" ));
+                // event.reply(std::string("Not implemented yet!" ));
             }
 	    }
     }

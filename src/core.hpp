@@ -80,9 +80,9 @@ namespace core {
                 std::string options_string;
                 for(auto& option : options) {
                     if(option.required)
-                        options_string.append(" <").append(option.name).append(">");
+                        options_string.append(fmt::format(" <{}>", option.name));
                     else
-                        options_string.append(" [").append(option.name).append("]");
+                        options_string.append(fmt::format(" [{}]", option.name));
                 }
                 embed.add_field(
                     std::string("/")
