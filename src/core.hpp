@@ -1,9 +1,10 @@
-#pragma #once
+#pragma once
 
 #include <ratio>
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <regex>
 
 #include <fmt/core.h>
 #include <dpp/dpp.h>
@@ -24,10 +25,35 @@ namespace core {
         return false;
     }
 
+    static
+    auto get_role_id(const std::string& mention) -> std::string {
+        std::regex re("<@&([0-9]+)>");
+        std::smatch match;
+
+        if (std::regex_search(mention, match, re)) {
+            return match.str(1);
+        } else {
+            return "";
+        }
+    }
+
+    static
+    auto get_channel_id(const std::string& mention) -> std::string {
+        std::regex re("<#([0-9]+)>");
+        std::smatch match;
+
+        if (std::regex_search(mention, match, re)) {
+            return match.str(1);
+        } else {
+            return "";
+        }
+    }
+
     static 
-    auto timed_reply(const dpp::slashcommand_t& event, const std::string& message_token, size_t time_mills) -> void {
+    auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) -> void {
         // Get the interaction response object
-        event.reply(LanguageServer::get(event.command.guild_id, message_token));
+        // event.reply(LanguageServer::get(event.command.guild_id, message_token));
+        event.reply(message);
 
         std::thread([event, time_mills]() {
             std::this_thread::sleep_for(std::chrono::milliseconds(time_mills));
@@ -40,7 +66,7 @@ namespace core {
         dpp::slashcommand help_command("help", "Usage information", bot.me.id);
         //help_command.add_localization("de", "hilfe", "Hilfestellung zur Benutzung des Bots")
 
-        dpp::slashcommand channel_command("set_channel", "Configure channels for bot events", bot.me.id);
+        dpp::slashcommand channel_command("set_channel", "Configure channels for bot events (Admin only!)", bot.me.id);
         channel_command.add_option(
 	        dpp::command_option(dpp::co_string, "type", "For what should this channel be used?", true)
 	            .add_choice(dpp::command_option_choice("Welcome Message Channel", std::string("channel_welcome")))

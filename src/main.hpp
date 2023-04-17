@@ -16,10 +16,13 @@
 
 auto read_bot_token(const std::string& file) -> std::string;
 
-// resource management
+// slash commands
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void;
 auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list) -> void;
 
 // user management
 auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void;
 auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void;
+
+// button clicks
+auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void;

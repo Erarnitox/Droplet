@@ -36,6 +36,7 @@ namespace resource_man {
 	            .add_choice(dpp::command_option_choice("add", std::string("action_add")))
 	            .add_choice(dpp::command_option_choice("delete", std::string("action_del")))
 	            .add_choice(dpp::command_option_choice("list", std::string("action_list")))
+                .add_choice(dpp::command_option_choice("list", std::string("action_search")))
         );
 
         // category option
@@ -51,6 +52,11 @@ namespace resource_man {
         // title option
         res_command.add_option(
 	        dpp::command_option(dpp::co_string, "title", "The title of the resource", false)
+	    );
+
+        // query option
+        res_command.add_option(
+	        dpp::command_option(dpp::co_string, "query", "what to search for", false)
 	    );
 
         // index option
@@ -78,6 +84,7 @@ namespace resource_man {
 	        const auto& action{ std::get<std::string>(event.get_parameter("action")) };
             const auto& category{ std::get<std::string>(event.get_parameter("category")) };
             const auto& title{ std::get<std::string>(event.get_parameter("title")) };
+            const auto& query{ std::get<std::string>(event.get_parameter("query")) };
             const auto& index{ std::get<std::string>(event.get_parameter("index")) };
             const auto& link{ std::get<std::string>(event.get_parameter("link")) };
             const auto& description{ std::get<std::string>(event.get_parameter("description")) };
@@ -85,12 +92,16 @@ namespace resource_man {
             if(action.size() < 1){
                 core::timed_reply(event, "Please specify an action!", 100);
             } else if(action == "action_add") {
-	            // <title> <link> <category> [description]
+	            // usage: <title> <link> <category> [description]
             } else if(action == "action_del") {
-                // event.reply(std::string("Resource deleted"));
+                // usage: <category> <id>
             } else if(action == "action_list") {
-                // event.reply(std::string("Not implemented yet!" ));
+                // usage: [category]
+            } else if(action == "action_search") {
+                // usage: <query>
             }
 	    }
+
+        return;
     }
 }

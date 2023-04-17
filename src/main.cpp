@@ -1,6 +1,7 @@
 #include "main.hpp"
 #include "database.hpp"
 #include "resource_man.hpp"
+#include "roles.hpp"
 #include "user_man.hpp"
 #include <dpp/dispatcher.h>
 
@@ -14,6 +15,8 @@ auto main() -> int {
 
 	// connect to the Database
 	//Database::connect();
+
+	bot.global_command_delete(1093646069520420915);
 
 	// list of slash commands
 	std::vector<dpp::slashcommand> global_command_list;
@@ -39,6 +42,23 @@ auto main() -> int {
 	// handle slash commands
 	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
 			handle_global_slash_commands(event, bot, global_command_list);
+	});
+
+	// handle button clicks
+	bot.on_button_click([&bot](const dpp::button_click_t& event) -> void {
+		handle_button_clicks(event, bot);
+	});
+
+	/* This event handles form submission for the modal dialog we create above */
+	bot.on_form_submit([&](const dpp::form_submit_t & event) {
+	    /* For this simple example we know the first element of the first row ([0][0]) is value type string.
+	    * In the real world it may not be safe to make such assumptions!
+	    */
+		std::string v = std::get<std::string>(event.components[0].components[0].value);
+	    dpp::message m;
+	    m.set_content("You entered: " + v).set_flags(dpp::m_ephemeral);
+	    /* Emit a reply. Form submission is still an interaction and must generate some form of reply! */
+	    event.reply(m);
 	});
 
 	// start execution of the bot
@@ -69,9 +89,13 @@ auto read_bot_token(const std::string& file) -> std::string {
 // RGISTER ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
+	// user commands
 	resource_man::register_global_slash_commands(command_list, bot);
-	core::register_global_slash_commands(command_list, bot);
 	user_man::register_global_slash_commands(command_list, bot);
+
+	// admin commands
+	core::register_global_slash_commands(command_list, bot);
+	roles::register_global_slash_commands(command_list, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -83,9 +107,20 @@ auto handle_global_slash_commands(
 	const std::vector<dpp::slashcommand>& command_list
 ) -> void {
 
+	// user commands
 	resource_man::handle_global_slash_commands(event);
-	core::handle_global_slash_commands(event, bot, command_list);
 	user_man::handle_global_slash_commands(event, bot);
+
+	// admin commands
+	core::handle_global_slash_commands(event, bot, command_list);
+	roles::handle_global_slash_commands(event, bot);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// HANDLE ALL GLOBAL SLASH COMMANDS
+//////////////////////////////////////////////////////////////////////////////
+auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
+	roles::handle_button_clicks(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
