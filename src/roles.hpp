@@ -175,4 +175,22 @@ namespace roles {
             );
         }
     }
+
+    static
+    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
+        const auto& message_id{ event.message_id };
+        const auto& user_id{ event.reacting_user.id };
+        const auto& reaction{ event.reacting_emoji };
+
+        //TODO: implement reaction roles
+    }
+
+    static
+    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
+        const auto& message_id{ event.message_id };
+        const auto& user_id{ event.reacting_user_id };
+        const auto& reaction{ event.reacting_emoji };
+
+        //TODO: implement reaction roles
+    }
 }
