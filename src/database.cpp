@@ -30,7 +30,7 @@ auto Database::disconnect() -> void {
 auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string> {
     static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1" };
     pqxx::work txn(conn);
-    pqxx::result result = txn.exec_params(sql_string, 0 /*message_id*/);
+    pqxx::result result = txn.exec_params(sql_string, message_id);
     txn.commit();
 
     const auto& role_id{ result.at(0, 0).get<size_t>().value() };

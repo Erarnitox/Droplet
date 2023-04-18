@@ -4,6 +4,7 @@
 #include "database.hpp"
 #include <dpp/colors.h>
 #include <dpp/message.h>
+#include <dpp/restresults.h>
 #include <fmt/core.h>
 
 namespace roles {
@@ -78,6 +79,7 @@ namespace roles {
             const auto& title{ std::get<std::string>(event.get_parameter("title")) };
             const auto& role_id{core::get_role_id(role) };
             const auto& channel_id{ core::get_channel_id(channel) };
+            const auto& guild_id{ event.command.guild_id };
 
             // create the challenge message
             dpp::embed embed = dpp::embed().
@@ -105,19 +107,30 @@ namespace roles {
 	        ));
 
             // send the challenge message
-            bot.message_create(msg);
+            bot.message_create(
+                msg,
+                [role_id, role, event, question, solution, guild_id, &db](const dpp::confirmation_callback_t& cb) -> void {
+                    auto sent_message{ cb.value };
 
-            // save the needed information in the database
-            db.insert_challenge_role_data(std::stoul(role_id), event.command.guild_id, msg.id, solution);
+                    // save the needed information in the database
+                    db.insert_challenge_role_data(
+                        std::stoul(role_id), 
+                        guild_id, 
+                        std::get<dpp::message>(sent_message).id, 
+                        solution
+                    );
 
-            // send a confirmation to the admin
-            core::timed_reply(
-                event, 
-                fmt::format(
-                    "Challenge Created!\nQuestion: {}\nReward: {}",
-                    question, role
-                ), 
-                10000 //10sek
+                    // send a confirmation to the admin
+                    core::timed_reply(
+                        event, 
+                        fmt::format(
+                            "Challenge Created!\nQuestion: {}\nReward: {}",
+                            question, role
+                        ), 
+                        10000 //10sek
+                    );
+                    
+                }
             );
         }
         else if (event.command.get_command_name() == "reaction_role") {
@@ -158,9 +171,6 @@ namespace roles {
         const auto& member{ event.command.member };
 
         // get the correct answer and reward role from the database
-        // auto role_id{ 812457935526821888ULL }; //TODO
-        // auto flag{ std::string("correct")}; //TODO
-
         auto [role_id, flag] = db.get_challenge_role_data(msg_id);
 
         const auto& entered { std::get<std::string>(event.components[0].components[0].value) };
