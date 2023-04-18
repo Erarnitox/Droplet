@@ -9,6 +9,7 @@
 #include "ctf_solver.hpp"
 #include "custom_commands.hpp"
 #include "customization.hpp"
+#include "database.hpp"
 #include "podcasts.hpp"
 #include "resource_man.hpp"
 #include "server_stats.hpp"
@@ -18,7 +19,7 @@ auto read_bot_token(const std::string& file) -> std::string;
 
 // slash commands
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void;
-auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list) -> void;
+auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list, Database& db) -> void;
 
 // user management
 auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void;
@@ -28,7 +29,7 @@ auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) ->
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void;
 
 // form submits
-auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void;
+auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void;
 
 // handle added reactions
 auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void;

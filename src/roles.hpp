@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core.hpp"
+#include "database.hpp"
 #include <dpp/colors.h>
 #include <dpp/message.h>
 #include <fmt/core.h>
@@ -65,7 +66,7 @@ namespace roles {
     }
 
     static
-    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
+    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, Database& db) -> void {
         if (event.command.get_command_name() == "challenge_role") {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
@@ -106,12 +107,15 @@ namespace roles {
             // send the challenge message
             bot.message_create(msg);
 
+            // save the needed information in the database
+            db.insert_challenge_role_data(std::stoul(role_id), event.command.guild_id, msg.id, solution);
+
             // send a confirmation to the admin
             core::timed_reply(
                 event, 
                 fmt::format(
-                    "Challenge Created!\nQuestion: {}\nReward: {}\nMessage ID: {}",
-                    question, role, msg.id
+                    "Challenge Created!\nQuestion: {}\nReward: {}",
+                    question, role
                 ), 
                 10000 //10sek
             );
@@ -148,14 +152,16 @@ namespace roles {
     }
 
     static
-    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
+    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void {
         // get the needed data from the event
         const auto& msg_id{ event.command.message_id };
         const auto& member{ event.command.member };
 
         // get the correct answer and reward role from the database
-        auto role_id{ 812457935526821888L }; //TODO
-        auto flag{ std::string("correct")}; //TODO
+        // auto role_id{ 812457935526821888ULL }; //TODO
+        // auto flag{ std::string("correct")}; //TODO
+
+        auto [role_id, flag] = db.get_challenge_role_data(msg_id);
 
         const auto& entered { std::get<std::string>(event.components[0].components[0].value) };
 

@@ -17,31 +17,15 @@ auto main() -> int {
 	//-----------------------------------------------------------------------------
 	// connect to the Database
 	//-----------------------------------------------------------------------------
-	// try to connect to a local database instance for debugging
-	auto is_connected{
-		Database::connect(
-		"dropsoft",
-		"cyberdrop",
-		"983847384798hhf4",
-		"localhost",
-		"2673"
-	)};
-
-	// try to connect to the remote database if no local database was found
-	if(!is_connected)
-		is_connected =
-			Database::connect(
+	auto db{
+		Database(
 			"dropsoft",
 			"cyberdrop",
 			"983847384798hhf4",
 			"81.169.199.184",
 			"2673"
-		);
-	
-	if(!is_connected){
-		std::cout << "CONNECTION TO DATABASE FAILED...\nEXITING..." << std::endl;
-		return -1;
-	}
+		)
+	};
 	//------------------------------------------------------------------------------
 
 	// list of slash commands
@@ -49,44 +33,44 @@ auto main() -> int {
 	register_global_slash_commands(global_command_list, bot);
 
 	// when a member joins the guild
-	bot.on_guild_member_add([&bot](const dpp::guild_member_add_t& event) -> void {
+	bot.on_guild_member_add([&bot, &db](const dpp::guild_member_add_t& event) -> void {
 		welcome_member(event, bot);
 	});
 
 	// when a member leaves the guild
-	bot.on_guild_member_remove([&bot](const dpp::guild_member_remove_t& event) -> void {
+	bot.on_guild_member_remove([&bot, &db](const dpp::guild_member_remove_t& event) -> void {
 		leave_member(event, bot);
 	});
 
 	// register slash commands
-	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
+	bot.on_ready([&bot, &global_command_list, &db](const dpp::ready_t& event) -> void {
 		if(dpp::run_once<struct register_bot_commands>()) {
 			bot.global_bulk_command_create(global_command_list);
 		}
 	});
 
 	// handle slash commands
-	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
-		handle_global_slash_commands(event, bot, global_command_list);
+	bot.on_slashcommand([&bot, &global_command_list, &db](const dpp::slashcommand_t& event) -> void {
+		handle_global_slash_commands(event, bot, global_command_list, db);
 	});
 
 	// handle button clicks
-	bot.on_button_click([&bot](const dpp::button_click_t& event) -> void {
+	bot.on_button_click([&bot, &db](const dpp::button_click_t& event) -> void {
 		handle_button_clicks(event, bot);
 	});
 
 	// handle form submits
-	bot.on_form_submit([&bot](const dpp::form_submit_t & event) -> void {
-		handle_form_submits(event, bot);
+	bot.on_form_submit([&bot, &db](const dpp::form_submit_t & event) -> void {
+		handle_form_submits(event, bot, db);
 	});
 
 	// handle added reactions
-	bot.on_message_reaction_add([&bot](const dpp::message_reaction_add_t & event) -> void {
+	bot.on_message_reaction_add([&bot, &db](const dpp::message_reaction_add_t & event) -> void {
 		handle_reaction_added(event, bot);
 	});
 
 	// handle remove reactions
-	bot.on_message_reaction_remove([&bot](const dpp::message_reaction_remove_t & event) -> void {
+	bot.on_message_reaction_remove([&bot, &db](const dpp::message_reaction_remove_t & event) -> void {
 		handle_reaction_removed(event, bot);
 	});
 
@@ -133,7 +117,8 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 auto handle_global_slash_commands(
 	const dpp::slashcommand_t& event, 
 	dpp::cluster& bot, 
-	const std::vector<dpp::slashcommand>& command_list
+	const std::vector<dpp::slashcommand>& command_list,
+	Database& db
 ) -> void {
 
 	// user commands
@@ -142,7 +127,7 @@ auto handle_global_slash_commands(
 
 	// admin commands
 	core::handle_global_slash_commands(event, bot, command_list);
-	roles::handle_global_slash_commands(event, bot);
+	roles::handle_global_slash_commands(event, bot, db);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -155,8 +140,8 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE FORM SUBMITS
 //////////////////////////////////////////////////////////////////////////////
-auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
-	roles::handle_form_submits(event, bot);
+auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void {
+	roles::handle_form_submits(event, bot, db);
 }
 
 //////////////////////////////////////////////////////////////////////////////
