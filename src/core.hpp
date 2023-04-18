@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dpp/dispatcher.h>
 #include <ratio>
 #include <vector>
 #include <thread>
@@ -53,6 +54,16 @@ namespace core {
     auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) -> void {
         // Get the interaction response object
         // event.reply(LanguageServer::get(event.command.guild_id, message_token));
+        event.reply(message);
+
+        std::thread([event, time_mills]() {
+            std::this_thread::sleep_for(std::chrono::milliseconds(time_mills));
+            event.delete_original_response();
+        }).detach();
+    }
+
+    static 
+    auto timed_reply(const dpp::form_submit_t& event, const std::string& message, size_t time_mills) -> void {
         event.reply(message);
 
         std::thread([event, time_mills]() {

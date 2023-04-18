@@ -26,3 +26,12 @@ auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) ->
 
 // button clicks
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void;
+
+// form submits
+auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void;
+
+// handle added reactions
+auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void;
+
+// handle removed reactions
+auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void;

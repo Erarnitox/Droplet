@@ -3,8 +3,10 @@
 #include "core.hpp"
 #include <dpp/colors.h>
 #include <dpp/message.h>
+#include <fmt/core.h>
 
 namespace roles {
+    static
     auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
         dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
         
@@ -62,6 +64,7 @@ namespace roles {
         command_list.push_back(reaction_role);
     }
 
+    static
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
         if (event.command.get_command_name() == "challenge_role") {
             if(!core::is_admin(event.command.member)){
@@ -76,15 +79,19 @@ namespace roles {
             const auto& channel_id{ core::get_channel_id(channel) };
 
             // create the challenge message
-             dpp::embed embed = dpp::embed().
-	                set_color(dpp::colors::black).
-	                set_title(title).
-                    add_field(
-                        "Question:",
-                        question,
-                        true
-                    );
-
+            dpp::embed embed = dpp::embed().
+	            set_color(dpp::colors::black).
+	            set_title(title).
+                add_field(
+                    "Challenge:",
+                    question,
+                    true
+                ).
+                add_field(
+                    "Role Reward:", 
+                    role,
+                    false
+                );
             
             dpp::message msg(channel_id, embed);
 
@@ -93,7 +100,7 @@ namespace roles {
 	            set_type(dpp::cot_button).
 	            set_emoji("🚩").
 	            set_style(dpp::cos_success).
-	            set_id("solve_btn")
+	            set_id("solve_challenge_btn")
 	        ));
 
             // send the challenge message
@@ -117,35 +124,55 @@ namespace roles {
         }
     }
 
+    static
     auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
+        if(event.custom_id != "solve_challenge_btn") return;
+
 	    /* Instantiate an interaction_modal_response object */
-	    dpp::interaction_modal_response modal("my_modal", "Please enter stuff");
+	    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
 	    
         /* Add a text component */
 	    modal.add_component(
 	        dpp::component().
-	        set_label("Short type rammel").
-	        set_id("field_id").
+	        set_label("Solution:").
+	        set_id("solution_id").
 	        set_type(dpp::cot_text).
-	        set_placeholder("gumd").
-	        set_min_length(5).
-	        set_max_length(50).
+	        set_placeholder("Answer").
+	        set_min_length(4).
+	        set_max_length(64).
 	        set_text_style(dpp::text_short)
 	    );
-	    
-        /* Add another text component in the next row, as required by Discord */
-	    modal.add_row();
-	    modal.add_component(
-	        dpp::component().
-	        set_label("Type rammel").
-	        set_id("field_id2").
-	        set_type(dpp::cot_text).
-	        set_placeholder("gumf").
-	        set_min_length(1).
-	        set_max_length(2000).
-	        set_text_style(dpp::text_paragraph)
-	    );
+
 	    /* Trigger the dialog box. All dialog boxes are ephemeral */
 	    event.dialog(modal);
+    }
+
+    static
+    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
+        // get the needed data from the event
+        const auto& msg_id{ event.command.message_id };
+        const auto& member{ event.command.member };
+
+        // get the correct answer and reward role from the database
+        auto role_id{ 812457935526821888L }; //TODO
+        auto flag{ std::string("correct")}; //TODO
+
+        const auto& entered { std::get<std::string>(event.components[0].components[0].value) };
+
+        if(entered == flag) {
+            bot.guild_member_add_role(event.command.guild_id, member.user_id, role_id);
+
+            core::timed_reply(
+                event,
+                fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
+                5000
+            );
+        } else {
+            core::timed_reply(
+                event,
+                fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
+                5000
+            );
+        }
     }
 }

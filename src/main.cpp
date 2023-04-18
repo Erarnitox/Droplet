@@ -4,6 +4,7 @@
 #include "roles.hpp"
 #include "user_man.hpp"
 #include <dpp/dispatcher.h>
+#include <fmt/core.h>
 
 //////////////////////////////////////////////////////////////////////////////
 // MAIN FUNCTION
@@ -13,10 +14,35 @@ auto main() -> int {
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 	bot.on_log(dpp::utility::cout_logger());
 
+	//-----------------------------------------------------------------------------
 	// connect to the Database
-	//Database::connect();
+	//-----------------------------------------------------------------------------
+	// try to connect to a local database instance for debugging
+	auto is_connected{
+		Database::connect(
+		"dropsoft",
+		"cyberdrop",
+		"983847384798hhf4",
+		"localhost",
+		"2673"
+	)};
 
-	bot.global_command_delete(1093646069520420915);
+	// try to connect to the remote database if no local database was found
+	if(!is_connected)
+		is_connected =
+			Database::connect(
+			"dropsoft",
+			"cyberdrop",
+			"983847384798hhf4",
+			"81.169.199.184",
+			"2673"
+		);
+	
+	if(!is_connected){
+		std::cout << "CONNECTION TO DATABASE FAILED...\nEXITING..." << std::endl;
+		return -1;
+	}
+	//------------------------------------------------------------------------------
 
 	// list of slash commands
 	std::vector<dpp::slashcommand> global_command_list;
@@ -41,7 +67,7 @@ auto main() -> int {
 
 	// handle slash commands
 	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
-			handle_global_slash_commands(event, bot, global_command_list);
+		handle_global_slash_commands(event, bot, global_command_list);
 	});
 
 	// handle button clicks
@@ -49,16 +75,19 @@ auto main() -> int {
 		handle_button_clicks(event, bot);
 	});
 
-	/* This event handles form submission for the modal dialog we create above */
-	bot.on_form_submit([&](const dpp::form_submit_t & event) {
-	    /* For this simple example we know the first element of the first row ([0][0]) is value type string.
-	    * In the real world it may not be safe to make such assumptions!
-	    */
-		std::string v = std::get<std::string>(event.components[0].components[0].value);
-	    dpp::message m;
-	    m.set_content("You entered: " + v).set_flags(dpp::m_ephemeral);
-	    /* Emit a reply. Form submission is still an interaction and must generate some form of reply! */
-	    event.reply(m);
+	// handle form submits
+	bot.on_form_submit([&bot](const dpp::form_submit_t & event) -> void {
+		handle_form_submits(event, bot);
+	});
+
+	// handle added reactions
+	bot.on_message_reaction_add([&bot](const dpp::message_reaction_add_t & event) -> void {
+		handle_reaction_added(event, bot);
+	});
+
+	// handle remove reactions
+	bot.on_message_reaction_remove([&bot](const dpp::message_reaction_remove_t & event) -> void {
+		handle_reaction_removed(event, bot);
 	});
 
 	// start execution of the bot
@@ -121,6 +150,27 @@ auto handle_global_slash_commands(
 //////////////////////////////////////////////////////////////////////////////
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
 	roles::handle_button_clicks(event, bot);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// HANDLE FORM SUBMITS
+//////////////////////////////////////////////////////////////////////////////
+auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
+	roles::handle_form_submits(event, bot);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// HANDLE ADDED REACTIONS
+//////////////////////////////////////////////////////////////////////////////
+auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
+	
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// HANDLE REMOVED REACTIONS
+//////////////////////////////////////////////////////////////////////////////
+auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
+	
 }
 
 //////////////////////////////////////////////////////////////////////////////

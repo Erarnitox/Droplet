@@ -4,6 +4,8 @@
 
 class Database {
 public:
+
+    [[nodiscard("Check if the Connection was established!")]]
     static
     auto connect(
         const std::string& db_name,
