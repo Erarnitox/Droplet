@@ -4,6 +4,7 @@
 #include "roles.hpp"
 #include "user_man.hpp"
 #include <dpp/dispatcher.h>
+#include <dpp/presence.h>
 #include <fmt/core.h>
 
 //////////////////////////////////////////////////////////////////////////////
@@ -14,6 +15,10 @@ auto main() -> int {
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 	bot.on_log(dpp::utility::cout_logger());
 
+	// set presence
+	auto presence{ dpp::presence(dpp::ps_dnd, dpp::activity_type::at_competing, "in CTF events...") };
+	bot.set_presence(presence);
+	
 	//-----------------------------------------------------------------------------
 	// connect to the Database
 	//-----------------------------------------------------------------------------
