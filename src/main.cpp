@@ -61,12 +61,12 @@ auto main() -> int {
 
 	// handle added reactions
 	bot.on_message_reaction_add([&bot, &db](const dpp::message_reaction_add_t & event) -> void {
-		handle_reaction_added(event, bot);
+		handle_reaction_added(event, bot, db);
 	});
 
 	// handle remove reactions
 	bot.on_message_reaction_remove([&bot, &db](const dpp::message_reaction_remove_t & event) -> void {
-		handle_reaction_removed(event, bot);
+		handle_reaction_removed(event, bot, db);
 	});
 
 	// start execution of the bot
@@ -161,15 +161,15 @@ auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Dat
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ADDED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
-auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
-	roles::handle_reaction_added(event, bot);
+auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) -> void {
+	roles::handle_reaction_added(event, bot, db);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE REMOVED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
-auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
-	roles::handle_reaction_removed(event, bot);
+auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) -> void {
+	roles::handle_reaction_removed(event, bot, db);
 }
 
 //////////////////////////////////////////////////////////////////////////////

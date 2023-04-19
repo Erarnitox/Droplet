@@ -6,20 +6,15 @@
 #include <dpp/message.h>
 #include <dpp/restresults.h>
 #include <fmt/core.h>
+#include <string>
+#include <stack>
 
 namespace roles {
     static
     auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
+        // Challenge Roles
         dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
         
-        /*
-        challenge_role.add_option(
-	        dpp::command_option(dpp::co_string, "action", "What action would you like to perform?", true)
-	            .add_choice(dpp::command_option_choice("Create a new challenge role", std::string("action_create")))
-	            //.add_choice(dpp::command_option_choice("Update an existing challenge role", std::string("action_update")))
-                //.add_choice(dpp::command_option_choice("Delete an existing challenge role", std::string("action_delete")))
-        );*/
-
         challenge_role.add_option(
 	        dpp::command_option(dpp::co_string, "channel", "In which channel to post the challenge in", true)
         );
@@ -40,18 +35,11 @@ namespace roles {
 	        dpp::command_option(dpp::co_string, "title", "The title for the challenge", true)
         );
 
+        // Reaction Role
         dpp::slashcommand reaction_role("reaction_role", "Create reaction Roles (Admin only!)", bot.me.id);
 
-        /*
         reaction_role.add_option(
-	        dpp::command_option(dpp::co_string, "action", "What action would you like to perform?", true)
-	            .add_choice(dpp::command_option_choice("Create a new reaction role", std::string("action_create")))
-	            .add_choice(dpp::command_option_choice("Update an existing reaction role", std::string("action_update")))
-                .add_choice(dpp::command_option_choice("Delete an existing reaction role", std::string("action_delete")))
-        );*/
-
-        reaction_role.add_option(
-	        dpp::command_option(dpp::co_string, "channel", "In which channel to post the message in", true)
+	        dpp::command_option(dpp::co_string, "message_link", "A link to the message to react to", true)
         );
 
         reaction_role.add_option(
@@ -137,7 +125,54 @@ namespace roles {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
             }
-            // reaction role logic
+            const auto& message_link{ std::get<std::string>(event.get_parameter("message_link")) };
+            const std::string& emoji{ std::get<std::string>(event.get_parameter("emoji")) };
+            const auto& role{ std::get<std::string>(event.get_parameter("role")) };
+            const auto& role_id{ core::get_role_id(role) };
+
+            const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
+            
+            // https://discord.com/channels/808151108748836914/1074752192877170708/1097929476068880425
+
+            std::vector<size_t> slashes;
+
+            // find the position of all slashes
+            for(size_t i{ 0 };;) {
+                i = message_link.find("/", i+1);
+                if(i == std::string::npos) break;
+                slashes.push_back(i);
+            }
+
+            //--------------------------------------------------
+            // get message id from the link
+            size_t end_pos{ message_link.size() };
+            size_t start_pos{ slashes.back()+1 };
+            const auto& message_id{ message_link.substr(start_pos, end_pos) };
+            //--------------------------------------------------
+
+            //--------------------------------------------------
+            // get message id from the link
+            slashes.pop_back();
+            end_pos = (start_pos-2) - slashes.back();
+            start_pos = slashes.back()+1;
+            const auto& channel_id{ message_link.substr(start_pos, end_pos) };
+            //--------------------------------------------------
+
+            // Insert Reaction Role into Database
+            db.insert_reaction_role_data(role_id, event.command.guild_id, message_id, usable_emoji);
+
+            // Let the bot react to the message
+            bot.message_add_reaction(message_id, channel_id, usable_emoji);
+
+            // send a confirmation to the admin
+            core::timed_reply(
+                event, 
+                fmt::format(
+                    "Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}",
+                    message_link, emoji, role
+                ), 
+                10000 //10sek
+            );
         }
     }
 
@@ -193,20 +228,30 @@ namespace roles {
     }
 
     static
-    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
+    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) -> void {
         const auto& message_id{ event.message_id };
         const auto& user_id{ event.reacting_user.id };
         const auto& reaction{ event.reacting_emoji };
 
-        //TODO: implement reaction roles
+        // get role id from the database
+        size_t role_id = 0;
+
+        if(role_id) {
+            bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
+        }
     }
 
     static
-    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
+    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) -> void {
         const auto& message_id{ event.message_id };
         const auto& user_id{ event.reacting_user_id };
         const auto& reaction{ event.reacting_emoji };
 
-        //TODO: implement reaction roles
+        // get role id from the database
+        size_t role_id = 0;
+
+        if(role_id) {
+            bot.guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);
+        }
     }
 }
