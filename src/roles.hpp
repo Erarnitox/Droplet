@@ -59,6 +59,7 @@ namespace roles {
         if (event.command.get_command_name() == "challenge_role") {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+                return;
             }
             const auto& channel{ std::get<std::string>(event.get_parameter("channel")) };
             const auto& question{ std::get<std::string>(event.get_parameter("question")) };
@@ -124,6 +125,7 @@ namespace roles {
         else if (event.command.get_command_name() == "reaction_role") {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+                return;
             }
             const auto& message_link{ std::get<std::string>(event.get_parameter("message_link")) };
             const std::string& emoji{ std::get<std::string>(event.get_parameter("emoji")) };
@@ -248,8 +250,10 @@ namespace roles {
         const auto& user_id{ event.reacting_user_id };
         const auto& reaction{ event.reacting_emoji };
 
-        // get role id from the database
-        size_t role_id = 0;
+        const auto& emoji { reaction.get_mention() };
+        const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        
+        size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
 
         if(role_id) {
             bot.guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);

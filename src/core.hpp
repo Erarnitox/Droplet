@@ -112,9 +112,11 @@ namespace core {
             };
 
             for(auto& command : command_list) {
-                auto& options{ command.options };
+                if(!core::is_admin(event.command.member) && command.description.ends_with("(Admin only!)")) continue;
                 
+                auto& options{ command.options };
                 std::string options_string;
+
                 for(auto& option : options) {
                     if(option.required)
                         options_string.append(fmt::format(" <{}>", option.name));
@@ -137,6 +139,7 @@ namespace core {
         else if (event.command.get_command_name() == "set_channel") {
             if(!is_admin(event.command.member)){
                 timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+                return;
             }
 
             auto type{ std::get<std::string>(event.get_parameter("type")) };
