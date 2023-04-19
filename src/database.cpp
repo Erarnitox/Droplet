@@ -32,7 +32,7 @@ Database::~Database() {
 }
 
 auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string> {
-    static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=\"$1\"" };
+    static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1" };
     pqxx::work txn(conn);
     pqxx::result result = txn.exec_params(sql_string, message_id);
     txn.commit();
@@ -49,15 +49,14 @@ auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_
     txn.commit();
 }
 
-auto Database::get_reaction_role_data(size_t message_id, size_t reaction_emoji) -> std::pair<size_t, std::string> {
-    static std::string sql_string{ "SELECT role_id, emoji FROM reaction_roles WHERE message_id=\"$1\" AND emoji=\"$2\"" };
+auto Database::get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) -> size_t {
+    static std::string sql_string{ "SELECT role_id FROM reaction_roles WHERE message_id=$1 AND emoji=$2" };
     pqxx::work txn(conn);
     pqxx::result result = txn.exec_params(sql_string, message_id, reaction_emoji);
     txn.commit();
 
     const auto& role_id{ result.at(0, 0).get<size_t>() };
-    const auto& emoji{ result.at(0, 1).get<std::string>() };
-    return { role_id.value(), emoji.value() };
+    return role_id.value();
 }
 
 auto Database::insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) -> void {

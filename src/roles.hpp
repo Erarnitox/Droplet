@@ -132,8 +132,7 @@ namespace roles {
 
             const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
             
-            // https://discord.com/channels/808151108748836914/1074752192877170708/1097929476068880425
-
+            // indecies of slashes in the link
             std::vector<size_t> slashes;
 
             // find the position of all slashes
@@ -233,8 +232,10 @@ namespace roles {
         const auto& user_id{ event.reacting_user.id };
         const auto& reaction{ event.reacting_emoji };
 
-        // get role id from the database
-        size_t role_id = 0;
+        const auto& emoji { reaction.get_mention() };
+        const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        
+        size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
 
         if(role_id) {
             bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);

@@ -27,6 +27,6 @@ public:
     auto insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) -> void;
 
     [[nodiscard]]
-    auto get_reaction_role_data(size_t message_id, size_t reaction_emoji) -> std::pair<size_t, std::string>;
+    auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) -> size_t;
     auto insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) -> void;
 };
