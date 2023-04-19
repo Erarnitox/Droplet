@@ -16,6 +16,7 @@
 #include "user_man.hpp"
 
 auto read_bot_token(const std::string& file) -> std::string;
+auto read_database_credentials(const std::string& file) -> std::string;
 
 // slash commands
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void;

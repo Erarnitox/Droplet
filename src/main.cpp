@@ -6,6 +6,7 @@
 #include <dpp/dispatcher.h>
 #include <dpp/presence.h>
 #include <fmt/core.h>
+#include <string>
 
 //////////////////////////////////////////////////////////////////////////////
 // MAIN FUNCTION
@@ -15,22 +16,11 @@ auto main() -> int {
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 	bot.on_log(dpp::utility::cout_logger());
 
-	// set presence
-	auto presence{ dpp::presence(dpp::ps_dnd, dpp::activity_type::at_competing, "in CTF events...") };
-	bot.set_presence(presence);
-	
 	//-----------------------------------------------------------------------------
 	// connect to the Database
 	//-----------------------------------------------------------------------------
-	auto db{
-		Database(
-			"dropsoft",
-			"cyberdrop",
-			"983847384798hhf4",
-			"81.169.199.184",
-			"2673"
-		)
-	};
+	const auto db_connection_string{ read_database_credentials("db_connection.txt") };
+	auto db{ Database(db_connection_string) };
 	//------------------------------------------------------------------------------
 
 	// list of slash commands
@@ -101,6 +91,25 @@ auto read_bot_token(const std::string& file) -> std::string {
 		throw("ERROR: NO bot token found!");
 
 	return bot_token;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// READ DATABASE CREDENTIALS FROM FILE
+//////////////////////////////////////////////////////////////////////////////
+auto read_database_credentials(const std::string& file) -> std::string { 
+	std::ifstream file_stream(file);
+	std::string connection_string;
+	
+	if(file_stream.is_open()) {
+		std::getline(file_stream, connection_string);	
+	} else {
+		throw("ERROR: Cant read Database connection string!");
+	}
+
+	if(connection_string.size() < 1)
+		throw("ERROR: NO DATABASE CREDENTIALS PROVIDED!");
+
+	return connection_string;
 }
 
 //////////////////////////////////////////////////////////////////////////////

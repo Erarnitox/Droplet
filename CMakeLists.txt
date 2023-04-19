@@ -18,6 +18,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 set(LIBRARY_LINK_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so")
 set(LIBRARY_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so.1.0")
 set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/bot_token.txt")
+set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
 
 add_custom_command(
     OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so" "${CMAKE_BINARY_DIR}/libdpp.so.1.0" "${CMAKE_BINARY_DIR}/bot_token.txt"
@@ -25,10 +26,11 @@ add_custom_command(
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBRARY_LINK_PATH} "${CMAKE_BINARY_DIR}/libdpp.so"
 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${LIBRARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
 )
 
 add_custom_target(
-    copy_depends ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so" "${CMAKE_BINARY_DIR}/libdpp.so.1.0" "${CMAKE_BINARY_DIR}/bot_token.txt"
+    copy_depends ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so" "${CMAKE_BINARY_DIR}/libdpp.so.1.0" "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
 )
 
 add_dependencies(${PROJECT_NAME} copy_depends)

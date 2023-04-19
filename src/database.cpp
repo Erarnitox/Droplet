@@ -10,21 +10,25 @@ Database::Database(
     const std::string& host,
     const std::string& port
 ):
-db_name{ db_name }, user{ user }, password{ password }, host{ host }, port{ port },
 conn{ 
         pqxx::connection(fmt::format(
             "dbname={} user={} password={} hostaddr={} port={}",
              db_name,  user,   password,   host,       port
         ))
     }
-
 {
     if(!conn.is_open()) this->is_connected = false;
     this->is_connected = true;
 }
 
-auto Database::disconnect() -> void {
-    //conn.disconnect();
+Database::Database(const std::string& connection_string):
+conn{ pqxx::connection(connection_string) }
+{
+    if(!conn.is_open()) this->is_connected = false;
+    this->is_connected = true;
+}
+
+Database::~Database() {
 }
 
 auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string> {
@@ -33,9 +37,9 @@ auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, s
     pqxx::result result = txn.exec_params(sql_string, message_id);
     txn.commit();
 
-    const auto& role_id{ result.at(0, 0).get<size_t>().value() };
-    const auto& flag{ result.at(0, 1).get<std::string>().value() };
-    return { role_id, flag };
+    const auto& role_id{ result.at(0, 0).get<size_t>() };
+    const auto& flag{ result.at(0, 1).get<std::string>() };
+    return { role_id.value(), flag.value() };
 }
 
 auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, std::string flag) -> void {

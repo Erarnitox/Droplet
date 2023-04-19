@@ -6,16 +6,9 @@
 class Database {
 private:
     bool is_connected;
-    const std::string& db_name;
-    const std::string& user;
-    const std::string& password;
-    const std::string& host;
-    const std::string& port;
-    
     pqxx::connection conn;
     
 public:
-    [[nodiscard("Check if the Connection was established!")]]
     Database (
         const std::string& db_name,
         const std::string& user, 
@@ -24,7 +17,9 @@ public:
         const std::string& port
     );
 
-    auto disconnect() -> void;
+    Database (const std::string& connection_string);
+
+    ~Database();
 
     [[nodiscard]]
     auto get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string>;
