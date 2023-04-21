@@ -2,12 +2,22 @@
 
 #include <cstddef>
 #include <string>
+#include <map>
+#include <optional>
 #include <pqxx/pqxx>
 
 class Database {
 private:
     bool is_connected;
     pqxx::connection conn;
+    std::map<size_t, size_t> reaction_role_cache;
+    std::map<size_t, std::pair<size_t, std::string>> challenge_role_cache;
+    
+    auto cache_challenge_role(size_t key, const std::pair<size_t, std::string>& data) -> void;
+    auto cache_reaction_role(size_t key, size_t data) -> void;
+    
+    auto cache_lookup_challenge_role(size_t key) -> std::optional<std::pair<size_t, std::string>>;
+    auto cache_lookup_reaction_role(size_t key) -> std::optional<size_t>;
     
 public:
     Database (

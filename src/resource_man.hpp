@@ -28,7 +28,7 @@ namespace resource_man {
             { "Misc / Other", "misc" }
         };
 
-	    dpp::slashcommand res_command("resources", "Resource collection managemant", bot.me.id);
+	    dpp::slashcommand res_command("resources", "Resource collection management", bot.me.id);
 	    
         // action option
         res_command.add_option(

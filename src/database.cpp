@@ -65,3 +65,28 @@ auto Database::insert_reaction_role_data(const std::string& role_id, size_t guil
     pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, emoji);
     txn.commit();
 }
+
+
+auto Database::cache_challenge_role(size_t key, const std::pair<size_t, std::string>& data) -> void {
+
+}
+
+auto Database::cache_reaction_role(size_t key, size_t data) -> void {
+    
+}
+   
+auto Database::cache_lookup_challenge_role(size_t key) -> std::optional<std::pair<size_t, std::string>> {
+    std::optional<std::pair<size_t, std::string&>> result;
+    if(this->challenge_role_cache.contains(key)) {
+        result = this->challenge_role_cache[key];
+    }
+    return result;    
+}
+
+auto Database::cache_lookup_reaction_role(size_t key) -> std::optional<size_t> {
+    std::optional<size_t> result;
+    if(this->reaction_role_cache.contains(key)) {
+        result = this->reaction_role_cache[key];
+    }
+    return result;
+}
