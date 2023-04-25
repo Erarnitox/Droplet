@@ -86,6 +86,9 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string& reac
         pqxx::result result = txn.exec_params(sql_string, message_id, reaction_emoji);
         txn.commit();
         times = 0;
+
+        const auto& role_id{ result.at(0, 0).get<size_t>() };
+        return role_id.value();
     } catch(const pqxx::broken_connection& e){
         ++times;
         if(times > 10){
@@ -97,8 +100,6 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string& reac
         return this->get_reaction_role_data(message_id, reaction_emoji); 
     }
 
-    const auto& role_id{ result.at(0, 0).get<size_t>() };
-    return role_id.value();
 }
 
 auto Database::insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) -> void {
@@ -131,7 +132,8 @@ auto Database::reconnect() -> void {
     try {
         times++;
         if(!conn.is_open()) {
-            conn.activate();
+            //conn.activate();
+            conn = pqxx::connection(conn.connection_string());
         }
         times = 0;
     } catch(const pqxx::broken_connection & e) {
