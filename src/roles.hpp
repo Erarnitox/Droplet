@@ -6,12 +6,13 @@
 #include <dpp/message.h>
 #include <dpp/restresults.h>
 #include <fmt/core.h>
+#include <stdexcept>
 #include <string>
 #include <stack>
 
 namespace roles {
-    static
-    auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
+    static inline
+    auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) noexcept -> void {
         // Challenge Roles
         dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
         
@@ -54,8 +55,8 @@ namespace roles {
         command_list.push_back(reaction_role);
     }
 
-    static
-    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, Database& db) -> void {
+    static inline
+    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
         if (event.command.get_command_name() == "challenge_role") {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
@@ -101,11 +102,31 @@ namespace roles {
                 [role_id, role, event, question, solution, guild_id, &db](const dpp::confirmation_callback_t& cb) -> void {
                     auto sent_message{ cb.value };
 
+                    size_t sane_role_id;
+                    try {
+                        sane_role_id = std::stoul(role_id); 
+                    } catch(std::invalid_argument exception){
+                        core::timed_reply(event, "Bad role! Just mention the role!", 5000);
+                        return;
+                    }
+                    
+                    size_t message_id{ 0 };
+                    try{ 
+                        message_id = std::get<dpp::message>(sent_message).id;
+                       if(message_id == 0){
+                        core::timed_reply(event, "Something went wrong! No message created! ...", 5000);
+                        return;
+                       } 
+                    } catch(...){
+                        core::timed_reply(event, "Could not get created message! ...", 5000);
+                        return;
+                    }
+
                     // save the needed information in the database
                     db.insert_challenge_role_data(
-                        std::stoul(role_id), 
+                        sane_role_id,
                         guild_id, 
-                        std::get<dpp::message>(sent_message).id, 
+                        message_id,
                         solution
                     );
 
@@ -177,8 +198,8 @@ namespace roles {
         }
     }
 
-    static
-    auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
+    static inline
+    auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
         if(event.custom_id != "solve_challenge_btn") return;
 
 	    /* Instantiate an interaction_modal_response object */
@@ -200,8 +221,8 @@ namespace roles {
 	    event.dialog(modal);
     }
 
-    static
-    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void {
+    static inline
+    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
         // get the needed data from the event
         const auto& msg_id{ event.command.message_id };
         const auto& member{ event.command.member };
@@ -228,8 +249,8 @@ namespace roles {
         }
     }
 
-    static
-    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) -> void {
+    static inline
+    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
         const auto& message_id{ event.message_id };
         const auto& user_id{ event.reacting_user.id };
         const auto& reaction{ event.reacting_emoji };
@@ -244,8 +265,8 @@ namespace roles {
         }
     }
 
-    static
-    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) -> void {
+    static inline
+    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
         const auto& message_id{ event.message_id };
         const auto& user_id{ event.reacting_user_id };
         const auto& reaction{ event.reacting_emoji };
