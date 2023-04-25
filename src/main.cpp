@@ -4,6 +4,7 @@
 #include "roles.hpp"
 #include "user_man.hpp"
 #include <dpp/dispatcher.h>
+#include <dpp/misc-enum.h>
 #include <dpp/presence.h>
 #include <fmt/core.h>
 #include <string>
@@ -16,13 +17,15 @@ auto main() -> int {
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 	bot.on_log(dpp::utility::cout_logger());
 
+	bot.log(dpp::loglevel::ll_info, "Bot started!");
+	
 	//-----------------------------------------------------------------------------
 	// connect to the Database
 	//-----------------------------------------------------------------------------
 	const auto db_connection_string{ read_database_credentials("db_connection.txt") };
 	auto db{ Database(db_connection_string) };
 	if(!db.has_connection()) {
-		// something went wrong connecting to the database
+		bot.log(dpp::loglevel::ll_error, "Connection to Database was not successful!");
 		return -1;
 	}
 	//------------------------------------------------------------------------------
@@ -48,7 +51,7 @@ auto main() -> int {
 				bot.global_bulk_command_create(global_command_list);
 			}
 		} catch(...) {
-			// smeting went wrong registering commands
+			bot.log(dpp::loglevel::ll_error, "Something went wrong registering the slash commands!");
 		}
 	});
 
@@ -57,6 +60,7 @@ auto main() -> int {
 		try{
 			handle_global_slash_commands(event, bot, global_command_list, db);
 		} catch(...){
+			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_global_slash_commands'" );
 			event.reply("I could not process that input! ...");
 		}
 	});
@@ -66,6 +70,7 @@ auto main() -> int {
 		try{
 			handle_button_clicks(event, bot);
 		} catch(...) {
+			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_button_clicks'" );
 			event.reply("Could not process the button clicked! ...");	
 		}
 	});
@@ -75,6 +80,7 @@ auto main() -> int {
 		try{
 			handle_form_submits(event, bot, db);
 		} catch(...) {
+			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_form_submits'" );
 			event.reply("I could not handle the provided input! ...");
 		}
 	});
@@ -84,7 +90,7 @@ auto main() -> int {
 		try{
 			handle_reaction_added(event, bot, db);
 		} catch(...) {
-			// something went wrong handeling the reaction
+			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_reaction_added'" );
 		}
 	});
 
@@ -93,7 +99,7 @@ auto main() -> int {
 		try{
 			handle_reaction_removed(event, bot, db);
 		} catch(...) {
-			// something went wrong handeling the removed reaction
+			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_reaction_removed'" );
 		}
 	});
 

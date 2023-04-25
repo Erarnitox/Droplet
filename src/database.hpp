@@ -23,6 +23,7 @@ public:
     );
     
     auto has_connection() -> bool;
+    auto reconnect() -> void;
 
     Database (const std::string& connection_string);
 
