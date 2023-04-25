@@ -21,6 +21,10 @@ auto main() -> int {
 	//-----------------------------------------------------------------------------
 	const auto db_connection_string{ read_database_credentials("db_connection.txt") };
 	auto db{ Database(db_connection_string) };
+	if(!db.has_connection()) {
+		// something went wrong connecting to the database
+		return -1;
+	}
 	//------------------------------------------------------------------------------
 
 	// list of slash commands
@@ -39,34 +43,58 @@ auto main() -> int {
 
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list, &db](const dpp::ready_t& event) -> void {
-		if(dpp::run_once<struct register_bot_commands>()) {
-			bot.global_bulk_command_create(global_command_list);
+		try{
+			if(dpp::run_once<struct register_bot_commands>()) {
+				bot.global_bulk_command_create(global_command_list);
+			}
+		} catch(...) {
+			// smeting went wrong registering commands
 		}
 	});
 
 	// handle slash commands
 	bot.on_slashcommand([&bot, &global_command_list, &db](const dpp::slashcommand_t& event) -> void {
-		handle_global_slash_commands(event, bot, global_command_list, db);
+		try{
+			handle_global_slash_commands(event, bot, global_command_list, db);
+		} catch(...){
+			event.reply("I could not process that input! ...");
+		}
 	});
 
 	// handle button clicks
 	bot.on_button_click([&bot, &db](const dpp::button_click_t& event) -> void {
-		handle_button_clicks(event, bot);
+		try{
+			handle_button_clicks(event, bot);
+		} catch(...) {
+			event.reply("Could not process the button clicked! ...");	
+		}
 	});
 
 	// handle form submits
 	bot.on_form_submit([&bot, &db](const dpp::form_submit_t & event) -> void {
-		handle_form_submits(event, bot, db);
+		try{
+			handle_form_submits(event, bot, db);
+		} catch(...) {
+			event.reply("I could not handle the provided input! ...");
+		}
 	});
 
 	// handle added reactions
 	bot.on_message_reaction_add([&bot, &db](const dpp::message_reaction_add_t & event) -> void {
-		handle_reaction_added(event, bot, db);
+		try{
+			handle_reaction_added(event, bot, db);
+		} catch(...) {
+			// something went wrong handeling the reaction
+		}
 	});
 
 	// handle remove reactions
 	bot.on_message_reaction_remove([&bot, &db](const dpp::message_reaction_remove_t & event) -> void {
-		handle_reaction_removed(event, bot, db);
+		try{
+			handle_reaction_removed(event, bot, db);
+		} catch(...) {
+			// something went wrong handeling the removed reaction
+		}
 	});
 
 	// start execution of the bot
@@ -84,11 +112,14 @@ auto read_bot_token(const std::string& file) -> std::string {
 	if(file_stream.is_open()) {
 		file_stream >> bot_token;	
 	} else {
+		// something went wrong opening the file
 		throw("ERROR: bot token file could not be opened!");
 	}
 
-	if(bot_token.size() < 1)
+	if(bot_token.size() < 1) {
+		// something went wrong reading the token
 		throw("ERROR: NO bot token found!");
+	}
 
 	return bot_token;
 }
