@@ -54,7 +54,6 @@ auto main() -> int {
         		//bot.global_command_delete(1090370434232483985);
         		//bot.global_command_delete(1088242804418949181);
 			}
-
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_error, "Something went wrong registering the slash commands!");
 		}

@@ -17,7 +17,7 @@ namespace core {
     static std::map<dpp::snowflake, dpp::snowflake> goodbye_channels;
 
     static
-    auto is_admin(const dpp::guild_member& member) -> bool {
+    auto is_admin(const dpp::guild_member& member) noexcept -> bool {
         for (const auto& role_id : member.roles) {
             const dpp::role& role{ *dpp::find_role(role_id) };
             if(role.has_administrator())
@@ -27,7 +27,7 @@ namespace core {
     }
 
     static
-    auto get_role_id(const std::string& mention) -> std::string {
+    auto get_role_id(const std::string& mention) noexcept -> std::string {
         std::regex re("<@&([0-9]+)>");
         std::smatch match;
 
@@ -39,7 +39,7 @@ namespace core {
     }
 
     static
-    auto get_channel_id(const std::string& mention) -> std::string {
+    auto get_channel_id(const std::string& mention) noexcept -> std::string {
         std::regex re("<#([0-9]+)>");
         std::smatch match;
 
@@ -51,7 +51,7 @@ namespace core {
     }
 
     static 
-    auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) -> void {
+    auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) noexcept -> void {
         // Get the interaction response object
         // event.reply(LanguageServer::get(event.command.guild_id, message_token));
         event.reply(message);
@@ -63,7 +63,7 @@ namespace core {
     }
 
     static 
-    auto timed_reply(const dpp::form_submit_t& event, const std::string& message, size_t time_mills) -> void {
+    auto timed_reply(const dpp::form_submit_t& event, const std::string& message, size_t time_mills) noexcept -> void {
         event.reply(message);
 
         std::thread([event, time_mills]() {
@@ -72,8 +72,8 @@ namespace core {
         }).detach();
     }
 
-    static
-    auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
+    static inline
+    auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) noexcept -> void {
         dpp::slashcommand help_command("help", "Usage information", bot.me.id);
         //help_command.add_localization("de", "hilfe", "Hilfestellung zur Benutzung des Bots")
 
@@ -82,6 +82,7 @@ namespace core {
 	        dpp::command_option(dpp::co_string, "type", "For what should this channel be used?", true)
 	            .add_choice(dpp::command_option_choice("Welcome Message Channel", std::string("channel_welcome")))
 	            .add_choice(dpp::command_option_choice("Goodbye Message Channel", std::string("channel_goodbye")))
+	            .add_choice(dpp::command_option_choice("Server Logging Channel", std::string("channel_log")))
         );
 
         dpp::slashcommand language_command("set_language", "Configue the language being used by the bot", bot.me.id);
@@ -95,12 +96,12 @@ namespace core {
         command_list.push_back(channel_command);
     }
 
-    static
+    static inline
     auto handle_global_slash_commands(
         const dpp::slashcommand_t& event, 
         dpp::cluster& bot, 
         const std::vector<dpp::slashcommand>& command_list
-    ) -> void {
+    ) noexcept -> void {
         if (event.command.get_command_name() == "help") {
             /* create the embed */
 	        dpp::embed embed{ dpp::embed()
@@ -147,10 +148,11 @@ namespace core {
             if(type == "channel_welcome") {
                 welcome_channels[event.command.get_guild().id] = event.command.get_channel().id;
                 timed_reply(event, std::string("channel set as welcome channel!"), 2000);
-            }
-            else if(type == "channel_goodbye") {
+            } else if(type == "channel_goodbye") {
                 goodbye_channels[event.command.get_guild().id] = event.command.get_channel().id;
                 timed_reply(event, std::string("channel set as goodbye channel!"), 2000);
+            } else if(type == "channel_log") {
+                timed_reply(event, "Channnel set as logging channel!", 2000);
             }
         }
     }

@@ -62,6 +62,7 @@ namespace roles {
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
             }
+
             const auto& channel{ std::get<std::string>(event.get_parameter("channel")) };
             const auto& question{ std::get<std::string>(event.get_parameter("question")) };
             const auto& solution{ std::get<std::string>(event.get_parameter("solution")) };
@@ -158,11 +159,21 @@ namespace roles {
             // indecies of slashes in the link
             std::vector<size_t> slashes;
 
+            if(message_link.size() < 4 || !message_link.starts_with("http")) {
+                event.reply("The provided link is not a valid message link!");
+                return;
+            }
+
             // find the position of all slashes
-            for(size_t i{ 0 };;) {
+           for(size_t i{ 0 };;) {
                 i = message_link.find("/", i+1);
                 if(i == std::string::npos) break;
                 slashes.push_back(i);
+            }
+            
+            if(slashes.size() < 3){
+                event.reply("The provided link is not a valid message link!");
+                return;
             }
 
             //--------------------------------------------------
@@ -229,6 +240,10 @@ namespace roles {
 
         // get the correct answer and reward role from the database
         auto [role_id, flag] = db.get_challenge_role_data(msg_id);
+
+        if(!role_id || flag.size() == 0){
+           return; 
+        }
 
         const auto& entered { std::get<std::string>(event.components[0].components[0].value) };
 
