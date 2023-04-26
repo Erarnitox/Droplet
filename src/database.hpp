@@ -22,18 +22,18 @@ public:
         const std::string& port
     );
     
-    auto has_connection() -> bool;
-    auto reconnect() -> void;
+    auto has_connection() const noexcept -> bool;
+    auto reconnect() noexcept -> void;
 
     Database (const std::string& connection_string);
 
     ~Database();
 
     [[nodiscard]]
-    auto get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string>;
-    auto insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) -> void;
+    auto get_challenge_role_data(size_t message_id) noexcept -> std::pair<size_t, std::string>;
+    auto insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) noexcept -> void;
 
     [[nodiscard]]
-    auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) -> size_t;
-    auto insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) -> void;
+    auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept -> size_t;
+    auto insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) noexcept -> void;
 };

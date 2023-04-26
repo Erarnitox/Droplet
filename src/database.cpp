@@ -31,7 +31,7 @@ conn{ pqxx::connection(connection_string) }
 Database::~Database() {
 }
 
-auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, std::string> {
+auto Database::get_challenge_role_data(size_t message_id) noexcept -> std::pair<size_t, std::string> {
     static int times = 0;
     static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1" };
     
@@ -53,10 +53,13 @@ auto Database::get_challenge_role_data(size_t message_id) -> std::pair<size_t, s
         }
         this->reconnect();
         return this->get_challenge_role_data(message_id);
+    } catch (...) {
+        fmt::print("Error: Tying to call 'get_challenge_role_data' with message_id={}\n", message_id);
+        return {0, 0};
     }
 }
 
-auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) -> void {
+auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) noexcept -> void {
     static int times = 0;
     static std::string sql_string{ "INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES ($1, $2, $3, $4)" };
     
@@ -74,10 +77,12 @@ auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_
         }
         this->reconnect();
         this->insert_challenge_role_data(role_id, guild_id, message_id, flag);
+    } catch (...) {
+        fmt::print("Error: Tying to call 'insert_challenge_role_data' with message_id={} guild_id={} message_id={}\n", role_id, guild_id, message_id);
     }
 }
 
-auto Database::get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) -> size_t {
+auto Database::get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept -> size_t {
     static int times = 0;
     static std::string sql_string{ "SELECT role_id FROM reaction_roles WHERE message_id=$1 AND emoji=$2" };
     
@@ -98,11 +103,13 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string& reac
         }
         this->reconnect();
         return this->get_reaction_role_data(message_id, reaction_emoji); 
+    } catch (...) {
+        fmt::print("Trying to call 'get_reaction_role_data' with message_id={} reaction_emoji={}\n", message_id, reaction_emoji);
+        return 0;
     }
-
 }
 
-auto Database::insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) -> void {
+auto Database::insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) noexcept -> void {
     static int times = 0;
     static std::string sql_string{ "INSERT INTO reaction_roles(role_id, guild_id, message_id, emoji) VALUES ($1, $2, $3, $4)" };
 
@@ -120,14 +127,16 @@ auto Database::insert_reaction_role_data(const std::string& role_id, size_t guil
         }
         this->reconnect();
         this->insert_reaction_role_data(role_id, guild_id, message_id, emoji);
-    } 
+    } catch(...) {
+        fmt::print("Trying to call 'insert_reaction_role_data' with role_id={} guild_id={} message_id={}\n", role_id, guild_id, message_id);
+    }
 }
 
-auto Database::has_connection() -> bool {
+auto Database::has_connection() const noexcept -> bool {
     return this->is_connected && conn.is_open();
 }
 
-auto Database::reconnect() -> void {
+auto Database::reconnect() noexcept -> void {
     static int times = 0;
     try {
         times++;
@@ -142,5 +151,7 @@ auto Database::reconnect() -> void {
             return;
         }
         this->reconnect();
+    } catch(...){
+        fmt::print("Error: reconnecting failed...\n");
     }
 }

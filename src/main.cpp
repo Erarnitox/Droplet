@@ -49,7 +49,12 @@ auto main() -> int {
 		try{
 			if(dpp::run_once<struct register_bot_commands>()) {
 				bot.global_bulk_command_create(global_command_list);
+				
+				// delete commands that are not implemented yet
+        		//bot.global_command_delete(1090370434232483985);
+        		//bot.global_command_delete(1088242804418949181);
 			}
+
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_error, "Something went wrong registering the slash commands!");
 		}

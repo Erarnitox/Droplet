@@ -8,8 +8,8 @@ namespace user_man{
         help_command.add_option(
 	        dpp::command_option(dpp::co_string, "user", "User you would like information about", true)
         );
-        
-        command_list.push_back(help_command);
+
+        //command_list.push_back(help_command);
     }
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {

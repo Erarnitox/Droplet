@@ -74,7 +74,7 @@ namespace resource_man {
 	        dpp::command_option(dpp::co_string, "description", "A short description of the resource", false)
 	    );
 
-        command_list.push_back(res_command);
+        //command_list.push_back(res_command);
         
         return;
     }
