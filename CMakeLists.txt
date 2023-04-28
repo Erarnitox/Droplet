@@ -29,4 +29,4 @@ add_custom_target(
     copy_depends ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
 )
 
-add_dependencies(${PROJECT_NAME} copy_depends)
+# add_dependencies(${PROJECT_NAME} copy_depends)
