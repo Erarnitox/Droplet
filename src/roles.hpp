@@ -63,14 +63,38 @@ namespace roles {
                 return;
             }
 
-            const auto& channel{ std::get<std::string>(event.get_parameter("channel")) };
-            const auto& question{ std::get<std::string>(event.get_parameter("question")) };
-            const auto& solution{ std::get<std::string>(event.get_parameter("solution")) };
-            const auto& role{ std::get<std::string>(event.get_parameter("role")) };
-            const auto& title{ std::get<std::string>(event.get_parameter("title")) };
-            const auto& role_id{core::get_role_id(role) };
-            const auto& channel_id{ core::get_channel_id(channel) };
-            const auto& guild_id{ event.command.guild_id };
+            const auto channel{ core::get_parameter(event, "channel") };
+            if(channel.empty()) return;
+            
+            const auto question{ core::get_parameter(event, "question") };
+            if(question.empty()) return;
+
+            const auto solution{ core::get_parameter(event, "solution") };
+            if(solution.empty()) return;
+            
+            const auto role{ core::get_parameter(event, "role") };
+            if(role.empty()) return;
+
+            const auto title{ core::get_parameter(event, "title") };
+            if(title.empty()) return;
+
+            const auto role_id{ core::get_role_id(role) };
+            if(role_id.empty()) {
+                core::timed_reply(event, "No valid Role provided!", 2000);
+                return;
+            }
+
+            const auto channel_id{ core::get_channel_id(channel) };
+            if(channel_id.empty()) {
+                core::timed_reply(event, "No valid Channel provided!", 2000);
+                return;
+            }
+
+            const auto guild_id{ event.command.guild_id };
+            if(!guild_id) {
+                core::timed_reply(event, "Something went wrong...", 2000);
+                return;
+            }
 
             // create the challenge message
             dpp::embed embed = dpp::embed().
@@ -149,12 +173,27 @@ namespace roles {
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
             }
-            const auto& message_link{ std::get<std::string>(event.get_parameter("message_link")) };
-            const std::string& emoji{ std::get<std::string>(event.get_parameter("emoji")) };
-            const auto& role{ std::get<std::string>(event.get_parameter("role")) };
-            const auto& role_id{ core::get_role_id(role) };
 
-            const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
+            const auto message_link{ core::get_parameter(event, "message_link") };
+            if(message_link.empty()) return;
+
+            const auto emoji{ core::get_parameter(event, "emoji") };
+            if(emoji.empty()) return;
+            
+            const auto role{ core::get_parameter(event, "role") };
+            if(role.empty()) return;
+
+            const auto role_id{ core::get_role_id(role) };
+            if(role_id.empty()) {
+                core::timed_reply(event, "No valid Role was provided!", 2000);
+                return;
+            }
+
+            const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
+            if(usable_emoji.empty()) {
+                core::timed_reply(event, "No valid emoji was provided!", 2000);
+                return;
+            }
             
             // indecies of slashes in the link
             std::vector<size_t> slashes;
@@ -235,8 +274,8 @@ namespace roles {
     static inline
     auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
         // get the needed data from the event
-        const auto& msg_id{ event.command.message_id };
-        const auto& member{ event.command.member };
+        const auto msg_id{ event.command.message_id };
+        const auto member{ event.command.member };
 
         // get the correct answer and reward role from the database
         auto [role_id, flag] = db.get_challenge_role_data(msg_id);
@@ -245,7 +284,7 @@ namespace roles {
            return; 
         }
 
-        const auto& entered { std::get<std::string>(event.components[0].components[0].value) };
+        const auto entered { std::get<std::string>(event.components[0].components[0].value) };
 
         if(entered == flag) {
             bot.guild_member_add_role(event.command.guild_id, member.user_id, role_id);
@@ -266,33 +305,43 @@ namespace roles {
 
     static inline
     auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
-        const auto& message_id{ event.message_id };
-        const auto& user_id{ event.reacting_user.id };
-        const auto& reaction{ event.reacting_emoji };
+        const auto message_id{ event.message_id };
+        if(!message_id) return;
 
-        const auto& emoji { reaction.get_mention() };
-        const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        const auto user_id{ event.reacting_user.id };
+        if(!user_id) return;
+        
+        const auto reaction{ event.reacting_emoji };
+        const auto emoji { reaction.get_mention() };
+        if(emoji.empty()) return;
+        
+        const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        if(usable_emoji.empty()) return;
         
         size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
+        if(!role_id) return;
 
-        if(role_id) {
-            bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
-        }
+        bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
     }
 
     static inline
     auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
-        const auto& message_id{ event.message_id };
-        const auto& user_id{ event.reacting_user_id };
-        const auto& reaction{ event.reacting_emoji };
+        const auto message_id{ event.message_id };
+        if(!message_id) return;
+        
+        const auto user_id{ event.reacting_user_id };
+        if(!user_id) return;
 
-        const auto& emoji { reaction.get_mention() };
-        const auto& usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        const auto reaction{ event.reacting_emoji };
+        const auto emoji { reaction.get_mention() };
+        if(emoji.empty()) return;
+        
+        const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
+        if(usable_emoji.empty()) return;
         
         size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
+        if(!role_id) return;
 
-        if(role_id) {
-            bot.guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);
-        }
+        bot.guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);
     }
 }

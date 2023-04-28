@@ -12,9 +12,11 @@ namespace user_man{
         //command_list.push_back(help_command);
     }
 
+    static inline
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
         if (event.command.get_command_name() == "user_info") {
-            auto mentioned_user{ std::get<std::string>(event.get_parameter("user")) };
+            auto mentioned_user{ core::get_parameter(event, "user") };
+            if(mentioned_user.empty()) return;
             
             //const dpp::guild_member& member{ event.command.get_guild().members.find(mentioned_user) };
             // find the mentioned user:
@@ -42,6 +44,7 @@ namespace user_man{
         }
     }
 
+    static inline
     auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()
@@ -59,6 +62,7 @@ namespace user_man{
 	    bot.message_create(dpp::message(core::welcome_channels.at(event.adding_guild->id), embed));
     }
 
+    static inline
     auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()

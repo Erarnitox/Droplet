@@ -156,6 +156,7 @@ auto read_database_credentials(const std::string& file) -> std::string {
 //////////////////////////////////////////////////////////////////////////////
 // RGISTER ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
 	// user commands
 	resource_man::register_global_slash_commands(command_list, bot);
@@ -169,6 +170,7 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto handle_global_slash_commands(
 	const dpp::slashcommand_t& event, 
 	dpp::cluster& bot, 
@@ -188,6 +190,7 @@ auto handle_global_slash_commands(
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
 	roles::handle_button_clicks(event, bot);
 }
@@ -195,6 +198,7 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE FORM SUBMITS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void {
 	roles::handle_form_submits(event, bot, db);
 }
@@ -202,6 +206,7 @@ auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Dat
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ADDED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) -> void {
 	roles::handle_reaction_added(event, bot, db);
 }
@@ -209,6 +214,7 @@ auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluste
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE REMOVED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) -> void {
 	roles::handle_reaction_removed(event, bot, db);
 }
@@ -216,6 +222,7 @@ auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::c
 //////////////////////////////////////////////////////////////////////////////
 // WELCOME NEW MEMBERS TO A GUILD
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
 	user_man::welcome_member(event, bot);
 }
@@ -223,6 +230,7 @@ auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> 
 //////////////////////////////////////////////////////////////////////////////
 // REMOVE MEMBERS FROM A GUILD
 //////////////////////////////////////////////////////////////////////////////
+static inline
 auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
 	user_man::leave_member(event, bot);
 }

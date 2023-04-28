@@ -2,6 +2,7 @@
 
 #include <dpp/dispatcher.h>
 #include <ratio>
+#include <variant>
 #include <vector>
 #include <thread>
 #include <chrono>
@@ -70,6 +71,18 @@ namespace core {
             std::this_thread::sleep_for(std::chrono::milliseconds(time_mills));
             event.delete_original_response();
         }).detach();
+    }
+    
+    [[nodiscard]] static inline
+    auto get_parameter(const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string {
+            const auto variant{ event.get_parameter(name) }; 
+
+            const auto value_ptr{ std::get_if<std::string>(&variant) };
+            if(!value_ptr){
+                core::timed_reply(event, "Message Link not valid!", 2000);
+                return std::string("");
+            } 
+            return *value_ptr;
     }
 
     static inline
@@ -143,8 +156,9 @@ namespace core {
                 return;
             }
 
-            auto type{ std::get<std::string>(event.get_parameter("type")) };
-            
+            const auto type{ core::get_parameter(event, "type") };
+            if(type.empty()) return;
+
             if(type == "cahnnel_welcome") {
                 welcome_channels[event.command.get_guild().id] = event.command.get_channel().id;
                 timed_reply(event, std::string("channel set as welcome channel!"), 2000);

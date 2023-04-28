@@ -81,13 +81,26 @@ namespace resource_man {
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
         if (event.command.get_command_name() == "resources") {
-	        const auto& action{ std::get<std::string>(event.get_parameter("action")) };
-            const auto& category{ std::get<std::string>(event.get_parameter("category")) };
-            const auto& title{ std::get<std::string>(event.get_parameter("title")) };
-            const auto& query{ std::get<std::string>(event.get_parameter("query")) };
-            const auto& index{ std::get<std::string>(event.get_parameter("index")) };
-            const auto& link{ std::get<std::string>(event.get_parameter("link")) };
-            const auto& description{ std::get<std::string>(event.get_parameter("description")) };
+	        const auto action{ core::get_parameter(event, "action") };
+            if(action.empty()) return; 
+
+            const auto category{ core::get_parameter(event, "category") };
+            if(category.empty()) return;
+
+            const auto title{ core::get_parameter(event, "title") };
+            if(title.empty()) return;
+            
+            const auto query{ core::get_parameter(event, "query") };
+            if(query.empty()) return;
+
+            const auto index{ core::get_parameter(event, "index") };
+            if(index.empty()) return;
+            
+            const auto link{ core::get_parameter(event, "link") };
+            if(link.empty()) return;
+            
+            const auto description{ core::get_parameter(event, "description") };
+            if(description.empty()) return;
 	        
             if(action.size() < 1){
                 core::timed_reply(event, "Please specify an action!", 100);
