@@ -3,8 +3,13 @@ name: CMake
 on:
   push:
     branches: [ "main" ]
+    tags: 
+    - '*'
+    
   pull_request:
     branches: [ "main" ]
+    tags: 
+    - '*'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -31,16 +36,21 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/github --config ${{env.BUILD_TYPE}}
 
+    - name: Create Release
+      uses: ncipollo/release-action@v1.12.0
+      with:
+        artifacts: "${{github.workspace}}/github/src/cyber_drop, ${{github.workspace}}/github/libs/DPP/library/libdpp.so.1.0"
+        
     #- name: Test
     #  working-directory: ${{github.workspace}}/release
     #  # Execute tests defined by the CMake configuration.
     #  # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
     #  # run: ctest -C ${{env.BUILD_TYPE}}
-    - name: Deploy Bot Binary 
-      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/src/cyber_drop root@h2998327.stratoserver.net:/root/cyber_drop/
-
-    - name: Deploy Library  
-      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so root@h2998327.stratoserver.net:/root/cyber_drop/
-
-    - name: Deploy Library 2 
-      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so.1.0 root@h2998327.stratoserver.net:/root/cyber_drop/
+    #- name: Deploy Bot Binary 
+    #  run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/src/cyber_drop root@h2998327.stratoserver.net:/root/cyber_drop/
+    #
+    #- name: Deploy Library  
+    #  run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so root@h2998327.stratoserver.net:/root/cyber_drop/
+    #
+    #- name: Deploy Library 2 
+    # run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so.1.0 root@h2998327.stratoserver.net:/root/cyber_drop/
