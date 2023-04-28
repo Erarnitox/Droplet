@@ -37,5 +37,6 @@ jobs:
     #  # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
     #  # run: ctest -C ${{env.BUILD_TYPE}}
     - name: Deploy to Server
-      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/src/cyber_drop root@h2998327.stratoserver.net:/root/cyber_drop/ \
-        && sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.* root@h2998327.stratoserver.net:/root/cyber_drop/
+      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/src/cyber_drop root@h2998327.stratoserver.net:/root/cyber_drop/
+      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so root@h2998327.stratoserver.net:/root/cyber_drop/
+      run: sshpass -p 7F82A693F888DBA7B62BF8AF0D7EBEE8 scp ${{github.workspace}}/github/libs/DPP/library/libdpp.so.1.0 root@h2998327.stratoserver.net:/root/cyber_drop/
