@@ -284,7 +284,11 @@ namespace roles {
            return; 
         }
 
-        const auto entered { std::get<std::string>(event.components[0].components[0].value) };
+        const auto entered_variant{ event.components[0].components[0].value };
+        const auto entered_ptr { std::get_if<std::string>(&entered_variant) };
+        if(!entered_ptr) return;
+        
+        const auto& entered{ *entered_ptr };
 
         if(entered == flag) {
             bot.guild_member_add_role(event.command.guild_id, member.user_id, role_id);
