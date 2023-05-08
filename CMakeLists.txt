@@ -40,5 +40,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
      copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
  )
  
- add_dependencies(${PROJECT_NAME} copy_credentials)
- add_dependencies(${PROJECT_NAME} copy_dpp_library)
+ if(NOT GITHUB)
+ 	add_dependencies(${PROJECT_NAME} copy_credentials)
+ 	add_dependencies(${PROJECT_NAME} copy_dpp_library)
+ endif()

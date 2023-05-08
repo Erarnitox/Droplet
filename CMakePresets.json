@@ -42,11 +42,12 @@
         "description": "Erarnitox's recommended settings for a release build on github.",
         "binaryDir": "${sourceDir}/github",
         "cacheVariables": {
-            "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+            "CMAKE_EXPORT_COMPILE_COMMANDS": false,
             "CMAKE_BUILD_TYPE": "RelMinSize",
             "CMAKE_INSTALL_PREFIX": "${sourceDir}/github",
             "CMAKE_C_COMPILER": "clang",
             "CMAKE_CXX_COMPILER": "clang++",
+            "GITHUB": "TRUE",
 			"CMAKE_BUILD_WITH_INSTALL_RPATH": true 
         }
       }

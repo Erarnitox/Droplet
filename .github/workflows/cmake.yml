@@ -37,6 +37,13 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/github --config ${{env.BUILD_TYPE}}
+    
+    - name: Create Tag 
+      uses: EndBug/latest-tag@latest
+      with:
+        # You can change the name of the tag with this input.
+        # Default: 'latest'
+        tag-name: ${{env.PR_NUMBER}}
 
     - name: Create Release
       uses: ncipollo/release-action@v1.12.0
