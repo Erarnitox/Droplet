@@ -36,4 +36,16 @@ public:
     [[nodiscard]]
     auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept -> size_t;
     auto insert_reaction_role_data(const std::string& role_id, size_t guild_id, const std::string& message_id, const std::string& emoji) noexcept -> void;
+
+    [[nodiscard]]
+    auto get_welcome_channel_id(size_t guild_id) noexcept -> size_t;
+    auto insert_welcome_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;   
+
+    [[nodiscard]]
+    auto get_goodbye_channel_id(size_t guild_id) noexcept -> size_t;
+    auto insert_goodbye_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;   
+
+    [[nodiscard]]
+    auto get_log_channel_id(size_t guild_id) noexcept -> size_t;
+    auto insert_log_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;   
 };
