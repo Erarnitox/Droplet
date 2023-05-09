@@ -159,7 +159,7 @@ namespace core {
             const auto type{ core::get_parameter(event, "type") };
             if(type.empty()) return;
 
-            if(type == "cahnnel_welcome") {
+            if(type == "channel_welcome") {
                 welcome_channels[event.command.get_guild().id] = event.command.get_channel().id;
                 timed_reply(event, std::string("channel set as welcome channel!"), 2000);
             } else if(type == "channel_goodbye") {

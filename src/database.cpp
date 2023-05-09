@@ -64,6 +64,9 @@ auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_
     static std::string sql_string{ "INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES ($1, $2, $3, $4)" };
     
     try{
+        if(message_id)
+        if(this->get_challenge_role_data(message_id).first) return;
+
         pqxx::work txn(conn);
         pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, flag);
         txn.commit();
@@ -114,6 +117,9 @@ auto Database::insert_reaction_role_data(const std::string& role_id, size_t guil
     static std::string sql_string{ "INSERT INTO reaction_roles(role_id, guild_id, message_id, emoji) VALUES ($1, $2, $3, $4)" };
 
     try{
+        if(message_id.size())
+        if(this->get_reaction_role_data(std::stoul(message_id), emoji)) return;
+            
         pqxx::work txn(conn);
         pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, emoji);
         txn.commit();

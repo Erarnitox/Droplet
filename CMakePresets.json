@@ -37,23 +37,6 @@
             "CMAKE_CXX_FLAGS_RELEASE" : "${CMAKE_CXX_FLAGS_RELEASE} -s",
 			      "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
         }
-      },
-      {
-        "name": "github",
-        "displayName": "(Linux) Clang",
-        "description": "Erarnitox's recommended settings for a release build on github.",
-        "binaryDir": "${sourceDir}/github",
-        "cacheVariables": {
-            "CMAKE_EXPORT_COMPILE_COMMANDS": false,
-            "CMAKE_BUILD_TYPE": "RelMinSize",
-            "CMAKE_INSTALL_PREFIX": "${sourceDir}/github",
-            "CMAKE_C_COMPILER": "clang",
-            "CMAKE_CXX_COMPILER": "clang++",
-            "GITHUB": "TRUE",
-            "CMAKE_C_FLAGS_RELEASE" : "${CMAKE_C_FLAGS_RELEASE} -s", 
-            "CMAKE_CXX_FLAGS_RELEASE" : "${CMAKE_CXX_FLAGS_RELEASE} -s",
-			      "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
-        }
       }
     ]
   }
