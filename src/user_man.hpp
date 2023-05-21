@@ -1,5 +1,6 @@
 #pragma once
 
+#include "database.hpp"
 #include <dpp/dpp.h>
 
 namespace user_man{
@@ -45,7 +46,7 @@ namespace user_man{
     }
 
     static inline
-    auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
+    auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot, Database& db) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()
 	        .set_color(dpp::colors::deep_sea)
@@ -55,15 +56,18 @@ namespace user_man{
                 + " to "
                 + event.adding_guild->name
             )
-            .set_image(event.added.get_avatar_url())
+            //.set_image(event.added.get_avatar_url())
         };
 	 
 	    /* reply with the created embed */
-	    bot.message_create(dpp::message(core::welcome_channels.at(event.adding_guild->id), embed));
+        const auto channel_id { db.get_welcome_channel_id(event.adding_guild->id) };
+        if (!channel_id) return;
+
+	    bot.message_create(dpp::message(channel_id, embed));
     }
 
     static inline
-    auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
+    auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot, Database& db) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()
 	        .set_color(dpp::colors::red)
@@ -73,10 +77,13 @@ namespace user_man{
                 + " just left "
                 + event.removing_guild->name
             )
-            .set_image(event.removed->get_avatar_url())
+            //.set_image(event.removed->get_avatar_url())
         };
 	 
 	    /* reply with the created embed */
-	    bot.message_create(dpp::message(core::welcome_channels.at(event.removing_guild->id), embed));
+        const auto channel_id { db.get_welcome_channel_id(event.removing_guild->id) };
+        if (!channel_id) return;
+
+	    bot.message_create(dpp::message(channel_id, embed));
     }
 }

@@ -44,3 +44,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  	add_dependencies(${PROJECT_NAME} copy_credentials)
  	add_dependencies(${PROJECT_NAME} copy_dpp_library)
  endif()
+
+ # tests
+ add_subdirectory(tests)
+
+ # install the bot and it's library dependency
+ install(TARGETS ${PROJECT_NAME} dpp)
+ 
+ # include to automatically pack/make an installer for release
+ include(CPack)

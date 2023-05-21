@@ -30,10 +30,10 @@ auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster
 
 // user management
 static inline
-auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void;
+auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot, Database& db) -> void;
 
 static inline
-auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void;
+auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot, Database& db) -> void;
 
 // button clicks
 static inline
