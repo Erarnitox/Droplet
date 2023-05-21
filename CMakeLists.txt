@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 3.25)
+
+include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
-project(cyber_drop VERSION 1.0)
+project(cyber_drop 
+	VERSION 1.0
+	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
+	HOMEPAGE_URL "https://cyberdrop.dropsoft.org"
+	LANGUAGES CXX	
+)
 
 add_subdirectory(src)
 
