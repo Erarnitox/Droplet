@@ -10,6 +10,8 @@ project(cyber_drop
 	LANGUAGES CXX	
 )
 
+option(USE_DEBUG_TOKEN "copy debug token and database connection")
+
 # download and update git submodules automatically
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -40,28 +42,27 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so.1.0")
  
  add_custom_command(
-     OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
-     POST_BUILD
-     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
-     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
- )
- 
- add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
  	POST_BUILD
  	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
  )
 
  add_custom_target(
-     copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
- )
-
- add_custom_target(
      copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
  )
  
- if(DEBUG)
-	message("Copying testing bot token...")
+ if(USE_DEBUG_TOKEN)
+ 	add_custom_command(
+    	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+    	POST_BUILD
+     	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
+     	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
+ 	)
+	
+ 	add_custom_target(
+    	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+ 	)
+
  	add_dependencies(copy_credentials ${PROJECT_NAME})
  endif()
  

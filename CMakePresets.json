@@ -17,7 +17,7 @@
           "CMAKE_BUILD_TYPE": "Debug",
           "CMAKE_INSTALL_PREFIX": "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
-          "DEBUG": "TRUE",
+          "USE_DEBUG_TOKEN": "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
       }
     },
