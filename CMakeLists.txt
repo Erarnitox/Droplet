@@ -10,10 +10,23 @@ project(cyber_drop
 	LANGUAGES CXX	
 )
 
+# download and update git submodules automatically
+find_package(Git QUIET)
+if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
+	message(STATUS "Updating Submodules...")
+	execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+		RESULT_VARIABLE GIT_SUBMOD_RESULT)
+
+	if(NOT GIT_SUBMOD_RESULT EQUAL "0")
+    	message(FATAL_ERROR "git submodule update --init --recursive failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
+	endif()
+else()
+	message(FATAL_ERROR "git was not found!")
+endif()
+
 add_subdirectory(src)
-
 add_subdirectory(libs)
-
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	CXX_STANDARD 20
