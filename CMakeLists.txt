@@ -39,31 +39,33 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
  set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so.1.0")
  
- #add_custom_command(
- #    OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
- #    POST_BUILD
- #    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
- #    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
- #)
+ add_custom_command(
+     OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+     POST_BUILD
+     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
+     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
+ )
  
- #add_custom_command(
- #	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
- #	POST_BUILD
- #	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
- #)
+ add_custom_command(
+ 	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
+ 	POST_BUILD
+ 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
+ )
 
- #add_custom_target(
- #    copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
- #)
+ add_custom_target(
+     copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+ )
 
- #add_custom_target(
- #    copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
- #)
+ add_custom_target(
+     copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
+ )
  
- #if(NOT GITHUB)
- #	add_dependencies(${PROJECT_NAME} copy_credentials)
- #	add_dependencies(${PROJECT_NAME} copy_dpp_library)
- #endif()
+ if(NOT RELEASE)
+ 	add_dependencies(copy_credentials ${PROJECT_NAME})
+ endif()
+ 
+ add_dependencies(copy_dpp_library ${PROJECT_NAME})
+ 
 
  # tests
  add_subdirectory(tests)
