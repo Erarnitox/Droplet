@@ -17,6 +17,7 @@
           "CMAKE_BUILD_TYPE": "Debug",
           "CMAKE_INSTALL_PREFIX": "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
+          "DEBUG": "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
       }
     },
@@ -31,7 +32,6 @@
           "CMAKE_BUILD_TYPE": "RelMinSize",
           "CMAKE_INSTALL_PREFIX": "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "clang++",
-          "RELEASE": "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
       }
     }

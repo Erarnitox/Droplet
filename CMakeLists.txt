@@ -60,7 +60,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
      copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
  )
  
- if(NOT RELEASE)
+ if(DEBUG)
+	message("Copying testing bot token...")
  	add_dependencies(copy_credentials ${PROJECT_NAME})
  endif()
  
