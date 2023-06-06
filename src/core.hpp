@@ -98,7 +98,7 @@ namespace core {
 	            .add_choice(dpp::command_option_choice("Server Logging Channel", std::string("channel_log")))
         );
 
-        dpp::slashcommand language_command("set_language", "Configue the language being used by the bot", bot.me.id);
+        dpp::slashcommand language_command("set_language", "Configue the language being used by the bot (Admin only!)", bot.me.id);
         language_command.add_option(
             dpp::command_option(dpp::co_string, "language", "What language should be used?", true)
 	            .add_choice(dpp::command_option_choice("German", std::string("de")))
@@ -107,6 +107,7 @@ namespace core {
 
         command_list.push_back(help_command);
         command_list.push_back(channel_command);
+        command_list.push_back(language_command);
     }
 
     static inline
@@ -150,8 +151,7 @@ namespace core {
             event.reply("Here is the usage manual!");
 	        bot.message_create(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
             return;
-        }
-        else if (event.command.get_command_name() == "set_channel") {
+        } else if (event.command.get_command_name() == "set_channel") {
             if(!is_admin(event.command.member)){
                 timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
@@ -170,6 +170,8 @@ namespace core {
                 db.insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
                 timed_reply(event, "Channnel set as logging channel!", 2000);
             }
+        } else if (event.command.get_command_name() == "set_language") {
+            timed_reply(event, std::string("Currently only English has a complete token set.\nMore languages will be added soon!"), 5000);
         }
     }
 }

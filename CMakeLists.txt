@@ -40,6 +40,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/bot_token.txt")
  set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
  set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so.1.0")
+ set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/src/${PROJECT_NAME}")
  
  add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
@@ -50,7 +51,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  add_custom_target(
      copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
  )
- 
+
  if(USE_DEBUG_TOKEN)
  	add_custom_command(
     	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
@@ -58,7 +59,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
  	)
-	
+
  	add_custom_target(
     	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
  	)
@@ -68,7 +69,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  
  add_dependencies(copy_dpp_library ${PROJECT_NAME})
  
-
  # tests
  add_subdirectory(tests)
 
