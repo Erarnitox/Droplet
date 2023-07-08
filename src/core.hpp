@@ -13,7 +13,6 @@
 #include <dpp/dpp.h>
 
 #include "database.hpp"
-#include "language_server.hpp"
 
 namespace core {
     

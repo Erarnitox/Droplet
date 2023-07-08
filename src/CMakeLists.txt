@@ -1,7 +1,6 @@
 
 add_executable(${PROJECT_NAME}
 	main.cpp
-	language_server.cpp
 	database.cpp
 )
 

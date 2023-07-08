@@ -56,7 +56,7 @@ namespace user_man{
                 + " to "
                 + event.adding_guild->name
             )
-            //.set_image(event.added.get_avatar_url())
+            .set_image(event.added.get_avatar_url())
         };
 	 
 	    /* reply with the created embed */
@@ -77,7 +77,7 @@ namespace user_man{
                 + " just left "
                 + event.removing_guild->name
             )
-            //.set_image(event.removed->get_avatar_url())
+            .set_image(event.removed->get_avatar_url())
         };
 	 
 	    /* reply with the created embed */
