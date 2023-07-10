@@ -1,5 +1,5 @@
-#include "main.hpp"
 #include "database.hpp"
+#include "main.hpp"
 #include "resource_man.hpp"
 #include "roles.hpp"
 #include "user_man.hpp"
@@ -23,8 +23,11 @@ auto main() -> int {
 	// connect to the Database
 	//-----------------------------------------------------------------------------
 	const auto db_connection_string{ read_database_credentials("db_connection.txt") };
-	auto db{ Database(db_connection_string) };
-	if(!db.has_connection()) {
+	bot.log(dpp::loglevel::ll_info, "Trying o connect to Database: "+ db_connection_string);
+	fmt::print("Database: {}\n", db_connection_string);
+
+	const auto connected{ Database::connect(db_connection_string) };
+	if(!connected) {
 		bot.log(dpp::loglevel::ll_error, "Connection to Database was not successful!");
 		return -1;
 	}
@@ -36,7 +39,7 @@ auto main() -> int {
 	register_global_slash_commands(global_command_list, bot);
 
 	// register slash commands
-	bot.on_ready([&bot, &global_command_list, &db](const dpp::ready_t& event) -> void {
+	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
 		try{
 			if(dpp::run_once<struct register_bot_commands>()) {
 				bot.log(dpp::ll_trace, "Registering Slash commands...");
@@ -52,9 +55,9 @@ auto main() -> int {
 	});
 
 	// handle slash commands
-	bot.on_slashcommand([&bot, &global_command_list, &db](const dpp::slashcommand_t& event) -> void {
+	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
 		try{
-			handle_global_slash_commands(event, bot, global_command_list, db);
+			handle_global_slash_commands(event, bot, global_command_list);
 		} catch(...){
 			bot.log(dpp::loglevel::ll_warning, fmt::format("Unhandeled exception occured in 'handle_global_slash_commands' input was {}", event.command.msg.content ));
 			event.reply("I could not process that input! ...");
@@ -62,19 +65,19 @@ auto main() -> int {
 	});
 
 	// when a member joins the guild
-	bot.on_guild_member_add([&bot, &db](const dpp::guild_member_add_t& event) -> void {
+	bot.on_guild_member_add([&bot](const dpp::guild_member_add_t& event) -> void {
 		bot.log(dpp::ll_info, fmt::format("A new member: {} joined the guild: {}", event.added.nickname, event.adding_guild->name));
-		welcome_member(event, bot, db);
+		welcome_member(event, bot);
 	});
 
 	// when a member leaves the guild
-	bot.on_guild_member_remove([&bot, &db](const dpp::guild_member_remove_t& event) -> void {
+	bot.on_guild_member_remove([&bot](const dpp::guild_member_remove_t& event) -> void {
 		bot.log(dpp::ll_info, fmt::format("{} left the guild {}", event.removed->username, event.removing_guild->name));
-		leave_member(event, bot, db);
+		leave_member(event, bot);
 	});
 
 	// handle button clicks
-	bot.on_button_click([&bot, &db](const dpp::button_click_t& event) -> void {
+	bot.on_button_click([&bot](const dpp::button_click_t& event) -> void {
 		try{
 			handle_button_clicks(event, bot);
 		} catch(...) {
@@ -84,9 +87,9 @@ auto main() -> int {
 	});
 
 	// handle form submits
-	bot.on_form_submit([&bot, &db](const dpp::form_submit_t & event) -> void {
+	bot.on_form_submit([&bot](const dpp::form_submit_t & event) -> void {
 		try{
-			handle_form_submits(event, bot, db);
+			handle_form_submits(event, bot);
 			bot.log(dpp::loglevel::ll_info, fmt::format("form submitted with input: {}", std::get<std::string>(event.components.at(0).components.at(0).value)));
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_warning, fmt::format("Unhandeled exception occured in 'handle_form_submits', input was {}", std::get<std::string>(event.components.at(0).components.at(0).value)));
@@ -95,18 +98,18 @@ auto main() -> int {
 	});
 
 	// handle added reactions
-	bot.on_message_reaction_add([&bot, &db](const dpp::message_reaction_add_t & event) -> void {
+	bot.on_message_reaction_add([&bot](const dpp::message_reaction_add_t & event) -> void {
 		try{
-			handle_reaction_added(event, bot, db);
+			handle_reaction_added(event, bot);
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_reaction_added'" );
 		}
 	});
 
 	// handle remove reactions
-	bot.on_message_reaction_remove([&bot, &db](const dpp::message_reaction_remove_t & event) -> void {
+	bot.on_message_reaction_remove([&bot](const dpp::message_reaction_remove_t & event) -> void {
 		try{
-			handle_reaction_removed(event, bot, db);
+			handle_reaction_removed(event, bot);
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_warning, "Unhandeled exception occured in 'handle_reaction_removed'" );
 		}
@@ -179,8 +182,7 @@ static inline
 auto handle_global_slash_commands(
 	const dpp::slashcommand_t& event, 
 	dpp::cluster& bot, 
-	const std::vector<dpp::slashcommand>& command_list,
-	Database& db
+	const std::vector<dpp::slashcommand>& command_list
 ) -> void {
 
 	// user commands
@@ -188,8 +190,8 @@ auto handle_global_slash_commands(
 	user_man::handle_global_slash_commands(event, bot);
 
 	// admin commands
-	core::handle_global_slash_commands(event, bot, command_list, db);
-	roles::handle_global_slash_commands(event, bot, db);
+	core::handle_global_slash_commands(event, bot, command_list);
+	roles::handle_global_slash_commands(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -204,38 +206,38 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 // HANDLE FORM SUBMITS
 //////////////////////////////////////////////////////////////////////////////
 static inline
-auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) -> void {
-	roles::handle_form_submits(event, bot, db);
+auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
+	roles::handle_form_submits(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ADDED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
 static inline
-auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) -> void {
-	roles::handle_reaction_added(event, bot, db);
+auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
+	roles::handle_reaction_added(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE REMOVED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
 static inline
-auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) -> void {
-	roles::handle_reaction_removed(event, bot, db);
+auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
+	roles::handle_reaction_removed(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // WELCOME NEW MEMBERS TO A GUILD
 //////////////////////////////////////////////////////////////////////////////
 static inline
-auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot, Database& db) -> void {
-	user_man::welcome_member(event, bot, db);
+auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
+	user_man::welcome_member(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
 // REMOVE MEMBERS FROM A GUILD
 //////////////////////////////////////////////////////////////////////////////
 static inline
-auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot, Database& db) -> void {
-	user_man::leave_member(event, bot, db);
+auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
+	user_man::leave_member(event, bot);
 }

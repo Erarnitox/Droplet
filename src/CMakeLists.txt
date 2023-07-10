@@ -1,11 +1,16 @@
 
 add_executable(${PROJECT_NAME}
 	main.cpp
-	database.cpp
+	main.hpp
 )
 
+# third party dependencies
 CPMAddPackage("gh:fmtlib/fmt#9.1.0")
 CPMAddPackage("gh:jtv/libpqxx#7.7.5")
+
+add_subdirectory(core)
+add_subdirectory(commands)
+add_subdirectory(deamons)
 
 # Precompiled common headers
 #add_library(core SHARED core.cpp)
@@ -21,6 +26,5 @@ CPMAddPackage("gh:jtv/libpqxx#7.7.5")
 #target_link_libraries(${PROJECT_NAME} PRIVATE core)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
-	fmt::fmt 
-	pqxx
+	fmt::fmt
 )

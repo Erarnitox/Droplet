@@ -113,8 +113,7 @@ namespace core {
     auto handle_global_slash_commands(
         const dpp::slashcommand_t& event, 
         dpp::cluster& bot, 
-        const std::vector<dpp::slashcommand>& command_list,
-        Database& db
+        const std::vector<dpp::slashcommand>& command_list
     ) noexcept -> void {
         if (event.command.get_command_name() == "help") {
             /* create the embed */
@@ -160,13 +159,13 @@ namespace core {
             if(type.empty()) return;
 
             if(type == "channel_welcome") {
-                db.insert_welcome_channel_id(event.command.get_guild().id, event.command.get_channel().id);
+                Database::insert_welcome_channel_id(event.command.get_guild().id, event.command.get_channel().id);
                 timed_reply(event, std::string("channel set as welcome channel!"), 2000);
             } else if(type == "channel_goodbye") {
-                db.insert_goodbye_channel_id(event.command.get_guild().id, event.command.get_channel().id);
+                Database::insert_goodbye_channel_id(event.command.get_guild().id, event.command.get_channel().id);
                 timed_reply(event, std::string("channel set as goodbye channel!"), 2000);
             } else if(type == "channel_log") {
-                db.insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
+                Database::insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
                 timed_reply(event, "Channnel set as logging channel!", 2000);
             }
         } else if (event.command.get_command_name() == "set_language") {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core.hpp"
+#include <core.hpp>
 #include "database.hpp"
 #include <dpp/colors.h>
 #include <dpp/message.h>
@@ -56,7 +56,7 @@ namespace roles {
     }
 
     static inline
-    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
+    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
         if (event.command.get_command_name() == "challenge_role") {
             if(!core::is_admin(event.command.member)){
                 core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
@@ -124,7 +124,7 @@ namespace roles {
             // send the challenge message
             bot.message_create(
                 msg,
-                [role_id, role, event, question, solution, guild_id, &db](const dpp::confirmation_callback_t& cb) -> void {
+                [role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
                     auto sent_message{ cb.value };
 
                     size_t sane_role_id;
@@ -148,7 +148,7 @@ namespace roles {
                     }
 
                     // save the needed information in the database
-                    db.insert_challenge_role_data(
+                    Database::insert_challenge_role_data(
                         sane_role_id,
                         guild_id, 
                         message_id,
@@ -231,7 +231,7 @@ namespace roles {
             //--------------------------------------------------
 
             // Insert Reaction Role into Database
-            db.insert_reaction_role_data(role_id, event.command.guild_id, message_id, usable_emoji);
+            Database::insert_reaction_role_data(role_id, event.command.guild_id, message_id, usable_emoji);
 
             // Let the bot react to the message
             bot.message_add_reaction(message_id, channel_id, usable_emoji);
@@ -272,13 +272,13 @@ namespace roles {
     }
 
     static inline
-    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
+    auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
         // get the needed data from the event
         const auto msg_id{ event.command.message_id };
         const auto member{ event.command.member };
 
         // get the correct answer and reward role from the database
-        auto [role_id, flag] = db.get_challenge_role_data(msg_id);
+        auto [role_id, flag] = Database::get_challenge_role_data(msg_id);
 
         if(!role_id || flag.size() == 0){
            return; 
@@ -308,7 +308,7 @@ namespace roles {
     }
 
     static inline
-    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
+    auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) noexcept -> void {
         const auto message_id{ event.message_id };
         if(!message_id) return;
 
@@ -322,14 +322,14 @@ namespace roles {
         const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
         if(usable_emoji.empty()) return;
         
-        size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
+        size_t role_id { Database::get_reaction_role_data(message_id, usable_emoji) };
         if(!role_id) return;
 
         bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
     }
 
     static inline
-    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot, Database& db) noexcept -> void {
+    auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) noexcept -> void {
         const auto message_id{ event.message_id };
         if(!message_id) return;
         
@@ -343,7 +343,7 @@ namespace roles {
         const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji.substr(1,1) };
         if(usable_emoji.empty()) return;
         
-        size_t role_id { db.get_reaction_role_data(message_id, usable_emoji) };
+        size_t role_id { Database::get_reaction_role_data(message_id, usable_emoji) };
         if(!role_id) return;
 
         bot.guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);

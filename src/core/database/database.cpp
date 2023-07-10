@@ -2,33 +2,38 @@
 
 #include <fmt/core.h>
 #include <utility>
+#include <string_view>
+#include <map>
+#include <pqxx/pqxx>
 
-Database::Database(
+static pqxx::connection* conn{ nullptr };
+
+auto Database::connect(
     const std::string& db_name,
     const std::string& user, 
     const std::string& password,
     const std::string& host,
     const std::string& port
-):
-conn{ 
-        pqxx::connection(fmt::format(
+) -> bool {
+    Database::disconnect();
+    conn = new pqxx::connection(fmt::format(
             "dbname={} user={} password={} hostaddr={} port={}",
-             db_name,  user,   password,   host,       port
-        ))
-    }
-{
-    if(!conn.is_open()) this->is_connected = false;
-    this->is_connected = true;
+              db_name,  user,   password,   host,       port
+           )
+    );
+
+    return conn->is_open();
 }
 
-Database::Database(const std::string& connection_string):
-conn{ pqxx::connection(connection_string) }
-{
-    if(!conn.is_open()) this->is_connected = false;
-    this->is_connected = true;
+auto Database::connect(const std::string& connection_string) -> bool {
+    Database::disconnect();
+    conn = new pqxx::connection(connection_string);
+    return conn->is_open();
 }
 
-Database::~Database() {
+auto Database::disconnect() noexcept -> void {
+    if(conn) delete conn;
+    conn = nullptr;
 }
 
 auto Database::get_challenge_role_data(size_t message_id) noexcept -> std::pair<size_t, std::string> {
@@ -36,7 +41,11 @@ auto Database::get_challenge_role_data(size_t message_id) noexcept -> std::pair<
     static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1" };
     
     try{
-        pqxx::work txn(conn);
+        if(!conn) {
+            //TODO: throw an error?
+        }
+
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, message_id);
         txn.commit();
 
@@ -48,11 +57,10 @@ auto Database::get_challenge_role_data(size_t message_id) noexcept -> std::pair<
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return {0, 0};
         }
-        this->reconnect();
-        return this->get_challenge_role_data(message_id);
+        Database::reconnect();
+        return Database::get_challenge_role_data(message_id);
     } catch (...) {
         fmt::print("Error: Tying to call 'get_challenge_role_data' with message_id={}\n", message_id);
         return {0, 0};
@@ -64,10 +72,11 @@ auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_
     static std::string sql_string{ "INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES ($1, $2, $3, $4)" };
     
     try{
+        if(!conn) return;
         if(!message_id) return;
-        if(this->get_challenge_role_data(message_id).first) return;
+        if(Database::get_challenge_role_data(message_id).first) return;
 
-        pqxx::work txn(conn);
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, flag);
         txn.commit();
         times=0;
@@ -75,11 +84,10 @@ auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return;
         }
-        this->reconnect();
-        this->insert_challenge_role_data(role_id, guild_id, message_id, flag);
+        Database::reconnect();
+        Database::insert_challenge_role_data(role_id, guild_id, message_id, flag);
     } catch (...) {
         fmt::print("Error: Tying to call 'insert_challenge_role_data' with message_id={} guild_id={} message_id={}\n", role_id, guild_id, message_id);
     }
@@ -90,7 +98,11 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string& reac
     static std::string sql_string{ "SELECT role_id FROM reaction_roles WHERE message_id=$1 AND emoji=$2" };
     
     try{
-        pqxx::work txn(conn);
+        if(conn){
+            //TODO: throw an error
+        }
+
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, message_id, reaction_emoji);
         txn.commit();
         times = 0;
@@ -101,11 +113,10 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string& reac
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return 0;
         }
-        this->reconnect();
-        return this->get_reaction_role_data(message_id, reaction_emoji); 
+        Database::reconnect();
+        return Database::get_reaction_role_data(message_id, reaction_emoji); 
     } catch (...) {
         fmt::print("Trying to call 'get_reaction_role_data' with message_id={} reaction_emoji={}\n", message_id, reaction_emoji);
         return 0;
@@ -117,10 +128,11 @@ auto Database::insert_reaction_role_data(const std::string& role_id, size_t guil
     static std::string sql_string{ "INSERT INTO reaction_roles(role_id, guild_id, message_id, emoji) VALUES ($1, $2, $3, $4)" };
 
     try{
+        if(!conn) return;
         if(!message_id.size()) return;
-        if(this->get_reaction_role_data(std::stoul(message_id), emoji)) return;
-            
-        pqxx::work txn(conn);
+        if(Database::get_reaction_role_data(std::stoul(message_id), emoji)) return;
+        
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, emoji);
         txn.commit();
         times=0;
@@ -128,11 +140,10 @@ auto Database::insert_reaction_role_data(const std::string& role_id, size_t guil
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return;
         }
-        this->reconnect();
-        this->insert_reaction_role_data(role_id, guild_id, message_id, emoji);
+        Database::reconnect();
+        Database::insert_reaction_role_data(role_id, guild_id, message_id, emoji);
     } catch(...) {
         fmt::print("Trying to call 'insert_reaction_role_data' with role_id={} guild_id={} message_id={}\n", role_id, guild_id, message_id);
     }
@@ -143,7 +154,10 @@ auto Database::get_welcome_channel_id(size_t guild_id) noexcept -> size_t {
     static std::string sql_string{ "SELECT channel_id FROM welcome_channels WHERE guild_id=$1" };
     
     try{
-        pqxx::work txn(conn);
+        if(!conn){
+            //TODO: throw an error
+        }
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id);
         txn.commit();
         times = 0;
@@ -154,11 +168,10 @@ auto Database::get_welcome_channel_id(size_t guild_id) noexcept -> size_t {
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return 0;
         }
-        this->reconnect();
-        return this->get_welcome_channel_id(guild_id); 
+        Database::reconnect();
+        return Database::get_welcome_channel_id(guild_id); 
     } catch (...) {
         fmt::print("Trying to call 'get_welcome_channel_id' with guild_id={}\n", guild_id);
         return 0;
@@ -169,10 +182,11 @@ auto Database::insert_welcome_channel_id(size_t guild_id, size_t channel_id) noe
     static int times = 0;
     static std::string sql_string{ "INSERT INTO welcome_channels(guild_id, channel_id) VALUES ($1, $2)" };
     try{
+        if(!conn) return;
         if(!guild_id) return;
-        if(this->get_welcome_channel_id(guild_id)) return;
+        if(Database::get_welcome_channel_id(guild_id)) return;
             
-        pqxx::work txn(conn);
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
         txn.commit();
         times=0;
@@ -180,11 +194,10 @@ auto Database::insert_welcome_channel_id(size_t guild_id, size_t channel_id) noe
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return;
         }
-        this->reconnect();
-        this->insert_welcome_channel_id(guild_id, channel_id);
+        Database::reconnect();
+        Database::insert_welcome_channel_id(guild_id, channel_id);
     } catch(...) {
         fmt::print("Trying to call 'insert_welcome_channel_id' with guild_id={} channel_id={}\n", guild_id, channel_id);
     }
@@ -195,7 +208,10 @@ auto Database::get_goodbye_channel_id(size_t guild_id) noexcept -> size_t {
     static std::string sql_string{ "SELECT channel_id FROM goodbye_channels WHERE guild_id=$1" };
     
     try{
-        pqxx::work txn(conn);
+        if(!conn){
+            //TODO: throw an error
+        }
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id);
         txn.commit();
         times = 0;
@@ -206,11 +222,10 @@ auto Database::get_goodbye_channel_id(size_t guild_id) noexcept -> size_t {
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return 0;
         }
-        this->reconnect();
-        return this->get_goodbye_channel_id(guild_id); 
+        Database::reconnect();
+        return Database::get_goodbye_channel_id(guild_id); 
     } catch (...) {
         fmt::print("Trying to call 'get_goodbye_channel_id' with guild_id={}\n", guild_id);
         return 0;
@@ -221,10 +236,11 @@ auto Database::insert_goodbye_channel_id(size_t guild_id, size_t channel_id) noe
     static int times = 0;
     static std::string sql_string{ "INSERT INTO goodbye_channels(guild_id, channel_id) VALUES ($1, $2)" };
     try{
+        if(!conn) return;
         if(!guild_id) return;
-        if(this->get_goodbye_channel_id(guild_id)) return;
+        if(Database::get_goodbye_channel_id(guild_id)) return;
             
-        pqxx::work txn(conn);
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
         txn.commit();
         times=0;
@@ -232,11 +248,10 @@ auto Database::insert_goodbye_channel_id(size_t guild_id, size_t channel_id) noe
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return;
         }
-        this->reconnect();
-        this->insert_goodbye_channel_id(guild_id, channel_id);
+        Database::reconnect();
+        Database::insert_goodbye_channel_id(guild_id, channel_id);
     } catch(...) {
         fmt::print("Trying to call 'insert_goodbye_channel_id' with guild_id={} channel_id={}\n", guild_id, channel_id);
     }
@@ -247,7 +262,11 @@ auto Database::get_log_channel_id(size_t guild_id) noexcept -> size_t {
     static std::string sql_string{ "SELECT channel_id FROM log_channels WHERE guild_id=$1" };
     
     try{
-        pqxx::work txn(conn);
+        if(!conn){
+            //TODO: throw an error
+        }
+
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id);
         txn.commit();
         times = 0;
@@ -258,11 +277,10 @@ auto Database::get_log_channel_id(size_t guild_id) noexcept -> size_t {
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return 0;
         }
-        this->reconnect();
-        return this->get_log_channel_id(guild_id); 
+        Database::reconnect();
+        return Database::get_log_channel_id(guild_id); 
     } catch (...) {
         fmt::print("Trying to call 'get_log_channel_id' with guild_id={}\n", guild_id);
         return 0;
@@ -273,10 +291,11 @@ auto Database::insert_log_channel_id(size_t guild_id, size_t channel_id) noexcep
     static int times = 0;
     static std::string sql_string{ "INSERT INTO log_channels(guild_id, channel_id) VALUES ($1, $2)" };
     try{
+        if(!conn) return;
         if(!guild_id) return;
-        if(this->get_log_channel_id(guild_id)) return;
-            
-        pqxx::work txn(conn);
+        if(Database::get_log_channel_id(guild_id)) return;
+        
+        pqxx::work txn(*conn);
         pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
         txn.commit();
         times=0;
@@ -284,35 +303,35 @@ auto Database::insert_log_channel_id(size_t guild_id, size_t channel_id) noexcep
         ++times;
         if(times > 10){
             times = 0;
-            this->is_connected = false;
             return;
         }
-        this->reconnect();
-        this->insert_log_channel_id(guild_id, channel_id);
+        Database::reconnect();
+        Database::insert_log_channel_id(guild_id, channel_id);
     } catch(...) {
         fmt::print("Trying to call 'insert_welcome_channel_id' with guild_id={} channel_id={}\n", guild_id, channel_id);
     }
 } 
 
-auto Database::has_connection() const noexcept -> bool {
-    return this->is_connected && conn.is_open();
+auto Database::has_connection() noexcept -> bool {
+    return conn->is_open();
 }
 
 auto Database::reconnect() noexcept -> void {
     static int times = 0;
     try {
-        times++;
-        if(!conn.is_open()) {
-            //conn.activate();
-            conn = pqxx::connection(conn.connection_string());
+        ++times;
+        bool connected{ conn && conn->is_open() };
+        if(!connected) {
+            //conn->activate();
+            connected = Database::connect(conn->connection_string());
         }
-        times = 0;
+        if(connected) times = 0;
     } catch(const pqxx::broken_connection & e) {
         if(times > 10) {
             times = 0;
             return;
         }
-        this->reconnect();
+        Database::reconnect();
     } catch(...){
         fmt::print("Error: reconnecting failed...\n");
     }

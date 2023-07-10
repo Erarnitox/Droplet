@@ -1,6 +1,6 @@
 #pragma once
 
-#include "database.hpp"
+#include <database.hpp>
 #include <dpp/dpp.h>
 
 namespace user_man{
@@ -46,7 +46,7 @@ namespace user_man{
     }
 
     static inline
-    auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot, Database& db) -> void {
+    auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()
 	        .set_color(dpp::colors::deep_sea)
@@ -60,14 +60,14 @@ namespace user_man{
         };
 	 
 	    /* reply with the created embed */
-        const auto channel_id { db.get_welcome_channel_id(event.adding_guild->id) };
+        const auto channel_id { Database::get_welcome_channel_id(event.adding_guild->id) };
         if (!channel_id) return;
 
 	    bot.message_create(dpp::message(channel_id, embed));
     }
 
     static inline
-    auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot, Database& db) -> void {
+    auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
         /* create the embed */
 	    dpp::embed embed{ dpp::embed()
 	        .set_color(dpp::colors::red)
@@ -81,7 +81,7 @@ namespace user_man{
         };
 	 
 	    /* reply with the created embed */
-        const auto channel_id { db.get_welcome_channel_id(event.removing_guild->id) };
+        const auto channel_id { Database::get_welcome_channel_id(event.removing_guild->id) };
         if (!channel_id) return;
 
 	    bot.message_create(dpp::message(channel_id, embed));

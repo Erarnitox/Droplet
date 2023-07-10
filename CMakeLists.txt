@@ -77,3 +77,4 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  
  # include to automatically pack/make an installer for release
  include(CPack)
+ 
