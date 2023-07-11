@@ -12,7 +12,7 @@
 #include <fmt/core.h>
 #include <dpp/dpp.h>
 
-#include "database/database.hpp"
+#include "database.hpp"
 
 namespace core {
     
@@ -52,8 +52,6 @@ namespace core {
 
     static 
     auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) noexcept -> void {
-        // Get the interaction response object
-        // event.reply(LanguageServer::get(event.command.guild_id, message_token));
         event.reply(message);
 
         std::thread([event, time_mills]() {
@@ -87,8 +85,7 @@ namespace core {
     static inline
     auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) noexcept -> void {
         dpp::slashcommand help_command("help", "Usage information", bot.me.id);
-        //help_command.add_localization("de", "hilfe", "Hilfestellung zur Benutzung des Bots")
-
+        
         dpp::slashcommand channel_command("set_channel", "Configure channels for bot events (Admin only!)", bot.me.id);
         channel_command.add_option(
 	        dpp::command_option(dpp::co_string, "type", "For what should this channel be used?", true)
@@ -97,16 +94,8 @@ namespace core {
 	            .add_choice(dpp::command_option_choice("Server Logging Channel", std::string("channel_log")))
         );
 
-        dpp::slashcommand language_command("set_language", "Configue the language being used by the bot (Admin only!)", bot.me.id);
-        language_command.add_option(
-            dpp::command_option(dpp::co_string, "language", "What language should be used?", true)
-	            .add_choice(dpp::command_option_choice("German", std::string("de")))
-	            .add_choice(dpp::command_option_choice("English", std::string("en-US")))
-        );
-
         command_list.push_back(help_command);
         command_list.push_back(channel_command);
-        command_list.push_back(language_command);
     }
 
     static inline
