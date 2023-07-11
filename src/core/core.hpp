@@ -12,11 +12,11 @@
 #include <fmt/core.h>
 #include <dpp/dpp.h>
 
-#include "database.hpp"
+#include "database/database.hpp"
 
 namespace core {
     
-    static
+    static inline
     auto is_admin(const dpp::guild_member& member) noexcept -> bool {
         for (const auto& role_id : member.roles) {
             const dpp::role& role{ *dpp::find_role(role_id) };
@@ -26,7 +26,7 @@ namespace core {
         return false;
     }
 
-    static
+    static inline
     auto get_role_id(const std::string& mention) noexcept -> std::string {
         std::regex re("<@&([0-9]+)>");
         std::smatch match;
@@ -38,7 +38,7 @@ namespace core {
         }
     }
 
-    static
+    static inline
     auto get_channel_id(const std::string& mention) noexcept -> std::string {
         std::regex re("<#([0-9]+)>");
         std::smatch match;
@@ -50,7 +50,7 @@ namespace core {
         }
     }
 
-    static 
+    static inline
     auto timed_reply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) noexcept -> void {
         event.reply(message);
 
@@ -60,7 +60,7 @@ namespace core {
         }).detach();
     }
 
-    static 
+    static inline
     auto timed_reply(const dpp::form_submit_t& event, const std::string& message, size_t time_mills) noexcept -> void {
         event.reply(message);
 
@@ -157,8 +157,6 @@ namespace core {
                 Database::insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
                 timed_reply(event, "Channnel set as logging channel!", 2000);
             }
-        } else if (event.command.get_command_name() == "set_language") {
-            timed_reply(event, std::string("Currently only English has a complete token set.\nMore languages will be added soon!"), 5000);
         }
     }
 }

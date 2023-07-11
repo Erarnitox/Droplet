@@ -27,7 +27,10 @@ else()
 	message(FATAL_ERROR "git was not found!")
 endif()
 
+# out own source code for the project
 add_subdirectory(src)
+
+# subdirectory for third party dependencies
 add_subdirectory(libs)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

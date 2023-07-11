@@ -23,9 +23,7 @@ auto main() -> int {
 	// connect to the Database
 	//-----------------------------------------------------------------------------
 	const auto db_connection_string{ read_database_credentials("db_connection.txt") };
-	bot.log(dpp::loglevel::ll_info, "Trying o connect to Database: "+ db_connection_string);
-	fmt::print("Database: {}\n", db_connection_string);
-
+	
 	const auto connected{ Database::connect(db_connection_string) };
 	if(!connected) {
 		bot.log(dpp::loglevel::ll_error, "Connection to Database was not successful!");
