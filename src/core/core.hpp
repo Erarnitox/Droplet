@@ -12,7 +12,7 @@
 #include <fmt/core.h>
 #include <dpp/dpp.h>
 
-#include "database.hpp"
+#include "database/database.hpp"
 
 namespace core {
     
