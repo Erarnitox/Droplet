@@ -2,7 +2,10 @@
 ---
 <img src="res/logo.png" width="20%" align="left"></img>
 
-CyberDrop is a feature-rich Discord bot written in modern C++ to enhance your server's experience. It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, CyberDrop is the perfect companion for managing your Discord server.
+CyberDrop is a feature-rich Discord bot written in modern C++ to enhance your server's experience. 
+
+It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, CyberDrop is the perfect companion for managing your Discord server.
+
 
 ---
 
