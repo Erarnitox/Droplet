@@ -1,12 +1,12 @@
 #pragma once
 
-#include <IRepository>
+#include <IRepository.hpp>
 #include "ChallengeRoleDTO.hpp"
 
 class ChallengeRoleRepository : public IRepository<ChallengeRoleDTO> {
     public:
-        size_t create(const ChallengeRoleDTO& object) override;
-        bool remove(size_t id) override;
-        ChallengeRoleDTO get(size_t id) override;
-        bool update(size_t id, const ChallengeRoleDTO& object) override;
+        void create(const ChallengeRoleDTO& object) override;
+        void remove(size_t messageId) override;
+        ChallengeRoleDTO get(size_t messageId) override;
+        void update(size_t messageId, const ChallengeRoleDTO& object) override;
 };

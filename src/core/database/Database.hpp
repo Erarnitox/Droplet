@@ -3,6 +3,8 @@
 #include <cstddef>
 #include <string>
 #include <optional>
+#include <typeindex>
+#include <vector>
 
 class Database {
     
@@ -23,13 +25,8 @@ public:
     
     static auto hasConnection() noexcept -> bool;
     static auto reconnect() noexcept -> void;
-
     static auto disconnect() noexcept -> void;
-
-    //TODO: to be removed
-    [[nodiscard]]
-    static auto get_challenge_role_data(size_t message_id) noexcept -> std::pair<size_t, std::string>;
-    static auto insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) noexcept -> void;
+    static auto execQuery(const std::string& query, const std::vector<std::type_index>& types, std::vector<void*>& args) noexcept -> void;
 
     //TODO: to be removed
     [[nodiscard]]

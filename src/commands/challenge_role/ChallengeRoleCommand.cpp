@@ -1,7 +1,14 @@
-include<core.hpp>
 #include "ChallengeRoleCommand.hpp"
+#include "ChallengeRoleRepository.hpp"
+#include "ChallengeRoleDTO.hpp"
 
-static inline 
+#include <Core.hpp>
+
+#include <dpp/dpp.h>
+
+#include <variant>
+
+inline 
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
     // Challenge Roles
     dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
@@ -15,45 +22,45 @@ auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcomm
     command_list.push_back(challenge_role);
 }
 
-static inline
+inline
 auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
     if (event.command.get_command_name() != "challenge_role") return;
     
-    if(!core::is_admin(event.command.member)){
-        core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+    if(!Core::isAdmin(event.command.member)){
+        Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
         return;
     }
 
-    const auto channel{ core::get_parameter(event, "channel") };
+    const auto channel{ Core::getParameter(event, "channel") };
     if(channel.empty()) return;
             
-    const auto question{ core::get_parameter(event, "question") };
+    const auto question{ Core::getParameter(event, "question") };
     if(question.empty()) return;
 
-    const auto solution{ core::get_parameter(event, "solution") };
+    const auto solution{ Core::getParameter(event, "solution") };
     if(solution.empty()) return;
             
-    const auto role{ core::get_parameter(event, "role") };
+    const auto role{ Core::getParameter(event, "role") };
     if(role.empty()) return;
 
-    const auto title{ core::get_parameter(event, "title") };
+    const auto title{ Core::getParameter(event, "title") };
     if(title.empty()) return;
 
-    const auto role_id{ core::get_role_id(role) };
+    const auto role_id{ Core::getRoleId(role) };
     if(role_id.empty()) {
-        core::timed_reply(event, "No valid Role provided!", 2000);
+        Core::timedReply(event, "No valid Role provided!", 2000);
         return;
     }
 
-    const auto channel_id{ core::get_channel_id(channel) };
+    const auto channel_id{ Core::getChannelId(channel) };
     if(channel_id.empty()) {
-        core::timed_reply(event, "No valid Channel provided!", 2000);
+        Core::timedReply(event, "No valid Channel provided!", 2000);
         return;
     }
 
     const auto guild_id{ event.command.guild_id };
     if(!guild_id) {
-        core::timed_reply(event, "Something went wrong...", 2000);
+        Core::timedReply(event, "Something went wrong...", 2000);
         return;
     }
 
@@ -92,7 +99,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             try {
                 sane_role_id = std::stoul(role_id); 
             } catch(std::invalid_argument exception){
-                core::timed_reply(event, "Bad role! Just mention the role!", 5000);
+                Core::timedReply(event, "Bad role! Just mention the role!", 5000);
                 return;
             }
                     
@@ -100,35 +107,29 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             try{ 
                 message_id = std::get<dpp::message>(sent_message).id;
                 if(message_id == 0){
-                    core::timed_reply(event, "Something went wrong! No message created! ...", 5000);
+                    Core::timedReply(event, "Something went wrong! No message created! ...", 5000);
                     return;
                 } 
             } catch(...){
-                core::timed_reply(event, "Could not get created message! ...", 5000);
+                Core::timedReply(event, "Could not get created message! ...", 5000);
                 return;
             }
 
             // save the needed information in the database
-            ChallengRoleRepository repo;
-            ChallengeRoleDto data { sane_role_id, guild_id, messsage_id, solution };
-            if(repo.create(data)){
-                // send a confirmation to the admin
-                core::timed_reply(
-                    event, 
-                    fmt::format(
-                        "Challenge Created!\nQuestion: {}\nReward: {}",
-                        question, role
-                    ), 
-                    10000 //10sek
-                );
-            } else {
-                // send a confirmation to the admin
-                core::timed_reply(
-                    event, 
-                    "Something went wrong creating the Challenge :c", 
-                    10000 //10sek
-                );
-            }
+            ChallengeRoleRepository repo;
+            ChallengeRoleDTO data { sane_role_id, guild_id, message_id, solution };
+            repo.create(data);
+            
+            // send a confirmation to the admin
+            Core::timedReply(
+                event, 
+                fmt::format(
+                    "Challenge Created!\nQuestion: {}\nReward: {}",
+                    question, role
+                ), 
+                10000 //10sek
+            );
+        }   
     );
 }
 
@@ -162,9 +163,10 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
         const auto member{ event.command.member };
 
         // get the correct answer and reward role from the database
-        auto [role_id, flag] = Database::get_challenge_role_data(msg_id);
-
-        if(!role_id || flag.size() == 0){
+        ChallengeRoleRepository repo;
+        ChallengeRoleDTO dto = repo.get(msg_id);
+        
+        if(!dto.roleId || dto.solution.size() == 0){
            return; 
         }
 
@@ -174,16 +176,16 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
         
         const auto& entered{ *entered_ptr };
 
-        if(entered == flag) {
-            bot.guild_member_add_role(event.command.guild_id, member.user_id, role_id);
+        if(entered == dto.solution) {
+            bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
-            core::timed_reply(
+            Core::timedReply(
                 event,
                 fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
                 5000
             );
         } else {
-            core::timed_reply(
+            Core::timedReply(
                 event,
                 fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
                 5000

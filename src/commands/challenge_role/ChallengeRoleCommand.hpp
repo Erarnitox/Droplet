@@ -1,7 +1,8 @@
 #pragma once
 
-#include <core.hpp>
-#include <database.hpp>
+#include <Core.hpp>
+#include <Database.hpp>
+
 #include <dpp/colors.h>
 #include <dpp/message.h>
 #include <dpp/restresults.h>

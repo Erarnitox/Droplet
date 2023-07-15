@@ -200,7 +200,7 @@ auto handle_global_slash_commands(
 //////////////////////////////////////////////////////////////////////////////
 static inline
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
-	roles::handle_button_clicks(event, bot);
+	//roles::handle_button_clicks(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -208,7 +208,7 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 //////////////////////////////////////////////////////////////////////////////
 static inline
 auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
-	roles::handle_form_submits(event, bot);
+	//roles::handle_form_submits(event, bot);
 }
 
 //////////////////////////////////////////////////////////////////////////////

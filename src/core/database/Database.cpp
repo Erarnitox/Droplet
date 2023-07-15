@@ -36,69 +36,12 @@ auto Database::disconnect() noexcept -> void {
     conn = nullptr;
 }
 
-auto Database::get_challenge_role_data(size_t message_id) noexcept -> std::pair<size_t, std::string> {
-    static int times = 0;
-    static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1" };
-    
-    try{
-        if(!conn) {
-            //TODO: throw an error?
-        }
-
-        pqxx::work txn(*conn);
-        pqxx::result result = txn.exec_params(sql_string, message_id);
-        txn.commit();
-
-        const auto& role_id{ result.at(0, 0).get<size_t>() };
-        const auto& flag{ result.at(0, 1).get<std::string>() };
-        times = 0;
-        return { role_id.value(), flag.value() };
-    } catch(const pqxx::broken_connection& e){
-        ++times;
-        if(times > 10){
-            times = 0;
-            return {0, 0};
-        }
-        Database::reconnect();
-        return Database::get_challenge_role_data(message_id);
-    } catch (...) {
-        fmt::print("Error: Tying to call 'get_challenge_role_data' with message_id={}\n", message_id);
-        return {0, 0};
-    }
-}
-
-auto Database::insert_challenge_role_data(size_t role_id, size_t guild_id, size_t message_id, const std::string& flag) noexcept -> void {
-    static int times = 0;
-    static std::string sql_string{ "INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES ($1, $2, $3, $4)" };
-    
-    try{
-        if(!conn) return;
-        if(!message_id) return;
-        if(Database::get_challenge_role_data(message_id).first) return;
-
-        pqxx::work txn(*conn);
-        pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, flag);
-        txn.commit();
-        times=0;
-    } catch(const pqxx::broken_connection& e){
-        ++times;
-        if(times > 10){
-            times = 0;
-            return;
-        }
-        Database::reconnect();
-        Database::insert_challenge_role_data(role_id, guild_id, message_id, flag);
-    } catch (...) {
-        fmt::print("Error: Tying to call 'insert_challenge_role_data' with message_id={} guild_id={} message_id={}\n", role_id, guild_id, message_id);
-    }
-}
-
 auto Database::get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept -> size_t {
     static int times = 0;
     static std::string sql_string{ "SELECT role_id FROM reaction_roles WHERE message_id=$1 AND emoji=$2" };
     
     try{
-        if(conn){
+        if(!conn){
             //TODO: throw an error
         }
 
@@ -334,5 +277,48 @@ auto Database::reconnect() noexcept -> void {
         Database::reconnect();
     } catch(...){
         fmt::print("Error: reconnecting failed...\n");
+    }
+}
+
+auto Database::execQuery(const std::string& query, const std::vector<std::type_index>& types, std::vector<void*>& args) noexcept -> void {
+    static int times = 0;
+    try{
+        pqxx::work txn(*conn);
+        
+        // convert all values to strings and store them in paramValues
+        std::vector<std::string> paramValues;
+        for(size_t i{ 0 }; i < args.size(); ++i) {
+            if(types[i] == typeid(size_t)) paramValues.push_back(std::to_string(*(size_t*)args[i]));
+            else if(types[i] == typeid(std::string)) paramValues.push_back(*(std::string*)args[i]);
+            else if(types[i] == typeid(int)) paramValues.push_back(std::to_string(*(int*)args[i]));
+            else if(types[i] == typeid(bool)) paramValues.push_back(std::to_string(*(bool*)args[i]));
+            else if(types[i] == typeid(float)) paramValues.push_back(std::to_string(*(float*)args[i]));
+        }
+
+        // perform the database transaction
+        pqxx::result result = txn.exec_params(query, paramValues);
+        txn.commit();
+
+        // convert the results into the right datatype and save them
+        for(size_t i{ 0 }; i < args.size(); ++i) {
+            if(types[i] == typeid(size_t)) *((size_t*)args[i]) = result.at(0, i).get<size_t>().value();
+            else if(types[i] == typeid(std::string)) *((std::string*)args[i]) = result.at(0, i).get<std::string>().value();
+            else if(types[i] == typeid(int)) *((int*)args[i]) = result.at(0, i).get<int>().value();
+            else if(types[i] == typeid(bool)) *((bool*)args[i]) = result.at(0, i).get<bool>().value();
+            else if(types[i] == typeid(float)) *((float*)args[i]) = result.at(0, i).get<float>().value();
+        }
+
+        times=0;
+        return;
+    } catch(const pqxx::broken_connection& e) {
+        ++times;
+        if(times > 10){
+            times = 0;
+            return;
+        }
+        Database::reconnect();
+        execQuery(query, types, args);
+    } catch (...) {
+        fmt::print("Error: Failed to insert Into Database!\n");
     }
 }
