@@ -1,7 +1,7 @@
 #pragma once
 
-#include <core.hpp>
-#include "database.hpp"
+#include <Core.hpp>
+#include <Database.hpp>
 #include <dpp/colors.h>
 #include <dpp/message.h>
 #include <dpp/restresults.h>
@@ -58,41 +58,41 @@ namespace roles {
     static inline
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
         if (event.command.get_command_name() == "challenge_role") {
-            if(!core::is_admin(event.command.member)){
-                core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+            if(!Core::isAdmin(event.command.member)){
+                Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
             }
 
-            const auto channel{ core::get_parameter(event, "channel") };
+            const auto channel{ Core::getParameter(event, "channel") };
             if(channel.empty()) return;
             
-            const auto question{ core::get_parameter(event, "question") };
+            const auto question{ Core::getParameter(event, "question") };
             if(question.empty()) return;
 
-            const auto solution{ core::get_parameter(event, "solution") };
+            const auto solution{ Core::getParameter(event, "solution") };
             if(solution.empty()) return;
             
-            const auto role{ core::get_parameter(event, "role") };
+            const auto role{ Core::getParameter(event, "role") };
             if(role.empty()) return;
 
-            const auto title{ core::get_parameter(event, "title") };
+            const auto title{ Core::getParameter(event, "title") };
             if(title.empty()) return;
 
-            const auto role_id{ core::get_role_id(role) };
+            const auto role_id{ Core::getRoleId(role) };
             if(role_id.empty()) {
-                core::timed_reply(event, "No valid Role provided!", 2000);
+                Core::timedReply(event, "No valid Role provided!", 2000);
                 return;
             }
 
-            const auto channel_id{ core::get_channel_id(channel) };
+            const auto channel_id{ Core::getChannelId(channel) };
             if(channel_id.empty()) {
-                core::timed_reply(event, "No valid Channel provided!", 2000);
+                Core::timedReply(event, "No valid Channel provided!", 2000);
                 return;
             }
 
             const auto guild_id{ event.command.guild_id };
             if(!guild_id) {
-                core::timed_reply(event, "Something went wrong...", 2000);
+                Core::timedReply(event, "Something went wrong...", 2000);
                 return;
             }
 
@@ -131,7 +131,7 @@ namespace roles {
                     try {
                         sane_role_id = std::stoul(role_id); 
                     } catch(std::invalid_argument exception){
-                        core::timed_reply(event, "Bad role! Just mention the role!", 5000);
+                        Core::timedReply(event, "Bad role! Just mention the role!", 5000);
                         return;
                     }
                     
@@ -139,11 +139,11 @@ namespace roles {
                     try{ 
                         message_id = std::get<dpp::message>(sent_message).id;
                        if(message_id == 0){
-                        core::timed_reply(event, "Something went wrong! No message created! ...", 5000);
+                        Core::timedReply(event, "Something went wrong! No message created! ...", 5000);
                         return;
                        } 
                     } catch(...){
-                        core::timed_reply(event, "Could not get created message! ...", 5000);
+                        Core::timedReply(event, "Could not get created message! ...", 5000);
                         return;
                     }
 
@@ -156,7 +156,7 @@ namespace roles {
                     );
 
                     // send a confirmation to the admin
-                    core::timed_reply(
+                    Core::timedReply(
                         event, 
                         fmt::format(
                             "Challenge Created!\nQuestion: {}\nReward: {}",
@@ -169,29 +169,29 @@ namespace roles {
             );
         }
         else if (event.command.get_command_name() == "reaction_role") {
-            if(!core::is_admin(event.command.member)){
-                core::timed_reply(event, std::string("Only admins are allowed to use this command!"), 2000);
+            if(!Core::isAdmin(event.command.member)){
+                Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
             }
 
-            const auto message_link{ core::get_parameter(event, "message_link") };
+            const auto message_link{ Core::getParameter(event, "message_link") };
             if(message_link.empty()) return;
 
-            const auto emoji{ core::get_parameter(event, "emoji") };
+            const auto emoji{ Core::getParameter(event, "emoji") };
             if(emoji.empty()) return;
             
-            const auto role{ core::get_parameter(event, "role") };
+            const auto role{ Core::getParameter(event, "role") };
             if(role.empty()) return;
 
-            const auto role_id{ core::get_role_id(role) };
+            const auto role_id{ Core::getRoleId(role) };
             if(role_id.empty()) {
-                core::timed_reply(event, "No valid Role was provided!", 2000);
+                Core::timedReply(event, "No valid Role was provided!", 2000);
                 return;
             }
 
             const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
             if(usable_emoji.empty()) {
-                core::timed_reply(event, "No valid emoji was provided!", 2000);
+                Core::timedReply(event, "No valid emoji was provided!", 2000);
                 return;
             }
             
@@ -237,7 +237,7 @@ namespace roles {
             bot.message_add_reaction(message_id, channel_id, usable_emoji);
 
             // send a confirmation to the admin
-            core::timed_reply(
+            Core::timedReply(
                 event, 
                 fmt::format(
                     "Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}",
@@ -293,13 +293,13 @@ namespace roles {
         if(entered == flag) {
             bot.guild_member_add_role(event.command.guild_id, member.user_id, role_id);
 
-            core::timed_reply(
+            Core::timedReply(
                 event,
                 fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
                 5000
             );
         } else {
-            core::timed_reply(
+            Core::timedReply(
                 event,
                 fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
                 5000

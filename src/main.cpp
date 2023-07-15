@@ -1,12 +1,15 @@
-#include "database.hpp"
 #include "main.hpp"
+
+#include <Database.hpp>
 #include "resource_man.hpp"
 #include "roles.hpp"
 #include "user_man.hpp"
+
 #include <dpp/dispatcher.h>
 #include <dpp/misc-enum.h>
 #include <dpp/presence.h>
 #include <fmt/core.h>
+
 #include <string>
 
 //////////////////////////////////////////////////////////////////////////////
@@ -169,7 +172,7 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 	user_man::register_global_slash_commands(command_list, bot);
 
 	// admin commands
-	core::register_global_slash_commands(command_list, bot);
+	Core::registerGlobalSlashCommands(command_list, bot);
 	roles::register_global_slash_commands(command_list, bot);
 }
 
@@ -188,7 +191,7 @@ auto handle_global_slash_commands(
 	user_man::handle_global_slash_commands(event, bot);
 
 	// admin commands
-	core::handle_global_slash_commands(event, bot, command_list);
+	Core::handleGlobalSlashCommands(event, bot, command_list);
 	roles::handle_global_slash_commands(event, bot);
 }
 

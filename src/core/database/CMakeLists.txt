@@ -1,6 +1,6 @@
 add_library(database STATIC 
-    database.cpp
-    database.hpp
+    Database.cpp
+    Database.hpp
 )
 
 set_property(TARGET database PROPERTY CXX_STANDARD 20)

@@ -1,4 +1,17 @@
 add_subdirectory(database)
-target_link_libraries(${PROJECT_NAME} PRIVATE database)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+add_library(core STATIC 
+    Core.cpp
+    Core.hpp
+)
+
+set_property(TARGET core PROPERTY CXX_STANDARD 20)
+target_link_libraries(core PUBLIC database)
+target_include_directories(core INTERFACE ${CMAKE_CURRENT_LIST_DIR}/interfaces)
+target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+
+target_link_libraries(core PUBLIC 
+	fmt::fmt
+)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC core)

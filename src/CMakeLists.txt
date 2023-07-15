@@ -24,7 +24,3 @@ add_subdirectory(deamons)
 #		"core.hpp")
 #
 #target_link_libraries(${PROJECT_NAME} PRIVATE core)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE 
-	fmt::fmt
-)

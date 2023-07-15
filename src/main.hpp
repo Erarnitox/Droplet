@@ -4,10 +4,10 @@
 #include <dpp/dpp.h>
 #include <fstream>
 
-#include "core.hpp"
-#include "database.hpp"
-#include "resource_man.hpp"
-#include "user_man.hpp"
+#include <Core.cpp>
+#include <Database.hpp>
+#include <resource_man.hpp>
+#include <user_man.hpp>
 
 [[nodiscard]] static inline
 auto read_bot_token(const std::string& file) -> std::string;

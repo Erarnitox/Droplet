@@ -1,4 +1,4 @@
-#include "database.hpp"
+#include "Database.hpp"
 
 #include <fmt/core.h>
 #include <utility>
@@ -312,7 +312,7 @@ auto Database::insert_log_channel_id(size_t guild_id, size_t channel_id) noexcep
     }
 } 
 
-auto Database::has_connection() noexcept -> bool {
+auto Database::hasConnection() noexcept -> bool {
     return conn->is_open();
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <dpp/dpp.h>
-#include "core.hpp"
+#include <Core.hpp>
 
 namespace resource_man {
     auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
@@ -81,29 +81,29 @@ namespace resource_man {
 
     auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
         if (event.command.get_command_name() == "resources") {
-	        const auto action{ core::get_parameter(event, "action") };
+	        const auto action{ Core::getParameter(event, "action") };
             if(action.empty()) return; 
 
-            const auto category{ core::get_parameter(event, "category") };
+            const auto category{ Core::getParameter(event, "category") };
             if(category.empty()) return;
 
-            const auto title{ core::get_parameter(event, "title") };
+            const auto title{ Core::getParameter(event, "title") };
             if(title.empty()) return;
             
-            const auto query{ core::get_parameter(event, "query") };
+            const auto query{ Core::getParameter(event, "query") };
             if(query.empty()) return;
 
-            const auto index{ core::get_parameter(event, "index") };
+            const auto index{ Core::getParameter(event, "index") };
             if(index.empty()) return;
             
-            const auto link{ core::get_parameter(event, "link") };
+            const auto link{ Core::getParameter(event, "link") };
             if(link.empty()) return;
             
-            const auto description{ core::get_parameter(event, "description") };
+            const auto description{ Core::getParameter(event, "description") };
             if(description.empty()) return;
 	        
             if(action.size() < 1){
-                core::timed_reply(event, "Please specify an action!", 100);
+                Core::timedReply(event, "Please specify an action!", 100);
             } else if(action == "action_add") {
 	            // usage: <title> <link> <category> [description]
             } else if(action == "action_del") {

@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.25)
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
+set(CPP_STANDARD 20)
+
 project(cyber_drop 
 	VERSION 1.0
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
