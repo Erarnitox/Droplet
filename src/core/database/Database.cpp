@@ -280,45 +280,6 @@ auto Database::reconnect() noexcept -> void {
     }
 }
 
-auto Database::execQuery(const std::string& query, const std::vector<std::type_index>& types, std::vector<void*>& args) noexcept -> void {
-    static int times = 0;
-    try{
-        pqxx::work txn(*conn);
-        
-        // convert all values to strings and store them in paramValues
-        std::vector<std::string> paramValues;
-        for(size_t i{ 0 }; i < args.size(); ++i) {
-            if(types[i] == typeid(size_t)) paramValues.push_back(std::to_string(*(size_t*)args[i]));
-            else if(types[i] == typeid(std::string)) paramValues.push_back(*(std::string*)args[i]);
-            else if(types[i] == typeid(int)) paramValues.push_back(std::to_string(*(int*)args[i]));
-            else if(types[i] == typeid(bool)) paramValues.push_back(std::to_string(*(bool*)args[i]));
-            else if(types[i] == typeid(float)) paramValues.push_back(std::to_string(*(float*)args[i]));
-        }
-
-        // perform the database transaction
-        pqxx::result result = txn.exec_params(query, paramValues);
-        txn.commit();
-
-        // convert the results into the right datatype and save them
-        for(size_t i{ 0 }; i < args.size(); ++i) {
-            if(types[i] == typeid(size_t)) *((size_t*)args[i]) = result.at(0, i).get<size_t>().value();
-            else if(types[i] == typeid(std::string)) *((std::string*)args[i]) = result.at(0, i).get<std::string>().value();
-            else if(types[i] == typeid(int)) *((int*)args[i]) = result.at(0, i).get<int>().value();
-            else if(types[i] == typeid(bool)) *((bool*)args[i]) = result.at(0, i).get<bool>().value();
-            else if(types[i] == typeid(float)) *((float*)args[i]) = result.at(0, i).get<float>().value();
-        }
-
-        times=0;
-        return;
-    } catch(const pqxx::broken_connection& e) {
-        ++times;
-        if(times > 10){
-            times = 0;
-            return;
-        }
-        Database::reconnect();
-        execQuery(query, types, args);
-    } catch (...) {
-        fmt::print("Error: Failed to insert Into Database!\n");
-    }
+auto Database::getConnection() noexcept -> pqxx::connection* {
+    return conn;
 }

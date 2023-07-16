@@ -12,12 +12,7 @@ void ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
     if(!object.messageId) return;
     if(this->get(object.messageId).guildId != 0) return;
 
-    /*
-    Database::execQuery(
-        sql_string,
-        { typeid(size_t), typeid(size_t), typeid(size_t), typeid(std::string) }, 
-        std::vector<void*>({ (void*)&object.roleId, (void*)&object.guildId, (void*)&object.messageId, (void*)&object.solution }));
-    */
+    database::execQuery<4>(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }
 
 void ChallengeRoleRepository::remove(size_t messageId) {
@@ -25,7 +20,7 @@ void ChallengeRoleRepository::remove(size_t messageId) {
     
     if(!Database::hasConnection()) return;
 
-    //Database::execQuery(sql_string, { typeid(size_t) }, value_vector);
+    database::execQuery<1>(sql_string, messageId);
 }
         
 void ChallengeRoleRepository::update(size_t messageId, const ChallengeRoleDTO& object) {
@@ -35,7 +30,7 @@ void ChallengeRoleRepository::update(size_t messageId, const ChallengeRoleDTO& o
     if(!object.messageId) return;
     if(this->get(object.messageId).guildId != 0) return;
 
-    //Database::execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
+    database::execQuery<4>(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }
 
 
@@ -44,6 +39,7 @@ ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) {
 
     ChallengeRoleDTO dto;
     dto.messageId = messageId;
-    //Database::execQuery(sql_string, dto.roleId, dto.guildId, dto.messageId, dto.solution);
+    
+    database::execQuery<4>(sql_string, dto.roleId, dto.guildId, dto.messageId, dto.solution);
     return dto;
 }

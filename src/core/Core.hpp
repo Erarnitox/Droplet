@@ -10,30 +10,30 @@
 
 class Core {
 public:
-    static inline
+    static
     auto isAdmin(const dpp::guild_member& member) noexcept -> bool;
 
-    static inline
+    static
     auto getRoleId(const std::string& mention) noexcept -> std::string;
 
-    static inline
+    static
     auto getChannelId(const std::string& mention) noexcept -> std::string;
 
-    static inline
+    static
     auto timedReply(const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) noexcept -> void;
 
-    static inline
+    static
     auto timedReply(const dpp::form_submit_t& event, const std::string& message, size_t time_mills) noexcept -> void;
     
-    [[nodiscard]] static inline
+    [[nodiscard]] static
     auto getParameter(const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string;
 
     //TODO: Remove
-    static inline
+    static
     auto registerGlobalSlashCommands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) noexcept -> void;
 
     //TODO: Remove
-    static inline
+    static
     auto handleGlobalSlashCommands(const dpp::slashcommand_t& event, dpp::cluster& bot, 
         const std::vector<dpp::slashcommand>& command_list) noexcept -> void;
 

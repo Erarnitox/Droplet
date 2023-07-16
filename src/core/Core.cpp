@@ -7,7 +7,6 @@
 #include <chrono>
 #include <regex>
 
-inline
 auto Core::isAdmin(const dpp::guild_member& member) noexcept -> bool {
     for (const auto& role_id : member.roles) {
         const dpp::role& role{ *dpp::find_role(role_id) };
@@ -16,7 +15,6 @@ auto Core::isAdmin(const dpp::guild_member& member) noexcept -> bool {
     return false;
 }
 
-inline
 auto Core::getRoleId(const std::string& mention) noexcept -> std::string {
     std::regex re("<@&([0-9]+)>");
     std::smatch match;
@@ -28,7 +26,6 @@ auto Core::getRoleId(const std::string& mention) noexcept -> std::string {
     }
 }
 
-inline
 auto Core::getChannelId(const std::string& mention) noexcept -> std::string {
     std::regex re("<#([0-9]+)>");
     std::smatch match;
@@ -40,7 +37,6 @@ auto Core::getChannelId(const std::string& mention) noexcept -> std::string {
     }
 }
 
-inline
 auto Core::timedReply(const dpp::slashcommand_t& event, 
 const std::string& message, size_t time_mills) noexcept -> void {
     event.reply(message);
@@ -51,7 +47,6 @@ const std::string& message, size_t time_mills) noexcept -> void {
     }).detach();
 }
 
-inline
 auto Core::timedReply(const dpp::form_submit_t& event,
 const std::string& message, size_t time_mills) noexcept -> void {
     event.reply(message);
@@ -62,7 +57,6 @@ const std::string& message, size_t time_mills) noexcept -> void {
     }).detach();
 }
     
-inline
 auto Core::getParameter(const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string {
     const auto variant{ event.get_parameter(name) }; 
 
@@ -74,7 +68,6 @@ auto Core::getParameter(const dpp::slashcommand_t& event, const std::string& nam
     return *value_ptr;
 }
 
-inline
 auto Core::registerGlobalSlashCommands(std::vector<dpp::slashcommand>& command_list, 
 const dpp::cluster& bot) noexcept -> void {
     dpp::slashcommand help_command("help", "Usage information", bot.me.id);
@@ -91,7 +84,6 @@ const dpp::cluster& bot) noexcept -> void {
     command_list.push_back(channel_command);
 }
 
-inline
 auto Core::handleGlobalSlashCommands(const dpp::slashcommand_t& event, dpp::cluster& bot, 
 const std::vector<dpp::slashcommand>& command_list) noexcept -> void {
     if (event.command.get_command_name() == "help") {
