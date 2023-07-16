@@ -52,6 +52,7 @@ public:
 };
 
 namespace database {
+    // Compile time "for" loop
     template <size_t I = 0, typename... Types>
     constexpr void assignResults(const pqxx::result& result, std::vector<std::variant<Types...>>& args) {
         if constexpr (I < sizeof...(Types)) {
@@ -73,12 +74,7 @@ namespace database {
             // convert the results into the right datatype and save them
             std::vector<std::variant<int, std::string>> args(N);
             assignResults(result, args);
-
-            /*
-            for(size_t i{ 0 }; i < N; ++i) {
-                args[i] = result.at(0, i).get<std::tuple_element<i, std::tuple<Types...>>>();
-            }*/
-            
+ 
             times=0;
             return;
         } catch(const pqxx::broken_connection& e) {
@@ -88,7 +84,7 @@ namespace database {
                 return;
             }
             Database::reconnect();
-            execQuery(query, args...);
+            execQuery<N>(query, args...);
         } catch (...) {
             //Error case...
         }
