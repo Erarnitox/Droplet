@@ -23,7 +23,7 @@ void ChallengeRoleRepository::remove(size_t messageId) {
     database::execQuery<1>(sql_string, messageId);
 }
         
-void ChallengeRoleRepository::update(size_t messageId, const ChallengeRoleDTO& object) {
+void ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
     static std::string sql_string{ "UPDATE challenge_roles(role_id, guild_id, message_id, flag) VALUES ($1, $2, $3, $4) WHERE message_id = $3" };
     
     if(!Database::hasConnection()) return;

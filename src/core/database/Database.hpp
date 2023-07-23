@@ -72,8 +72,8 @@ namespace database {
             txn.commit();
             
             // convert the results into the right datatype and save them
-            std::vector<std::variant<int, std::string>> args(N);
-            assignResults(result, args);
+            std::vector<std::variant<int, std::string>> resArgs(N);
+            assignResults(result, resArgs);
  
             times=0;
             return;

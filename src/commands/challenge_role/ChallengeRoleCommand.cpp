@@ -137,6 +137,9 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     auto handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
         if(event.custom_id != "solve_challenge_btn") return;
 
+        // unused parameter "bot"
+        (void)bot;
+        
 	    /* Instantiate an interaction_modal_response object */
 	    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
 	    
