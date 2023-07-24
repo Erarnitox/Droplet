@@ -57,26 +57,36 @@ namespace Commands {
     }
 
     class CommandFunctionPointers {
+        static std::vector<Commands::register_global_slash_commands>    _register_global_slash_commands;
+        static std::vector<Commands::handle_global_slash_commands>      _handle_global_slash_commands;
+        static std::vector<Commands::handle_button_clicks>              _handle_button_clicks;
+        static std::vector<Commands::handle_form_submits>               _handle_form_submits;
+        static std::vector<Commands::handle_reaction_added>             _handle_reaction_added;
+        static std::vector<Commands::handle_reaction_removed>           _handle_reaction_removed;
+        static std::vector<Commands::leave_member>                      _leave_member;
+        static std::vector<Commands::welcome_member>                    _welcome_member;
     public:
-        static std::vector<Commands::register_global_slash_commands>    register_global_slash_commands;
-        static std::vector<Commands::handle_global_slash_commands>      handle_global_slash_commands;
-        static std::vector<Commands::handle_button_clicks>              handle_button_clicks;
-        static std::vector<Commands::handle_form_submits>               handle_form_submits;
-        static std::vector<Commands::handle_reaction_added>             handle_reaction_added;
-        static std::vector<Commands::handle_reaction_removed>           handle_reaction_removed;
-        static std::vector<Commands::leave_member>                      leave_member;
-        static std::vector<Commands::welcome_member>                    welcome_member;
+        static std::vector<Commands::register_global_slash_commands>&    register_global_slash_commands();
+        static std::vector<Commands::handle_global_slash_commands>&      handle_global_slash_commands();
+        static std::vector<Commands::handle_button_clicks>&              handle_button_clicks();
+        static std::vector<Commands::handle_form_submits>&               handle_form_submits();
+        static std::vector<Commands::handle_reaction_added>&             handle_reaction_added();
+        static std::vector<Commands::handle_reaction_removed>&           handle_reaction_removed();
+        static std::vector<Commands::leave_member>&                      leave_member();
+        static std::vector<Commands::welcome_member>&                    welcome_member();
     };
 
-    template<typename T>
-    void registerCommand(T command){
-        CommandFunctionPointers::register_global_slash_commands.push_back(&T::register_bot_commands);
-        CommandFunctionPointers::handle_global_slash_commands.push_back(&T::handle_global_slash_commands);
-        CommandFunctionPointers::handle_button_clicks.push_back(&T::handle_button_clicks);
-        CommandFunctionPointers::handle_form_submits.push_back(&T::handle_form_submits);
-        CommandFunctionPointers::handle_reaction_added.push_back(&T::handle_reaction_added);
-        CommandFunctionPointers::handle_reaction_removed.push_back(&T::handle_reaction_removed);
-        CommandFunctionPointers::leave_member.push_back(&T::leave_member);
-        CommandFunctionPointers::welcome_member(&T::welcome_member);
-    }
+    template <typename T>
+    struct CommandRegistration {
+        CommandRegistration() {
+            CommandFunctionPointers::register_global_slash_commands().push_back(&T::registerGlobalSlashCommand);
+            CommandFunctionPointers::handle_global_slash_commands().push_back(&T::handleGlobalSlashCommand);
+            CommandFunctionPointers::handle_button_clicks().push_back(&T::handleButtonClicks);
+            CommandFunctionPointers::handle_form_submits().push_back(&T::handleFormSubmits);
+            CommandFunctionPointers::handle_reaction_added().push_back(&T::handleReactionAdded);
+            CommandFunctionPointers::handle_reaction_removed().push_back(&T::handleReactionRemoved);
+            CommandFunctionPointers::leave_member().push_back(&T::leaveMember);
+            CommandFunctionPointers::welcome_member().push_back(&T::welcomeMember);
+        }
+    };
 }

@@ -3,10 +3,13 @@
 #include "ChallengeRoleDTO.hpp"
 
 #include <Core.hpp>
+#include <Commands.hpp>
 
-#include <dpp/dpp.h>
-
+#include <fmt/core.h>
 #include <variant>
+
+// Abuste static initialization to register the command
+Commands::CommandRegistration<ChallengeRoleCommand> registration;
 
 inline 
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
@@ -23,7 +26,10 @@ auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcomm
 }
 
 inline
-auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
+auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list) noexcept -> void {
+    // unneeded arguments:
+    (void) command_list;
+
     if (event.command.get_command_name() != "challenge_role") return;
     
     if(!Core::isAdmin(event.command.member)){
@@ -133,65 +139,94 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     );
 }
 
-    static inline
-    auto handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
-        if(event.custom_id != "solve_challenge_btn") return;
+inline
+auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
+    if(event.custom_id != "solve_challenge_btn") return;
 
-        // unused parameter "bot"
-        (void)bot;
-        
-	    /* Instantiate an interaction_modal_response object */
-	    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
-	    
-        /* Add a text component */
-	    modal.add_component(
-	        dpp::component().
-	        set_label("Solution:").
-	        set_id("solution_id").
-	        set_type(dpp::cot_text).
-	        set_placeholder("Answer").
-	        set_min_length(4).
-	        set_max_length(64).
-	        set_text_style(dpp::text_short)
-	    );
+    // unused parameter "bot"
+    (void)bot;
+    
+    /* Instantiate an interaction_modal_response object */
+    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
+    
+    /* Add a text component */
+    modal.add_component(
+        dpp::component().
+        set_label("Solution:").
+        set_id("solution_id").
+        set_type(dpp::cot_text).
+        set_placeholder("Answer").
+        set_min_length(4).
+        set_max_length(64).
+        set_text_style(dpp::text_short)
+    );
 
-	    /* Trigger the dialog box. All dialog boxes are ephemeral */
-	    event.dialog(modal);
+    /* Trigger the dialog box. All dialog boxes are ephemeral */
+    event.dialog(modal);
+}
+
+inline
+auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
+    // get the needed data from the event
+    const auto msg_id{ event.command.message_id };
+    const auto member{ event.command.member };
+
+    // get the correct answer and reward role from the database
+    ChallengeRoleRepository repo;
+    ChallengeRoleDTO dto = repo.get(msg_id);
+    
+    if(!dto.roleId || dto.solution.size() == 0){
+        return; 
     }
 
-    static inline
-    auto handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
-        // get the needed data from the event
-        const auto msg_id{ event.command.message_id };
-        const auto member{ event.command.member };
+    const auto entered_variant{ event.components[0].components[0].value };
+    const auto entered_ptr { std::get_if<std::string>(&entered_variant) };
+    if(!entered_ptr) return;
+    
+    const auto& entered{ *entered_ptr };
 
-        // get the correct answer and reward role from the database
-        ChallengeRoleRepository repo;
-        ChallengeRoleDTO dto = repo.get(msg_id);
-        
-        if(!dto.roleId || dto.solution.size() == 0){
-           return; 
-        }
+    if(entered == dto.solution) {
+        bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
-        const auto entered_variant{ event.components[0].components[0].value };
-        const auto entered_ptr { std::get_if<std::string>(&entered_variant) };
-        if(!entered_ptr) return;
-        
-        const auto& entered{ *entered_ptr };
-
-        if(entered == dto.solution) {
-            bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
-
-            Core::timedReply(
-                event,
-                fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
-                5000
-            );
-        } else {
-            Core::timedReply(
-                event,
-                fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
-                5000
-            );
-        }
+        Core::timedReply(
+            event,
+            fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
+            5000
+        );
+    } else {
+        Core::timedReply(
+            event,
+            fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
+            5000
+        );
     }
+}
+
+// UNIMPLEMENTED EVENTS:
+
+// user management
+inline
+auto ChallengeRoleCommand::welcomeMember(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
+    (void)event;
+    (void)bot;
+};
+
+inline
+auto ChallengeRoleCommand::leaveMember(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
+    (void)event;
+    (void)bot;
+}
+
+// handle added reactions
+inline
+auto ChallengeRoleCommand::handleReactionAdded(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
+    (void) event;
+    (void) bot;
+}
+
+// handle removed reactions
+inline
+auto ChallengeRoleCommand::handleReactionRemoved(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
+    (void) event;
+    (void) bot;
+}
