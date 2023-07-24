@@ -16,6 +16,7 @@ endif()
 set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_link_libraries(core PUBLIC database)
 target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR}/interfaces)
+target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR}/utility)
 target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 target_link_libraries(core PUBLIC 

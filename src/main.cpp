@@ -1,6 +1,7 @@
 #include "main.hpp"
 
 #include <Database.hpp>
+#include "Commands.hpp"
 #include "resource_man.hpp"
 #include "roles.hpp"
 #include "user_man.hpp"
@@ -174,6 +175,11 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 	// admin commands
 	Core::registerGlobalSlashCommands(command_list, bot);
 	roles::register_global_slash_commands(command_list, bot);
+
+	// new dynamic way:
+	for(auto commandFp : Commands::CommandFunctionPointers::register_global_slash_commands){
+		Commands::call_register_global_slash_commands(commandFp, command_list, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -193,6 +199,11 @@ auto handle_global_slash_commands(
 	// admin commands
 	Core::handleGlobalSlashCommands(event, bot, command_list);
 	roles::handle_global_slash_commands(event, bot);
+
+	// new dynamic way:
+	for(auto commandFp : Commands::CommandFunctionPointers::handle_global_slash_commands){
+		Commands::call_handle_global_slash_commands(commandFp, event, bot, command_list);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -200,7 +211,9 @@ auto handle_global_slash_commands(
 //////////////////////////////////////////////////////////////////////////////
 static inline
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
-	//roles::handle_button_clicks(event, bot);
+	for(auto commandFp : Commands::CommandFunctionPointers::handle_button_clicks){
+		Commands::call_handle_button_clicks(commandFp, event, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -208,7 +221,9 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 //////////////////////////////////////////////////////////////////////////////
 static inline
 auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
-	//roles::handle_form_submits(event, bot);
+	for(auto commandFp : Commands::CommandFunctionPointers::handle_form_submits){
+		Commands::call_handle_form_submits(commandFp, event, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -217,6 +232,11 @@ auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> 
 static inline
 auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
 	roles::handle_reaction_added(event, bot);
+
+	// new dynamic way:
+	for(auto commandFp : Commands::CommandFunctionPointers::handle_reaction_added){
+		Commands::call_handle_reaction_added(commandFp, event, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -225,6 +245,10 @@ auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluste
 static inline
 auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
 	roles::handle_reaction_removed(event, bot);
+
+	for(auto commandFp : Commands::CommandFunctionPointers::handle_reaction_removed){
+		Commands::call_handle_reaction_removed(commandFp, event, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -233,6 +257,11 @@ auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::c
 static inline
 auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
 	user_man::welcome_member(event, bot);
+
+	// new dynamic way:
+	for(auto commandFp : Commands::CommandFunctionPointers::welcome_member){
+		Commands::call_welcome_member(commandFp, event, bot);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -241,4 +270,9 @@ auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> 
 static inline
 auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
 	user_man::leave_member(event, bot);
+
+	// new dynamic way:
+	for(auto commandFp : Commands::CommandFunctionPointers::leave_member){
+		Commands::call_leave_member(commandFp, event, bot);
+	}
 }

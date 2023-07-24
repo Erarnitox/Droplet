@@ -8,6 +8,7 @@
 #include <Database.hpp>
 #include <resource_man.hpp>
 #include <user_man.hpp>
+#include <Commands.hpp>
 
 [[nodiscard]] static inline
 auto read_bot_token(const std::string& file) -> std::string;
