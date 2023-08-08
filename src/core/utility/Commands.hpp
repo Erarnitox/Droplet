@@ -2,7 +2,9 @@
 
 #include <dpp/dispatcher.h>
 #include <vector> 
-#include <dpp/dpp.h> 
+#include <dpp/dpp.h>
+
+#include <iostream>
 
 // tricks for static polymorphism 
 namespace Commands {
@@ -57,6 +59,7 @@ namespace Commands {
     }
 
     class CommandFunctionPointers {
+    public:
         static std::vector<Commands::register_global_slash_commands>    _register_global_slash_commands;
         static std::vector<Commands::handle_global_slash_commands>      _handle_global_slash_commands;
         static std::vector<Commands::handle_button_clicks>              _handle_button_clicks;
@@ -65,7 +68,7 @@ namespace Commands {
         static std::vector<Commands::handle_reaction_removed>           _handle_reaction_removed;
         static std::vector<Commands::leave_member>                      _leave_member;
         static std::vector<Commands::welcome_member>                    _welcome_member;
-    public:
+    
         static std::vector<Commands::register_global_slash_commands>&    register_global_slash_commands();
         static std::vector<Commands::handle_global_slash_commands>&      handle_global_slash_commands();
         static std::vector<Commands::handle_button_clicks>&              handle_button_clicks();
@@ -79,14 +82,14 @@ namespace Commands {
     template <typename T>
     struct CommandRegistration {
         CommandRegistration() {
-            CommandFunctionPointers::register_global_slash_commands().push_back(&T::registerGlobalSlashCommand);
-            CommandFunctionPointers::handle_global_slash_commands().push_back(&T::handleGlobalSlashCommand);
-            CommandFunctionPointers::handle_button_clicks().push_back(&T::handleButtonClicks);
-            CommandFunctionPointers::handle_form_submits().push_back(&T::handleFormSubmits);
-            CommandFunctionPointers::handle_reaction_added().push_back(&T::handleReactionAdded);
-            CommandFunctionPointers::handle_reaction_removed().push_back(&T::handleReactionRemoved);
-            CommandFunctionPointers::leave_member().push_back(&T::leaveMember);
-            CommandFunctionPointers::welcome_member().push_back(&T::welcomeMember);
+            CommandFunctionPointers::_register_global_slash_commands.push_back(&T::registerGlobalSlashCommand);
+            CommandFunctionPointers::_handle_global_slash_commands.push_back(&T::handleGlobalSlashCommand);
+            CommandFunctionPointers::_handle_button_clicks.push_back(&T::handleButtonClicks);
+            CommandFunctionPointers::_handle_form_submits.push_back(&T::handleFormSubmits);
+            CommandFunctionPointers::_handle_reaction_added.push_back(&T::handleReactionAdded);
+            CommandFunctionPointers::_handle_reaction_removed.push_back(&T::handleReactionRemoved);
+            CommandFunctionPointers::_leave_member.push_back(&T::leaveMember);
+            CommandFunctionPointers::_welcome_member.push_back(&T::welcomeMember);
         }
     };
 }

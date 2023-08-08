@@ -1,6 +1,7 @@
 #include "main.hpp"
 
 #include <Database.hpp>
+#include "ChallengeRoleCommand.hpp"
 #include "Commands.hpp"
 #include "resource_man.hpp"
 #include "roles.hpp"
@@ -40,13 +41,18 @@ auto main() -> int {
 	std::vector<dpp::slashcommand> global_command_list;
 	register_global_slash_commands(global_command_list, bot);
 
+	// Command Registration:
+	{
+		(void) Commands::CommandRegistration<ChallengeRoleCommand>();
+	}
+	
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
 		try{
 			if(dpp::run_once<struct register_bot_commands>()) {
 				bot.log(dpp::ll_trace, "Registering Slash commands...");
 				bot.global_bulk_command_create(global_command_list);
-				
+
 				// delete commands that are not implemented yet
         		//bot.global_command_delete(1090370434232483985);
         		//bot.global_command_delete(1088242804418949181);

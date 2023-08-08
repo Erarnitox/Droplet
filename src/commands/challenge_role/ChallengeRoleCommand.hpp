@@ -26,7 +26,6 @@ public:
     static inline
     auto handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void;
 
-
     // UNIMPLEMENTED EVENTS:
 
     // user management

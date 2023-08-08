@@ -9,7 +9,7 @@
 #include <variant>
 
 // Abuste static initialization to register the command
-Commands::CommandRegistration<ChallengeRoleCommand> registration;
+static inline auto registration{ Commands::CommandRegistration<ChallengeRoleCommand>() };
 
 inline 
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
@@ -156,8 +156,8 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, 
         set_id("solution_id").
         set_type(dpp::cot_text).
         set_placeholder("Answer").
-        set_min_length(4).
-        set_max_length(64).
+        set_min_length(1).
+        set_max_length(128).
         set_text_style(dpp::text_short)
     );
 
