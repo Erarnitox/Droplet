@@ -9,7 +9,7 @@
 #include <variant>
 
 // Abuste static initialization to register the command
-static inline auto registration{ Commands::CommandRegistration<ChallengeRoleCommand>() };
+//static inline auto registration{ Commands::CommandRegistration<ChallengeRoleCommand>() };
 
 inline 
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
