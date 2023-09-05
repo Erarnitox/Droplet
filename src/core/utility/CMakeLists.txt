@@ -13,3 +13,4 @@ endif()
 
 set_property(TARGET utility PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_include_directories(utility PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(utility PUBLIC "${CMake_CURRENT_LIST_DIR}/../../../libs/DPP/include/")
