@@ -11,5 +11,9 @@ else()
     #target_compile_options(utility PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
 endif()
 
+target_link_libraries(core PRIVATE
+    dpp
+)
+
 set_property(TARGET utility PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_include_directories(utility PUBLIC ${CMAKE_CURRENT_LIST_DIR})
