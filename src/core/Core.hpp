@@ -1,6 +1,5 @@
 #pragma once
 
-#include <dpp/dispatcher.h>
 #include <dpp/misc-enum.h>
 
 #include <fmt/core.h>
