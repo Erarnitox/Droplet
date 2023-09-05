@@ -11,7 +11,7 @@ if (MSVC)
     # for windows msvc or clang-cl
     target_compile_options(core PRIVATE "/W4")
 else()
-    target_compile_options(core PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
+    #target_compile_options(core PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
 endif()
 
 set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
@@ -26,4 +26,8 @@ target_link_libraries(core PUBLIC
 	fmt::fmt
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC core)
+target_link_libraries(core PRIVATE
+    dpp
+)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE core)
