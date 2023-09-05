@@ -15,8 +15,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 	dpp
 )
 
-include_directories("libs/DPP/include")
-
 target_include_directories(${PROJECT_NAME} PRIVATE
 	libs/DPP/include
 )
