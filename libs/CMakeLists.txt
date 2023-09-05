@@ -1,4 +1,3 @@
-set(BUILD_SHARED_LIBS OFF)
 add_subdirectory(DPP)
 
 set_target_properties(dpp PROPERTIES

@@ -19,11 +19,8 @@
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN" : "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_SHARED_LIBS" : "OFF",
-          "BUILD_VOICE_SUPPORT" : "OFF",
-          "DPP_INSTALL" : "OFF",
-          "DPP_BUILD_TEST" : "OFF",
-          "DPP_NO_VCPKG" : "ON"
+          "BUILD_SHARED_LIBS" : "ON",
+          "BUILD_VOICE_SUPPORT" : "OFF"
       }
     },
     {
@@ -39,10 +36,7 @@
           "CMAKE_CXX_COMPILER": "/usr/bin/clang++-16",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_SHARED_LIBS" : "OFF",
-          "BUILD_VOICE_SUPPORT" : "OFF",
-          "DPP_INSTALL" : "OFF",
-          "DPP_BUILD_TEST" : "OFF",
-          "DPP_NO_VCPKG" : "ON"
+          "BUILD_VOICE_SUPPORT" : "OFF"
       }
     }
   ]

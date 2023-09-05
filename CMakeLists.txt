@@ -35,6 +35,10 @@ add_subdirectory(src)
 # subdirectory for third party dependencies
 add_subdirectory(libs)
 
+target_include_directories(utility INTERFACE
+	libs/DPP/include
+)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	CXX_STANDARD 20
 	CXX_STANDARD_REQUIRED ON
