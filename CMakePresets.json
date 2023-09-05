@@ -18,7 +18,12 @@
           "CMAKE_INSTALL_PREFIX": "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN": "TRUE",
-          "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
+          "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
+          "BUILD_SHARED_LIBS": "OFF",
+          "BUILD_VOICE_SUPPORT": "OFF",
+          "DPP_INSTALL": "OFF",
+          "DPP_BUILD_TEST": "OFF",
+          "DPP_NO_VCPKG": "ON"
       }
     },
     {
@@ -32,7 +37,12 @@
           "CMAKE_BUILD_TYPE": "RelMinSize",
           "CMAKE_INSTALL_PREFIX": "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "clang++",
-          "CMAKE_BUILD_WITH_INSTALL_RPATH": true 
+          "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
+          "BUILD_SHARED_LIBS": "OFF",
+          "BUILD_VOICE_SUPPORT": "OFF",
+          "DPP_INSTALL": "OFF",
+          "DPP_BUILD_TEST": "OFF",
+          "DPP_NO_VCPKG": "ON"
       }
     }
   ]
