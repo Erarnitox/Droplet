@@ -11,7 +11,6 @@
 // Abuste static initialization to register the command
 //static inline auto registration{ Commands::CommandRegistration<ChallengeRoleCommand>() };
 
-inline 
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
     // Challenge Roles
     dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
@@ -25,7 +24,6 @@ auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcomm
     command_list.push_back(challenge_role);
 }
 
-inline
 auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event, dpp::cluster& bot, const std::vector<dpp::slashcommand>& command_list) noexcept -> void {
     // unneeded arguments:
     (void) command_list;
@@ -139,7 +137,6 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     );
 }
 
-inline
 auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
     if(event.custom_id != "solve_challenge_btn") return;
 
@@ -165,7 +162,6 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, 
     event.dialog(modal);
 }
 
-inline
 auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
     // get the needed data from the event
     const auto msg_id{ event.command.message_id };
@@ -205,27 +201,23 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
 // UNIMPLEMENTED EVENTS:
 
 // user management
-inline
 auto ChallengeRoleCommand::welcomeMember(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
     (void)event;
     (void)bot;
 };
 
-inline
 auto ChallengeRoleCommand::leaveMember(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
     (void)event;
     (void)bot;
 }
 
 // handle added reactions
-inline
 auto ChallengeRoleCommand::handleReactionAdded(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
     (void) event;
     (void) bot;
 }
 
 // handle removed reactions
-inline
 auto ChallengeRoleCommand::handleReactionRemoved(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
     (void) event;
     (void) bot;
