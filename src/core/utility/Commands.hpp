@@ -1,6 +1,5 @@
 #pragma once 
 
-#include <dpp/dispatcher.h>
 #include <vector> 
 #include <dpp/dpp.h>
 
