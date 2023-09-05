@@ -1,50 +1,66 @@
 {
-  "cmakeMinimumRequired": {
-      "major": 3,
-      "minor": 20,
-      "patch": 0
+  "cmakeMinimumRequired" : {
+      "major" : 3,
+      "minor" : 20,
+      "patch" : 0
   },
-  "version": 3,
-  "configurePresets": [
+  "version" : 3,
+  "configurePresets" : [
     {
-      "name": "debug",
-      "displayName": "(Linux) Ninja and Clang",
-      "description": "Erarnitox's recommended settings for a debug build. Uses clang and Ninja",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/debug",
-      "cacheVariables": {
-          "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-          "CMAKE_BUILD_TYPE": "Debug",
-          "CMAKE_INSTALL_PREFIX": "${sourceDir}/debug",
+      "name" : "debug",
+      "displayName" : "(Linux) Ninja and Clang",
+      "description" : "Erarnitox's recommended settings for a debug build. Uses clang and Ninja",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/debug",
+      "cacheVariables" : {
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
+          "CMAKE_BUILD_TYPE" : "Debug",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_C_COMPILER": "clang",
+          "CMAKE_LINKER" : "ld.lld",
+          "CMAKE_EXE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CMAKE_MODULE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CMAKE_SHARED_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CXXFLAGS" : "-fuse-ld=lld",
+          "CFLAGS" : "-fuse-ld=lld",
           "CMAKE_EXE_LINKER_FLAGS" : "-stdlib=libc++ -lc++abi",
-          "USE_DEBUG_TOKEN": "TRUE",
+          "USE_DEBUG_TOKEN" : "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_SHARED_LIBS": "OFF",
-          "BUILD_VOICE_SUPPORT": "OFF",
-          "DPP_INSTALL": "OFF",
-          "DPP_BUILD_TEST": "OFF",
-          "DPP_NO_VCPKG": "ON"
+          "BUILD_SHARED_LIBS" : "OFF",
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "DPP_INSTALL" : "OFF",
+          "DPP_BUILD_TEST" : "OFF",
+          "DPP_NO_VCPKG" : "ON",
+          "CXX_STANDARD" : "20"
       }
     },
     {
-      "name": "release",
-      "displayName": "(Linux) Ninja and Clang",
-      "description": "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/release",
-      "cacheVariables": {
-          "CMAKE_EXPORT_COMPILE_COMMANDS": false,
-          "CMAKE_BUILD_TYPE": "Release",
-          "CMAKE_INSTALL_PREFIX": "${sourceDir}/release",
+      "name" : "release",
+      "displayName" : "(Linux) Ninja and Clang",
+      "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/release",
+      "cacheVariables" : {
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
+          "CMAKE_BUILD_TYPE" : "Release",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "/usr/bin/clang++-16",
+          "CMAKE_C_COMPILER": "/usr/bin/clang-16",
+          "CMAKE_LINKER" : "/usr/bin/ld.lld-16",
+          "CMAKE_EXE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CMAKE_MODULE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CMAKE_SHARED_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
+          "CXXFLAGS" : "-fuse-ld=lld",
+          "CFLAGS" : "-fuse-ld=lld",
           "CMAKE_EXE_LINKER_FLAGS" : "-stdlib=libc++ -lc++abi",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_SHARED_LIBS": "OFF",
-          "BUILD_VOICE_SUPPORT": "OFF",
-          "DPP_INSTALL": "OFF",
-          "DPP_BUILD_TEST": "OFF",
-          "DPP_NO_VCPKG": "ON"
+          "BUILD_SHARED_LIBS" : "OFF",
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "DPP_INSTALL" : "OFF",
+          "DPP_BUILD_TEST" : "OFF",
+          "DPP_NO_VCPKG" : "ON",
+          "CXX_STANDARD" : "20"
       }
     }
   ]
