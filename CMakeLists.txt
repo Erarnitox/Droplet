@@ -5,6 +5,9 @@ include(cmake/CPM.cmake)
 
 set(CPP_STANDARD 20)
 
+# use the clang standard library
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++ -lc++abi")
+
 project(cyber_drop 
 	VERSION 1.0
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
