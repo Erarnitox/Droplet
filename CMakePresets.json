@@ -17,22 +17,13 @@
           "CMAKE_BUILD_TYPE" : "Debug",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
-          "CMAKE_C_COMPILER": "clang",
-          "CMAKE_LINKER" : "ld.lld",
-          "CMAKE_EXE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CMAKE_MODULE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CMAKE_SHARED_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CXXFLAGS" : "-fuse-ld=lld",
-          "CFLAGS" : "-fuse-ld=lld",
-          "CMAKE_EXE_LINKER_FLAGS" : "-stdlib=libc++ -lc++abi",
           "USE_DEBUG_TOKEN" : "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_SHARED_LIBS" : "OFF",
           "BUILD_VOICE_SUPPORT" : "OFF",
           "DPP_INSTALL" : "OFF",
           "DPP_BUILD_TEST" : "OFF",
-          "DPP_NO_VCPKG" : "ON",
-          "CXX_STANDARD" : "20"
+          "DPP_NO_VCPKG" : "ON"
       }
     },
     {
@@ -46,21 +37,12 @@
           "CMAKE_BUILD_TYPE" : "Release",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "/usr/bin/clang++-16",
-          "CMAKE_C_COMPILER": "/usr/bin/clang-16",
-          "CMAKE_LINKER" : "/usr/bin/ld.lld-16",
-          "CMAKE_EXE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CMAKE_MODULE_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CMAKE_SHARED_LINKER_FLAGS_INIT" : "-fuse-ld=lld",
-          "CXXFLAGS" : "-fuse-ld=lld",
-          "CFLAGS" : "-fuse-ld=lld",
-          "CMAKE_EXE_LINKER_FLAGS" : "-stdlib=libc++ -lc++abi",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_SHARED_LIBS" : "OFF",
           "BUILD_VOICE_SUPPORT" : "OFF",
           "DPP_INSTALL" : "OFF",
           "DPP_BUILD_TEST" : "OFF",
-          "DPP_NO_VCPKG" : "ON",
-          "CXX_STANDARD" : "20"
+          "DPP_NO_VCPKG" : "ON"
       }
     }
   ]
