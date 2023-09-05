@@ -2,6 +2,7 @@
 
 #include <Database.hpp>
 #include "ChallengeRoleCommand.hpp"
+#include "CommandRegister.hpp"
 #include "Commands.hpp"
 #include "resource_man.hpp"
 #include "roles.hpp"
@@ -42,9 +43,7 @@ auto main() -> int {
 	register_global_slash_commands(global_command_list, bot);
 
 	// Command Registration:
-	{
-		(void) Commands::CommandRegistration<ChallengeRoleCommand>();
-	}
+	CommandRegister::registerCommands();
 	
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {

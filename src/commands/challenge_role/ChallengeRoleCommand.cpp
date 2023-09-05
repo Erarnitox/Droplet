@@ -8,9 +8,6 @@
 #include <fmt/core.h>
 #include <variant>
 
-// Abuste static initialization to register the command
-//static inline auto registration{ Commands::CommandRegistration<ChallengeRoleCommand>() };
-
 auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) noexcept -> void {
     // Challenge Roles
     dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
