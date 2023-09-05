@@ -11,7 +11,7 @@ else()
     #target_compile_options(utility PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
 endif()
 
-target_link_libraries(core PRIVATE
+target_link_libraries(utility PRIVATE
     dpp
 )
 
