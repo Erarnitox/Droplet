@@ -178,7 +178,6 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list
 	user_man::register_global_slash_commands(command_list, bot);
 
 	// admin commands
-	Core::registerGlobalSlashCommands(command_list, bot);
 	roles::register_global_slash_commands(command_list, bot);
 
 	// new dynamic way:
@@ -202,7 +201,6 @@ auto handle_global_slash_commands(
 	user_man::handle_global_slash_commands(event, bot);
 
 	// admin commands
-	Core::handleGlobalSlashCommands(event, bot, command_list);
 	roles::handle_global_slash_commands(event, bot);
 
 	// new dynamic way:

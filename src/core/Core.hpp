@@ -26,14 +26,4 @@ public:
     
     [[nodiscard]] static
     auto getParameter(const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string;
-
-    //TODO: Remove
-    static
-    auto registerGlobalSlashCommands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) noexcept -> void;
-
-    //TODO: Remove
-    static
-    auto handleGlobalSlashCommands(const dpp::slashcommand_t& event, dpp::cluster& bot, 
-        const std::vector<dpp::slashcommand>& command_list) noexcept -> void;
-
 };

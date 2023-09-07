@@ -19,7 +19,6 @@
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN" : "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_SHARED_LIBS" : "ON",
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
     },
@@ -35,7 +34,6 @@
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "/usr/bin/clang++-16",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_SHARED_LIBS" : "ON",
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
     }
