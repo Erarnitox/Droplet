@@ -39,7 +39,7 @@ auto Core::getChannelId(const std::string& mention) noexcept -> std::string {
 }
 
 template<typename CMD_TYPE>
-auto timedReplyTemplate(dpp::cluster& bot, const CMD_TYPE& event, 
+auto timedReplyTemplate(dpp::cluster& bot, const CMD_TYPE event, 
 const std::string& message, size_t time_mills) noexcept -> void {
     event.reply(message);
 
@@ -52,17 +52,17 @@ const std::string& message, size_t time_mills) noexcept -> void {
 }
 
 
-auto Core::timedReply(dpp::cluster& bot, const dpp::slashcommand_t& event, 
+auto Core::timedReply(dpp::cluster& bot, const dpp::slashcommand_t event, 
 const std::string& message, size_t time_mills) noexcept -> void {
     timedReplyTemplate<dpp::slashcommand_t>(bot, event, message, time_mills);
 }
 
-auto Core::timedReply(dpp::cluster& bot, const dpp::form_submit_t& event, 
+auto Core::timedReply(dpp::cluster& bot, const dpp::form_submit_t event, 
 const std::string& message, size_t time_mills) noexcept -> void {
     timedReplyTemplate<dpp::form_submit_t>(bot, event, message, time_mills);
 }
 
-auto Core::getParameter(dpp::cluster& bot, const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string {
+auto Core::getParameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept -> std::string {
     const auto variant{ event.get_parameter(name) }; 
 
     const auto value_ptr{ std::get_if<std::string>(&variant) };

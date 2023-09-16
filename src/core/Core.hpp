@@ -19,11 +19,11 @@ public:
     auto getChannelId(const std::string& mention) noexcept -> std::string;
 
     static
-    auto timedReply(dpp::cluster& bot, const dpp::slashcommand_t& event, const std::string& message, size_t time_mills) noexcept -> void;
+    auto timedReply(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& message, size_t time_mills) noexcept -> void;
 
     static
-    auto timedReply(dpp::cluster& bot, const dpp::form_submit_t& event, const std::string& message, size_t time_mills) noexcept -> void;
+    auto timedReply(dpp::cluster& bot, const dpp::form_submit_t event, const std::string& message, size_t time_mills) noexcept -> void;
     
     [[nodiscard]] static
-    auto getParameter(dpp::cluster& bot, const dpp::slashcommand_t& event, const std::string& name) noexcept -> std::string;
+    auto getParameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept -> std::string;
 };
