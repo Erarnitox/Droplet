@@ -24,13 +24,51 @@ auto main() -> int {
 	// initialize bot
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
 
+	//-----------------------------------------------------------------------------
+	// Functionality for Logging
+	//-----------------------------------------------------------------------------
 	auto err_log_out{ fmt::output_file("error.log") };
 	auto log_out{ fmt::output_file("droplet.log") };
 
-	bot.on_log([](const dpp::log_t& event) {
-		if (event.severity > dpp::ll_trace) {
-			std::cout << "[" << dpp::utility::current_date_time() << "] " << dpp::utility::loglevel(event.severity) << ": " << event.message << "\n";
+	bot.on_log([&log_out, &err_log_out](const dpp::log_t& event) {
+		if (event.severity == dpp::ll_trace) {
+			fmt::print(
+				fg(fmt::color::green), 
+				"[TRACE]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+		} else if (event.severity == dpp::ll_debug) {
+			fmt::print(
+				fg(fmt::color::blue), 
+				"[DEBUG]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+		} else if (event.severity == dpp::ll_info) {
+			fmt::print(
+				fg(fmt::color::antique_white), 
+				"[INFO]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+			log_out.print("[INFO]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
+		} else if (event.severity == dpp::ll_warning) {
+			fmt::print(
+				fg(fmt::color::yellow), 
+				"[WARNING]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+			log_out.print("[WARNING]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
+		} else if (event.severity == dpp::ll_error) {
+			fmt::print(
+				fg(fmt::color::orange_red), 
+				"[ERROR]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+			log_out.print("[ERROR]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
+			err_log_out.print("[ERROR]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
+		} else if (event.severity == dpp::ll_critical) {
+			fmt::print(
+				fg(fmt::color::red), 
+				"[CRITICAL]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time()
+			);
+			log_out.print("[CRITICAL]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
+			err_log_out.print("[CRITICAL]\t\t\"{}\"\t\t({})\n", event.message, dpp::utility::current_date_time());
 		}
+
 	});
 
 	bot.log(dpp::loglevel::ll_trace, "Bot started!");
