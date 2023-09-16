@@ -79,31 +79,31 @@ namespace resource_man {
         return;
     }
 
-    auto handle_global_slash_commands(const dpp::slashcommand_t& event) -> void {
+    auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
         if (event.command.get_command_name() == "resources") {
-	        const auto action{ Core::getParameter(event, "action") };
+	        const auto action{ Core::getParameter(bot, event, "action") };
             if(action.empty()) return; 
 
-            const auto category{ Core::getParameter(event, "category") };
+            const auto category{ Core::getParameter(bot, event, "category") };
             if(category.empty()) return;
 
-            const auto title{ Core::getParameter(event, "title") };
+            const auto title{ Core::getParameter(bot, event, "title") };
             if(title.empty()) return;
             
-            const auto query{ Core::getParameter(event, "query") };
+            const auto query{ Core::getParameter(bot, event, "query") };
             if(query.empty()) return;
 
-            const auto index{ Core::getParameter(event, "index") };
+            const auto index{ Core::getParameter(bot, event, "index") };
             if(index.empty()) return;
             
-            const auto link{ Core::getParameter(event, "link") };
+            const auto link{ Core::getParameter(bot, event, "link") };
             if(link.empty()) return;
             
-            const auto description{ Core::getParameter(event, "description") };
+            const auto description{ Core::getParameter(bot, event, "description") };
             if(description.empty()) return;
 	        
             if(action.size() < 1){
-                Core::timedReply(event, "Please specify an action!", 100);
+                Core::timedReply(bot, event, "Please specify an action!", 100);
             } else if(action == "action_add") {
 	            // usage: <title> <link> <category> [description]
             } else if(action == "action_del") {

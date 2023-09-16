@@ -36,28 +36,28 @@ namespace roles {
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
         if (event.command.get_command_name() == "reaction_role") {
             if(!Core::isAdmin(event.command.member)){
-                Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
+                Core::timedReply(bot, event, std::string("Only admins are allowed to use this command!"), 2000);
                 return;
             }
 
-            const auto message_link{ Core::getParameter(event, "message_link") };
+            const auto message_link{ Core::getParameter(bot, event, "message_link") };
             if(message_link.empty()) return;
 
-            const auto emoji{ Core::getParameter(event, "emoji") };
+            const auto emoji{ Core::getParameter(bot, event, "emoji") };
             if(emoji.empty()) return;
             
-            const auto role{ Core::getParameter(event, "role") };
+            const auto role{ Core::getParameter(bot, event, "role") };
             if(role.empty()) return;
 
             const auto role_id{ Core::getRoleId(role) };
             if(role_id.empty()) {
-                Core::timedReply(event, "No valid Role was provided!", 2000);
+                Core::timedReply(bot, event, "No valid Role was provided!", 2000);
                 return;
             }
 
             const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
             if(usable_emoji.empty()) {
-                Core::timedReply(event, "No valid emoji was provided!", 2000);
+                Core::timedReply(bot, event, "No valid emoji was provided!", 2000);
                 return;
             }
             
@@ -104,7 +104,7 @@ namespace roles {
 
             // send a confirmation to the admin
             Core::timedReply(
-                event, 
+                bot, event, 
                 fmt::format(
                     "Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}",
                     message_link, emoji, role

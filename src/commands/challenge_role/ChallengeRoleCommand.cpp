@@ -28,40 +28,40 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     if (event.command.get_command_name() != "challenge_role") return;
     
     if(!Core::isAdmin(event.command.member)){
-        Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
+        Core::timedReply(bot, event, std::string("Only admins are allowed to use this command!"), 2000);
         return;
     }
 
-    const auto channel{ Core::getParameter(event, "channel") };
+    const auto channel{ Core::getParameter(bot, event, "channel") };
     if(channel.empty()) return;
             
-    const auto question{ Core::getParameter(event, "question") };
+    const auto question{ Core::getParameter(bot, event, "question") };
     if(question.empty()) return;
 
-    const auto solution{ Core::getParameter(event, "solution") };
+    const auto solution{ Core::getParameter(bot, event, "solution") };
     if(solution.empty()) return;
             
-    const auto role{ Core::getParameter(event, "role") };
+    const auto role{ Core::getParameter(bot, event, "role") };
     if(role.empty()) return;
 
-    const auto title{ Core::getParameter(event, "title") };
+    const auto title{ Core::getParameter(bot, event, "title") };
     if(title.empty()) return;
 
     const auto role_id{ Core::getRoleId(role) };
     if(role_id.empty()) {
-        Core::timedReply(event, "No valid Role provided!", 2000);
+        Core::timedReply(bot, event, "No valid Role provided!", 2000);
         return;
     }
 
     const auto channel_id{ Core::getChannelId(channel) };
     if(channel_id.empty()) {
-        Core::timedReply(event, "No valid Channel provided!", 2000);
+        Core::timedReply(bot, event, "No valid Channel provided!", 2000);
         return;
     }
 
     const auto guild_id{ event.command.guild_id };
     if(!guild_id) {
-        Core::timedReply(event, "Something went wrong...", 2000);
+        Core::timedReply(bot, event, "Something went wrong...", 2000);
         return;
     }
 
@@ -93,14 +93,14 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     // send the challenge message
     bot.message_create(
         msg,
-        [role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
+        [&bot, role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
             auto sent_message{ cb.value };
 
             size_t sane_role_id;
             try {
                 sane_role_id = std::stoul(role_id); 
             } catch(std::invalid_argument exception){
-                Core::timedReply(event, "Bad role! Just mention the role!", 5000);
+                Core::timedReply(bot, event, "Bad role! Just mention the role!", 5000);
                 return;
             }
                     
@@ -108,11 +108,11 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             try{ 
                 message_id = std::get<dpp::message>(sent_message).id;
                 if(message_id == 0){
-                    Core::timedReply(event, "Something went wrong! No message created! ...", 5000);
+                    Core::timedReply(bot, event, "Something went wrong! No message created! ...", 5000);
                     return;
                 } 
             } catch(...){
-                Core::timedReply(event, "Could not get created message! ...", 5000);
+                Core::timedReply(bot, event, "Could not get created message! ...", 5000);
                 return;
             }
 
@@ -123,7 +123,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             
             // send a confirmation to the admin
             Core::timedReply(
-                event, 
+                bot, event, 
                 fmt::format(
                     "Challenge Created!\nQuestion: {}\nReward: {}",
                     question, role
@@ -182,13 +182,13 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
         bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
         Core::timedReply(
-            event,
+            bot, event,
             fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
             5000
         );
     } else {
         Core::timedReply(
-            event,
+            bot, event,
             fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
             5000
         );

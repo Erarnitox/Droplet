@@ -26,22 +26,22 @@ auto SetChannelCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& even
     if (event.command.get_command_name() != "set_channel") return;
         
     if(!Core::isAdmin(event.command.member)){
-        Core::timedReply(event, std::string("Only admins are allowed to use this command!"), 2000);
+        Core::timedReply(bot, event, std::string("Only admins are allowed to use this command!"), 2000);
         return;
     }
 
-    const auto type{ Core::getParameter(event, "type") };
+    const auto type{ Core::getParameter(bot, event, "type") };
     if(type.empty()) return;
 
     if(type == "channel_welcome") {
         Database::insert_welcome_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-        Core::timedReply(event, std::string("channel set as welcome channel!"), 2000);
+        Core::timedReply(bot, event, std::string("channel set as welcome channel!"), 2000);
     } else if(type == "channel_goodbye") {
         Database::insert_goodbye_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-        Core::timedReply(event, std::string("channel set as goodbye channel!"), 2000);
+        Core::timedReply(bot, event, std::string("channel set as goodbye channel!"), 2000);
     } else if(type == "channel_log") {
         Database::insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-        Core::timedReply(event, "Channnel set as logging channel!", 2000);
+        Core::timedReply(bot, event, "Channnel set as logging channel!", 2000);
     }
 }
 

@@ -12,6 +12,8 @@
 #include <dpp/misc-enum.h>
 #include <dpp/presence.h>
 #include <fmt/core.h>
+#include <fmt/color.h>
+#include <fmt/os.h>
 
 #include <string>
 
@@ -21,7 +23,15 @@
 auto main() -> int {
 	// initialize bot
 	dpp::cluster bot(read_bot_token("bot_token.txt"));
-	bot.on_log(dpp::utility::cout_logger());
+
+	auto err_log_out{ fmt::output_file("error.log") };
+	auto log_out{ fmt::output_file("droplet.log") };
+
+	bot.on_log([](const dpp::log_t& event) {
+		if (event.severity > dpp::ll_trace) {
+			std::cout << "[" << dpp::utility::current_date_time() << "] " << dpp::utility::loglevel(event.severity) << ": " << event.message << "\n";
+		}
+	});
 
 	bot.log(dpp::loglevel::ll_trace, "Bot started!");
 	
@@ -36,15 +46,14 @@ auto main() -> int {
 		return -1;
 	}
 	//------------------------------------------------------------------------------
-
-
-	// list of slash commands
 	std::vector<dpp::slashcommand> global_command_list;
-	register_global_slash_commands(global_command_list, bot);
 
 	// Command Registration:
 	CommandRegister::registerCommands();
-	
+
+	// list of slash commands
+	register_global_slash_commands(global_command_list, bot);
+
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
 		try{
@@ -197,7 +206,7 @@ auto handle_global_slash_commands(
 ) -> void {
 
 	// user commands
-	resource_man::handle_global_slash_commands(event);
+	resource_man::handle_global_slash_commands(event, bot);
 	user_man::handle_global_slash_commands(event, bot);
 
 	// admin commands

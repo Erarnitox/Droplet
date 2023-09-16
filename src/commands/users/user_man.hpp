@@ -16,7 +16,7 @@ namespace user_man{
     static inline
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
         if (event.command.get_command_name() == "user_info") {
-            auto mentioned_user{ Core::getParameter(event, "user") };
+            auto mentioned_user{ Core::getParameter(bot, event, "user") };
             if(mentioned_user.empty()) return;
             
             //const dpp::guild_member& member{ event.command.get_guild().members.find(mentioned_user) };
