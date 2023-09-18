@@ -149,7 +149,7 @@ auto main() -> int {
 	bot.on_form_submit([&bot](const dpp::form_submit_t & event) -> void {
 		try{
 			handle_form_submits(event, bot);
-			bot.log(dpp::loglevel::ll_info, fmt::format("form submitted with input: {}", std::get<std::string>(event.components.at(0).components.at(0).value)));
+			bot.log(dpp::loglevel::ll_info, fmt::format("[{}] form submitted with input: {}", event.custom_id, std::get<std::string>(event.components.at(0).components.at(0).value)));
 		} catch(...) {
 			bot.log(dpp::loglevel::ll_warning, fmt::format("Unhandeled exception occured in 'handle_form_submits', input was {}", std::get<std::string>(event.components.at(0).components.at(0).value)));
 			event.reply("I could not handle the provided input! ...");

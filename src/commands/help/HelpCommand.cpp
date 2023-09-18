@@ -51,28 +51,8 @@ auto HelpCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event, dpp
 }
 
 auto HelpCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
-    if(event.custom_id != "solve_challenge_btn") return;
-
-    // unused parameter "bot"
-    (void)bot;
-    
-    /* Instantiate an interaction_modal_response object */
-    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
-    
-    /* Add a text component */
-    modal.add_component(
-        dpp::component().
-        set_label("Solution:").
-        set_id("solution_id").
-        set_type(dpp::cot_text).
-        set_placeholder("Answer").
-        set_min_length(1).
-        set_max_length(128).
-        set_text_style(dpp::text_short)
-    );
-
-    /* Trigger the dialog box. All dialog boxes are ephemeral */
-    event.dialog(modal);
+    (void) event;
+    (void) bot;
 }
 
 auto HelpCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {

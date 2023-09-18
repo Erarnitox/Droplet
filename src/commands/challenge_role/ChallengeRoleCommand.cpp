@@ -5,6 +5,7 @@
 #include <Core.hpp>
 #include <Commands.hpp>
 
+#include <dpp/misc-enum.h>
 #include <fmt/core.h>
 #include <variant>
 
@@ -141,7 +142,7 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, 
     (void)bot;
     
     /* Instantiate an interaction_modal_response object */
-    dpp::interaction_modal_response modal("Enter the Solution", "Please enter the correct Solution!");
+    dpp::interaction_modal_response modal("challenge_role_solution", "Please enter the correct Solution!");
     
     /* Add a text component */
     modal.add_component(
@@ -160,22 +161,39 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, 
 }
 
 auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
+    if(event.custom_id != "challenge_role_solution") return;
+    
     // get the needed data from the event
     const auto msg_id{ event.command.message_id };
     const auto member{ event.command.member };
-
+   
     // get the correct answer and reward role from the database
     ChallengeRoleRepository repo;
     ChallengeRoleDTO dto = repo.get(msg_id);
-    
+
     if(!dto.roleId || dto.solution.size() == 0){
+        bot.log(
+            dpp::ll_warning, 
+            fmt::format(
+                "Got invalid data from Database in ChallengeRoleCommand::handleFormSubmits.\nData: roleId={}, dto.solution={}",
+                dto.roleId, dto.solution
+            )
+        );
+        Core::timedReply(bot, event, "OOPS! Something went wrong! Please contact @erarnitox with this error code: 298364", 10000);
         return; 
     }
-
+    
     const auto entered_variant{ event.components[0].components[0].value };
     const auto entered_ptr { std::get_if<std::string>(&entered_variant) };
-    if(!entered_ptr) return;
-    
+    if(!entered_ptr){
+        bot.log(
+            dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits"
+        );
+        Core::timedReply(bot, event, "OOPS! Something went wrong! Please contact @erarnitox with this error code: 298365", 10000);
+        return;
+    }
+
+
     const auto& entered{ *entered_ptr };
 
     if(entered == dto.solution) {
