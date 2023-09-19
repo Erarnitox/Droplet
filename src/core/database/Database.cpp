@@ -221,5 +221,8 @@ auto Database::reconnect() noexcept -> void {
 }
 
 auto Database::getConnection() noexcept -> pqxx::connection* {
+    if(!Database::hasConnection()){
+        Database::reconnect();
+    }
     return conn;
 }

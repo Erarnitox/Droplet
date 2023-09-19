@@ -50,9 +50,9 @@ auto main() -> int {
 		} else if (event.severity == dpp::ll_warning) {
 			fmt::print(
 				fg(fmt::color::yellow), 
-				"[WARNING]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message
+				"[WARNING]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message
 			);
-			log_out.print("[WARNING]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			log_out.print("[WARNING]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
 		} else if (event.severity == dpp::ll_error) {
 			fmt::print(
 				fg(fmt::color::orange_red), 
@@ -63,10 +63,10 @@ auto main() -> int {
 		} else if (event.severity == dpp::ll_critical) {
 			fmt::print(
 				fg(fmt::color::red), 
-				"[CRITICAL]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message
+				"[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message
 			);
-			log_out.print("[CRITICAL]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
-			err_log_out.print("[CRITICAL]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			log_out.print("[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			err_log_out.print("[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
 		}
 
 		if(event.severity > dpp::ll_debug) {

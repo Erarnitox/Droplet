@@ -120,8 +120,14 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             // save the needed information in the database
             ChallengeRoleRepository repo;
             ChallengeRoleDTO data { sane_role_id, guild_id, message_id, solution };
-            repo.create(data);
-            
+            if(repo.create(data)){
+                bot.log(dpp::ll_info, fmt::format("Challenge role with message_id={} was inserted into the Databse", message_id));
+            } else {
+                Core::timedReply(bot, event, "Could not save Challenge Data to Database! ...", 5000);
+                bot.log(dpp::ll_error, fmt::format("Challenge Role Data could not be saved to Database! (message_id={})", message_id));
+                bot.message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
+            }
+
             // send a confirmation to the admin
             Core::timedReply(
                 bot, event, 

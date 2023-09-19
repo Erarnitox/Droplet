@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <pqxx/pqxx>
 
 #include <cstddef>
@@ -52,41 +53,80 @@ public:
 };
 
 namespace database {
+    
     // Compile time "for" loop
     template <size_t I = 0, typename... Types>
     constexpr void assignResults(const pqxx::result& result, std::vector<std::variant<Types...>>& args) {
         if constexpr (I < sizeof...(Types)) {
-            args[I] = result.at(0, I).get<std::tuple_element_t<I, std::tuple<Types...>>>().value();
+            args[I] = result.at(0, I).template get<std::variant_alternative_t<I, std::variant<Types...>>>().value();
             assignResults<I + 1>(result, args);
         }
     }
 
-    template <size_t N, typename ... Types>
-    auto execQuery(const std::string& query, Types&...args) noexcept -> void {
+    template <typename ... Types>
+    [[nodiscard("You need to check if the Query was executed on the Database!")]]
+    auto execQuery(const std::string& query, Types&&...args) noexcept -> bool {
         static int times = 0;
         try{
             pqxx::work txn(*Database::getConnection());
             
             // perform the database transaction
-            pqxx::result result = txn.exec_params(query, args...);
+            pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
             txn.commit();
             
-            // convert the results into the right datatype and save them
-            std::vector<std::variant<int, std::string>> resArgs(N);
-            assignResults(result, resArgs);
- 
             times=0;
-            return;
+            return true;
         } catch(const pqxx::broken_connection& e) {
             ++times;
             if(times > 10){
                 times = 0;
-                return;
+                return false;
             }
             Database::reconnect();
-            execQuery<N>(query, args...);
+            return execQuery(query, args...);
         } catch (...) {
-            //Error case...
+            return false;
         }
+    }
+
+    template <typename DTO, typename ... Types>
+    [[nodiscard]]
+    auto execSelect(const std::string& query, Types&&...args) noexcept -> DTO {
+        static int times = 0;
+        try{
+            pqxx::work txn(*Database::getConnection());
+            
+            // perform the database transaction
+            pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
+            txn.commit();
+            
+            times=0;
+
+            DTO dto;
+
+            //FIXME: make this work generally:
+            dto.roleId = result[0]["role_id"].as<decltype(dto.roleId)>();
+            dto.solution = result[0]["flag"].as<decltype(dto.solution)>();
+
+            std::cout 
+                << "Role ID: " << dto.roleId 
+                << "\nFlag: " << dto.solution 
+                << std::endl;
+            //--------------------------------
+            
+            return dto;
+        } catch(const pqxx::broken_connection& e) {
+            ++times;
+            if(times > 10){
+                times = 0;
+                return {};
+            }
+            Database::reconnect();
+            return execSelect<DTO>(query, args...);
+        } 
+        /*
+        catch (...) {
+            return false;
+        }*/
     }
 }

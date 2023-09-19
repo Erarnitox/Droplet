@@ -5,8 +5,15 @@
 
 class ChallengeRoleRepository : public IRepository<ChallengeRoleDTO> {
     public:
-        void create(const ChallengeRoleDTO& object) override;
-        void remove(size_t messageId) override;
+        [[nodiscard]]
+        bool create(const ChallengeRoleDTO& object) override;
+
+        [[nodiscard]]
+        bool remove(size_t messageId) override;
+
+        [[nodiscard]]
         ChallengeRoleDTO get(size_t messageId) override;
-        void update(const ChallengeRoleDTO& object) override;
+
+        [[nodiscard]]
+        bool update(const ChallengeRoleDTO& object) override;
 };
