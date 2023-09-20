@@ -4,6 +4,10 @@ body, h1, h2, p {
     padding: 0;
 }
 
+* {
+    text-align: center;
+}
+
 /* Define overall page styles */
 body {
     font-family: Arial, sans-serif;
@@ -15,7 +19,7 @@ body {
 }
 
 header {
-    background-color: #0078d4;
+    background-color: #333;
     color: #fff;
     text-align: center;
     padding: 2rem;
@@ -27,8 +31,8 @@ header h1 {
 }
 
 .features {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(620px, 1fr));
     margin: 2rem 0;
 }
 
@@ -54,12 +58,44 @@ header h1 {
     transition: background-color 0.3s ease;
 }
 
+.action-buttons {
+    display: block;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.btn-premium {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #b1914e;
+    color: #fde404;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+a {
+    color: #fff;
+}
+
 .btn:hover {
     background-color: #005ba1;
 }
 
+.btn-premium:hover {
+    background-color: #ff9900;
+}
+
 /* Define footer styles */
 footer {
+    position: static;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: #333;
     color: #fff;
     text-align: center;
