@@ -105,6 +105,9 @@ namespace database {
             DTO dto;
 
             //FIXME: make this work generally:
+            pqxx::row result_row{ result[0] };
+            
+
             dto.roleId = result[0]["role_id"].as<decltype(dto.roleId)>();
             dto.solution = result[0]["flag"].as<decltype(dto.solution)>();
 

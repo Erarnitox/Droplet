@@ -23,6 +23,7 @@ header {
     color: #fff;
     text-align: center;
     padding: 2rem;
+    margin-bottom: 3rem;
 }
 
 header h1 {
@@ -45,6 +46,14 @@ header h1 {
     font-size: 1.5rem;
 }
 
+.action-buttons {
+    display: block;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 /* Define button styles */
 .btn {
     display: inline-block;
@@ -56,14 +65,6 @@ header h1 {
     border-radius: 3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.action-buttons {
-    display: block;
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
 }
 
 .btn-premium {
