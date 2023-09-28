@@ -1,6 +1,7 @@
 add_library(database STATIC 
     Database.cpp
     Database.hpp
+    RowDTOAdapter.hpp
 )
 
 # enable additional warnings and static analysis for this target

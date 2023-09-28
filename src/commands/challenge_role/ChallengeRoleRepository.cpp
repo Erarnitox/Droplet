@@ -1,4 +1,5 @@
 #include "ChallengeRoleRepository.hpp"
+#include "ChallengeRoleDTO.hpp"
 
 #include <Database.hpp>
 
@@ -37,5 +38,12 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
 ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) {
     static std::string sql_string{ "SELECT role_id, flag FROM challenge_roles WHERE message_id=$1::int8" };
     
-    return database::execSelect<ChallengeRoleDTO>(sql_string, messageId);
+    ChallengeRoleDTO dto;
+    auto result { database::execSelect(sql_string, messageId) };
+
+    dto.messageId = messageId;
+    dto.roleId = result.get<size_t>("role_id");
+    dto.solution = result.get<std::string>("flag");
+
+    return dto;
 }

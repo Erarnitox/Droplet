@@ -9,6 +9,7 @@ add_library(challenge_role_repository STATIC
     ChallengeRoleRepository.cpp
     ChallengeRoleRepository.hpp
     ChallengeRoleDTO.hpp
+    ChallengeRoleDTO.cpp
 )
 
 # enable additional warnings and static analysis for this target

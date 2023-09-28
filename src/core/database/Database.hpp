@@ -9,6 +9,8 @@
 #include <typeindex>
 #include <vector>
 
+#include "RowDTOAdapter.hpp"
+
 class Database {
     
 public:
@@ -89,9 +91,9 @@ namespace database {
         }
     }
 
-    template <typename DTO, typename ... Types>
+    template <typename ... Types>
     [[nodiscard]]
-    auto execSelect(const std::string& query, Types&&...args) noexcept -> DTO {
+    auto execSelect(const std::string& query, Types&&...args) noexcept -> RowDTOAdapter {
         static int times = 0;
         try{
             pqxx::work txn(*Database::getConnection());
@@ -102,30 +104,15 @@ namespace database {
             
             times=0;
 
-            DTO dto;
-
-            //FIXME: make this work generally:
-            pqxx::row result_row{ result[0] };
-            
-
-            dto.roleId = result[0]["role_id"].as<decltype(dto.roleId)>();
-            dto.solution = result[0]["flag"].as<decltype(dto.solution)>();
-
-            std::cout 
-                << "Role ID: " << dto.roleId 
-                << "\nFlag: " << dto.solution 
-                << std::endl;
-            //--------------------------------
-            
-            return dto;
+            return { result[0] };
         } catch(const pqxx::broken_connection& e) {
             ++times;
             if(times > 10){
                 times = 0;
-                return {};
+                return { pqxx::row() };
             }
             Database::reconnect();
-            return execSelect<DTO>(query, args...);
+            return execSelect(query, args...);
         } 
         /*
         catch (...) {
