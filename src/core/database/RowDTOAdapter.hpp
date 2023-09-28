@@ -11,7 +11,7 @@ class RowDTOAdapter {
     RowDTOAdapter(const pqxx::row& row) : row_(row) {}
 
     template<typename T>
-    auto get(const std::string& fieldName) -> T {
+    auto get(const std::string& fieldName) const -> T{
         return this->row_[fieldName].as<T>();
     }
 };
