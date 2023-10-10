@@ -22,7 +22,7 @@ Integration with social media platforms offers added value and
 sets the bot apart from competitors.
 ##### 3. Subscription Model:
 By offering premium features through subscription, a steady revenue
-stream can be generated.Generated on VenturusAI.com
+stream can be generated.
 
 #### Weaknesses
 ##### 1. Competition:
@@ -53,7 +53,7 @@ Political/Legal
 ##### Economic
 - Consider pricing strategies to match the perceived value of premium features.
 - Analyze potential economic downturns that might affect user willingness to pay for
-subscription-based services.Generated on VenturusAI.com
+subscription-based services.
 
 ##### Social/Cultural
 - Understand the evolving trends in online communities and tailor features accordingly.

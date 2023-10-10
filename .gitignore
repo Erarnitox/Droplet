@@ -1,6 +1,20 @@
+# Ignore the build trees
 debug
 release
+
+# Ignore generaed and user files
+**/CMakeCache.txt
+**/CMakeUserPresets.json
+**/CTestTestfile.cmake 
+**/CPackConfig.cmake 
+**/cmake_install.cmake
+**/install_manifest.txt
+**/compile_commmands.json
+
+# Ignore credential files
 src/bot_token.txt
 src/db_connection.txt
+
+# Ignore IDE files
 .vscode
 .cache
