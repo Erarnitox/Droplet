@@ -53,15 +53,22 @@ The bot expects 2 files to be placed next to the binary:
 
 ## Contributing
 
-Contributions are welcome! If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request to this repository.
-
+If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request to this repository.
 Before contributing, please review the Contributing Guidelines.
 
+### Crontributing Guidelines
+- Your Code must adhere to out [Styleguide](./res/styleguide.md)
+- TODO: Definition of Done
 ---
 
 ## License
 
-This project is licensed under the [Drop License](https://github.com/DropSoftCommunity/DropKit/blob/main/LICENSE/DROP_LICENSE.TXT).
+**Proprietary and confidential**
+Unauthorized copying of any code or file in this project, via any medium is strictly prohibited
+
+## Documentation
+- TODO: Architecture / Design Document
+- TODO: Doxygen
 
 ---
 
@@ -83,3 +90,6 @@ For questions, feedback, or support, please contact the project maintainer:
 
 ## Roadmap
 [Github Project](https://github.com/users/Erarnitox/projects/1/views/1)
+
+### Business Plan
+To get an idea of where we want to go with this project take a look at the [Business Plan](./res/business_plan.md)
