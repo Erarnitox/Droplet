@@ -73,11 +73,11 @@ namespace user_man{
 	        .set_color(dpp::colors::red)
 	        .set_title(event.removing_guild->name)
 	        .set_description(std::string("Goodbye! ") 
-                + event.removed->get_mention()
+                + event.removed.get_mention()
                 + " just left "
                 + event.removing_guild->name
             )
-            .set_image(event.removed->get_avatar_url())
+            .set_image(event.removed.get_avatar_url())
         };
 	 
 	    /* reply with the created embed */

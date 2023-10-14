@@ -125,13 +125,13 @@ auto main() -> int {
 
 	// when a member joins the guild
 	bot.on_guild_member_add([&bot](const dpp::guild_member_add_t& event) -> void {
-		bot.log(dpp::ll_info, fmt::format("A new member: {} joined the guild: {}", event.added.nickname, event.adding_guild->name));
+		bot.log(dpp::ll_info, fmt::format("A new member: {} joined the guild: {}", event.added.get_nickname(), event.adding_guild->name));
 		welcome_member(event, bot);
 	});
 
 	// when a member leaves the guild
 	bot.on_guild_member_remove([&bot](const dpp::guild_member_remove_t& event) -> void {
-		bot.log(dpp::ll_info, fmt::format("{} left the guild {}", event.removed->username, event.removing_guild->name));
+		bot.log(dpp::ll_info, fmt::format("{} left the guild {}", event.removed.username, event.removing_guild->name));
 		leave_member(event, bot);
 	});
 

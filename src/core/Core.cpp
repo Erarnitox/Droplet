@@ -1,5 +1,6 @@
 #include "Core.hpp"
 
+#include <dpp/permissions.h>
 #include <dpp/timer.h>
 #include <ratio>
 #include <variant>
@@ -9,7 +10,7 @@
 #include <regex>
 
 auto Core::isAdmin(const dpp::guild_member& member) noexcept -> bool {
-    for (const auto& role_id : member.roles) {
+    for (const auto& role_id : member.get_roles()) {
         const dpp::role& role{ *dpp::find_role(role_id) };
         if(role.has_administrator()) return true;
     }

@@ -64,7 +64,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
  set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/bot_token.txt")
  set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
- set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/libs/DPP/library/libdpp.so.1.0")
+ set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/extern/DPP/library/libdpp.so.1.0")
  set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/src/${PROJECT_NAME}")
  
  add_custom_command(
