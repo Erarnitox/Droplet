@@ -46,7 +46,7 @@
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
           "CMAKE_BUILD_TYPE" : "Release",
-          "CMAKE_CXX_FLAGS_RELEASE": "-Ofast -DNDEBUG -ffast-math -ffinite-math",
+          "CMAKE_CXX_FLAGS_RELEASE": "-Ofast -DNDEBUG -ffast-math -ffinite-math -finline -floop-unroll -ftree-vectorize",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "clang++",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
