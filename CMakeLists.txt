@@ -52,7 +52,7 @@ add_subdirectory(extern)
 
 # treat the dpp include directory like a system/compiler include
 target_include_directories(utility SYSTEM PUBLIC
-	libs/DPP/include
+	extern/DPP/include
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
