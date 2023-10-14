@@ -12,6 +12,7 @@ Table of Contents
 - Unit Testing
 - Documentation
 - Version Control
+- CMake
 - Debugging
 
 ## Introduction
@@ -58,8 +59,8 @@ auto main() -> int {
 - use const as much as possible
 - use [[nodiscard]] as much as possible
 
-## Special Comments
-### File header comment
+### Special Comments
+#### File header comment
 
 Put a file header comment with the folling information into every file you create:
 - Copyright
@@ -84,7 +85,7 @@ Here is an example:
 **/
 ```
 
-### Function implementation header
+#### Function implementation header
 
 Every function and method implementation should have an introductory comment like this:
 ```cpp
@@ -99,14 +100,14 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 }
 ```
 
-### Doxygen Comments
+#### Doxygen Comments
 
-### Note Comments
+#### Note Comments
 
 - use `#TODO:` to annotate things that need to be done in the future
 - use `#FIXME:` to annotate broken or partially working code
 
-## Modern C++ Features
+### Modern C++ Features
 
 C++ has evolved significantly over the years, and there are many modern features
 that can make our code more concise, expressive, and efficient.
@@ -116,7 +117,7 @@ and smart pointers.
 Make sure to familiarize yourself with these features and use them where appropriate.
 The C++ we are using for the time being is C++20.
 
-### Modules
+#### Modules
 
 The usage of C++20 Modules is not allowed at the time since the compiler on the build
 server does not support it yet.
@@ -149,7 +150,25 @@ We are using Doxygen to generate more comprehensive documentation.
 
 we are using git as version control solution.
 For now the only policy is to commit often!
-A specific branching strategy is specific to the specific projects.
+
+## CMake
+### Naming Conventions
+- functions and macros should be named in `snake_case`
+- variables have to follow this naming convention: `DROP_<VARIABLE_NAME>`
+
+### Usage
+- use `message(STATUS <msg>)` frequently to inform the user about state
+- keep everything platform agnostic with the built in commands
+
+#### Generator Expressions
+- don't use the shorthand notation for the `IF` Gernerator expression:
+```cmake
+# use this:
+$<IF:condition,true_string,false_string>
+
+# insead of this:
+$<condition:true_string>
+```
 
 ## Not listed
 

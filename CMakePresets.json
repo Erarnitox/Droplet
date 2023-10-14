@@ -8,7 +8,7 @@
   "configurePresets" : [
     {
       "name" : "debug",
-      "displayName" : "(Linux) Ninja and Clang",
+      "displayName" : "Debug - (Linux) Ninja and Clang",
       "description" : "Erarnitox's recommended settings for a debug build. Uses clang and Ninja",
       "generator" : "Ninja",
       "binaryDir" : "${sourceDir}/debug",
@@ -24,7 +24,7 @@
     },
     {
       "name" : "release",
-      "displayName" : "(Linux) Ninja and Clang",
+      "displayName" : "Buildserver - (Linux) Ninja and Clang",
       "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
       "generator" : "Ninja",
       "binaryDir" : "${sourceDir}/release",
@@ -34,6 +34,24 @@
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "/usr/bin/clang++-16",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
+          "BUILD_VOICE_SUPPORT" : "OFF"
+      }
+    },
+    {
+      "name" : "jumbo",
+      "displayName" : "(Experimental) Unity Build - (Linux) Ninja and Clang",
+      "description" : "Experimental - Super fast unity build",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/release",
+      "cacheVariables" : {
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
+          "CMAKE_BUILD_TYPE" : "Release",
+          "CMAKE_CXX_FLAGS_RELEASE": "-Ofast -DNDEBUG -ffast-math -ffinite-math",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
+          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
+          "CMAKE_UNITY_BUILD": true,
+          "CMAKE_UNITY_BUILD_BATCH_SIZE": "32",
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
     }

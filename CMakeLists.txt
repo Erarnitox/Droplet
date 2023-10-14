@@ -12,7 +12,22 @@ project(cyber_drop
 	LANGUAGES CXX	
 )
 
+# disable in source builds
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+	message(FATAL_ERROR "In source builds are not supported!")
+endif()
+
 option(USE_DEBUG_TOKEN "copy debug token and database connection")
+
+# use interprocedural optimization
+include(CheckIPOSupported)
+check_ipo_Supported(RESULT ipo_supported)
+if(ipo_supported)
+	set(CMAKE_INTERPROCEDURAL_OPTIMITZATION True)
+endif()
+
+# disable compiler specific C++ extensions
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # download and update git submodules automatically
 find_package(Git QUIET)
@@ -33,7 +48,7 @@ endif()
 add_subdirectory(src)
 
 # subdirectory for third party dependencies
-add_subdirectory(libs)
+add_subdirectory(extern)
 
 # treat the dpp include directory like a system/compiler include
 target_include_directories(utility SYSTEM PUBLIC
@@ -80,7 +95,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  add_dependencies(copy_dpp_library ${PROJECT_NAME})
  
  # tests
- add_subdirectory(tests)
+ add_subdirectory(test)
+
+ # documenatation
+ add_subdirectory(doc)
 
  # install the bot and it's library dependency
  install(TARGETS ${PROJECT_NAME} dpp)
