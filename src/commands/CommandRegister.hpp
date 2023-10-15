@@ -3,5 +3,5 @@
 #include <Commands.hpp>
 
 namespace CommandRegister {
-    void registerCommands();
+void registerCommands();
 }

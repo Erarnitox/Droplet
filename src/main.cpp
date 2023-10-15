@@ -1,5 +1,5 @@
 #include "bot.hpp"
 
-int main(){
-    start_bot();
+int main() {
+	start_bot();
 }

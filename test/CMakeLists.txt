@@ -1,6 +1,9 @@
 # build/link static libraries
 set(BUILD_SHARED_LIBS OFF)
 
+# this variable is needed to load shared libraries from the binary dir
+set(ENV(LD_LIBRARY_PATH) ${CMAKE_BINARY_DIR})
+
 # make catch2 available
 CPMAddPackage("gh:catchorg/Catch2@3.4.0")
 
@@ -12,7 +15,7 @@ CPMAddPackage("gh:catchorg/Catch2@3.4.0")
 # - https://github.com/linux-test-project/lcov
 
 include(CTest)
-enable_testing()
+# enable_testing() is automatically called
 
 add_executable(unit_tests
     main_test.cpp

@@ -1,4 +1,3 @@
-
 add_executable(start_bot
 	main.cpp
 )
@@ -7,6 +6,11 @@ add_library(${PROJECT_NAME} STATIC
 	bot.cpp
 	bot.hpp
 )
+
+# do not format on the build server building release builds
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+	clang_format(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR})
+endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC .)
 
@@ -29,10 +33,8 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
 	)
 endif()
 	
-
 add_subdirectory(core)
 add_subdirectory(commands)
-# add_subdirectory(deamons)
 
 # Precompiled common headers
 #add_library(core SHARED core.cpp)

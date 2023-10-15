@@ -37,7 +37,6 @@ if( x ) {
 ```
 - Use comments to explain complex or non-obvious code
 - almost always use auto
-- use initializer lists where possible
 - Use precision specification for floating point values
 - initialize variables using the standard initialization and make use of literals to avoid implicit casts
 ```cpp
