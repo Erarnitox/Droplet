@@ -78,6 +78,16 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  )
 
  add_custom_command(
+ 	OUTPUT "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
+ 	POST_BUILD
+ 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
+ )
+
+ add_custom_target(
+     copy_dpp_test_library ALL DEPENDS "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0" 
+ )
+
+ add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
  	POST_BUILD
  	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BOT_BINARY_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
@@ -103,6 +113,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  endif()
  
  add_dependencies(copy_dpp_library ${PROJECT_NAME})
+ add_dependencies(copy_dpp_test_library ${PROJECT_NAME})
  add_dependencies(copy_bot_binary start_bot)
  
  # tests
