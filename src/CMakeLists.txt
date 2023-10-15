@@ -1,8 +1,16 @@
 
-add_executable(${PROJECT_NAME}
+add_executable(start_bot
 	main.cpp
-	main.hpp
 )
+
+add_library(${PROJECT_NAME} STATIC
+	bot.cpp
+	bot.hpp
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC .)
+
+target_link_libraries(start_bot PRIVATE ${PROJECT_NAME})
 
 # build/link static libraries
 set(BUILD_SHARED_LIBS OFF)

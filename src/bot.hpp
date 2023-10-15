@@ -4,11 +4,7 @@
 #include <dpp/dpp.h>
 #include <fstream>
 
-#include <Core.cpp>
-#include <Database.hpp>
-#include <resource_man.hpp>
-#include <user_man.hpp>
-#include <Commands.hpp>
+auto start_bot() -> void;
 
 [[nodiscard]] static inline
 auto read_bot_token(const std::string& file) -> std::string;

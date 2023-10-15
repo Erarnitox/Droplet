@@ -26,4 +26,4 @@ target_link_libraries(core PUBLIC
 	fmt::fmt
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE core)
+target_link_libraries(${PROJECT_NAME} PUBLIC core)

@@ -45,7 +45,7 @@ else()
 endif()
 
 # out own source code for the project
-add_subdirectory(src)
+add_subdirectory(src bin)
 
 # subdirectory for third party dependencies
 add_subdirectory(extern)
@@ -65,7 +65,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/bot_token.txt")
  set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
  set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/extern/DPP/library/libdpp.so.1.0")
- set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/src/${PROJECT_NAME}")
+ set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/start_bot")
  
  add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
@@ -75,6 +75,16 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
  add_custom_target(
      copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
+ )
+
+ add_custom_command(
+ 	OUTPUT "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
+ 	POST_BUILD
+ 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BOT_BINARY_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
+ )
+
+ add_custom_target(
+     copy_bot_binary ALL DEPENDS "${CMAKE_BINARY_DIR}/${PROJECT_NAME}" 
  )
 
  if(USE_DEBUG_TOKEN)
@@ -93,6 +103,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  endif()
  
  add_dependencies(copy_dpp_library ${PROJECT_NAME})
+ add_dependencies(copy_bot_binary start_bot)
  
  # tests
  add_subdirectory(test)
@@ -101,7 +112,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  add_subdirectory(doc)
 
  # install the bot and it's library dependency
- install(TARGETS ${PROJECT_NAME} dpp)
+ # install(TARGETS start_bot dpp)
  
  # include to automatically pack/make an installer for release
  include(CPack)
