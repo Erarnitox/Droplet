@@ -99,6 +99,8 @@ auto main() -> int {
 
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
+		bot.set_presence(dpp::presence(dpp::ps_online, dpp::at_custom, "https://droplet.dropsoft.org"));
+	
 		try{
 			if(dpp::run_once<struct register_bot_commands>()) {
 				bot.log(dpp::ll_trace, "Registering Slash commands...");
