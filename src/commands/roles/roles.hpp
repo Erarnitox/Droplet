@@ -36,7 +36,7 @@ namespace roles {
     auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
         if (event.command.get_command_name() == "reaction_role") {
             if(!Core::isAdmin(event.command.member)){
-                Core::timedReply(bot, event, std::string("Only admins are allowed to use this command!"), 2000);
+                event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
                 return;
             }
 
@@ -51,13 +51,13 @@ namespace roles {
 
             const auto role_id{ Core::getRoleId(role) };
             if(role_id.empty()) {
-                Core::timedReply(bot, event, "No valid Role was provided!", 2000);
+                event.reply(dpp::message("No valid Role was provided!").set_flags(dpp::m_ephemeral));
                 return;
             }
 
             const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size()-3) : emoji };
             if(usable_emoji.empty()) {
-                Core::timedReply(bot, event, "No valid emoji was provided!", 2000);
+                event.reply(dpp::message("No valid emoji was provided!").set_flags(dpp::m_ephemeral));
                 return;
             }
             
@@ -65,7 +65,7 @@ namespace roles {
             std::vector<size_t> slashes;
 
             if(message_link.size() < 4 || !message_link.starts_with("http")) {
-                event.reply("The provided link is not a valid message link!");
+                event.reply(dpp::message("The provided link is not a valid message link!").set_flags(dpp::m_ephemeral));
                 return;
             }
 
@@ -103,14 +103,11 @@ namespace roles {
             bot.message_add_reaction(message_id, channel_id, usable_emoji);
 
             // send a confirmation to the admin
-            Core::timedReply(
-                bot, event, 
+            event.reply(dpp::message(
                 fmt::format(
                     "Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}",
                     message_link, emoji, role
-                ), 
-                10000 //10sek
-            );
+                )).set_flags(dpp::m_ephemeral));
         }
     }
 

@@ -29,7 +29,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
     if (event.command.get_command_name() != "challenge_role") return;
     
     if(!Core::isAdmin(event.command.member)){
-        Core::timedReply(bot, event, std::string("Only admins are allowed to use this command!"), 2000);
+        event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
         return;
     }
 
@@ -50,19 +50,19 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
 
     const auto role_id{ Core::getRoleId(role) };
     if(role_id.empty()) {
-        Core::timedReply(bot, event, "No valid Role provided!", 2000);
+        event.reply(dpp::message("No valid Role provided!").set_flags(dpp::m_ephemeral));
         return;
     }
 
     const auto channel_id{ Core::getChannelId(channel) };
     if(channel_id.empty()) {
-        Core::timedReply(bot, event, "No valid Channel provided!", 2000);
+        event.reply(dpp::message("No valid Channel provided!").set_flags(dpp::m_ephemeral));
         return;
     }
 
     const auto guild_id{ event.command.guild_id };
     if(!guild_id) {
-        Core::timedReply(bot, event, "Something went wrong...", 2000);
+        event.reply(dpp::message("Something went wrong...").set_flags(dpp::m_ephemeral));
         return;
     }
 
@@ -101,7 +101,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             try {
                 sane_role_id = std::stoul(role_id); 
             } catch(std::invalid_argument exception){
-                Core::timedReply(bot, event, "Bad role! Just mention the role!", 5000);
+                event.reply(dpp::message("Bad role! Just mention the role!").set_flags(dpp::m_ephemeral));
                 return;
             }
                     
@@ -109,11 +109,11 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             try{ 
                 message_id = std::get<dpp::message>(sent_message).id;
                 if(message_id == 0){
-                    Core::timedReply(bot, event, "Something went wrong! No message created! ...", 5000);
+                    event.reply(dpp::message("Something went wrong! No message created!").set_flags(dpp::m_ephemeral));
                     return;
                 } 
             } catch(...){
-                Core::timedReply(bot, event, "Could not get created message! ...", 5000);
+                event.reply(dpp::message("Could not get created message! ...").set_flags(dpp::m_ephemeral));
                 return;
             }
 
@@ -123,20 +123,18 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
             if(repo.create(data)){
                 bot.log(dpp::ll_info, fmt::format("Challenge role with message_id={} was inserted into the Databse", message_id));
             } else {
-                Core::timedReply(bot, event, "Could not save Challenge Data to Database! ...", 5000);
+                event.reply(dpp::message("Could not save Challenge Datea to Database! ...").set_flags(dpp::m_ephemeral));
                 bot.log(dpp::ll_error, fmt::format("Challenge Role Data could not be saved to Database! (message_id={})", message_id));
                 bot.message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
             }
 
             // send a confirmation to the admin
-            Core::timedReply(
-                bot, event, 
+            event.reply(dpp::message(
                 fmt::format(
                     "Challenge Created!\nQuestion: {}\nReward: {}",
-                    question, role
-                ), 
-                10000 //10sek
-            );
+                    question,
+                    role    
+                )).set_flags(dpp::m_ephemeral));
         }   
     );
 }
@@ -185,7 +183,7 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
                 dto.roleId, dto.solution
             )
         );
-        Core::timedReply(bot, event, "OOPS! Something went wrong! Please contact @erarnitox with this error code: 298364", 10000);
+        event.reply(dpp::message("OOPS! Something went wrong! Please contact @erarnitox with this error code: 298364").set_flags(dpp::m_ephemeral));
         return; 
     }
     
@@ -195,7 +193,7 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
         bot.log(
             dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits"
         );
-        Core::timedReply(bot, event, "OOPS! Something went wrong! Please contact @erarnitox with this error code: 298365", 10000);
+        event.reply(dpp::message("OOPS! Something went wrong! Please contact @erarnitox with this error code: 298365").set_flags(dpp::m_ephemeral));
         return;
     }
 
@@ -205,17 +203,9 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
     if(entered == dto.solution) {
         bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
-        Core::timedReply(
-            bot, event,
-            fmt::format("Well done {}, you solved this challenge!", member.get_mention()),
-            5000
-        );
+        event.reply(dpp::message(fmt::format("Well done {}, you solved this challenge!", member.get_mention())).set_flags(dpp::m_ephemeral));
     } else {
-        Core::timedReply(
-            bot, event,
-            fmt::format("Sorry {}, this is not the right answer!", member.get_mention()),
-            5000
-        );
+        event.reply(dpp::message(fmt::format("Sorry {}, this is not the right answer!", member.get_mention())).set_flags(dpp::m_ephemeral));
     }
 }
 

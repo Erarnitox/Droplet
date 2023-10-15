@@ -103,7 +103,7 @@ namespace resource_man {
             if(description.empty()) return;
 	        
             if(action.size() < 1){
-                Core::timedReply(bot, event, "Please specify an action!", 100);
+                event.reply(dpp::message("Please specify an action!").set_flags(dpp::m_ephemeral));
             } else if(action == "action_add") {
 	            // usage: <title> <link> <category> [description]
             } else if(action == "action_del") {

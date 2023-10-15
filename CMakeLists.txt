@@ -115,5 +115,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  # install(TARGETS start_bot dpp)
  
  # include to automatically pack/make an installer for release
- include(CPack)
+ # include(CPack)
  
