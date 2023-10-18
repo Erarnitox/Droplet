@@ -46,3 +46,25 @@ function(valgrind target)
     )
 # memcheck-cover can be used to view the output as html
 endfunction()
+
+# doxygen helper function to generate documentation
+function(generate_doxygen input output)
+    find_package(Doxygen)
+    if (NOT DOXYGEN_FOUND)
+        add_custom_target(doxygen COMMAND false
+            COMMENT "Doxygen was not found!"
+        )
+        return()
+    endif()
+    set(DOXYGEN_OUTPUT_DIRECTORY "${output}")
+    set(DOXYGEN_GENERATE_HTML YES)
+    set(DOXYGEN_GENERATE_PDF YES)
+
+    doxygen_add_docs(doxygen 
+        "${input}"
+        ALL 
+        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
+        COMMENT "Generate Doxygen Documentation"
+    )
+endfunction()
+

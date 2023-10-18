@@ -120,7 +120,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  add_subdirectory(test)
 
  # documenatation
- add_subdirectory(doc)
+ generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/doc/doxygen")
 
  # install the bot and it's library dependency
  # install(TARGETS start_bot dpp)
