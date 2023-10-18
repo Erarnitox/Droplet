@@ -25,3 +25,24 @@ function(clang_format target directory)
     )
     message(STATUS "Formatting done!")
 endfunction()
+
+## the following 2 should be used on the unit-test target:
+# use clang-tidy to do static analysis on the code
+function(clang_tidy target)
+    find_program(CLANG-TIDY_PATH clang-tidy REQUIRED)
+    set_target_properties(${target}
+        PROPERTIES CXX_CLANG_TIDY
+        "${CLANG-TIDY_PATH};-checks=*;--warnings-as-errors=*"
+    )
+endfunction()
+
+# use valgrind to find memory issues
+function(valgrind target)
+    find_program(VALGRIND_PATH valgrind REQUIRED)
+    add_custom_target(valgrind_target
+        COMMAND ${VALGRIND_PATH} --leak-check=yes
+            $<TARGET_FILE:${target}>
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+# memcheck-cover can be used to view the output as html
+endfunction()
