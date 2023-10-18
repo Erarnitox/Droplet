@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -47,6 +52,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classCommands_1_1CommandFunctionPointers.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,11 +90,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><b>Commands</b></li><li class="navelem"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">CommandFunctionPointers</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">Commands::CommandFunctionPointers Member List</div></div>
 </div><!--header-->
@@ -80,26 +97,29 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_handle_button_clicks</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>_handle_form_submits</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_handle_global_slash_commands</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>_handle_reaction_added</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_handle_reaction_removed</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>_leave_member</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_register_global_slash_commands</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>_welcome_member</b> (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>handle_button_clicks</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>handle_form_submits</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>handle_global_slash_commands</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>handle_reaction_added</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>handle_reaction_removed</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>leave_member</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>register_global_slash_commands</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>welcome_member</b>() (defined in <a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a>)</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a32e727722e652f3466b85f47ce67b9d4">_handle_button_clicks</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a48e3625577f9f5472726dea45c715f63">_handle_form_submits</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a35bf47f5df64cbc7c910f0d51dbaa304">_handle_global_slash_commands</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a7df63ad224a53c74450dd94dfbae9184">_handle_reaction_added</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#af1f5334463067b6f3719edda5e8150b2">_handle_reaction_removed</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a8b7303030e0dfe976764f762857aca19">_leave_member</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a7de0a3436e6d8dd6d476d819f5fa5aac">_register_global_slash_commands</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a0e66ad2a72390bf3efe6c70ce4585a23">_welcome_member</a></td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a00b87648063d57703f7030d6a85b74a9">handle_button_clicks</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#acf46798f7d5dc5bfaed91593f915ce68">handle_form_submits</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a5f6f1de8f6bc6d973b6d3652891289a6">handle_global_slash_commands</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#ac3937b881553e731bc30e55bcbc435ba">handle_reaction_added</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#aa641af3fbdddcf96ab2f56efcb33bb0e">handle_reaction_removed</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a73385935f73d994d780eb69c6e3bf139">leave_member</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#aeed4e6c495b5f449da3b1dbaa11cc919">register_global_slash_commands</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html#a31002ed1f32bac7e5ea16436defaf86e">welcome_member</a>()</td><td class="entry"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">Commands::CommandFunctionPointers</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

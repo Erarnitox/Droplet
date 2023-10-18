@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -48,6 +53,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -76,73 +97,26 @@ $(function() {
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" usemap="#aChallengeRoleCommand" alt=""/>
-<map name="aChallengeRoleCommand" id="aChallengeRoleCommand">
-<area shape="rect" href="classChallengeRoleCommand.html" title=" " alt="" coords="5,5,172,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_1.png" border="0" usemap="#aChallengeRoleDTO" alt=""/>
-<map name="aChallengeRoleDTO" id="aChallengeRoleDTO">
-<area shape="rect" href="classChallengeRoleDTO.html" title=" " alt="" coords="5,5,140,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_2.png" border="0" usemap="#aCommands_1_1CommandFunctionPointers" alt=""/>
-<map name="aCommands_1_1CommandFunctionPointers" id="aCommands_1_1CommandFunctionPointers">
-<area shape="rect" href="classCommands_1_1CommandFunctionPointers.html" title=" " alt="" coords="5,5,212,48"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" usemap="#aCommands_1_1CommandRegistration_3_01T_01_4" alt=""/>
-<map name="aCommands_1_1CommandRegistration_3_01T_01_4" id="aCommands_1_1CommandRegistration_3_01T_01_4">
-<area shape="rect" href="structCommands_1_1CommandRegistration.html" title=" " alt="" coords="5,5,263,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" usemap="#aCore" alt=""/>
-<map name="aCore" id="aCore">
-<area shape="rect" href="classCore.html" title=" " alt="" coords="5,5,55,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" usemap="#aDatabase" alt=""/>
-<map name="aDatabase" id="aDatabase">
-<area shape="rect" href="classDatabase.html" title=" " alt="" coords="5,5,83,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" usemap="#aHelpCommand" alt=""/>
-<map name="aHelpCommand" id="aHelpCommand">
-<area shape="rect" href="classHelpCommand.html" title=" " alt="" coords="5,5,114,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" usemap="#aIReactionCommand" alt=""/>
-<map name="aIReactionCommand" id="aIReactionCommand">
-<area shape="rect" href="classIReactionCommand.html" title=" " alt="" coords="5,5,143,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" usemap="#aIRepository_3_01ChallengeRoleDTO_01_4" alt=""/>
-<map name="aIRepository_3_01ChallengeRoleDTO_01_4" id="aIRepository_3_01ChallengeRoleDTO_01_4">
-<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,191,48"/>
-<area shape="rect" href="classChallengeRoleRepository.html" title=" " alt="" coords="239,13,408,40"/>
-<area shape="poly" title=" " alt="" coords="206,24,238,24,238,29,206,29"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_9.png" border="0" usemap="#aIRepository_3_01DTO_01_4" alt=""/>
-<map name="aIRepository_3_01DTO_01_4" id="aIRepository_3_01DTO_01_4">
-<area shape="rect" href="classIRepository.html" title=" " alt="" coords="5,5,146,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_10.png" border="0" usemap="#aRowDTOAdapter" alt=""/>
-<map name="aRowDTOAdapter" id="aRowDTOAdapter">
-<area shape="rect" href="classRowDTOAdapter.html" title=" " alt="" coords="5,5,127,32"/>
-</map>
-</td></tr>
-<tr><td><img src="inherit_graph_11.png" border="0" usemap="#aSetChannelCommand" alt=""/>
-<map name="aSetChannelCommand" id="aSetChannelCommand">
-<area shape="rect" href="classSetChannelCommand.html" title=" " alt="" coords="5,5,155,32"/>
-</map>
-</td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_0.svg" width="178" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_1.svg" width="146" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_2.svg" width="218" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_3.svg" width="268" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_4.svg" width="60" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_5.svg" width="88" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_6.svg" width="119" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_7.svg" width="148" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_8.svg" width="414" height="54"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_9.svg" width="151" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_10.svg" width="132" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
+<tr><td><iframe scrolling="no" frameborder="0" src="inherit_graph_11.svg" width="160" height="38"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

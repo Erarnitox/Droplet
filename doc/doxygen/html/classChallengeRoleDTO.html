@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -47,6 +52,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classChallengeRoleDTO.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -68,7 +90,6 @@ $(function() {
 </div>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -77,39 +98,187 @@ $(function() {
   <div class="headertitle"><div class="title">ChallengeRoleDTO Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="ChallengeRoleDTO_8hpp_source.html">ChallengeRoleDTO.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ChallengeRoleDTO:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classChallengeRoleDTO__coll__graph.svg" width="178" height="288"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a63b1e9b917a81409c5b17c5a41b63d23" id="r_a63b1e9b917a81409c5b17c5a41b63d23"><td class="memItemLeft" align="right" valign="top"><a id="a63b1e9b917a81409c5b17c5a41b63d23" name="a63b1e9b917a81409c5b17c5a41b63d23"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChallengeRoleDTO</b> (size_t roleId, size_t guildId, size_t messageId, const std::string &amp;solution)</td></tr>
+<tr class="memitem:a5bf174a5b8e4d231b0b9223cab6995b3" id="r_a5bf174a5b8e4d231b0b9223cab6995b3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a5bf174a5b8e4d231b0b9223cab6995b3">ChallengeRoleDTO</a> ()=<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">default</a></td></tr>
+<tr class="separator:a5bf174a5b8e4d231b0b9223cab6995b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b1e9b917a81409c5b17c5a41b63d23" id="r_a63b1e9b917a81409c5b17c5a41b63d23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a63b1e9b917a81409c5b17c5a41b63d23">ChallengeRoleDTO</a> (size_t <a class="el" href="classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7">roleId</a>, size_t <a class="el" href="classChallengeRoleDTO.html#a0c631538b24da4f86b1486ee8cf1c1e7">guildId</a>, size_t <a class="el" href="classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338">messageId</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;<a class="el" href="classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb">solution</a>)</td></tr>
 <tr class="separator:a63b1e9b917a81409c5b17c5a41b63d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27ce5572c46baf4e5ff19a01be992bdf" id="r_a27ce5572c46baf4e5ff19a01be992bdf"><td class="memItemLeft" align="right" valign="top"><a id="a27ce5572c46baf4e5ff19a01be992bdf" name="a27ce5572c46baf4e5ff19a01be992bdf"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ChallengeRoleDTO</b> (const <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> &amp;row)</td></tr>
+<tr class="memitem:a27ce5572c46baf4e5ff19a01be992bdf" id="r_a27ce5572c46baf4e5ff19a01be992bdf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a27ce5572c46baf4e5ff19a01be992bdf">ChallengeRoleDTO</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> &amp;row)</td></tr>
 <tr class="separator:a27ce5572c46baf4e5ff19a01be992bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a03b3e7200b4f637ae7d9f15801419ba7" id="r_a03b3e7200b4f637ae7d9f15801419ba7"><td class="memItemLeft" align="right" valign="top"><a id="a03b3e7200b4f637ae7d9f15801419ba7" name="a03b3e7200b4f637ae7d9f15801419ba7"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>roleId</b></td></tr>
+<tr class="memitem:a03b3e7200b4f637ae7d9f15801419ba7" id="r_a03b3e7200b4f637ae7d9f15801419ba7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7">roleId</a></td></tr>
 <tr class="separator:a03b3e7200b4f637ae7d9f15801419ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c631538b24da4f86b1486ee8cf1c1e7" id="r_a0c631538b24da4f86b1486ee8cf1c1e7"><td class="memItemLeft" align="right" valign="top"><a id="a0c631538b24da4f86b1486ee8cf1c1e7" name="a0c631538b24da4f86b1486ee8cf1c1e7"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>guildId</b></td></tr>
+<tr class="memitem:a0c631538b24da4f86b1486ee8cf1c1e7" id="r_a0c631538b24da4f86b1486ee8cf1c1e7"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a0c631538b24da4f86b1486ee8cf1c1e7">guildId</a></td></tr>
 <tr class="separator:a0c631538b24da4f86b1486ee8cf1c1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22f6ecb0a1e2481e198c27f0dc3d5338" id="r_a22f6ecb0a1e2481e198c27f0dc3d5338"><td class="memItemLeft" align="right" valign="top"><a id="a22f6ecb0a1e2481e198c27f0dc3d5338" name="a22f6ecb0a1e2481e198c27f0dc3d5338"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>messageId</b></td></tr>
+<tr class="memitem:a22f6ecb0a1e2481e198c27f0dc3d5338" id="r_a22f6ecb0a1e2481e198c27f0dc3d5338"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338">messageId</a></td></tr>
 <tr class="separator:a22f6ecb0a1e2481e198c27f0dc3d5338"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd20d1eb158006aab306a35278b7afdb" id="r_afd20d1eb158006aab306a35278b7afdb"><td class="memItemLeft" align="right" valign="top"><a id="afd20d1eb158006aab306a35278b7afdb" name="afd20d1eb158006aab306a35278b7afdb"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>solution</b></td></tr>
+<tr class="memitem:afd20d1eb158006aab306a35278b7afdb" id="r_afd20d1eb158006aab306a35278b7afdb"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb">solution</a></td></tr>
 <tr class="separator:afd20d1eb158006aab306a35278b7afdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5bf174a5b8e4d231b0b9223cab6995b3" name="a5bf174a5b8e4d231b0b9223cab6995b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bf174a5b8e4d231b0b9223cab6995b3">&#9670;&#160;</a></span>ChallengeRoleDTO() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChallengeRoleDTO::ChallengeRoleDTO </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63b1e9b917a81409c5b17c5a41b63d23" name="a63b1e9b917a81409c5b17c5a41b63d23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b1e9b917a81409c5b17c5a41b63d23">&#9670;&#160;</a></span>ChallengeRoleDTO() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChallengeRoleDTO::ChallengeRoleDTO </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>roleId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>guildId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>messageId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;&#160;</td>
+          <td class="paramname"><em>solution</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27ce5572c46baf4e5ff19a01be992bdf" name="a27ce5572c46baf4e5ff19a01be992bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27ce5572c46baf4e5ff19a01be992bdf">&#9670;&#160;</a></span>ChallengeRoleDTO() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChallengeRoleDTO::ChallengeRoleDTO </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> &amp;&#160;</td>
+          <td class="paramname"><em>row</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0c631538b24da4f86b1486ee8cf1c1e7" name="a0c631538b24da4f86b1486ee8cf1c1e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c631538b24da4f86b1486ee8cf1c1e7">&#9670;&#160;</a></span>guildId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ChallengeRoleDTO::guildId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22f6ecb0a1e2481e198c27f0dc3d5338" name="a22f6ecb0a1e2481e198c27f0dc3d5338"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f6ecb0a1e2481e198c27f0dc3d5338">&#9670;&#160;</a></span>messageId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ChallengeRoleDTO::messageId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03b3e7200b4f637ae7d9f15801419ba7" name="a03b3e7200b4f637ae7d9f15801419ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b3e7200b4f637ae7d9f15801419ba7">&#9670;&#160;</a></span>roleId</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ChallengeRoleDTO::roleId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd20d1eb158006aab306a35278b7afdb" name="afd20d1eb158006aab306a35278b7afdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd20d1eb158006aab306a35278b7afdb">&#9670;&#160;</a></span>solution</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ChallengeRoleDTO::solution</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>src/commands/challenge_role/<a class="el" href="ChallengeRoleDTO_8hpp_source.html">ChallengeRoleDTO.hpp</a></li>
-<li>src/commands/challenge_role/<b>ChallengeRoleDTO.cpp</b></li>
+<li>src/commands/challenge_role/<a class="el" href="ChallengeRoleDTO_8cpp.html">ChallengeRoleDTO.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classChallengeRoleDTO.html">ChallengeRoleDTO</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

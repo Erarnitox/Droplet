@@ -9,10 +9,15 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -52,6 +57,23 @@ $(function() {
 $(document).ready(function() { init_codefold(0); });
 /* @license-end */
 </script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('roles_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -73,29 +95,25 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5e80d29b61c444378a543be4dd1414df.html">commands</a></li><li class="navelem"><a class="el" href="dir_ef6cf5d1e94945dcad3806d0aa9853d9.html">roles</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">roles.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<a href="roles_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;dpp/colors.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;dpp/message.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;dpp/restresults.h&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;fmt/core.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;Core.hpp&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Database.hpp&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="Core_8hpp.html">Core.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="Database_8hpp.html">Database.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stack&gt;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>roles {</div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="}">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="namespaceroles.html">   14</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceroles.html">roles</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">auto</span> register_global_slash_commands(std::vector&lt;dpp::slashcommand&gt; &amp;command_list,</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                                  <span class="keyword">const</span> dpp::cluster &amp;bot) <span class="keyword">noexcept</span> -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// Reaction Role</span></div>
@@ -114,24 +132,24 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">auto</span> handle_global_slash_commands(<span class="keyword">const</span> dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot) <span class="keyword">noexcept</span> -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">if</span> (event.command.get_command_name() == <span class="stringliteral">&quot;reaction_role&quot;</span>) {</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">if</span> (!Core::isAdmin(event.command.member)) {</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classCore.html#ab755182dfad5fc97af9cd847ee118f0c">Core::isAdmin</a>(event.command.member)) {</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keyword">event</span>.reply(dpp::message(<span class="stringliteral">&quot;Only admins are allowed to use this command!&quot;</span>).set_flags(dpp::m_ephemeral));</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        }</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">const</span> <span class="keyword">auto</span> message_link{Core::getParameter(bot, event, <span class="stringliteral">&quot;message_link&quot;</span>)};</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        <span class="keyword">const</span> <span class="keyword">auto</span> message_link{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;message_link&quot;</span>)};</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (message_link.empty())</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <span class="keyword">auto</span> emoji{Core::getParameter(bot, event, <span class="stringliteral">&quot;emoji&quot;</span>)};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <span class="keyword">auto</span> emoji{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;emoji&quot;</span>)};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (emoji.empty())</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> <span class="keyword">auto</span> role{Core::getParameter(bot, event, <span class="stringliteral">&quot;role&quot;</span>)};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keyword">const</span> <span class="keyword">auto</span> role{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;role&quot;</span>)};</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">if</span> (role.empty())</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <span class="keyword">auto</span> role_id{Core::getRoleId(role)};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <span class="keyword">auto</span> role_id{<a class="code hl_function" href="classCore.html#a8d9dfac1697ee94a598d93415b21d976">Core::getRoleId</a>(role)};</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (role_id.empty()) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="keyword">event</span>.reply(dpp::message(<span class="stringliteral">&quot;No valid Role was provided!&quot;</span>).set_flags(dpp::m_ephemeral));</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            <span class="keywordflow">return</span>;</div>
@@ -180,7 +198,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">//--------------------------------------------------</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="comment">// Insert Reaction Role into Database</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        Database::insert_reaction_role_data(role_id, event.command.guild_id, message_id, usable_emoji);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <a class="code hl_function" href="classDatabase.html#a3dd83824499b16cadfe4f0f91c7e8ace">Database::insert_reaction_role_data</a>(role_id, event.command.guild_id, message_id, usable_emoji);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="comment">// Let the bot react to the message</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        bot.message_add_reaction(message_id, channel_id, usable_emoji);</div>
@@ -211,7 +229,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordflow">if</span> (usable_emoji.empty())</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> role_id{Database::get_reaction_role_data(message_id, usable_emoji)};</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> role_id{<a class="code hl_function" href="classDatabase.html#a97064ea28b1be43e118f78713cbd1ce8">Database::get_reaction_role_data</a>(message_id, usable_emoji)};</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordflow">if</span> (!role_id)</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
@@ -237,17 +255,30 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordflow">if</span> (usable_emoji.empty())</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">size_t</span> role_id{Database::get_reaction_role_data(message_id, usable_emoji)};</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordtype">size_t</span> role_id{<a class="code hl_function" href="classDatabase.html#a97064ea28b1be43e118f78713cbd1ce8">Database::get_reaction_role_data</a>(message_id, usable_emoji)};</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordflow">if</span> (!role_id)</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    bot.guild_member_remove_role(event.reacting_guild-&gt;id, event.reacting_user_id, role_id);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>}  <span class="comment">// namespace roles</span></div>
+</div>
+<div class="ttc" id="aCore_8hpp_html"><div class="ttname"><a href="Core_8hpp.html">Core.hpp</a></div></div>
+<div class="ttc" id="aDatabase_8hpp_html"><div class="ttname"><a href="Database_8hpp.html">Database.hpp</a></div></div>
+<div class="ttc" id="aclassCore_html_a8d9dfac1697ee94a598d93415b21d976"><div class="ttname"><a href="classCore.html#a8d9dfac1697ee94a598d93415b21d976">Core::getRoleId</a></div><div class="ttdeci">static auto getRoleId(const std::string &amp;mention) noexcept -&gt; std::string</div><div class="ttdef"><b>Definition</b> Core.cpp:22</div></div>
+<div class="ttc" id="aclassCore_html_ab755182dfad5fc97af9cd847ee118f0c"><div class="ttname"><a href="classCore.html#ab755182dfad5fc97af9cd847ee118f0c">Core::isAdmin</a></div><div class="ttdeci">static auto isAdmin(const dpp::guild_member &amp;member) noexcept -&gt; bool</div><div class="ttdef"><b>Definition</b> Core.cpp:13</div></div>
+<div class="ttc" id="aclassCore_html_af6492a77fc021d96d76a1b4427f92732"><div class="ttname"><a href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a></div><div class="ttdeci">static auto getParameter(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;name) noexcept -&gt; std::string</div><div class="ttdef"><b>Definition</b> Core.cpp:100</div></div>
+<div class="ttc" id="aclassDatabase_html_a3dd83824499b16cadfe4f0f91c7e8ace"><div class="ttname"><a href="classDatabase.html#a3dd83824499b16cadfe4f0f91c7e8ace">Database::insert_reaction_role_data</a></div><div class="ttdeci">static auto insert_reaction_role_data(const std::string &amp;role_id, size_t guild_id, const std::string &amp;message_id, const std::string &amp;emoji) noexcept -&gt; void</div><div class="ttdef"><b>Definition</b> Database.cpp:62</div></div>
+<div class="ttc" id="aclassDatabase_html_a97064ea28b1be43e118f78713cbd1ce8"><div class="ttname"><a href="classDatabase.html#a97064ea28b1be43e118f78713cbd1ce8">Database::get_reaction_role_data</a></div><div class="ttdeci">static auto get_reaction_role_data(size_t message_id, const std::string &amp;reaction_emoji) noexcept -&gt; size_t</div><div class="ttdef"><b>Definition</b> Database.cpp:36</div></div>
+<div class="ttc" id="anamespaceroles_html"><div class="ttname"><a href="namespaceroles.html">roles</a></div><div class="ttdef"><b>Definition</b> roles.hpp:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5e80d29b61c444378a543be4dd1414df.html">commands</a></li><li class="navelem"><a class="el" href="dir_ef6cf5d1e94945dcad3806d0aa9853d9.html">roles</a></li><li class="navelem"><a class="el" href="roles_8hpp.html">roles.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

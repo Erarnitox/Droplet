@@ -88,9 +88,12 @@ Here is an example:
 
 Every function and method implementation should have an introductory comment like this:
 ```cpp
-//////////////////////////////////////////////////////////////////////////////
-// HANDLE ALL GLOBAL SLASH COMMANDS
-//////////////////////////////////////////////////////////////////////////////
+/***********************************************************************
+handle button clicks in form elements
+@param event the click event initiated by the user
+@param bot the cluster that can be thought of the current bot instance
+@result doesn't return anything but might repsond to the user in chat
+************************************************************************/
 static inline
 auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
 	for(auto commandFp : Commands::CommandFunctionPointers::handle_button_clicks()){
