@@ -97,4 +97,3 @@ function(generate_doxygen input output)
         COMMENT "Generate Doxygen Documentation"
     )
 endfunction()
-
