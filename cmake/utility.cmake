@@ -85,6 +85,8 @@ function(generate_doxygen input output)
     set(DOXYGEN_TEMPLATE_RELATIONS YES)
     set(DOXYGEN_DOT_TRANSPARENT YES)
     set(DOXYGEN_DOT_IMAGE_FORMAT svg)
+    set(DOXYGEN_PROJECT_LOGO "${PROJECT_SOURCE_DIR}/res/logo.png")
+    #set(DOXYGEN_USE_MDFILE_AS_MAINPAGE "${PROJECT_SOURCE_DIR}/Readme.md")
     
     #base for generating a documentation pdf file
     #set(DOXYGEN_GENERATE_LATEX YES)
