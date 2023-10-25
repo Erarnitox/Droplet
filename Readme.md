@@ -57,14 +57,14 @@ If you have suggestions, bug reports, or feature requests, please open an issue 
 Before contributing, please review the Contributing Guidelines.
 
 ### Crontributing Guidelines
-- Your Code must adhere to out [Styleguide](./res/styleguide.md)
+- Your Code must adhere to out [Styleguide](./doc/styleguide.md)
 - TODO: Definition of Done
+
 ---
 
 ## License
 
-**Proprietary and confidential**
-Unauthorized copying of any code or file in this project, via any medium is strictly prohibited
+[MIT License](./LICENSE)
 
 ## Documentation
 - TODO: Architecture / Design Document
@@ -92,4 +92,4 @@ For questions, feedback, or support, please contact the project maintainer:
 [Github Project](https://github.com/users/Erarnitox/projects/1/views/1)
 
 ### Business Plan
-To get an idea of where we want to go with this project take a look at the [Business Plan](./res/business_plan.md)
+To get an idea of where we want to go with this project take a look at the [Business Plan](./doc/business_plan.md)

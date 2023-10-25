@@ -74,8 +74,7 @@ Here is an example:
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *  
- *  License: Proprietary and confidential
- *  Unauthorized copying of this file, via any medium is strictly prohibited
+ *  License: MIT License
  *
  *  Description: This class manages Database access 
  *  and provides a high level API for internal use
