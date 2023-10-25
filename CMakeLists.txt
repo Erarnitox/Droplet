@@ -5,10 +5,10 @@ include(cmake/CPM.cmake)
 
 set(CPP_STANDARD 20)
 
-project(cyber_drop 
+project(droplet 
 	VERSION 1.0
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
-	HOMEPAGE_URL "https://cyberdrop.dropsoft.org"
+	HOMEPAGE_URL "https://droplet.dropsoft.org"
 	LANGUAGES CXX	
 )
 
