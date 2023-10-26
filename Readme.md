@@ -1,3 +1,7 @@
+> [!WARNING]  
+> This repository is in an early WIP state! Don't expect everything to work yet!
+
+
 # Droplet - Discord Bot
 ---
 <img src="res/logo.png" width="20%" align="left"></img>
@@ -66,10 +70,15 @@ Before contributing, please review the Contributing Guidelines.
 
 [MIT License](./LICENSE)
 
-## Documentation
+## Architecture
+### Goal Architecure Sketch
 
-- TODO: Architecture / Design Document
-- TODO: Doxygen
+### Current Dependency Graph
+![dep_graph](doc/dep_graph.png)
+
+## Documentation
+HTML Documentation can be found int the [doc/doxygen/html](./doc/doxygen/html/) folder.
+- TODO: link documentation website
 
 ---
 

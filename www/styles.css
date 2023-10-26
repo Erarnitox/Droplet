@@ -8,22 +8,30 @@ body, h1, h2, p {
     text-align: center;
 }
 
+#feature-header {
+    margin-top: 3rem;
+}
+
+.spacer {
+    background-color: #0078d4;
+    height: 0.2rem;
+}
+
 /* Define overall page styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #111;
     line-height: 1.6;
-    color: #333;
+    color: #aaa;
     margin: 0;
     padding: 0;
 }
 
-header {
+header, nav {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 2rem;
-    margin-bottom: 3rem;
 }
 
 header h1 {
@@ -56,6 +64,7 @@ header h1 {
 
 /* Define button styles */
 .btn {
+    margin: 0.2rem;
     display: inline-block;
     padding: 0.5rem 1rem;
     background-color: #0078d4;
