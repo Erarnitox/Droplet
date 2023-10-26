@@ -94,7 +94,7 @@ For questions, feedback, or support, please contact the project maintainer:
 ## Screenshots
 
 #### Configurable Challenge Roles:
-![challenge_role](res/challenge_role.png)
+![challenge_role](doc/challenge_role.png)
 
 ---
 
