@@ -1,6 +1,6 @@
 > [!WARNING]  
 > This repository is in an early WIP state! Don't expect everything to work yet!
-
+> Everything in this repository unstable and due to change in the future!
 
 # Droplet - Discord Bot
 ---
@@ -61,7 +61,7 @@ If you have suggestions, bug reports, or feature requests, please open an issue 
 Before contributing, please review the Contributing Guidelines.
 
 ### Crontributing Guidelines
-- Your Code must adhere to out [Styleguide](./doc/styleguide.md)
+- Your Code must adhere to out [Styleguide](./docs/styleguide.md)
 - TODO: Definition of Done
 
 ---
@@ -72,13 +72,13 @@ Before contributing, please review the Contributing Guidelines.
 
 ## Architecture
 ### Goal Architecure Sketch
+![architecture](docs/architecture.png)
 
 ### Current Dependency Graph
-![dep_graph](doc/dep_graph.png)
+![dep_graph](docs/dep_graph.png)
 
 ## Documentation
-HTML Documentation can be found int the [doc/doxygen/html](./doc/doxygen/html/) folder.
-- TODO: link documentation website
+[Visit Documentation](https://droplet.erarnitox.de/doxygen/html/)
 
 ---
 
@@ -89,12 +89,16 @@ For questions, feedback, or support, please contact the project maintainer:
 - **Discord:** @erarnitox
 - **Email:** david@erarnitox.de
 
+You can also join my discord server below
+
+[![Discord](https://dcbadge.vercel.app/api/server/T3YvMPkZEd)](https://discord.dropsoft.org)
+
 ---
 
 ## Screenshots
 
 #### Configurable Challenge Roles:
-![challenge_role](doc/challenge_role.png)
+![challenge_role](docs/challenge_role.png)
 
 ---
 
@@ -102,4 +106,4 @@ For questions, feedback, or support, please contact the project maintainer:
 [Github Project](https://github.com/users/Erarnitox/projects/1/views/1)
 
 ### Business Plan
-To get an idea of where we want to go with this project take a look at the [Business Plan](./doc/business_plan.md)
+To get an idea of where we want to go with this project take a look at the [Business Plan](./docs/business_plan.md)
