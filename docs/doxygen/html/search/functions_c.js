@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['timedreply_0',['timedreply',['../classCore.html#a63b17470f8e69b2b2c86b7794f1983ab',1,'Core::timedReply(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void'],['../classCore.html#a46d30a76bf98a78b2454e2eaf980b0af',1,'Core::timedReply(dpp::cluster &amp;bot, const dpp::form_submit_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void']]],
-  ['timedreplytemplate_1',['timedReplyTemplate',['../Core_8cpp.html#af01429938703dc373a0817333ee83014',1,'Core.cpp']]]
+  ['set_5ftoken_0',['set_token',['../classBot.html#afa8a83812bb3b337d276b209d1260d18',1,'Bot']]],
+  ['start_5fbot_1',['start_bot',['../bot_8cpp.html#a16156ea46210ec8bca5367d6aced3b9a',1,'start_bot() -&gt; void:&#160;bot.cpp'],['../bot_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a',1,'start_bot() -&gt; void:&#160;bot.cpp']]]
 ];

@@ -21,5 +21,6 @@ var searchData=
   ['core_18',['Core',['../classCore.html',1,'']]],
   ['core_2ecpp_19',['Core.cpp',['../Core_8cpp.html',1,'']]],
   ['core_2ehpp_20',['Core.hpp',['../Core_8hpp.html',1,'']]],
-  ['create_21',['create',['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()']]]
+  ['create_21',['create',['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()']]],
+  ['create_5fslashcommand_22',['create_slashcommand',['../classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc',1,'IGlobalSlashCommand']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['welcome_5fmember_0',['welcome_member',['../classCommands_1_1CommandFunctionPointers.html#a31002ed1f32bac7e5ea16436defaf86e',1,'Commands::CommandFunctionPointers::welcome_member()'],['../namespaceCommands.html#a597a32b7505cf7d511fd4c65e69e5a67',1,'Commands::welcome_member']]],
-  ['welcomemember_1',['welcomemember',['../classChallengeRoleCommand.html#a21d5f03918bdcfd55e0e278ffbd57c84',1,'ChallengeRoleCommand::welcomeMember()'],['../classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d',1,'HelpCommand::welcomeMember()'],['../classSetChannelCommand.html#a67313994d2cd6ecd629f44e21f9c7781',1,'SetChannelCommand::welcomeMember()']]]
+  ['timedreply_0',['timedreply',['../classCore.html#a63b17470f8e69b2b2c86b7794f1983ab',1,'Core::timedReply(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void'],['../classCore.html#a46d30a76bf98a78b2454e2eaf980b0af',1,'Core::timedReply(dpp::cluster &amp;bot, const dpp::form_submit_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void']]],
+  ['timedreplytemplate_1',['timedReplyTemplate',['../Core_8cpp.html#af01429938703dc373a0817333ee83014',1,'Core.cpp']]]
 ];

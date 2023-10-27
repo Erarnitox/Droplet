@@ -7,13 +7,13 @@
 #include <string_view>
 #include <utility>
 
-static pqxx::connection *conn{nullptr};
+static pqxx::connection* conn{nullptr};
 
-auto Database::connect(const std::string &db_name,
-					   const std::string &user,
-					   const std::string &password,
-					   const std::string &host,
-					   const std::string &port) -> bool {
+auto Database::connect(const std::string& db_name,
+					   const std::string& user,
+					   const std::string& password,
+					   const std::string& host,
+					   const std::string& port) -> bool {
 	Database::disconnect();
 	conn = new pqxx::connection(
 		fmt::format("dbname={} user={} password={} hostaddr={} port={}", db_name, user, password, host, port));
@@ -21,7 +21,7 @@ auto Database::connect(const std::string &db_name,
 	return conn->is_open();
 }
 
-auto Database::connect(const std::string &connection_string) -> bool {
+auto Database::connect(const std::string& connection_string) -> bool {
 	Database::disconnect();
 	conn = new pqxx::connection(connection_string);
 	return conn->is_open();
@@ -33,7 +33,7 @@ auto Database::disconnect() noexcept -> void {
 	conn = nullptr;
 }
 
-auto Database::get_reaction_role_data(size_t message_id, const std::string &reaction_emoji) noexcept -> size_t {
+auto Database::get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept -> size_t {
 	static std::string sql_string{"SELECT role_id FROM reaction_roles WHERE message_id=$1 AND emoji=$2"};
 
 	try {
@@ -44,9 +44,9 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string &reac
 		pqxx::result result = txn.exec_params(sql_string, message_id, reaction_emoji);
 		txn.commit();
 
-		const auto &role_id{result.at(0, 0).get<size_t>()};
+		const auto& role_id{result.at(0, 0).get<size_t>()};
 		return role_id.value();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		return Database::get_reaction_role_data(message_id, reaction_emoji);
 	} catch (...) {
@@ -59,10 +59,10 @@ auto Database::get_reaction_role_data(size_t message_id, const std::string &reac
 	}
 }
 
-auto Database::insert_reaction_role_data(const std::string &role_id,
+auto Database::insert_reaction_role_data(const std::string& role_id,
 										 size_t guild_id,
-										 const std::string &message_id,
-										 const std::string &emoji) noexcept -> void {
+										 const std::string& message_id,
+										 const std::string& emoji) noexcept -> void {
 	static std::string sql_string{
 		"INSERT INTO reaction_roles(role_id, guild_id, message_id, emoji) VALUES "
 		"($1, $2, $3, $4)"};
@@ -78,7 +78,7 @@ auto Database::insert_reaction_role_data(const std::string &role_id,
 		pqxx::work txn(*conn);
 		pqxx::result result = txn.exec_params(sql_string, role_id, guild_id, message_id, emoji);
 		txn.commit();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		Database::insert_reaction_role_data(role_id, guild_id, message_id, emoji);
 	} catch (...) {
@@ -102,9 +102,9 @@ auto Database::get_welcome_channel_id(size_t guild_id) noexcept -> size_t {
 		pqxx::result result = txn.exec_params(sql_string, guild_id);
 		txn.commit();
 
-		const auto &channel_id{result.at(0, 0).get<size_t>()};
+		const auto& channel_id{result.at(0, 0).get<size_t>()};
 		return channel_id.value();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		return Database::get_welcome_channel_id(guild_id);
 	} catch (...) {
@@ -126,7 +126,7 @@ auto Database::insert_welcome_channel_id(size_t guild_id, size_t channel_id) noe
 		pqxx::work txn(*conn);
 		pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
 		txn.commit();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		Database::insert_welcome_channel_id(guild_id, channel_id);
 	} catch (...) {
@@ -149,9 +149,9 @@ auto Database::get_goodbye_channel_id(size_t guild_id) noexcept -> size_t {
 		pqxx::result result = txn.exec_params(sql_string, guild_id);
 		txn.commit();
 
-		const auto &channel_id{result.at(0, 0).get<size_t>()};
+		const auto& channel_id{result.at(0, 0).get<size_t>()};
 		return channel_id.value();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		return Database::get_goodbye_channel_id(guild_id);
 	} catch (...) {
@@ -173,7 +173,7 @@ auto Database::insert_goodbye_channel_id(size_t guild_id, size_t channel_id) noe
 		pqxx::work txn(*conn);
 		pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
 		txn.commit();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		Database::insert_goodbye_channel_id(guild_id, channel_id);
 	} catch (...) {
@@ -196,9 +196,9 @@ auto Database::get_log_channel_id(size_t guild_id) noexcept -> size_t {
 		pqxx::result result = txn.exec_params(sql_string, guild_id);
 		txn.commit();
 
-		const auto &channel_id{result.at(0, 0).get<size_t>()};
+		const auto& channel_id{result.at(0, 0).get<size_t>()};
 		return channel_id.value();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		return Database::get_log_channel_id(guild_id);
 	} catch (...) {
@@ -220,7 +220,7 @@ auto Database::insert_log_channel_id(size_t guild_id, size_t channel_id) noexcep
 		pqxx::work txn(*conn);
 		pqxx::result result = txn.exec_params(sql_string, guild_id, channel_id);
 		txn.commit();
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		Database::reconnect();
 		Database::insert_log_channel_id(guild_id, channel_id);
 	} catch (...) {
@@ -250,7 +250,7 @@ auto Database::reconnect() noexcept -> void {
 		}
 		if (connected)
 			times = 0;
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		if (times > 10) {
 			times = 0;
 			return;
@@ -261,7 +261,7 @@ auto Database::reconnect() noexcept -> void {
 	}
 }
 
-auto Database::getConnection() noexcept -> pqxx::connection * {
+auto Database::getConnection() noexcept -> pqxx::connection* {
 	if (!Database::hasConnection()) {
 		Database::reconnect();
 	}

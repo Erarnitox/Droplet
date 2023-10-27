@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: HelpCommand Class Reference</title>
+<title>droplet: HelpCommand Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -108,21 +108,21 @@ Collaboration diagram for HelpCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8dacaf79308485f41d92b95b30f968e8" id="r_a8dacaf79308485f41d92b95b30f968e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8">registerGlobalSlashCommand</a> (std::vector&lt; dpp::slashcommand &gt; &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">command_list</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a8dacaf79308485f41d92b95b30f968e8" id="r_a8dacaf79308485f41d92b95b30f968e8"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8">registerGlobalSlashCommand</a> (std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
 <tr class="separator:a8dacaf79308485f41d92b95b30f968e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a455f59a5790f3b46288b4182e9b387b3" id="r_a455f59a5790f3b46288b4182e9b387b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3">handleGlobalSlashCommand</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::slashcommand_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::vector&lt; dpp::slashcommand &gt; &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">command_list</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a455f59a5790f3b46288b4182e9b387b3" id="r_a455f59a5790f3b46288b4182e9b387b3"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3">handleGlobalSlashCommand</a> (const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot, const std::vector&lt; dpp::slashcommand &gt; &amp;command_list) noexcept -&gt; void</td></tr>
 <tr class="separator:a455f59a5790f3b46288b4182e9b387b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af961f4c6172202d24ab05b037c8983d5" id="r_af961f4c6172202d24ab05b037c8983d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5">handleButtonClicks</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::button_click_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:af961f4c6172202d24ab05b037c8983d5" id="r_af961f4c6172202d24ab05b037c8983d5"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5">handleButtonClicks</a> (const dpp::button_click_t &amp;event, dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
 <tr class="separator:af961f4c6172202d24ab05b037c8983d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63660dd5af94ed123758ee6bda355a7" id="r_af63660dd5af94ed123758ee6bda355a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7">handleFormSubmits</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::form_submit_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:af63660dd5af94ed123758ee6bda355a7" id="r_af63660dd5af94ed123758ee6bda355a7"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7">handleFormSubmits</a> (const dpp::form_submit_t &amp;event, dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
 <tr class="separator:af63660dd5af94ed123758ee6bda355a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3872649fef1e019cc8d101afddf3396d" id="r_a3872649fef1e019cc8d101afddf3396d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d">welcomeMember</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::guild_member_add_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a3872649fef1e019cc8d101afddf3396d" id="r_a3872649fef1e019cc8d101afddf3396d"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d">welcomeMember</a> (const dpp::guild_member_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
 <tr class="separator:a3872649fef1e019cc8d101afddf3396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008b7e19f92bbe2fdc4a2d150d0ade06" id="r_a008b7e19f92bbe2fdc4a2d150d0ade06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06">leaveMember</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::guild_member_remove_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a008b7e19f92bbe2fdc4a2d150d0ade06" id="r_a008b7e19f92bbe2fdc4a2d150d0ade06"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06">leaveMember</a> (const dpp::guild_member_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
 <tr class="separator:a008b7e19f92bbe2fdc4a2d150d0ade06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e5b9bdd91e31fdb4d4913a9cce6adfb" id="r_a8e5b9bdd91e31fdb4d4913a9cce6adfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb">handleReactionAdded</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_add_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a8e5b9bdd91e31fdb4d4913a9cce6adfb" id="r_a8e5b9bdd91e31fdb4d4913a9cce6adfb"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb">handleReactionAdded</a> (const dpp::message_reaction_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
 <tr class="separator:a8e5b9bdd91e31fdb4d4913a9cce6adfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65cdd4357c694d5f52f33e35ff980897" id="r_a65cdd4357c694d5f52f33e35ff980897"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">static</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897">handleReactionRemoved</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_remove_t &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">event</a>, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td></tr>
+<tr class="memitem:a65cdd4357c694d5f52f33e35ff980897" id="r_a65cdd4357c694d5f52f33e35ff980897"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897">handleReactionRemoved</a> (const dpp::message_reaction_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
 <tr class="separator:a65cdd4357c694d5f52f33e35ff980897"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -136,9 +136,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::handleButtonClicks </td>
+          <td class="memname">auto HelpCommand::handleButtonClicks </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::button_click_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::button_click_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -150,7 +150,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -172,9 +172,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::handleFormSubmits </td>
+          <td class="memname">auto HelpCommand::handleFormSubmits </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::form_submit_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::form_submit_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -186,7 +186,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -208,9 +208,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::handleGlobalSlashCommand </td>
+          <td class="memname">auto HelpCommand::handleGlobalSlashCommand </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::slashcommand_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::slashcommand_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -222,13 +222,13 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::vector&lt; dpp::slashcommand &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; dpp::slashcommand &gt; &amp;&#160;</td>
           <td class="paramname"><em>command_list</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -250,9 +250,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::handleReactionAdded </td>
+          <td class="memname">auto HelpCommand::handleReactionAdded </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_add_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::message_reaction_add_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -264,7 +264,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -286,9 +286,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::handleReactionRemoved </td>
+          <td class="memname">auto HelpCommand::handleReactionRemoved </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_remove_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::message_reaction_remove_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -300,7 +300,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -322,9 +322,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::leaveMember </td>
+          <td class="memname">auto HelpCommand::leaveMember </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::guild_member_remove_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::guild_member_remove_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -336,7 +336,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -358,7 +358,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::registerGlobalSlashCommand </td>
+          <td class="memname">auto HelpCommand::registerGlobalSlashCommand </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; dpp::slashcommand &gt; &amp;&#160;</td>
           <td class="paramname"><em>command_list</em>, </td>
@@ -366,13 +366,13 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::cluster &amp;&#160;</td>
+          <td class="paramtype">const dpp::cluster &amp;&#160;</td>
           <td class="paramname"><em>bot</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
@@ -394,9 +394,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> HelpCommand::welcomeMember </td>
+          <td class="memname">auto HelpCommand::welcomeMember </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::guild_member_add_t &amp;&#160;</td>
+          <td class="paramtype">const dpp::guild_member_add_t &amp;&#160;</td>
           <td class="paramname"><em>event</em>, </td>
         </tr>
         <tr>
@@ -408,7 +408,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>

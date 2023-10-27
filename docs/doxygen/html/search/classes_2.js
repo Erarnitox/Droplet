@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['helpcommand_0',['HelpCommand',['../classHelpCommand.html',1,'']]]
+  ['database_0',['Database',['../classDatabase.html',1,'']]]
 ];

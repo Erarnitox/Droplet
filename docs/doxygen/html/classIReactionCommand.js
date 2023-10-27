@@ -1,5 +1,5 @@
 var classIReactionCommand =
 [
-    [ "handle_reaction_added", "classIReactionCommand.html#aa9da2b905c7b1ca312fa9f13edb8d17a", null ],
-    [ "handle_reaction_removed", "classIReactionCommand.html#a15b8359f655432a15f5da8294dc607a3", null ]
+    [ "on_message_reaction_add", "classIReactionCommand.html#a395b33ee5b022d883c6e6993351079ed", null ],
+    [ "on_message_reaction_remove", "classIReactionCommand.html#a919746d4ced88bbf21e26d5bc3be6d30", null ]
 ];

@@ -6,8 +6,8 @@
 #include <Core.hpp>
 #include <variant>
 
-auto SetChannelCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list,
-												   const dpp::cluster &bot) noexcept -> void {
+auto SetChannelCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand>& command_list,
+												   const dpp::cluster& bot) noexcept -> void {
 	dpp::slashcommand channel_command("set_channel", "Configure channels for bot events (Admin only!)", bot.me.id);
 	channel_command.add_option(
 		dpp::command_option(dpp::co_string, "type", "For what should this channel be used?", true)
@@ -18,9 +18,9 @@ auto SetChannelCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand
 	command_list.push_back(channel_command);
 }
 
-auto SetChannelCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &event,
-												 dpp::cluster &bot,
-												 const std::vector<dpp::slashcommand> &command_list) noexcept -> void {
+auto SetChannelCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event,
+												 dpp::cluster& bot,
+												 const std::vector<dpp::slashcommand>& command_list) noexcept -> void {
 	// unneeded arguments:
 	(void)bot;
 	(void)command_list;
@@ -49,35 +49,35 @@ auto SetChannelCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &even
 	}
 }
 
-auto SetChannelCommand::handleButtonClicks(const dpp::button_click_t &event, dpp::cluster &bot) noexcept -> void {
+auto SetChannelCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
 	(void)event;
 	(void)bot;
 }
 
-auto SetChannelCommand::handleFormSubmits(const dpp::form_submit_t &event, dpp::cluster &bot) noexcept -> void {
+auto SetChannelCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
 	(void)event;
 	(void)bot;
 }
 
 // user management
-auto SetChannelCommand::welcomeMember(const dpp::guild_member_add_t &event, dpp::cluster &bot) -> void {
+auto SetChannelCommand::welcomeMember(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 };
 
-auto SetChannelCommand::leaveMember(const dpp::guild_member_remove_t &event, dpp::cluster &bot) -> void {
+auto SetChannelCommand::leaveMember(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 }
 
 // handle added reactions
-auto SetChannelCommand::handleReactionAdded(const dpp::message_reaction_add_t &event, dpp::cluster &bot) -> void {
+auto SetChannelCommand::handleReactionAdded(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 }
 
 // handle removed reactions
-auto SetChannelCommand::handleReactionRemoved(const dpp::message_reaction_remove_t &event, dpp::cluster &bot) -> void {
+auto SetChannelCommand::handleReactionRemoved(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 }

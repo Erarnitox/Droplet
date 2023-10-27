@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: IReactionCommand Class Reference</title>
+<title>droplet: IReactionCommand Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -103,19 +103,19 @@ $(document).ready(function(){initNavTree('classIReactionCommand.html',''); initR
 <div class="dynheader">
 Collaboration diagram for IReactionCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classIReactionCommand__coll__graph.svg" width="191" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classIReactionCommand__coll__graph.svg" width="162" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa9da2b905c7b1ca312fa9f13edb8d17a" id="r_aa9da2b905c7b1ca312fa9f13edb8d17a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">virtual</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#aa9da2b905c7b1ca312fa9f13edb8d17a">handle_reaction_added</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_add_t &amp;, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a>=0</td></tr>
-<tr class="separator:aa9da2b905c7b1ca312fa9f13edb8d17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15b8359f655432a15f5da8294dc607a3" id="r_a15b8359f655432a15f5da8294dc607a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">virtual</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a15b8359f655432a15f5da8294dc607a3">handle_reaction_removed</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_remove_t &amp;, dpp::cluster &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bot</a>) -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a>=0</td></tr>
-<tr class="separator:a15b8359f655432a15f5da8294dc607a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a395b33ee5b022d883c6e6993351079ed" id="r_a395b33ee5b022d883c6e6993351079ed"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a395b33ee5b022d883c6e6993351079ed">on_message_reaction_add</a> (const dpp::message_reaction_add_t &amp;event) -&gt; void=0</td></tr>
+<tr class="separator:a395b33ee5b022d883c6e6993351079ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919746d4ced88bbf21e26d5bc3be6d30" id="r_a919746d4ced88bbf21e26d5bc3be6d30"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a919746d4ced88bbf21e26d5bc3be6d30">on_message_reaction_remove</a> (const dpp::message_reaction_remove_t &amp;event) -&gt; void=0</td></tr>
+<tr class="separator:a919746d4ced88bbf21e26d5bc3be6d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa9da2b905c7b1ca312fa9f13edb8d17a" name="aa9da2b905c7b1ca312fa9f13edb8d17a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9da2b905c7b1ca312fa9f13edb8d17a">&#9670;&#160;</a></span>handle_reaction_added()</h2>
+<a id="a395b33ee5b022d883c6e6993351079ed" name="a395b33ee5b022d883c6e6993351079ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a395b33ee5b022d883c6e6993351079ed">&#9670;&#160;</a></span>on_message_reaction_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,21 +124,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">virtual</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> IReactionCommand::handle_reaction_added </td>
+          <td class="memname">virtual auto IReactionCommand::on_message_reaction_add </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_add_t &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td class="paramtype">const dpp::message_reaction_add_t &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td> -&gt;  void</td>
         </tr>
       </table>
   </td>
@@ -150,8 +140,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a15b8359f655432a15f5da8294dc607a3" name="a15b8359f655432a15f5da8294dc607a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a15b8359f655432a15f5da8294dc607a3">&#9670;&#160;</a></span>handle_reaction_removed()</h2>
+<a id="a919746d4ced88bbf21e26d5bc3be6d30" name="a919746d4ced88bbf21e26d5bc3be6d30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919746d4ced88bbf21e26d5bc3be6d30">&#9670;&#160;</a></span>on_message_reaction_remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,21 +150,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">virtual</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> IReactionCommand::handle_reaction_removed </td>
+          <td class="memname">virtual auto IReactionCommand::on_message_reaction_remove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> dpp::message_reaction_remove_t &amp;&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt;  <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a></td>
+          <td class="paramtype">const dpp::message_reaction_remove_t &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td> -&gt;  void</td>
         </tr>
       </table>
   </td>

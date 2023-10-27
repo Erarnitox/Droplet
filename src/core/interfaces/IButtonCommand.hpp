@@ -5,5 +5,5 @@
 
 class IButtonCommand {
   public:
-	virtual auto on_button_click(const dpp::button_click_t &event) -> void = 0;
+	virtual auto on_button_click(const dpp::button_click_t& event) -> void = 0;
 };

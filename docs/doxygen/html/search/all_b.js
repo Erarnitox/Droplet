@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['privatetimedreply_0',['privatetimedreply',['../classCore.html#a3c8f756d8b169292383bbfece14526b1',1,'Core::privateTimedReply(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void'],['../classCore.html#a536debbeb47fb7e1d9ce1afa10371414',1,'Core::privateTimedReply(dpp::cluster &amp;bot, const dpp::form_submit_t event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void']]],
-  ['privatetimedreplytemplate_1',['privateTimedReplyTemplate',['../Core_8cpp.html#a5e240422b4e14ef5800b6b84f4850e9d',1,'Core.cpp']]]
+  ['main_0',['main',['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main.cpp']]],
+  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['member_5fcommands_5ft_2',['member_commands_t',['../Bot_8hpp.html#aa51eb00e20afd5aa0a857e03397a29a1',1,'Bot.hpp']]],
+  ['message_5fcommands_5ft_3',['message_commands_t',['../Bot_8hpp.html#ad0cfcf7c8ffd1e0a8de070803ede416b',1,'Bot.hpp']]],
+  ['messageid_4',['messageId',['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO']]]
 ];

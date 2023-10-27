@@ -14,27 +14,27 @@ class Database {
   public:
 	Database() = delete;
 
-	[[nodiscard]] static auto connect(const std::string &db_name,
-									  const std::string &user,
-									  const std::string &password,
-									  const std::string &host,
-									  const std::string &port) -> bool;
+	[[nodiscard]] static auto connect(const std::string& db_name,
+									  const std::string& user,
+									  const std::string& password,
+									  const std::string& host,
+									  const std::string& port) -> bool;
 
-	[[nodiscard]] static auto connect(const std::string &connection_string) -> bool;
+	[[nodiscard]] static auto connect(const std::string& connection_string) -> bool;
 
 	static auto hasConnection() noexcept -> bool;
 	static auto reconnect() noexcept -> void;
 	static auto disconnect() noexcept -> void;
-	static auto getConnection() noexcept -> pqxx::connection *;
+	static auto getConnection() noexcept -> pqxx::connection*;
 
 	// TODO: to be removed
-	[[nodiscard]] static auto get_reaction_role_data(size_t message_id, const std::string &reaction_emoji) noexcept
+	[[nodiscard]] static auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept
 		-> size_t;
 
-	static auto insert_reaction_role_data(const std::string &role_id,
+	static auto insert_reaction_role_data(const std::string& role_id,
 										  size_t guild_id,
-										  const std::string &message_id,
-										  const std::string &emoji) noexcept -> void;
+										  const std::string& message_id,
+										  const std::string& emoji) noexcept -> void;
 
 	// TODO: to be removed
 	[[nodiscard]] static auto get_welcome_channel_id(size_t guild_id) noexcept -> size_t;
@@ -53,7 +53,7 @@ namespace database {
 
 // Compile time "for" loop
 template <size_t I = 0, typename... Types>
-constexpr void assignResults(const pqxx::result &result, std::vector<std::variant<Types...>> &args) {
+constexpr void assignResults(const pqxx::result& result, std::vector<std::variant<Types...>>& args) {
 	if constexpr (I < sizeof...(Types)) {
 		args[I] = result.at(0, I).template get<std::variant_alternative_t<I, std::variant<Types...>>>().value();
 		assignResults<I + 1>(result, args);
@@ -61,8 +61,8 @@ constexpr void assignResults(const pqxx::result &result, std::vector<std::varian
 }
 
 template <typename... Types>
-[[nodiscard("You need to check if the Query was executed on the Database!")]] auto execQuery(const std::string &query,
-																							 Types &&...args) noexcept
+[[nodiscard("You need to check if the Query was executed on the Database!")]] auto execQuery(const std::string& query,
+																							 Types&&... args) noexcept
 	-> bool {
 	static int times = 0;
 	try {
@@ -74,7 +74,7 @@ template <typename... Types>
 
 		times = 0;
 		return true;
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		++times;
 		if (times > 10) {
 			times = 0;
@@ -88,7 +88,7 @@ template <typename... Types>
 }
 
 template <typename... Types>
-[[nodiscard]] auto execSelect(const std::string &query, Types &&...args) noexcept -> RowDTOAdapter {
+[[nodiscard]] auto execSelect(const std::string& query, Types&&... args) noexcept -> RowDTOAdapter {
 	static int times = 0;
 	try {
 		pqxx::work txn(*Database::getConnection());
@@ -100,7 +100,7 @@ template <typename... Types>
 		times = 0;
 
 		return {result[0]};
-	} catch (const pqxx::broken_connection &e) {
+	} catch (const pqxx::broken_connection& e) {
 		++times;
 		if (times > 10) {
 			times = 0;

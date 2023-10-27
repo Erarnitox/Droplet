@@ -32,7 +32,7 @@ auto start_bot() -> void {
 	auto log_out{
 		fmt::output_file("droplet.log", fmt::file::WRONLY | fmt::file::CREATE | fmt::file::APPEND | fmt::file::TRUNC)};
 
-	bot.on_log([&log_out, &err_log_out](const dpp::log_t &event) {
+	bot.on_log([&log_out, &err_log_out](const dpp::log_t& event) {
 		if (event.severity == dpp::ll_trace) {
 			fmt::print(
 				fg(fmt::color::green), "[TRACE]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
@@ -93,7 +93,7 @@ auto start_bot() -> void {
 	register_global_slash_commands(global_command_list, bot);
 
 	// register slash commands
-	bot.on_ready([&bot, &global_command_list](const dpp::ready_t &event) -> void {
+	bot.on_ready([&bot, &global_command_list](const dpp::ready_t& event) -> void {
 		bot.set_presence(dpp::presence(dpp::ps_online, dpp::at_custom, "https://droplet.erarnitox.de"));
 
 		try {
@@ -111,7 +111,7 @@ auto start_bot() -> void {
 	});
 
 	// handle slash commands
-	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t &event) -> void {
+	bot.on_slashcommand([&bot, &global_command_list](const dpp::slashcommand_t& event) -> void {
 		try {
 			handle_global_slash_commands(event, bot, global_command_list);
 		} catch (...) {
@@ -124,7 +124,7 @@ auto start_bot() -> void {
 	});
 
 	// when a member joins the guild
-	bot.on_guild_member_add([&bot](const dpp::guild_member_add_t &event) -> void {
+	bot.on_guild_member_add([&bot](const dpp::guild_member_add_t& event) -> void {
 		bot.log(
 			dpp::ll_info,
 			fmt::format("A new member: {} joined the guild: {}", event.added.get_nickname(), event.adding_guild->name));
@@ -132,13 +132,13 @@ auto start_bot() -> void {
 	});
 
 	// when a member leaves the guild
-	bot.on_guild_member_remove([&bot](const dpp::guild_member_remove_t &event) -> void {
+	bot.on_guild_member_remove([&bot](const dpp::guild_member_remove_t& event) -> void {
 		bot.log(dpp::ll_info, fmt::format("{} left the guild {}", event.removed.username, event.removing_guild->name));
 		leave_member(event, bot);
 	});
 
 	// handle button clicks
-	bot.on_button_click([&bot](const dpp::button_click_t &event) -> void {
+	bot.on_button_click([&bot](const dpp::button_click_t& event) -> void {
 		try {
 			handle_button_clicks(event, bot);
 		} catch (...) {
@@ -148,7 +148,7 @@ auto start_bot() -> void {
 	});
 
 	// handle form submits
-	bot.on_form_submit([&bot](const dpp::form_submit_t &event) -> void {
+	bot.on_form_submit([&bot](const dpp::form_submit_t& event) -> void {
 		try {
 			handle_form_submits(event, bot);
 			bot.log(dpp::loglevel::ll_info,
@@ -165,7 +165,7 @@ auto start_bot() -> void {
 	});
 
 	// handle added reactions
-	bot.on_message_reaction_add([&bot](const dpp::message_reaction_add_t &event) -> void {
+	bot.on_message_reaction_add([&bot](const dpp::message_reaction_add_t& event) -> void {
 		try {
 			handle_reaction_added(event, bot);
 		} catch (...) {
@@ -174,7 +174,7 @@ auto start_bot() -> void {
 	});
 
 	// handle remove reactions
-	bot.on_message_reaction_remove([&bot](const dpp::message_reaction_remove_t &event) -> void {
+	bot.on_message_reaction_remove([&bot](const dpp::message_reaction_remove_t& event) -> void {
 		try {
 			handle_reaction_removed(event, bot);
 		} catch (...) {
@@ -190,7 +190,7 @@ auto start_bot() -> void {
 //////////////////////////////////////////////////////////////////////////////
 // READ BOT TOKEN FROM FILE
 //////////////////////////////////////////////////////////////////////////////
-auto read_bot_token(const std::string &file) -> std::string {
+auto read_bot_token(const std::string& file) -> std::string {
 	std::ifstream file_stream(file);
 	std::string bot_token;
 
@@ -212,7 +212,7 @@ auto read_bot_token(const std::string &file) -> std::string {
 //////////////////////////////////////////////////////////////////////////////
 // READ DATABASE CREDENTIALS FROM FILE
 //////////////////////////////////////////////////////////////////////////////
-auto read_database_credentials(const std::string &file) -> std::string {
+auto read_database_credentials(const std::string& file) -> std::string {
 	std::ifstream file_stream(file);
 	std::string connection_string;
 
@@ -231,7 +231,7 @@ auto read_database_credentials(const std::string &file) -> std::string {
 //////////////////////////////////////////////////////////////////////////////
 // RGISTER ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto register_global_slash_commands(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot)
+static inline auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot)
 	-> void {
 	// user commands
 	resource_man::register_global_slash_commands(command_list, bot);
@@ -249,9 +249,9 @@ static inline auto register_global_slash_commands(std::vector<dpp::slashcommand>
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event,
-												dpp::cluster &bot,
-												const std::vector<dpp::slashcommand> &command_list) -> void {
+static inline auto handle_global_slash_commands(const dpp::slashcommand_t& event,
+												dpp::cluster& bot,
+												const std::vector<dpp::slashcommand>& command_list) -> void {
 	// user commands
 	resource_man::handle_global_slash_commands(event, bot);
 	user_man::handle_global_slash_commands(event, bot);
@@ -268,7 +268,7 @@ static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ALL GLOBAL SLASH COMMANDS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto handle_button_clicks(const dpp::button_click_t &event, dpp::cluster &bot) -> void {
+static inline auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -> void {
 	for (auto commandFp : Commands::CommandFunctionPointers::handle_button_clicks()) {
 		Commands::call_handle_button_clicks(commandFp, event, bot);
 	}
@@ -277,7 +277,7 @@ static inline auto handle_button_clicks(const dpp::button_click_t &event, dpp::c
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE FORM SUBMITS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto handle_form_submits(const dpp::form_submit_t &event, dpp::cluster &bot) -> void {
+static inline auto handle_form_submits(const dpp::form_submit_t& event, dpp::cluster& bot) -> void {
 	for (auto commandFp : Commands::CommandFunctionPointers::handle_form_submits()) {
 		Commands::call_handle_form_submits(commandFp, event, bot);
 	}
@@ -286,7 +286,7 @@ static inline auto handle_form_submits(const dpp::form_submit_t &event, dpp::clu
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE ADDED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto handle_reaction_added(const dpp::message_reaction_add_t &event, dpp::cluster &bot) -> void {
+static inline auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
 	roles::handle_reaction_added(event, bot);
 
 	// new dynamic way:
@@ -298,7 +298,7 @@ static inline auto handle_reaction_added(const dpp::message_reaction_add_t &even
 //////////////////////////////////////////////////////////////////////////////
 // HANDLE REMOVED REACTIONS
 //////////////////////////////////////////////////////////////////////////////
-static inline auto handle_reaction_removed(const dpp::message_reaction_remove_t &event, dpp::cluster &bot) -> void {
+static inline auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) -> void {
 	roles::handle_reaction_removed(event, bot);
 
 	for (auto commandFp : Commands::CommandFunctionPointers::handle_reaction_removed()) {
@@ -309,7 +309,7 @@ static inline auto handle_reaction_removed(const dpp::message_reaction_remove_t 
 //////////////////////////////////////////////////////////////////////////////
 // WELCOME NEW MEMBERS TO A GUILD
 //////////////////////////////////////////////////////////////////////////////
-static inline auto welcome_member(const dpp::guild_member_add_t &event, dpp::cluster &bot) -> void {
+static inline auto welcome_member(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
 	user_man::welcome_member(event, bot);
 
 	// new dynamic way:
@@ -321,7 +321,7 @@ static inline auto welcome_member(const dpp::guild_member_add_t &event, dpp::clu
 //////////////////////////////////////////////////////////////////////////////
 // REMOVE MEMBERS FROM A GUILD
 //////////////////////////////////////////////////////////////////////////////
-static inline auto leave_member(const dpp::guild_member_remove_t &event, dpp::cluster &bot) -> void {
+static inline auto leave_member(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
 	user_man::leave_member(event, bot);
 
 	// new dynamic way:

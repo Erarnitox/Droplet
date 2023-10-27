@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: database Namespace Reference</title>
+<title>droplet: database Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -101,14 +101,14 @@ $(document).ready(function(){initNavTree('namespacedatabase.html',''); initResiz
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7cc2e252117384b0bd7387924e990610" id="r_a7cc2e252117384b0bd7387924e990610"><td class="memTemplParams" colspan="2">template&lt;size_t I = 0, typename... Types&gt; </td></tr>
-<tr class="memitem:a7cc2e252117384b0bd7387924e990610"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">constexpr</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">assignResults</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> pqxx::result &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">result</a>, std::vector&lt; std::variant&lt; Types... &gt; &gt; &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>)</td></tr>
+<tr class="memitem:a7cc2e252117384b0bd7387924e990610"><td class="memTemplItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">assignResults</a> (const pqxx::result &amp;result, std::vector&lt; std::variant&lt; Types... &gt; &gt; &amp;args)</td></tr>
 <tr class="separator:a7cc2e252117384b0bd7387924e990610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a089dff8c552881f1834af8709470eb8f" id="r_a089dff8c552881f1834af8709470eb8f"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
-<tr class="memitem:a089dff8c552881f1834af8709470eb8f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a089dff8c552881f1834af8709470eb8f">execQuery</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">query</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bool</a></td></tr>
-<tr class="separator:a089dff8c552881f1834af8709470eb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f3883d34511d5469073805b286275fc" id="r_a3f3883d34511d5469073805b286275fc"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
-<tr class="memitem:a3f3883d34511d5469073805b286275fc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a3f3883d34511d5469073805b286275fc">execSelect</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">query</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a></td></tr>
-<tr class="separator:a3f3883d34511d5469073805b286275fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad776af9117dfcb99ba717f690faf0829" id="r_ad776af9117dfcb99ba717f690faf0829"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
+<tr class="memitem:ad776af9117dfcb99ba717f690faf0829"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829">execQuery</a> (<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">bool</a></td></tr>
+<tr class="separator:ad776af9117dfcb99ba717f690faf0829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9164716114c2db8c230823084c959f" id="r_a0e9164716114c2db8c230823084c959f"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
+<tr class="memitem:a0e9164716114c2db8c230823084c959f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a0e9164716114c2db8c230823084c959f">execSelect</a> (<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a></td></tr>
+<tr class="separator:a0e9164716114c2db8c230823084c959f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a7cc2e252117384b0bd7387924e990610" name="a7cc2e252117384b0bd7387924e990610"></a>
@@ -123,9 +123,9 @@ template&lt;size_t I = 0, typename... Types&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">constexpr</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a> database::assignResults </td>
+          <td class="memname">constexpr void database::assignResults </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> pqxx::result &amp;&#160;</td>
+          <td class="paramtype">const pqxx::result &amp;&#160;</td>
           <td class="paramname"><em>result</em>, </td>
         </tr>
         <tr>
@@ -149,8 +149,8 @@ template&lt;size_t I = 0, typename... Types&gt; </div>
 
 </div>
 </div>
-<a id="a089dff8c552881f1834af8709470eb8f" name="a089dff8c552881f1834af8709470eb8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a089dff8c552881f1834af8709470eb8f">&#9670;&#160;</a></span>execQuery()</h2>
+<a id="ad776af9117dfcb99ba717f690faf0829" name="ad776af9117dfcb99ba717f690faf0829"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad776af9117dfcb99ba717f690faf0829">&#9670;&#160;</a></span>execQuery()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,21 +161,21 @@ template&lt;typename... Types&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> database::execQuery </td>
+          <td class="memname"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a> database::execQuery </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;&#160;</td>
           <td class="paramname"><em>query</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;...&#160;</td>
           <td class="paramname"><em>args</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bool</a> </td>
+          <td></td><td> -&gt; <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">bool</a> </td>
         </tr>
       </table>
   </td>
@@ -187,8 +187,8 @@ template&lt;typename... Types&gt; </div>
 
 </div>
 </div>
-<a id="a3f3883d34511d5469073805b286275fc" name="a3f3883d34511d5469073805b286275fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f3883d34511d5469073805b286275fc">&#9670;&#160;</a></span>execSelect()</h2>
+<a id="a0e9164716114c2db8c230823084c959f" name="a0e9164716114c2db8c230823084c959f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e9164716114c2db8c230823084c959f">&#9670;&#160;</a></span>execSelect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,15 +199,15 @@ template&lt;typename... Types&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a> database::execSelect </td>
+          <td class="memname"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a> database::execSelect </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;&#160;</td>
           <td class="paramname"><em>query</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;...&#160;</td>
           <td class="paramname"><em>args</em>&#160;</td>
         </tr>
         <tr>

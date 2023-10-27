@@ -8,11 +8,11 @@ class RowDTOAdapter {
 	const pqxx::row row_;
 
   public:
-	RowDTOAdapter(const pqxx::row &row) : row_(row) {
+	RowDTOAdapter(const pqxx::row& row) : row_(row) {
 	}
 
 	template <typename T>
-	auto get(const std::string &fieldName) const -> T {
+	auto get(const std::string& fieldName) const -> T {
 		try {
 			return this->row_[fieldName].as<T>();
 		} catch (...) {

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: src/commands/help/HelpCommand.hpp Source File</title>
+<title>droplet: src/commands/help/HelpCommand.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -114,25 +114,25 @@ $(document).ready(function(){initNavTree('HelpCommand_8hpp_source.html',''); ini
 <div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classHelpCommand.html">   12</a></span><span class="keyword">class </span><a class="code hl_class" href="classHelpCommand.html">HelpCommand</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8">registerGlobalSlashCommand</a>(std::vector&lt;dpp::slashcommand&gt; &amp;command_list,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                                           <span class="keyword">const</span> dpp::cluster &amp;bot) <span class="keyword">noexcept</span> -&gt; void;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8">registerGlobalSlashCommand</a>(std::vector&lt;dpp::slashcommand&gt;&amp; command_list,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                                           <span class="keyword">const</span> dpp::cluster&amp; bot) <span class="keyword">noexcept</span> -&gt; void;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3">handleGlobalSlashCommand</a>(<span class="keyword">const</span> dpp::slashcommand_t &amp;event,</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                                         dpp::cluster &amp;bot,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                                         <span class="keyword">const</span> std::vector&lt;dpp::slashcommand&gt; &amp;command_list) <span class="keyword">noexcept</span> -&gt; void;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3">handleGlobalSlashCommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event,</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                                         dpp::cluster&amp; bot,</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                                         <span class="keyword">const</span> std::vector&lt;dpp::slashcommand&gt;&amp; command_list) <span class="keyword">noexcept</span> -&gt; void;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5">handleButtonClicks</a>(<span class="keyword">const</span> dpp::button_click_t &amp;event, dpp::cluster &amp;bot) <span class="keyword">noexcept</span> -&gt; void;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5">handleButtonClicks</a>(<span class="keyword">const</span> dpp::button_click_t&amp; event, dpp::cluster&amp; bot) <span class="keyword">noexcept</span> -&gt; void;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7">handleFormSubmits</a>(<span class="keyword">const</span> dpp::form_submit_t &amp;event, dpp::cluster &amp;bot) <span class="keyword">noexcept</span> -&gt; void;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7">handleFormSubmits</a>(<span class="keyword">const</span> dpp::form_submit_t&amp; event, dpp::cluster&amp; bot) <span class="keyword">noexcept</span> -&gt; void;</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// user management</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d">welcomeMember</a>(<span class="keyword">const</span> dpp::guild_member_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d">welcomeMember</a>(<span class="keyword">const</span> dpp::guild_member_add_t&amp; event, dpp::cluster&amp; bot) -&gt; void;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06">leaveMember</a>(<span class="keyword">const</span> dpp::guild_member_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06">leaveMember</a>(<span class="keyword">const</span> dpp::guild_member_remove_t&amp; event, dpp::cluster&amp; bot) -&gt; void;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb">handleReactionAdded</a>(<span class="keyword">const</span> dpp::message_reaction_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb">handleReactionAdded</a>(<span class="keyword">const</span> dpp::message_reaction_add_t&amp; event, dpp::cluster&amp; bot) -&gt; void;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897">handleReactionRemoved</a>(<span class="keyword">const</span> dpp::message_reaction_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">static</span> <span class="keyword">auto</span> <a class="code hl_function" href="classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897">handleReactionRemoved</a>(<span class="keyword">const</span> dpp::message_reaction_remove_t&amp; event, dpp::cluster&amp; bot) -&gt; void;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>};</div>
 </div>
 <div class="ttc" id="aclassHelpCommand_html"><div class="ttname"><a href="classHelpCommand.html">HelpCommand</a></div><div class="ttdef"><b>Definition</b> HelpCommand.hpp:12</div></div>

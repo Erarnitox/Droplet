@@ -12,8 +12,8 @@
 #include <string>
 
 namespace roles {
-static inline auto register_global_slash_commands(std::vector<dpp::slashcommand> &command_list,
-												  const dpp::cluster &bot) noexcept -> void {
+static inline auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list,
+												  const dpp::cluster& bot) noexcept -> void {
 	// Reaction Role
 	dpp::slashcommand reaction_role("reaction_role", "Create reaction Roles (Admin only!)", bot.me.id);
 
@@ -28,7 +28,7 @@ static inline auto register_global_slash_commands(std::vector<dpp::slashcommand>
 	command_list.push_back(reaction_role);
 }
 
-static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event, dpp::cluster &bot) noexcept -> void {
+static inline auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) noexcept -> void {
 	if (event.command.get_command_name() == "reaction_role") {
 		if (!Core::isAdmin(event.command.member)) {
 			event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
@@ -84,7 +84,7 @@ static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event
 		// get message id from the link
 		size_t end_pos{message_link.size()};
 		size_t start_pos{slashes.back() + 1};
-		const auto &message_id{message_link.substr(start_pos, end_pos)};
+		const auto& message_id{message_link.substr(start_pos, end_pos)};
 		//--------------------------------------------------
 
 		//--------------------------------------------------
@@ -92,7 +92,7 @@ static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event
 		slashes.pop_back();
 		end_pos = (start_pos - 2) - slashes.back();
 		start_pos = slashes.back() + 1;
-		const auto &channel_id{message_link.substr(start_pos, end_pos)};
+		const auto& channel_id{message_link.substr(start_pos, end_pos)};
 		//--------------------------------------------------
 
 		// Insert Reaction Role into Database
@@ -109,7 +109,7 @@ static inline auto handle_global_slash_commands(const dpp::slashcommand_t &event
 	}
 }
 
-static inline auto handle_reaction_added(const dpp::message_reaction_add_t &event, dpp::cluster &bot) noexcept -> void {
+static inline auto handle_reaction_added(const dpp::message_reaction_add_t& event, dpp::cluster& bot) noexcept -> void {
 	const auto message_id{event.message_id};
 	if (!message_id)
 		return;
@@ -134,7 +134,7 @@ static inline auto handle_reaction_added(const dpp::message_reaction_add_t &even
 	bot.guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
 }
 
-static inline auto handle_reaction_removed(const dpp::message_reaction_remove_t &event, dpp::cluster &bot) noexcept
+static inline auto handle_reaction_removed(const dpp::message_reaction_remove_t& event, dpp::cluster& bot) noexcept
 	-> void {
 	const auto message_id{event.message_id};
 	if (!message_id)

@@ -14,33 +14,33 @@
 
 class Core {
   public:
-	static auto isAdmin(const dpp::guild_member &member) noexcept -> bool;
+	static auto isAdmin(const dpp::guild_member& member) noexcept -> bool;
 
-	static auto getRoleId(const std::string &mention) noexcept -> std::string;
+	static auto getRoleId(const std::string& mention) noexcept -> std::string;
 
-	static auto getChannelId(const std::string &mention) noexcept -> std::string;
+	static auto getChannelId(const std::string& mention) noexcept -> std::string;
 
-	static auto timedReply(dpp::cluster &bot,
+	static auto timedReply(dpp::cluster& bot,
 						   const dpp::slashcommand_t event,
-						   const std::string &message,
+						   const std::string& message,
 						   size_t time_mills) noexcept -> void;
 
-	static auto timedReply(dpp::cluster &bot,
+	static auto timedReply(dpp::cluster& bot,
 						   const dpp::form_submit_t event,
-						   const std::string &message,
+						   const std::string& message,
 						   size_t time_mills) noexcept -> void;
 
-	static auto privateTimedReply(dpp::cluster &bot,
+	static auto privateTimedReply(dpp::cluster& bot,
 								  const dpp::slashcommand_t event,
-								  const std::string &message,
+								  const std::string& message,
 								  size_t time_mills) noexcept -> void;
 
-	static auto privateTimedReply(dpp::cluster &bot,
+	static auto privateTimedReply(dpp::cluster& bot,
 								  const dpp::form_submit_t event,
-								  const std::string &message,
+								  const std::string& message,
 								  size_t time_mills) noexcept -> void;
 
-	[[nodiscard]] static auto getParameter(dpp::cluster &bot,
+	[[nodiscard]] static auto getParameter(dpp::cluster& bot,
 										   const dpp::slashcommand_t event,
-										   const std::string &name) noexcept -> std::string;
+										   const std::string& name) noexcept -> std::string;
 };

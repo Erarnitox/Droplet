@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['welcome_5fmember_0',['welcome_member',['../namespaceCommands.html#a597a32b7505cf7d511fd4c65e69e5a67',1,'Commands']]]
+  ['leave_5fmember_0',['leave_member',['../namespaceCommands.html#a9e0daea3a5bedc263f50f1f2e968b576',1,'Commands']]]
 ];

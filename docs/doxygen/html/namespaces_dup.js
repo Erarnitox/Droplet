@@ -6,8 +6,8 @@ var namespaces_dup =
     [ "Commands", "namespaceCommands.html", "namespaceCommands" ],
     [ "database", "namespacedatabase.html", [
       [ "assignResults", "namespacedatabase.html#a7cc2e252117384b0bd7387924e990610", null ],
-      [ "execQuery", "namespacedatabase.html#a089dff8c552881f1834af8709470eb8f", null ],
-      [ "execSelect", "namespacedatabase.html#a3f3883d34511d5469073805b286275fc", null ]
+      [ "execQuery", "namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829", null ],
+      [ "execSelect", "namespacedatabase.html#a0e9164716114c2db8c230823084c959f", null ]
     ] ],
     [ "resource_man", "namespaceresource__man.html", [
       [ "handle_global_slash_commands", "namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: src/commands/resources/resource_man.hpp Source File</title>
+<title>droplet: src/commands/resources/resource_man.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="namespaceresource__man.html">    7</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceresource__man.html">resource_man</a> {</div>
 <div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0">    8</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0">register_global_slash_commands</a>(std::vector&lt;dpp::slashcommand&gt; &amp;command_list, <span class="keyword">const</span> dpp::cluster &amp;bot) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0">    8</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0">register_global_slash_commands</a>(std::vector&lt;dpp::slashcommand&gt;&amp; command_list, <span class="keyword">const</span> dpp::cluster&amp; bot) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">const</span> <span class="keyword">static</span> std::vector&lt;std::pair&lt;std::string, std::string&gt;&gt; categories{</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        {<span class="stringliteral">&quot;C++ Programming&quot;</span>, <span class="stringliteral">&quot;cpp_programming&quot;</span>},</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        {<span class="stringliteral">&quot;C++ Libraries&quot;</span>, <span class="stringliteral">&quot;cpp_libraries&quot;</span>},</div>
@@ -145,7 +145,7 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">auto</span> co{dpp::command_option(dpp::co_string, <span class="stringliteral">&quot;category&quot;</span>, <span class="stringliteral">&quot;The category of the resource&quot;</span>, <span class="keyword">true</span>)};</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;choice : categories) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; choice : categories) {</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            co.add_choice(dpp::command_option_choice(choice.first, choice.second));</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        }</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        res_command.add_option(co);</div>
@@ -174,7 +174,7 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 </div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">   71</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">handle_global_slash_commands</a>(<span class="keyword">const</span> dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot) -&gt; <span class="keywordtype">void</span> {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">   71</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">handle_global_slash_commands</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event, dpp::cluster&amp; bot) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (event.command.get_command_name() == <span class="stringliteral">&quot;resources&quot;</span>) {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> <span class="keyword">auto</span> action{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;action&quot;</span>)};</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (action.empty())</div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: src/core/interfaces/IRepository.hpp Source File</title>
+<title>droplet: src/core/interfaces/IRepository.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -107,16 +107,15 @@ $(document).ready(function(){initNavTree('IRepository_8hpp_source.html',''); ini
 <div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classIRepository.html">    5</a></span><span class="keyword">class </span><a class="code hl_class" href="classIRepository.html">IRepository</a> {</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">    7</a></span>    [[<a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">nodiscard</a>]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">create</a>(<span class="keyword">const</span> <a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">DTO</a> &amp;<span class="keywordtype">object</span>) = 0;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">    7</a></span>    [[nodiscard]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">create</a>(<span class="keyword">const</span> DTO&amp; <span class="keywordtype">object</span>) = 0;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classIRepository.html#a76b35394a19b1e574c3a703ec13dccda">    9</a></span>    [[<a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">nodiscard</a>]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#a76b35394a19b1e574c3a703ec13dccda">remove</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">index</a>) = 0;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classIRepository.html#a76b35394a19b1e574c3a703ec13dccda">    9</a></span>    [[nodiscard]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#a76b35394a19b1e574c3a703ec13dccda">remove</a>(<span class="keywordtype">size_t</span> index) = 0;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classIRepository.html#a589c909f9c95319a64649267aec0a323">   11</a></span>    [[<a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">nodiscard</a>]] <span class="keyword">virtual</span> <a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">DTO</a> <a class="code hl_function" href="classIRepository.html#a589c909f9c95319a64649267aec0a323">get</a>(<span class="keywordtype">size_t</span> <a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">index</a>) = 0;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classIRepository.html#a589c909f9c95319a64649267aec0a323">   11</a></span>    [[nodiscard]] <span class="keyword">virtual</span> DTO <a class="code hl_function" href="classIRepository.html#a589c909f9c95319a64649267aec0a323">get</a>(<span class="keywordtype">size_t</span> index) = 0;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">   13</a></span>    [[<a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">nodiscard</a>]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">update</a>(<span class="keyword">const</span> <a class="code hl_function" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">DTO</a> &amp;<span class="keywordtype">object</span>) = 0;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">   13</a></span>    [[nodiscard]] <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">update</a>(<span class="keyword">const</span> DTO&amp; <span class="keywordtype">object</span>) = 0;</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
 </div>
-<div class="ttc" id="aCore_8cpp_html_af01429938703dc373a0817333ee83014"><div class="ttname"><a href="Core_8cpp.html#af01429938703dc373a0817333ee83014">timedReplyTemplate</a></div><div class="ttdeci">auto timedReplyTemplate(dpp::cluster &amp;bot, const CMD_TYPE event, const std::string &amp;message, size_t time_mills) noexcept -&gt; void</div><div class="ttdef"><b>Definition</b> Core.cpp:45</div></div>
 <div class="ttc" id="aclassIRepository_html"><div class="ttname"><a href="classIRepository.html">IRepository</a></div><div class="ttdef"><b>Definition</b> IRepository.hpp:5</div></div>
 <div class="ttc" id="aclassIRepository_html_a1379e79aa2c999cfa0c3b97270f1daea"><div class="ttname"><a href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">IRepository::create</a></div><div class="ttdeci">virtual bool create(const DTO &amp;object)=0</div></div>
 <div class="ttc" id="aclassIRepository_html_a589c909f9c95319a64649267aec0a323"><div class="ttname"><a href="classIRepository.html#a589c909f9c95319a64649267aec0a323">IRepository::get</a></div><div class="ttdeci">virtual DTO get(size_t index)=0</div></div>

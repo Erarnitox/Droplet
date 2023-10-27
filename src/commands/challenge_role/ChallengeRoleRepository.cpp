@@ -6,7 +6,7 @@
 
 #include "ChallengeRoleDTO.hpp"
 
-bool ChallengeRoleRepository::create(const ChallengeRoleDTO &object) {
+bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
 	static std::string sql_string{
 		"INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES "
 		"($1::int8, "
@@ -31,7 +31,7 @@ bool ChallengeRoleRepository::remove(size_t messageId) {
 	return database::execQuery(sql_string, messageId);
 }
 
-bool ChallengeRoleRepository::update(const ChallengeRoleDTO &object) {
+bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
 	static std::string sql_string{
 		"UPDATE challenge_roles(role_id, guild_id, message_id, flag) VALUES "
 		"($1::int8, "

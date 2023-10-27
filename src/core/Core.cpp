@@ -10,16 +10,16 @@
 #include <variant>
 #include <vector>
 
-auto Core::isAdmin(const dpp::guild_member &member) noexcept -> bool {
-	for (const auto &role_id : member.get_roles()) {
-		const dpp::role &role{*dpp::find_role(role_id)};
+auto Core::isAdmin(const dpp::guild_member& member) noexcept -> bool {
+	for (const auto& role_id : member.get_roles()) {
+		const dpp::role& role{*dpp::find_role(role_id)};
 		if (role.has_administrator())
 			return true;
 	}
 	return false;
 }
 
-auto Core::getRoleId(const std::string &mention) noexcept -> std::string {
+auto Core::getRoleId(const std::string& mention) noexcept -> std::string {
 	std::regex re("<@&([0-9]+)>");
 	std::smatch match;
 
@@ -30,7 +30,7 @@ auto Core::getRoleId(const std::string &mention) noexcept -> std::string {
 	}
 }
 
-auto Core::getChannelId(const std::string &mention) noexcept -> std::string {
+auto Core::getChannelId(const std::string& mention) noexcept -> std::string {
 	std::regex re("<#([0-9]+)>");
 	std::smatch match;
 
@@ -42,7 +42,7 @@ auto Core::getChannelId(const std::string &mention) noexcept -> std::string {
 }
 
 template <typename CMD_TYPE>
-auto timedReplyTemplate(dpp::cluster &bot, const CMD_TYPE event, const std::string &message, size_t time_mills) noexcept
+auto timedReplyTemplate(dpp::cluster& bot, const CMD_TYPE event, const std::string& message, size_t time_mills) noexcept
 	-> void {
 	event.reply(message);
 
@@ -54,24 +54,24 @@ auto timedReplyTemplate(dpp::cluster &bot, const CMD_TYPE event, const std::stri
 	bot.start_timer(on_tick, time_mills / 1000);
 }
 
-auto Core::timedReply(dpp::cluster &bot,
+auto Core::timedReply(dpp::cluster& bot,
 					  const dpp::slashcommand_t event,
-					  const std::string &message,
+					  const std::string& message,
 					  size_t time_mills) noexcept -> void {
 	timedReplyTemplate<dpp::slashcommand_t>(bot, event, message, time_mills);
 }
 
-auto Core::timedReply(dpp::cluster &bot,
+auto Core::timedReply(dpp::cluster& bot,
 					  const dpp::form_submit_t event,
-					  const std::string &message,
+					  const std::string& message,
 					  size_t time_mills) noexcept -> void {
 	timedReplyTemplate<dpp::form_submit_t>(bot, event, message, time_mills);
 }
 
 template <typename CMD_TYPE>
-auto privateTimedReplyTemplate(dpp::cluster &bot,
+auto privateTimedReplyTemplate(dpp::cluster& bot,
 							   const CMD_TYPE event,
-							   const std::string &message,
+							   const std::string& message,
 							   size_t time_mills) noexcept -> void {
 	event.reply(dpp::message(message).set_flags(dpp::m_ephemeral));
 
@@ -83,21 +83,21 @@ auto privateTimedReplyTemplate(dpp::cluster &bot,
 	bot.start_timer(on_tick, time_mills / 1000);
 }
 
-auto Core::privateTimedReply(dpp::cluster &bot,
+auto Core::privateTimedReply(dpp::cluster& bot,
 							 const dpp::slashcommand_t event,
-							 const std::string &message,
+							 const std::string& message,
 							 size_t time_mills) noexcept -> void {
 	privateTimedReplyTemplate<dpp::slashcommand_t>(bot, event, message, time_mills);
 }
 
-auto Core::privateTimedReply(dpp::cluster &bot,
+auto Core::privateTimedReply(dpp::cluster& bot,
 							 const dpp::form_submit_t event,
-							 const std::string &message,
+							 const std::string& message,
 							 size_t time_mills) noexcept -> void {
 	privateTimedReplyTemplate<dpp::form_submit_t>(bot, event, message, time_mills);
 }
 
-auto Core::getParameter(dpp::cluster &bot, const dpp::slashcommand_t event, const std::string &name) noexcept
+auto Core::getParameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept
 	-> std::string {
 	const auto variant{event.get_parameter(name)};
 

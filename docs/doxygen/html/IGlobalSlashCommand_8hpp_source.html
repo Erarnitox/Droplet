@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: src/core/interfaces/IGlobalSlashCommand.hpp Source File</title>
+<title>droplet: src/core/interfaces/IGlobalSlashCommand.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -100,7 +100,23 @@ $(document).ready(function(){initNavTree('IGlobalSlashCommand_8hpp_source.html',
   <div class="headertitle"><div class="title">IGlobalSlashCommand.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="IGlobalSlashCommand_8hpp.html">Go to the documentation of this file.</a><div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="IGlobalSlashCommand_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;dpp/cluster.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;dpp/dispatcher.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> {</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">    8</a></span>    <span class="keyword">virtual</span> <span class="keyword">auto</span> <a class="code hl_function" href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">create_slashcommand</a>(<span class="keyword">const</span> dpp::ready_t&amp; event) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">   10</a></span>    <span class="keyword">virtual</span> <span class="keyword">auto</span> <a class="code hl_function" href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">on_slashcommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event) -&gt; <span class="keywordtype">void</span> = 0;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>};</div>
+</div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html"><div class="ttname"><a href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a></div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:6</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_a2d272b1f9b180e5b01c956638c404ecd"><div class="ttname"><a href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">IGlobalSlashCommand::on_slashcommand</a></div><div class="ttdeci">virtual auto on_slashcommand(const dpp::slashcommand_t &amp;event) -&gt; void=0</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_a649e738c2a11a0ce2716bcbd308fcedc"><div class="ttname"><a href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">IGlobalSlashCommand::create_slashcommand</a></div><div class="ttdeci">virtual auto create_slashcommand(const dpp::ready_t &amp;event) -&gt; void=0</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

@@ -10,8 +10,8 @@
 #include "ChallengeRoleDTO.hpp"
 #include "ChallengeRoleRepository.hpp"
 
-auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand> &command_list,
-													  const dpp::cluster &bot) noexcept -> void {
+auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand>& command_list,
+													  const dpp::cluster& bot) noexcept -> void {
 	// Challenge Roles
 	dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
 
@@ -27,9 +27,9 @@ auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcomm
 	command_list.push_back(challenge_role);
 }
 
-auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &event,
-													dpp::cluster &bot,
-													const std::vector<dpp::slashcommand> &command_list) noexcept
+auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event,
+													dpp::cluster& bot,
+													const std::vector<dpp::slashcommand>& command_list) noexcept
 	-> void {
 	// unneeded arguments:
 	(void)command_list;
@@ -99,7 +99,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &e
 	// send the challenge message
 	bot.message_create(
 		msg,
-		[&bot, role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t &cb) -> void {
+		[&bot, role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
 			size_t sane_role_id;
@@ -146,7 +146,7 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &e
 		});
 }
 
-auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t &event, dpp::cluster &bot) noexcept -> void {
+auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
 	if (event.custom_id != "solve_challenge_btn")
 		return;
 
@@ -170,7 +170,7 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t &event, 
 	event.dialog(modal);
 }
 
-auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t &event, dpp::cluster &bot) noexcept -> void {
+auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
 	if (event.custom_id != "challenge_role_solution")
 		return;
 
@@ -205,7 +205,7 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t &event, dp
 		return;
 	}
 
-	const auto &entered{*entered_ptr};
+	const auto& entered{*entered_ptr};
 
 	if (entered == dto.solution) {
 		bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
@@ -221,24 +221,24 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t &event, dp
 // UNIMPLEMENTED EVENTS:
 
 // user management
-auto ChallengeRoleCommand::welcomeMember(const dpp::guild_member_add_t &event, dpp::cluster &bot) -> void {
+auto ChallengeRoleCommand::welcomeMember(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 };
 
-auto ChallengeRoleCommand::leaveMember(const dpp::guild_member_remove_t &event, dpp::cluster &bot) -> void {
+auto ChallengeRoleCommand::leaveMember(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 }
 
 // handle added reactions
-auto ChallengeRoleCommand::handleReactionAdded(const dpp::message_reaction_add_t &event, dpp::cluster &bot) -> void {
+auto ChallengeRoleCommand::handleReactionAdded(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
 	(void)event;
 	(void)bot;
 }
 
 // handle removed reactions
-auto ChallengeRoleCommand::handleReactionRemoved(const dpp::message_reaction_remove_t &event, dpp::cluster &bot)
+auto ChallengeRoleCommand::handleReactionRemoved(const dpp::message_reaction_remove_t& event, dpp::cluster& bot)
 	-> void {
 	(void)event;
 	(void)bot;

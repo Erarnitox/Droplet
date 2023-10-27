@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "cyber_drop", "index.html", [
+  [ "droplet", "index.html", [
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -47,7 +47,8 @@ var NAVTREE =
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ]
+        [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ]
       ] ]
     ] ]
   ] ]
@@ -55,7 +56,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"ChallengeRoleCommand_8cpp.html"
+"Bot_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

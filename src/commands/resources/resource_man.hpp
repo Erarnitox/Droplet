@@ -5,7 +5,7 @@
 #include <Core.hpp>
 
 namespace resource_man {
-auto register_global_slash_commands(std::vector<dpp::slashcommand> &command_list, const dpp::cluster &bot) -> void {
+auto register_global_slash_commands(std::vector<dpp::slashcommand>& command_list, const dpp::cluster& bot) -> void {
 	const static std::vector<std::pair<std::string, std::string>> categories{
 		{"C++ Programming", "cpp_programming"},
 		{"C++ Libraries", "cpp_libraries"},
@@ -41,7 +41,7 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand> &command_list
 	{
 		auto co{dpp::command_option(dpp::co_string, "category", "The category of the resource", true)};
 
-		for (const auto &choice : categories) {
+		for (const auto& choice : categories) {
 			co.add_choice(dpp::command_option_choice(choice.first, choice.second));
 		}
 		res_command.add_option(co);
@@ -68,7 +68,7 @@ auto register_global_slash_commands(std::vector<dpp::slashcommand> &command_list
 	return;
 }
 
-auto handle_global_slash_commands(const dpp::slashcommand_t &event, dpp::cluster &bot) -> void {
+auto handle_global_slash_commands(const dpp::slashcommand_t& event, dpp::cluster& bot) -> void {
 	if (event.command.get_command_name() == "resources") {
 		const auto action{Core::getParameter(bot, event, "action")};
 		if (action.empty())

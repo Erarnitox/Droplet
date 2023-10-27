@@ -5,6 +5,9 @@ add_executable(start_bot
 add_library(${PROJECT_NAME} STATIC
 	bot.cpp
 	bot.hpp
+
+	Bot.cpp
+	Bot.hpp
 )
 
 # do not format on the build server building release builds

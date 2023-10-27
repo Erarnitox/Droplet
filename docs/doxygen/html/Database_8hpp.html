@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>cyber_drop: src/core/database/Database.hpp File Reference</title>
+<title>droplet: src/core/database/Database.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">cyber_drop<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -115,7 +115,7 @@ Include dependency graph for Database.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Database_8hpp__dep__incl.svg" width="1742" height="310"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Database_8hpp__dep__incl.svg" width="1695" height="310"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="Database_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -133,14 +133,14 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7cc2e252117384b0bd7387924e990610" id="r_a7cc2e252117384b0bd7387924e990610"><td class="memTemplParams" colspan="2">template&lt;size_t I = 0, typename... Types&gt; </td></tr>
-<tr class="memitem:a7cc2e252117384b0bd7387924e990610"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">constexpr</a> <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">void</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">database::assignResults</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> pqxx::result &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">result</a>, std::vector&lt; std::variant&lt; Types... &gt; &gt; &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>)</td></tr>
+<tr class="memitem:a7cc2e252117384b0bd7387924e990610"><td class="memTemplItemLeft" align="right" valign="top">constexpr void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">database::assignResults</a> (const pqxx::result &amp;result, std::vector&lt; std::variant&lt; Types... &gt; &gt; &amp;args)</td></tr>
 <tr class="separator:a7cc2e252117384b0bd7387924e990610"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a089dff8c552881f1834af8709470eb8f" id="r_a089dff8c552881f1834af8709470eb8f"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
-<tr class="memitem:a089dff8c552881f1834af8709470eb8f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a089dff8c552881f1834af8709470eb8f">database::execQuery</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">query</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">bool</a></td></tr>
-<tr class="separator:a089dff8c552881f1834af8709470eb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f3883d34511d5469073805b286275fc" id="r_a3f3883d34511d5469073805b286275fc"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
-<tr class="memitem:a3f3883d34511d5469073805b286275fc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a3f3883d34511d5469073805b286275fc">database::execSelect</a> (<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">const</a> std::string &amp;<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">query</a>, <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">Types</a> &amp;&amp;...<a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">args</a>) <a class="el" href="Core_8cpp.html#af01429938703dc373a0817333ee83014">noexcept</a> -&gt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a></td></tr>
-<tr class="separator:a3f3883d34511d5469073805b286275fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad776af9117dfcb99ba717f690faf0829" id="r_ad776af9117dfcb99ba717f690faf0829"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
+<tr class="memitem:ad776af9117dfcb99ba717f690faf0829"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829">database::execQuery</a> (<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">bool</a></td></tr>
+<tr class="separator:ad776af9117dfcb99ba717f690faf0829"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e9164716114c2db8c230823084c959f" id="r_a0e9164716114c2db8c230823084c959f"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
+<tr class="memitem:a0e9164716114c2db8c230823084c959f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacedatabase.html#a0e9164716114c2db8c230823084c959f">database::execSelect</a> (<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="namespacedatabase.html#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a></td></tr>
+<tr class="separator:a0e9164716114c2db8c230823084c959f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
