@@ -99,3 +99,45 @@ function(generate_doxygen input output)
         COMMENT "Generate Doxygen Documentation"
     )
 endfunction()
+
+
+# Create dependency graph
+function(generate_dep_graph PNG_FILE)
+    # Check if the 'dot' command is available
+    find_program(DOT_EXECUTABLE dot)
+    if(NOT DOT_EXECUTABLE)
+        message(FATAL_ERROR "Graphviz 'dot' command not found. Make sure Graphviz is installed.")
+    endif()
+
+    # Generate the Dot file
+    set(DOT_FILE dep_graph.dot)
+
+    execute_process(
+        COMMAND ${CMAKE_COMMAND} --graphviz=${DOT_FILE}
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        RESULT_VARIABLE CMAKE_RESULT
+    )
+
+    if(CMAKE_RESULT EQUAL 0)
+        message(STATUS "Generated dependency graph DOT file: ${DOT_FILE}")
+    else()
+        message(FATAL_ERROR "Failed to generate dependency graph DOT file. Error code: ${CMAKE_RESULT}")
+    endif()
+
+    # Ensure the DOT_FILE exists
+    if(NOT EXISTS ${DOT_FILE})
+        message(FATAL_ERROR "DOT file '${DOT_FILE}' does not exist.")
+    endif()
+
+    # Generate the PNG file from the DOT file
+    execute_process(
+        COMMAND ${DOT_EXECUTABLE} -Tpng -o${PNG_FILE} ${DOT_FILE}
+        RESULT_VARIABLE DOT_RESULT
+    )
+
+    if(NOT DOT_RESULT EQUAL 0)
+        message(FATAL_ERROR "Failed to generate PNG from DOT file. Error code: ${DOT_RESULT}")
+    else()
+        message(STATUS "Generated PNG file: ${PNG_FILE}")
+    endif()
+endfunction()

@@ -1,4 +1,4 @@
-add_library(commands STATIC 
+add_library(commands OBJECT 
     CommandRegister.cpp
     CommandRegister.hpp
 )

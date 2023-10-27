@@ -1,4 +1,4 @@
-add_library(utility STATIC 
+add_library(utility OBJECT 
     Commands.cpp
     Commands.hpp
 )

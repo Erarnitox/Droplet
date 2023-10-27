@@ -122,6 +122,9 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  # documenatation
  generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/docs/doxygen")
 
+ # custom target to create dependecy graph
+ # generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/doc/dop.png")
+
  # install the bot and it's library dependency
  # install(TARGETS start_bot dpp)
  

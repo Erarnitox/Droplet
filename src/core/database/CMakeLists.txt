@@ -1,4 +1,4 @@
-add_library(database STATIC 
+add_library(database OBJECT 
     Database.cpp
     Database.hpp
     RowDTOAdapter.hpp
