@@ -50,11 +50,6 @@ add_subdirectory(src bin)
 # subdirectory for third party dependencies
 add_subdirectory(extern)
 
-# treat the dpp include directory like a system/compiler include
-target_include_directories(utility SYSTEM PUBLIC
-	extern/DPP/include
-)
-
 set_target_properties(${PROJECT_NAME} PROPERTIES
 	CXX_STANDARD 20
 	CXX_STANDARD_REQUIRED ON

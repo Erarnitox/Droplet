@@ -11,7 +11,7 @@
 #include <vector>
 
 auto Core::isAdmin(const dpp::guild_member& member) noexcept -> bool {
-	for (const auto& role_id : member.get_roles()) {
+	for (const auto& role_id : member.roles) {
 		const dpp::role& role{*dpp::find_role(role_id)};
 		if (role.has_administrator())
 			return true;

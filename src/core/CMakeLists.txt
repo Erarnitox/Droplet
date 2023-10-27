@@ -1,5 +1,4 @@
 add_subdirectory(database)
-add_subdirectory(utility)
 
 add_library(core OBJECT 
     Core.cpp
@@ -28,7 +27,6 @@ set_property(TARGET bot PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
 target_link_libraries(core PUBLIC bot)
 target_link_libraries(core PUBLIC database)
-target_link_libraries(core PUBLIC utility)
 
 target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR}/utility)
 target_include_directories(core PUBLIC ${CMAKE_CURRENT_LIST_DIR})
