@@ -5,6 +5,12 @@
 #include <fmt/core.h>
 
 #include "database/Database.hpp"
+#include "interfaces/IButtonCommand.hpp"
+#include "interfaces/IFormCommand.hpp"
+#include "interfaces/IGlobalSlashCommand.hpp"
+#include "interfaces/IMemberCommand.hpp"
+#include "interfaces/IMessageCommand.hpp"
+#include "interfaces/IReactionCommand.hpp"
 
 class Core {
   public:

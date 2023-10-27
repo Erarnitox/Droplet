@@ -10,7 +10,7 @@
 #include <ChallengeRoleCommand.hpp>
 #include <CommandRegister.hpp>
 #include <Commands.hpp>
-#include <Core.cpp>
+#include <Core.hpp>
 #include <Database.hpp>
 #include <resource_man.hpp>
 #include <roles.hpp>
@@ -94,7 +94,7 @@ auto start_bot() -> void {
 
 	// register slash commands
 	bot.on_ready([&bot, &global_command_list](const dpp::ready_t &event) -> void {
-		bot.set_presence(dpp::presence(dpp::ps_online, dpp::at_custom, "https://droplet.dropsoft.org"));
+		bot.set_presence(dpp::presence(dpp::ps_online, dpp::at_custom, "https://droplet.erarnitox.de"));
 
 		try {
 			if (dpp::run_once<struct register_bot_commands>()) {

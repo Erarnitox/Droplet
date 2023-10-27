@@ -5,7 +5,7 @@
 
 class IReactionCommand {
   public:
-	virtual auto handle_reaction_added(const dpp::message_reaction_add_t &, dpp::cluster &bot) -> void = 0;
+	virtual auto on_message_reaction_add(const dpp::message_reaction_add_t &event) -> void = 0;
 
-	virtual auto handle_reaction_removed(const dpp::message_reaction_remove_t &, dpp::cluster &bot) -> void = 0;
+	virtual auto on_message_reaction_remove(const dpp::message_reaction_remove_t &event) -> void = 0;
 };

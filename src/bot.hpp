@@ -1,5 +1,6 @@
 #pragma once
 
+#include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 #include <dpp/dpp.h>
 
