@@ -12,10 +12,3 @@ set_target_properties(dpp PROPERTIES
 	DPP_BUILD_TEST OFF
 )
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-	dpp
-)
-
-target_include_directories(${PROJECT_NAME} PRIVATE
-	extern/DPP/include
-)

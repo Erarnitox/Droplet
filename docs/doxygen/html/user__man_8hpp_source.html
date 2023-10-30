@@ -171,9 +171,9 @@ $(document).ready(function(){initNavTree('user__man_8hpp_source.html',''); initR
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    dpp::embed embed{dpp::embed()</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                         .set_color(dpp::colors::red)</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                         .set_title(event.removing_guild-&gt;name)</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                         .set_description(std::string(<span class="stringliteral">&quot;Goodbye! &quot;</span>) + event.removed.get_mention() + <span class="stringliteral">&quot; just left &quot;</span> +</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                         .set_description(std::string(<span class="stringliteral">&quot;Goodbye! &quot;</span>) + event.removed-&gt;get_mention() + <span class="stringliteral">&quot; just left &quot;</span> +</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                                          event.removing_guild-&gt;name)</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                         .set_image(event.removed.get_avatar_url())};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                         .set_image(event.removed-&gt;get_avatar_url())};</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">/* reply with the created embed */</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> <span class="keyword">auto</span> channel_id{<a class="code hl_function" href="classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65">Database::get_welcome_channel_id</a>(event.removing_guild-&gt;id)};</div>

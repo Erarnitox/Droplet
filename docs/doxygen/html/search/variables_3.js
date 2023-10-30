@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['solution_0',['solution',['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO']]]
+  ['roleid_0',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]]
 ];

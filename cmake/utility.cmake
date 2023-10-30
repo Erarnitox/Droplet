@@ -113,7 +113,7 @@ function(generate_dep_graph PNG_FILE)
     set(DOT_FILE "${CMAKE_SOURCE_DIR}/docs/graphviz/dep_graph.dot")
 
     execute_process(
-        COMMAND ${CMAKE_COMMAND} --graphviz=${DOT_FILE}
+        COMMAND ${CMAKE_COMMAND} --graphviz="${DOT_FILE}"
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         RESULT_VARIABLE CMAKE_RESULT
     )

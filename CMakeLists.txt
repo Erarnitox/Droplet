@@ -13,9 +13,9 @@ project(droplet
 )
 
 # disable in source builds
-#if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
-#	message(FATAL_ERROR "In source builds are not supported!")
-#endif()
+if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+	message(FATAL_ERROR "In source builds are not supported!")
+endif()
 
 option(USE_DEBUG_TOKEN "copy debug token and database connection")
 
@@ -68,9 +68,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
  )
 
- add_custom_target(
-     copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
- )
+ # add_custom_target(copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0")
 
  add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
@@ -78,9 +76,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
  )
 
- add_custom_target(
-     copy_dpp_test_library ALL DEPENDS "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0" 
- )
+ # add_custom_target(copy_dpp_test_library ALL DEPENDS "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0")
 
  add_custom_command(
  	OUTPUT "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
@@ -107,8 +103,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  	add_dependencies(copy_credentials ${PROJECT_NAME})
  endif()
  
- add_dependencies(copy_dpp_library ${PROJECT_NAME})
- add_dependencies(copy_dpp_test_library ${PROJECT_NAME})
+ # add_dependencies(copy_dpp_library ${PROJECT_NAME})
+ # add_dependencies(copy_dpp_test_library ${PROJECT_NAME})
  add_dependencies(copy_bot_binary start_bot)
  
  # tests
@@ -120,7 +116,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 	add_dependencies(${PROJECT_NAME} doxygen)
 
  	# dependecy graph
- 	generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
+ 	# generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
  endif()
 
  # install the bot and it's library dependency

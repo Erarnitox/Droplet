@@ -2,14 +2,55 @@
 
 #include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
+#include <dpp/once.h>
 
 void Bot::set_token(const std::string& token) {
 	ctx.token = token;
 }
 
+void Bot::add_slash_command(const std::string& name, const std::shared_ptr<IGlobalSlashCommand>& slash_command) {
+	Bot::slash_commands[name] = slash_command;
+}
+
+void Bot::add_button_command(const std::shared_ptr<IButtonCommand>& button_command) {
+	Bot::button_commands.push_back(button_command);
+}
+
+void Bot::add_form_command(const std::shared_ptr<IFormCommand>& form_command) {
+	Bot::form_commands.push_back(form_command);
+}
+
+void Bot::add_member_command(const std::shared_ptr<IMemberCommand>& member_command) {
+	Bot::member_commands.push_back(member_command);
+}
+
+void Bot::add_message_command(const std::shared_ptr<IMessageCommand>& message_command) {
+	Bot::message_commands.push_back(message_command);
+}
+
+void Bot::add_reaction_command(const std::shared_ptr<IReactionCommand>& reaction_command) {
+	Bot::reaction_commands.push_back(reaction_command);
+}
+
+void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
+	Bot::ready_commands.push_back(ready_command);
+}
+
 // slash commands
-static inline void register_global_slash_commands(const dpp::cluster& ctx) {
-	(void)ctx;
+static inline void register_global_slash_commands(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
+	ctx.on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
+		(void)event;
+
+		ctx.log(dpp::ll_trace, "Registering Slash commands...");
+
+		if (dpp::run_once<struct register_bot_commands>()) {
+			for (const auto& slash_command : slash_commands) {
+				dpp::slashcommand tmp_command(
+					slash_command.first, slash_command.second->command_description, ctx.me.id);
+				ctx.global_command_create(tmp_command);
+			}
+		}
+	});
 }
 
 static inline void handle_global_slash_commands(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
@@ -24,8 +65,6 @@ static inline void handle_global_slash_commands(dpp::cluster& ctx, const slash_c
 // message commands
 static inline void handle_message_create(dpp::cluster& ctx, const message_commands_t& message_commands) {
 	ctx.on_message_create([&message_commands](const dpp::message_create_t& event) {
-		// const std::string& command_name = event.msg.content;
-
 		for (const auto& command : message_commands) {
 			command->on_message_create(event);
 		}
@@ -33,24 +72,36 @@ static inline void handle_message_create(dpp::cluster& ctx, const message_comman
 }
 
 static inline void handle_message_delete(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	(void)ctx;
-	(void)message_commands;
+	ctx.on_message_delete([&message_commands](const dpp::message_delete_t& event) {
+		for (const auto& command : message_commands) {
+			command->on_message_delete(event);
+		}
+	});
 }
 
 static inline void handle_message_delete_bulk(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	(void)ctx;
-	(void)message_commands;
+	ctx.on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
+		for (const auto& command : message_commands) {
+			command->on_message_delete_bulk(event);
+		}
+	});
 }
 
 // user management
 static inline void handle_guild_member_add(dpp::cluster& ctx, const member_commands_t& member_commands) {
-	(void)ctx;
-	(void)member_commands;
+	ctx.on_guild_member_add([&member_commands](const dpp::guild_member_add_t& event) {
+		for (const auto& command : member_commands) {
+			command->on_guild_member_add(event);
+		}
+	});
 }
 
 static inline void handle_guild_member_remove(dpp::cluster& ctx, const member_commands_t& member_commands) {
-	(void)ctx;
-	(void)member_commands;
+	ctx.on_guild_member_remove([&member_commands](const dpp::guild_member_remove_t& event) {
+		for (const auto& command : member_commands) {
+			command->on_guild_member_remove(event);
+		}
+	});
 }
 
 // button clicks
@@ -85,7 +136,7 @@ static inline void handle_ready(dpp::cluster& ctx, const ready_commands_t& ready
 
 void Bot::run() {
 	// slash commands
-	register_global_slash_commands(Bot::ctx);
+	register_global_slash_commands(Bot::ctx, Bot::slash_commands);
 	handle_global_slash_commands(Bot::ctx, Bot::slash_commands);
 
 	// message commands

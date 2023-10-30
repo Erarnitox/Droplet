@@ -23,7 +23,10 @@ endif()
 target_include_directories(bot PUBLIC ${CMAKE_CURRENT_LIST_DIR}/interfaces)
 
 set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
+
 set_property(TARGET bot PROPERTY CXX_STANDARD ${CPP_STANDARD})
+target_link_libraries(bot PUBLIC ${DPP_LIBRARIES})
+target_include_directories(bot PUBLIC ${DPP_INCLUDE_DIR})
 
 target_link_libraries(core PUBLIC bot)
 target_link_libraries(core PUBLIC database)

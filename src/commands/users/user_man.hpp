@@ -66,9 +66,9 @@ static inline auto leave_member(const dpp::guild_member_remove_t& event, dpp::cl
 	dpp::embed embed{dpp::embed()
 						 .set_color(dpp::colors::red)
 						 .set_title(event.removing_guild->name)
-						 .set_description(std::string("Goodbye! ") + event.removed.get_mention() + " just left " +
+						 .set_description(std::string("Goodbye! ") + event.removed->get_mention() + " just left " +
 										  event.removing_guild->name)
-						 .set_image(event.removed.get_avatar_url())};
+						 .set_image(event.removed->get_avatar_url())};
 
 	/* reply with the created embed */
 	const auto channel_id{Database::get_welcome_channel_id(event.removing_guild->id)};
