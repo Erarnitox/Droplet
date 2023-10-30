@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['execquery_0',['execQuery',['../namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829',1,'database']]],
-  ['execselect_1',['execSelect',['../namespacedatabase.html#a0e9164716114c2db8c230823084c959f',1,'database']]]
+  ['form_5fcommands_5ft_0',['form_commands_t',['../Bot_8hpp.html#aeb357de97523e1f81a319dca7014c8d9',1,'Bot.hpp']]]
 ];

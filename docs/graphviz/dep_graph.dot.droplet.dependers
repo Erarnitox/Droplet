@@ -1,0 +1,10 @@
+digraph "droplet" {
+node [
+  fontsize = "12"
+];
+    "node15" [ label = "droplet", shape = octagon ];
+    "node14" [ label = "start_bot", shape = egg ];
+    "node14" -> "node15" [ style = dotted ] // start_bot -> droplet
+    "node26" [ label = "unit_tests", shape = egg ];
+    "node26" -> "node15" [ style = dotted ] // unit_tests -> droplet
+}

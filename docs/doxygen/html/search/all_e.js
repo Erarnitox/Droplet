@@ -1,19 +1,10 @@
 var searchData=
 [
-  ['reaction_5fcommands_5ft_0',['reaction_commands_t',['../Bot_8hpp.html#ac3c743136d3327bb1a59821adba4b723',1,'Bot.hpp']]],
-  ['read_5fbot_5ftoken_1',['read_bot_token',['../bot_8cpp.html#ada4c8520dd463c4ea3b40b6ea921a6f2',1,'bot.cpp']]],
-  ['read_5fdatabase_5fcredentials_2',['read_database_credentials',['../bot_8cpp.html#a3b7ea5e7418b0b0c32de508e87bd068b',1,'bot.cpp']]],
-  ['reconnect_3',['reconnect',['../classDatabase.html#a87e374d0111c08108dfc7a73db0d50f0',1,'Database']]],
-  ['register_5fglobal_5fslash_5fcommands_4',['register_global_slash_commands',['../namespaceuser__man.html#a7d66ea767638cea0ca5f9a45b15dd1ce',1,'user_man::register_global_slash_commands()'],['../namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0',1,'resource_man::register_global_slash_commands()'],['../namespaceCommands.html#ac3e6da41fcd943cfc710397bac057b2a',1,'Commands::register_global_slash_commands'],['../classCommands_1_1CommandFunctionPointers.html#aeed4e6c495b5f449da3b1dbaa11cc919',1,'Commands::CommandFunctionPointers::register_global_slash_commands()']]],
-  ['registercommands_5',['registerCommands',['../namespaceCommandRegister.html#a41d10ad26b564978b17ed7c149c9a41e',1,'CommandRegister']]],
-  ['registerglobalslashcommand_6',['registerglobalslashcommand',['../classChallengeRoleCommand.html#af1584650c3c2d496efb77ae6fa47546b',1,'ChallengeRoleCommand::registerGlobalSlashCommand()'],['../classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8',1,'HelpCommand::registerGlobalSlashCommand()'],['../classSetChannelCommand.html#a3996e3019258554751df6d58b747ca78',1,'SetChannelCommand::registerGlobalSlashCommand()']]],
-  ['remove_7',['remove',['../classChallengeRoleRepository.html#ab8d00d15aec3b6e73dd6a6c1712a1c50',1,'ChallengeRoleRepository::remove()'],['../classIRepository.html#a76b35394a19b1e574c3a703ec13dccda',1,'IRepository::remove()']]],
-  ['resource_5fman_8',['resource_man',['../namespaceresource__man.html',1,'']]],
-  ['resource_5fman_2ehpp_9',['resource_man.hpp',['../resource__man_8hpp.html',1,'']]],
-  ['roleid_10',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
-  ['roles_11',['roles',['../namespaceroles.html',1,'']]],
-  ['roles_2ehpp_12',['roles.hpp',['../roles_8hpp.html',1,'']]],
-  ['rowdtoadapter_13',['rowdtoadapter',['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()'],['../classRowDTOAdapter.html',1,'RowDTOAdapter']]],
-  ['rowdtoadapter_2ehpp_14',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
-  ['run_15',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
+  ['set_5ftoken_0',['set_token',['../classBot.html#afa8a83812bb3b337d276b209d1260d18',1,'Bot']]],
+  ['setchannelcommand_1',['SetChannelCommand',['../classSetChannelCommand.html',1,'']]],
+  ['setchannelcommand_2ecpp_2',['SetChannelCommand.cpp',['../SetChannelCommand_8cpp.html',1,'']]],
+  ['setchannelcommand_2ehpp_3',['SetChannelCommand.hpp',['../SetChannelCommand_8hpp.html',1,'']]],
+  ['slash_5fcommands_5ft_4',['slash_commands_t',['../Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e',1,'Bot.hpp']]],
+  ['solution_5',['solution',['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO']]],
+  ['start_5fbot_6',['start_bot',['../bot_8cpp.html#a16156ea46210ec8bca5367d6aced3b9a',1,'start_bot() -&gt; void:&#160;bot.cpp'],['../bot_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a',1,'start_bot() -&gt; void:&#160;bot.cpp']]]
 ];

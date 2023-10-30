@@ -1,9 +1,5 @@
 var annotated_dup =
 [
-    [ "Commands", "namespaceCommands.html", [
-      [ "CommandFunctionPointers", "classCommands_1_1CommandFunctionPointers.html", null ],
-      [ "CommandRegistration", "structCommands_1_1CommandRegistration.html", "structCommands_1_1CommandRegistration" ]
-    ] ],
     [ "Bot", "classBot.html", null ],
     [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", "classChallengeRoleDTO" ],

@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['_5fhandle_5fbutton_5fclicks_0',['_handle_button_clicks',['../classCommands_1_1CommandFunctionPointers.html#a32e727722e652f3466b85f47ce67b9d4',1,'Commands::CommandFunctionPointers']]],
-  ['_5fhandle_5fform_5fsubmits_1',['_handle_form_submits',['../classCommands_1_1CommandFunctionPointers.html#a48e3625577f9f5472726dea45c715f63',1,'Commands::CommandFunctionPointers']]],
-  ['_5fhandle_5fglobal_5fslash_5fcommands_2',['_handle_global_slash_commands',['../classCommands_1_1CommandFunctionPointers.html#a35bf47f5df64cbc7c910f0d51dbaa304',1,'Commands::CommandFunctionPointers']]],
-  ['_5fhandle_5freaction_5fadded_3',['_handle_reaction_added',['../classCommands_1_1CommandFunctionPointers.html#a7df63ad224a53c74450dd94dfbae9184',1,'Commands::CommandFunctionPointers']]],
-  ['_5fhandle_5freaction_5fremoved_4',['_handle_reaction_removed',['../classCommands_1_1CommandFunctionPointers.html#af1f5334463067b6f3719edda5e8150b2',1,'Commands::CommandFunctionPointers']]],
-  ['_5fleave_5fmember_5',['_leave_member',['../classCommands_1_1CommandFunctionPointers.html#a8b7303030e0dfe976764f762857aca19',1,'Commands::CommandFunctionPointers']]],
-  ['_5fregister_5fglobal_5fslash_5fcommands_6',['_register_global_slash_commands',['../classCommands_1_1CommandFunctionPointers.html#a7de0a3436e6d8dd6d476d819f5fa5aac',1,'Commands::CommandFunctionPointers']]],
-  ['_5fwelcome_5fmember_7',['_welcome_member',['../classCommands_1_1CommandFunctionPointers.html#a0e66ad2a72390bf3efe6c70ce4585a23',1,'Commands::CommandFunctionPointers']]]
+  ['add_5fbutton_5fcommand_0',['add_button_command',['../classBot.html#a13a2fed2c1552b2ec2506c950b520247',1,'Bot']]],
+  ['add_5fform_5fcommand_1',['add_form_command',['../classBot.html#a1e1943546a206893fe3a91dee44a3861',1,'Bot']]],
+  ['add_5fmember_5fcommand_2',['add_member_command',['../classBot.html#a03bafda3c55446e0f73e0b1ce6cc87dc',1,'Bot']]],
+  ['add_5fmessage_5fcommand_3',['add_message_command',['../classBot.html#ae5ce8e78ba0b8c25990979e4275db4bb',1,'Bot']]],
+  ['add_5freaction_5fcommand_4',['add_reaction_command',['../classBot.html#a7d13691f5110cda86c69629e20d3212e',1,'Bot']]],
+  ['add_5fready_5fcommand_5',['add_ready_command',['../classBot.html#a264d8e49d0cc630d376ffd1489d48ac7',1,'Bot']]],
+  ['add_5fslash_5fcommand_6',['add_slash_command',['../classBot.html#a43ee336062b67721e9e0bde5484f3fd4',1,'Bot']]],
+  ['assignresults_7',['assignResults',['../namespacedatabase.html#a7cc2e252117384b0bd7387924e990610',1,'database']]]
 ];

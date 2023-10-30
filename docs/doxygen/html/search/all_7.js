@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['get_0',['get',['../classChallengeRoleRepository.html#af881879d809edaa713ee45c7c5545d5a',1,'ChallengeRoleRepository::get()'],['../classRowDTOAdapter.html#a47486cba305101ae96fd56d887dc1ada',1,'RowDTOAdapter::get()'],['../classIRepository.html#a589c909f9c95319a64649267aec0a323',1,'IRepository::get()']]],
-  ['get_5fgoodbye_5fchannel_5fid_1',['get_goodbye_channel_id',['../classDatabase.html#a8b86f0f39ef51968f722b8a7430ea923',1,'Database']]],
-  ['get_5flog_5fchannel_5fid_2',['get_log_channel_id',['../classDatabase.html#a110d3c4062b171a1d37dbe97c74e3f0a',1,'Database']]],
-  ['get_5freaction_5frole_5fdata_3',['get_reaction_role_data',['../classDatabase.html#a97064ea28b1be43e118f78713cbd1ce8',1,'Database']]],
-  ['get_5fwelcome_5fchannel_5fid_4',['get_welcome_channel_id',['../classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65',1,'Database']]],
-  ['getchannelid_5',['getChannelId',['../classCore.html#afd379b5678c0eadd155781a419460bc1',1,'Core']]],
-  ['getconnection_6',['getConnection',['../classDatabase.html#a9ae97c99ae6dde600c96d42c8992b409',1,'Database']]],
-  ['getparameter_7',['getParameter',['../classCore.html#af6492a77fc021d96d76a1b4427f92732',1,'Core']]],
-  ['getroleid_8',['getRoleId',['../classCore.html#a8d9dfac1697ee94a598d93415b21d976',1,'Core']]],
-  ['guildid_9',['guildId',['../classChallengeRoleDTO.html#a0c631538b24da4f86b1486ee8cf1c1e7',1,'ChallengeRoleDTO']]]
+  ['handle_5fglobal_5fslash_5fcommands_0',['handle_global_slash_commands',['../namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459',1,'resource_man']]],
+  ['handlebuttonclicks_1',['handlebuttonclicks',['../classChallengeRoleCommand.html#ae07f8122e1fec5fd83ac7432c992a14e',1,'ChallengeRoleCommand::handleButtonClicks()'],['../classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5',1,'HelpCommand::handleButtonClicks()'],['../classSetChannelCommand.html#ac0fc5b6d45337f3a5c46a7e53a75db65',1,'SetChannelCommand::handleButtonClicks()']]],
+  ['handleformsubmits_2',['handleformsubmits',['../classChallengeRoleCommand.html#a4041811f811716aa2c67ffdd9da4bdc9',1,'ChallengeRoleCommand::handleFormSubmits()'],['../classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7',1,'HelpCommand::handleFormSubmits()'],['../classSetChannelCommand.html#a76de92a1659586bae564d82587d3ad5c',1,'SetChannelCommand::handleFormSubmits()']]],
+  ['handleglobalslashcommand_3',['handleglobalslashcommand',['../classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3',1,'HelpCommand::handleGlobalSlashCommand()'],['../classSetChannelCommand.html#a323a6dfee62bb30ec3b59fd856a3d1a5',1,'SetChannelCommand::handleGlobalSlashCommand()'],['../classChallengeRoleCommand.html#a44fcf2ef59f3c95a9e04d6dd59faf1d2',1,'ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot, const std::vector&lt; dpp::slashcommand &gt; &amp;command_list) noexcept -&gt; void']]],
+  ['handlereactionadded_4',['handlereactionadded',['../classChallengeRoleCommand.html#a842330f6ef24d1b34628fcdc9898afe7',1,'ChallengeRoleCommand::handleReactionAdded()'],['../classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb',1,'HelpCommand::handleReactionAdded()'],['../classSetChannelCommand.html#a1d40c5d4faa09fda5d4629792e5a4f88',1,'SetChannelCommand::handleReactionAdded()']]],
+  ['handlereactionremoved_5',['handlereactionremoved',['../classChallengeRoleCommand.html#a91c59fe097f4464cda5489db7570fd35',1,'ChallengeRoleCommand::handleReactionRemoved()'],['../classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897',1,'HelpCommand::handleReactionRemoved()'],['../classSetChannelCommand.html#aae8f01f4af996ee9f54658e28b586cfa',1,'SetChannelCommand::handleReactionRemoved()']]],
+  ['hasconnection_6',['hasConnection',['../classDatabase.html#a27b5c4cb3fd70bca28df3f2ea7b6de72',1,'Database']]],
+  ['helpcommand_7',['HelpCommand',['../classHelpCommand.html',1,'']]],
+  ['helpcommand_2ecpp_8',['HelpCommand.cpp',['../HelpCommand_8cpp.html',1,'']]],
+  ['helpcommand_2ehpp_9',['HelpCommand.hpp',['../HelpCommand_8hpp.html',1,'']]]
 ];

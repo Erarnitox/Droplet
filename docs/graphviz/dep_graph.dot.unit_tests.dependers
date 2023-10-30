@@ -1,0 +1,8 @@
+digraph "unit_tests" {
+node [
+  fontsize = "12"
+];
+    "node26" [ label = "unit_tests", shape = egg ];
+    "node26" [ label = "unit_tests", shape = egg ];
+    "node26" -> "node26"  // unit_tests -> unit_tests
+}

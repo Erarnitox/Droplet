@@ -3,7 +3,6 @@ var namespaces_dup =
     [ "CommandRegister", "namespaceCommandRegister.html", [
       [ "registerCommands", "namespaceCommandRegister.html#a41d10ad26b564978b17ed7c149c9a41e", null ]
     ] ],
-    [ "Commands", "namespaceCommands.html", "namespaceCommands" ],
     [ "database", "namespacedatabase.html", [
       [ "assignResults", "namespacedatabase.html#a7cc2e252117384b0bd7387924e990610", null ],
       [ "execQuery", "namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829", null ],

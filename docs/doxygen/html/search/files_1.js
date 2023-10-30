@@ -8,8 +8,6 @@ var searchData=
   ['challengerolerepository_2ehpp_5',['ChallengeRoleRepository.hpp',['../ChallengeRoleRepository_8hpp.html',1,'']]],
   ['commandregister_2ecpp_6',['CommandRegister.cpp',['../CommandRegister_8cpp.html',1,'']]],
   ['commandregister_2ehpp_7',['CommandRegister.hpp',['../CommandRegister_8hpp.html',1,'']]],
-  ['commands_2ecpp_8',['Commands.cpp',['../Commands_8cpp.html',1,'']]],
-  ['commands_2ehpp_9',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
-  ['core_2ecpp_10',['Core.cpp',['../Core_8cpp.html',1,'']]],
-  ['core_2ehpp_11',['Core.hpp',['../Core_8hpp.html',1,'']]]
+  ['core_2ecpp_8',['Core.cpp',['../Core_8cpp.html',1,'']]],
+  ['core_2ehpp_9',['Core.hpp',['../Core_8hpp.html',1,'']]]
 ];

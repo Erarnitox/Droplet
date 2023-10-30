@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>droplet: src/Bot.hpp File Reference</title>
+<title>droplet: src/core/Bot.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,21 +98,26 @@ $(document).ready(function(){initNavTree('Bot_8hpp.html',''); initResizable(); }
   <div class="headertitle"><div class="title">Bot.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="IButtonCommand_8hpp_source.html">core/interfaces/IButtonCommand.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="IFormCommand_8hpp_source.html">core/interfaces/IFormCommand.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="IGlobalSlashCommand_8hpp_source.html">core/interfaces/IGlobalSlashCommand.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="IMemberCommand_8hpp_source.html">core/interfaces/IMemberCommand.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="IMessageCommand_8hpp_source.html">core/interfaces/IMessageCommand.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="IReactionCommand_8hpp_source.html">core/interfaces/IReactionCommand.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;map&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="IButtonCommand_8hpp_source.html">interfaces/IButtonCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IFormCommand_8hpp_source.html">interfaces/IFormCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IGlobalSlashCommand_8hpp_source.html">interfaces/IGlobalSlashCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IMemberCommand_8hpp_source.html">interfaces/IMemberCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IMessageCommand_8hpp_source.html">interfaces/IMessageCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IReactionCommand_8hpp_source.html">interfaces/IReactionCommand.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="IReady_8hpp_source.html">interfaces/IReady.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Bot.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Bot_8hpp__incl.svg" width="1368" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Bot_8hpp__incl.svg" width="1943" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Bot_8hpp__dep__incl.svg" width="99" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Bot_8hpp__dep__incl.svg" width="412" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="Bot_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -130,12 +135,14 @@ Typedefs</h2></td></tr>
 <tr class="separator:aeb357de97523e1f81a319dca7014c8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33d90008ed8ff388b80ae2b0d78b9b7e" id="r_a33d90008ed8ff388b80ae2b0d78b9b7e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e">slash_commands_t</a> = std::map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> &gt; &gt;</td></tr>
 <tr class="separator:a33d90008ed8ff388b80ae2b0d78b9b7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa51eb00e20afd5aa0a857e03397a29a1" id="r_aa51eb00e20afd5aa0a857e03397a29a1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#aa51eb00e20afd5aa0a857e03397a29a1">member_commands_t</a> = std::map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classIMemberCommand.html">IMemberCommand</a> &gt; &gt;</td></tr>
-<tr class="separator:aa51eb00e20afd5aa0a857e03397a29a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0cfcf7c8ffd1e0a8de070803ede416b" id="r_ad0cfcf7c8ffd1e0a8de070803ede416b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#ad0cfcf7c8ffd1e0a8de070803ede416b">message_commands_t</a> = std::map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classIMessageCommand.html">IMessageCommand</a> &gt; &gt;</td></tr>
-<tr class="separator:ad0cfcf7c8ffd1e0a8de070803ede416b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3c743136d3327bb1a59821adba4b723" id="r_ac3c743136d3327bb1a59821adba4b723"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#ac3c743136d3327bb1a59821adba4b723">reaction_commands_t</a> = std::map&lt; std::string, std::shared_ptr&lt; <a class="el" href="classIReactionCommand.html">IReactionCommand</a> &gt; &gt;</td></tr>
-<tr class="separator:ac3c743136d3327bb1a59821adba4b723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad738adb807b5acb33bb7039846ce3b75" id="r_ad738adb807b5acb33bb7039846ce3b75"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75">member_commands_t</a> = std::vector&lt; std::shared_ptr&lt; <a class="el" href="classIMemberCommand.html">IMemberCommand</a> &gt; &gt;</td></tr>
+<tr class="separator:ad738adb807b5acb33bb7039846ce3b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc2008f2888a73f309270c0b40d24fd1" id="r_acc2008f2888a73f309270c0b40d24fd1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1">message_commands_t</a> = std::vector&lt; std::shared_ptr&lt; <a class="el" href="classIMessageCommand.html">IMessageCommand</a> &gt; &gt;</td></tr>
+<tr class="separator:acc2008f2888a73f309270c0b40d24fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511e7d24bae1bc2ca7ce10304f69a1e6" id="r_a511e7d24bae1bc2ca7ce10304f69a1e6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6">reaction_commands_t</a> = std::vector&lt; std::shared_ptr&lt; <a class="el" href="classIReactionCommand.html">IReactionCommand</a> &gt; &gt;</td></tr>
+<tr class="separator:a511e7d24bae1bc2ca7ce10304f69a1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59e94160ab46303afc770a959ea594ca" id="r_a59e94160ab46303afc770a959ea594ca"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Bot_8hpp.html#a59e94160ab46303afc770a959ea594ca">ready_commands_t</a> = std::vector&lt; std::shared_ptr&lt; <a class="el" href="classIReady.html">IReady</a> &gt; &gt;</td></tr>
+<tr class="separator:a59e94160ab46303afc770a959ea594ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="ad0e6e626230c4f5cd45223e2bd4b8495" name="ad0e6e626230c4f5cd45223e2bd4b8495"></a>
@@ -166,42 +173,56 @@ Typedefs</h2></td></tr>
 
 </div>
 </div>
-<a id="aa51eb00e20afd5aa0a857e03397a29a1" name="aa51eb00e20afd5aa0a857e03397a29a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa51eb00e20afd5aa0a857e03397a29a1">&#9670;&#160;</a></span>member_commands_t</h2>
+<a id="ad738adb807b5acb33bb7039846ce3b75" name="ad738adb807b5acb33bb7039846ce3b75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad738adb807b5acb33bb7039846ce3b75">&#9670;&#160;</a></span>member_commands_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="Bot_8hpp.html#aa51eb00e20afd5aa0a857e03397a29a1">member_commands_t</a> =  std::map&lt;std::string, std::shared_ptr&lt;<a class="el" href="classIMemberCommand.html">IMemberCommand</a>&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75">member_commands_t</a> =  std::vector&lt;std::shared_ptr&lt;<a class="el" href="classIMemberCommand.html">IMemberCommand</a>&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad0cfcf7c8ffd1e0a8de070803ede416b" name="ad0cfcf7c8ffd1e0a8de070803ede416b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0cfcf7c8ffd1e0a8de070803ede416b">&#9670;&#160;</a></span>message_commands_t</h2>
+<a id="acc2008f2888a73f309270c0b40d24fd1" name="acc2008f2888a73f309270c0b40d24fd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc2008f2888a73f309270c0b40d24fd1">&#9670;&#160;</a></span>message_commands_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="Bot_8hpp.html#ad0cfcf7c8ffd1e0a8de070803ede416b">message_commands_t</a> =  std::map&lt;std::string, std::shared_ptr&lt;<a class="el" href="classIMessageCommand.html">IMessageCommand</a>&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1">message_commands_t</a> =  std::vector&lt;std::shared_ptr&lt;<a class="el" href="classIMessageCommand.html">IMessageCommand</a>&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ac3c743136d3327bb1a59821adba4b723" name="ac3c743136d3327bb1a59821adba4b723"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3c743136d3327bb1a59821adba4b723">&#9670;&#160;</a></span>reaction_commands_t</h2>
+<a id="a511e7d24bae1bc2ca7ce10304f69a1e6" name="a511e7d24bae1bc2ca7ce10304f69a1e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511e7d24bae1bc2ca7ce10304f69a1e6">&#9670;&#160;</a></span>reaction_commands_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="Bot_8hpp.html#ac3c743136d3327bb1a59821adba4b723">reaction_commands_t</a> =  std::map&lt;std::string, std::shared_ptr&lt;<a class="el" href="classIReactionCommand.html">IReactionCommand</a>&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6">reaction_commands_t</a> =  std::vector&lt;std::shared_ptr&lt;<a class="el" href="classIReactionCommand.html">IReactionCommand</a>&gt; &gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59e94160ab46303afc770a959ea594ca" name="a59e94160ab46303afc770a959ea594ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59e94160ab46303afc770a959ea594ca">&#9670;&#160;</a></span>ready_commands_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="Bot_8hpp.html#a59e94160ab46303afc770a959ea594ca">ready_commands_t</a> =  std::vector&lt;std::shared_ptr&lt;<a class="el" href="classIReady.html">IReady</a>&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -227,7 +248,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Bot_8hpp.html">Bot.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="Bot_8hpp.html">Bot.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

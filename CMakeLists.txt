@@ -13,9 +13,9 @@ project(droplet
 )
 
 # disable in source builds
-if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
-	message(FATAL_ERROR "In source builds are not supported!")
-endif()
+#if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
+#	message(FATAL_ERROR "In source builds are not supported!")
+#endif()
 
 option(USE_DEBUG_TOKEN "copy debug token and database connection")
 
@@ -114,11 +114,14 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  # tests
  add_subdirectory(test)
 
- # documenatation
- generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/docs/doxygen")
+ if(CMAKE_BUILD_TYPE STREQUAL Debug)
+ 	# documenatation
+ 	generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/docs/doxygen") # create doxygen target
+	add_dependencies(${PROJECT_NAME} doxygen)
 
- # custom target to create dependecy graph
- # generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/doc/dop.png")
+ 	# dependecy graph
+ 	generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
+ endif()
 
  # install the bot and it's library dependency
  # install(TARGETS start_bot dpp)

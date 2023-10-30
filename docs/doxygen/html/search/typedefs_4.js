@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['member_5fcommands_5ft_0',['member_commands_t',['../Bot_8hpp.html#aa51eb00e20afd5aa0a857e03397a29a1',1,'Bot.hpp']]],
-  ['message_5fcommands_5ft_1',['message_commands_t',['../Bot_8hpp.html#ad0cfcf7c8ffd1e0a8de070803ede416b',1,'Bot.hpp']]]
+  ['slash_5fcommands_5ft_0',['slash_commands_t',['../Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e',1,'Bot.hpp']]]
 ];

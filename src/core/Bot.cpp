@@ -77,6 +77,12 @@ static inline void handle_reaction_remove(dpp::cluster& ctx, const reaction_comm
 	(void)reaction_commands;
 }
 
+// handle ready event
+static inline void handle_ready(dpp::cluster& ctx, const ready_commands_t& ready_commands) {
+	(void)ctx;
+	(void)ready_commands;
+}
+
 void Bot::run() {
 	// slash commands
 	register_global_slash_commands(Bot::ctx);
@@ -100,6 +106,9 @@ void Bot::run() {
 	// reaction commands
 	handle_reaction_add(Bot::ctx, Bot::reaction_commands);
 	handle_reaction_remove(Bot::ctx, Bot::reaction_commands);
+
+	// when bot is ready
+	handle_ready(Bot::ctx, Bot::ready_commands);
 
 	ctx.start(dpp::st_wait);
 	return;

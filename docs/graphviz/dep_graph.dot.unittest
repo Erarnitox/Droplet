@@ -1,0 +1,20 @@
+digraph "unittest" {
+node [
+  fontsize = "12"
+];
+    "node27" [ label = "unittest", shape = egg ];
+    "node16" [ label = "dpp", shape = doubleoctagon ];
+    "node27" -> "node16" [ style = dotted ] // unittest -> dpp
+    "node17" [ label = "/usr/lib/libcrypto.so", shape = septagon ];
+    "node16" -> "node17"  // dpp -> /usr/lib/libcrypto.so
+    "node18" [ label = "/usr/lib/libm.so", shape = septagon ];
+    "node16" -> "node18"  // dpp -> /usr/lib/libm.so
+    "node19" [ label = "/usr/lib/libopus.so", shape = septagon ];
+    "node16" -> "node19"  // dpp -> /usr/lib/libopus.so
+    "node20" [ label = "/usr/lib/libsodium.so", shape = septagon ];
+    "node16" -> "node20"  // dpp -> /usr/lib/libsodium.so
+    "node21" [ label = "/usr/lib/libssl.so", shape = septagon ];
+    "node16" -> "node21"  // dpp -> /usr/lib/libssl.so
+    "node22" [ label = "/usr/lib/libz.so", shape = septagon ];
+    "node16" -> "node22"  // dpp -> /usr/lib/libz.so
+}
