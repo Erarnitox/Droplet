@@ -13,6 +13,7 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
 endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC .)
+target_Include_directories(${PROJECT_NAME} PRIVATE "${PROJECT_NAME}/core")
 
 target_link_libraries(start_bot PRIVATE ${PROJECT_NAME})
 
