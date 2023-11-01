@@ -2,6 +2,7 @@
 
 #include <Bot.hpp>
 #include <Commands.hpp>
+#include <Database.hpp>
 #include <fstream>
 
 //////////////////////////////////////////////////////////////////////////////
@@ -9,7 +10,7 @@
 //////////////////////////////////////////////////////////////////////////////
 auto start_bot() -> void {
 	// initialize bot
-	Bot::set_token(read_bot_token("bot_token.txt"));
+	Bot::init(read_bot_token("bot_token.txt"));
 
 	//-----------------------------------------------------------------------------
 	// connect to the Database
@@ -23,7 +24,7 @@ auto start_bot() -> void {
 	//------------------------------------------------------------------------------
 
 	// Command Registration:
-	CommandRegister::registerCommands();
+	// Commands::registerCommands();
 
 	Bot::run();
 

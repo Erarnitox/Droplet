@@ -17,7 +17,6 @@ target_include_directories(core PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 
 set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
-target_link_libraries(core PUBLIC ${DPP_LIBRARIES})
-target_include_directories(core PUBLIC ${DPP_INCLUDE_DIR})
+target_link_libraries_system(core dpp)
 
 target_link_libraries(core PUBLIC database)

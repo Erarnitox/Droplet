@@ -6,7 +6,7 @@
 // #include "ChallengeRoleCommand.hpp"
 // #include "HelpCommand.hpp"
 // #include "SetChannelCommand.hpp"
-#include <PongCommand.hpp>
+// #include <PongCommand.hpp>
 
 void CommandRegister::registerCommands() {
 	////////////////////////////////////
@@ -18,5 +18,5 @@ void CommandRegister::registerCommands() {
 	//  (void)Commands::CommandRegistration<SetChannelCommand>();
 
 	// new way to register commands:
-	Bot::add_message_command(std::make_shared<PongCommand>());
+	// Bot::add_message_command(std::make_shared<PongCommand>());
 }

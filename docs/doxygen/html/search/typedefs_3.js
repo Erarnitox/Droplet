@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['reaction_5fcommands_5ft_0',['reaction_commands_t',['../Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6',1,'Bot.hpp']]],
-  ['ready_5fcommands_5ft_1',['ready_commands_t',['../Bot_8hpp.html#a59e94160ab46303afc770a959ea594ca',1,'Bot.hpp']]]
+  ['member_5fcommands_5ft_0',['member_commands_t',['../Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75',1,'Bot.hpp']]],
+  ['message_5fcommands_5ft_1',['message_commands_t',['../Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1',1,'Bot.hpp']]]
 ];

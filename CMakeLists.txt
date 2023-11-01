@@ -6,8 +6,10 @@ include(cmake/CPM.cmake)
 set(CPP_STANDARD 20)
 
 set(BUILD_SHARED_LIBS OFF)
-set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
-set(OPENSSL_TEST OFF) #no-test
+# set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
+# set(OPENSSL_TEST OFF) #no-test
+
+find_package(OpenSSL REQUIRED)
 
 project(droplet 
 	VERSION 1.0.2 # https://semver.org/
@@ -32,14 +34,6 @@ endif()
 
 # disable compiler specific C++ extensions
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-# download OpenSSL
-# CPMAddPackage(
-#    NAME openssl-cmake
-#    URL https://github.com/jimmy-park/openssl-cmake/archive/main.tar.gz
-#    OPTIONS
-#    "OPENSSL_CONFIGURE_OPTIONS no-shared\\\\;no-tests"
-# )
 
 # download and update git submodules automatically
 find_package(Git QUIET)
@@ -111,10 +105,4 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
  	# dependecy graph
  	# generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
 endif()
-
-# install the bot and it's library dependency
-# install(TARGETS start_bot dpp)
- 
-# include to automatically pack/make an installer for release
-# include(CPack)
  

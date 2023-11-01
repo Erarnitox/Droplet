@@ -7,8 +7,17 @@
 #include <fmt/core.h>
 #include <fmt/os.h>
 
-void Bot::set_token(const std::string& token) {
-	ctx.token = token;
+ctx_t Bot::ctx;
+button_commands_t Bot::button_commands;
+form_commands_t Bot::form_commands;
+slash_commands_t Bot::slash_commands;
+member_commands_t Bot::member_commands;
+message_commands_t Bot::message_commands;
+reaction_commands_t Bot::reaction_commands;
+ready_commands_t Bot::ready_commands;
+
+void Bot::init(const std::string& token) {
+	Bot::ctx = std::make_unique<dpp::cluster>(token);
 }
 
 void Bot::add_slash_command(const std::string& name, const std::shared_ptr<IGlobalSlashCommand>& slash_command) {
@@ -40,23 +49,23 @@ void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 }
 
 // slash commands
-static inline void register_global_slash_commands(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
-	ctx.on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
+static inline void register_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
+	ctx->on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
 		(void)event;
 
-		ctx.log(dpp::ll_trace, "Registering Slash commands...");
+		ctx->log(dpp::ll_trace, "Registering Slash commands...");
 
 		if (dpp::run_once<struct register_bot_commands>()) {
 			for (const auto& slash_command : slash_commands) {
 				dpp::slashcommand tmp_command(
-					slash_command.first, slash_command.second->command_description, ctx.me.id);
-				ctx.global_command_create(tmp_command);
+					slash_command.first, slash_command.second->command_description, ctx->me.id);
+				ctx->global_command_create(tmp_command);
 			}
 		}
 	});
 }
 
-static inline void handle_on_log(dpp::cluster& ctx) {
+static inline void handle_on_log(ctx_t& ctx) {
 	//-----------------------------------------------------------------------------
 	// Functionality for Logging
 	//-----------------------------------------------------------------------------
@@ -65,7 +74,7 @@ static inline void handle_on_log(dpp::cluster& ctx) {
 	auto log_out{
 		fmt::output_file("droplet.log", fmt::file::WRONLY | fmt::file::CREATE | fmt::file::APPEND | fmt::file::TRUNC)};
 
-	ctx.on_log([&log_out, &err_log_out](const dpp::log_t& event) {
+	ctx->on_log([&log_out, &err_log_out](const dpp::log_t& event) {
 		if (event.severity == dpp::ll_trace) {
 			fmt::print(
 				fg(fmt::color::green), "[TRACE]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
@@ -105,8 +114,8 @@ static inline void handle_on_log(dpp::cluster& ctx) {
 	});
 }
 
-static inline void handle_global_slash_commands(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
-	ctx.on_slashcommand([&slash_commands](const dpp::slashcommand_t& event) {
+static inline void handle_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
+	ctx->on_slashcommand([&slash_commands](const dpp::slashcommand_t& event) {
 		const std::string& command_name = event.command.get_command_name();
 		if (slash_commands.find(command_name) != slash_commands.end()) {
 			slash_commands.at(command_name)->on_slashcommand(event);
@@ -115,24 +124,24 @@ static inline void handle_global_slash_commands(dpp::cluster& ctx, const slash_c
 }
 
 // message commands
-static inline void handle_message_create(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_create([&message_commands](const dpp::message_create_t& event) {
+static inline void handle_message_create(ctx_t& ctx, const message_commands_t& message_commands) {
+	ctx->on_message_create([&message_commands](const dpp::message_create_t& event) {
 		for (const auto& command : message_commands) {
 			command->on_message_create(event);
 		}
 	});
 }
 
-static inline void handle_message_delete(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_delete([&message_commands](const dpp::message_delete_t& event) {
+static inline void handle_message_delete(ctx_t& ctx, const message_commands_t& message_commands) {
+	ctx->on_message_delete([&message_commands](const dpp::message_delete_t& event) {
 		for (const auto& command : message_commands) {
 			command->on_message_delete(event);
 		}
 	});
 }
 
-static inline void handle_message_delete_bulk(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
+static inline void handle_message_delete_bulk(ctx_t& ctx, const message_commands_t& message_commands) {
+	ctx->on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
 		for (const auto& command : message_commands) {
 			command->on_message_delete_bulk(event);
 		}
@@ -140,16 +149,16 @@ static inline void handle_message_delete_bulk(dpp::cluster& ctx, const message_c
 }
 
 // user management
-static inline void handle_guild_member_add(dpp::cluster& ctx, const member_commands_t& member_commands) {
-	ctx.on_guild_member_add([&member_commands](const dpp::guild_member_add_t& event) {
+static inline void handle_guild_member_add(ctx_t& ctx, const member_commands_t& member_commands) {
+	ctx->on_guild_member_add([&member_commands](const dpp::guild_member_add_t& event) {
 		for (const auto& command : member_commands) {
 			command->on_guild_member_add(event);
 		}
 	});
 }
 
-static inline void handle_guild_member_remove(dpp::cluster& ctx, const member_commands_t& member_commands) {
-	ctx.on_guild_member_remove([&member_commands](const dpp::guild_member_remove_t& event) {
+static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_t& member_commands) {
+	ctx->on_guild_member_remove([&member_commands](const dpp::guild_member_remove_t& event) {
 		for (const auto& command : member_commands) {
 			command->on_guild_member_remove(event);
 		}
@@ -157,31 +166,31 @@ static inline void handle_guild_member_remove(dpp::cluster& ctx, const member_co
 }
 
 // button clicks
-static inline void handle_button_click(dpp::cluster& ctx, const button_commands_t& button_commands) {
+static inline void handle_button_click(ctx_t& ctx, const button_commands_t& button_commands) {
 	(void)ctx;
 	(void)button_commands;
 }
 
 // form submits
-static inline void handle_form_submit(dpp::cluster& ctx, const form_commands_t& form_commands) {
+static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_commands) {
 	(void)ctx;
 	(void)form_commands;
 }
 
 // handle added reactions
-static inline void handle_reaction_add(dpp::cluster& ctx, const reaction_commands_t& reaction_commands) {
+static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	(void)ctx;
 	(void)reaction_commands;
 }
 
 // handle removed reactions
-static inline void handle_reaction_remove(dpp::cluster& ctx, const reaction_commands_t& reaction_commands) {
+static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	(void)ctx;
 	(void)reaction_commands;
 }
 
 // handle ready event
-static inline void handle_ready(dpp::cluster& ctx, const ready_commands_t& ready_commands) {
+static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_commands) {
 	(void)ctx;
 	(void)ready_commands;
 }
@@ -216,6 +225,6 @@ void Bot::run() {
 	// when bot is ready
 	handle_ready(Bot::ctx, Bot::ready_commands);
 
-	ctx.start(dpp::st_wait);
+	ctx->start(dpp::st_wait);
 	return;
 }
