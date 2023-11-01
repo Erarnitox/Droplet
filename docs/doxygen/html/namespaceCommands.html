@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -93,148 +93,35 @@ $(document).ready(function(){initNavTree('namespaceCommands.html',''); initResiz
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">Commands Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCommands_1_1CommandFunctionPointers.html">CommandFunctionPointers</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCommands_1_1CommandRegistration.html">CommandRegistration</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ac3e6da41fcd943cfc710397bac057b2a" id="r_ac3e6da41fcd943cfc710397bac057b2a"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#ac3e6da41fcd943cfc710397bac057b2a">register_global_slash_commands</a>) (std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:ac3e6da41fcd943cfc710397bac057b2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d7ae2aac80600dbc7c05128fbe30d19" id="r_a0d7ae2aac80600dbc7c05128fbe30d19"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a0d7ae2aac80600dbc7c05128fbe30d19">handle_global_slash_commands</a>) (const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot, const std::vector&lt; dpp::slashcommand &gt; &amp;command_list)</td></tr>
-<tr class="separator:a0d7ae2aac80600dbc7c05128fbe30d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a597a32b7505cf7d511fd4c65e69e5a67" id="r_a597a32b7505cf7d511fd4c65e69e5a67"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a597a32b7505cf7d511fd4c65e69e5a67">welcome_member</a>) (const dpp::guild_member_add_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a597a32b7505cf7d511fd4c65e69e5a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e0daea3a5bedc263f50f1f2e968b576" id="r_a9e0daea3a5bedc263f50f1f2e968b576"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a9e0daea3a5bedc263f50f1f2e968b576">leave_member</a>) (const dpp::guild_member_remove_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a9e0daea3a5bedc263f50f1f2e968b576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65ec38ad10d0f1520747f2a45821235b" id="r_a65ec38ad10d0f1520747f2a45821235b"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a65ec38ad10d0f1520747f2a45821235b">handle_button_clicks</a>) (const dpp::button_click_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a65ec38ad10d0f1520747f2a45821235b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35ee4525cfec4260386ab6ad779be6a0" id="r_a35ee4525cfec4260386ab6ad779be6a0"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a35ee4525cfec4260386ab6ad779be6a0">handle_form_submits</a>) (const dpp::form_submit_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a35ee4525cfec4260386ab6ad779be6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7775c0941bd0ef96126f589151ff0c79" id="r_a7775c0941bd0ef96126f589151ff0c79"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a7775c0941bd0ef96126f589151ff0c79">handle_reaction_added</a>) (const dpp::message_reaction_add_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a7775c0941bd0ef96126f589151ff0c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a9723b40b83cc797d344bbfd3c15f4b" id="r_a8a9723b40b83cc797d344bbfd3c15f4b"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#a8a9723b40b83cc797d344bbfd3c15f4b">handle_reaction_removed</a>) (const dpp::message_reaction_remove_t &amp;event, dpp::cluster &amp;bot)</td></tr>
-<tr class="separator:a8a9723b40b83cc797d344bbfd3c15f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac8282fb3530c7c026d83e7256b5b301e" id="r_ac8282fb3530c7c026d83e7256b5b301e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e">registerCommands</a> ()</td></tr>
+<tr class="memdesc:ac8282fb3530c7c026d83e7256b5b301e"><td class="mdescLeft">&#160;</td><td class="mdescRight">COMMAND HEADERS:  <br /></td></tr>
+<tr class="separator:ac8282fb3530c7c026d83e7256b5b301e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a65ec38ad10d0f1520747f2a45821235b" name="a65ec38ad10d0f1520747f2a45821235b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65ec38ad10d0f1520747f2a45821235b">&#9670;&#160;</a></span>handle_button_clicks</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ac8282fb3530c7c026d83e7256b5b301e" name="ac8282fb3530c7c026d83e7256b5b301e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8282fb3530c7c026d83e7256b5b301e">&#9670;&#160;</a></span>registerCommands()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* Commands::handle_button_clicks) (const dpp::button_click_t &amp;event, dpp::cluster &amp;bot)</td>
+          <td class="memname">void Commands::registerCommands </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a35ee4525cfec4260386ab6ad779be6a0" name="a35ee4525cfec4260386ab6ad779be6a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35ee4525cfec4260386ab6ad779be6a0">&#9670;&#160;</a></span>handle_form_submits</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::handle_form_submits) (const dpp::form_submit_t &amp;event, dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0d7ae2aac80600dbc7c05128fbe30d19" name="a0d7ae2aac80600dbc7c05128fbe30d19"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d7ae2aac80600dbc7c05128fbe30d19">&#9670;&#160;</a></span>handle_global_slash_commands</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::handle_global_slash_commands) (const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot, const std::vector&lt; dpp::slashcommand &gt; &amp;command_list)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a7775c0941bd0ef96126f589151ff0c79" name="a7775c0941bd0ef96126f589151ff0c79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7775c0941bd0ef96126f589151ff0c79">&#9670;&#160;</a></span>handle_reaction_added</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::handle_reaction_added) (const dpp::message_reaction_add_t &amp;event, dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8a9723b40b83cc797d344bbfd3c15f4b" name="a8a9723b40b83cc797d344bbfd3c15f4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a9723b40b83cc797d344bbfd3c15f4b">&#9670;&#160;</a></span>handle_reaction_removed</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::handle_reaction_removed) (const dpp::message_reaction_remove_t &amp;event, dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9e0daea3a5bedc263f50f1f2e968b576" name="a9e0daea3a5bedc263f50f1f2e968b576"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e0daea3a5bedc263f50f1f2e968b576">&#9670;&#160;</a></span>leave_member</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::leave_member) (const dpp::guild_member_remove_t &amp;event, dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac3e6da41fcd943cfc710397bac057b2a" name="ac3e6da41fcd943cfc710397bac057b2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac3e6da41fcd943cfc710397bac057b2a">&#9670;&#160;</a></span>register_global_slash_commands</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::register_global_slash_commands) (std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a597a32b7505cf7d511fd4c65e69e5a67" name="a597a32b7505cf7d511fd4c65e69e5a67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a597a32b7505cf7d511fd4c65e69e5a67">&#9670;&#160;</a></span>welcome_member</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void(* Commands::welcome_member) (const dpp::guild_member_add_t &amp;event, dpp::cluster &amp;bot)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>COMMAND HEADERS: </p>
+<p>REGISTER ALL COMMANDS HERE:</p>
 
 </div>
 </div>

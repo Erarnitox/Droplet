@@ -14,6 +14,6 @@ else()
 endif()
 
 set_property(TARGET pong_command PROPERTY CXX_STANDARD ${CPP_STANDARD})
-target_link_libraries(pong_command PUBLIC core)
+target_link_libraries(pong_command PUBLIC bot)
 
 target_link_libraries(commands PRIVATE pong_command)

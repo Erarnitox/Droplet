@@ -1,14 +1,16 @@
-> [!WARNING]  
+> [!WARNING]
 > This repository is in an early WIP state! Don't expect everything to work yet!
+
+> [!WARNING]
 > Everything in this repository unstable and due to change in the future!
 
 # Droplet - Discord Bot
 ---
 <img src="res/logo.png" width="20%" align="left"></img>
 
-Droplet is a feature-rich Discord bot written in modern C++ to enhance your server's experience. 
+Droplet is a feature-rich Discord bot written in modern C++ to enhance your discord server's experience. 
 
-It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, CyberDrop is the perfect companion for managing your Discord server.
+It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, Droplet is the perfect companion for managing your Discord server.
 
 
 ---
@@ -62,7 +64,7 @@ Before contributing, please review the Contributing Guidelines.
 
 ### Crontributing Guidelines
 - Your Code must adhere to out [Styleguide](./docs/styleguide.md)
-- TODO: Definition of Done
+- Before creating a pull request please check off this [Checklist](./docs/checklist.md)
 
 ---
 

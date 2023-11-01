@@ -1,3 +1,14 @@
+/**
+ *  (c) Copyright dropsoft.org - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *  
+ *  License: MIT License
+ *
+ *  Description: This class handles the execution of the
+ *	bot and delegats events to registerd commands.
+ *
+ *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot
+**/
 #pragma once
 
 #include <Core.hpp>
@@ -13,9 +24,8 @@
 #include <string>
 #include <vector>
 
-using slash_commands_t = std::map<std::string, std::shared_ptr<IGlobalSlashCommand>>;
-
 using ctx_t = std::unique_ptr<dpp::cluster>;
+using slash_commands_t = std::map<std::string, std::shared_ptr<IGlobalSlashCommand>>;
 using button_commands_t = std::vector<std::shared_ptr<IButtonCommand>>;
 using form_commands_t = std::vector<std::shared_ptr<IFormCommand>>;
 using member_commands_t = std::vector<std::shared_ptr<IMemberCommand>>;
@@ -37,13 +47,11 @@ class Bot {
   public:
 	static void init(const std::string& token);
 	static void add_slash_command(const std::string& name, const std::shared_ptr<IGlobalSlashCommand>& slash_command);
-
 	static void add_button_command(const std::shared_ptr<IButtonCommand>& button_command);
 	static void add_form_command(const std::shared_ptr<IFormCommand>& form_command);
 	static void add_member_command(const std::shared_ptr<IMemberCommand>& button_command);
 	static void add_message_command(const std::shared_ptr<IMessageCommand>& button_command);
 	static void add_reaction_command(const std::shared_ptr<IReactionCommand>& button_command);
 	static void add_ready_command(const std::shared_ptr<IReady>& ready_command);
-
 	static void run();
 };

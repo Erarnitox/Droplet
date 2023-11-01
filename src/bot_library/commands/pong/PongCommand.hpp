@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Commands.hpp>
+#include <Bot.hpp>
 
 class PongCommand : public IMessageCommand {
 	std::string command_name;

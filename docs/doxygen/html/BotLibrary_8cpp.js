@@ -1,6 +1,6 @@
 var BotLibrary_8cpp =
 [
-    [ "read_bot_token", "BotLibrary_8cpp.html#ada4c8520dd463c4ea3b40b6ea921a6f2", null ],
-    [ "read_database_credentials", "BotLibrary_8cpp.html#a3b7ea5e7418b0b0c32de508e87bd068b", null ],
-    [ "start_bot", "BotLibrary_8cpp.html#a16156ea46210ec8bca5367d6aced3b9a", null ]
+    [ "read_bot_token", "BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d", null ],
+    [ "read_database_credentials", "BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a", null ],
+    [ "start_bot", "BotLibrary_8cpp.html#a58ba57ff883cd2d4b3ea6eafd14b98f3", null ]
 ];

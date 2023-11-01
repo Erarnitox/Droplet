@@ -11,7 +11,7 @@ var searchData=
   ['challengerolerepository_2ehpp_8',['ChallengeRoleRepository.hpp',['../ChallengeRoleRepository_8hpp.html',1,'']]],
   ['command_5fdescription_9',['command_description',['../classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b',1,'IGlobalSlashCommand']]],
   ['command_5fname_10',['command_name',['../classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f',1,'IGlobalSlashCommand']]],
-  ['commandregister_11',['CommandRegister',['../namespaceCommandRegister.html',1,'']]],
+  ['commands_11',['Commands',['../namespaceCommands.html',1,'']]],
   ['commands_2ecpp_12',['Commands.cpp',['../Commands_8cpp.html',1,'']]],
   ['commands_2ehpp_13',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
   ['connect_14',['connect',['../classDatabase.html#a365607d9d731aa97f265fe31b2ee1ea0',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool'],['../classDatabase.html#ab5ba91e10862b7fec75e67c853073d3b',1,'Database::connect(const std::string &amp;connection_string) -&gt; bool']]],

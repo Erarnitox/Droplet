@@ -2,6 +2,6 @@
 
 #include <Bot.hpp>
 
-namespace CommandRegister {
+namespace Commands {
 void registerCommands();
 }

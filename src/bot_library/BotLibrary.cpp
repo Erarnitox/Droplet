@@ -1,3 +1,17 @@
+/**
+ *  (c) Copyright dropsoft.org - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description: This Library combines all the
+ * 	fuctionality of the bot into a static library
+ * 	that can be used by the main binary and also
+ * 	the unit_test binary.
+ *
+ *  Documentation: https://droplet.dropsoft.org/doxygen/bot_library
+ **/
+
 #include "BotLibrary.hpp"
 
 #include <Bot.hpp>
@@ -5,36 +19,50 @@
 #include <Database.hpp>
 #include <fstream>
 
-//////////////////////////////////////////////////////////////////////////////
-// MAIN FUNCTION
-//////////////////////////////////////////////////////////////////////////////
-auto start_bot() -> void {
+/**
+ * @brief this is the entry point of the binary that will start the bot
+ * @return doesn't return anything
+ */
+void start_bot() {
 	// initialize bot
-	Bot::init(read_bot_token("bot_token.txt"));
+	try {
+		Bot::init(read_bot_token("bot_token.txt"));
+	} catch (const char* const error_message) {
+		std::cerr << error_message;
+		return;
+	}
 
 	//-----------------------------------------------------------------------------
 	// connect to the Database
 	//-----------------------------------------------------------------------------
-	const auto db_connection_string{read_database_credentials("db_connection.txt")};
+	try {
+		const auto db_connection_string{read_database_credentials("db_connection.txt")};
 
-	const auto connected{Database::connect(db_connection_string)};
-	if (!connected) {
+		const auto connected{Database::connect(db_connection_string)};
+		if (!connected) {
+			return;
+		}
+	} catch (const char* const error_message) {
+		std::cerr << error_message;
 		return;
 	}
 	//------------------------------------------------------------------------------
 
 	// Command Registration:
-	// Commands::registerCommands();
+	Commands::registerCommands();
 
 	Bot::run();
 
 	return;
 }
 
-//////////////////////////////////////////////////////////////////////////////
-// READ BOT TOKEN FROM FILE
-//////////////////////////////////////////////////////////////////////////////
-auto read_bot_token(const std::string& file) -> std::string {
+/**
+ * @brief reads the bot token from a file
+ *
+ * @param file the name of the file holding the bot token
+ * @return returns the bot token as a std::string
+ */
+std::string read_bot_token(const std::string& file) {
 	std::ifstream file_stream(file);
 	std::string bot_token;
 
@@ -53,10 +81,13 @@ auto read_bot_token(const std::string& file) -> std::string {
 	return bot_token;
 }
 
-//////////////////////////////////////////////////////////////////////////////
-// READ DATABASE CREDENTIALS FROM FILE
-//////////////////////////////////////////////////////////////////////////////
-auto read_database_credentials(const std::string& file) -> std::string {
+/**
+ * @brief reads the connection string for the postgres database from a file
+ *
+ * @param file the name of the file holding the connection string
+ * @return returns the connection string as a std::string
+ */
+std::string read_database_credentials(const std::string& file) {
 	std::ifstream file_stream(file);
 	std::string connection_string;
 
@@ -66,8 +97,9 @@ auto read_database_credentials(const std::string& file) -> std::string {
 		throw("ERROR: Cant read Database connection string!");
 	}
 
-	if (connection_string.size() < 1)
+	if (connection_string.size() < 1) {
 		throw("ERROR: NO DATABASE CREDENTIALS PROVIDED!");
+	}
 
 	return connection_string;
 }

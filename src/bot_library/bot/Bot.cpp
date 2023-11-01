@@ -1,3 +1,15 @@
+/**
+ *  (c) Copyright dropsoft.org - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *  
+ *  License: MIT License
+ *
+ *  Description: This class handles the execution of the
+ *	bot and delegats events to registerd commands.
+ *
+ *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot
+**/
+
 #include "Bot.hpp"
 
 #include <dpp/cluster.h>
@@ -7,6 +19,7 @@
 #include <fmt/core.h>
 #include <fmt/os.h>
 
+// initialize static members
 ctx_t Bot::ctx;
 button_commands_t Bot::button_commands;
 form_commands_t Bot::form_commands;
@@ -16,39 +29,94 @@ message_commands_t Bot::message_commands;
 reaction_commands_t Bot::reaction_commands;
 ready_commands_t Bot::ready_commands;
 
+/**
+* @brief initializes our dpp::cluster (bot) and sets the bot token
+*
+* @param token the token to be used by the bot
+* @return doesn't return anything
+*/
 void Bot::init(const std::string& token) {
 	Bot::ctx = std::make_unique<dpp::cluster>(token);
 }
 
+/**
+* @brief registers new slash commands with the bot
+*
+* @param name the name of the slash command
+* @param slash_command the command that implements the IGlobalSlashCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_slash_command(const std::string& name, const std::shared_ptr<IGlobalSlashCommand>& slash_command) {
 	Bot::slash_commands[name] = slash_command;
 }
 
+/**
+* @brief registers new button commands with the bot
+*
+* @param button_command the command that implements the IButtonCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_button_command(const std::shared_ptr<IButtonCommand>& button_command) {
 	Bot::button_commands.push_back(button_command);
 }
 
+/**
+* @brief registers new form commands with the bot
+*
+* @param form_command the command that implements the IFormCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_form_command(const std::shared_ptr<IFormCommand>& form_command) {
 	Bot::form_commands.push_back(form_command);
 }
 
+/**
+* @brief registers new member commands with the bot
+*
+* @param member_command the command that implements the IMemberCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_member_command(const std::shared_ptr<IMemberCommand>& member_command) {
 	Bot::member_commands.push_back(member_command);
 }
 
+/**
+* @brief registers new message commands with the bot
+*
+* @param message_command the command that implements the IMessageCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_message_command(const std::shared_ptr<IMessageCommand>& message_command) {
 	Bot::message_commands.push_back(message_command);
 }
 
+/**
+* @brief registers new reaction commands with the bot
+*
+* @param reaction_command the command that implements the IReactionCommand interface
+* @return doesn't return anything
+*/
 void Bot::add_reaction_command(const std::shared_ptr<IReactionCommand>& reaction_command) {
 	Bot::reaction_commands.push_back(reaction_command);
 }
 
+/**
+* @brief registers new ready commands with the bot
+*
+* @param ready_command the command that implements the IReady interface
+* @return doesn't return anything
+*/
 void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 	Bot::ready_commands.push_back(ready_command);
 }
 
-// slash commands
+/**
+* @brief registers slash commands on discord when the bot is ready
+*
+* @param ctx the dpp::cluster (bot)
+* @param slash_commands a list of commands that will be registerd
+* @return doesn't return anything
+*/
 static inline void register_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
 	ctx->on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
 		(void)event;
@@ -65,6 +133,12 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 	});
 }
 
+/**
+* @brief handle the logging events
+*
+* @param ctx the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might produce console and file output
+*/
 static inline void handle_on_log(ctx_t& ctx) {
 	//-----------------------------------------------------------------------------
 	// Functionality for Logging
@@ -114,6 +188,13 @@ static inline void handle_on_log(ctx_t& ctx) {
 	});
 }
 
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
 	ctx->on_slashcommand([&slash_commands](const dpp::slashcommand_t& event) {
 		const std::string& command_name = event.command.get_command_name();
@@ -123,7 +204,13 @@ static inline void handle_global_slash_commands(ctx_t& ctx, const slash_commands
 	});
 }
 
-// message commands
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_message_create(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_create([&message_commands](const dpp::message_create_t& event) {
 		for (const auto& command : message_commands) {
@@ -132,6 +219,13 @@ static inline void handle_message_create(ctx_t& ctx, const message_commands_t& m
 	});
 }
 
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_message_delete(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_delete([&message_commands](const dpp::message_delete_t& event) {
 		for (const auto& command : message_commands) {
@@ -140,6 +234,13 @@ static inline void handle_message_delete(ctx_t& ctx, const message_commands_t& m
 	});
 }
 
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_message_delete_bulk(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
 		for (const auto& command : message_commands) {
@@ -148,7 +249,13 @@ static inline void handle_message_delete_bulk(ctx_t& ctx, const message_commands
 	});
 }
 
-// user management
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_guild_member_add(ctx_t& ctx, const member_commands_t& member_commands) {
 	ctx->on_guild_member_add([&member_commands](const dpp::guild_member_add_t& event) {
 		for (const auto& command : member_commands) {
@@ -157,6 +264,13 @@ static inline void handle_guild_member_add(ctx_t& ctx, const member_commands_t& 
 	});
 }
 
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_t& member_commands) {
 	ctx->on_guild_member_remove([&member_commands](const dpp::guild_member_remove_t& event) {
 		for (const auto& command : member_commands) {
@@ -165,36 +279,73 @@ static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_
 	});
 }
 
-// button clicks
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_button_click(ctx_t& ctx, const button_commands_t& button_commands) {
 	(void)ctx;
 	(void)button_commands;
 }
 
-// form submits
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_commands) {
 	(void)ctx;
 	(void)form_commands;
 }
 
-// handle added reactions
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	(void)ctx;
 	(void)reaction_commands;
 }
 
-// handle removed reactions
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	(void)ctx;
 	(void)reaction_commands;
 }
 
-// handle ready event
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_commands) {
 	(void)ctx;
 	(void)ready_commands;
 }
 
+/**
+* @brief handle button clicks in form elements
+*
+* @param event the click event initiated by the user
+* @param bot the cluster that can be thought of the current bot instance
+* @return doesn't return anything but might repsond to the user in chat
+*/
 void Bot::run() {
 	// custom logger
 	handle_on_log(Bot::ctx);

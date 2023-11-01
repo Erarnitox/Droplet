@@ -100,18 +100,19 @@ $(document).ready(function(){initNavTree('BotLibrary_8hpp_source.html',''); init
   <div class="headertitle"><div class="title">BotLibrary.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="BotLibrary_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a>() -&gt; void;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8cpp.html#ada4c8520dd463c4ea3b40b6ea921a6f2">read_bot_token</a>(<span class="keyword">const</span> std::string&amp; file) -&gt; std::string;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8cpp.html#a3b7ea5e7418b0b0c32de508e87bd068b">read_database_credentials</a>(<span class="keyword">const</span> std::string&amp; file) -&gt; std::string;</div>
-<div class="ttc" id="aBotLibrary_8cpp_html_a3b7ea5e7418b0b0c32de508e87bd068b"><div class="ttname"><a href="BotLibrary_8cpp.html#a3b7ea5e7418b0b0c32de508e87bd068b">read_database_credentials</a></div><div class="ttdeci">auto read_database_credentials(const std::string &amp;file) -&gt; std::string</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:59</div></div>
-<div class="ttc" id="aBotLibrary_8cpp_html_ada4c8520dd463c4ea3b40b6ea921a6f2"><div class="ttname"><a href="BotLibrary_8cpp.html#ada4c8520dd463c4ea3b40b6ea921a6f2">read_bot_token</a></div><div class="ttdeci">auto read_bot_token(const std::string &amp;file) -&gt; std::string</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:37</div></div>
-<div class="ttc" id="aBotLibrary_8hpp_html_a16156ea46210ec8bca5367d6aced3b9a"><div class="ttname"><a href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a></div><div class="ttdeci">auto start_bot() -&gt; void</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:11</div></div>
+<a href="BotLibrary_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a>() -&gt; void;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> std::string <a class="code hl_function" href="BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d">read_bot_token</a>(<span class="keyword">const</span> std::string&amp; file);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> std::string <a class="code hl_function" href="BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a">read_database_credentials</a>(<span class="keyword">const</span> std::string&amp; file);</div>
+<div class="ttc" id="aBotLibrary_8cpp_html_a79b187d8c716521887dddfcb0b30856a"><div class="ttname"><a href="BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a">read_database_credentials</a></div><div class="ttdeci">std::string read_database_credentials(const std::string &amp;file)</div><div class="ttdoc">reads the connection string for the postgres database from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:90</div></div>
+<div class="ttc" id="aBotLibrary_8cpp_html_aae213265f721aafdba5391424ccd037d"><div class="ttname"><a href="BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d">read_bot_token</a></div><div class="ttdeci">std::string read_bot_token(const std::string &amp;file)</div><div class="ttdoc">reads the bot token from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:65</div></div>
+<div class="ttc" id="aBotLibrary_8hpp_html_a16156ea46210ec8bca5367d6aced3b9a"><div class="ttname"><a href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a></div><div class="ttdeci">auto start_bot() -&gt; void</div><div class="ttdoc">this is the entry point of the binary that will start the bot</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
