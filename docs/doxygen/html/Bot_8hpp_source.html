@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>droplet: src/core/Bot.hpp Source File</title>
+<title>droplet: src/bot_library/bot/include/Bot.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -107,13 +107,13 @@ $(document).ready(function(){initNavTree('Bot_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="IButtonCommand_8hpp.html">interfaces/IButtonCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="IFormCommand_8hpp.html">interfaces/IFormCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="IGlobalSlashCommand_8hpp.html">interfaces/IGlobalSlashCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="IMemberCommand_8hpp.html">interfaces/IMemberCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="IMessageCommand_8hpp.html">interfaces/IMessageCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="IReactionCommand_8hpp.html">interfaces/IReactionCommand.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="IReady_8hpp.html">interfaces/IReady.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="IButtonCommand_8hpp.html">IButtonCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="IFormCommand_8hpp.html">IFormCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;<a class="code" href="IGlobalSlashCommand_8hpp.html">IGlobalSlashCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="IMemberCommand_8hpp.html">IMemberCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="IMessageCommand_8hpp.html">IMessageCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="IReactionCommand_8hpp.html">IReactionCommand.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="IReady_8hpp.html">IReady.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e">   16</a></span><span class="keyword">using </span><a class="code hl_typedef" href="Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e">slash_commands_t</a> = std::map&lt;std::string, std::shared_ptr&lt;IGlobalSlashCommand&gt;&gt;;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
@@ -165,21 +165,21 @@ $(document).ready(function(){initNavTree('Bot_8hpp_source.html',''); initResizab
 <div class="ttc" id="aIReactionCommand_8hpp_html"><div class="ttname"><a href="IReactionCommand_8hpp.html">IReactionCommand.hpp</a></div></div>
 <div class="ttc" id="aIReady_8hpp_html"><div class="ttname"><a href="IReady_8hpp.html">IReady.hpp</a></div></div>
 <div class="ttc" id="aclassBot_html"><div class="ttname"><a href="classBot.html">Bot</a></div><div class="ttdef"><b>Definition</b> Bot.hpp:25</div></div>
-<div class="ttc" id="aclassBot_html_a2ef4ae8293183f68542b9686e1304e61"><div class="ttname"><a href="classBot.html#a2ef4ae8293183f68542b9686e1304e61">Bot::add_message_command</a></div><div class="ttdeci">static void add_message_command(const std::shared_ptr&lt; IMessageCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:27</div></div>
-<div class="ttc" id="aclassBot_html_a41254845188893f98acbbe1ee4df826a"><div class="ttname"><a href="classBot.html#a41254845188893f98acbbe1ee4df826a">Bot::add_member_command</a></div><div class="ttdeci">static void add_member_command(const std::shared_ptr&lt; IMemberCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:23</div></div>
-<div class="ttc" id="aclassBot_html_a4557d749454cc12426fdb005dbde6eb9"><div class="ttname"><a href="classBot.html#a4557d749454cc12426fdb005dbde6eb9">Bot::add_reaction_command</a></div><div class="ttdeci">static void add_reaction_command(const std::shared_ptr&lt; IReactionCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:31</div></div>
-<div class="ttc" id="aclassBot_html_a6d2c6656bb62a0239b4f700f34d0c6fd"><div class="ttname"><a href="classBot.html#a6d2c6656bb62a0239b4f700f34d0c6fd">Bot::add_form_command</a></div><div class="ttdeci">static void add_form_command(const std::shared_ptr&lt; IFormCommand &gt; &amp;form_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:19</div></div>
-<div class="ttc" id="aclassBot_html_acb6dabaeaad0c6073d8f39b7deba6a7e"><div class="ttname"><a href="classBot.html#acb6dabaeaad0c6073d8f39b7deba6a7e">Bot::add_button_command</a></div><div class="ttdeci">static void add_button_command(const std::shared_ptr&lt; IButtonCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:15</div></div>
-<div class="ttc" id="aclassBot_html_ace392c01b2968a6f354225d2e71a7074"><div class="ttname"><a href="classBot.html#ace392c01b2968a6f354225d2e71a7074">Bot::run</a></div><div class="ttdeci">static void run()</div><div class="ttdef"><b>Definition</b> Bot.cpp:137</div></div>
-<div class="ttc" id="aclassBot_html_aeb452d3eceef5e0f4b160cb63d846a1a"><div class="ttname"><a href="classBot.html#aeb452d3eceef5e0f4b160cb63d846a1a">Bot::add_ready_command</a></div><div class="ttdeci">static void add_ready_command(const std::shared_ptr&lt; IReady &gt; &amp;ready_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:35</div></div>
-<div class="ttc" id="aclassBot_html_af2ff362a221b733c80470d6d8352acfc"><div class="ttname"><a href="classBot.html#af2ff362a221b733c80470d6d8352acfc">Bot::add_slash_command</a></div><div class="ttdeci">static void add_slash_command(const std::string &amp;name, const std::shared_ptr&lt; IGlobalSlashCommand &gt; &amp;slash_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:11</div></div>
-<div class="ttc" id="aclassBot_html_afa8a83812bb3b337d276b209d1260d18"><div class="ttname"><a href="classBot.html#afa8a83812bb3b337d276b209d1260d18">Bot::set_token</a></div><div class="ttdeci">static void set_token(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> Bot.cpp:7</div></div>
+<div class="ttc" id="aclassBot_html_a2ef4ae8293183f68542b9686e1304e61"><div class="ttname"><a href="classBot.html#a2ef4ae8293183f68542b9686e1304e61">Bot::add_message_command</a></div><div class="ttdeci">static void add_message_command(const std::shared_ptr&lt; IMessageCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:30</div></div>
+<div class="ttc" id="aclassBot_html_a41254845188893f98acbbe1ee4df826a"><div class="ttname"><a href="classBot.html#a41254845188893f98acbbe1ee4df826a">Bot::add_member_command</a></div><div class="ttdeci">static void add_member_command(const std::shared_ptr&lt; IMemberCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:26</div></div>
+<div class="ttc" id="aclassBot_html_a4557d749454cc12426fdb005dbde6eb9"><div class="ttname"><a href="classBot.html#a4557d749454cc12426fdb005dbde6eb9">Bot::add_reaction_command</a></div><div class="ttdeci">static void add_reaction_command(const std::shared_ptr&lt; IReactionCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:34</div></div>
+<div class="ttc" id="aclassBot_html_a6d2c6656bb62a0239b4f700f34d0c6fd"><div class="ttname"><a href="classBot.html#a6d2c6656bb62a0239b4f700f34d0c6fd">Bot::add_form_command</a></div><div class="ttdeci">static void add_form_command(const std::shared_ptr&lt; IFormCommand &gt; &amp;form_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:22</div></div>
+<div class="ttc" id="aclassBot_html_acb6dabaeaad0c6073d8f39b7deba6a7e"><div class="ttname"><a href="classBot.html#acb6dabaeaad0c6073d8f39b7deba6a7e">Bot::add_button_command</a></div><div class="ttdeci">static void add_button_command(const std::shared_ptr&lt; IButtonCommand &gt; &amp;button_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:18</div></div>
+<div class="ttc" id="aclassBot_html_ace392c01b2968a6f354225d2e71a7074"><div class="ttname"><a href="classBot.html#ace392c01b2968a6f354225d2e71a7074">Bot::run</a></div><div class="ttdeci">static void run()</div><div class="ttdef"><b>Definition</b> Bot.cpp:189</div></div>
+<div class="ttc" id="aclassBot_html_aeb452d3eceef5e0f4b160cb63d846a1a"><div class="ttname"><a href="classBot.html#aeb452d3eceef5e0f4b160cb63d846a1a">Bot::add_ready_command</a></div><div class="ttdeci">static void add_ready_command(const std::shared_ptr&lt; IReady &gt; &amp;ready_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:38</div></div>
+<div class="ttc" id="aclassBot_html_af2ff362a221b733c80470d6d8352acfc"><div class="ttname"><a href="classBot.html#af2ff362a221b733c80470d6d8352acfc">Bot::add_slash_command</a></div><div class="ttdeci">static void add_slash_command(const std::string &amp;name, const std::shared_ptr&lt; IGlobalSlashCommand &gt; &amp;slash_command)</div><div class="ttdef"><b>Definition</b> Bot.cpp:14</div></div>
+<div class="ttc" id="aclassBot_html_afa8a83812bb3b337d276b209d1260d18"><div class="ttname"><a href="classBot.html#afa8a83812bb3b337d276b209d1260d18">Bot::set_token</a></div><div class="ttdeci">static void set_token(const std::string &amp;token)</div><div class="ttdef"><b>Definition</b> Bot.cpp:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="Bot_8hpp.html">Bot.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_be3b34367be430ae387384d9c29f3df4.html">bot_library</a></li><li class="navelem"><a class="el" href="dir_cac0b191d0d7d0dd67d730930ce5fa13.html">bot</a></li><li class="navelem"><a class="el" href="dir_c373500932cffa4d14439497d0f0f5ad.html">include</a></li><li class="navelem"><a class="el" href="Bot_8hpp.html">Bot.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

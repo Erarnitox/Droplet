@@ -1,4 +1,4 @@
-#include "bot.hpp"
+#include "BotLibrary.hpp"
 
 int main() {
 	start_bot();
