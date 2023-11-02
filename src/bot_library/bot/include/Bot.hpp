@@ -25,7 +25,7 @@
 #include <string>
 #include <vector>
 
-using ctx_t = std::unique_ptr<dpp::cluster>;
+using ctx_t = dpp::cluster;
 using slash_commands_t = std::map<std::string, std::shared_ptr<IGlobalSlashCommand>>;
 using button_commands_t = std::vector<std::shared_ptr<IButtonCommand>>;
 using form_commands_t = std::vector<std::shared_ptr<IFormCommand>>;
@@ -36,7 +36,7 @@ using ready_commands_t = std::vector<std::shared_ptr<IReady>>;
 
 class Bot {
   private:
-	static ctx_t ctx;
+	static std::string ctx_token;
 	static button_commands_t button_commands;
 	static form_commands_t form_commands;
 	static slash_commands_t slash_commands;

@@ -2,7 +2,7 @@
 > This repository is in an early WIP state! Don't expect everything to work yet!
 
 > [!WARNING]
-> Everything in this repository unstable and due to change in the future!
+> Everything in this repository is unstable and due to change in the future!
 
 # Droplet - Discord Bot
 ---
