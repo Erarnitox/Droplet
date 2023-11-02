@@ -15,9 +15,6 @@
 #include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 #include <dpp/once.h>
-#include <fmt/color.h>
-#include <fmt/core.h>
-#include <fmt/os.h>
 
 // initialize static members
 // ctx_t Bot::ctx;
@@ -151,47 +148,26 @@ static inline void handle_on_log(ctx_t& ctx) {
 	//-----------------------------------------------------------------------------
 	// Functionality for Logging
 	//-----------------------------------------------------------------------------
-	auto err_log_out{
-		fmt::output_file("error.log", fmt::file::WRONLY | fmt::file::CREATE | fmt::file::APPEND | fmt::file::TRUNC)};
-	auto log_out{
-		fmt::output_file("droplet.log", fmt::file::WRONLY | fmt::file::CREATE | fmt::file::APPEND | fmt::file::TRUNC)};
 
-	ctx.on_log([&log_out, &err_log_out](const dpp::log_t& event) {
+	ctx.on_log([](const dpp::log_t& event) {
 		if (event.severity == dpp::ll_trace) {
-			fmt::print(
-				fg(fmt::color::green), "[TRACE]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			std::puts(
+				std::format("[TRACE]\t\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		} else if (event.severity == dpp::ll_debug) {
-			fmt::print(
-				fg(fmt::color::blue), "[DEBUG]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			std::puts(
+				std::format("[DEBUG]\t\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		} else if (event.severity == dpp::ll_info) {
-			fmt::print(fg(fmt::color::antique_white),
-					   "[INFO]\t\t({})\t\t\"{}\"\n",
-					   dpp::utility::current_date_time(),
-					   event.message);
-			log_out.print("[INFO]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			std::puts(
+				std::format("[INFO]\t\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		} else if (event.severity == dpp::ll_warning) {
-			fmt::print(fg(fmt::color::yellow),
-					   "[WARNING]\t({})\t\t\"{}\"\n",
-					   dpp::utility::current_date_time(),
-					   event.message);
-			log_out.print("[WARNING]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			std::puts(
+				std::format("[WARNING]\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		} else if (event.severity == dpp::ll_error) {
-			fmt::print(fg(fmt::color::orange_red),
-					   "[ERROR]\t\t({})\t\t\"{}\"\n",
-					   dpp::utility::current_date_time(),
-					   event.message);
-			log_out.print("[ERROR]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
-			err_log_out.print("[ERROR]\t\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
+			std::puts(
+				std::format("[ERROR]\t\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		} else if (event.severity == dpp::ll_critical) {
-			fmt::print(
-				fg(fmt::color::red), "[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
-			log_out.print("[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
-			err_log_out.print("[CRITICAL]\t({})\t\t\"{}\"\n", dpp::utility::current_date_time(), event.message);
-		}
-
-		if (event.severity > dpp::ll_debug) {
-			log_out.flush();
-			err_log_out.flush();
+			std::puts(
+				std::format("[CRITICAL]\t({})\t\t\"{}\"", dpp::utility::current_date_time(), event.message).c_str());
 		}
 	});
 }

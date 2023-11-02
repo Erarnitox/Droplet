@@ -12,8 +12,7 @@
 
 #include "Database.hpp"
 
-#include <fmt/core.h>
-
+#include <format>
 #include <map>
 #include <pqxx/pqxx>
 #include <string_view>
@@ -38,7 +37,7 @@ bool Database::connect(const std::string& db_name,
 					   const std::string& port) {
 	Database::disconnect();
 	conn = new pqxx::connection(
-		fmt::format("dbname={} user={} password={} hostaddr={} port={}", db_name, user, password, host, port));
+		std::format("dbname={} user={} password={} hostaddr={} port={}", db_name, user, password, host, port));
 
 	return conn->is_open();
 }
@@ -99,7 +98,7 @@ void Database::reconnect() noexcept {
 		}
 		Database::reconnect();
 	} catch (...) {
-		fmt::print("Error: reconnecting failed...\n");
+		std::puts("Error: reconnecting failed...\n");
 	}
 }
 
