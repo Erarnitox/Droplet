@@ -1,3 +1,15 @@
+/**
+ *  (c) Copyright dropsoft.org - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description: This class manages Database access
+ *  and provides a high level API for internal use
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
+ **/
+
 #pragma once
 
 #include <cstddef>
@@ -26,27 +38,6 @@ class Database {
 	static auto reconnect() noexcept -> void;
 	static auto disconnect() noexcept -> void;
 	static auto getConnection() noexcept -> pqxx::connection*;
-
-	// TODO: to be removed
-	[[nodiscard]] static auto get_reaction_role_data(size_t message_id, const std::string& reaction_emoji) noexcept
-		-> size_t;
-
-	static auto insert_reaction_role_data(const std::string& role_id,
-										  size_t guild_id,
-										  const std::string& message_id,
-										  const std::string& emoji) noexcept -> void;
-
-	// TODO: to be removed
-	[[nodiscard]] static auto get_welcome_channel_id(size_t guild_id) noexcept -> size_t;
-	static auto insert_welcome_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;
-
-	// TODO: to be removed
-	[[nodiscard]] static auto get_goodbye_channel_id(size_t guild_id) noexcept -> size_t;
-	static auto insert_goodbye_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;
-
-	// TODO: to be removed
-	[[nodiscard]] static auto get_log_channel_id(size_t guild_id) noexcept -> size_t;
-	static auto insert_log_channel_id(size_t guild_id, size_t channel_id) noexcept -> void;
 };
 
 namespace database {
@@ -60,10 +51,16 @@ constexpr void assignResults(const pqxx::result& result, std::vector<std::varian
 	}
 }
 
+/**
+ * @brief executes a query on the database
+ *
+ * @param query SQL query to be executed
+ * @param args the arguments the query takes
+ * @return error code if the query was executed
+ */
 template <typename... Types>
-[[nodiscard("You need to check if the Query was executed on the Database!")]] auto execQuery(const std::string& query,
-																							 Types&&... args) noexcept
-	-> bool {
+[[nodiscard("You need to check if the Query was executed on the Database!")]] bool execQuery(const std::string& query,
+																							 Types&&... args) noexcept {
 	static int times = 0;
 	try {
 		pqxx::work txn(*Database::getConnection());
@@ -87,8 +84,15 @@ template <typename... Types>
 	}
 }
 
+/**
+ * @brief executes a Select on the database
+ *
+ * @param query SQL select query to be executed
+ * @param args the arguments the query takes
+ * @return RowDTOAdapter that represents the selected database row
+ */
 template <typename... Types>
-[[nodiscard]] auto execSelect(const std::string& query, Types&&... args) noexcept -> RowDTOAdapter {
+[[nodiscard]] RowDTOAdapter execSelect(const std::string& query, Types&&... args) noexcept {
 	static int times = 0;
 	try {
 		pqxx::work txn(*Database::getConnection());

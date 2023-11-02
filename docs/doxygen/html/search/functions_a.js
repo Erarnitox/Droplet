@@ -2,7 +2,7 @@ var searchData=
 [
   ['read_5fbot_5ftoken_0',['read_bot_token',['../BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d',1,'BotLibrary.cpp']]],
   ['read_5fdatabase_5fcredentials_1',['read_database_credentials',['../BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a',1,'BotLibrary.cpp']]],
-  ['reconnect_2',['reconnect',['../classDatabase.html#a87e374d0111c08108dfc7a73db0d50f0',1,'Database']]],
+  ['reconnect_2',['reconnect',['../classDatabase.html#a2974f64723a9216f5acf53ef711d8694',1,'Database']]],
   ['register_5fglobal_5fslash_5fcommands_3',['register_global_slash_commands',['../namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0',1,'resource_man::register_global_slash_commands()'],['../namespaceuser__man.html#a7d66ea767638cea0ca5f9a45b15dd1ce',1,'user_man::register_global_slash_commands()']]],
   ['registercommands_4',['registerCommands',['../namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e',1,'Commands']]],
   ['registerglobalslashcommand_5',['registerglobalslashcommand',['../classChallengeRoleCommand.html#af1584650c3c2d496efb77ae6fa47546b',1,'ChallengeRoleCommand::registerGlobalSlashCommand()'],['../classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8',1,'HelpCommand::registerGlobalSlashCommand()'],['../classSetChannelCommand.html#a3996e3019258554751df6d58b747ca78',1,'SetChannelCommand::registerGlobalSlashCommand()']]],

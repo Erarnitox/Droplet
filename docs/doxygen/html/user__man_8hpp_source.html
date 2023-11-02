@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('user__man_8hpp_source.html',''); initR
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            .set_image(event.added.get_avatar_url())};</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">/* reply with the created embed */</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">const</span> <span class="keyword">auto</span> channel_id{<a class="code hl_function" href="classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65">Database::get_welcome_channel_id</a>(event.adding_guild-&gt;id)};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">const</span> <span class="keyword">auto</span> channel_id{Database::get_welcome_channel_id(event.adding_guild-&gt;id)};</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span> (!channel_id)</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
@@ -176,7 +176,7 @@ $(document).ready(function(){initNavTree('user__man_8hpp_source.html',''); initR
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                         .set_image(event.removed-&gt;get_avatar_url())};</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">/* reply with the created embed */</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> <span class="keyword">auto</span> channel_id{<a class="code hl_function" href="classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65">Database::get_welcome_channel_id</a>(event.removing_guild-&gt;id)};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> <span class="keyword">auto</span> channel_id{Database::get_welcome_channel_id(event.removing_guild-&gt;id)};</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">if</span> (!channel_id)</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
@@ -185,7 +185,6 @@ $(document).ready(function(){initNavTree('user__man_8hpp_source.html',''); initR
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}  <span class="comment">// namespace user_man</span></div>
 </div>
 <div class="ttc" id="aDatabase_8hpp_html"><div class="ttname"><a href="Database_8hpp.html">Database.hpp</a></div></div>
-<div class="ttc" id="aclassDatabase_html_a8e1d9b2ec620fb731149193c8b971f65"><div class="ttname"><a href="classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65">Database::get_welcome_channel_id</a></div><div class="ttdeci">static auto get_welcome_channel_id(size_t guild_id) noexcept -&gt; size_t</div><div class="ttdef"><b>Definition</b> Database.cpp:94</div></div>
 <div class="ttc" id="anamespaceuser__man_html"><div class="ttname"><a href="namespaceuser__man.html">user_man</a></div><div class="ttdef"><b>Definition</b> user_man.hpp:7</div></div>
 <div class="ttc" id="anamespaceuser__man_html_a7d66ea767638cea0ca5f9a45b15dd1ce"><div class="ttname"><a href="namespaceuser__man.html#a7d66ea767638cea0ca5f9a45b15dd1ce">user_man::register_global_slash_commands</a></div><div class="ttdeci">auto register_global_slash_commands(std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot) -&gt; void</div><div class="ttdef"><b>Definition</b> user_man.hpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->

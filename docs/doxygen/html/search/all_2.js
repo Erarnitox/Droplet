@@ -14,7 +14,7 @@ var searchData=
   ['commands_11',['Commands',['../namespaceCommands.html',1,'']]],
   ['commands_2ecpp_12',['Commands.cpp',['../Commands_8cpp.html',1,'']]],
   ['commands_2ehpp_13',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
-  ['connect_14',['connect',['../classDatabase.html#a365607d9d731aa97f265fe31b2ee1ea0',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool'],['../classDatabase.html#ab5ba91e10862b7fec75e67c853073d3b',1,'Database::connect(const std::string &amp;connection_string) -&gt; bool']]],
+  ['connect_14',['connect',['../classDatabase.html#a58c87a8dae61a42827e381fad896843a',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool'],['../classDatabase.html#af87eb106420c387fb721a5dc74d168fb',1,'Database::connect(const std::string &amp;connection_string) -&gt; bool']]],
   ['core_15',['Core',['../classCore.html',1,'']]],
   ['core_2ecpp_16',['Core.cpp',['../Core_8cpp.html',1,'']]],
   ['core_2ehpp_17',['Core.hpp',['../Core_8hpp.html',1,'']]],
