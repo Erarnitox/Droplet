@@ -1,14 +1,15 @@
 /**
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
- *  
+ *
  *  License: MIT License
  *
  *  Description: This class handles the execution of the
  *	bot and delegats events to registerd commands.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot
-**/
+ **/
+
 #pragma once
 
 #include <Core.hpp>

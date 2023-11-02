@@ -86,7 +86,7 @@ Here is an example:
  *  Description: This class manages Database access 
  *  and provides a high level API for internal use
  *
- *  Documentation: https://droplet.dropsoft.org/doxygen/database
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
 **/
 ```
 

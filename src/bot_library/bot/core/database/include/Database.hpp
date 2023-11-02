@@ -109,9 +109,5 @@ template <typename... Types>
 		Database::reconnect();
 		return execSelect(query, args...);
 	}
-	/*
-	catch (...) {
-									   return false;
-	}*/
 }
 }  // namespace database
