@@ -22,5 +22,5 @@ var searchData=
   ['irepository_19',['IRepository',['../classIRepository.html',1,'']]],
   ['irepository_2ehpp_20',['IRepository.hpp',['../IRepository_8hpp.html',1,'']]],
   ['irepository_3c_20challengeroledto_20_3e_21',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]],
-  ['isadmin_22',['isAdmin',['../classCore.html#ab755182dfad5fc97af9cd847ee118f0c',1,'Core']]]
+  ['is_5fadmin_22',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]]
 ];

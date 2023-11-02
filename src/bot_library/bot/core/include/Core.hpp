@@ -1,14 +1,14 @@
 /**
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
- *  
+ *
  *  License: MIT License
  *
- *  Description: This class offers access to all the 
+ *  Description: This class offers access to all the
  * 	core functionality and utility needed by the bot
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/core
-**/
+ **/
 
 #pragma once
 
@@ -34,26 +34,26 @@ class Core {
 	static std::string get_channel_id(const std::string& mention) noexcept;
 
 	static void timed_reply(dpp::cluster& bot,
-						   const dpp::slashcommand_t event,
-						   const std::string& message,
-						   size_t time_mills) noexcept;
+							const dpp::slashcommand_t event,
+							const std::string& message,
+							size_t time_mills) noexcept;
 
 	static void timed_reply(dpp::cluster& bot,
-						   const dpp::form_submit_t event,
-						   const std::string& message,
-						   size_t time_mills) noexcept;
+							const dpp::form_submit_t event,
+							const std::string& message,
+							size_t time_mills) noexcept;
 
 	static void timed_reply_private(dpp::cluster& bot,
-								  const dpp::slashcommand_t event,
-								  const std::string& message,
-								  size_t time_mills) noexcept;
+									const dpp::slashcommand_t event,
+									const std::string& message,
+									size_t time_mills) noexcept;
 
 	static void timed_reply_private(dpp::cluster& bot,
-								  const dpp::form_submit_t event,
-								  const std::string& message,
-								  size_t time_mills) noexcept;
+									const dpp::form_submit_t event,
+									const std::string& message,
+									size_t time_mills) noexcept;
 
 	[[nodiscard]] static std::string get_parameter(dpp::cluster& bot,
-										   const dpp::slashcommand_t event,
-										   const std::string& name) noexcept;
+												   const dpp::slashcommand_t event,
+												   const std::string& name) noexcept;
 };

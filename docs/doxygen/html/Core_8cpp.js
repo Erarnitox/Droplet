@@ -1,5 +1,5 @@
 var Core_8cpp =
 [
-    [ "privateTimedReplyTemplate", "Core_8cpp.html#a5e240422b4e14ef5800b6b84f4850e9d", null ],
-    [ "timedReplyTemplate", "Core_8cpp.html#af01429938703dc373a0817333ee83014", null ]
+    [ "timed_reply_private_template", "Core_8cpp.html#a2f03f2dc81ddd7bf10660ec8d26417c0", null ],
+    [ "timed_reply_template", "Core_8cpp.html#a4388855bd03571b055b86daf3028427f", null ]
 ];
