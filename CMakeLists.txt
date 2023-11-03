@@ -60,14 +60,6 @@ set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/bot_token.txt")
 set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/db_connection.txt")
 set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}")
  
-add_custom_command(
-	OUTPUT "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
-	POST_BUILD
- 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BOT_BINARY_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
-)
-
-add_custom_target(copy_bot_binary ALL DEPENDS "${CMAKE_BINARY_DIR}/${PROJECT_NAME}")
-
 if(USE_DEBUG_TOKEN)
 	add_custom_command(
     	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
@@ -82,9 +74,7 @@ if(USE_DEBUG_TOKEN)
 
  	add_dependencies(copy_credentials ${PROJECT_NAME})
 endif()
- 
-add_dependencies(copy_bot_binary ${PROJECT_NAME})
- 
+  
 # tests
 add_subdirectory(test)
 
