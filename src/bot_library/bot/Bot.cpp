@@ -15,6 +15,7 @@
 #include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 #include <dpp/once.h>
+#include <intents.h>
 
 // initialize static members
 // ctx_t Bot::ctx;
@@ -329,7 +330,8 @@ static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_comman
  * @return doesn't return anything
  */
 void Bot::run() {
-	ctx_t ctx(Bot::ctx_token);
+	const auto intents{ dpp::i_default_intents | dpp::i_message_content | dpp::i_guild_messages };
+	ctx_t ctx(Bot::ctx_token, intents);
 
 	// custom logger
 	handle_on_log(ctx);
