@@ -19,7 +19,8 @@
  */
 void PongCommand::on_message_create(const dpp::message_create_t& event) {
 	if (event.msg.content.starts_with("ping")) {
-		event.reply("Pong!");
+		const auto& data{event.raw_event};
+		event.reply(std::format("Pong! ```json{}```", data));
 	}
 }
 

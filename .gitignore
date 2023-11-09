@@ -9,8 +9,7 @@ release
 **/CPackConfig.cmake 
 **/cmake_install.cmake
 **/install_manifest.txt
-**/compile_commmands.json
-compile_commmands.json
+**/compile_commands.json
 
 # Ignore credential files
 src/bot_token.txt

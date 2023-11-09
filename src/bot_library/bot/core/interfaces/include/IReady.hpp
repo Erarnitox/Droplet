@@ -5,5 +5,5 @@
 
 class IReady {
   public:
-	virtual auto on_ready(const dpp::ready_t& event) -> void = 0;
+	virtual void on_ready(const dpp::ready_t& event) = 0;
 };

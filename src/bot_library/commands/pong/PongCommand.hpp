@@ -3,8 +3,6 @@
 #include <Bot.hpp>
 
 class PongCommand : public IMessageCommand {
-	std::string command_name;
-
   public:
 	void on_message_create(const dpp::message_create_t& event) override;
 

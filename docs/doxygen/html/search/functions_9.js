@@ -9,6 +9,6 @@ var searchData=
   ['on_5fmessage_5fdelete_5fbulk_6',['on_message_delete_bulk',['../classIMessageCommand.html#ac0e23dd940dc43df63ffea4fa4363daf',1,'IMessageCommand::on_message_delete_bulk()'],['../classPongCommand.html#afda21c8aaf9911b527a6bced973288b9',1,'PongCommand::on_message_delete_bulk()']]],
   ['on_5fmessage_5freaction_5fadd_7',['on_message_reaction_add',['../classIReactionCommand.html#a395b33ee5b022d883c6e6993351079ed',1,'IReactionCommand']]],
   ['on_5fmessage_5freaction_5fremove_8',['on_message_reaction_remove',['../classIReactionCommand.html#a919746d4ced88bbf21e26d5bc3be6d30',1,'IReactionCommand']]],
-  ['on_5fready_9',['on_ready',['../classIReady.html#abaddf1ce7b42413950b0cf485794dc7f',1,'IReady']]],
-  ['on_5fslashcommand_10',['on_slashcommand',['../classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd',1,'IGlobalSlashCommand']]]
+  ['on_5fready_9',['on_ready',['../classIReady.html#acba2e042ee268d7ba38b0585a255c571',1,'IReady::on_ready()'],['../classInitDatabase.html#a76e7d4fc7f2f41ac8c01b1b907f4763a',1,'InitDatabase::on_ready()']]],
+  ['on_5fslashcommand_10',['on_slashcommand',['../classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925',1,'IGlobalSlashCommand::on_slashcommand()'],['../classHelpCommand.html#a60c66511d52e289cb4128916445c53ef',1,'HelpCommand::on_slashcommand()']]]
 ];

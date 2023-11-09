@@ -4,7 +4,9 @@ add_library(commands STATIC
 
 target_include_directories(commands PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 
-# add_subdirectory(help)
+# add_subdirectory(init_database)
+
+add_subdirectory(help)
 # add_subdirectory(resources)
 # add_subdirectory(roles)
 # add_subdirectory(users)

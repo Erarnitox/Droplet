@@ -94,6 +94,7 @@ $(document).ready(function(){initNavTree('classBot.html',''); initResizable(); }
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classBot-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Bot Class Reference</div></div>
 </div><!--header-->
@@ -103,7 +104,7 @@ $(document).ready(function(){initNavTree('classBot.html',''); initResizable(); }
 <div class="dynheader">
 Collaboration diagram for Bot:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classBot__coll__graph.svg" width="187" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classBot__coll__graph.svg" width="1447" height="384"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -111,9 +112,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a902be08246164966208aaa702fb8e5fd" id="r_a902be08246164966208aaa702fb8e5fd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a902be08246164966208aaa702fb8e5fd">init</a> (const std::string &amp;token)</td></tr>
 <tr class="memdesc:a902be08246164966208aaa702fb8e5fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">initializes our bot and sets the bot token  <br /></td></tr>
 <tr class="separator:a902be08246164966208aaa702fb8e5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2ff362a221b733c80470d6d8352acfc" id="r_af2ff362a221b733c80470d6d8352acfc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#af2ff362a221b733c80470d6d8352acfc">add_slash_command</a> (const std::string &amp;name, const std::shared_ptr&lt; <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> &gt; &amp;slash_command)</td></tr>
-<tr class="memdesc:af2ff362a221b733c80470d6d8352acfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers new slash commands with the bot  <br /></td></tr>
-<tr class="separator:af2ff362a221b733c80470d6d8352acfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11e4bbfa0269e589e116ad22a43197df" id="r_a11e4bbfa0269e589e116ad22a43197df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a11e4bbfa0269e589e116ad22a43197df">add_slash_command</a> (const std::shared_ptr&lt; <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> &gt; &amp;slash_command)</td></tr>
+<tr class="memdesc:a11e4bbfa0269e589e116ad22a43197df"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers new slash commands with the bot  <br /></td></tr>
+<tr class="separator:a11e4bbfa0269e589e116ad22a43197df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb6dabaeaad0c6073d8f39b7deba6a7e" id="r_acb6dabaeaad0c6073d8f39b7deba6a7e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#acb6dabaeaad0c6073d8f39b7deba6a7e">add_button_command</a> (const std::shared_ptr&lt; <a class="el" href="classIButtonCommand.html">IButtonCommand</a> &gt; &amp;button_command)</td></tr>
 <tr class="memdesc:acb6dabaeaad0c6073d8f39b7deba6a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">registers new button commands with the bot  <br /></td></tr>
 <tr class="separator:acb6dabaeaad0c6073d8f39b7deba6a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,6 +136,25 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:ace392c01b2968a6f354225d2e71a7074" id="r_ace392c01b2968a6f354225d2e71a7074"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#ace392c01b2968a6f354225d2e71a7074">run</a> ()</td></tr>
 <tr class="memdesc:ace392c01b2968a6f354225d2e71a7074"><td class="mdescLeft">&#160;</td><td class="mdescRight">registeres all callbacks and starts the bot  <br /></td></tr>
 <tr class="separator:ace392c01b2968a6f354225d2e71a7074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a33348129774eb659c662848b61897301" id="r_a33348129774eb659c662848b61897301"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8">ctx_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a33348129774eb659c662848b61897301">ctx</a></td></tr>
+<tr class="separator:a33348129774eb659c662848b61897301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add61d8dc757b40b1777804e861899cde" id="r_add61d8dc757b40b1777804e861899cde"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#aedbc493a823afd0d7abcd7ff666d21b0">button_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#add61d8dc757b40b1777804e861899cde">button_commands</a></td></tr>
+<tr class="separator:add61d8dc757b40b1777804e861899cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663beec14e7da41988653b029bce6fa1" id="r_a663beec14e7da41988653b029bce6fa1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#aeb32a7378209cff9a8ba347a4c73cbcb">form_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a663beec14e7da41988653b029bce6fa1">form_commands</a></td></tr>
+<tr class="separator:a663beec14e7da41988653b029bce6fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bc0790c4cf2ae3331ae344277e550a9" id="r_a1bc0790c4cf2ae3331ae344277e550a9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e">slash_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a1bc0790c4cf2ae3331ae344277e550a9">slash_commands</a></td></tr>
+<tr class="separator:a1bc0790c4cf2ae3331ae344277e550a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e2756c880a674d1838e9cabde0c7a08" id="r_a8e2756c880a674d1838e9cabde0c7a08"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75">member_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a8e2756c880a674d1838e9cabde0c7a08">member_commands</a></td></tr>
+<tr class="separator:a8e2756c880a674d1838e9cabde0c7a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad411ef198698ed464ccf6910f8fe0a2a" id="r_ad411ef198698ed464ccf6910f8fe0a2a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1">message_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#ad411ef198698ed464ccf6910f8fe0a2a">message_commands</a></td></tr>
+<tr class="separator:ad411ef198698ed464ccf6910f8fe0a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b54668ff2a3f87c27335c5d61de2914" id="r_a7b54668ff2a3f87c27335c5d61de2914"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6">reaction_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#a7b54668ff2a3f87c27335c5d61de2914">reaction_commands</a></td></tr>
+<tr class="separator:a7b54668ff2a3f87c27335c5d61de2914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2c83ed74013f331ea9ddb65e7828584" id="r_af2c83ed74013f331ea9ddb65e7828584"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="Bot_8hpp.html#a59e94160ab46303afc770a959ea594ca">ready_commands_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBot.html#af2c83ed74013f331ea9ddb65e7828584">ready_commands</a></td></tr>
+<tr class="separator:af2c83ed74013f331ea9ddb65e7828584"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="acb6dabaeaad0c6073d8f39b7deba6a7e" name="acb6dabaeaad0c6073d8f39b7deba6a7e"></a>
@@ -347,8 +367,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af2ff362a221b733c80470d6d8352acfc" name="af2ff362a221b733c80470d6d8352acfc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2ff362a221b733c80470d6d8352acfc">&#9670;&#160;</a></span>add_slash_command()</h2>
+<a id="a11e4bbfa0269e589e116ad22a43197df" name="a11e4bbfa0269e589e116ad22a43197df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11e4bbfa0269e589e116ad22a43197df">&#9670;&#160;</a></span>add_slash_command()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -359,19 +379,9 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Bot::add_slash_command </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const std::shared_ptr&lt; <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>slash_command</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>slash_command</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -384,7 +394,6 @@ Static Public Member Functions</h2></td></tr>
 <p>registers new slash commands with the bot </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>the name of the slash command </td></tr>
     <tr><td class="paramname">slash_command</td><td>the command that implements the <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> interface </td></tr>
   </table>
   </dd>
@@ -453,6 +462,187 @@ Static Public Member Functions</h2></td></tr>
 
 <p>registeres all callbacks and starts the bot </p>
 <dl class="section return"><dt>Returns</dt><dd>doesn't return anything </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="add61d8dc757b40b1777804e861899cde" name="add61d8dc757b40b1777804e861899cde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add61d8dc757b40b1777804e861899cde">&#9670;&#160;</a></span>button_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#aedbc493a823afd0d7abcd7ff666d21b0">button_commands_t</a> Bot::button_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33348129774eb659c662848b61897301" name="a33348129774eb659c662848b61897301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33348129774eb659c662848b61897301">&#9670;&#160;</a></span>ctx</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8">ctx_t</a> Bot::ctx</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>(c) Copyright dropsoft.org - All rights reserved Author: Erarnitox <a href="#" onclick="location.href='mai'+'lto:'+'dav'+'id'+'@er'+'ar'+'nit'+'ox'+'.de'; return false;">david<span class="obfuscator">.nosp@m.</span>@era<span class="obfuscator">.nosp@m.</span>rnito<span class="obfuscator">.nosp@m.</span>x.de</a></p>
+<p>License: MIT License</p>
+<p>Description: This class handles the execution of the bot and delegats events to registerd commands.</p>
+<p>Documentation: <a href="https://droplet.dropsoft.org/doxygen/html/bot">https://droplet.dropsoft.org/doxygen/html/bot</a> </p>
+
+</div>
+</div>
+<a id="a663beec14e7da41988653b029bce6fa1" name="a663beec14e7da41988653b029bce6fa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663beec14e7da41988653b029bce6fa1">&#9670;&#160;</a></span>form_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#aeb32a7378209cff9a8ba347a4c73cbcb">form_commands_t</a> Bot::form_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e2756c880a674d1838e9cabde0c7a08" name="a8e2756c880a674d1838e9cabde0c7a08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e2756c880a674d1838e9cabde0c7a08">&#9670;&#160;</a></span>member_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75">member_commands_t</a> Bot::member_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad411ef198698ed464ccf6910f8fe0a2a" name="ad411ef198698ed464ccf6910f8fe0a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad411ef198698ed464ccf6910f8fe0a2a">&#9670;&#160;</a></span>message_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1">message_commands_t</a> Bot::message_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b54668ff2a3f87c27335c5d61de2914" name="a7b54668ff2a3f87c27335c5d61de2914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b54668ff2a3f87c27335c5d61de2914">&#9670;&#160;</a></span>reaction_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6">reaction_commands_t</a> Bot::reaction_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2c83ed74013f331ea9ddb65e7828584" name="af2c83ed74013f331ea9ddb65e7828584"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2c83ed74013f331ea9ddb65e7828584">&#9670;&#160;</a></span>ready_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#a59e94160ab46303afc770a959ea594ca">ready_commands_t</a> Bot::ready_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bc0790c4cf2ae3331ae344277e550a9" name="a1bc0790c4cf2ae3331ae344277e550a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bc0790c4cf2ae3331ae344277e550a9">&#9670;&#160;</a></span>slash_commands</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e">slash_commands_t</a> Bot::slash_commands</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

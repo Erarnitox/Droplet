@@ -16,9 +16,11 @@
 /// COMMAND HEADERS:
 ///////////////////////////////////////
 // #include "ChallengeRoleCommand.hpp"
-// #include "HelpCommand.hpp"
 // #include "SetChannelCommand.hpp"
+
+#include <HelpCommand.hpp>
 #include <PongCommand.hpp>
+#include <memory>
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -35,4 +37,5 @@ void Commands::registerCommands() {
 
 	// new way to register commands:
 	Bot::add_message_command(std::make_shared<PongCommand>());
+	Bot::add_slash_command(std::make_shared<HelpCommand>());
 }
