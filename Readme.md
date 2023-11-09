@@ -76,6 +76,10 @@ Before contributing, please review the Contributing Guidelines.
 ### Architecure Document
 ![architecture](docs/architecture.png)
 
+The goal with this design was that we have a stable and solid core that offers commands a stable API they can use. Additional commands should only be reigistered with the `Commands` class and don't need to worry about anything else.
+
+The bot library can be linked against the `main` executalbe that will only call the start function in the bot library or against the `unit_test` executable. The goal here was to make the code more testable by giving the `unit_test` executable a better insight into the bot library, than what would be possible by having the bot functionality directly in the `main` executable.
+
 ### Current Dependency Graph
 ![dep_graph](docs/dep_graph.png)
 
