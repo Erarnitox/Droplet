@@ -114,19 +114,22 @@ function(generate_dep_graph PNG_FILE)
 
     execute_process(
         COMMAND ${CMAKE_COMMAND} --graphviz="${DOT_FILE}"
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         RESULT_VARIABLE CMAKE_RESULT
     )
 
     if(CMAKE_RESULT EQUAL 0)
         message(STATUS "Generated dependency graph DOT file: ${DOT_FILE}")
     else()
-        message(FATAL_ERROR "Failed to generate dependency graph DOT file. Error code: ${CMAKE_RESULT}")
+        message(STATUS "Failed to generate dependency graph DOT file. Error code: ${CMAKE_RESULT}")
+        return()
     endif()
 
     # Ensure the DOT_FILE exists
     if(NOT EXISTS ${DOT_FILE})
-        message(FATAL_ERROR "DOT file '${DOT_FILE}' does not exist.")
+        message(STATUS "DOT file '${DOT_FILE}' does not exist.")
+        return()
     endif()
 
     # Generate the PNG file from the DOT file
@@ -136,7 +139,8 @@ function(generate_dep_graph PNG_FILE)
     )
 
     if(NOT DOT_RESULT EQUAL 0)
-        message(FATAL_ERROR "Failed to generate PNG from DOT file. Error code: ${DOT_RESULT}")
+        message(STATUS "Failed to generate PNG from DOT file. Error code: ${DOT_RESULT}")
+        return()
     else()
         message(STATUS "Generated PNG file: ${PNG_FILE}")
     endif()

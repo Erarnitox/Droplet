@@ -73,7 +73,7 @@ Before contributing, please review the Contributing Guidelines.
 [MIT License](./LICENSE)
 
 ## Architecture
-### Goal Architecure Sketch
+### Architecure Document
 ![architecture](docs/architecture.png)
 
 ### Current Dependency Graph

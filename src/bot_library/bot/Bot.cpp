@@ -330,7 +330,7 @@ static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_comman
  * @return doesn't return anything
  */
 void Bot::run() {
-	const auto intents{ dpp::i_default_intents | dpp::i_message_content | dpp::i_guild_messages };
+	const auto intents{dpp::i_default_intents | dpp::i_message_content | dpp::i_guild_messages};
 	ctx_t ctx(Bot::ctx_token, intents);
 
 	// custom logger
