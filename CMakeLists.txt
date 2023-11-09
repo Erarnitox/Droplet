@@ -84,6 +84,6 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
 	add_dependencies(${PROJECT_NAME} doxygen)
 
  	# dependecy graph
- 	generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
+ 	# generate_dep_graph("${CMAKE_CURRENT_LIST_DIR}/docs/dep_graph.png")
 endif()
  
