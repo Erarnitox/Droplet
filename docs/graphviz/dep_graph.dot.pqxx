@@ -1,8 +1,0 @@
-digraph "pqxx" {
-node [
-  fontsize = "12"
-];
-    "node8" [ label = "pqxx", shape = octagon ];
-    "node9" [ label = "/usr/lib/libpq.so", shape = septagon ];
-    "node8" -> "node9"  // pqxx -> /usr/lib/libpq.so
-}

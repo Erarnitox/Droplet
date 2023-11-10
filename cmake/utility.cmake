@@ -100,51 +100,53 @@ function(generate_doxygen input output)
     )
 endfunction()
 
-
 # Create dependency graph
-function(generate_dep_graph PNG_FILE)
+macro(generate_dep_graph)
     # Check if the 'dot' command is available
     find_program(DOT_EXECUTABLE dot)
     if(NOT DOT_EXECUTABLE)
         message(FATAL_ERROR "Graphviz 'dot' command not found. Make sure Graphviz is installed.")
     endif()
 
-    # Generate the Dot file
-    set(DOT_FILE "${CMAKE_SOURCE_DIR}/docs/graphviz/dep_graph.dot")
+    set(DOT_FILE "dep_graph.dot")
+    set(PNG_FILE "${CMAKE_SOURCE_DIR}/docs/dep_graph.png")
 
-    execute_process(
-        COMMAND ${CMAKE_COMMAND} --graphviz="${DOT_FILE}"
-        
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-        RESULT_VARIABLE CMAKE_RESULT
+    add_custom_command(
+        OUTPUT
+            "${DOT_FILE}"
+        COMMAND
+            ${CMAKE_COMMAND} --graphviz="${DOT_FILE}" "."
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PROJECT_NAME}
+        COMMENT
+            "Creates a new dependency graph"
     )
 
-    if(CMAKE_RESULT EQUAL 0)
-        message(STATUS "Generated dependency graph DOT file: ${DOT_FILE}")
-    else()
-        message(STATUS "Failed to generate dependency graph DOT file. Error code: ${CMAKE_RESULT}")
-        return()
-    endif()
-
-    # Ensure the DOT_FILE exists
-    if(NOT EXISTS ${DOT_FILE})
-        message(STATUS "DOT file '${DOT_FILE}' does not exist.")
-        return()
-    endif()
-
-    # Generate the PNG file from the DOT file
-    execute_process(
-        COMMAND ${DOT_EXECUTABLE} -Tpng -o${PNG_FILE} ${DOT_FILE}
-        RESULT_VARIABLE DOT_RESULT
+    add_custom_command(
+        OUTPUT
+            "${PNG_FILE}"
+        COMMAND
+            ${DOT_EXECUTABLE} -Tpng -o${PNG_FILE} ${DOT_FILE}
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${DOT_FILE}
+        COMMENT
+            "Creates a new dependency graph as png"
     )
 
-    if(NOT DOT_RESULT EQUAL 0)
-        message(STATUS "Failed to generate PNG from DOT file. Error code: ${DOT_RESULT}")
-        return()
-    else()
-        message(STATUS "Generated PNG file: ${PNG_FILE}")
-    endif()
-endfunction()
+    add_custom_target(dep_graph
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PNG_FILE}
+        COMMENT
+            "Creates a new dependency graph for the documentation"
+        VERBATIM
+    )
+endmacro()
 
 # link system libraries to target
 function(target_link_libraries_system target)

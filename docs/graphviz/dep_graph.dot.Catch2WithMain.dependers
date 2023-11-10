@@ -1,8 +1,0 @@
-digraph "Catch2WithMain" {
-node [
-  fontsize = "12"
-];
-    "node1" [ label = "Catch2WithMain\n(Catch2::Catch2WithMain)", shape = octagon ];
-    "node26" [ label = "unit_tests", shape = egg ];
-    "node26" -> "node1" [ style = dotted ] // unit_tests -> Catch2WithMain
-}
