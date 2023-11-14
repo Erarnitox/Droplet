@@ -148,6 +148,21 @@ macro(generate_dep_graph)
     )
 endmacro()
 
+macro(copy_compile_commands)
+    add_custom_command(
+        OUTPUT
+            "${CMAKE_SOURCE_DIR}/compile_commands.json"
+        COMMAND
+            ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/compile_commands.json" "${CMAKE_SOURCE_DIR}/compile_commands.json"
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PROJECT_NAME}
+        COMMENT
+            "Copy the compile_commands.json into the source dir for the IDE"
+    )
+endmacro()
+
 # link system libraries to target
 function(target_link_libraries_system target)
   set(libs ${ARGN})

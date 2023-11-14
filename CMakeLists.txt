@@ -86,5 +86,7 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
  	# dependecy graph
  	generate_dep_graph()
 	add_dependencies(dep_graph ${PROJECT_NAME})
+
+	copy_compile_commands()
 endif()
  
