@@ -137,6 +137,11 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 			for (const auto& slash_command : slash_commands) {
 				dpp::slashcommand tmp_command(
 					slash_command.first, slash_command.second->command_description, ctx->me.id);
+
+				for (const auto& option : slash_command.second->command_options) {
+					tmp_command.add_option(option);
+				}
+
 				ctx->global_command_create(tmp_command);
 			}
 		}

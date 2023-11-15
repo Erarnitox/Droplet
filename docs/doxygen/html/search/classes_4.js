@@ -9,5 +9,6 @@ var searchData=
   ['ireactioncommand_6',['IReactionCommand',['../classIReactionCommand.html',1,'']]],
   ['iready_7',['IReady',['../classIReady.html',1,'']]],
   ['irepository_8',['IRepository',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20challengeroledto_20_3e_9',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]]
+  ['irepository_3c_20challengeroledto_20_3e_9',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20welcomechanneldto_20_3e_10',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]]
 ];

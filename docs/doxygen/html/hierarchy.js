@@ -8,7 +8,8 @@ var hierarchy =
     [ "IButtonCommand", "classIButtonCommand.html", null ],
     [ "IFormCommand", "classIFormCommand.html", null ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
-      [ "HelpCommand", "classHelpCommand.html", null ]
+      [ "HelpCommand", "classHelpCommand.html", null ],
+      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", null ],
     [ "IMessageCommand", "classIMessageCommand.html", [
@@ -22,6 +23,9 @@ var hierarchy =
     [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
       [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
     ] ],
+    [ "IRepository< WelcomeChannelDTO >", "classIRepository.html", [
+      [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", null ]
+    ] ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
-    [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
 ];

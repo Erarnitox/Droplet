@@ -18,5 +18,7 @@ var annotated_dup =
     [ "IRepository", "classIRepository.html", "classIRepository" ],
     [ "PongCommand", "classPongCommand.html", "classPongCommand" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
-    [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],
+    [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", "classWelcomeChannelDTO" ],
+    [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", "classWelcomeChannelRepository" ]
 ];

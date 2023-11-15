@@ -194,10 +194,12 @@ void Core::timed_reply_private(dpp::cluster& bot,
  */
 std::string Core::get_parameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept {
 	const auto variant{event.get_parameter(name)};
-
 	const auto value_ptr{std::get_if<std::string>(&variant)};
+
 	if (!value_ptr) {
-		Core::timed_reply_private(bot, event, "Message Link not valid!", 3000);
+		Core::timed_reply_private(
+			bot, event, std::format("Could not retrieve parameter '{}' from the Message!", name), 3000);
+
 		return std::string("");
 	}
 	return *value_ptr;

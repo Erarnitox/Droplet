@@ -15,6 +15,5 @@ endif()
 
 set_property(TARGET set_channel_command PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
-target_link_libraries(set_channel_command PRIVATE database)
-target_link_libraries(set_channel_command PUBLIC core)
+target_link_libraries(set_channel_command PUBLIC bot)
 target_link_libraries(commands PRIVATE set_channel_command)

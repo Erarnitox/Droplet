@@ -2,8 +2,6 @@
 
 #include <variant>
 
-#include "IGlobalSlashCommand.hpp"
-
 HelpCommand::HelpCommand() : IGlobalSlashCommand() {
 	this->command_name = "help";
 	this->command_description = "List all available commands";
@@ -25,11 +23,11 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
-		if (!Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)"))
+		if (!Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)")) {
 			continue;
+		}
 
-		/*
-		auto& options{command.options};
+		auto& options{cmd->command_options};
 		std::string options_string;
 
 		for (auto& option : options) {
@@ -37,9 +35,9 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 				options_string.append(std::format(" <{}>", option.name));
 			else
 				options_string.append(std::format(" [{}]", option.name));
-		}*/
+		}
 
-		embed.add_field(std::string("/").append(cmd->command_name), cmd->command_description);
+		embed.add_field(std::string("/").append(cmd->command_name).append(options_string), cmd->command_description);
 	}
 
 	/* reply with the created embed */

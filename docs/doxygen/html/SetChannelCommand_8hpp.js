@@ -1,4 +1,4 @@
 var SetChannelCommand_8hpp =
 [
-    [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ]
 ];

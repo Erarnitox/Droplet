@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['setchannelcommand_0',['SetChannelCommand',['../classSetChannelCommand.html',1,'']]],
+  ['setchannelcommand_0',['setchannelcommand',['../classSetChannelCommand.html',1,'SetChannelCommand'],['../classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f',1,'SetChannelCommand::SetChannelCommand()']]],
   ['setchannelcommand_2ecpp_1',['SetChannelCommand.cpp',['../SetChannelCommand_8cpp.html',1,'']]],
   ['setchannelcommand_2ehpp_2',['SetChannelCommand.hpp',['../SetChannelCommand_8hpp.html',1,'']]],
   ['slash_5fcommands_3',['slash_commands',['../classBot.html#a1bc0790c4cf2ae3331ae344277e550a9',1,'Bot']]],

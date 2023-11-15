@@ -20,6 +20,7 @@
 
 #include <HelpCommand.hpp>
 #include <PongCommand.hpp>
+#include <SetChannelCommand.hpp>
 #include <memory>
 
 /**
@@ -30,12 +31,7 @@ void Commands::registerCommands() {
 	////////////////////////////////////
 	/// REGISTER ALL COMMANDS HERE:
 	////////////////////////////////////
-	// TODO: Replace with new way to register commands
-	//  (void)Commands::CommandRegistration<ChallengeRoleCommand>();
-	//  (void)Commands::CommandRegistration<HelpCommand>();
-	//  (void)Commands::CommandRegistration<SetChannelCommand>();
-
-	// new way to register commands:
 	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
+	Bot::add_slash_command(std::make_shared<SetChannelCommand>());
 }
