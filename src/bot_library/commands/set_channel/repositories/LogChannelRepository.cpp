@@ -26,7 +26,7 @@ bool LogChannelRepository::create(const LogChannelDTO& object) {
 }
 
 bool LogChannelRepository::remove(size_t guild_id) {
-	static std::string sql_string{"DELETE FROM log_channels WHERE id = $1::int8"};
+	static std::string sql_string{"DELETE FROM log_channels WHERE guild_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;

@@ -26,7 +26,7 @@ bool WelcomeChannelRepository::create(const WelcomeChannelDTO& object) {
 }
 
 bool WelcomeChannelRepository::remove(size_t guild_id) {
-	static std::string sql_string{"DELETE FROM welcome_channels WHERE id = $1::int8"};
+	static std::string sql_string{"DELETE FROM welcome_channels WHERE guild_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;

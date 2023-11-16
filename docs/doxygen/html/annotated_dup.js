@@ -26,6 +26,7 @@ var annotated_dup =
     [ "ReactionRoleRepository", "classReactionRoleRepository.html", "classReactionRoleRepository" ],
     [ "ReactionRoles", "classReactionRoles.html", "classReactionRoles" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
+    [ "ServerDetails", "classServerDetails.html", "classServerDetails" ],
     [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", "classWelcomeChannelDTO" ],
     [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", "classWelcomeChannelRepository" ]

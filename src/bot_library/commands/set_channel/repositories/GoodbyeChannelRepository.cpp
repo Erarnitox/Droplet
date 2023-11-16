@@ -26,7 +26,7 @@ bool GoodbyeChannelRepository::create(const GoodbyeChannelDTO& object) {
 }
 
 bool GoodbyeChannelRepository::remove(size_t guild_id) {
-	static std::string sql_string{"DELETE FROM goodbye_channels WHERE id = $1::int8"};
+	static std::string sql_string{"DELETE FROM goodbye_channels WHERE guild_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;

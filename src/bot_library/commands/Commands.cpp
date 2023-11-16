@@ -23,6 +23,7 @@
 #include <HelpCommand.hpp>
 #include <PongCommand.hpp>
 #include <ReactionRoles.hpp>
+#include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
 #include <memory>
 
@@ -37,6 +38,7 @@ void Commands::registerCommands() {
 	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
+	Bot::add_slash_command(std::make_shared<ServerDetails>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);
