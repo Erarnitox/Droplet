@@ -20,7 +20,7 @@ var searchData=
   ['core_17',['Core',['../classCore.html',1,'']]],
   ['core_2ecpp_18',['Core.cpp',['../Core_8cpp.html',1,'']]],
   ['core_2ehpp_19',['Core.hpp',['../Core_8hpp.html',1,'']]],
-  ['create_20',['create',['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()'],['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classGoodbyeChannelRepository.html#ac087cf9454c1e05e7ba86f3836081768',1,'GoodbyeChannelRepository::create()'],['../classLogChannelRepository.html#a5857df7e625e2c5ef97e40dbd60c94a9',1,'LogChannelRepository::create()'],['../classWelcomeChannelRepository.html#a37ec18f518c1d9e7cf76fa6d073c44ba',1,'WelcomeChannelRepository::create()']]],
+  ['create_20',['create',['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()'],['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classReactionRoleRepository.html#ab369c767273130b3c9e94102c5c764fa',1,'ReactionRoleRepository::create()'],['../classGoodbyeChannelRepository.html#ac087cf9454c1e05e7ba86f3836081768',1,'GoodbyeChannelRepository::create()'],['../classLogChannelRepository.html#a5857df7e625e2c5ef97e40dbd60c94a9',1,'LogChannelRepository::create()'],['../classWelcomeChannelRepository.html#a37ec18f518c1d9e7cf76fa6d073c44ba',1,'WelcomeChannelRepository::create()']]],
   ['ctx_21',['ctx',['../classBot.html#a33348129774eb659c662848b61897301',1,'Bot']]],
   ['ctx_5ft_22',['ctx_t',['../Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8',1,'Bot.hpp']]]
 ];

@@ -6,5 +6,6 @@ var searchData=
   ['member_5fcommands_5ft_3',['member_commands_t',['../Bot_8hpp.html#ad738adb807b5acb33bb7039846ce3b75',1,'Bot.hpp']]],
   ['message_5fcommands_4',['message_commands',['../classBot.html#ad411ef198698ed464ccf6910f8fe0a2a',1,'Bot']]],
   ['message_5fcommands_5ft_5',['message_commands_t',['../Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1',1,'Bot.hpp']]],
-  ['messageid_6',['messageId',['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO']]]
+  ['message_5fid_6',['message_id',['../classReactionRoleDTO.html#a823af32d9d40913b165c20acbe266a89',1,'ReactionRoleDTO']]],
+  ['messageid_7',['messageId',['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO']]]
 ];

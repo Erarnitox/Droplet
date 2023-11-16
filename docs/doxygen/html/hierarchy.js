@@ -39,10 +39,14 @@ var hierarchy =
     [ "IRepository< LogChannelDTO >", "classIRepository.html", [
       [ "LogChannelRepository", "classLogChannelRepository.html", null ]
     ] ],
+    [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
+      [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
+    ] ],
     [ "IRepository< WelcomeChannelDTO >", "classIRepository.html", [
       [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", null ]
     ] ],
     [ "LogChannelDTO", "classLogChannelDTO.html", null ],
+    [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
 ];

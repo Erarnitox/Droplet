@@ -55,7 +55,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"BotLibrary_8cpp.html"
+"BotLibrary_8cpp.html",
+"namespaceCommands.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

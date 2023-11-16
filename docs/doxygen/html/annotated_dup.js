@@ -21,6 +21,8 @@ var annotated_dup =
     [ "LogChannelDTO", "classLogChannelDTO.html", "classLogChannelDTO" ],
     [ "LogChannelRepository", "classLogChannelRepository.html", "classLogChannelRepository" ],
     [ "PongCommand", "classPongCommand.html", "classPongCommand" ],
+    [ "ReactionRoleDTO", "classReactionRoleDTO.html", "classReactionRoleDTO" ],
+    [ "ReactionRoleRepository", "classReactionRoleRepository.html", "classReactionRoleRepository" ],
     [ "ReactionRoles", "classReactionRoles.html", "classReactionRoles" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
     [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],

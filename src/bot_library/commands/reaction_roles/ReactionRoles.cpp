@@ -6,6 +6,8 @@
 #include <variant>
 
 #include "IReactionCommand.hpp"
+#include "ReactionRoleDTO.hpp"
+#include "ReactionRoleRepository.hpp"
 
 ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 	this->command_name = "reaction_role";
@@ -92,17 +94,26 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	//--------------------------------------------------
 
 	// Insert Reaction Role into Database
-	// TODO: create reaction role repository
-	// Database::insert_reaction_role_data(role_id, event.command.guild_id, message_id, usable_emoji);
+	ReactionRoleRepository repo;
 
-	// Let the bot react to the message
-	Bot::ctx->message_add_reaction(message_id, channel_id, usable_emoji);
+	const size_t i_role_id{static_cast<size_t>(std::stoll(role_id))};
+	const size_t i_message_id{static_cast<size_t>(std::stoll(message_id))};
+	const size_t& guild_id{event.command.guild_id};
 
-	// send a confirmation to the admin
-	event.reply(
-		dpp::message(
-			std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}", message_link, emoji, role))
-			.set_flags(dpp::m_ephemeral));
+	ReactionRoleDTO dto{i_role_id, i_message_id, guild_id, usable_emoji};
+
+	if (repo.create(dto)) {
+		// Let the bot react to the message
+		Bot::ctx->message_add_reaction(message_id, channel_id, usable_emoji);
+
+		// send a confirmation to the admin
+		event.reply(
+			dpp::message(
+				std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: {}", message_link, emoji, role))
+				.set_flags(dpp::m_ephemeral));
+	} else {
+		event.reply(dpp::message("Reaction Role can't be saved to Database!").set_flags(dpp::m_ephemeral));
+	}
 
 	return;
 }
@@ -129,14 +140,14 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 		return;
 	}
 
-	// TODO: reation role repository
-	/*
-	size_t role_id{Database::get_reaction_role_data(message_id, usable_emoji)};
-	if (!role_id) {
-		return;
-	}*/
+	ReactionRoleRepository repo;
+	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
-	// Bot::ctx->guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, role_id);
+	if (!dto.role_id) {
+		return;
+	}
+
+	Bot::ctx->guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, dto.role_id);
 
 	return;
 }
@@ -163,14 +174,14 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 		return;
 	}
 
-	// TODO: reaction role repository
-	/*
-	size_t role_id{Database::get_reaction_role_data(message_id, usable_emoji)};
-	if (!role_id) {
-		return;
-	}*/
+	ReactionRoleRepository repo;
+	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
-	// Bot::ctx->guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, role_id);
+	if (!dto.role_id) {
+		return;
+	}
+
+	Bot::ctx->guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, dto.role_id);
 
 	return;
 }

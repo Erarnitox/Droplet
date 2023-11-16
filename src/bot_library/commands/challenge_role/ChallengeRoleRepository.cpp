@@ -23,7 +23,7 @@ bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
 }
 
 bool ChallengeRoleRepository::remove(size_t messageId) {
-	static std::string sql_string{"DELETE FROM challenge_roles WHERE id = $1::int8"};
+	static std::string sql_string{"DELETE FROM challenge_roles WHERE message_id = $1::int8"};
 
 	if (!Database::hasConnection())
 		return false;
@@ -37,12 +37,12 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
 		"($1::int8, "
 		"$2::Int8, $3::int8, $4::varchar) WHERE message_id = $3"};
 
-	if (!Database::hasConnection())
+	if (!Database::hasConnection()) {
 		return false;
-	if (!object.messageId)
+	}
+	if (!object.messageId) {
 		return false;
-	if (this->get(object.messageId).guildId != 0)
-		return false;
+	}
 
 	return database::execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }
