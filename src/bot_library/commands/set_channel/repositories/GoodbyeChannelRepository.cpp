@@ -36,8 +36,7 @@ bool GoodbyeChannelRepository::remove(size_t guild_id) {
 }
 
 bool GoodbyeChannelRepository::update(const GoodbyeChannelDTO& object) {
-	static std::string sql_string{
-		"UPDATE goodbye_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
+	static std::string sql_string{"UPDATE goodbye_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
 
 	if (!Database::hasConnection()) {
 		return false;

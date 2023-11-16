@@ -5,6 +5,5 @@ var searchData=
   ['welcomechanneldto_2ehpp_2',['WelcomeChannelDTO.hpp',['../WelcomeChannelDTO_8hpp.html',1,'']]],
   ['welcomechannelrepository_3',['WelcomeChannelRepository',['../classWelcomeChannelRepository.html',1,'']]],
   ['welcomechannelrepository_2ecpp_4',['WelcomeChannelRepository.cpp',['../WelcomeChannelRepository_8cpp.html',1,'']]],
-  ['welcomechannelrepository_2ehpp_5',['WelcomeChannelRepository.hpp',['../WelcomeChannelRepository_8hpp.html',1,'']]],
-  ['welcomemember_6',['welcomeMember',['../classChallengeRoleCommand.html#a21d5f03918bdcfd55e0e278ffbd57c84',1,'ChallengeRoleCommand']]]
+  ['welcomechannelrepository_2ehpp_5',['WelcomeChannelRepository.hpp',['../WelcomeChannelRepository_8hpp.html',1,'']]]
 ];

@@ -1,14 +1,18 @@
 var hierarchy =
 [
     [ "Bot", "classBot.html", null ],
-    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
     [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", null ],
-    [ "IButtonCommand", "classIButtonCommand.html", null ],
-    [ "IFormCommand", "classIFormCommand.html", null ],
+    [ "IButtonCommand", "classIButtonCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
+    ] ],
+    [ "IFormCommand", "classIFormCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
+    ] ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],

@@ -1,4 +1,4 @@
 var ChallengeRoleCommand_8hpp =
 [
-    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
+    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", "classChallengeRoleCommand" ]
 ];

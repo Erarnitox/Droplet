@@ -18,6 +18,7 @@
 // #include "ChallengeRoleCommand.hpp"
 // #include "SetChannelCommand.hpp"
 
+#include <ChallengeRoleCommand.hpp>
 #include <HelpCommand.hpp>
 #include <PongCommand.hpp>
 #include <SetChannelCommand.hpp>
@@ -34,4 +35,8 @@ void Commands::registerCommands() {
 	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<SetChannelCommand>());
+
+	Bot::add_slash_command(std::make_shared<ChallengeRoleCommand>());
+	Bot::add_button_command(std::make_shared<ChallengeRoleCommand>());
+	Bot::add_form_command(std::make_shared<ChallengeRoleCommand>());
 }

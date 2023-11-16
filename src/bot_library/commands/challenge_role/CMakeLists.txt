@@ -26,6 +26,9 @@ set_property(TARGET challenge_role PROPERTY CXX_STANDARD ${CPP_STANDARD})
 set_property(TARGET challenge_role_repository PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
 target_link_libraries(challenge_role_repository PRIVATE database)
-target_link_libraries(challenge_role_repository PUBLIC core)
+target_link_libraries(challenge_role_repository PRIVATE bot)
+
 target_link_libraries(challenge_role PRIVATE challenge_role_repository)
+target_link_libraries(challenge_role PUBLIC bot)
+
 target_link_libraries(commands PRIVATE challenge_role)

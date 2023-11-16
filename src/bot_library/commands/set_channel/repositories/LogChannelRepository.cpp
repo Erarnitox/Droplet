@@ -36,8 +36,7 @@ bool LogChannelRepository::remove(size_t guild_id) {
 }
 
 bool LogChannelRepository::update(const LogChannelDTO& object) {
-	static std::string sql_string{
-		"UPDATE log_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
+	static std::string sql_string{"UPDATE log_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
 
 	if (!Database::hasConnection()) {
 		return false;

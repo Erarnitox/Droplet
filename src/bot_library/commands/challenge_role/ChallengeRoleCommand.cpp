@@ -1,73 +1,76 @@
 #include "ChallengeRoleCommand.hpp"
 
-#include <dpp/misc-enum.h>
-#include <fmt/core.h>
-
 #include <Core.hpp>
 #include <variant>
 
 #include "ChallengeRoleDTO.hpp"
 #include "ChallengeRoleRepository.hpp"
+#include "IButtonCommand.hpp"
+#include "IFormCommand.hpp"
+#include "IGlobalSlashCommand.hpp"
 
-auto ChallengeRoleCommand::registerGlobalSlashCommand(std::vector<dpp::slashcommand>& command_list,
-													  const dpp::cluster& bot) noexcept -> void {
-	// Challenge Roles
-	dpp::slashcommand challenge_role("challenge_role", "Create challenge Roles (Admin only!)", bot.me.id);
+ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
+	this->command_name = "challenge_role";
+	this->command_description = "Create challenge Roles (Admin only!)";
 
-	challenge_role.add_option(
+	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_string, "channel", "In which channel to post the challenge in", true));
-	challenge_role.add_option(
-		dpp::command_option(dpp::co_string, "question", "What is the question that needs to be solved?", true));
-	challenge_role.add_option(
-		dpp::command_option(dpp::co_string, "solution", "The solution that needs to be entered", true));
-	challenge_role.add_option(dpp::command_option(dpp::co_string, "role", "The role that will be granted", true));
-	challenge_role.add_option(dpp::command_option(dpp::co_string, "title", "The title for the challenge", true));
 
-	command_list.push_back(challenge_role);
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "question", "What is the question that needs to be solved?", true));
+
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "solution", "The solution that needs to be entered", true));
+
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "role", "The role that will be granted", true));
+
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "title", "The title for the challenge", true));
 }
 
-auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& event,
-													dpp::cluster& bot,
-													const std::vector<dpp::slashcommand>& command_list) noexcept
-	-> void {
-	// unneeded arguments:
-	(void)command_list;
-
-	if (event.command.get_command_name() != "challenge_role")
+void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
+	if (event.command.get_command_name() != "challenge_role") {
 		return;
+	}
 
-	if (!Core::isAdmin(event.command.member)) {
+	if (!Core::is_admin(event.command.member)) {
 		event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
-	const auto channel{Core::getParameter(bot, event, "channel")};
-	if (channel.empty())
+	const auto channel{Core::get_parameter(*Bot::ctx, event, "channel")};
+	if (channel.empty()) {
 		return;
+	}
 
-	const auto question{Core::getParameter(bot, event, "question")};
-	if (question.empty())
+	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
+	if (question.empty()) {
 		return;
+	}
 
-	const auto solution{Core::getParameter(bot, event, "solution")};
-	if (solution.empty())
+	const auto solution{Core::get_parameter(*Bot::ctx, event, "solution")};
+	if (solution.empty()) {
 		return;
+	}
 
-	const auto role{Core::getParameter(bot, event, "role")};
-	if (role.empty())
+	const auto role{Core::get_parameter(*Bot::ctx, event, "role")};
+	if (role.empty()) {
 		return;
+	}
 
-	const auto title{Core::getParameter(bot, event, "title")};
-	if (title.empty())
+	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
+	if (title.empty()) {
 		return;
+	}
 
-	const auto role_id{Core::getRoleId(role)};
+	const auto role_id{Core::get_role_id(role)};
 	if (role_id.empty()) {
 		event.reply(dpp::message("No valid Role provided!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
-	const auto channel_id{Core::getChannelId(channel)};
+	const auto channel_id{Core::get_channel_id(channel)};
 	if (channel_id.empty()) {
 		event.reply(dpp::message("No valid Channel provided!").set_flags(dpp::m_ephemeral));
 		return;
@@ -96,9 +99,8 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
 														 .set_id("solve_challenge_btn")));
 
 	// send the challenge message
-	bot.message_create(
-		msg,
-		[&bot, role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
+	Bot::ctx->message_create(
+		msg, [role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
 			size_t sane_role_id;
@@ -125,32 +127,32 @@ auto ChallengeRoleCommand::handleGlobalSlashCommand(const dpp::slashcommand_t& e
 			ChallengeRoleRepository repo;
 			ChallengeRoleDTO data{sane_role_id, guild_id, message_id, solution};
 			if (repo.create(data)) {
-				bot.log(dpp::ll_info,
-						fmt::format("Challenge role with message_id={} was "
-									"inserted into the Databse",
-									message_id));
+				Bot::ctx->log(dpp::ll_info,
+							  std::format("Challenge role with message_id={} was "
+										  "inserted into the Databse",
+										  message_id));
 			} else {
 				event.reply(
 					dpp::message("Could not save Challenge Datea to Database! ...").set_flags(dpp::m_ephemeral));
-				bot.log(dpp::ll_error,
-						fmt::format("Challenge Role Data could not be saved to "
-									"Database! (message_id={})",
-									message_id));
-				bot.message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
+				Bot::ctx->log(dpp::ll_error,
+							  std::format("Challenge Role Data could not be saved to "
+										  "Database! (message_id={})",
+										  message_id));
+				Bot::ctx->message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
 			}
 
 			// send a confirmation to the admin
-			event.reply(dpp::message(fmt::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role))
+			event.reply(dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role))
 							.set_flags(dpp::m_ephemeral));
 		});
+
+	return;
 }
 
-auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, dpp::cluster& bot) noexcept -> void {
-	if (event.custom_id != "solve_challenge_btn")
+void ChallengeRoleCommand::on_button_click(const dpp::button_click_t& event) {
+	if (event.custom_id != "solve_challenge_btn") {
 		return;
-
-	// unused parameter "bot"
-	(void)bot;
+	}
 
 	/* Instantiate an interaction_modal_response object */
 	dpp::interaction_modal_response modal("challenge_role_solution", "Please enter the correct Solution!");
@@ -167,11 +169,14 @@ auto ChallengeRoleCommand::handleButtonClicks(const dpp::button_click_t& event, 
 
 	/* Trigger the dialog box. All dialog boxes are ephemeral */
 	event.dialog(modal);
+
+	return;
 }
 
-auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dpp::cluster& bot) noexcept -> void {
-	if (event.custom_id != "challenge_role_solution")
+void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
+	if (event.custom_id != "challenge_role_solution") {
 		return;
+	}
 
 	// get the needed data from the event
 	const auto msg_id{event.command.message_id};
@@ -182,12 +187,12 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
 	ChallengeRoleDTO dto = repo.get(msg_id);
 
 	if (!dto.roleId || dto.solution.size() == 0) {
-		bot.log(dpp::ll_warning,
-				fmt::format("Got invalid data from Database in "
-							"ChallengeRoleCommand::handleFormSubmits.\nData: "
-							"roleId={}, dto.solution={}",
-							dto.roleId,
-							dto.solution));
+		Bot::ctx->log(dpp::ll_warning,
+					  std::format("Got invalid data from Database in "
+								  "ChallengeRoleCommand::handleFormSubmits.\nData: "
+								  "roleId={}, dto.solution={}",
+								  dto.roleId,
+								  dto.solution));
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298364")
 						.set_flags(dpp::m_ephemeral));
@@ -197,7 +202,7 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
 	const auto entered_variant{event.components[0].components[0].value};
 	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
 	if (!entered_ptr) {
-		bot.log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
+		Bot::ctx->log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298365")
 						.set_flags(dpp::m_ephemeral));
@@ -207,38 +212,12 @@ auto ChallengeRoleCommand::handleFormSubmits(const dpp::form_submit_t& event, dp
 	const auto& entered{*entered_ptr};
 
 	if (entered == dto.solution) {
-		bot.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
+		Bot::ctx->guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
-		event.reply(dpp::message(fmt::format("Well done {}, you solved this challenge!", member.get_mention()))
+		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))
 						.set_flags(dpp::m_ephemeral));
 	} else {
-		event.reply(dpp::message(fmt::format("Sorry {}, this is not the right answer!", member.get_mention()))
+		event.reply(dpp::message(std::format("Sorry {}, this is not the right answer!", member.get_mention()))
 						.set_flags(dpp::m_ephemeral));
 	}
-}
-
-// UNIMPLEMENTED EVENTS:
-
-// user management
-auto ChallengeRoleCommand::welcomeMember(const dpp::guild_member_add_t& event, dpp::cluster& bot) -> void {
-	(void)event;
-	(void)bot;
-};
-
-auto ChallengeRoleCommand::leaveMember(const dpp::guild_member_remove_t& event, dpp::cluster& bot) -> void {
-	(void)event;
-	(void)bot;
-}
-
-// handle added reactions
-auto ChallengeRoleCommand::handleReactionAdded(const dpp::message_reaction_add_t& event, dpp::cluster& bot) -> void {
-	(void)event;
-	(void)bot;
-}
-
-// handle removed reactions
-auto ChallengeRoleCommand::handleReactionRemoved(const dpp::message_reaction_remove_t& event, dpp::cluster& bot)
-	-> void {
-	(void)event;
-	(void)bot;
 }

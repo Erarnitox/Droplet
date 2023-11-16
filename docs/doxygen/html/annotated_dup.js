@@ -1,7 +1,7 @@
 var annotated_dup =
 [
     [ "Bot", "classBot.html", null ],
-    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
+    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", "classChallengeRoleCommand" ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", "classChallengeRoleDTO" ],
     [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", "classChallengeRoleRepository" ],
     [ "Core", "classCore.html", null ],

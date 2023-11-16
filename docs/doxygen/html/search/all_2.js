@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['challengerolecommand_0',['ChallengeRoleCommand',['../classChallengeRoleCommand.html',1,'']]],
+  ['challengerolecommand_0',['challengerolecommand',['../classChallengeRoleCommand.html',1,'ChallengeRoleCommand'],['../classChallengeRoleCommand.html#a6922ac61131f59f86ca7fd2fd7769282',1,'ChallengeRoleCommand::ChallengeRoleCommand()']]],
   ['challengerolecommand_2ecpp_1',['ChallengeRoleCommand.cpp',['../ChallengeRoleCommand_8cpp.html',1,'']]],
   ['challengerolecommand_2ehpp_2',['ChallengeRoleCommand.hpp',['../ChallengeRoleCommand_8hpp.html',1,'']]],
   ['challengeroledto_3',['challengeroledto',['../classChallengeRoleDTO.html',1,'ChallengeRoleDTO'],['../classChallengeRoleDTO.html#a27ce5572c46baf4e5ff19a01be992bdf',1,'ChallengeRoleDTO::ChallengeRoleDTO(const RowDTOAdapter &amp;row)'],['../classChallengeRoleDTO.html#a63b1e9b917a81409c5b17c5a41b63d23',1,'ChallengeRoleDTO::ChallengeRoleDTO(size_t roleId, size_t guildId, size_t messageId, const std::string &amp;solution)'],['../classChallengeRoleDTO.html#a5bf174a5b8e4d231b0b9223cab6995b3',1,'ChallengeRoleDTO::ChallengeRoleDTO()=default']]],
@@ -9,7 +9,7 @@ var searchData=
   ['challengerolerepository_6',['ChallengeRoleRepository',['../classChallengeRoleRepository.html',1,'']]],
   ['challengerolerepository_2ecpp_7',['ChallengeRoleRepository.cpp',['../ChallengeRoleRepository_8cpp.html',1,'']]],
   ['challengerolerepository_2ehpp_8',['ChallengeRoleRepository.hpp',['../ChallengeRoleRepository_8hpp.html',1,'']]],
-  ['channel_5fid_9',['channel_id',['../classGoodbyeChannelDTO.html#ab0f0f759ab213535239c3bdfb69e9afc',1,'GoodbyeChannelDTO::channel_id'],['../classLogChannelDTO.html#a4ef30ab62d59182cb1831ddcdfc4890a',1,'LogChannelDTO::channel_id'],['../classWelcomeChannelDTO.html#af476387b48a197604ba09c5655966a1c',1,'WelcomeChannelDTO::channel_id']]],
+  ['channel_5fid_9',['channel_id',['../classWelcomeChannelDTO.html#af476387b48a197604ba09c5655966a1c',1,'WelcomeChannelDTO::channel_id'],['../classLogChannelDTO.html#a4ef30ab62d59182cb1831ddcdfc4890a',1,'LogChannelDTO::channel_id'],['../classGoodbyeChannelDTO.html#ab0f0f759ab213535239c3bdfb69e9afc',1,'GoodbyeChannelDTO::channel_id']]],
   ['command_5fdescription_10',['command_description',['../classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b',1,'IGlobalSlashCommand']]],
   ['command_5fname_11',['command_name',['../classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f',1,'IGlobalSlashCommand']]],
   ['command_5foptions_12',['command_options',['../classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447',1,'IGlobalSlashCommand']]],
