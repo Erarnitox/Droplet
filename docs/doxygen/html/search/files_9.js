@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['user_5fman_2ehpp_0',['user_man.hpp',['../user__man_8hpp.html',1,'']]]
+  ['resource_5fman_2ehpp_0',['resource_man.hpp',['../resource__man_8hpp.html',1,'']]],
+  ['roles_2ehpp_1',['roles.hpp',['../roles_8hpp.html',1,'']]],
+  ['rowdtoadapter_2ehpp_2',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]]
 ];

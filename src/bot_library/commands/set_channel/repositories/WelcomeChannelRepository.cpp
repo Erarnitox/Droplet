@@ -7,8 +7,7 @@
 #include "WelcomeChannelDTO.hpp"
 
 bool WelcomeChannelRepository::create(const WelcomeChannelDTO& object) {
-	static std::string sql_string{
-		"INSERT INTO welcome_channels(guild_id, channel_id) VALUES ($1::int8, $2::int8)"};
+	static std::string sql_string{"INSERT INTO welcome_channels(guild_id, channel_id) VALUES ($1::int8, $2::int8)"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -38,8 +37,7 @@ bool WelcomeChannelRepository::remove(size_t guild_id) {
 
 bool WelcomeChannelRepository::update(const WelcomeChannelDTO& object) {
 	static std::string sql_string{
-		"UPDATE welcome_channels(guild_id, channel_id) VALUES "
-		"($1::int8, $2::Int8) WHERE guild_id = $1"};
+		"UPDATE welcome_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -55,11 +53,11 @@ bool WelcomeChannelRepository::update(const WelcomeChannelDTO& object) {
 WelcomeChannelDTO WelcomeChannelRepository::get(size_t guild_id) {
 	static std::string sql_string{"SELECT channel_id FROM welcome_channels WHERE guild_id=$1::int8"};
 
-	auto result{ database::execSelect(sql_string, guild_id) };
+	auto result{database::execSelect(sql_string, guild_id)};
 
 	WelcomeChannelDTO dto;
 	dto.guild_id = guild_id;
 	dto.channel_id = result.get<decltype(dto.channel_id)>("channel_id");
-	
+
 	return dto;
 }

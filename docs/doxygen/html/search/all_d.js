@@ -10,13 +10,13 @@ var searchData=
   ['register_5fglobal_5fslash_5fcommands_7',['register_global_slash_commands',['../namespaceuser__man.html#a7d66ea767638cea0ca5f9a45b15dd1ce',1,'user_man::register_global_slash_commands()'],['../namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0',1,'resource_man::register_global_slash_commands()']]],
   ['registercommands_8',['registerCommands',['../namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e',1,'Commands']]],
   ['registerglobalslashcommand_9',['registerGlobalSlashCommand',['../classChallengeRoleCommand.html#af1584650c3c2d496efb77ae6fa47546b',1,'ChallengeRoleCommand']]],
-  ['remove_10',['remove',['../classChallengeRoleRepository.html#ab8d00d15aec3b6e73dd6a6c1712a1c50',1,'ChallengeRoleRepository::remove()'],['../classWelcomeChannelRepository.html#adbe3d4b72641ff726cf95ca394454d57',1,'WelcomeChannelRepository::remove()'],['../classIRepository.html#a76b35394a19b1e574c3a703ec13dccda',1,'IRepository::remove()']]],
+  ['remove_10',['remove',['../classGoodbyeChannelRepository.html#af043e355b43aefdfdca0f16e5ee74f35',1,'GoodbyeChannelRepository::remove()'],['../classWelcomeChannelRepository.html#adbe3d4b72641ff726cf95ca394454d57',1,'WelcomeChannelRepository::remove()'],['../classLogChannelRepository.html#a77fda5bb31ecc533b8422e776853cdfe',1,'LogChannelRepository::remove()'],['../classChallengeRoleRepository.html#ab8d00d15aec3b6e73dd6a6c1712a1c50',1,'ChallengeRoleRepository::remove()'],['../classIRepository.html#a76b35394a19b1e574c3a703ec13dccda',1,'IRepository::remove()']]],
   ['resource_5fman_11',['resource_man',['../namespaceresource__man.html',1,'']]],
   ['resource_5fman_2ehpp_12',['resource_man.hpp',['../resource__man_8hpp.html',1,'']]],
   ['roleid_13',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
   ['roles_14',['roles',['../namespaceroles.html',1,'']]],
   ['roles_2ehpp_15',['roles.hpp',['../roles_8hpp.html',1,'']]],
-  ['rowdtoadapter_16',['rowdtoadapter',['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()'],['../classRowDTOAdapter.html',1,'RowDTOAdapter']]],
+  ['rowdtoadapter_16',['rowdtoadapter',['../classRowDTOAdapter.html',1,'RowDTOAdapter'],['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()']]],
   ['rowdtoadapter_2ehpp_17',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
   ['run_18',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
 ];

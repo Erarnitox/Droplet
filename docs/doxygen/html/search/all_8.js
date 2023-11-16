@@ -21,6 +21,8 @@ var searchData=
   ['irepository_18',['IRepository',['../classIRepository.html',1,'']]],
   ['irepository_2ehpp_19',['IRepository.hpp',['../IRepository_8hpp.html',1,'']]],
   ['irepository_3c_20challengeroledto_20_3e_20',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20welcomechanneldto_20_3e_21',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_22',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]]
+  ['irepository_3c_20goodbyechanneldto_20_3e_21',['IRepository&lt; GoodbyeChannelDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20logchanneldto_20_3e_22',['IRepository&lt; LogChannelDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20welcomechanneldto_20_3e_23',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
+  ['is_5fadmin_24',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]]
 ];

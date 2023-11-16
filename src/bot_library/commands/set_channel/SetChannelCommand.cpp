@@ -6,7 +6,10 @@
 #include <Core.hpp>
 #include <variant>
 
-#include "IMemberCommand.hpp"
+#include <WelcomeChannelRepository.hpp>
+#include <GoodbyeChannelRepository.hpp>
+#include <LogChannelRepository.hpp>
+#include "WelcomeChannelDTO.hpp"
 
 SetChannelCommand::SetChannelCommand() : IGlobalSlashCommand() {
 	this->command_name = "set_channel";
@@ -15,8 +18,7 @@ SetChannelCommand::SetChannelCommand() : IGlobalSlashCommand() {
 		dpp::command_option(dpp::co_string, "type", "What should this channel be used for?", true)
 			.add_choice(dpp::command_option_choice("Welcome Message Channel", std::string("channel_welcome")))
 			.add_choice(dpp::command_option_choice("Goodbye Message Channel", std::string("channel_goodbye")))
-			.add_choice(dpp::command_option_choice("Server Logging Channel", std::string("channel_log")))
-		);
+			.add_choice(dpp::command_option_choice("Server Logging Channel", std::string("channel_log"))));
 }
 
 void SetChannelCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -34,14 +36,42 @@ void SetChannelCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
+	const auto& cmd { event.command };
+
 	if (type == "channel_welcome") {
-		// TODO: Database::insert_welcome_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-		event.reply(dpp::message("Channel was set as welcome channel!").set_flags(dpp::m_ephemeral));
+		WelcomeChannelRepository repo;
+		WelcomeChannelDTO data { cmd.get_guild().id, cmd.get_channel().id };
+
+		if(repo.create(data)){
+			event.reply(dpp::message("Channel was set as welcome channel!").set_flags(dpp::m_ephemeral));
+		} else if (repo.update(data)){
+			event.reply(dpp::message("Welcome channel was updated!").set_flags(dpp::m_ephemeral));
+		} else {
+			event.reply(dpp::message("Error: Welcome channel can't be saved to Database!").set_flags(dpp::m_ephemeral));
+		}
+
 	} else if (type == "channel_goodbye") {
-		// TODO: Database::insert_goodbye_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-		event.reply(dpp::message("Channel was set as goodbye channel!").set_flags(dpp::m_ephemeral));
+		GoodbyeChannelRepository repo;
+		GoodbyeChannelDTO data { cmd.get_guild().id, cmd.get_channel().id };
+
+		if(repo.create(data)){
+			event.reply(dpp::message("Channel was set as goodbye channel!").set_flags(dpp::m_ephemeral));
+		} else if (repo.update(data)){
+			event.reply(dpp::message("Goodbye channel was updated!").set_flags(dpp::m_ephemeral));
+		} else {
+			event.reply(dpp::message("Error: Goodbye channel can't be saved to Database!").set_flags(dpp::m_ephemeral));
+		}
+		
 	} else if (type == "channel_log") {
-		// TODO: Database::insert_log_channel_id(event.command.get_guild().id, event.command.get_channel().id);
-		event.reply(dpp::message("Channel was set as logging channel!").set_flags(dpp::m_ephemeral));
+		LogChannelRepository repo;
+		LogChannelDTO data { cmd.get_guild().id, cmd.get_channel().id };
+
+		if(repo.create(data)){
+			event.reply(dpp::message("Channel was set as log channel!").set_flags(dpp::m_ephemeral));
+		} else if (repo.update(data)){
+			event.reply(dpp::message("Log channel was updated!").set_flags(dpp::m_ephemeral));
+		} else {
+			event.reply(dpp::message("Error: Log channel can't be saved to Database!").set_flags(dpp::m_ephemeral));
+		}
 	}
 }

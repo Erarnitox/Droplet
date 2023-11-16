@@ -5,6 +5,8 @@ add_library(set_channel_command STATIC
     SetChannelCommand.hpp
 )
 
+add_subdirectory(repositories)
+
 # enable additional warnings and static analysis for this target
 if (MSVC)
     # for windows msvc or clang-cl

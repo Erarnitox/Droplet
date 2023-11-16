@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rowdtoadapter_0',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
+  ['logchanneldto_0',['LogChannelDTO',['../classLogChannelDTO.html',1,'']]],
+  ['logchannelrepository_1',['LogChannelRepository',['../classLogChannelRepository.html',1,'']]]
 ];
