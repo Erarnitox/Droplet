@@ -41,6 +41,6 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	/* reply with the created embed */
-	event.reply("Here is the usage manual!");
-	Bot::ctx->message_create(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
+	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
+	// Bot::ctx->message_create(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
 }

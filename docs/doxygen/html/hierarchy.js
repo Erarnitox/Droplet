@@ -16,7 +16,9 @@ var hierarchy =
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],
-    [ "IMemberCommand", "classIMemberCommand.html", null ],
+    [ "IMemberCommand", "classIMemberCommand.html", [
+      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    ] ],
     [ "IMessageCommand", "classIMessageCommand.html", [
       [ "PongCommand", "classPongCommand.html", null ]
     ] ],

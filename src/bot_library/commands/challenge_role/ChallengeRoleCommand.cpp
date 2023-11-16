@@ -132,8 +132,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 										  "inserted into the Databse",
 										  message_id));
 			} else {
-				event.reply(
-					dpp::message("Could not save Challenge Data to Database! ...").set_flags(dpp::m_ephemeral));
+				event.reply(dpp::message("Could not save Challenge Data to Database! ...").set_flags(dpp::m_ephemeral));
 				Bot::ctx->log(dpp::ll_error,
 							  std::format("Challenge Role Data could not be saved to "
 										  "Database! (message_id={})",

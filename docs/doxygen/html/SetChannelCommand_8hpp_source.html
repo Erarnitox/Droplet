@@ -102,24 +102,36 @@ $(document).ready(function(){initNavTree('SetChannelCommand_8hpp_source.html',''
 <div class="contents">
 <a href="SetChannelCommand_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;snowflake.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="IMemberCommand_8hpp.html">IMemberCommand.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classSetChannelCommand.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classSetChannelCommand.html">SetChannelCommand</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_function" href="classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f">SetChannelCommand</a>();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">on_slashcommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>};</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="IMemberCommand_8hpp.html">IMemberCommand.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classSetChannelCommand.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classSetChannelCommand.html">SetChannelCommand</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a>, <span class="keyword">public</span> <a class="code hl_class" href="classIMemberCommand.html">IMemberCommand</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    dpp::snowflake welcome_channel_id;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    dpp::snowflake goodbye_channel_id;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    dpp::snowflake log_channel_id;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_function" href="classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f">SetChannelCommand</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">on_slashcommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSetChannelCommand.html#a5a4070a34fc5c48eb941959ef8db0642">on_guild_member_add</a>(<span class="keyword">const</span> dpp::guild_member_add_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSetChannelCommand.html#a87b5b81e477a5ad5176c23aecb043d07">on_guild_member_remove</a>(<span class="keyword">const</span> dpp::guild_member_remove_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>};</div>
 </div>
 <div class="ttc" id="aBot_8hpp_html"><div class="ttname"><a href="Bot_8hpp.html">Bot.hpp</a></div></div>
 <div class="ttc" id="aIMemberCommand_8hpp_html"><div class="ttname"><a href="IMemberCommand_8hpp.html">IMemberCommand.hpp</a></div></div>
 <div class="ttc" id="aclassIGlobalSlashCommand_html"><div class="ttname"><a href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a></div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:9</div></div>
-<div class="ttc" id="aclassSetChannelCommand_html"><div class="ttname"><a href="classSetChannelCommand.html">SetChannelCommand</a></div><div class="ttdef"><b>Definition</b> SetChannelCommand.hpp:7</div></div>
-<div class="ttc" id="aclassSetChannelCommand_html_a8d4c7a0f3dd3309aecd89406384d538c"><div class="ttname"><a href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">SetChannelCommand::on_slashcommand</a></div><div class="ttdeci">void on_slashcommand(const dpp::slashcommand_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:24</div></div>
-<div class="ttc" id="aclassSetChannelCommand_html_aeb223e9a6e1d0279a707f18cbf8b5c4f"><div class="ttname"><a href="classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f">SetChannelCommand::SetChannelCommand</a></div><div class="ttdeci">SetChannelCommand()</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:14</div></div>
+<div class="ttc" id="aclassIMemberCommand_html"><div class="ttname"><a href="classIMemberCommand.html">IMemberCommand</a></div><div class="ttdef"><b>Definition</b> IMemberCommand.hpp:6</div></div>
+<div class="ttc" id="aclassSetChannelCommand_html"><div class="ttname"><a href="classSetChannelCommand.html">SetChannelCommand</a></div><div class="ttdef"><b>Definition</b> SetChannelCommand.hpp:9</div></div>
+<div class="ttc" id="aclassSetChannelCommand_html_a5a4070a34fc5c48eb941959ef8db0642"><div class="ttname"><a href="classSetChannelCommand.html#a5a4070a34fc5c48eb941959ef8db0642">SetChannelCommand::on_guild_member_add</a></div><div class="ttdeci">virtual void on_guild_member_add(const dpp::guild_member_add_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:87</div></div>
+<div class="ttc" id="aclassSetChannelCommand_html_a87b5b81e477a5ad5176c23aecb043d07"><div class="ttname"><a href="classSetChannelCommand.html#a87b5b81e477a5ad5176c23aecb043d07">SetChannelCommand::on_guild_member_remove</a></div><div class="ttdeci">virtual void on_guild_member_remove(const dpp::guild_member_remove_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:112</div></div>
+<div class="ttc" id="aclassSetChannelCommand_html_a8d4c7a0f3dd3309aecd89406384d538c"><div class="ttname"><a href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">SetChannelCommand::on_slashcommand</a></div><div class="ttdeci">virtual void on_slashcommand(const dpp::slashcommand_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:26</div></div>
+<div class="ttc" id="aclassSetChannelCommand_html_aeb223e9a6e1d0279a707f18cbf8b5c4f"><div class="ttname"><a href="classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f">SetChannelCommand::SetChannelCommand</a></div><div class="ttdeci">SetChannelCommand()</div><div class="ttdef"><b>Definition</b> SetChannelCommand.cpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

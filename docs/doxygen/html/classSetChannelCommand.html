@@ -103,20 +103,24 @@ $(document).ready(function(){initNavTree('classSetChannelCommand.html',''); init
 <div class="dynheader">
 Inheritance diagram for SetChannelCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSetChannelCommand__inherit__graph.svg" width="171" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSetChannelCommand__inherit__graph.svg" width="371" height="304"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for SetChannelCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSetChannelCommand__coll__graph.svg" width="306" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSetChannelCommand__coll__graph.svg" width="399" height="450"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb223e9a6e1d0279a707f18cbf8b5c4f" id="r_aeb223e9a6e1d0279a707f18cbf8b5c4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSetChannelCommand.html#aeb223e9a6e1d0279a707f18cbf8b5c4f">SetChannelCommand</a> ()</td></tr>
 <tr class="separator:aeb223e9a6e1d0279a707f18cbf8b5c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d4c7a0f3dd3309aecd89406384d538c" id="r_a8d4c7a0f3dd3309aecd89406384d538c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">on_slashcommand</a> (const dpp::slashcommand_t &amp;event) override</td></tr>
+<tr class="memitem:a8d4c7a0f3dd3309aecd89406384d538c" id="r_a8d4c7a0f3dd3309aecd89406384d538c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSetChannelCommand.html#a8d4c7a0f3dd3309aecd89406384d538c">on_slashcommand</a> (const dpp::slashcommand_t &amp;event) override</td></tr>
 <tr class="separator:a8d4c7a0f3dd3309aecd89406384d538c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a4070a34fc5c48eb941959ef8db0642" id="r_a5a4070a34fc5c48eb941959ef8db0642"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSetChannelCommand.html#a5a4070a34fc5c48eb941959ef8db0642">on_guild_member_add</a> (const dpp::guild_member_add_t &amp;event) override</td></tr>
+<tr class="separator:a5a4070a34fc5c48eb941959ef8db0642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87b5b81e477a5ad5176c23aecb043d07" id="r_a87b5b81e477a5ad5176c23aecb043d07"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSetChannelCommand.html#a87b5b81e477a5ad5176c23aecb043d07">on_guild_member_remove</a> (const dpp::guild_member_remove_t &amp;event) override</td></tr>
+<tr class="separator:a87b5b81e477a5ad5176c23aecb043d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -147,6 +151,62 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a5a4070a34fc5c48eb941959ef8db0642" name="a5a4070a34fc5c48eb941959ef8db0642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a4070a34fc5c48eb941959ef8db0642">&#9670;&#160;</a></span>on_guild_member_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetChannelCommand::on_guild_member_add </td>
+          <td>(</td>
+          <td class="paramtype">const dpp::guild_member_add_t &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIMemberCommand.html#a1c7cfcdb58ae71b4d759fcd6d53f5e53">IMemberCommand</a>.</p>
+
+</div>
+</div>
+<a id="a87b5b81e477a5ad5176c23aecb043d07" name="a87b5b81e477a5ad5176c23aecb043d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87b5b81e477a5ad5176c23aecb043d07">&#9670;&#160;</a></span>on_guild_member_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetChannelCommand::on_guild_member_remove </td>
+          <td>(</td>
+          <td class="paramtype">const dpp::guild_member_remove_t &amp;&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIMemberCommand.html#ab30375790dc8efa5961aff149361e590">IMemberCommand</a>.</p>
+
+</div>
+</div>
 <a id="a8d4c7a0f3dd3309aecd89406384d538c" name="a8d4c7a0f3dd3309aecd89406384d538c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8d4c7a0f3dd3309aecd89406384d538c">&#9670;&#160;</a></span>on_slashcommand()</h2>
 
