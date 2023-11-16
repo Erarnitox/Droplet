@@ -14,6 +14,7 @@ var hierarchy =
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
+      [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", [
@@ -22,7 +23,9 @@ var hierarchy =
     [ "IMessageCommand", "classIMessageCommand.html", [
       [ "PongCommand", "classPongCommand.html", null ]
     ] ],
-    [ "IReactionCommand", "classIReactionCommand.html", null ],
+    [ "IReactionCommand", "classIReactionCommand.html", [
+      [ "ReactionRoles", "classReactionRoles.html", null ]
+    ] ],
     [ "IReady", "classIReady.html", [
       [ "InitDatabase", "classInitDatabase.html", null ]
     ] ],

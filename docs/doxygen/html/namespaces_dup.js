@@ -11,6 +11,5 @@ var namespaces_dup =
     [ "resource_man", "namespaceresource__man.html", [
       [ "handle_global_slash_commands", "namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459", null ],
       [ "register_global_slash_commands", "namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0", null ]
-    ] ],
-    [ "roles", "namespaceroles.html", null ]
+    ] ]
 ];

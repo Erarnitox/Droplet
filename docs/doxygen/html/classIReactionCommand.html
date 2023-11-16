@@ -101,6 +101,11 @@ $(document).ready(function(){initNavTree('classIReactionCommand.html',''); initR
 
 <p><code>#include &lt;<a class="el" href="IReactionCommand_8hpp_source.html">IReactionCommand.hpp</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for IReactionCommand:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classIReactionCommand__inherit__graph.svg" width="162" height="347"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
 Collaboration diagram for IReactionCommand:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classIReactionCommand__coll__graph.svg" width="162" height="134"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -108,14 +113,14 @@ Collaboration diagram for IReactionCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a395b33ee5b022d883c6e6993351079ed" id="r_a395b33ee5b022d883c6e6993351079ed"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a395b33ee5b022d883c6e6993351079ed">on_message_reaction_add</a> (const dpp::message_reaction_add_t &amp;event) -&gt; void=0</td></tr>
-<tr class="separator:a395b33ee5b022d883c6e6993351079ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a919746d4ced88bbf21e26d5bc3be6d30" id="r_a919746d4ced88bbf21e26d5bc3be6d30"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a919746d4ced88bbf21e26d5bc3be6d30">on_message_reaction_remove</a> (const dpp::message_reaction_remove_t &amp;event) -&gt; void=0</td></tr>
-<tr class="separator:a919746d4ced88bbf21e26d5bc3be6d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8136cfd6d776afe9ddee16cc0af88e04" id="r_a8136cfd6d776afe9ddee16cc0af88e04"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a8136cfd6d776afe9ddee16cc0af88e04">on_message_reaction_add</a> (const dpp::message_reaction_add_t &amp;event)=0</td></tr>
+<tr class="separator:a8136cfd6d776afe9ddee16cc0af88e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92e5dc9a88b9db4b4823f752734d0b90" id="r_a92e5dc9a88b9db4b4823f752734d0b90"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIReactionCommand.html#a92e5dc9a88b9db4b4823f752734d0b90">on_message_reaction_remove</a> (const dpp::message_reaction_remove_t &amp;event)=0</td></tr>
+<tr class="separator:a92e5dc9a88b9db4b4823f752734d0b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a395b33ee5b022d883c6e6993351079ed" name="a395b33ee5b022d883c6e6993351079ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a395b33ee5b022d883c6e6993351079ed">&#9670;&#160;</a></span>on_message_reaction_add()</h2>
+<a id="a8136cfd6d776afe9ddee16cc0af88e04" name="a8136cfd6d776afe9ddee16cc0af88e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8136cfd6d776afe9ddee16cc0af88e04">&#9670;&#160;</a></span>on_message_reaction_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,11 +129,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual auto IReactionCommand::on_message_reaction_add </td>
+          <td class="memname">virtual void IReactionCommand::on_message_reaction_add </td>
           <td>(</td>
           <td class="paramtype">const dpp::message_reaction_add_t &amp;&#160;</td>
           <td class="paramname"><em>event</em></td><td>)</td>
-          <td> -&gt;  void</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -138,10 +143,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implemented in <a class="el" href="classReactionRoles.html#aacb182ff3ed3a4aa1780a4e1be25ffb4">ReactionRoles</a>.</p>
+
 </div>
 </div>
-<a id="a919746d4ced88bbf21e26d5bc3be6d30" name="a919746d4ced88bbf21e26d5bc3be6d30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a919746d4ced88bbf21e26d5bc3be6d30">&#9670;&#160;</a></span>on_message_reaction_remove()</h2>
+<a id="a92e5dc9a88b9db4b4823f752734d0b90" name="a92e5dc9a88b9db4b4823f752734d0b90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92e5dc9a88b9db4b4823f752734d0b90">&#9670;&#160;</a></span>on_message_reaction_remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,11 +157,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual auto IReactionCommand::on_message_reaction_remove </td>
+          <td class="memname">virtual void IReactionCommand::on_message_reaction_remove </td>
           <td>(</td>
           <td class="paramtype">const dpp::message_reaction_remove_t &amp;&#160;</td>
           <td class="paramname"><em>event</em></td><td>)</td>
-          <td> -&gt;  void</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -163,6 +170,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classReactionRoles.html#a2b267aebc8f3c9e5a80637aff51871d0">ReactionRoles</a>.</p>
 
 </div>
 </div>

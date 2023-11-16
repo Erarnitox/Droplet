@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rowdtoadapter_0',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
+  ['reactionroles_0',['ReactionRoles',['../classReactionRoles.html',1,'']]],
+  ['rowdtoadapter_1',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
 ];

@@ -21,6 +21,7 @@
 #include <ChallengeRoleCommand.hpp>
 #include <HelpCommand.hpp>
 #include <PongCommand.hpp>
+#include <ReactionRoles.hpp>
 #include <SetChannelCommand.hpp>
 #include <memory>
 
@@ -34,9 +35,17 @@ void Commands::registerCommands() {
 	////////////////////////////////////
 	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
-	Bot::add_slash_command(std::make_shared<SetChannelCommand>());
 
-	Bot::add_slash_command(std::make_shared<ChallengeRoleCommand>());
-	Bot::add_button_command(std::make_shared<ChallengeRoleCommand>());
-	Bot::add_form_command(std::make_shared<ChallengeRoleCommand>());
+	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
+	Bot::add_slash_command(set_channel_command);
+	Bot::add_member_command(set_channel_command);
+
+	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
+	Bot::add_slash_command(challenge_command);
+	Bot::add_button_command(challenge_command);
+	Bot::add_form_command(challenge_command);
+
+	const auto& reaction_roles{std::make_shared<ReactionRoles>()};
+	Bot::add_slash_command(reaction_roles);
+	Bot::add_reaction_command(reaction_roles);
 }

@@ -102,7 +102,7 @@ void SetChannelCommand::on_guild_member_add(const dpp::guild_member_add_t& event
 
 	dpp::embed embed{dpp::embed()
 						 .set_color(dpp::colors::green_apple)
-						 .set_title(std::format("{} has joined the Server!", event.added.get_nickname()) )
+						 .set_title(std::format("{} has joined the Server!", event.added.get_nickname()))
 						 .set_description(std::format("{} has joined the server!", event.added.get_mention()))
 						 .set_thumbnail(event.added.get_avatar_url())};
 
@@ -127,7 +127,7 @@ void SetChannelCommand::on_guild_member_remove(const dpp::guild_member_remove_t&
 
 	dpp::embed embed{dpp::embed()
 						 .set_color(dpp::colors::red_blood)
-						 .set_title(std::format("{} has left the Server!", event.removed.global_name) )
+						 .set_title(std::format("{} has left the Server!", event.removed.global_name))
 						 .set_description(std::format("{} has left the server!", event.removed.get_mention()))
 						 .set_thumbnail(event.removed.get_avatar_url())};
 
