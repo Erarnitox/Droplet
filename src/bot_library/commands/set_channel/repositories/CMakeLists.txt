@@ -39,7 +39,9 @@ target_link_libraries(welcome_channel_repository PRIVATE bot)
 target_link_libraries(goodbye_channel_repository PRIVATE bot)
 target_link_libraries(log_channel_repository PRIVATE bot)
 
-target_include_directories(set_channel_command PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(welcome_channel_repository PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(goodbye_channel_repository PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(log_channel_repository PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 target_link_libraries(set_channel_command PRIVATE welcome_channel_repository)
 target_link_libraries(set_channel_command PRIVATE goodbye_channel_repository)

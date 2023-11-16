@@ -4,6 +4,7 @@ var annotated_dup =
     [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", "classChallengeRoleCommand" ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", "classChallengeRoleDTO" ],
     [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", "classChallengeRoleRepository" ],
+    [ "CleanUp", "classCleanUp.html", "classCleanUp" ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", "classDatabase" ],
     [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", "classGoodbyeChannelDTO" ],

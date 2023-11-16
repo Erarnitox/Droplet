@@ -19,6 +19,7 @@
 // #include "SetChannelCommand.hpp"
 
 #include <ChallengeRoleCommand.hpp>
+#include <CleanUp.hpp>
 #include <HelpCommand.hpp>
 #include <PongCommand.hpp>
 #include <ReactionRoles.hpp>
@@ -34,6 +35,7 @@ void Commands::registerCommands() {
 	/// REGISTER ALL COMMANDS HERE:
 	////////////////////////////////////
 	Bot::add_message_command(std::make_shared<PongCommand>());
+	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};

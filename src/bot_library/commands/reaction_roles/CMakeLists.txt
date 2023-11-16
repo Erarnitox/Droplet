@@ -22,6 +22,8 @@ else()
     target_compile_options(reaction_role_repository PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
 endif()
 
+target_include_directories(reaction_role_repository PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+
 set_property(TARGET reaction_roles PROPERTY CXX_STANDARD ${CPP_STANDARD})
 set_property(TARGET reaction_role_repository PROPERTY CXX_STANDARD ${CPP_STANDARD})
 

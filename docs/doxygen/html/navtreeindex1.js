@@ -1,5 +1,13 @@
 var NAVTREEINDEX1 =
 {
+"functions_vars.html":[1,3,2],
+"globals.html":[2,1,0],
+"globals_func.html":[2,1,1],
+"globals_type.html":[2,1,2],
+"hierarchy.html":[1,2],
+"index.html":[],
+"main_8cpp.html":[2,0,0,1],
+"main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[2,0,0,1,0],
 "namespaceCommands.html":[0,0,0],
 "namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e":[0,0,0,0],
 "namespacedatabase.html":[0,0,1],
@@ -13,8 +21,8 @@ var NAVTREEINDEX1 =
 "namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459":[0,0,2,0],
 "namespaces.html":[0,0],
 "pages.html":[],
-"resource__man_8hpp.html":[2,0,0,0,1,6,0],
-"resource__man_8hpp.html#a515177ff66f52a3e3da9e1784d1893b0":[2,0,0,0,1,6,0,1],
-"resource__man_8hpp.html#ad0ab9755d46f3ce699a3dcf237902459":[2,0,0,0,1,6,0,0],
-"resource__man_8hpp_source.html":[2,0,0,0,1,6,0]
+"resource__man_8hpp.html":[2,0,0,0,1,7,0],
+"resource__man_8hpp.html#a515177ff66f52a3e3da9e1784d1893b0":[2,0,0,0,1,7,0,1],
+"resource__man_8hpp.html#ad0ab9755d46f3ce699a3dcf237902459":[2,0,0,0,1,7,0,0],
+"resource__man_8hpp_source.html":[2,0,0,0,1,7,0]
 };
