@@ -12,12 +12,12 @@ bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
 		"($1::int8, "
 		"$2::int8, $3::int8, $4::varchar)"};
 
-	if (!Database::hasConnection())
+	if (!Database::hasConnection()) {
 		return false;
-	if (!object.messageId)
+	}
+	if (!object.messageId) {
 		return false;
-	if (this->get(object.messageId).guildId != 0)
-		return false;
+	}
 
 	return database::execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }

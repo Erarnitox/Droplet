@@ -133,12 +133,13 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 										  message_id));
 			} else {
 				event.reply(
-					dpp::message("Could not save Challenge Datea to Database! ...").set_flags(dpp::m_ephemeral));
+					dpp::message("Could not save Challenge Data to Database! ...").set_flags(dpp::m_ephemeral));
 				Bot::ctx->log(dpp::ll_error,
 							  std::format("Challenge Role Data could not be saved to "
 										  "Database! (message_id={})",
 										  message_id));
 				Bot::ctx->message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
+				return;
 			}
 
 			// send a confirmation to the admin

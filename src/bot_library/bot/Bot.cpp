@@ -281,8 +281,11 @@ static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_
  * @return doesn't return anything
  */
 static inline void handle_button_click(ctx_t& ctx, const button_commands_t& button_commands) {
-	(void)ctx;
-	(void)button_commands;
+	ctx->on_button_click([&button_commands](const dpp::button_click_t& event) {
+		for (const auto& command : button_commands) {
+			command->on_button_click(event);
+		}
+	});
 }
 
 /**
@@ -293,8 +296,11 @@ static inline void handle_button_click(ctx_t& ctx, const button_commands_t& butt
  * @return doesn't return anything
  */
 static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_commands) {
-	(void)ctx;
-	(void)form_commands;
+	ctx->on_form_submit([&form_commands](const dpp::form_submit_t& event) {
+		for (const auto& command : form_commands) {
+			command->on_form_submit(event);
+		}
+	});
 }
 
 /**
@@ -305,8 +311,11 @@ static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_co
  * @return doesn't return anything
  */
 static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
-	(void)ctx;
-	(void)reaction_commands;
+	ctx->on_message_reaction_add([&reaction_commands](const dpp::message_reaction_add_t& event) {
+		for (const auto& command : reaction_commands) {
+			command->on_message_reaction_add(event);
+		}
+	});
 }
 
 /**
@@ -317,8 +326,11 @@ static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& re
  * @return doesn't return anything
  */
 static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
-	(void)ctx;
-	(void)reaction_commands;
+	ctx->on_message_reaction_remove([&reaction_commands](const dpp::message_reaction_remove_t& event) {
+		for (const auto& command : reaction_commands) {
+			command->on_message_reaction_remove(event);
+		}
+	});
 }
 
 /**
@@ -329,8 +341,11 @@ static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t&
  * @return doesn't return anything
  */
 static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_commands) {
-	(void)ctx;
-	(void)ready_commands;
+	ctx->on_ready([&ready_commands](const dpp::ready_t& event) {
+		for (const auto& command : ready_commands) {
+			command->on_ready(event);
+		}
+	});
 }
 
 /**
