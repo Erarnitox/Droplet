@@ -29,7 +29,8 @@ var hierarchy =
       [ "ReactionRoles", "classReactionRoles.html", null ]
     ] ],
     [ "IReady", "classIReady.html", [
-      [ "InitDatabase", "classInitDatabase.html", null ]
+      [ "InitDatabase", "classInitDatabase.html", null ],
+      [ "SetStatus", "classSetStatus.html", null ]
     ] ],
     [ "IRepository< DTO >", "classIRepository.html", null ],
     [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [

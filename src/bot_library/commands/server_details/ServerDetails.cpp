@@ -22,7 +22,9 @@ void ServerDetails::on_slashcommand(const dpp::slashcommand_t& event) {
 						 .set_thumbnail(guild.get_icon_url())};
 
 	embed.add_field("Member Count:", std::format("{}", guild.member_count));
-	embed.add_field("Community:", std::format("{}", guild.is_community() ? "Server is a Community Server!" : "Not a Community Server!"));
+	embed.add_field(
+		"Community:",
+		std::format("{}", guild.is_community() ? "Server is a Community Server!" : "Not a Community Server!"));
 	embed.add_field("Discoverable:", std::format("{}", guild.is_discoverable() ? "YES" : "NO"));
 	embed.add_field("Featureable:", std::format("{}", guild.is_featureable() ? "YES" : "NO"));
 	embed.add_field("Verified:", std::format("{}", guild.is_verified() ? "YES" : "NO"));

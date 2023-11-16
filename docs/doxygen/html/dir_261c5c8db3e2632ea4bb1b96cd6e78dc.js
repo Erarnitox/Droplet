@@ -10,5 +10,6 @@ var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
     [ "resources", "dir_4664096a0ece9a7aba46a7b7bb421972.html", "dir_4664096a0ece9a7aba46a7b7bb421972" ],
     [ "server_details", "dir_25fa05427a0fbbf83099686a4dfd3c98.html", "dir_25fa05427a0fbbf83099686a4dfd3c98" ],
     [ "set_channel", "dir_45dc5c8d62ec8ca66ff85239c099c91b.html", "dir_45dc5c8d62ec8ca66ff85239c099c91b" ],
+    [ "set_status", "dir_cc7ce3d766bf0a0ad188e6b0650c2ecf.html", "dir_cc7ce3d766bf0a0ad188e6b0650c2ecf" ],
     [ "Commands.cpp", "Commands_8cpp.html", null ]
 ];

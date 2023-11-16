@@ -28,6 +28,7 @@ var annotated_dup =
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
     [ "ServerDetails", "classServerDetails.html", "classServerDetails" ],
     [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],
+    [ "SetStatus", "classSetStatus.html", "classSetStatus" ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", "classWelcomeChannelDTO" ],
     [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", "classWelcomeChannelRepository" ]
 ];

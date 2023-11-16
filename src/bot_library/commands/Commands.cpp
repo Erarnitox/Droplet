@@ -25,7 +25,10 @@
 #include <ReactionRoles.hpp>
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
+#include <SetStatus.hpp>
 #include <memory>
+
+#include "set_status/SetStatus.hpp"
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -35,6 +38,7 @@ void Commands::registerCommands() {
 	////////////////////////////////////
 	/// REGISTER ALL COMMANDS HERE:
 	////////////////////////////////////
+	Bot::add_ready_command(std::make_shared<SetStatus>());
 	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
