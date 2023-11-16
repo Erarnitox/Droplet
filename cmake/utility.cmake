@@ -99,3 +99,76 @@ function(generate_doxygen input output)
         COMMENT "Generate Doxygen Documentation"
     )
 endfunction()
+
+# Create dependency graph
+macro(generate_dep_graph)
+    # Check if the 'dot' command is available
+    find_program(DOT_EXECUTABLE dot)
+    if(NOT DOT_EXECUTABLE)
+        message(FATAL_ERROR "Graphviz 'dot' command not found. Make sure Graphviz is installed.")
+    endif()
+
+    set(DOT_FILE "dep_graph.dot")
+    set(PNG_FILE "${CMAKE_SOURCE_DIR}/docs/dep_graph.png")
+
+    add_custom_command(
+        OUTPUT
+            "${DOT_FILE}"
+        COMMAND
+            ${CMAKE_COMMAND} --graphviz="${DOT_FILE}" "."
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PROJECT_NAME}
+        COMMENT
+            "Creates a new dependency graph"
+    )
+
+    add_custom_command(
+        OUTPUT
+            "${PNG_FILE}"
+        COMMAND
+            ${DOT_EXECUTABLE} -Tpng -o${PNG_FILE} ${DOT_FILE}
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${DOT_FILE}
+        COMMENT
+            "Creates a new dependency graph as png"
+    )
+
+    add_custom_target(dep_graph
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PNG_FILE}
+        COMMENT
+            "Creates a new dependency graph for the documentation"
+        VERBATIM
+    )
+endmacro()
+
+macro(copy_compile_commands)
+    add_custom_command(
+        OUTPUT
+            "${CMAKE_SOURCE_DIR}/compile_commands.json"
+        COMMAND
+            ${CMAKE_COMMAND} -E copy "${CMAKE_BINARY_DIR}/compile_commands.json" "${CMAKE_SOURCE_DIR}/compile_commands.json"
+        WORKING_DIRECTORY
+            ${CMAKE_BINARY_DIR}
+        DEPENDS
+            ${PROJECT_NAME}
+        COMMENT
+            "Copy the compile_commands.json into the source dir for the IDE"
+    )
+endmacro()
+
+# link system libraries to target
+function(target_link_libraries_system target)
+  set(libs ${ARGN})
+  foreach(lib ${libs})
+    get_target_property(lib_include_dirs ${lib} INTERFACE_INCLUDE_DIRECTORIES)
+    target_include_directories(${target} SYSTEM PUBLIC ${lib_include_dirs})
+    target_link_libraries(${target} PUBLIC ${lib})
+  endforeach(lib)
+endfunction(target_link_libraries_system)

@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['database_0',['database',['../classDatabase.html',1,'Database'],['../namespacedatabase.html',1,'database'],['../classDatabase.html#aaf65e5124c0d7f9c72f4db9403ad0d2d',1,'Database::Database()']]],
-  ['database_2ecpp_1',['Database.cpp',['../Database_8cpp.html',1,'']]],
-  ['database_2ehpp_2',['Database.hpp',['../Database_8hpp.html',1,'']]],
-  ['disconnect_3',['disconnect',['../classDatabase.html#ac229de57d85436cc09a35a1ae08a8f72',1,'Database']]]
+  ['emoji_0',['emoji',['../classReactionRoleDTO.html#aa5699426d8b83a816ed2d750a0b9338b',1,'ReactionRoleDTO']]],
+  ['execquery_1',['execQuery',['../namespacedatabase.html#a93d0695f576fbed2473613202a49f18c',1,'database']]],
+  ['execselect_2',['execSelect',['../namespacedatabase.html#abd8f8b4ba43768a73c508f6664382ec1',1,'database']]]
 ];

@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -93,7 +93,7 @@ $(document).ready(function(){initNavTree('classHelpCommand.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classHelpCommand-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">HelpCommand Class Reference</div></div>
 </div><!--header-->
@@ -101,33 +101,54 @@ $(document).ready(function(){initNavTree('classHelpCommand.html',''); initResiza
 
 <p><code>#include &lt;<a class="el" href="HelpCommand_8hpp_source.html">HelpCommand.hpp</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for HelpCommand:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHelpCommand__inherit__graph.svg" width="162" height="262"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
 Collaboration diagram for HelpCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classHelpCommand__coll__graph.svg" width="215" height="230"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classHelpCommand__coll__graph.svg" width="306" height="386"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8dacaf79308485f41d92b95b30f968e8" id="r_a8dacaf79308485f41d92b95b30f968e8"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8dacaf79308485f41d92b95b30f968e8">registerGlobalSlashCommand</a> (std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
-<tr class="separator:a8dacaf79308485f41d92b95b30f968e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a455f59a5790f3b46288b4182e9b387b3" id="r_a455f59a5790f3b46288b4182e9b387b3"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a455f59a5790f3b46288b4182e9b387b3">handleGlobalSlashCommand</a> (const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot, const std::vector&lt; dpp::slashcommand &gt; &amp;command_list) noexcept -&gt; void</td></tr>
-<tr class="separator:a455f59a5790f3b46288b4182e9b387b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af961f4c6172202d24ab05b037c8983d5" id="r_af961f4c6172202d24ab05b037c8983d5"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af961f4c6172202d24ab05b037c8983d5">handleButtonClicks</a> (const dpp::button_click_t &amp;event, dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
-<tr class="separator:af961f4c6172202d24ab05b037c8983d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63660dd5af94ed123758ee6bda355a7" id="r_af63660dd5af94ed123758ee6bda355a7"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#af63660dd5af94ed123758ee6bda355a7">handleFormSubmits</a> (const dpp::form_submit_t &amp;event, dpp::cluster &amp;bot) noexcept -&gt; void</td></tr>
-<tr class="separator:af63660dd5af94ed123758ee6bda355a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3872649fef1e019cc8d101afddf3396d" id="r_a3872649fef1e019cc8d101afddf3396d"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a3872649fef1e019cc8d101afddf3396d">welcomeMember</a> (const dpp::guild_member_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
-<tr class="separator:a3872649fef1e019cc8d101afddf3396d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a008b7e19f92bbe2fdc4a2d150d0ade06" id="r_a008b7e19f92bbe2fdc4a2d150d0ade06"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06">leaveMember</a> (const dpp::guild_member_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
-<tr class="separator:a008b7e19f92bbe2fdc4a2d150d0ade06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e5b9bdd91e31fdb4d4913a9cce6adfb" id="r_a8e5b9bdd91e31fdb4d4913a9cce6adfb"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a8e5b9bdd91e31fdb4d4913a9cce6adfb">handleReactionAdded</a> (const dpp::message_reaction_add_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
-<tr class="separator:a8e5b9bdd91e31fdb4d4913a9cce6adfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65cdd4357c694d5f52f33e35ff980897" id="r_a65cdd4357c694d5f52f33e35ff980897"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a65cdd4357c694d5f52f33e35ff980897">handleReactionRemoved</a> (const dpp::message_reaction_remove_t &amp;event, dpp::cluster &amp;bot) -&gt; void</td></tr>
-<tr class="separator:a65cdd4357c694d5f52f33e35ff980897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a530e265a79207f822648bb0591d17dc0" id="r_a530e265a79207f822648bb0591d17dc0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a530e265a79207f822648bb0591d17dc0">HelpCommand</a> ()</td></tr>
+<tr class="separator:a530e265a79207f822648bb0591d17dc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60c66511d52e289cb4128916445c53ef" id="r_a60c66511d52e289cb4128916445c53ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHelpCommand.html#a60c66511d52e289cb4128916445c53ef">on_slashcommand</a> (const dpp::slashcommand_t &amp;event) override</td></tr>
+<tr class="separator:a60c66511d52e289cb4128916445c53ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_attribs_classIGlobalSlashCommand"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classIGlobalSlashCommand')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a></td></tr>
+<tr class="memitem:aa8051c4a03fa41b9c2aa13eae635215f inherit pub_attribs_classIGlobalSlashCommand" id="r_aa8051c4a03fa41b9c2aa13eae635215f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f">command_name</a></td></tr>
+<tr class="separator:aa8051c4a03fa41b9c2aa13eae635215f inherit pub_attribs_classIGlobalSlashCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84ad842dd0fe2dd9c0c73c23b3c7484b inherit pub_attribs_classIGlobalSlashCommand" id="r_a84ad842dd0fe2dd9c0c73c23b3c7484b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b">command_description</a></td></tr>
+<tr class="separator:a84ad842dd0fe2dd9c0c73c23b3c7484b inherit pub_attribs_classIGlobalSlashCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa15ce287ef8586b3db053ce77d1b4447 inherit pub_attribs_classIGlobalSlashCommand" id="r_aa15ce287ef8586b3db053ce77d1b4447"><td class="memItemLeft" align="right" valign="top">std::vector&lt; dpp::command_option &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447">command_options</a></td></tr>
+<tr class="separator:aa15ce287ef8586b3db053ce77d1b4447 inherit pub_attribs_classIGlobalSlashCommand"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a530e265a79207f822648bb0591d17dc0" name="a530e265a79207f822648bb0591d17dc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a530e265a79207f822648bb0591d17dc0">&#9670;&#160;</a></span>HelpCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HelpCommand::HelpCommand </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af961f4c6172202d24ab05b037c8983d5" name="af961f4c6172202d24ab05b037c8983d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af961f4c6172202d24ab05b037c8983d5">&#9670;&#160;</a></span>handleButtonClicks()</h2>
+<a id="a60c66511d52e289cb4128916445c53ef" name="a60c66511d52e289cb4128916445c53ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60c66511d52e289cb4128916445c53ef">&#9670;&#160;</a></span>on_slashcommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,293 +157,27 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto HelpCommand::handleButtonClicks </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::button_click_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af63660dd5af94ed123758ee6bda355a7" name="af63660dd5af94ed123758ee6bda355a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af63660dd5af94ed123758ee6bda355a7">&#9670;&#160;</a></span>handleFormSubmits()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::handleFormSubmits </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::form_submit_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a455f59a5790f3b46288b4182e9b387b3" name="a455f59a5790f3b46288b4182e9b387b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a455f59a5790f3b46288b4182e9b387b3">&#9670;&#160;</a></span>handleGlobalSlashCommand()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::handleGlobalSlashCommand </td>
+          <td class="memname">void HelpCommand::on_slashcommand </td>
           <td>(</td>
           <td class="paramtype">const dpp::slashcommand_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>event</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; dpp::slashcommand &gt; &amp;&#160;</td>
-          <td class="paramname"><em>command_list</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="a8e5b9bdd91e31fdb4d4913a9cce6adfb" name="a8e5b9bdd91e31fdb4d4913a9cce6adfb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e5b9bdd91e31fdb4d4913a9cce6adfb">&#9670;&#160;</a></span>handleReactionAdded()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::handleReactionAdded </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::message_reaction_add_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a65cdd4357c694d5f52f33e35ff980897" name="a65cdd4357c694d5f52f33e35ff980897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65cdd4357c694d5f52f33e35ff980897">&#9670;&#160;</a></span>handleReactionRemoved()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::handleReactionRemoved </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::message_reaction_remove_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a008b7e19f92bbe2fdc4a2d150d0ade06" name="a008b7e19f92bbe2fdc4a2d150d0ade06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a008b7e19f92bbe2fdc4a2d150d0ade06">&#9670;&#160;</a></span>leaveMember()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::leaveMember </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::guild_member_remove_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8dacaf79308485f41d92b95b30f968e8" name="a8dacaf79308485f41d92b95b30f968e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dacaf79308485f41d92b95b30f968e8">&#9670;&#160;</a></span>registerGlobalSlashCommand()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::registerGlobalSlashCommand </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; dpp::slashcommand &gt; &amp;&#160;</td>
-          <td class="paramname"><em>command_list</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a3872649fef1e019cc8d101afddf3396d" name="a3872649fef1e019cc8d101afddf3396d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3872649fef1e019cc8d101afddf3396d">&#9670;&#160;</a></span>welcomeMember()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">auto HelpCommand::welcomeMember </td>
-          <td>(</td>
-          <td class="paramtype">const dpp::guild_member_add_t &amp;&#160;</td>
-          <td class="paramname"><em>event</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dpp::cluster &amp;&#160;</td>
-          <td class="paramname"><em>bot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td> -&gt; void</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>Implements <a class="el" href="classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925">IGlobalSlashCommand</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/commands/help/<a class="el" href="HelpCommand_8hpp_source.html">HelpCommand.hpp</a></li>
-<li>src/commands/help/<a class="el" href="HelpCommand_8cpp.html">HelpCommand.cpp</a></li>
+<li>src/bot_library/commands/help/<a class="el" href="HelpCommand_8hpp_source.html">HelpCommand.hpp</a></li>
+<li>src/bot_library/commands/help/<a class="el" href="HelpCommand_8cpp.html">HelpCommand.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

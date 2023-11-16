@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['get_0',['get',['../classChallengeRoleRepository.html#af881879d809edaa713ee45c7c5545d5a',1,'ChallengeRoleRepository::get()'],['../classRowDTOAdapter.html#a47486cba305101ae96fd56d887dc1ada',1,'RowDTOAdapter::get()'],['../classIRepository.html#a589c909f9c95319a64649267aec0a323',1,'IRepository::get()']]],
-  ['get_5fgoodbye_5fchannel_5fid_1',['get_goodbye_channel_id',['../classDatabase.html#a8b86f0f39ef51968f722b8a7430ea923',1,'Database']]],
-  ['get_5flog_5fchannel_5fid_2',['get_log_channel_id',['../classDatabase.html#a110d3c4062b171a1d37dbe97c74e3f0a',1,'Database']]],
-  ['get_5freaction_5frole_5fdata_3',['get_reaction_role_data',['../classDatabase.html#a97064ea28b1be43e118f78713cbd1ce8',1,'Database']]],
-  ['get_5fwelcome_5fchannel_5fid_4',['get_welcome_channel_id',['../classDatabase.html#a8e1d9b2ec620fb731149193c8b971f65',1,'Database']]],
-  ['getchannelid_5',['getChannelId',['../classCore.html#afd379b5678c0eadd155781a419460bc1',1,'Core']]],
-  ['getconnection_6',['getConnection',['../classDatabase.html#a9ae97c99ae6dde600c96d42c8992b409',1,'Database']]],
-  ['getparameter_7',['getParameter',['../classCore.html#af6492a77fc021d96d76a1b4427f92732',1,'Core']]],
-  ['getroleid_8',['getRoleId',['../classCore.html#a8d9dfac1697ee94a598d93415b21d976',1,'Core']]]
+  ['get_0',['get',['../classRowDTOAdapter.html#a760e0591bdb09679c3956ecc2a1e556c',1,'RowDTOAdapter::get()'],['../classIRepository.html#a589c909f9c95319a64649267aec0a323',1,'IRepository::get()'],['../classChallengeRoleRepository.html#af881879d809edaa713ee45c7c5545d5a',1,'ChallengeRoleRepository::get()'],['../classReactionRoleRepository.html#a5a9e914d38363ae7bdfad9b8910d9824',1,'ReactionRoleRepository::get(size_t message_id) override'],['../classReactionRoleRepository.html#a00521635a03d144e9b5e64b0af536b07',1,'ReactionRoleRepository::get(size_t message_id, const std::string &amp;emoji)'],['../classGoodbyeChannelRepository.html#a8734d18357259cc901c5a19e13481f68',1,'GoodbyeChannelRepository::get()'],['../classLogChannelRepository.html#a619313b3d621b6870faf6506c8996685',1,'LogChannelRepository::get()'],['../classWelcomeChannelRepository.html#a42e960ee67b3cc1b8c093f23bbc3e46f',1,'WelcomeChannelRepository::get()']]],
+  ['get_5fchannel_5fid_1',['get_channel_id',['../classCore.html#aa710973c58f4f20bfe82477b77e96320',1,'Core']]],
+  ['get_5fparameter_2',['get_parameter',['../classCore.html#a09d87ac74194dd533c250ef2ffbb9fd7',1,'Core']]],
+  ['get_5frole_5fid_3',['get_role_id',['../classCore.html#ad4552c0d5ac3f45d3e02fb29b8305534',1,'Core']]],
+  ['getconnection_4',['getConnection',['../classDatabase.html#a28222c3f00e644b78800e1a8dadd03e3',1,'Database']]],
+  ['goodbyechanneldto_5',['goodbyechanneldto',['../classGoodbyeChannelDTO.html#ab196b312819278e14aa8b5eac2aaf290',1,'GoodbyeChannelDTO::GoodbyeChannelDTO()=default'],['../classGoodbyeChannelDTO.html#a7f680d6a41b02e94140630553f978997',1,'GoodbyeChannelDTO::GoodbyeChannelDTO(size_t guild_id, size_t channel_id)'],['../classGoodbyeChannelDTO.html#ae658e39df9079e2c66ccd003034f575b',1,'GoodbyeChannelDTO::GoodbyeChannelDTO(const RowDTOAdapter &amp;row)']]]
 ];

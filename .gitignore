@@ -9,12 +9,16 @@ release
 **/CPackConfig.cmake 
 **/cmake_install.cmake
 **/install_manifest.txt
-**/compile_commmands.json
+**/compile_commands.json
 
 # Ignore credential files
 src/bot_token.txt
 src/db_connection.txt
+src/creds
 
 # Ignore IDE files
 .vscode
 .cache
+
+# Ignore dependencies
+_deps

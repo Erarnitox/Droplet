@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['leave_5fmember_0',['leave_member',['../classCommands_1_1CommandFunctionPointers.html#a73385935f73d994d780eb69c6e3bf139',1,'Commands::CommandFunctionPointers']]],
-  ['leavemember_1',['leavemember',['../classChallengeRoleCommand.html#a78364a8e09f19869a64f2f1c25e98fb7',1,'ChallengeRoleCommand::leaveMember()'],['../classHelpCommand.html#a008b7e19f92bbe2fdc4a2d150d0ade06',1,'HelpCommand::leaveMember()'],['../classSetChannelCommand.html#abcbf37b5efa59f2666a26b75b17d0b72',1,'SetChannelCommand::leaveMember()']]]
+  ['logchanneldto_0',['logchanneldto',['../classLogChannelDTO.html#ad7285f8a5784259313fbc52229174498',1,'LogChannelDTO::LogChannelDTO()=default'],['../classLogChannelDTO.html#afd142677235a18b54c609419fb06b875',1,'LogChannelDTO::LogChannelDTO(size_t guild_id, size_t channel_id)'],['../classLogChannelDTO.html#aeaea75d9c98b52d7a054631e86930289',1,'LogChannelDTO::LogChannelDTO(const RowDTOAdapter &amp;row)']]]
 ];

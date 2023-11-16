@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -101,6 +101,11 @@ $(document).ready(function(){initNavTree('classIMemberCommand.html',''); initRes
 
 <p><code>#include &lt;<a class="el" href="IMemberCommand_8hpp_source.html">IMemberCommand.hpp</a>&gt;</code></p>
 <div class="dynheader">
+Inheritance diagram for IMemberCommand:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classIMemberCommand__inherit__graph.svg" width="195" height="283"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div class="dynheader">
 Collaboration diagram for IMemberCommand:</div>
 <div class="dyncontent">
 <div class="center"><iframe scrolling="no" frameborder="0" src="classIMemberCommand__coll__graph.svg" width="195" height="102"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
@@ -108,14 +113,14 @@ Collaboration diagram for IMemberCommand:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af9b2b782f0a7a048c059eb7e8c7204bc" id="r_af9b2b782f0a7a048c059eb7e8c7204bc"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMemberCommand.html#af9b2b782f0a7a048c059eb7e8c7204bc">on_guild_member_add</a> (const dpp::guild_member_add_t &amp;event) -&gt; void=0</td></tr>
-<tr class="separator:af9b2b782f0a7a048c059eb7e8c7204bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59594d6337c01268a375d8340e9d8ed5" id="r_a59594d6337c01268a375d8340e9d8ed5"><td class="memItemLeft" align="right" valign="top">virtual auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMemberCommand.html#a59594d6337c01268a375d8340e9d8ed5">on_guild_member_remove</a> (const dpp::guild_member_remove_t &amp;event) -&gt; void=0</td></tr>
-<tr class="separator:a59594d6337c01268a375d8340e9d8ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c7cfcdb58ae71b4d759fcd6d53f5e53" id="r_a1c7cfcdb58ae71b4d759fcd6d53f5e53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMemberCommand.html#a1c7cfcdb58ae71b4d759fcd6d53f5e53">on_guild_member_add</a> (const dpp::guild_member_add_t &amp;event)=0</td></tr>
+<tr class="separator:a1c7cfcdb58ae71b4d759fcd6d53f5e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab30375790dc8efa5961aff149361e590" id="r_ab30375790dc8efa5961aff149361e590"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIMemberCommand.html#ab30375790dc8efa5961aff149361e590">on_guild_member_remove</a> (const dpp::guild_member_remove_t &amp;event)=0</td></tr>
+<tr class="separator:ab30375790dc8efa5961aff149361e590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af9b2b782f0a7a048c059eb7e8c7204bc" name="af9b2b782f0a7a048c059eb7e8c7204bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9b2b782f0a7a048c059eb7e8c7204bc">&#9670;&#160;</a></span>on_guild_member_add()</h2>
+<a id="a1c7cfcdb58ae71b4d759fcd6d53f5e53" name="a1c7cfcdb58ae71b4d759fcd6d53f5e53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c7cfcdb58ae71b4d759fcd6d53f5e53">&#9670;&#160;</a></span>on_guild_member_add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,11 +129,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual auto IMemberCommand::on_guild_member_add </td>
+          <td class="memname">virtual void IMemberCommand::on_guild_member_add </td>
           <td>(</td>
           <td class="paramtype">const dpp::guild_member_add_t &amp;&#160;</td>
           <td class="paramname"><em>event</em></td><td>)</td>
-          <td> -&gt;  void</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -138,10 +143,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Implemented in <a class="el" href="classSetChannelCommand.html#a5a4070a34fc5c48eb941959ef8db0642">SetChannelCommand</a>.</p>
+
 </div>
 </div>
-<a id="a59594d6337c01268a375d8340e9d8ed5" name="a59594d6337c01268a375d8340e9d8ed5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59594d6337c01268a375d8340e9d8ed5">&#9670;&#160;</a></span>on_guild_member_remove()</h2>
+<a id="ab30375790dc8efa5961aff149361e590" name="ab30375790dc8efa5961aff149361e590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab30375790dc8efa5961aff149361e590">&#9670;&#160;</a></span>on_guild_member_remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,11 +157,11 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual auto IMemberCommand::on_guild_member_remove </td>
+          <td class="memname">virtual void IMemberCommand::on_guild_member_remove </td>
           <td>(</td>
           <td class="paramtype">const dpp::guild_member_remove_t &amp;&#160;</td>
           <td class="paramname"><em>event</em></td><td>)</td>
-          <td> -&gt;  void</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -163,11 +170,13 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classSetChannelCommand.html#a87b5b81e477a5ad5176c23aecb043d07">SetChannelCommand</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/core/interfaces/<a class="el" href="IMemberCommand_8hpp_source.html">IMemberCommand.hpp</a></li>
+<li>src/bot_library/bot/core/interfaces/include/<a class="el" href="IMemberCommand_8hpp_source.html">IMemberCommand.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

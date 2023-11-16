@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['form_5fcommands_5ft_0',['form_commands_t',['../Bot_8hpp.html#aeb357de97523e1f81a319dca7014c8d9',1,'Bot.hpp']]]
+  ['ctx_5ft_0',['ctx_t',['../Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8',1,'Bot.hpp']]]
 ];

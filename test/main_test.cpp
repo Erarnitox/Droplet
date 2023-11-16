@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include <bot.hpp>
+#include <BotLibrary.hpp>
 
 TEST_CASE("BotStartup", "[bot]") {
     // do things

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['execquery_0',['execQuery',['../namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829',1,'database']]],
-  ['execselect_1',['execSelect',['../namespacedatabase.html#a0e9164716114c2db8c230823084c959f',1,'database']]]
+  ['form_5fcommands_0',['form_commands',['../classBot.html#a663beec14e7da41988653b029bce6fa1',1,'Bot']]],
+  ['form_5fcommands_5ft_1',['form_commands_t',['../Bot_8hpp.html#aeb32a7378209cff9a8ba347a4c73cbcb',1,'Bot.hpp']]]
 ];

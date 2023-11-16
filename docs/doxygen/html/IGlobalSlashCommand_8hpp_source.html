@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>droplet: src/core/interfaces/IGlobalSlashCommand.hpp Source File</title>
+<title>droplet: src/bot_library/bot/core/interfaces/include/IGlobalSlashCommand.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -102,26 +102,33 @@ $(document).ready(function(){initNavTree('IGlobalSlashCommand_8hpp_source.html',
 <div class="contents">
 <a href="IGlobalSlashCommand_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;dpp/cluster.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;dpp/dispatcher.h&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html">    6</a></span><span class="keyword">class </span><a class="code hl_class" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">    8</a></span>    <span class="keyword">virtual</span> <span class="keyword">auto</span> <a class="code hl_function" href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">create_slashcommand</a>(<span class="keyword">const</span> dpp::ready_t&amp; event) -&gt; <span class="keywordtype">void</span> = 0;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">   10</a></span>    <span class="keyword">virtual</span> <span class="keyword">auto</span> <a class="code hl_function" href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">on_slashcommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event) -&gt; <span class="keywordtype">void</span> = 0;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>};</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;appcommand.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;dpp/cluster.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;dpp/dispatcher.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="};">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html">    9</a></span><span class="keyword">class </span><a class="code hl_class" href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a> {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f">   11</a></span>    std::string <a class="code hl_variable" href="classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f">command_name</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b">   12</a></span>    std::string <a class="code hl_variable" href="classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b">command_description</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447">   13</a></span>    std::vector&lt;dpp::command_option&gt; <a class="code hl_variable" href="classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447">command_options</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925">   15</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925">on_slashcommand</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event) = 0;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>};</div>
 </div>
-<div class="ttc" id="aclassIGlobalSlashCommand_html"><div class="ttname"><a href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a></div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:6</div></div>
-<div class="ttc" id="aclassIGlobalSlashCommand_html_a2d272b1f9b180e5b01c956638c404ecd"><div class="ttname"><a href="classIGlobalSlashCommand.html#a2d272b1f9b180e5b01c956638c404ecd">IGlobalSlashCommand::on_slashcommand</a></div><div class="ttdeci">virtual auto on_slashcommand(const dpp::slashcommand_t &amp;event) -&gt; void=0</div></div>
-<div class="ttc" id="aclassIGlobalSlashCommand_html_a649e738c2a11a0ce2716bcbd308fcedc"><div class="ttname"><a href="classIGlobalSlashCommand.html#a649e738c2a11a0ce2716bcbd308fcedc">IGlobalSlashCommand::create_slashcommand</a></div><div class="ttdeci">virtual auto create_slashcommand(const dpp::ready_t &amp;event) -&gt; void=0</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html"><div class="ttname"><a href="classIGlobalSlashCommand.html">IGlobalSlashCommand</a></div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:9</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_a3bff2042604a2dc956fd53b662584925"><div class="ttname"><a href="classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925">IGlobalSlashCommand::on_slashcommand</a></div><div class="ttdeci">virtual void on_slashcommand(const dpp::slashcommand_t &amp;event)=0</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_a84ad842dd0fe2dd9c0c73c23b3c7484b"><div class="ttname"><a href="classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b">IGlobalSlashCommand::command_description</a></div><div class="ttdeci">std::string command_description</div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:12</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_aa15ce287ef8586b3db053ce77d1b4447"><div class="ttname"><a href="classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447">IGlobalSlashCommand::command_options</a></div><div class="ttdeci">std::vector&lt; dpp::command_option &gt; command_options</div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:13</div></div>
+<div class="ttc" id="aclassIGlobalSlashCommand_html_aa8051c4a03fa41b9c2aa13eae635215f"><div class="ttname"><a href="classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f">IGlobalSlashCommand::command_name</a></div><div class="ttdeci">std::string command_name</div><div class="ttdef"><b>Definition</b> IGlobalSlashCommand.hpp:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_aebb8dcc11953d78e620bbef0b9e2183.html">core</a></li><li class="navelem"><a class="el" href="dir_5192f319a10d5e2b71e0c908bbe9b6ae.html">interfaces</a></li><li class="navelem"><a class="el" href="IGlobalSlashCommand_8hpp.html">IGlobalSlashCommand.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_be3b34367be430ae387384d9c29f3df4.html">bot_library</a></li><li class="navelem"><a class="el" href="dir_cac0b191d0d7d0dd67d730930ce5fa13.html">bot</a></li><li class="navelem"><a class="el" href="dir_7f79345f7cf6b2fc9b59fd294c3772c3.html">core</a></li><li class="navelem"><a class="el" href="dir_38a32033a44334eb8379ea9c32b025c8.html">interfaces</a></li><li class="navelem"><a class="el" href="dir_1130ead106853ad5cfab9ae3fea85eb9.html">include</a></li><li class="navelem"><a class="el" href="IGlobalSlashCommand_8hpp.html">IGlobalSlashCommand.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

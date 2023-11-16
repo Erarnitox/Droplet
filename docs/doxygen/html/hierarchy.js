@@ -1,26 +1,53 @@
 var hierarchy =
 [
     [ "Bot", "classBot.html", null ],
-    [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
-    [ "Commands::CommandFunctionPointers", "classCommands_1_1CommandFunctionPointers.html", null ],
-    [ "Commands::CommandRegistration< T >", "structCommands_1_1CommandRegistration.html", null ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
-    [ "HelpCommand", "classHelpCommand.html", null ],
-    [ "IButtonCommand", "classIButtonCommand.html", null ],
-    [ "IFormCommand", "classIFormCommand.html", null ],
-    [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", null ],
-    [ "IMemberCommand", "classIMemberCommand.html", null ],
+    [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", null ],
+    [ "IButtonCommand", "classIButtonCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
+    ] ],
+    [ "IFormCommand", "classIFormCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
+    ] ],
+    [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
+      [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
+      [ "HelpCommand", "classHelpCommand.html", null ],
+      [ "ReactionRoles", "classReactionRoles.html", null ],
+      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    ] ],
+    [ "IMemberCommand", "classIMemberCommand.html", [
+      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    ] ],
     [ "IMessageCommand", "classIMessageCommand.html", [
+      [ "CleanUp", "classCleanUp.html", null ],
       [ "PongCommand", "classPongCommand.html", null ]
     ] ],
-    [ "IReactionCommand", "classIReactionCommand.html", null ],
-    [ "IReady", "classIReady.html", null ],
+    [ "IReactionCommand", "classIReactionCommand.html", [
+      [ "ReactionRoles", "classReactionRoles.html", null ]
+    ] ],
+    [ "IReady", "classIReady.html", [
+      [ "InitDatabase", "classInitDatabase.html", null ]
+    ] ],
     [ "IRepository< DTO >", "classIRepository.html", null ],
     [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
       [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
     ] ],
+    [ "IRepository< GoodbyeChannelDTO >", "classIRepository.html", [
+      [ "GoodbyeChannelRepository", "classGoodbyeChannelRepository.html", null ]
+    ] ],
+    [ "IRepository< LogChannelDTO >", "classIRepository.html", [
+      [ "LogChannelRepository", "classLogChannelRepository.html", null ]
+    ] ],
+    [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
+      [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
+    ] ],
+    [ "IRepository< WelcomeChannelDTO >", "classIRepository.html", [
+      [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", null ]
+    ] ],
+    [ "LogChannelDTO", "classLogChannelDTO.html", null ],
+    [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
-    [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+    [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
 ];

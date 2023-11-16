@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -110,11 +110,17 @@ Collaboration diagram for RowDTOAdapter:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e1bb64444a418f7d5130418778f3d6f" id="r_a8e1bb64444a418f7d5130418778f3d6f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f">RowDTOAdapter</a> (const pqxx::row &amp;row)</td></tr>
 <tr class="separator:a8e1bb64444a418f7d5130418778f3d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47486cba305101ae96fd56d887dc1ada" id="r_a47486cba305101ae96fd56d887dc1ada"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a47486cba305101ae96fd56d887dc1ada"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classRowDTOAdapter.html#a47486cba305101ae96fd56d887dc1ada">get</a> (const std::string &amp;fieldName) const -&gt; T</td></tr>
-<tr class="separator:a47486cba305101ae96fd56d887dc1ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760e0591bdb09679c3956ecc2a1e556c" id="r_a760e0591bdb09679c3956ecc2a1e556c"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a760e0591bdb09679c3956ecc2a1e556c"><td class="memTemplItemLeft" align="right" valign="top">T&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classRowDTOAdapter.html#a760e0591bdb09679c3956ecc2a1e556c">get</a> (const std::string &amp;field_name) const</td></tr>
+<tr class="memdesc:a760e0591bdb09679c3956ecc2a1e556c"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the value of a field with the specified name  <br /></td></tr>
+<tr class="separator:a760e0591bdb09679c3956ecc2a1e556c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>(c) Copyright dropsoft.org - All rights reserved Author: Erarnitox <a href="#" onclick="location.href='mai'+'lto:'+'dav'+'id'+'@er'+'ar'+'nit'+'ox'+'.de'; return false;">david<span class="obfuscator">.nosp@m.</span>@era<span class="obfuscator">.nosp@m.</span>rnito<span class="obfuscator">.nosp@m.</span>x.de</a></p>
+<p>License: MIT License</p>
+<p>Description: This class represents a generic DTO Interface. That can be used by other DTOs. It acts as an adapter to the pqxx rows and isolated the dependency on the pqxx library away from the DTOs</p>
+<p>Documentation: <a href="https://droplet.erarnitox.de/doxygen/html/RowDTOAdapter">https://droplet.erarnitox.de/doxygen/html/RowDTOAdapter</a> </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8e1bb64444a418f7d5130418778f3d6f" name="a8e1bb64444a418f7d5130418778f3d6f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e1bb64444a418f7d5130418778f3d6f">&#9670;&#160;</a></span>RowDTOAdapter()</h2>
 
@@ -142,8 +148,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a47486cba305101ae96fd56d887dc1ada" name="a47486cba305101ae96fd56d887dc1ada"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47486cba305101ae96fd56d887dc1ada">&#9670;&#160;</a></span>get()</h2>
+<a id="a760e0591bdb09679c3956ecc2a1e556c" name="a760e0591bdb09679c3956ecc2a1e556c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760e0591bdb09679c3956ecc2a1e556c">&#9670;&#160;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,11 +160,11 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto RowDTOAdapter::get </td>
+          <td class="memname">T RowDTOAdapter::get </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>fieldName</em></td><td>)</td>
-          <td> const -&gt; T </td>
+          <td class="paramname"><em>field_name</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -168,10 +174,19 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>get the value of a field with the specified name </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">field_name</td><td>the name of the field in the database row </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>returns the value in the database field. If the name is not found it returns an empty object of the expected type </dd></dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/core/database/<a class="el" href="RowDTOAdapter_8hpp_source.html">RowDTOAdapter.hpp</a></li>
+<li>src/bot_library/bot/core/database/include/<a class="el" href="RowDTOAdapter_8hpp_source.html">RowDTOAdapter.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

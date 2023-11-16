@@ -46,14 +46,21 @@ auto f{ 0.5f };
 float = 0.5;
 ```
 - every execution path of a function should have an explicit `return` even in void functions
-- use lambda style return types:
+- **DON'T** use lambda style return types:
 ```cpp
+// use:
+int main() {
+	//...
+	return 0;
+}
+
+// instead of:
 auto main() -> int {
 	//...
 	return 0;
 }
 ```
-- use capitalized CamelCase for naming classes
+- use capitalized CamelCase for naming classes and Source files
 - use camelCase for naming structs
 - use const as much as possible
 - use [[nodiscard]] as much as possible
@@ -79,7 +86,7 @@ Here is an example:
  *  Description: This class manages Database access 
  *  and provides a high level API for internal use
  *
- *  Documentation: https://droplet.dropsoft.org/doxygen/database
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
 **/
 ```
 

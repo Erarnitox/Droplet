@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>droplet: src/commands/pong/PongCommand.hpp Source File</title>
+<title>droplet: src/bot_library/commands/pong/PongCommand.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -102,31 +102,30 @@ $(document).ready(function(){initNavTree('PongCommand_8hpp_source.html',''); ini
 <div class="contents">
 <a href="PongCommand_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;../../core/Core.hpp&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classPongCommand.html">    5</a></span><span class="keyword">class </span><a class="code hl_class" href="classPongCommand.html">PongCommand</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIMessageCommand.html">IMessageCommand</a> {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>    std::string command_name;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#a948e6965a7f96a066f5f04f36a7e14c7">on_message_create</a>(<span class="keyword">const</span> dpp::message_create_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#a948e6965a7f96a066f5f04f36a7e14c7">on_message_create</a>(<span class="keyword">const</span> dpp::message_create_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#a52418e8c9c9ddc46003bdfa655c0403a">on_message_delete</a>(<span class="keyword">const</span> dpp::message_delete_t&amp;) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#a52418e8c9c9ddc46003bdfa655c0403a">on_message_delete</a>(<span class="keyword">const</span> dpp::message_delete_t&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#afda21c8aaf9911b527a6bced973288b9">on_message_delete_bulk</a>(<span class="keyword">const</span> dpp::message_delete_bulk_t&amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classPongCommand.html#afda21c8aaf9911b527a6bced973288b9">on_message_delete_bulk</a>(<span class="keyword">const</span> dpp::message_delete_bulk_t&amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>};</div>
 </div>
+<div class="ttc" id="aBot_8hpp_html"><div class="ttname"><a href="Bot_8hpp.html">Bot.hpp</a></div></div>
 <div class="ttc" id="aclassIMessageCommand_html"><div class="ttname"><a href="classIMessageCommand.html">IMessageCommand</a></div><div class="ttdef"><b>Definition</b> IMessageCommand.hpp:6</div></div>
 <div class="ttc" id="aclassPongCommand_html"><div class="ttname"><a href="classPongCommand.html">PongCommand</a></div><div class="ttdef"><b>Definition</b> PongCommand.hpp:5</div></div>
-<div class="ttc" id="aclassPongCommand_html_a52418e8c9c9ddc46003bdfa655c0403a"><div class="ttname"><a href="classPongCommand.html#a52418e8c9c9ddc46003bdfa655c0403a">PongCommand::on_message_delete</a></div><div class="ttdeci">void on_message_delete(const dpp::message_delete_t &amp;) override</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:16</div></div>
-<div class="ttc" id="aclassPongCommand_html_a948e6965a7f96a066f5f04f36a7e14c7"><div class="ttname"><a href="classPongCommand.html#a948e6965a7f96a066f5f04f36a7e14c7">PongCommand::on_message_create</a></div><div class="ttdeci">void on_message_create(const dpp::message_create_t &amp;event) override</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:3</div></div>
-<div class="ttc" id="aclassPongCommand_html_afda21c8aaf9911b527a6bced973288b9"><div class="ttname"><a href="classPongCommand.html#afda21c8aaf9911b527a6bced973288b9">PongCommand::on_message_delete_bulk</a></div><div class="ttdeci">void on_message_delete_bulk(const dpp::message_delete_bulk_t &amp;) override</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:20</div></div>
+<div class="ttc" id="aclassPongCommand_html_a52418e8c9c9ddc46003bdfa655c0403a"><div class="ttname"><a href="classPongCommand.html#a52418e8c9c9ddc46003bdfa655c0403a">PongCommand::on_message_delete</a></div><div class="ttdeci">void on_message_delete(const dpp::message_delete_t &amp;) override</div><div class="ttdoc">implements an empty message delete handler</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:33</div></div>
+<div class="ttc" id="aclassPongCommand_html_a948e6965a7f96a066f5f04f36a7e14c7"><div class="ttname"><a href="classPongCommand.html#a948e6965a7f96a066f5f04f36a7e14c7">PongCommand::on_message_create</a></div><div class="ttdeci">void on_message_create(const dpp::message_create_t &amp;event) override</div><div class="ttdoc">implement an on message create handler that respons with &quot;pong&quot;</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:20</div></div>
+<div class="ttc" id="aclassPongCommand_html_afda21c8aaf9911b527a6bced973288b9"><div class="ttname"><a href="classPongCommand.html#afda21c8aaf9911b527a6bced973288b9">PongCommand::on_message_delete_bulk</a></div><div class="ttdeci">void on_message_delete_bulk(const dpp::message_delete_bulk_t &amp;) override</div><div class="ttdoc">implements an empty message delete bulk handler</div><div class="ttdef"><b>Definition</b> PongCommand.cpp:43</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5e80d29b61c444378a543be4dd1414df.html">commands</a></li><li class="navelem"><a class="el" href="dir_d88c6120d08aeb7e77571edfa4c51467.html">pong</a></li><li class="navelem"><a class="el" href="PongCommand_8hpp.html">PongCommand.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_be3b34367be430ae387384d9c29f3df4.html">bot_library</a></li><li class="navelem"><a class="el" href="dir_261c5c8db3e2632ea4bb1b96cd6e78dc.html">commands</a></li><li class="navelem"><a class="el" href="dir_e4c64626919ae284a6143de39fd042e4.html">pong</a></li><li class="navelem"><a class="el" href="PongCommand_8hpp.html">PongCommand.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

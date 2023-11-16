@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['helpcommand_2ecpp_0',['HelpCommand.cpp',['../HelpCommand_8cpp.html',1,'']]],
-  ['helpcommand_2ehpp_1',['HelpCommand.hpp',['../HelpCommand_8hpp.html',1,'']]]
+  ['goodbyechanneldto_2ecpp_0',['GoodbyeChannelDTO.cpp',['../GoodbyeChannelDTO_8cpp.html',1,'']]],
+  ['goodbyechanneldto_2ehpp_1',['GoodbyeChannelDTO.hpp',['../GoodbyeChannelDTO_8hpp.html',1,'']]],
+  ['goodbyechannelrepository_2ecpp_2',['GoodbyeChannelRepository.cpp',['../GoodbyeChannelRepository_8cpp.html',1,'']]],
+  ['goodbyechannelrepository_2ehpp_3',['GoodbyeChannelRepository.hpp',['../GoodbyeChannelRepository_8hpp.html',1,'']]]
 ];

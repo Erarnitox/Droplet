@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -114,10 +114,13 @@ Collaboration diagram for PongCommand:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a948e6965a7f96a066f5f04f36a7e14c7" id="r_a948e6965a7f96a066f5f04f36a7e14c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPongCommand.html#a948e6965a7f96a066f5f04f36a7e14c7">on_message_create</a> (const dpp::message_create_t &amp;event) override</td></tr>
+<tr class="memdesc:a948e6965a7f96a066f5f04f36a7e14c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">implement an on message create handler that respons with "pong"  <br /></td></tr>
 <tr class="separator:a948e6965a7f96a066f5f04f36a7e14c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52418e8c9c9ddc46003bdfa655c0403a" id="r_a52418e8c9c9ddc46003bdfa655c0403a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPongCommand.html#a52418e8c9c9ddc46003bdfa655c0403a">on_message_delete</a> (const dpp::message_delete_t &amp;) override</td></tr>
+<tr class="memdesc:a52418e8c9c9ddc46003bdfa655c0403a"><td class="mdescLeft">&#160;</td><td class="mdescRight">implements an empty message delete handler  <br /></td></tr>
 <tr class="separator:a52418e8c9c9ddc46003bdfa655c0403a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afda21c8aaf9911b527a6bced973288b9" id="r_afda21c8aaf9911b527a6bced973288b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPongCommand.html#afda21c8aaf9911b527a6bced973288b9">on_message_delete_bulk</a> (const dpp::message_delete_bulk_t &amp;) override</td></tr>
+<tr class="memdesc:afda21c8aaf9911b527a6bced973288b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">implements an empty message delete bulk handler  <br /></td></tr>
 <tr class="separator:afda21c8aaf9911b527a6bced973288b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -145,7 +148,20 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIMessageCommand.html#a8e0eeae6ac7093728fca29a3e0d56497">IMessageCommand</a>.</p>
+<p>implement an on message create handler that respons with "pong" </p>
+<p>(c) Copyright dropsoft.org - All rights reserved Author: Erarnitox <a href="#" onclick="location.href='mai'+'lto:'+'dav'+'id'+'@er'+'ar'+'nit'+'ox'+'.de'; return false;">david<span class="obfuscator">.nosp@m.</span>@era<span class="obfuscator">.nosp@m.</span>rnito<span class="obfuscator">.nosp@m.</span>x.de</a></p>
+<p>License: MIT License</p>
+<p>Description: A very simple ping/pong message command</p>
+<p>Documentation: <a href="https://droplet.erarnitox.de/doxygen/html/pongcommand">https://droplet.erarnitox.de/doxygen/html/pongcommand</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>the message send/create event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>doesn't return anything </dd></dl>
+
+<p>Implements <a class="el" href="classIMessageCommand.html#a889218ba3dd6603f010975a522bb7eb8">IMessageCommand</a>.</p>
 
 </div>
 </div>
@@ -173,7 +189,16 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIMessageCommand.html#ad6deb1fefcbfe3dd0fba62f5d6079db2">IMessageCommand</a>.</p>
+<p>implements an empty message delete handler </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>the message delete event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>doesn't return anything </dd></dl>
+
+<p>Implements <a class="el" href="classIMessageCommand.html#afac5d989605caa799842929a528c3bea">IMessageCommand</a>.</p>
 
 </div>
 </div>
@@ -201,13 +226,22 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIMessageCommand.html#ac0e23dd940dc43df63ffea4fa4363daf">IMessageCommand</a>.</p>
+<p>implements an empty message delete bulk handler </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>the message delete bulk event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>doesn't return anything </dd></dl>
+
+<p>Implements <a class="el" href="classIMessageCommand.html#ab52ca884721d171494db9ab5020e1b8a">IMessageCommand</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/commands/pong/<a class="el" href="PongCommand_8hpp_source.html">PongCommand.hpp</a></li>
-<li>src/commands/pong/<a class="el" href="PongCommand_8cpp.html">PongCommand.cpp</a></li>
+<li>src/bot_library/commands/pong/<a class="el" href="PongCommand_8hpp_source.html">PongCommand.hpp</a></li>
+<li>src/bot_library/commands/pong/<a class="el" href="PongCommand_8cpp.html">PongCommand.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -5,8 +5,14 @@ include(cmake/CPM.cmake)
 
 set(CPP_STANDARD 20)
 
+set(BUILD_SHARED_LIBS OFF)
+# set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
+# set(OPENSSL_TEST OFF) #no-test
+
+find_package(OpenSSL REQUIRED)
+
 project(droplet 
-	VERSION 1.0
+	VERSION 1.0.2 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.dropsoft.org"
 	LANGUAGES CXX	
@@ -44,61 +50,18 @@ else()
 	message(FATAL_ERROR "git was not found!")
 endif()
 
-# out own source code for the project
-add_subdirectory(src bin)
-
 # subdirectory for third party dependencies
 add_subdirectory(extern)
 
-# treat the dpp include directory like a system/compiler include
-target_include_directories(utility SYSTEM PUBLIC
-	extern/DPP/include
-)
+# source code for the project
+add_subdirectory(src bin)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
-	CXX_STANDARD 20
-	CXX_STANDARD_REQUIRED ON
-	RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}
-    RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}
-)
-
- set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/bot_token.txt")
- set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/db_connection.txt")
- set(DPP_BINARY_PATH "${CMAKE_BINARY_DIR}/extern/DPP/library/libdpp.so.1.0")
- set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/start_bot")
+set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/bot_token.txt")
+set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/db_connection.txt")
+set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}")
  
- add_custom_command(
- 	OUTPUT "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
- 	POST_BUILD
- 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/libdpp.so.1.0"
- )
-
- add_custom_target(
-     copy_dpp_library ALL DEPENDS "${CMAKE_BINARY_DIR}/libdpp.so.1.0" 
- )
-
- add_custom_command(
- 	OUTPUT "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
- 	POST_BUILD
- 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DPP_BINARY_PATH} "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0"
- )
-
- add_custom_target(
-     copy_dpp_test_library ALL DEPENDS "${CMAKE_BINARY_DIR}/test/libdpp.so.1.0" 
- )
-
- add_custom_command(
- 	OUTPUT "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
- 	POST_BUILD
- 	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${BOT_BINARY_PATH} "${CMAKE_BINARY_DIR}/${PROJECT_NAME}"
- )
-
- add_custom_target(
-     copy_bot_binary ALL DEPENDS "${CMAKE_BINARY_DIR}/${PROJECT_NAME}" 
- )
-
- if(USE_DEBUG_TOKEN)
- 	add_custom_command(
+if(USE_DEBUG_TOKEN)
+	add_custom_command(
     	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
     	POST_BUILD
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
@@ -110,21 +73,20 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
  	)
 
  	add_dependencies(copy_credentials ${PROJECT_NAME})
- endif()
- 
- add_dependencies(copy_dpp_library ${PROJECT_NAME})
- add_dependencies(copy_dpp_test_library ${PROJECT_NAME})
- add_dependencies(copy_bot_binary start_bot)
- 
- # tests
- add_subdirectory(test)
+endif()
+  
+# tests
+add_subdirectory(test)
 
- # documenatation
- generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/docs/doxygen")
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+ 	# documenatation
+ 	generate_doxygen("${CMAKE_CURRENT_LIST_DIR}/src" "${CMAKE_CURRENT_LIST_DIR}/docs/doxygen") # create doxygen target
+	add_dependencies(${PROJECT_NAME} doxygen)
 
- # install the bot and it's library dependency
- # install(TARGETS start_bot dpp)
- 
- # include to automatically pack/make an installer for release
- # include(CPack)
+ 	# dependecy graph
+ 	generate_dep_graph()
+	add_dependencies(dep_graph ${PROJECT_NAME})
+
+	copy_compile_commands()
+endif()
  

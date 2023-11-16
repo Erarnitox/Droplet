@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messageid_0',['messageId',['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO']]]
+  ['emoji_0',['emoji',['../classReactionRoleDTO.html#aa5699426d8b83a816ed2d750a0b9338b',1,'ReactionRoleDTO']]]
 ];

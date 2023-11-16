@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>droplet: src/commands/resources/resource_man.hpp Source File</title>
+<title>droplet: src/bot_library/commands/resources/resource_man.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.0.2</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -176,31 +176,31 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 <div class="foldopen" id="foldopen00071" data-start="{" data-end="}">
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">   71</a></span><span class="keyword">auto</span> <a class="code hl_function" href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">handle_global_slash_commands</a>(<span class="keyword">const</span> dpp::slashcommand_t&amp; event, dpp::cluster&amp; bot) -&gt; <span class="keywordtype">void</span> {</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> (event.command.get_command_name() == <span class="stringliteral">&quot;resources&quot;</span>) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> <span class="keyword">auto</span> action{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;action&quot;</span>)};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keyword">const</span> <span class="keyword">auto</span> action{Core::getParameter(bot, event, <span class="stringliteral">&quot;action&quot;</span>)};</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (action.empty())</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keyword">const</span> <span class="keyword">auto</span> category{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;category&quot;</span>)};</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keyword">const</span> <span class="keyword">auto</span> category{Core::getParameter(bot, event, <span class="stringliteral">&quot;category&quot;</span>)};</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">if</span> (category.empty())</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">const</span> <span class="keyword">auto</span> title{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;title&quot;</span>)};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="keyword">const</span> <span class="keyword">auto</span> title{Core::getParameter(bot, event, <span class="stringliteral">&quot;title&quot;</span>)};</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">if</span> (title.empty())</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">const</span> <span class="keyword">auto</span> query{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;query&quot;</span>)};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">const</span> <span class="keyword">auto</span> query{Core::getParameter(bot, event, <span class="stringliteral">&quot;query&quot;</span>)};</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">if</span> (query.empty())</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">const</span> <span class="keyword">auto</span> index{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;index&quot;</span>)};</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">const</span> <span class="keyword">auto</span> index{Core::getParameter(bot, event, <span class="stringliteral">&quot;index&quot;</span>)};</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">if</span> (index.empty())</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keyword">const</span> <span class="keyword">auto</span> link{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;link&quot;</span>)};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keyword">const</span> <span class="keyword">auto</span> link{Core::getParameter(bot, event, <span class="stringliteral">&quot;link&quot;</span>)};</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">if</span> (link.empty())</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">const</span> <span class="keyword">auto</span> description{<a class="code hl_function" href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a>(bot, event, <span class="stringliteral">&quot;description&quot;</span>)};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keyword">const</span> <span class="keyword">auto</span> description{Core::getParameter(bot, event, <span class="stringliteral">&quot;description&quot;</span>)};</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        <span class="keywordflow">if</span> (description.empty())</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
@@ -223,7 +223,6 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}  <span class="comment">// namespace resource_man</span></div>
 </div>
 <div class="ttc" id="aCore_8hpp_html"><div class="ttname"><a href="Core_8hpp.html">Core.hpp</a></div></div>
-<div class="ttc" id="aclassCore_html_af6492a77fc021d96d76a1b4427f92732"><div class="ttname"><a href="classCore.html#af6492a77fc021d96d76a1b4427f92732">Core::getParameter</a></div><div class="ttdeci">static auto getParameter(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;name) noexcept -&gt; std::string</div><div class="ttdef"><b>Definition</b> Core.cpp:100</div></div>
 <div class="ttc" id="anamespaceresource__man_html"><div class="ttname"><a href="namespaceresource__man.html">resource_man</a></div><div class="ttdef"><b>Definition</b> resource_man.hpp:7</div></div>
 <div class="ttc" id="anamespaceresource__man_html_a515177ff66f52a3e3da9e1784d1893b0"><div class="ttname"><a href="namespaceresource__man.html#a515177ff66f52a3e3da9e1784d1893b0">resource_man::register_global_slash_commands</a></div><div class="ttdeci">auto register_global_slash_commands(std::vector&lt; dpp::slashcommand &gt; &amp;command_list, const dpp::cluster &amp;bot) -&gt; void</div><div class="ttdef"><b>Definition</b> resource_man.hpp:8</div></div>
 <div class="ttc" id="anamespaceresource__man_html_ad0ab9755d46f3ce699a3dcf237902459"><div class="ttname"><a href="namespaceresource__man.html#ad0ab9755d46f3ce699a3dcf237902459">resource_man::handle_global_slash_commands</a></div><div class="ttdeci">auto handle_global_slash_commands(const dpp::slashcommand_t &amp;event, dpp::cluster &amp;bot) -&gt; void</div><div class="ttdef"><b>Definition</b> resource_man.hpp:71</div></div>
@@ -232,7 +231,7 @@ $(document).ready(function(){initNavTree('resource__man_8hpp_source.html',''); i
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5e80d29b61c444378a543be4dd1414df.html">commands</a></li><li class="navelem"><a class="el" href="dir_a9837589c1e824962ce28951a233a022.html">resources</a></li><li class="navelem"><a class="el" href="resource__man_8hpp.html">resource_man.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_be3b34367be430ae387384d9c29f3df4.html">bot_library</a></li><li class="navelem"><a class="el" href="dir_261c5c8db3e2632ea4bb1b96cd6e78dc.html">commands</a></li><li class="navelem"><a class="el" href="dir_4664096a0ece9a7aba46a7b7bb421972.html">resources</a></li><li class="navelem"><a class="el" href="resource__man_8hpp.html">resource_man.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

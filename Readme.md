@@ -1,14 +1,16 @@
-> [!WARNING]  
+> [!WARNING]
 > This repository is in an early WIP state! Don't expect everything to work yet!
-> Everything in this repository unstable and due to change in the future!
+
+> [!WARNING]
+> Everything in this repository is unstable and due to change in the future!
 
 # Droplet - Discord Bot
 ---
 <img src="res/logo.png" width="20%" align="left"></img>
 
-Droplet is a feature-rich Discord bot written in modern C++ to enhance your server's experience. 
+Droplet is a feature-rich Discord bot written in modern C++ to enhance your discord server's experience. 
 
-It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, CyberDrop is the perfect companion for managing your Discord server.
+It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, Droplet is the perfect companion for managing your Discord server.
 
 
 ---
@@ -62,7 +64,7 @@ Before contributing, please review the Contributing Guidelines.
 
 ### Crontributing Guidelines
 - Your Code must adhere to out [Styleguide](./docs/styleguide.md)
-- TODO: Definition of Done
+- Before creating a pull request please check off this [Checklist](./docs/checklist.md)
 
 ---
 
@@ -71,8 +73,12 @@ Before contributing, please review the Contributing Guidelines.
 [MIT License](./LICENSE)
 
 ## Architecture
-### Goal Architecure Sketch
+### Architecure Document
 ![architecture](docs/architecture.png)
+
+The goal with this design was that we have a stable and solid core that offers commands a stable API they can use. Additional commands should only be reigistered with the `Commands` class and don't need to worry about anything else.
+
+The bot library can be linked against the `main` executalbe that will only call the start function in the bot library or against the `unit_test` executable. The goal here was to make the code more testable by giving the `unit_test` executable a better insight into the bot library, than what would be possible by having the bot functionality directly in the `main` executable.
 
 ### Current Dependency Graph
 ![dep_graph](docs/dep_graph.png)

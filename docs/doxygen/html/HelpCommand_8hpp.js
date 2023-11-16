@@ -1,4 +1,4 @@
 var HelpCommand_8hpp =
 [
-    [ "HelpCommand", "classHelpCommand.html", null ]
+    [ "HelpCommand", "classHelpCommand.html", "classHelpCommand" ]
 ];
