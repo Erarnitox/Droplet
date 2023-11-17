@@ -13,7 +13,7 @@
 #include "GoodbyeChannelDTO.hpp"
 #include "WelcomeChannelDTO.hpp"
 
-SetChannelCommand::SetChannelCommand() : IGlobalSlashCommand() {
+SetChannelCommand::SetChannelCommand() : IGlobalSlashCommand(), IMemberCommand() {
 	this->command_name = "set_channel";
 	this->command_description = "Configure channels for bot events (Admin only!)";
 	this->command_options.push_back(

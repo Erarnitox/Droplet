@@ -24,13 +24,11 @@
 #include <InviteCommand.hpp>
 #include <PongCommand.hpp>
 #include <ReactionRoles.hpp>
+#include <ResourcesCommand.hpp>
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
 #include <SetStatus.hpp>
 #include <memory>
-
-#include "invite/InviteCommand.hpp"
-#include "set_status/SetStatus.hpp"
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -46,6 +44,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
+	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);
