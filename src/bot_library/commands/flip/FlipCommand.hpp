@@ -2,9 +2,9 @@
 
 #include <Bot.hpp>
 
-class InviteCommand : public IGlobalSlashCommand {
+class FlipCommand : public IGlobalSlashCommand {
   public:
-	InviteCommand();
+	FlipCommand();
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 };

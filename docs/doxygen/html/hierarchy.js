@@ -13,10 +13,12 @@ var hierarchy =
     ] ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
+      [ "FlipCommand", "classFlipCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
+      [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]

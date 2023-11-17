@@ -47,16 +47,21 @@ void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto difficulty{std::stoi(Core::get_parameter(*Bot::ctx, event, "difficulty"))};
 
 	ResourceRepository repo;
-	ResourceDTO data{
-		title, category, description, url, difficulty, cmd.guild_id, cmd.member.get_user()->username, cmd.member.user_id};
+	ResourceDTO data{title,
+					 category,
+					 description,
+					 url,
+					 difficulty,
+					 cmd.guild_id,
+					 cmd.member.get_user()->username,
+					 cmd.member.user_id};
 
 	if (repo.create(data)) {
-		auto msg {
-			dpp::message(
-			std::format("Resource was added!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://dropsoft.org/resources",
-				data.title, data.description, data.url
-			))
-		};
+		auto msg{dpp::message(std::format(
+			"Resource was added!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://dropsoft.org/resources",
+			data.title,
+			data.description,
+			data.url))};
 		event.reply(msg);
 	} else {
 		event.reply(dpp::message("Error: Resource can't be saved to the database!").set_flags(dpp::m_ephemeral));

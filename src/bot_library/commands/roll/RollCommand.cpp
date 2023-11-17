@@ -1,25 +1,32 @@
-#include "InviteCommand.hpp"
+#include "RollCommand.hpp"
 
 #include <invite.h>
 #include <message.h>
 
 #include <format>
+#include <random>
 #include <variant>
 
-InviteCommand::InviteCommand() : IGlobalSlashCommand() {
-	this->command_name = "join_dropsoft";
-	this->command_description = "Get invited to the dropsoft discord server";
+RollCommand::RollCommand() : IGlobalSlashCommand() {
+	this->command_name = "roll";
+	this->command_description = "Roll a dice";
 }
 
-void InviteCommand::on_slashcommand(const dpp::slashcommand_t& event) {
+void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
 
-	/* reply with the created embed */
-	event.reply(dpp::message(event.command.channel_id, "https://discord.dropsoft.org")
-					.set_reference(event.command.id)
-					.set_flags(dpp::m_ephemeral));
+	static std::string number_urls[]{std::string("https://erarnitox.de/res/dice/1.png"),
+									 std::string("https://erarnitox.de/res/dice/2.png"),
+									 std::string("https://erarnitox.de/res/dice/3.png"),
+									 std::string("https://erarnitox.de/res/dice/4.png"),
+									 std::string("https://erarnitox.de/res/dice/5.png"),
+									 std::string("https://erarnitox.de/res/dice/6.png")};
+
+	const auto result{std::rand() % 6};
+
+	event.reply(dpp::message(event.command.channel_id, number_urls[result]).set_reference(event.command.id));
 
 	return;
 }

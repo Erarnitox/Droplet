@@ -28,6 +28,8 @@
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
 #include <SetStatus.hpp>
+#include <RollCommand.hpp>
+#include <FlipCommand.hpp>
 #include <memory>
 
 /**
@@ -45,6 +47,8 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
+	Bot::add_slash_command(std::make_shared<RollCommand>());
+	Bot::add_slash_command(std::make_shared<FlipCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);
