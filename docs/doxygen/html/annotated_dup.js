@@ -16,6 +16,7 @@ var annotated_dup =
     [ "IMemberCommand", "classIMemberCommand.html", "classIMemberCommand" ],
     [ "IMessageCommand", "classIMessageCommand.html", "classIMessageCommand" ],
     [ "InitDatabase", "classInitDatabase.html", "classInitDatabase" ],
+    [ "InviteCommand", "classInviteCommand.html", "classInviteCommand" ],
     [ "IReactionCommand", "classIReactionCommand.html", "classIReactionCommand" ],
     [ "IReady", "classIReady.html", "classIReady" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],

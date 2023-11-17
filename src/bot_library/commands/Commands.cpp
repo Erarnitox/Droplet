@@ -21,6 +21,7 @@
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
 #include <HelpCommand.hpp>
+#include <InviteCommand.hpp>
 #include <PongCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <ServerDetails.hpp>
@@ -28,6 +29,7 @@
 #include <SetStatus.hpp>
 #include <memory>
 
+#include "invite/InviteCommand.hpp"
 #include "set_status/SetStatus.hpp"
 
 /**
@@ -43,6 +45,7 @@ void Commands::registerCommands() {
 	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
+	Bot::add_slash_command(std::make_shared<InviteCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);

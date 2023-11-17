@@ -14,6 +14,7 @@ var hierarchy =
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
+      [ "InviteCommand", "classInviteCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
