@@ -20,16 +20,17 @@
 
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
+#include <FlipCommand.hpp>
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
+#include <MemberCommand.hpp>
 #include <PongCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <ResourcesCommand.hpp>
+#include <RollCommand.hpp>
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
 #include <SetStatus.hpp>
-#include <RollCommand.hpp>
-#include <FlipCommand.hpp>
 #include <memory>
 
 /**
@@ -49,6 +50,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
+	Bot::add_slash_command(std::make_shared<MemberCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);

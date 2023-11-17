@@ -134,6 +134,8 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 		ctx->log(dpp::ll_trace, "Registering Slash commands...");
 
 		if (dpp::run_once<struct register_bot_commands>()) {
+			ctx->global_bulk_command_delete();	// clear out the old commands
+
 			for (const auto& slash_command : slash_commands) {
 				dpp::slashcommand tmp_command(
 					slash_command.first, slash_command.second->command_description, ctx->me.id);

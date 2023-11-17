@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['url_0',['url',['../classResourceDTO.html#af8d89b505984b04aa7b73c3b2626087f',1,'ResourceDTO']]]
+  ['title_0',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO']]]
 ];

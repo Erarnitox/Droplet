@@ -15,7 +15,7 @@ var searchData=
   ['initdatabase_12',['InitDatabase',['../classInitDatabase.html',1,'']]],
   ['initdatabase_2ecpp_13',['InitDatabase.cpp',['../InitDatabase_8cpp.html',1,'']]],
   ['initdatabase_2ehpp_14',['InitDatabase.hpp',['../InitDatabase_8hpp.html',1,'']]],
-  ['invitecommand_15',['invitecommand',['../classInviteCommand.html',1,'InviteCommand'],['../classInviteCommand.html#a7bdab4129c544c27bc4af6e537f29a3b',1,'InviteCommand::InviteCommand()']]],
+  ['invitecommand_15',['invitecommand',['../classInviteCommand.html#a7bdab4129c544c27bc4af6e537f29a3b',1,'InviteCommand::InviteCommand()'],['../classInviteCommand.html',1,'InviteCommand']]],
   ['invitecommand_2ecpp_16',['InviteCommand.cpp',['../InviteCommand_8cpp.html',1,'']]],
   ['invitecommand_2ehpp_17',['InviteCommand.hpp',['../InviteCommand_8hpp.html',1,'']]],
   ['ireactioncommand_18',['IReactionCommand',['../classIReactionCommand.html',1,'']]],
@@ -27,8 +27,9 @@ var searchData=
   ['irepository_3c_20challengeroledto_20_3e_24',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20goodbyechanneldto_20_3e_25',['IRepository&lt; GoodbyeChannelDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20logchanneldto_20_3e_26',['IRepository&lt; LogChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20reactionroledto_20_3e_27',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20resourcedto_20_3e_28',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20welcomechanneldto_20_3e_29',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_30',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]]
+  ['irepository_3c_20memberdto_20_3e_27',['IRepository&lt; MemberDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20reactionroledto_20_3e_28',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20resourcedto_20_3e_29',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20welcomechanneldto_20_3e_30',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
+  ['is_5fadmin_31',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]]
 ];

@@ -2,6 +2,7 @@
 
 #include <appcommand.h>
 #include <colors.h>
+#include <dispatcher.h>
 #include <fmt/core.h>
 
 #include <Core.hpp>
@@ -62,7 +63,15 @@ void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			data.title,
 			data.description,
 			data.url))};
+
+		dpp::command_completion_event_t callback = [event](const dpp::confirmation_callback_t& res) {
+			const auto& message{ res.get<dpp::message>() };
+			Bot::ctx->message_pin(message.channel_id, message.id);
+			return;
+		};
+
 		event.reply(msg);
+		event.get_original_response(callback);
 	} else {
 		event.reply(dpp::message("Error: Resource can't be saved to the database!").set_flags(dpp::m_ephemeral));
 	}
