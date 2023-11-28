@@ -77,7 +77,7 @@ Put a file header comment with the folling information into every file you creat
 
 Here is an example:
 ```cpp
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *  
@@ -87,7 +87,7 @@ Here is an example:
  *  and provides a high level API for internal use
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
-**/
+ */
 ```
 
 #### Function implementation header
