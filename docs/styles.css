@@ -43,12 +43,16 @@ header h1 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     margin: 2rem 0;
+    
 }
 
 .feature {
+    display: flex;
     text-align: center;
     padding: 1rem;
     width: 500px;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature h2 {
