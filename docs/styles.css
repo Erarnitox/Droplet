@@ -41,13 +41,14 @@ header h1 {
 
 .features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(auto-fit, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     margin: 2rem 0;
 }
 
 .feature {
     text-align: center;
     padding: 1rem;
+    width: 500px;
 }
 
 .feature h2 {
