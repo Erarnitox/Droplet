@@ -42,7 +42,9 @@ header h1 {
 .features {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    margin: 2rem 0;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     
 }
 
