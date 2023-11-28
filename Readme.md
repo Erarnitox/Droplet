@@ -10,18 +10,22 @@
 
 Droplet is a feature-rich Discord bot written in modern C++ to enhance your discord server's experience. 
 
-It offers a wide range of functionalities and commands to engage with your community, moderate discussions, entertain users, and automate various tasks. With its sleek design and powerful capabilities, Droplet is the perfect companion for managing your Discord server.
+It offers a wide range of functionalities and commands to engage with your community, moderate, entertain users.
+With its sleek design and powerful capabilities, Droplet is the perfect companion for managing your Discord server.
 
 
 ---
 
 ## Features
 
-- **Moderation:** Maintain a healthy environment by managing users, roles, enforcing rules, and moderating discussions.
-- **Utility:** Perform various utility functions like cross posting to linked social media profiles.
-- **Fun:** Entertain your community with a range of fun commands, including games, lottery and gambling that are all linked to the bots token economy.
-- **Customization:** Tailor Droplet to your server's needs with customizable settings.
-- **Automation:** Automate repetitive tasks with scheduled messages, reminders, and event notifications.
+- **Challenge Roles:** Create CTF-Style Challenges and reward solvers with roles.
+- **Reaction Roles:** Let Members choose their own roles by reacting to a configurable message.
+- **CTF-Challenges:** Create CTF-Style Challenges. Reward solvers with badges and exp.
+- **Flip a Coin:** Flip a coin and gamble some exp.
+- **Greetings:** Joining and Leaving members will be announced by the bot in a configurable channel.
+- **Roll a Dice:** Roll a dice and gamble some exp.
+- **Server Insights:** Get a quick overview of your server.
+- **Manage Resources:** Manage shared links using the bot, so they are kept nicely ordered and won't be lost.
 - ***MORE!!:*** Features are *constantly* **added** and get **updated** use the **`/help`** command to get a list of all commands that are available to you.
 
 ---
