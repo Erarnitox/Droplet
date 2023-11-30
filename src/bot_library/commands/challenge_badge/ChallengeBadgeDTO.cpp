@@ -2,7 +2,11 @@
 
 #include "ChallengeBadgeCommand.hpp"
 
-ChallengeBadgeDTO::ChallengeBadgeDTO(const std::string& badge, size_t exp, size_t guildId, size_t messageId, const std::string& solution)
+ChallengeBadgeDTO::ChallengeBadgeDTO(const std::string& badge,
+									 size_t exp,
+									 size_t guildId,
+									 size_t messageId,
+									 const std::string& solution)
 	: badge{badge}, exp{exp}, guildId{guildId}, messageId{messageId}, solution{solution} {
 }
 

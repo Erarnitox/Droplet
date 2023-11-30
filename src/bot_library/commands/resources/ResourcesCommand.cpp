@@ -65,7 +65,7 @@ void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			data.url))};
 
 		dpp::command_completion_event_t callback = [event](const dpp::confirmation_callback_t& res) {
-			const auto& message{ res.get<dpp::message>() };
+			const auto& message{res.get<dpp::message>()};
 			Bot::ctx->message_pin(message.channel_id, message.id);
 			return;
 		};

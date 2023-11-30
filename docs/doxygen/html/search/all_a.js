@@ -16,5 +16,5 @@ var searchData=
   ['message_5fcommands_13',['message_commands',['../classBot.html#ad411ef198698ed464ccf6910f8fe0a2a',1,'Bot']]],
   ['message_5fcommands_5ft_14',['message_commands_t',['../Bot_8hpp.html#acc2008f2888a73f309270c0b40d24fd1',1,'Bot.hpp']]],
   ['message_5fid_15',['message_id',['../classReactionRoleDTO.html#a823af32d9d40913b165c20acbe266a89',1,'ReactionRoleDTO']]],
-  ['messageid_16',['messageId',['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO']]]
+  ['messageid_16',['messageid',['../classChallengeBadgeDTO.html#ad60118673ab4672ca9fdc114eb80eea8',1,'ChallengeBadgeDTO::messageId'],['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO::messageId']]]
 ];

@@ -29,7 +29,7 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto& cmd{event.command};
 
 	const auto action{Core::get_parameter(*Bot::ctx, event, "action")};
-	const auto member{cmd.get_resolved_user(std::get<dpp::snowflake>(event.get_parameter("member"))) };
+	const auto member{cmd.get_resolved_user(std::get<dpp::snowflake>(event.get_parameter("member")))};
 
 	MemberRepository repo;
 	MemberDTO data{member.id, member.get_avatar_url(), member.username};

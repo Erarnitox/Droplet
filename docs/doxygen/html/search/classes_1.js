@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['challengerolecommand_0',['ChallengeRoleCommand',['../classChallengeRoleCommand.html',1,'']]],
-  ['challengeroledto_1',['ChallengeRoleDTO',['../classChallengeRoleDTO.html',1,'']]],
-  ['challengerolerepository_2',['ChallengeRoleRepository',['../classChallengeRoleRepository.html',1,'']]],
-  ['cleanup_3',['CleanUp',['../classCleanUp.html',1,'']]],
-  ['core_4',['Core',['../classCore.html',1,'']]]
+  ['challengebadgecommand_0',['ChallengeBadgeCommand',['../classChallengeBadgeCommand.html',1,'']]],
+  ['challengebadgedto_1',['ChallengeBadgeDTO',['../classChallengeBadgeDTO.html',1,'']]],
+  ['challengebadgerepository_2',['ChallengeBadgeRepository',['../classChallengeBadgeRepository.html',1,'']]],
+  ['challengerolecommand_3',['ChallengeRoleCommand',['../classChallengeRoleCommand.html',1,'']]],
+  ['challengeroledto_4',['ChallengeRoleDTO',['../classChallengeRoleDTO.html',1,'']]],
+  ['challengerolerepository_5',['ChallengeRoleRepository',['../classChallengeRoleRepository.html',1,'']]],
+  ['cleanup_6',['CleanUp',['../classCleanUp.html',1,'']]],
+  ['core_7',['Core',['../classCore.html',1,'']]]
 ];

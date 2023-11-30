@@ -1,9 +1,6 @@
 #pragma once
 
 #include <Bot.hpp>
-#include <stack>
-#include <stdexcept>
-#include <string>
 
 class ChallengeBadgeCommand : public IGlobalSlashCommand, public IButtonCommand, public IFormCommand {
   public:

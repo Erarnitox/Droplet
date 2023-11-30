@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['helpcommand_0',['HelpCommand',['../classHelpCommand.html',1,'']]]
+  ['hasbadgerepository_0',['HasBadgeRepository',['../classHasBadgeRepository.html',1,'']]],
+  ['helpcommand_1',['HelpCommand',['../classHelpCommand.html',1,'']]]
 ];

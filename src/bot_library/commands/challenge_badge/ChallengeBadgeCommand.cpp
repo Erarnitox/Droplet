@@ -1,12 +1,15 @@
 #include "ChallengeBadgeCommand.hpp"
+
 #include <appcommand.h>
 #include <colors.h>
 
 #include <Core.hpp>
+#include <format>
+#include <string>
 #include <variant>
 
-#include "ChallengeRoleDTO.hpp"
-#include "ChallengeRoleRepository.hpp"
+#include "ChallengeBadgeDTO.hpp"
+#include "ChallengeBadgeRepository.hpp"
 #include "IButtonCommand.hpp"
 #include "IFormCommand.hpp"
 #include "IGlobalSlashCommand.hpp"
@@ -26,7 +29,7 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 
 	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_string, "badge", "The badge that will be granted", true));
-	
+
 	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_integer, "xp", "The amount of xp that will be granted", true));
 
@@ -44,10 +47,20 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto channel{Core::get_parameter(*Bot::ctx, event, "channel")};
-	if (channel.empty()) {
+	const auto channel_id{std::get<dpp::snowflake>(event.get_parameter("channel"))};
+
+	if (channel_id.empty()) {
+		event.reply(dpp::message("No valid Channel provided!").set_flags(dpp::m_ephemeral));
 		return;
 	}
+
+	const auto guild_id{event.command.guild_id};
+	if (!guild_id) {
+		event.reply(dpp::message("Something went wrong...").set_flags(dpp::m_ephemeral));
+		return;
+	}
+
+	const auto channel{event.command.get_resolved_channel(channel_id)};
 
 	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
 	if (question.empty()) {
@@ -74,18 +87,6 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto channel_id{Core::get_channel_id(channel)};
-	if (channel_id.empty()) {
-		event.reply(dpp::message("No valid Channel provided!").set_flags(dpp::m_ephemeral));
-		return;
-	}
-
-	const auto guild_id{event.command.guild_id};
-	if (!guild_id) {
-		event.reply(dpp::message("Something went wrong...").set_flags(dpp::m_ephemeral));
-		return;
-	}
-
 	// create the challenge message
 	dpp::embed embed = dpp::embed()
 						   .set_color(dpp::colors::green_apple)
@@ -105,7 +106,7 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	// send the challenge message
 	Bot::ctx->message_create(
-		msg, [role_id, badge, xp, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
+		msg, [badge, xp, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
 			size_t message_id{0};
@@ -122,7 +123,8 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeBadgeRepository repo;
-			ChallengeBadgeDTO data{badge, xp, guild_id, message_id, solution};
+			ChallengeBadgeDTO data{badge, std::stoull(xp), static_cast<size_t>(guild_id), message_id, solution};
+
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,
 							  std::format("Challenge badge with message_id={} was "
@@ -139,8 +141,9 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			}
 
 			// send a confirmation to the admin
-			event.reply(dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {} - EXP:{}", question, badge, xp))
-							.set_flags(dpp::m_ephemeral));
+			event.reply(
+				dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {} - EXP:{}", question, badge, xp))
+					.set_flags(dpp::m_ephemeral));
 		});
 
 	return;
@@ -183,7 +186,7 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	ChallengeBadgeRepository repo;
 	ChallengeBadgeDTO dto = repo.get(msg_id);
 
-	if (!dto.badge || dto.solution.size() == 0) {
+	if (!dto.badge.size() || !dto.solution.size()) {
 		Bot::ctx->log(dpp::ll_warning,
 					  std::format("Got invalid data from Database in "
 								  "ChallengeBadgeCommand::handleFormSubmits.\nData: "
@@ -209,7 +212,7 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto& entered{*entered_ptr};
 
 	if (entered == dto.solution) {
-		//Bot::ctx->guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
+		// Bot::ctx->guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
 		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))
 						.set_flags(dpp::m_ephemeral));

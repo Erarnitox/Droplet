@@ -1,6 +1,9 @@
 var annotated_dup =
 [
     [ "Bot", "classBot.html", null ],
+    [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", "classChallengeBadgeCommand" ],
+    [ "ChallengeBadgeDTO", "classChallengeBadgeDTO.html", "classChallengeBadgeDTO" ],
+    [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html", "classChallengeBadgeRepository" ],
     [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", "classChallengeRoleCommand" ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", "classChallengeRoleDTO" ],
     [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", "classChallengeRoleRepository" ],
@@ -10,6 +13,7 @@ var annotated_dup =
     [ "FlipCommand", "classFlipCommand.html", "classFlipCommand" ],
     [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", "classGoodbyeChannelDTO" ],
     [ "GoodbyeChannelRepository", "classGoodbyeChannelRepository.html", "classGoodbyeChannelRepository" ],
+    [ "HasBadgeRepository", "classHasBadgeRepository.html", "classHasBadgeRepository" ],
     [ "HelpCommand", "classHelpCommand.html", "classHelpCommand" ],
     [ "IButtonCommand", "classIButtonCommand.html", "classIButtonCommand" ],
     [ "IFormCommand", "classIFormCommand.html", "classIFormCommand" ],
@@ -38,6 +42,8 @@ var annotated_dup =
     [ "ServerDetails", "classServerDetails.html", "classServerDetails" ],
     [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],
     [ "SetStatus", "classSetStatus.html", "classSetStatus" ],
+    [ "UserDTO", "classUserDTO.html", "classUserDTO" ],
+    [ "UserRepository", "classUserRepository.html", "classUserRepository" ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", "classWelcomeChannelDTO" ],
     [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", "classWelcomeChannelRepository" ]
 ];

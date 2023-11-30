@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['welcomechanneldto_0',['WelcomeChannelDTO',['../classWelcomeChannelDTO.html',1,'']]],
-  ['welcomechannelrepository_1',['WelcomeChannelRepository',['../classWelcomeChannelRepository.html',1,'']]]
+  ['userdto_0',['UserDTO',['../classUserDTO.html',1,'']]],
+  ['userrepository_1',['UserRepository',['../classUserRepository.html',1,'']]]
 ];
