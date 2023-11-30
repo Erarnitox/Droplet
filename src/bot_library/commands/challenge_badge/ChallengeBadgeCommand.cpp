@@ -135,9 +135,9 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 					dpp::message("Enter a valid positive integer as EXP Reward! ...").set_flags(dpp::m_ephemeral));
 				return;
 			}
-			
-			const auto& guild_name{ event.command.get_guild().name };
-			ChallengeBadgeDTO data{badge, exp, static_cast<size_t>(guild_id), message_id, solution, guild_name };
+
+			const auto& guild_name{event.command.get_guild().name};
+			ChallengeBadgeDTO data{badge, exp, static_cast<size_t>(guild_id), message_id, solution, guild_name};
 
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,

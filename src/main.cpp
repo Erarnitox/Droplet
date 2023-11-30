@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *  
@@ -7,7 +7,7 @@
  *  Description: Entry Point for the main bot executable
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/html
-**/
+ */
 
 #include "BotLibrary.hpp"
 

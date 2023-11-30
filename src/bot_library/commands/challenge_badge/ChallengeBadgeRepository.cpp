@@ -17,7 +17,8 @@ bool ChallengeBadgeRepository::create(const ChallengeBadgeDTO& object) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.messageId, object.guildId, object.badge, object.exp, object.solution, object.guild_name);
+	return database::execQuery(
+		sql_string, object.messageId, object.guildId, object.badge, object.exp, object.solution, object.guild_name);
 }
 
 bool ChallengeBadgeRepository::remove(size_t messageId) {
@@ -41,11 +42,13 @@ bool ChallengeBadgeRepository::update(const ChallengeBadgeDTO& object) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.messageId, object.guildId, object.badge, object.exp, object.solution, object.guild_name);
+	return database::execQuery(
+		sql_string, object.messageId, object.guildId, object.badge, object.exp, object.solution, object.guild_name);
 }
 
 ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) {
-	static std::string sql_string{"SELECT badge_emoji, exp, flag, guild_name FROM challenge_badges WHERE message_id=$1::int8"};
+	static std::string sql_string{
+		"SELECT badge_emoji, exp, flag, guild_name FROM challenge_badges WHERE message_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, messageId)};
 

@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -10,7 +10,7 @@
  * 	the unit_test binary.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/bot_library
- **/
+ */
 
 #include "BotLibrary.hpp"
 
@@ -23,7 +23,7 @@
  * @brief this is the entry point of the binary that will start the bot
  * @return doesn't return anything
  */
-void start_bot() {
+void start_bot(const bool IS_TEST) {
 	// initialize bot
 	try {
 		Bot::init(read_bot_token("bot_token.txt"));
@@ -50,6 +50,10 @@ void start_bot() {
 
 	// Command Registration:
 	Commands::registerCommands();
+
+	if (IS_TEST) {
+		return;
+	}
 
 	Bot::run();
 

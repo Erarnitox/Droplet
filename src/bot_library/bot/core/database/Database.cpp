@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,7 +8,7 @@
  *  and provides a high level API for internal use
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
- **/
+ */
 
 #include "Database.hpp"
 
@@ -70,6 +70,8 @@ void Database::disconnect() noexcept {
  * @return returns true if the database is connected, false otherwise
  */
 bool Database::hasConnection() noexcept {
+	if (!conn)
+		return false;
 	return conn->is_open();
 }
 

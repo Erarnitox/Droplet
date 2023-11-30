@@ -32,10 +32,10 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	// Get the user from the usr Table
 	UserRepository user_repo;
 	UserDTO user_dto;
-	
-	try{
+
+	try {
 		user_dto = user_repo.get(static_cast<size_t>(user_id));
-	} catch(...) {
+	} catch (...) {
 		Bot::ctx->log(dpp::ll_warning, "User is not in usr database yet");
 	}
 
@@ -44,11 +44,11 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	ChallengeBadgeRepository badge_repo;
 	HasBadgeRepository has_badge_repo;
 
-	if(user_dto.user_id) {
+	if (user_dto.user_id) {
 		// Get all badges a the user has earned:
 		for (const auto badge_id : has_badge_repo.get(static_cast<size_t>(user_id))) {
 			ChallengeBadgeDTO badge_dto{badge_repo.get(badge_id)};
-			
+
 			try {
 				badges.at(badge_dto.guild_name).push_back(badge_dto.badge);
 			} catch (...) {
@@ -77,14 +77,12 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	// Level:
-	const auto& exp{ user_dto.exp };
-	const auto level{ exp / 500 };
-	const auto missing{ 500 - ((exp+501) % 500) };
+	const auto& exp{user_dto.exp};
+	const auto level{exp / 500};
+	const auto missing{500 - ((exp + 501) % 500)};
 
-	embed.add_field(
-		std::format("LEVEL: [{}]", level),
-		std::format("{}EXP/{}EXP to Reach Level {}", exp, (exp+missing), (level+1))
-	);
+	embed.add_field(std::format("LEVEL: [{}]", level),
+					std::format("{}EXP/{}EXP to Reach Level {}", exp, (exp + missing), (level + 1)));
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));

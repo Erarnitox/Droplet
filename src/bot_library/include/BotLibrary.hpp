@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -10,13 +10,13 @@
  * 	the unit_test binary.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/bot_library
- **/
+ */
 
 #pragma once
 
 #include <string>
 
-auto start_bot() -> void;
+auto start_bot(bool IS_TEST = false) -> void;
 
 [[nodiscard]] static inline std::string read_bot_token(const std::string& file);
 

@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,16 +8,13 @@
  *  and provides a high level API for internal use
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
- **/
+ */
 
 #pragma once
 
 #include <cstddef>
-#include <iostream>
-#include <optional>
 #include <pqxx/pqxx>
 #include <string>
-#include <typeindex>
 #include <vector>
 
 #include "RowDTOAdapter.hpp"

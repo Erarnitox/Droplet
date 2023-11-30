@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -10,7 +10,7 @@
  * 	dependency on the pqxx library away from the DTOs
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/RowDTOAdapter
- **/
+ */
 
 #pragma once
 

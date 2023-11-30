@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,7 +8,7 @@
  * 	core functionality and utility needed by the bot
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/core
- **/
+ */
 
 #include <dpp/permissions.h>
 #include <dpp/timer.h>

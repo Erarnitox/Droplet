@@ -1,11 +1,11 @@
 var NAVTREEINDEX0 =
 {
 "BotLibrary_8cpp.html":[2,0,0,0,3],
-"BotLibrary_8cpp.html#a58ba57ff883cd2d4b3ea6eafd14b98f3":[2,0,0,0,3,2],
 "BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a":[2,0,0,0,3,1],
+"BotLibrary_8cpp.html#a7ae6b6f57ce26a1ebdf193290ea23ddb":[2,0,0,0,3,2],
 "BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d":[2,0,0,0,3,0],
 "BotLibrary_8hpp.html":[2,0,0,0,2,0],
-"BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a":[2,0,0,0,2,0,0],
+"BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de":[2,0,0,0,2,0,0],
 "BotLibrary_8hpp_source.html":[2,0,0,0,2,0],
 "Bot_8cpp.html":[2,0,0,0,0,2],
 "Bot_8hpp.html":[2,0,0,0,0,1,0],

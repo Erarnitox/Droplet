@@ -100,19 +100,32 @@ $(document).ready(function(){initNavTree('BotLibrary_8hpp_source.html',''); init
   <div class="headertitle"><div class="title">BotLibrary.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="BotLibrary_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="BotLibrary_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (c) Copyright dropsoft.org - All rights reserved</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *  Author: Erarnitox &lt;david@erarnitox.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  License: MIT License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *  Description: This Library combines all the</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *  fuctionality of the bot into a static library</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *  that can be used by the main binary and also</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *  the unit_test binary.</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment"> *  Documentation: https://droplet.dropsoft.org/doxygen/bot_library</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a>() -&gt; void;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">auto</span> <a class="code hl_function" href="BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de">start_bot</a>(<span class="keywordtype">bool</span> IS_TEST = <span class="keyword">false</span>) -&gt; void;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> std::string <a class="code hl_function" href="BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d">read_bot_token</a>(<span class="keyword">const</span> std::string&amp; file);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>[[nodiscard]] <span class="keyword">static</span> <span class="keyword">inline</span> std::string <a class="code hl_function" href="BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a">read_database_credentials</a>(<span class="keyword">const</span> std::string&amp; file);</div>
-<div class="ttc" id="aBotLibrary_8cpp_html_a79b187d8c716521887dddfcb0b30856a"><div class="ttname"><a href="BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a">read_database_credentials</a></div><div class="ttdeci">std::string read_database_credentials(const std::string &amp;file)</div><div class="ttdoc">reads the connection string for the postgres database from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:90</div></div>
-<div class="ttc" id="aBotLibrary_8cpp_html_aae213265f721aafdba5391424ccd037d"><div class="ttname"><a href="BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d">read_bot_token</a></div><div class="ttdeci">std::string read_bot_token(const std::string &amp;file)</div><div class="ttdoc">reads the bot token from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:65</div></div>
-<div class="ttc" id="aBotLibrary_8hpp_html_a16156ea46210ec8bca5367d6aced3b9a"><div class="ttname"><a href="BotLibrary_8hpp.html#a16156ea46210ec8bca5367d6aced3b9a">start_bot</a></div><div class="ttdeci">auto start_bot() -&gt; void</div><div class="ttdoc">this is the entry point of the binary that will start the bot</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:26</div></div>
+<div class="ttc" id="aBotLibrary_8cpp_html_a79b187d8c716521887dddfcb0b30856a"><div class="ttname"><a href="BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a">read_database_credentials</a></div><div class="ttdeci">std::string read_database_credentials(const std::string &amp;file)</div><div class="ttdoc">reads the connection string for the postgres database from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:94</div></div>
+<div class="ttc" id="aBotLibrary_8cpp_html_aae213265f721aafdba5391424ccd037d"><div class="ttname"><a href="BotLibrary_8cpp.html#aae213265f721aafdba5391424ccd037d">read_bot_token</a></div><div class="ttdeci">std::string read_bot_token(const std::string &amp;file)</div><div class="ttdoc">reads the bot token from a file</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:69</div></div>
+<div class="ttc" id="aBotLibrary_8hpp_html_a3ff4960139cb694a4a405b9757ab96de"><div class="ttname"><a href="BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de">start_bot</a></div><div class="ttdeci">auto start_bot(bool IS_TEST=false) -&gt; void</div><div class="ttdoc">this is the entry point of the binary that will start the bot</div><div class="ttdef"><b>Definition</b> BotLibrary.cpp:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
