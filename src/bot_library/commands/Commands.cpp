@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,7 +8,7 @@
  *	so the bot knows about it.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/html/commands
- **/
+ */
 
 #include <Commands.hpp>
 
@@ -16,14 +16,15 @@
 /// COMMAND HEADERS:
 ///////////////////////////////////////
 
-#include <ChallengeRoleCommand.hpp>
 #include <ChallengeBadgeCommand.hpp>
+#include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
 #include <FlipCommand.hpp>
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <MemberCommand.hpp>
 #include <PongCommand.hpp>
+#include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <ResourcesCommand.hpp>
 #include <RollCommand.hpp>
@@ -31,6 +32,8 @@
 #include <SetChannelCommand.hpp>
 #include <SetStatus.hpp>
 #include <memory>
+
+#include "profile/ProfileCommand.hpp"
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -50,6 +53,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
 	Bot::add_slash_command(std::make_shared<MemberCommand>());
+	Bot::add_slash_command(std::make_shared<ProfileCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);

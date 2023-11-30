@@ -1,7 +1,11 @@
 #include "UserDTO.hpp"
 
-UserDTO::UserDTO(size_t user_id, const std::string& user_name, const std::string& color, size_t exp, size_t is_subscribed)
-	: user_id{user_id}, user_name{ user_name }, color{color}, exp{exp}, is_subscribed{is_subscribed} {
+UserDTO::UserDTO(size_t user_id,
+				 const std::string& user_name,
+				 const std::string& color,
+				 size_t exp,
+				 size_t is_subscribed)
+	: user_id{user_id}, user_name{user_name}, color{color}, exp{exp}, is_subscribed{is_subscribed} {
 }
 
 UserDTO::UserDTO(const RowDTOAdapter& row)

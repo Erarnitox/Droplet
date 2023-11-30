@@ -22,6 +22,7 @@ var hierarchy =
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "MemberCommand", "classMemberCommand.html", null ],
+      [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],

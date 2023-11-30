@@ -10,6 +10,7 @@ var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
     [ "invite", "dir_dc3bc99bc501644e197c4d2698e0fc8f.html", "dir_dc3bc99bc501644e197c4d2698e0fc8f" ],
     [ "member", "dir_bf65c5e2ffa66c1752b633151f29fa88.html", "dir_bf65c5e2ffa66c1752b633151f29fa88" ],
     [ "pong", "dir_e4c64626919ae284a6143de39fd042e4.html", "dir_e4c64626919ae284a6143de39fd042e4" ],
+    [ "profile", "dir_3f526b2c6f77046a2bd3d6f486c710c8.html", "dir_3f526b2c6f77046a2bd3d6f486c710c8" ],
     [ "reaction_roles", "dir_55709f21cee890691a392e71066e61b8.html", "dir_55709f21cee890691a392e71066e61b8" ],
     [ "resources", "dir_4664096a0ece9a7aba46a7b7bb421972.html", "dir_4664096a0ece9a7aba46a7b7bb421972" ],
     [ "roll", "dir_01a9593c77408e73511ed5f78e4e0ebc.html", "dir_01a9593c77408e73511ed5f78e4e0ebc" ],

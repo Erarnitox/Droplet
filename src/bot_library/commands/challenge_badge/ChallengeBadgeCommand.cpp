@@ -11,12 +11,12 @@
 
 #include "ChallengeBadgeDTO.hpp"
 #include "ChallengeBadgeRepository.hpp"
+#include "HasBadgeRepository.hpp"
 #include "IButtonCommand.hpp"
 #include "IFormCommand.hpp"
 #include "IGlobalSlashCommand.hpp"
 #include "UserDTO.hpp"
 #include "UserRepository.hpp"
-#include "HasBadgeRepository.hpp"
 
 ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
 	this->command_name = "challenge_badge";
@@ -127,15 +127,17 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeBadgeRepository repo;
-			size_t exp{ 0 };
-			try{
+			size_t exp{0};
+			try {
 				exp = std::stoull(xp);
-			}catch(...){
-				event.reply(dpp::message("Enter a valid positive integer as EXP Reward! ...").set_flags(dpp::m_ephemeral));
+			} catch (...) {
+				event.reply(
+					dpp::message("Enter a valid positive integer as EXP Reward! ...").set_flags(dpp::m_ephemeral));
 				return;
 			}
-
-			ChallengeBadgeDTO data{badge, exp, static_cast<size_t>(guild_id), message_id, solution};
+			
+			const auto& guild_name{ event.command.get_guild().name };
+			ChallengeBadgeDTO data{badge, exp, static_cast<size_t>(guild_id), message_id, solution, guild_name };
 
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,
@@ -196,7 +198,7 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 
 	// get the correct answer and reward role from the database
 	ChallengeBadgeRepository badge_repo;
-	ChallengeBadgeDTO badge_dto{ badge_repo.get(msg_id) };
+	ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
 
 	if (!badge_dto.badge.size() || !badge_dto.solution.size()) {
 		Bot::ctx->log(dpp::ll_warning,
@@ -228,28 +230,30 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 
 		UserRepository user_repo;
 		UserDTO user_dto{member.user_id, member.get_user()->username};
-		
-		if(user_repo.create(user_dto)){
+
+		if (user_repo.create(user_dto)) {
 			Bot::ctx->log(dpp::ll_info, "User has been created!");
 		} else {
 			Bot::ctx->log(dpp::ll_info, "User does already exist!");
+			user_dto = user_repo.get(member.user_id);
 		}
-		
+
 		HasBadgeRepository has_badge_repository;
-		if(has_badge_repository.create(user_dto.user_id, msg_id)) {
+		if (has_badge_repository.create(user_dto.user_id, msg_id)) {
 			user_dto.exp += badge_dto.exp;
-			if(!user_repo.update(user_dto)){
-				Bot::ctx->log(dpp::ll_error, 
-				"Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
+			if (!user_repo.update(user_dto)) {
+				Bot::ctx->log(dpp::ll_error, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
 
 				event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-								 "@erarnitox with this error code: 298377")
+										 "@erarnitox with this error code: 298377")
+								.set_flags(dpp::m_ephemeral));
+				return;
+			} else {
+				event.reply(
+					dpp::message(
+						std::format("You have been awarded the Badge{} and {} EXP", badge_dto.badge, badge_dto.exp))
 						.set_flags(dpp::m_ephemeral));
 				return;
-			}else{
-				event.reply(dpp::message(std::format("You have been awarded the Badge{} and {} EXP",
-				badge_dto.badge, badge_dto.exp
-				)).set_flags(dpp::m_ephemeral));
 			}
 		}
 

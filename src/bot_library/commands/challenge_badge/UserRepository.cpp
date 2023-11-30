@@ -17,7 +17,8 @@ bool UserRepository::create(const UserDTO& object) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
+	return database::execQuery(
+		sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
 }
 
 bool UserRepository::remove(size_t user_id) {
@@ -42,7 +43,8 @@ bool UserRepository::update(const UserDTO& object) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
+	return database::execQuery(
+		sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
 }
 
 UserDTO UserRepository::get(size_t user_id) {

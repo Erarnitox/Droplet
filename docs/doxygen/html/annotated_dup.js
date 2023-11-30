@@ -31,6 +31,7 @@ var annotated_dup =
     [ "MemberDTO", "classMemberDTO.html", "classMemberDTO" ],
     [ "MemberRepository", "classMemberRepository.html", "classMemberRepository" ],
     [ "PongCommand", "classPongCommand.html", "classPongCommand" ],
+    [ "ProfileCommand", "classProfileCommand.html", "classProfileCommand" ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", "classReactionRoleDTO" ],
     [ "ReactionRoleRepository", "classReactionRoleRepository.html", "classReactionRoleRepository" ],
     [ "ReactionRoles", "classReactionRoles.html", "classReactionRoles" ],
