@@ -17,6 +17,7 @@ set_property(TARGET clean_up PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
 target_link_libraries(clean_up PRIVATE reaction_role_repository)
 target_link_libraries(clean_up PRIVATE challenge_role_repository)
+target_link_libraries(clean_up PRIVATE challenge_badge_repository)
 
 target_link_libraries(clean_up PUBLIC bot)
 

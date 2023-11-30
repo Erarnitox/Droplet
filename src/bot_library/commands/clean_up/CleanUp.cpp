@@ -3,6 +3,7 @@
 #include <snowflake.h>
 
 #include <ChallengeRoleRepository.hpp>
+#include <ChallengeBadgeRepository.hpp>
 #include <ReactionRoleRepository.hpp>
 
 void CleanUp::on_message_create(const dpp::message_create_t& event) {
@@ -15,14 +16,30 @@ static inline void clean_up_message(const dpp::snowflake& message_id) {
 	// clean up reaction roles
 	{
 		ReactionRoleRepository repo;
-		(void)repo.remove(message_id);
+		if(repo.remove(message_id)) {
+			return;
+		}
 	}
 
 	// clean up challenge role
 	{
 		ChallengeRoleRepository repo;
-		(void)repo.remove(message_id);
+		if(repo.remove(message_id)){
+			return;
+		}
 	}
+
+	/*
+	// Don't clean up challenge badges!
+	// They are needed for user statistics
+	// clean up challenge badge
+	{
+		ChallengeBadgeRepository repo;
+		if(repo.remove(message_id)){
+			return;
+		}
+	}*/
+
 	return;
 }
 
