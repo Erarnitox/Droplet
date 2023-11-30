@@ -15,10 +15,9 @@
 ///////////////////////////////////////
 /// COMMAND HEADERS:
 ///////////////////////////////////////
-// #include "ChallengeRoleCommand.hpp"
-// #include "SetChannelCommand.hpp"
 
 #include <ChallengeRoleCommand.hpp>
+#include <ChallengeBadgeCommand.hpp>
 #include <CleanUp.hpp>
 #include <FlipCommand.hpp>
 #include <HelpCommand.hpp>
@@ -60,6 +59,11 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(challenge_command);
 	Bot::add_button_command(challenge_command);
 	Bot::add_form_command(challenge_command);
+
+	const auto& badge_command{std::make_shared<ChallengeBadgeCommand>()};
+	Bot::add_slash_command(badge_command);
+	Bot::add_button_command(badge_command);
+	Bot::add_form_command(badge_command);
 
 	const auto& reaction_roles{std::make_shared<ReactionRoles>()};
 	Bot::add_slash_command(reaction_roles);

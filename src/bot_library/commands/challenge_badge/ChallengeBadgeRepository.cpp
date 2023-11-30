@@ -45,7 +45,7 @@ bool ChallengeBadgeRepository::update(const ChallengeBadgeDTO& object) {
 }
 
 ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) {
-	static std::string sql_string{"SELECT badge_emoji, exp, flag FROM challenge_roles WHERE message_id=$1::int8"};
+	static std::string sql_string{"SELECT badge_emoji, exp, flag FROM challenge_badges WHERE message_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, messageId)};
 
