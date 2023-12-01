@@ -2,13 +2,11 @@
 
 #include <appcommand.h>
 #include <colors.h>
-#include <fmt/core.h>
 
 #include <Core.hpp>
 #include <GoodbyeChannelRepository.hpp>
 #include <LogChannelRepository.hpp>
 #include <WelcomeChannelRepository.hpp>
-#include <variant>
 
 #include "GoodbyeChannelDTO.hpp"
 #include "WelcomeChannelDTO.hpp"
