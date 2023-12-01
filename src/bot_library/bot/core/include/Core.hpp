@@ -14,7 +14,6 @@
 
 #include <dpp/dpp.h>
 #include <dpp/misc-enum.h>
-#include <fmt/core.h>
 
 #include <Database.hpp>
 #include <IButtonCommand.hpp>
