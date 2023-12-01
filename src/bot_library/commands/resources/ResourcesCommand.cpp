@@ -3,11 +3,9 @@
 #include <appcommand.h>
 #include <colors.h>
 #include <dispatcher.h>
-#include <fmt/core.h>
 
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
-#include <variant>
 
 ResourcesCommand::ResourcesCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_resource";
