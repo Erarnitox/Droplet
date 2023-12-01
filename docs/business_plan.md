@@ -2,7 +2,7 @@
 ## Analysis on Discord Bot for Managing Users and Roles
 ### Business Idea Description
 The business idea revolves around developing a Discord bot that provides comprehensive user and role management functionalities.
-Additionally, the bot offers premium features, such as cross-posting for social media, where it serves as an interface. 
+Additionally, the bot offers premium features, such as customization and cross-posting for social media, where it serves as an interface. 
 
 The premium features are subscription-based, providing an added revenue stream.
 
