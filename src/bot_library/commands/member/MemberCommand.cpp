@@ -2,12 +2,10 @@
 
 #include <appcommand.h>
 #include <colors.h>
-#include <fmt/core.h>
 #include <snowflake.h>
 
 #include <Core.hpp>
 #include <MemberRepository.hpp>
-#include <variant>
 
 MemberCommand::MemberCommand() : IGlobalSlashCommand() {
 	this->command_name = "member";
