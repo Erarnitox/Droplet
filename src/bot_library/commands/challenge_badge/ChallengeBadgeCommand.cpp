@@ -2,6 +2,7 @@
 
 #include <appcommand.h>
 #include <colors.h>
+#include <message.h>
 #include <misc-enum.h>
 
 #include <Core.hpp>
@@ -196,6 +197,11 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto msg_id{event.command.message_id};
 	const auto member{event.command.member};
 
+	if(!msg_id || !member.user_id){
+		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
+		return;
+	}
+
 	// get the correct answer and reward role from the database
 	ChallengeBadgeRepository badge_repo;
 	ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
@@ -226,8 +232,6 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto& entered{*entered_ptr};
 
 	if (entered == badge_dto.solution) {
-		// Bot::ctx->guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
-
 		UserRepository user_repo;
 		UserDTO user_dto{member.user_id, member.get_user()->username};
 
@@ -236,6 +240,11 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 		} else {
 			Bot::ctx->log(dpp::ll_info, "User does already exist!");
 			user_dto = user_repo.get(member.user_id);
+		}
+
+		if(!user_dto.user_id){
+			event.reply(dpp::message("Can't get user from database. Please try again!").set_flags(dpp::m_ephemeral));
+			return;
 		}
 
 		HasBadgeRepository has_badge_repository;
