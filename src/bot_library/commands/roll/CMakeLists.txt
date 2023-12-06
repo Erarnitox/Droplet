@@ -15,5 +15,6 @@ endif()
 
 set_property(TARGET roll_command PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_link_libraries(roll_command PUBLIC bot)
+target_link_libraries(roll_command PRIVATE user_repository)
 
 target_link_libraries(commands PRIVATE roll_command)

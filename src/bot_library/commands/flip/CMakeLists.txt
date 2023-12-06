@@ -14,6 +14,7 @@ else()
 endif()
 
 set_property(TARGET flip_command PROPERTY CXX_STANDARD ${CPP_STANDARD})
+target_link_libraries(flip_command PRIVATE user_repository)
 target_link_libraries(flip_command PUBLIC bot)
 
 target_link_libraries(commands PRIVATE flip_command)

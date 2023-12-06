@@ -31,7 +31,7 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	// Get the user from the usr Table
 	UserRepository user_repo;
-	UserDTO user_dto;
+	UserDTO user_dto{};
 
 	try {
 		user_dto = user_repo.get(static_cast<size_t>(user_id));
