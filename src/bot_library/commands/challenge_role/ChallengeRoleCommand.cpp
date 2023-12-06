@@ -182,7 +182,7 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto msg_id{event.command.message_id};
 	const auto member{event.command.member};
 
-	if(!msg_id || !member.user_id){
+	if (!msg_id || !member.user_id) {
 		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
 		return;
 	}

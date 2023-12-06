@@ -24,7 +24,7 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (event.command.guild_id != dpp::snowflake(808151108748836914ull)){
+	if (event.command.guild_id != dpp::snowflake(808151108748836914ull)) {
 		event.reply("This command can only be executed on the DropSoft Server!");
 		return;
 	}
