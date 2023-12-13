@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,7 +8,7 @@
  *	bot and delegats events to registerd commands.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot
- **/
+ */
 
 #pragma once
 

@@ -8,6 +8,7 @@ var NAVTREEINDEX0 =
 "BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de":[2,0,0,0,2,0,0],
 "BotLibrary_8hpp_source.html":[2,0,0,0,2,0],
 "Bot_8cpp.html":[2,0,0,0,0,2],
+"Bot_8cpp.html#a871932183830016ee3a693cc0ef993bd":[2,0,0,0,0,2,0],
 "Bot_8hpp.html":[2,0,0,0,0,1,0],
 "Bot_8hpp.html#a33d90008ed8ff388b80ae2b0d78b9b7e":[2,0,0,0,0,1,0,8],
 "Bot_8hpp.html#a511e7d24bae1bc2ca7ce10304f69a1e6":[2,0,0,0,0,1,0,6],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classIReady.html#acba2e042ee268d7ba38b0585a255c571":[1,0,23,0],
 "classIRepository.html":[1,0,24],
 "classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea":[1,0,24,0],
-"classIRepository.html#a589c909f9c95319a64649267aec0a323":[1,0,24,1],
-"classIRepository.html#a76b35394a19b1e574c3a703ec13dccda":[1,0,24,2]
+"classIRepository.html#a589c909f9c95319a64649267aec0a323":[1,0,24,1]
 };

@@ -47,6 +47,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ]
       ] ]
     ] ]
@@ -56,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BotLibrary_8cpp.html",
-"classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd"
+"classIRepository.html#a76b35394a19b1e574c3a703ec13dccda"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

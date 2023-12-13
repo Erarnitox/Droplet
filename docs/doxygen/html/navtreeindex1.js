@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classIRepository.html#a76b35394a19b1e574c3a703ec13dccda":[1,0,24,2],
 "classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd":[1,0,24,3],
 "classInitDatabase.html":[1,0,20],
 "classInitDatabase.html#a76e7d4fc7f2f41ac8c01b1b907f4763a":[1,0,20,0],
@@ -159,7 +160,8 @@ var NAVTREEINDEX1 =
 "functions_vars.html":[1,3,2],
 "globals.html":[2,1,0],
 "globals_func.html":[2,1,1],
-"globals_type.html":[2,1,2],
+"globals_type.html":[2,1,3],
+"globals_vars.html":[2,1,2],
 "hierarchy.html":[1,2],
 "index.html":[],
 "main_8cpp.html":[2,0,0,1],

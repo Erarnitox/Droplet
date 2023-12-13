@@ -1,4 +1,4 @@
-/**
+/*
  *  (c) Copyright dropsoft.org - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
@@ -8,7 +8,7 @@
  *	bot and delegats events to registerd commands.
  *
  *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot
- **/
+ */
 
 #include "Bot.hpp"
 
@@ -18,8 +18,8 @@
 #include <dpp/once.h>
 #include <intents.h>
 
+#include <fstream>
 #include <memory>
-#include <type_traits>
 
 // initialize static members
 ctx_t Bot::ctx;
@@ -120,6 +120,67 @@ void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 	Bot::ready_commands.push_back(ready_command);
 }
 
+// file to store the command checksum in
+constexpr char HASH_FILE[]{ "command_hash" };
+
+/**
+ * @brief reads a checksum of the previously registered commands form a file
+ *
+ * @return returns the read checksum or 0 if none could be read
+ */
+static inline
+size_t get_prior_hash(){
+	std::ifstream hash_file;
+	hash_file.open(HASH_FILE, std::ios::in | std::ios::binary);
+	
+	size_t hash{ 0ull };
+	if(hash_file.is_open()){
+		hash_file.read(reinterpret_cast<char*>(&hash), sizeof(hash));
+	}
+
+	hash_file.close();
+	return hash;
+}
+
+/**
+ * @brief calculates a simple checksum of the current slash commands
+ *
+ * @param slash_commands a list of slash commands
+ * @return returns the calculated checksum for the provided list of slash commands
+ */
+static inline
+size_t get_current_hash(const slash_commands_t& slash_commands){
+	size_t sum{ 0 };
+
+	// calculate a simple checksum
+	for (const auto& slash_command : slash_commands) {
+		sum ^= std::hash<std::string>{}(slash_command.first);
+		for (const auto& option : slash_command.second->command_options) {
+			sum ^= std::hash<std::string>{}(option.name);
+		}
+	}
+
+	return sum;
+}
+
+/**
+ * @brief saves a checksum to a file on disc
+ *
+ * @param hash the hash to be saved to file
+ * @return doesn't return anything
+ */
+static inline
+void save_hash_to_file(size_t hash){
+	std::ofstream hash_file;
+	hash_file.open(HASH_FILE, std::ios::out | std::ios::binary | std::ios::trunc);
+	
+	if(hash_file.is_open()){
+		hash_file.write(reinterpret_cast<char*>(&hash), sizeof(hash));
+	}
+	hash_file.close();
+	return;
+}
+
 /**
  * @brief registers slash commands on discord when the bot is ready
  *
@@ -134,7 +195,13 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 		ctx->log(dpp::ll_trace, "Registering Slash commands...");
 
 		if (dpp::run_once<struct register_bot_commands>()) {
-			ctx->global_bulk_command_delete();	// clear out the old commands
+			// get the hash of previous registered commands
+			const auto pHash{ get_prior_hash() };
+			const auto nHash{ get_current_hash(slash_commands) };
+
+			if(pHash != nHash) {
+				ctx->global_bulk_command_delete();	// clear out the old commands
+			};
 
 			for (const auto& slash_command : slash_commands) {
 				dpp::slashcommand tmp_command(
@@ -146,8 +213,11 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 
 				ctx->global_command_create(tmp_command);
 			}
+			save_hash_to_file(nHash);
 		}
 	});
+
+	return;
 }
 
 /**
