@@ -100,7 +100,18 @@ $(document).ready(function(){initNavTree('Bot_8hpp_source.html',''); initResizab
   <div class="headertitle"><div class="title">Bot.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Bot_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<a href="Bot_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (c) Copyright dropsoft.org - All rights reserved</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *  Author: Erarnitox &lt;david@erarnitox.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  License: MIT License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *  Description: This class handles the execution of the</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *  bot and delegats events to registerd commands.</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> *  Documentation: https://droplet.dropsoft.org/doxygen/html/bot</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="Core_8hpp.html">Core.hpp</a>&gt;</span></div>
@@ -178,7 +189,7 @@ $(document).ready(function(){initNavTree('Bot_8hpp_source.html',''); initResizab
 <div class="ttc" id="aclassBot_html_a8e2756c880a674d1838e9cabde0c7a08"><div class="ttname"><a href="classBot.html#a8e2756c880a674d1838e9cabde0c7a08">Bot::member_commands</a></div><div class="ttdeci">static member_commands_t member_commands</div><div class="ttdef"><b>Definition</b> Bot.hpp:43</div></div>
 <div class="ttc" id="aclassBot_html_a902be08246164966208aaa702fb8e5fd"><div class="ttname"><a href="classBot.html#a902be08246164966208aaa702fb8e5fd">Bot::init</a></div><div class="ttdeci">static void init(const std::string &amp;token)</div><div class="ttdoc">initializes our bot and sets the bot token</div><div class="ttdef"><b>Definition</b> Bot.cpp:40</div></div>
 <div class="ttc" id="aclassBot_html_acb6dabaeaad0c6073d8f39b7deba6a7e"><div class="ttname"><a href="classBot.html#acb6dabaeaad0c6073d8f39b7deba6a7e">Bot::add_button_command</a></div><div class="ttdeci">static void add_button_command(const std::shared_ptr&lt; IButtonCommand &gt; &amp;button_command)</div><div class="ttdoc">registers new button commands with the bot</div><div class="ttdef"><b>Definition</b> Bot.cpp:69</div></div>
-<div class="ttc" id="aclassBot_html_ace392c01b2968a6f354225d2e71a7074"><div class="ttname"><a href="classBot.html#ace392c01b2968a6f354225d2e71a7074">Bot::run</a></div><div class="ttdeci">static void run()</div><div class="ttdoc">registeres all callbacks and starts the bot</div><div class="ttdef"><b>Definition</b> Bot.cpp:428</div></div>
+<div class="ttc" id="aclassBot_html_ace392c01b2968a6f354225d2e71a7074"><div class="ttname"><a href="classBot.html#ace392c01b2968a6f354225d2e71a7074">Bot::run</a></div><div class="ttdeci">static void run()</div><div class="ttdoc">registeres all callbacks and starts the bot</div><div class="ttdef"><b>Definition</b> Bot.cpp:425</div></div>
 <div class="ttc" id="aclassBot_html_ad411ef198698ed464ccf6910f8fe0a2a"><div class="ttname"><a href="classBot.html#ad411ef198698ed464ccf6910f8fe0a2a">Bot::message_commands</a></div><div class="ttdeci">static message_commands_t message_commands</div><div class="ttdef"><b>Definition</b> Bot.hpp:44</div></div>
 <div class="ttc" id="aclassBot_html_add61d8dc757b40b1777804e861899cde"><div class="ttname"><a href="classBot.html#add61d8dc757b40b1777804e861899cde">Bot::button_commands</a></div><div class="ttdeci">static button_commands_t button_commands</div><div class="ttdef"><b>Definition</b> Bot.hpp:40</div></div>
 <div class="ttc" id="aclassBot_html_aeb452d3eceef5e0f4b160cb63d846a1a"><div class="ttname"><a href="classBot.html#aeb452d3eceef5e0f4b160cb63d846a1a">Bot::add_ready_command</a></div><div class="ttdeci">static void add_ready_command(const std::shared_ptr&lt; IReady &gt; &amp;ready_command)</div><div class="ttdoc">registers new ready commands with the bot</div><div class="ttdef"><b>Definition</b> Bot.cpp:119</div></div>

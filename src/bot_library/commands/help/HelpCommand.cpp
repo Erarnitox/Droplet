@@ -1,5 +1,7 @@
 #include "HelpCommand.hpp"
 
+#include <message.h>
+
 #include <variant>
 
 HelpCommand::HelpCommand() : IGlobalSlashCommand() {
@@ -39,6 +41,25 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 		embed.add_field(std::string("/").append(cmd->command_name).append(options_string), cmd->command_description);
 	}
+
+	/*
+	//TODO: figure out how to have hyperlinks in the footer
+	constexpr auto invite_link{
+		"https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=8&scope=bot"};
+	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
+	constexpr auto dropsoft_link{"https://dropsoft.org"};
+	*/
+	constexpr auto icon_url{"https://www.dropsoft.org/img/logo.png"};
+
+	auto footer{dpp::embed_footer()};
+	/*
+	footer.set_text(std::format(
+		"[Invite this Bot]({}) [Usage Manual]({}) [Visit Dropsoft]({})", invite_link, usage_guide, dropsoft_link));
+	*/
+	footer.set_text("Visit dropsoft.org for more information and features! 🚀");
+	footer.set_icon(icon_url);
+
+	embed.set_footer(footer);
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));

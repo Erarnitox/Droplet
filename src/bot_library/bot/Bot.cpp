@@ -121,20 +121,19 @@ void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 }
 
 // file to store the command checksum in
-constexpr char HASH_FILE[]{ "command_hash" };
+constexpr char HASH_FILE[]{"command_hash"};
 
 /**
  * @brief reads a checksum of the previously registered commands form a file
  *
  * @return returns the read checksum or 0 if none could be read
  */
-static inline
-size_t get_prior_hash(){
+static inline size_t get_prior_hash() {
 	std::ifstream hash_file;
 	hash_file.open(HASH_FILE, std::ios::in | std::ios::binary);
-	
-	size_t hash{ 0ull };
-	if(hash_file.is_open()){
+
+	size_t hash{0ull};
+	if (hash_file.is_open()) {
 		hash_file.read(reinterpret_cast<char*>(&hash), sizeof(hash));
 	}
 
@@ -148,9 +147,8 @@ size_t get_prior_hash(){
  * @param slash_commands a list of slash commands
  * @return returns the calculated checksum for the provided list of slash commands
  */
-static inline
-size_t get_current_hash(const slash_commands_t& slash_commands){
-	size_t sum{ 0 };
+static inline size_t get_current_hash(const slash_commands_t& slash_commands) {
+	size_t sum{0};
 
 	// calculate a simple checksum
 	for (const auto& slash_command : slash_commands) {
@@ -169,12 +167,11 @@ size_t get_current_hash(const slash_commands_t& slash_commands){
  * @param hash the hash to be saved to file
  * @return doesn't return anything
  */
-static inline
-void save_hash_to_file(size_t hash){
+static inline void save_hash_to_file(size_t hash) {
 	std::ofstream hash_file;
 	hash_file.open(HASH_FILE, std::ios::out | std::ios::binary | std::ios::trunc);
-	
-	if(hash_file.is_open()){
+
+	if (hash_file.is_open()) {
 		hash_file.write(reinterpret_cast<char*>(&hash), sizeof(hash));
 	}
 	hash_file.close();
@@ -196,10 +193,10 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
 
 		if (dpp::run_once<struct register_bot_commands>()) {
 			// get the hash of previous registered commands
-			const auto pHash{ get_prior_hash() };
-			const auto nHash{ get_current_hash(slash_commands) };
+			const auto pHash{get_prior_hash()};
+			const auto nHash{get_current_hash(slash_commands)};
 
-			if(pHash != nHash) {
+			if (pHash != nHash) {
 				ctx->global_bulk_command_delete();	// clear out the old commands
 			};
 
