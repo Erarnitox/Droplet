@@ -108,7 +108,22 @@ You can also join my discord server below
 ## Screenshots
 
 #### Configurable Challenge Roles:
-![challenge_role](docs/challenge_role.png)
+![challenge_role](docs/screenshots/challenge_role.png)
+
+#### Configurable Reaction Roles:
+![reaction_role](docs/screenshots/reaction_role.png)
+
+#### Configurable CTF-Challenges:
+![ctf_challenge](docs/screenshots/ctf_challenge.png)
+
+#### Coin Flip Gambling:
+![flip](docs/screenshots/flip.png)
+
+#### Dice Roll Gambling:
+![roll](docs/screenshots/roll.png)
+
+#### Profile information:
+![roll](docs/screenshots/profile.png)
 
 ---
 

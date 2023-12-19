@@ -44,6 +44,8 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	/*
 	//TODO: figure out how to have hyperlinks in the footer
+	- make a tutorial video about droplet
+	- write a usage guide and link it here
 	constexpr auto invite_link{
 		"https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=8&scope=bot"};
 	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
