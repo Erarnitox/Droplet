@@ -4,6 +4,7 @@ include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
 set(CPP_STANDARD 20)
+set(CXX_STANDARD 20)
 
 set(BUILD_SHARED_LIBS OFF)
 # set(OPENSSL_USE_STATIC_LIBS ON) #no-shared

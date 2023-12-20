@@ -49,10 +49,7 @@ bool Database::connect(const std::string& db_name,
  * @return returns a bool if the connection was successful
  */
 bool Database::connect(const std::string& connection_string) {
-	pqxx::connection nConn{pqxx::connection(connection_string)};
-	std::cout << "connection created!" << std::endl;
-	// conn = std::unique_ptr<pqxx::connection>(nConn);
-	std::cout << "Connected!" << std::endl;
+	conn = std::make_unique<pqxx::connection>(connection_string);
 	return conn->is_open();
 }
 
