@@ -13,12 +13,11 @@
 #include "Database.hpp"
 
 #include <format>
-#include <map>
+#include <iostream>
+#include <pqxx/except.hxx>
 #include <pqxx/pqxx>
-#include <string_view>
-#include <utility>
 
-static pqxx::connection* conn{nullptr};
+static std::unique_ptr<pqxx::connection> conn{nullptr};
 
 /**
  * @brief connect to a postgres database
@@ -36,7 +35,7 @@ bool Database::connect(const std::string& db_name,
 					   const std::string& host,
 					   const std::string& port) {
 	Database::disconnect();
-	conn = new pqxx::connection(
+	conn = std::make_unique<pqxx::connection>(
 		std::format("dbname={} user={} password={} hostaddr={} port={}", db_name, user, password, host, port));
 
 	return conn->is_open();
@@ -49,8 +48,9 @@ bool Database::connect(const std::string& db_name,
  * @return returns a bool if the connection was successful
  */
 bool Database::connect(const std::string& connection_string) {
-	Database::disconnect();
-	conn = new pqxx::connection(connection_string);
+	std::cout << "About to Connect: " << connection_string << std::endl;
+	conn = std::make_unique<pqxx::connection>(connection_string);
+	std::cout << "Connected!" << std::endl;
 	return conn->is_open();
 }
 
@@ -60,8 +60,6 @@ bool Database::connect(const std::string& connection_string) {
  * @return returns a bool if the connection was successful
  */
 void Database::disconnect() noexcept {
-	if (conn)
-		delete conn;
 	conn = nullptr;
 }
 
@@ -112,5 +110,5 @@ pqxx::connection* Database::getConnection() noexcept {
 	if (!Database::hasConnection()) {
 		Database::reconnect();
 	}
-	return conn;
+	return conn.get();
 }

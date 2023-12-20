@@ -23,7 +23,6 @@
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <MemberCommand.hpp>
-#include <PongCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <ResourcesCommand.hpp>
@@ -44,7 +43,6 @@ void Commands::registerCommands() {
 	/// REGISTER ALL COMMANDS HERE:
 	////////////////////////////////////
 	Bot::add_ready_command(std::make_shared<SetStatus>());
-	Bot::add_message_command(std::make_shared<PongCommand>());
 	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
