@@ -14,10 +14,11 @@
 
 #include <format>
 #include <iostream>
+#include <memory>
 #include <pqxx/except.hxx>
 #include <pqxx/pqxx>
 
-static std::unique_ptr<pqxx::connection> conn{nullptr};
+static std::unique_ptr<pqxx::connection> conn;
 
 /**
  * @brief connect to a postgres database
@@ -48,8 +49,9 @@ bool Database::connect(const std::string& db_name,
  * @return returns a bool if the connection was successful
  */
 bool Database::connect(const std::string& connection_string) {
-	std::cout << "About to Connect: " << connection_string << std::endl;
-	conn = std::make_unique<pqxx::connection>(connection_string);
+	pqxx::connection nConn{pqxx::connection(connection_string)};
+	std::cout << "connection created!" << std::endl;
+	// conn = std::unique_ptr<pqxx::connection>(nConn);
 	std::cout << "Connected!" << std::endl;
 	return conn->is_open();
 }

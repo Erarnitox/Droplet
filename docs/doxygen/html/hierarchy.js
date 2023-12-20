@@ -33,8 +33,7 @@ var hierarchy =
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],
     [ "IMessageCommand", "classIMessageCommand.html", [
-      [ "CleanUp", "classCleanUp.html", null ],
-      [ "PongCommand", "classPongCommand.html", null ]
+      [ "CleanUp", "classCleanUp.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
       [ "ReactionRoles", "classReactionRoles.html", null ]
