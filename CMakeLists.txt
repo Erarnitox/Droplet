@@ -3,20 +3,24 @@ cmake_minimum_required(VERSION 3.25)
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
-set(CPP_STANDARD 20)
-set(CXX_STANDARD 20)
+set(CPP_STANDARD 23)
+set(CXX_STANDARD 23)
+
+add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=1)
+add_compile_definitions(GLIBCXX_USE_CXX11_ABI=1)
 
 set(BUILD_SHARED_LIBS OFF)
 # set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
 # set(OPENSSL_TEST OFF) #no-test
+# set(DPP_BUILD_TEST OFF)
 
 find_package(OpenSSL REQUIRED)
 
 project(droplet 
-	VERSION 1.0.2 # https://semver.org/
+	VERSION 1.0.3 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.dropsoft.org"
-	LANGUAGES CXX	
+	LANGUAGES CXX
 )
 
 # disable in source builds

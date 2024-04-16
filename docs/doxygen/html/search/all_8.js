@@ -15,7 +15,7 @@ var searchData=
   ['initdatabase_12',['InitDatabase',['../classInitDatabase.html',1,'']]],
   ['initdatabase_2ecpp_13',['InitDatabase.cpp',['../InitDatabase_8cpp.html',1,'']]],
   ['initdatabase_2ehpp_14',['InitDatabase.hpp',['../InitDatabase_8hpp.html',1,'']]],
-  ['invitecommand_15',['invitecommand',['../classInviteCommand.html#a7bdab4129c544c27bc4af6e537f29a3b',1,'InviteCommand::InviteCommand()'],['../classInviteCommand.html',1,'InviteCommand']]],
+  ['invitecommand_15',['InviteCommand',['../classInviteCommand.html',1,'InviteCommand'],['../classInviteCommand.html#a7bdab4129c544c27bc4af6e537f29a3b',1,'InviteCommand::InviteCommand()']]],
   ['invitecommand_2ecpp_16',['InviteCommand.cpp',['../InviteCommand_8cpp.html',1,'']]],
   ['invitecommand_2ehpp_17',['InviteCommand.hpp',['../InviteCommand_8hpp.html',1,'']]],
   ['ireactioncommand_18',['IReactionCommand',['../classIReactionCommand.html',1,'']]],

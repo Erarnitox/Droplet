@@ -15,6 +15,7 @@
 #include <cstddef>
 #include <pqxx/pqxx>
 #include <string>
+#include <variant>
 #include <vector>
 
 #include "RowDTOAdapter.hpp"
