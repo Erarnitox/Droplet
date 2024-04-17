@@ -128,7 +128,7 @@ constexpr char HASH_FILE[]{"command_hash"};
  *
  * @return returns the read checksum or 0 if none could be read
  */
-static inline size_t get_prior_hash() {
+static inline auto get_prior_hash() -> size_t {
 	std::ifstream hash_file;
 	hash_file.open(HASH_FILE, std::ios::in | std::ios::binary);
 
@@ -147,7 +147,7 @@ static inline size_t get_prior_hash() {
  * @param slash_commands a list of slash commands
  * @return returns the calculated checksum for the provided list of slash commands
  */
-static inline size_t get_current_hash(const slash_commands_t& slash_commands) {
+static inline auto get_current_hash(const slash_commands_t& slash_commands) -> size_t {
 	size_t sum{0};
 
 	// calculate a simple checksum

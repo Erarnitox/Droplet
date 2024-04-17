@@ -33,6 +33,6 @@ var searchData=
   ['irepository_3c_20resourcedto_20_3e_30',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20userdto_20_3e_31',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20welcomechanneldto_20_3e_32',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_33',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]],
+  ['is_5fadmin_33',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
   ['is_5fsubscribed_34',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
 ];

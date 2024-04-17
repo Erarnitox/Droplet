@@ -13,6 +13,7 @@
 #pragma once
 
 #include <cstddef>
+#include <iostream>
 #include <pqxx/pqxx>
 #include <string>
 #include <variant>
@@ -57,8 +58,9 @@ constexpr void assignResults(const pqxx::result& result, std::vector<std::varian
  * @return error code if the query was executed
  */
 template <typename... Types>
-[[nodiscard("You need to check if the Query was executed on the Database!")]] bool execQuery(const std::string& query,
-																							 Types&&... args) noexcept {
+[[nodiscard("You need to check if the Query was executed on the Database!")]] auto execQuery(const std::string& query,
+																							 Types&&... args) noexcept
+	-> bool {
 	static int times = 0;
 	try {
 		pqxx::work txn(*Database::getConnection());
@@ -90,7 +92,7 @@ template <typename... Types>
  * @return RowDTOAdapter that represents the selected database row
  */
 template <typename... Types>
-[[nodiscard]] RowDTOAdapter execSelect(const std::string& query, Types&&... args) noexcept {
+[[nodiscard]] auto execSelect(const std::string& query, Types&&... args) noexcept -> RowDTOAdapter {
 	static int times = 0;
 	try {
 		pqxx::work txn(*Database::getConnection());
@@ -110,6 +112,9 @@ template <typename... Types>
 		}
 		Database::reconnect();
 		return execSelect(query, args...);
+	} catch (...) {
+		std::cout << "Invalid selection for query: " << query << std::endl;
+		return {{}};  // return an empty selection
 	}
 }
 }  // namespace database

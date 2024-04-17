@@ -14,6 +14,7 @@
 #include <dpp/timer.h>
 
 #include <Core.hpp>
+#include <array>
 #include <chrono>
 #include <ratio>
 #include <regex>
@@ -27,7 +28,7 @@
  * @param member the guild member
  * @return whether the member has admin right on guild or not
  */
-bool Core::is_admin(const dpp::guild_member& member) noexcept {
+auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
 	for (const auto& role_id : member.get_roles()) {
 		const dpp::role& role{*dpp::find_role(role_id)};
 		if (role.has_administrator())
@@ -42,7 +43,7 @@ bool Core::is_admin(const dpp::guild_member& member) noexcept {
  * @param mention the mention string of a role
  * @return returns the role id as a std::string
  */
-std::string Core::get_role_id(const std::string& mention) noexcept {
+auto Core::get_role_id(const std::string& mention) noexcept -> std::string {
 	std::regex re("<@&([0-9]+)>");
 	std::smatch match;
 
@@ -59,7 +60,7 @@ std::string Core::get_role_id(const std::string& mention) noexcept {
  * @param mention the mention string of a channel
  * @return the channel id as a std::string
  */
-std::string Core::get_channel_id(const std::string& mention) noexcept {
+auto Core::get_channel_id(const std::string& mention) noexcept -> std::string {
 	std::regex re("<#([0-9]+)>");
 	std::smatch match;
 
@@ -192,7 +193,8 @@ void Core::timed_reply_private(dpp::cluster& bot,
  * @param name the name of the parameter
  * @return the parameter with the given name as a std::string
  */
-std::string Core::get_parameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept {
+auto Core::get_parameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept
+	-> std::string {
 	const auto variant{event.get_parameter(name)};
 	const auto value_ptr{std::get_if<std::string>(&variant)};
 
@@ -203,4 +205,26 @@ std::string Core::get_parameter(dpp::cluster& bot, const dpp::slashcommand_t eve
 		return std::string("");
 	}
 	return *value_ptr;
+}
+
+auto Core::simple_hash(const std::string& string) -> std::string {
+	std::array<unsigned, 32> hash{};
+	std::array<char, 37> alphabet{"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
+
+	std::array<unsigned, 21> primes{101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
+									157, 163, 167, 173, 179, 181, 191, 193, 197, 199};
+
+	for (unsigned i{0}; i < string.length() || i < 32; ++i) {
+		hash[i % 32] ^= (((unsigned)string[i % string.length()]) % primes[i % primes.size()]) ^ i;
+	}
+
+	std::string result;
+	result.reserve(64);
+
+	for (size_t i{0}; i < 32; ++i) {
+		result += alphabet[(((unsigned)hash[i]) / 11) % 31];
+		result += alphabet[((unsigned)hash[i]) % 37];
+	}
+
+	return result;
 }

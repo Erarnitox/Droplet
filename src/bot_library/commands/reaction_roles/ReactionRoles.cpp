@@ -2,9 +2,11 @@
 
 #include <appcommand.h>
 
+#include <cstdint>
 #include <format>
 #include <variant>
 
+#include "Core.hpp"
 #include "IReactionCommand.hpp"
 #include "ReactionRoleDTO.hpp"
 #include "ReactionRoleRepository.hpp"
@@ -13,14 +15,11 @@ ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 	this->command_name = "reaction_role";
 	this->command_description = "Create reaction Roles (Admin only!)";
 
-	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "message_link", "A link to the message to react to", true));
+	this->command_options.emplace_back(dpp::co_string, "message_link", "A link to the message to react to", true);
 
-	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "emoji", "The emoji the user needs to react with", true));
+	this->command_options.emplace_back(dpp::co_string, "emoji", "The emoji the user needs to react with", true);
 
-	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "role", "The role that will be granted", true));
+	this->command_options.emplace_back(dpp::co_string, "role", "The role that will be granted", true);
 }
 
 void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -135,7 +134,8 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 		return;
 	}
 
-	const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size() - 3) : emoji.substr(1, 1)};
+	const auto usable_emoji{Core::simple_hash(emoji)};
+	std::cout << "Emoji hash: " << usable_emoji << std::endl;
 	if (usable_emoji.empty()) {
 		return;
 	}
@@ -169,7 +169,7 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 		return;
 	}
 
-	const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size() - 3) : emoji.substr(1, 1)};
+	const auto usable_emoji{Core::simple_hash(emoji)};
 	if (usable_emoji.empty()) {
 		return;
 	}

@@ -9,8 +9,9 @@ var searchData=
   ['setstatus_6',['SetStatus',['../classSetStatus.html',1,'']]],
   ['setstatus_2ecpp_7',['SetStatus.cpp',['../SetStatus_8cpp.html',1,'']]],
   ['setstatus_2ehpp_8',['SetStatus.hpp',['../SetStatus_8hpp.html',1,'']]],
-  ['slash_5fcommands_9',['slash_commands',['../classBot.html#a1bc0790c4cf2ae3331ae344277e550a9',1,'Bot']]],
-  ['slash_5fcommands_5ft_10',['slash_commands_t',['../Bot_8hpp.html#a67608b650e8e93e6a0a71b4e487fe4a6',1,'Bot.hpp']]],
-  ['solution_11',['solution',['../classChallengeBadgeDTO.html#a0487112ea03e88cc5c404023ca0eac9f',1,'ChallengeBadgeDTO::solution'],['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO::solution']]],
-  ['start_5fbot_12',['start_bot',['../BotLibrary_8cpp.html#a7ae6b6f57ce26a1ebdf193290ea23ddb',1,'start_bot(const bool IS_TEST):&#160;BotLibrary.cpp'],['../BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de',1,'start_bot(bool IS_TEST=false) -&gt; void:&#160;BotLibrary.cpp']]]
+  ['simple_5fhash_9',['simple_hash',['../classCore.html#afd02cc357f20b9f05ea4654118cc2713',1,'Core']]],
+  ['slash_5fcommands_10',['slash_commands',['../classBot.html#a1bc0790c4cf2ae3331ae344277e550a9',1,'Bot']]],
+  ['slash_5fcommands_5ft_11',['slash_commands_t',['../Bot_8hpp.html#a67608b650e8e93e6a0a71b4e487fe4a6',1,'Bot.hpp']]],
+  ['solution_12',['solution',['../classChallengeBadgeDTO.html#a0487112ea03e88cc5c404023ca0eac9f',1,'ChallengeBadgeDTO::solution'],['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO::solution']]],
+  ['start_5fbot_13',['start_bot',['../BotLibrary_8cpp.html#a7ae6b6f57ce26a1ebdf193290ea23ddb',1,'start_bot(const bool IS_TEST):&#160;BotLibrary.cpp'],['../BotLibrary_8hpp.html#a3ff4960139cb694a4a405b9757ab96de',1,'start_bot(bool IS_TEST=false) -&gt; void:&#160;BotLibrary.cpp']]]
 ];
