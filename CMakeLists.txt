@@ -17,7 +17,7 @@ set(BUILD_SHARED_LIBS OFF)
 find_package(OpenSSL REQUIRED)
 
 project(droplet 
-	VERSION 1.0.3 # https://semver.org/
+	VERSION 1.1.0 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.dropsoft.org"
 	LANGUAGES CXX

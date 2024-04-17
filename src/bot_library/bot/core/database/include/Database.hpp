@@ -80,6 +80,7 @@ template <typename... Types>
 		Database::reconnect();
 		return execQuery(query, args...);
 	} catch (...) {
+		std::cout << std::format("Invalid exec for query:{}\n", query);
 		return false;
 	}
 }
@@ -113,7 +114,7 @@ template <typename... Types>
 		Database::reconnect();
 		return execSelect(query, args...);
 	} catch (...) {
-		std::cout << "Invalid selection for query: " << query << std::endl;
+		std::cout << std::format("Invalid selection for query: {}\n", query);
 		return {{}};  // return an empty selection
 	}
 }
