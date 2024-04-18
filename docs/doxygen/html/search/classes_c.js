@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['userdto_0',['UserDTO',['../classUserDTO.html',1,'']]],
-  ['userrepository_1',['UserRepository',['../classUserRepository.html',1,'']]]
+  ['textdto_0',['TextDTO',['../classTextDTO.html',1,'']]],
+  ['textrepository_1',['TextRepository',['../classTextRepository.html',1,'']]],
+  ['textscommand_2',['TextsCommand',['../classTextsCommand.html',1,'']]]
 ];

@@ -17,6 +17,7 @@ var searchData=
   ['irepository_3c_20memberdto_20_3e_14',['IRepository&lt; MemberDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20reactionroledto_20_3e_15',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20resourcedto_20_3e_16',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20userdto_20_3e_17',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20welcomechanneldto_20_3e_18',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]]
+  ['irepository_3c_20textdto_20_3e_17',['IRepository&lt; TextDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20userdto_20_3e_18',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20welcomechanneldto_20_3e_19',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]]
 ];

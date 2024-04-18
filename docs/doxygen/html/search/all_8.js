@@ -2,7 +2,7 @@ var searchData=
 [
   ['ibuttoncommand_0',['IButtonCommand',['../classIButtonCommand.html',1,'']]],
   ['ibuttoncommand_2ehpp_1',['IButtonCommand.hpp',['../IButtonCommand_8hpp.html',1,'']]],
-  ['id_2',['id',['../classResourceDTO.html#a64e7321d52b8284435d6b9b6f01660b6',1,'ResourceDTO']]],
+  ['id_2',['id',['../classResourceDTO.html#a64e7321d52b8284435d6b9b6f01660b6',1,'ResourceDTO::id'],['../classTextDTO.html#a59528fc9b1e36df0e5c374ef2e87ea19',1,'TextDTO::id']]],
   ['iformcommand_3',['IFormCommand',['../classIFormCommand.html',1,'']]],
   ['iformcommand_2ehpp_4',['IFormCommand.hpp',['../IFormCommand_8hpp.html',1,'']]],
   ['iglobalslashcommand_5',['IGlobalSlashCommand',['../classIGlobalSlashCommand.html',1,'']]],
@@ -31,8 +31,9 @@ var searchData=
   ['irepository_3c_20memberdto_20_3e_28',['IRepository&lt; MemberDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20reactionroledto_20_3e_29',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20resourcedto_20_3e_30',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20userdto_20_3e_31',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20welcomechanneldto_20_3e_32',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_33',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
-  ['is_5fsubscribed_34',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
+  ['irepository_3c_20textdto_20_3e_31',['IRepository&lt; TextDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20userdto_20_3e_32',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20welcomechanneldto_20_3e_33',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
+  ['is_5fadmin_34',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
+  ['is_5fsubscribed_35',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
 ];

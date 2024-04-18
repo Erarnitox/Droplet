@@ -30,6 +30,7 @@
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
 #include <SetStatus.hpp>
+#include <TextsCommand.hpp>
 #include <memory>
 
 #include "profile/ProfileCommand.hpp"
@@ -48,6 +49,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
+	Bot::add_slash_command(std::make_shared<TextsCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
 	Bot::add_slash_command(std::make_shared<MemberCommand>());

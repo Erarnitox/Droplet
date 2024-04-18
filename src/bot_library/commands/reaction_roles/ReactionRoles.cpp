@@ -135,10 +135,6 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 	}
 
 	const auto usable_emoji{Core::simple_hash(emoji)};
-	std::cout << "Emoji hash: " << usable_emoji << std::endl;
-	if (usable_emoji.empty()) {
-		return;
-	}
 
 	ReactionRoleRepository repo;
 	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
@@ -170,9 +166,6 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 	}
 
 	const auto usable_emoji{Core::simple_hash(emoji)};
-	if (usable_emoji.empty()) {
-		return;
-	}
 
 	ReactionRoleRepository repo;
 	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};

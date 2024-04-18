@@ -27,7 +27,8 @@ var hierarchy =
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
-      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
+      [ "SetChannelCommand", "classSetChannelCommand.html", null ],
+      [ "TextsCommand", "classTextsCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", [
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
@@ -64,6 +65,9 @@ var hierarchy =
     [ "IRepository< ResourceDTO >", "classIRepository.html", [
       [ "ResourceRepository", "classResourceRepository.html", null ]
     ] ],
+    [ "IRepository< TextDTO >", "classIRepository.html", [
+      [ "TextRepository", "classTextRepository.html", null ]
+    ] ],
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
@@ -75,6 +79,7 @@ var hierarchy =
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
+    [ "TextDTO", "classTextDTO.html", null ],
     [ "UserDTO", "classUserDTO.html", null ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
 ];

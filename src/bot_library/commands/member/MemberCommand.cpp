@@ -16,7 +16,7 @@ MemberCommand::MemberCommand() : IGlobalSlashCommand() {
 			.add_choice(dpp::command_option_choice("Add a team Member", std::string("member_add")))
 			.add_choice(dpp::command_option_choice("Remove a team Member", std::string("member_remove"))));
 
-	this->command_options.emplace_back(dpp::command_option(dpp::co_user, "member", "The Member to manage", true));
+	this->command_options.emplace_back(dpp::co_user, "member", "The Member to manage", true);
 }
 
 void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -26,6 +26,11 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	if (event.command.guild_id != dpp::snowflake(808151108748836914ull)) {
 		event.reply("This command can only be executed on the DropSoft Server!");
+		return;
+	}
+
+	if (!Core::is_admin(event.command.member)) {
+		event.reply("Only admins are allowed to run this command!");
 		return;
 	}
 

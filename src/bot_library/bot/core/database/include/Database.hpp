@@ -13,11 +13,12 @@
 #pragma once
 
 #include <cstddef>
-#include <iostream>
+// #include <iostream>
 #include <pqxx/pqxx>
 #include <string>
 #include <variant>
 #include <vector>
+// #include <format>
 
 #include "RowDTOAdapter.hpp"
 
@@ -80,7 +81,7 @@ template <typename... Types>
 		Database::reconnect();
 		return execQuery(query, args...);
 	} catch (...) {
-		std::cout << std::format("Invalid exec for query:{}\n", query);
+		// std::cout << std::format("Invalid exec for query:{}\n", query);
 		return false;
 	}
 }
@@ -114,7 +115,7 @@ template <typename... Types>
 		Database::reconnect();
 		return execSelect(query, args...);
 	} catch (...) {
-		std::cout << std::format("Invalid selection for query: {}\n", query);
+		// std::cout << std::format("Invalid selection for query: {}\n", query);
 		return {{}};  // return an empty selection
 	}
 }
