@@ -1,10 +1,10 @@
 {
+  "version" : 2,
   "cmakeMinimumRequired" : {
       "major" : 3,
       "minor" : 20,
       "patch" : 0
   },
-  "version" : 3,
   "configurePresets" : [
     {
       "name" : "debug",
@@ -42,11 +42,11 @@
       "displayName" : "(Experimental) Unity Build - (Linux) Ninja and Clang",
       "description" : "Experimental - Super fast unity build",
       "generator" : "Ninja",
-      "binaryDir" : "${sourceDir}/release",
+      "binaryDir" : "${sourceDir}/jumbo",
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
           "CMAKE_BUILD_TYPE" : "Release",
-          "CMAKE_CXX_FLAGS_RELEASE": "-Ofast -DNDEBUG -ffast-math -ffinite-math -finline -floop-unroll -ftree-vectorize",
+          "CMAKE_CXX_FLAGS_RELEASE": "-Ofast -DNDEBUG -ffast-math -finline -ftree-vectorize",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "clang++",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
@@ -54,6 +54,20 @@
           "CMAKE_UNITY_BUILD_BATCH_SIZE": "32",
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configurePreset": "debug"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "jumbo",
+      "configurePreset": "jumbo"
     }
   ]
 }
