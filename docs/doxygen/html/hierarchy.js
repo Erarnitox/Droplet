@@ -22,6 +22,7 @@ var hierarchy =
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "MemberCommand", "classMemberCommand.html", null ],
+      [ "ProductsCommand", "classProductsCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
@@ -59,6 +60,9 @@ var hierarchy =
     [ "IRepository< MemberDTO >", "classIRepository.html", [
       [ "MemberRepository", "classMemberRepository.html", null ]
     ] ],
+    [ "IRepository< ProductDTO >", "classIRepository.html", [
+      [ "ProductRepository", "classProductRepository.html", null ]
+    ] ],
     [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
       [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
     ] ],
@@ -76,6 +80,7 @@ var hierarchy =
     ] ],
     [ "LogChannelDTO", "classLogChannelDTO.html", null ],
     [ "MemberDTO", "classMemberDTO.html", null ],
+    [ "ProductDTO", "classProductDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],

@@ -9,6 +9,7 @@ var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
     [ "init_database", "dir_4bf8f6c3c349d2a29524f93c7ce04644.html", "dir_4bf8f6c3c349d2a29524f93c7ce04644" ],
     [ "invite", "dir_dc3bc99bc501644e197c4d2698e0fc8f.html", "dir_dc3bc99bc501644e197c4d2698e0fc8f" ],
     [ "member", "dir_bf65c5e2ffa66c1752b633151f29fa88.html", "dir_bf65c5e2ffa66c1752b633151f29fa88" ],
+    [ "products", "dir_8f538d8caacee6ea6e54eacf5168a366.html", "dir_8f538d8caacee6ea6e54eacf5168a366" ],
     [ "profile", "dir_3f526b2c6f77046a2bd3d6f486c710c8.html", "dir_3f526b2c6f77046a2bd3d6f486c710c8" ],
     [ "reaction_roles", "dir_55709f21cee890691a392e71066e61b8.html", "dir_55709f21cee890691a392e71066e61b8" ],
     [ "resources", "dir_4664096a0ece9a7aba46a7b7bb421972.html", "dir_4664096a0ece9a7aba46a7b7bb421972" ],

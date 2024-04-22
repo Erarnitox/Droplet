@@ -1,7 +1,7 @@
 var classResourceRepository =
 [
-    [ "create", "classResourceRepository.html#a94f7be91ec4acac0e1324cafbd92c22e", null ],
-    [ "get", "classResourceRepository.html#a0d78092e27ec0663030792793b88ea20", null ],
-    [ "remove", "classResourceRepository.html#ab716f6cc1bc90229d7bdb3d674bc1b66", null ],
-    [ "update", "classResourceRepository.html#af0d1831a24d24eafa8e195bc0da43b0c", null ]
+    [ "create", "classResourceRepository.html#aa375b9c45ab9792128d8a38e8494cfa2", null ],
+    [ "get", "classResourceRepository.html#abfb67a5889c290033a95638e49f41108", null ],
+    [ "remove", "classResourceRepository.html#a6a119ff1f9c0b69ba8e119348e322a5d", null ],
+    [ "update", "classResourceRepository.html#a4884f8ab9160a4080fe31fad385960b9", null ]
 ];

@@ -1,22 +1,26 @@
 #include "ResourceDTO.hpp"
 
-ResourceDTO::ResourceDTO(const std::string& title,
-						 const std::string& category,
-						 const std::string& description,
-						 const std::string& url,
+#include <utility>
+
+ResourceDTO::ResourceDTO(std::string title,
+						 std::string category,
+						 std::string description,
+						 std::string url,
 						 int difficulty,
 						 size_t guild_id,
 						 std::string creator,
-						 size_t creator_id)
+						 size_t creator_id,
+						 std::string tags)
 	: id{0},
-	  title{title},
-	  category{category},
-	  description{description},
-	  url{url},
+	  title{std::move(title)},
+	  category{std::move(category)},
+	  description{std::move(description)},
+	  url{std::move(url)},
 	  difficulty{difficulty},
 	  guild_id{guild_id},
-	  creator{creator},
-	  creator_id{creator_id} {
+	  creator{std::move(creator)},
+	  creator_id{creator_id},
+	  tags{std::move(tags)} {
 }
 
 ResourceDTO::ResourceDTO(const RowDTOAdapter& row)
@@ -28,5 +32,6 @@ ResourceDTO::ResourceDTO(const RowDTOAdapter& row)
 	  difficulty{row.get<int>("difficulty")},
 	  guild_id{row.get<size_t>("guild_id")},
 	  creator{row.get<std::string>("creator")},
-	  creator_id{row.get<size_t>("creator_id")} {
+	  creator_id{row.get<size_t>("creator_id")},
+	  tags{row.get<std::string>("tags")} {
 }

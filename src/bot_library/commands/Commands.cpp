@@ -23,6 +23,7 @@
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <MemberCommand.hpp>
+#include <ProductsCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <ResourcesCommand.hpp>
@@ -50,6 +51,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
 	Bot::add_slash_command(std::make_shared<TextsCommand>());
+	Bot::add_slash_command(std::make_shared<ProductsCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
 	Bot::add_slash_command(std::make_shared<MemberCommand>());
