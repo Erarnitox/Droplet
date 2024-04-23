@@ -56,7 +56,7 @@ auto PortalRepository::get(size_t id) -> PortalDTO {
 }
 
 auto PortalRepository::getAll() -> std::vector<PortalDTO> {
-	static std::string sql_string{"SELECT guild_id, channel_id FROM portals WHERE id=$1::int8"};
+	static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
 	auto result{database::execSelectAll(sql_string)};
 
 	std::vector<PortalDTO> dtos;

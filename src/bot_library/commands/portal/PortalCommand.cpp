@@ -2,12 +2,15 @@
 
 #include <appcommand.h>
 #include <colors.h>
+#include <message.h>
 #include <snowflake.h>
 
 #include <Core.hpp>
 #include <PortalRepository.hpp>
 
 #include "IMessageCommand.hpp"
+#include "repositories/PortalDTO.hpp"
+#include "repositories/PortalRepository.hpp"
 
 PortalCommand::PortalCommand() : IGlobalSlashCommand(), IMessageCommand() {
 	this->command_name = "set_portal";
@@ -31,7 +34,7 @@ void PortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	PortalRepository repo;
 	PortalDTO data{guild_id, channel_id};
 
-	if (!repo.get(data.guild_id).channel_id) {
+	if (repo.get(data.guild_id).channel_id != 0) {
 		if (repo.update(data)) {
 			auto msg{dpp::message("Portal was moved here!")};
 			event.reply(msg);
@@ -51,7 +54,24 @@ void PortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 }
 
 void PortalCommand::on_message_create(const dpp::message_create_t& event) {
-	(void)event;
+	if(event.msg.author.is_bot()) return;
+
+	PortalRepository repo;
+	if (repo.get(event.msg.guild_id).channel_id == event.msg.channel_id) {
+		const std::vector<PortalDTO>& portals{repo.getAll()};
+		for (const PortalDTO& portal : portals) {
+			if(portal.channel_id == event.msg.channel_id) continue;
+
+			const auto& msg{ dpp::message(portal.channel_id, 
+				std::format(
+					"**{}**: {}",
+					event.msg.author.username,
+					event.msg.content
+				)
+			)};
+			Bot::ctx->message_create(msg);
+		}
+	}
 }
 
 void PortalCommand::on_message_delete(const dpp::message_delete_t& event) {
