@@ -10,7 +10,7 @@
 RollCommand::RollCommand() : IGlobalSlashCommand() {
 	this->command_name = "roll";
 	this->command_description = "Roll a dice";
-	this->command_options.emplace_back(dpp::command_option(dpp::co_integer, "bidding", "Bidding amount in EXP", true));
+	this->command_options.emplace_back(dpp::command_option(dpp::co_integer, "bidding", "Bidding amount in 🌢", true));
 }
 
 void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -47,7 +47,7 @@ void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	if (user_dto.exp < static_cast<size_t>(bidding)) {
-		event.reply(dpp::message("Your EXP-Balance is too low!").set_flags(dpp::m_ephemeral));
+		event.reply(dpp::message("Your 🌢-Balance is too low!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
@@ -78,7 +78,7 @@ void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			.set_color((result > 3) ? dpp::colors::green : dpp::colors::red)
 			.set_title((result > 3) ? std::format("WON! - {}", (result + 1)) : std::format("LOST - {}", (result + 1)))
 			.set_image(number_urls[result])
-			.add_field("New Balance", std::format("{}EXP", user_dto.exp))};
+			.add_field("New Balance", std::format("{}🌢", user_dto.exp))};
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));

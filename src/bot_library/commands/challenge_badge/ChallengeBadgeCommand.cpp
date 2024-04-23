@@ -36,7 +36,7 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 		dpp::co_string, "badge", "The badge that will be granted", true);
 
 	this->command_options.emplace_back(
-		dpp::co_integer, "xp", "The amount of xp that will be granted", true);
+		dpp::co_integer, "xp", "The amount of 🌢 that will be granted", true);
 
 	this->command_options.emplace_back(
 		dpp::co_string, "title", "The title for the challenge", true);
@@ -91,13 +91,13 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 
 	// create the challenge message
-	const auto& exp_string{ std::format("[{}XP]", xp) };
+	const auto& exp_string{ std::format("[{}🌢]", xp) };
 	dpp::embed embed = dpp::embed()
 						   .set_color(dpp::colors::green_apple)
 						   .set_title(title)
 						   .add_field("Challenge:", question, true)
 						   .add_field("Badge Reward:", badge, false)
-						   .add_field("EXP Reward:", exp_string, false);
+						   .add_field("🌢 Reward:", exp_string, false);
 
 	dpp::message msg(channel_id, embed);
 
@@ -148,7 +148,7 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// send a confirmation to the admin
 			event.reply(
-				dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {} - EXP:{}", question, badge, xp))
+				dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {} - {}🌢", question, badge, xp))
 					.set_flags(dpp::m_ephemeral));
 		});
 
@@ -251,7 +251,7 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 			} else {
 				event.reply(
 					dpp::message(
-						std::format("You have been awarded the Badge{} and {} EXP", badge_dto.badge, badge_dto.exp))
+						std::format("You have been awarded the Badge{} and {}🌢", badge_dto.badge, badge_dto.exp))
 						.set_flags(dpp::m_ephemeral));
 				return;
 			}

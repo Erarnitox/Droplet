@@ -10,7 +10,7 @@
 FlipCommand::FlipCommand() : IGlobalSlashCommand() {
 	this->command_name = "flip";
 	this->command_description = "Flip a coin";
-	this->command_options.emplace_back(dpp::command_option(dpp::co_integer, "bidding", "Bidding amount in EXP", true));
+	this->command_options.emplace_back(dpp::co_integer, "bidding", "Bidding amount in 🌢", true);
 }
 
 void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -47,7 +47,7 @@ void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	if (user_dto.exp < static_cast<size_t>(bidding)) {
-		event.reply(dpp::message("Your EXP-Balance is too low!").set_flags(dpp::m_ephemeral));
+		event.reply(dpp::message("Your 🌢-Balance is too low!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
@@ -72,7 +72,7 @@ void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 						 .set_color(result ? dpp::colors::green : dpp::colors::red)
 						 .set_title(result ? "HEADS $_$" : "TAILS :c")
 						 .set_image(result ? heads_url : tails_url)
-						 .add_field("New Balance", std::format("{}EXP", user_dto.exp))};
+						 .add_field("New Balance", std::format("{}🌢", user_dto.exp))};
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));

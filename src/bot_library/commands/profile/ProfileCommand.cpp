@@ -18,7 +18,7 @@
 ProfileCommand::ProfileCommand() : IGlobalSlashCommand() {
 	this->command_name = "profile";
 	this->command_description = "View Profile Information";
-	this->command_options.emplace_back(dpp::command_option(dpp::co_user, "user", "User to view the Profile of", true));
+	this->command_options.emplace_back(dpp::co_user, "user", "User to view the Profile of", true);
 }
 
 void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -82,7 +82,7 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto missing{500 - ((exp + 501) % 500)};
 
 	embed.add_field(std::format("LEVEL: [{}]", level),
-					std::format("{}EXP/{}EXP to Reach Level {}", exp, (exp + missing), (level + 1)));
+					std::format("{}/{}🌢 to Reach Level {}", exp, (exp + missing), (level + 1)));
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
