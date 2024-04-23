@@ -19,7 +19,7 @@ ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 
 	this->command_options.emplace_back(dpp::co_string, "emoji", "The emoji the user needs to react with", true);
 
-	this->command_options.emplace_back(dpp::co_string, "role", "The role that will be granted", true);
+	this->command_options.emplace_back(dpp::co_role, "role", "The role that will be granted", true);
 }
 
 void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {

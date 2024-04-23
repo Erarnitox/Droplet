@@ -24,22 +24,22 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 	this->command_description = "Create challenge Badge (Admin only!)";
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_channel, "channel", "In which channel to post the challenge in", true));
+		dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "question", "What is the question that needs to be solved?", true));
+		dpp::co_string, "question", "What is the question that needs to be solved?", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "solution", "The solution that needs to be entered", true));
+		dpp::co_string, "solution", "The solution that needs to be entered", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "badge", "The badge that will be granted", true));
+		dpp::co_string, "badge", "The badge that will be granted", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "xp", "The amount of xp that will be granted", true));
+		dpp::co_integer, "xp", "The amount of xp that will be granted", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "title", "The title for the challenge", true));
+		dpp::co_string, "title", "The title for the challenge", true);
 }
 
 void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -82,23 +82,22 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto xp{Core::get_parameter(*Bot::ctx, event, "xp")};
-	if (xp.empty()) {
-		return;
-	}
-
+	size_t xp{static_cast<size_t>(std::get<long>(event.get_parameter("xp")))};
+	
 	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
 	if (title.empty()) {
 		return;
 	}
 
+
 	// create the challenge message
+	const auto& exp_string{ std::format("[{}XP]", xp) };
 	dpp::embed embed = dpp::embed()
 						   .set_color(dpp::colors::green_apple)
 						   .set_title(title)
 						   .add_field("Challenge:", question, true)
 						   .add_field("Badge Reward:", badge, false)
-						   .add_field("EXP Reward:", xp, false);
+						   .add_field("EXP Reward:", exp_string, false);
 
 	dpp::message msg(channel_id, embed);
 
@@ -128,17 +127,9 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeBadgeRepository repo;
-			size_t exp{0};
-			try {
-				exp = std::stoull(xp);
-			} catch (...) {
-				event.reply(
-					dpp::message("Enter a valid positive integer as EXP Reward! ...").set_flags(dpp::m_ephemeral));
-				return;
-			}
-
+			
 			const auto& guild_name{event.command.get_guild().name};
-			ChallengeBadgeDTO data{badge, exp, static_cast<size_t>(guild_id), message_id, solution, guild_name};
+			ChallengeBadgeDTO data{badge, xp, static_cast<size_t>(guild_id), message_id, solution, guild_name};
 
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,

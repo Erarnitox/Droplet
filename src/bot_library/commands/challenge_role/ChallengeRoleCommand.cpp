@@ -1,4 +1,5 @@
 #include "ChallengeRoleCommand.hpp"
+#include <appcommand.h>
 
 #include <Core.hpp>
 #include <variant>
@@ -14,19 +15,19 @@ ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCom
 	this->command_description = "Create challenge Roles (Admin only!)";
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "channel", "In which channel to post the challenge in", true));
+		dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "question", "What is the question that needs to be solved?", true));
+		dpp::co_string, "question", "What is the question that needs to be solved?", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "solution", "The solution that needs to be entered", true));
+		dpp::co_string, "solution", "The solution that needs to be entered", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "role", "The role that will be granted", true));
+		dpp::co_role, "role", "The role that will be granted", true);
 
 	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "title", "The title for the challenge", true));
+		dpp::co_string, "title", "The title for the challenge", true);
 }
 
 void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -39,11 +40,8 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto channel{Core::get_parameter(*Bot::ctx, event, "channel")};
-	if (channel.empty()) {
-		return;
-	}
-
+	const auto channel_id{std::get<dpp::snowflake>(event.get_parameter("channel"))};
+	
 	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
 	if (question.empty()) {
 		return;
@@ -54,23 +52,19 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto role{Core::get_parameter(*Bot::ctx, event, "role")};
-	if (role.empty()) {
-		return;
-	}
+	const auto role_id{std::get<dpp::snowflake>(event.get_parameter("role"))};
+	const auto role{event.command.get_resolved_role(role_id)};
 
 	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
 	if (title.empty()) {
 		return;
 	}
 
-	const auto role_id{Core::get_role_id(role)};
 	if (role_id.empty()) {
 		event.reply(dpp::message("No valid Role provided!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
-	const auto channel_id{Core::get_channel_id(channel)};
 	if (channel_id.empty()) {
 		event.reply(dpp::message("No valid Channel provided!").set_flags(dpp::m_ephemeral));
 		return;
@@ -87,7 +81,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 						   .set_color(dpp::colors::black)
 						   .set_title(title)
 						   .add_field("Challenge:", question, true)
-						   .add_field("Role Reward:", role, false);
+						   .add_field("Role Reward:", role.get_mention(), false);
 
 	dpp::message msg(channel_id, embed);
 
@@ -103,14 +97,6 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		msg, [role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
-			size_t sane_role_id;
-			try {
-				sane_role_id = std::stoul(role_id);
-			} catch (std::invalid_argument exception) {
-				event.reply(dpp::message("Bad role! Just mention the role!").set_flags(dpp::m_ephemeral));
-				return;
-			}
-
 			size_t message_id{0};
 			try {
 				message_id = std::get<dpp::message>(sent_message).id;
@@ -125,7 +111,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeRoleRepository repo;
-			ChallengeRoleDTO data{sane_role_id, guild_id, message_id, solution};
+			ChallengeRoleDTO data{role_id, guild_id, message_id, solution};
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,
 							  std::format("Challenge role with message_id={} was "
@@ -142,7 +128,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			}
 
 			// send a confirmation to the admin
-			event.reply(dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role))
+			event.reply(dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role.get_mention()))
 							.set_flags(dpp::m_ephemeral));
 		});
 
