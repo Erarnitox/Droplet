@@ -23,6 +23,7 @@
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <MemberCommand.hpp>
+#include <PortalCommand.hpp>
 #include <ProductsCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
@@ -34,6 +35,7 @@
 #include <TextsCommand.hpp>
 #include <memory>
 
+#include "portal/PortalCommand.hpp"
 #include "profile/ProfileCommand.hpp"
 
 /**
@@ -74,4 +76,8 @@ void Commands::registerCommands() {
 	const auto& reaction_roles{std::make_shared<ReactionRoles>()};
 	Bot::add_slash_command(reaction_roles);
 	Bot::add_reaction_command(reaction_roles);
+
+	const auto& portal_command{std::make_shared<PortalCommand>()};
+	Bot::add_slash_command(portal_command);
+	Bot::add_message_command(portal_command);
 }

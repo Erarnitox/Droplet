@@ -119,4 +119,43 @@ template <typename... Types>
 		return {{}};  // return an empty selection
 	}
 }
+
+/**
+ * @brief executes a Select on the database
+ *
+ * @param query SQL select query to be executed
+ * @param args the arguments the query takes
+ * @return std::vector<RowDTOAdapter> that represents the selected database rows
+ */
+template <typename... Types>
+[[nodiscard]] auto execSelectAll(const std::string& query, Types&&... args) noexcept -> std::vector<RowDTOAdapter> {
+	static int times = 0;
+	try {
+		pqxx::work txn(*Database::getConnection());
+
+		// perform the database transaction
+		pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
+		txn.commit();
+
+		times = 0;
+
+		std::vector<RowDTOAdapter> selection;
+		for (long i{0}; i < result.size(); ++i) {
+			selection.emplace_back(result[0]);
+		}
+
+		return selection;
+	} catch (const pqxx::broken_connection& e) {
+		++times;
+		if (times > 10) {
+			times = 0;
+			return {pqxx::row()};
+		}
+		Database::reconnect();
+		return execSelectAll(query, args...);
+	} catch (...) {
+		// std::cout << std::format("Invalid selection for query: {}\n", query);
+		return {{}};  // return an empty selection
+	}
+}
 }  // namespace database

@@ -113,6 +113,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a0e9164716114c2db8c230823084c959f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a0e9164716114c2db8c230823084c959f">execSelect</a> (<a class="el" href="#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a></td></tr>
 <tr class="memdesc:a0e9164716114c2db8c230823084c959f"><td class="mdescLeft">&#160;</td><td class="mdescRight">executes a Select on the database  <br /></td></tr>
 <tr class="separator:a0e9164716114c2db8c230823084c959f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b4c66b5989f9bb6c8a051ba6c8a4415" id="r_a7b4c66b5989f9bb6c8a051ba6c8a4415"><td class="memTemplParams" colspan="2">template&lt;typename... Types&gt; </td></tr>
+<tr class="memitem:a7b4c66b5989f9bb6c8a051ba6c8a4415"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#a7cc2e252117384b0bd7387924e990610">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7b4c66b5989f9bb6c8a051ba6c8a4415">execSelectAll</a> (<a class="el" href="#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;<a class="el" href="#a7cc2e252117384b0bd7387924e990610">query</a>, <a class="el" href="#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;... <a class="el" href="#a7cc2e252117384b0bd7387924e990610">args</a>) <a class="el" href="#a7cc2e252117384b0bd7387924e990610">noexcept</a> -&gt; std::vector&lt; <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> &gt;</td></tr>
+<tr class="memdesc:a7b4c66b5989f9bb6c8a051ba6c8a4415"><td class="mdescLeft">&#160;</td><td class="mdescRight">executes a Select on the database  <br /></td></tr>
+<tr class="separator:a7b4c66b5989f9bb6c8a051ba6c8a4415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a7cc2e252117384b0bd7387924e990610" name="a7cc2e252117384b0bd7387924e990610"></a>
@@ -225,6 +229,47 @@ template&lt;typename... Types&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> that represents the selected database row </dd></dl>
+
+</div>
+</div>
+<a id="a7b4c66b5989f9bb6c8a051ba6c8a4415" name="a7b4c66b5989f9bb6c8a051ba6c8a4415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b4c66b5989f9bb6c8a051ba6c8a4415">&#9670;&#160;</a></span>execSelectAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Types&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a7cc2e252117384b0bd7387924e990610">auto</a> database::execSelectAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a7cc2e252117384b0bd7387924e990610">const</a> std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>query</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a7cc2e252117384b0bd7387924e990610">Types</a> &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;) -&gt; std::vector&lt;<a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>executes a Select on the database </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>SQL select query to be executed </td></tr>
+    <tr><td class="paramname">args</td><td>the arguments the query takes </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;RowDTOAdapter&gt; that represents the selected database rows </dd></dl>
 
 </div>
 </div>

@@ -22,6 +22,7 @@ var hierarchy =
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "MemberCommand", "classMemberCommand.html", null ],
+      [ "PortalCommand", "classPortalCommand.html", null ],
       [ "ProductsCommand", "classProductsCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
@@ -35,7 +36,8 @@ var hierarchy =
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
     ] ],
     [ "IMessageCommand", "classIMessageCommand.html", [
-      [ "CleanUp", "classCleanUp.html", null ]
+      [ "CleanUp", "classCleanUp.html", null ],
+      [ "PortalCommand", "classPortalCommand.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
       [ "ReactionRoles", "classReactionRoles.html", null ]
@@ -60,6 +62,9 @@ var hierarchy =
     [ "IRepository< MemberDTO >", "classIRepository.html", [
       [ "MemberRepository", "classMemberRepository.html", null ]
     ] ],
+    [ "IRepository< PortalDTO >", "classIRepository.html", [
+      [ "PortalRepository", "classPortalRepository.html", null ]
+    ] ],
     [ "IRepository< ProductDTO >", "classIRepository.html", [
       [ "ProductRepository", "classProductRepository.html", null ]
     ] ],
@@ -80,6 +85,7 @@ var hierarchy =
     ] ],
     [ "LogChannelDTO", "classLogChannelDTO.html", null ],
     [ "MemberDTO", "classMemberDTO.html", null ],
+    [ "PortalDTO", "classPortalDTO.html", null ],
     [ "ProductDTO", "classProductDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
