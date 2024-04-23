@@ -4,9 +4,9 @@
 
 #include "IMessageCommand.hpp"
 
-class PortalCommand : public IGlobalSlashCommand, public IMessageCommand {
+class SetPortalCommand : public IGlobalSlashCommand, public IMessageCommand {
   public:
-	PortalCommand();
+	SetPortalCommand();
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 	void on_message_create(const dpp::message_create_t& event) override;

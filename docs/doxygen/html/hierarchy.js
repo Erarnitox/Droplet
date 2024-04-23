@@ -22,14 +22,15 @@ var hierarchy =
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "MemberCommand", "classMemberCommand.html", null ],
-      [ "PortalCommand", "classPortalCommand.html", null ],
       [ "ProductsCommand", "classProductsCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
+      [ "RemovePortalCommand", "classRemovePortalCommand.html", null ],
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ],
+      [ "SetPortalCommand", "classSetPortalCommand.html", null ],
       [ "TextsCommand", "classTextsCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", [
@@ -37,7 +38,7 @@ var hierarchy =
     ] ],
     [ "IMessageCommand", "classIMessageCommand.html", [
       [ "CleanUp", "classCleanUp.html", null ],
-      [ "PortalCommand", "classPortalCommand.html", null ]
+      [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
       [ "ReactionRoles", "classReactionRoles.html", null ]

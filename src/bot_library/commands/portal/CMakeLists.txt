@@ -1,8 +1,10 @@
 target_include_directories(commands PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 add_library(portal_command STATIC
-    PortalCommand.cpp
-    PortalCommand.hpp
+    SetPortalCommand.cpp
+    SetPortalCommand.hpp
+    RemovePortalCommand.cpp
+    RemovePortalCommand.hpp
 )
 
 add_subdirectory(repositories)

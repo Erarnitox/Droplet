@@ -23,19 +23,20 @@
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <MemberCommand.hpp>
-#include <PortalCommand.hpp>
 #include <ProductsCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
+#include <RemovePortalCommand.hpp>
 #include <ResourcesCommand.hpp>
 #include <RollCommand.hpp>
 #include <ServerDetails.hpp>
 #include <SetChannelCommand.hpp>
+#include <SetPortalCommand.hpp>
 #include <SetStatus.hpp>
 #include <TextsCommand.hpp>
 #include <memory>
 
-#include "portal/PortalCommand.hpp"
+#include "portal/RemovePortalCommand.hpp"
 #include "profile/ProfileCommand.hpp"
 
 /**
@@ -58,6 +59,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
 	Bot::add_slash_command(std::make_shared<MemberCommand>());
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());
+	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);
@@ -77,7 +79,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(reaction_roles);
 	Bot::add_reaction_command(reaction_roles);
 
-	const auto& portal_command{std::make_shared<PortalCommand>()};
+	const auto& portal_command{std::make_shared<SetPortalCommand>()};
 	Bot::add_slash_command(portal_command);
 	Bot::add_message_command(portal_command);
 }

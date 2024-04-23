@@ -1,4 +1,4 @@
-#include "PortalCommand.hpp"
+#include "SetPortalCommand.hpp"
 
 #include <appcommand.h>
 #include <colors.h>
@@ -12,12 +12,12 @@
 #include "repositories/PortalDTO.hpp"
 #include "repositories/PortalRepository.hpp"
 
-PortalCommand::PortalCommand() : IGlobalSlashCommand(), IMessageCommand() {
+SetPortalCommand::SetPortalCommand() : IGlobalSlashCommand(), IMessageCommand() {
 	this->command_name = "set_portal";
 	this->command_description = "Set a channel as a portal for foreign messages (Admin only!)";
 }
 
-void PortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
+void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
@@ -53,31 +53,28 @@ void PortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	return;
 }
 
-void PortalCommand::on_message_create(const dpp::message_create_t& event) {
-	if(event.msg.author.is_bot()) return;
+void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
+	if (event.msg.author.is_bot())
+		return;
 
 	PortalRepository repo;
 	if (repo.get(event.msg.guild_id).channel_id == event.msg.channel_id) {
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {
-			if(portal.channel_id == event.msg.channel_id) continue;
+			if (portal.channel_id == event.msg.channel_id)
+				continue;
 
-			const auto& msg{ dpp::message(portal.channel_id, 
-				std::format(
-					"**{}**: {}",
-					event.msg.author.username,
-					event.msg.content
-				)
-			)};
+			const auto& msg{dpp::message(portal.channel_id,
+										 std::format("**{}**: {}", event.msg.author.username, event.msg.content))};
 			Bot::ctx->message_create(msg);
 		}
 	}
 }
 
-void PortalCommand::on_message_delete(const dpp::message_delete_t& event) {
+void SetPortalCommand::on_message_delete(const dpp::message_delete_t& event) {
 	(void)event;
 }
 
-void PortalCommand::on_message_delete_bulk(const dpp::message_delete_bulk_t& event) {
+void SetPortalCommand::on_message_delete_bulk(const dpp::message_delete_bulk_t& event) {
 	(void)event;
 }
