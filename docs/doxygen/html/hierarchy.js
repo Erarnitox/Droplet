@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "BlacklistDTO", "classBlacklistDTO.html", null ],
     [ "Bot", "classBot.html", null ],
     [ "ChallengeBadgeDTO", "classChallengeBadgeDTO.html", null ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
@@ -16,6 +17,7 @@ var hierarchy =
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
+      [ "BlacklistCommand", "classBlacklistCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "FlipCommand", "classFlipCommand.html", null ],
@@ -48,6 +50,9 @@ var hierarchy =
       [ "SetStatus", "classSetStatus.html", null ]
     ] ],
     [ "IRepository< DTO >", "classIRepository.html", null ],
+    [ "IRepository< BlacklistDTO >", "classIRepository.html", [
+      [ "BlacklistRepository", "classBlacklistRepository.html", null ]
+    ] ],
     [ "IRepository< ChallengeBadgeDTO >", "classIRepository.html", [
       [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html", null ]
     ] ],

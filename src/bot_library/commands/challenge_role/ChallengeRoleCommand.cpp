@@ -1,4 +1,5 @@
 #include "ChallengeRoleCommand.hpp"
+
 #include <appcommand.h>
 
 #include <Core.hpp>
@@ -14,20 +15,16 @@ ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCom
 	this->command_name = "challenge_role";
 	this->command_description = "Create challenge Roles (Admin only!)";
 
-	this->command_options.emplace_back(
-		dpp::co_channel, "channel", "In which channel to post the challenge in", true);
+	this->command_options.emplace_back(dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
 	this->command_options.emplace_back(
 		dpp::co_string, "question", "What is the question that needs to be solved?", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "solution", "The solution that needs to be entered", true);
+	this->command_options.emplace_back(dpp::co_string, "solution", "The solution that needs to be entered", true);
 
-	this->command_options.emplace_back(
-		dpp::co_role, "role", "The role that will be granted", true);
+	this->command_options.emplace_back(dpp::co_role, "role", "The role that will be granted", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "title", "The title for the challenge", true);
+	this->command_options.emplace_back(dpp::co_string, "title", "The title for the challenge", true);
 }
 
 void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -41,7 +38,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	const auto channel_id{std::get<dpp::snowflake>(event.get_parameter("channel"))};
-	
+
 	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
 	if (question.empty()) {
 		return;
@@ -128,8 +125,9 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			}
 
 			// send a confirmation to the admin
-			event.reply(dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role.get_mention()))
-							.set_flags(dpp::m_ephemeral));
+			event.reply(
+				dpp::message(std::format("Challenge Created!\nQuestion: {}\nReward: {}", question, role.get_mention()))
+					.set_flags(dpp::m_ephemeral));
 		});
 
 	return;

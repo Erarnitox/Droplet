@@ -9,6 +9,7 @@
 #include <PortalRepository.hpp>
 
 #include "IMessageCommand.hpp"
+#include "repositories/BlacklistRepository.hpp"
 #include "repositories/PortalDTO.hpp"
 #include "repositories/PortalRepository.hpp"
 
@@ -58,12 +59,20 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		return;
 
 	PortalRepository repo;
+	BlacklistRepository blacklist_repo;
+
 	if (repo.get(event.msg.guild_id).channel_id == event.msg.channel_id) {
+		const auto& blacklisted_users{blacklist_repo.getAll()};
+		for (const auto& user : blacklisted_users) {
+			if (user.username == event.msg.author.username) {
+				return;
+			}
+		}
+
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {
 			if (portal.channel_id == event.msg.channel_id)
 				continue;
-
 			const auto& msg{dpp::message(portal.channel_id,
 										 std::format("**{}**: {}", event.msg.author.username, event.msg.content))};
 			Bot::ctx->message_create(msg);

@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "BlacklistCommand", "classBlacklistCommand.html", "classBlacklistCommand" ],
+    [ "BlacklistDTO", "classBlacklistDTO.html", "classBlacklistDTO" ],
+    [ "BlacklistRepository", "classBlacklistRepository.html", "classBlacklistRepository" ],
     [ "Bot", "classBot.html", null ],
     [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", "classChallengeBadgeCommand" ],
     [ "ChallengeBadgeDTO", "classChallengeBadgeDTO.html", "classChallengeBadgeDTO" ],

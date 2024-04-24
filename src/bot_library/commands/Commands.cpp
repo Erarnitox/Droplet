@@ -16,6 +16,7 @@
 /// COMMAND HEADERS:
 ///////////////////////////////////////
 
+#include <BlacklistCommand.hpp>
 #include <ChallengeBadgeCommand.hpp>
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
@@ -35,9 +36,6 @@
 #include <SetStatus.hpp>
 #include <TextsCommand.hpp>
 #include <memory>
-
-#include "portal/RemovePortalCommand.hpp"
-#include "profile/ProfileCommand.hpp"
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -60,6 +58,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<MemberCommand>());
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());
 	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());
+	Bot::add_slash_command(std::make_shared<BlacklistCommand>());
 
 	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
 	Bot::add_slash_command(set_channel_command);

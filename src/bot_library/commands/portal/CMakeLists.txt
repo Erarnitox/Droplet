@@ -5,6 +5,8 @@ add_library(portal_command STATIC
     SetPortalCommand.hpp
     RemovePortalCommand.cpp
     RemovePortalCommand.hpp
+    BlacklistCommand.cpp
+    BlacklistCommand.hpp
 )
 
 add_subdirectory(repositories)

@@ -3,6 +3,10 @@ add_library(portal_repository STATIC
     PortalRepository.hpp
     PortalDTO.hpp
     PortalDTO.cpp
+    BlacklistRepository.cpp
+    BlacklistRepository.hpp
+    BlacklistDTO.hpp
+    BlacklistDTO.cpp
 )
 
 # enable additional warnings and static analysis for this target

@@ -23,23 +23,18 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 	this->command_name = "challenge_badge";
 	this->command_description = "Create challenge Badge (Admin only!)";
 
-	this->command_options.emplace_back(
-		dpp::co_channel, "channel", "In which channel to post the challenge in", true);
+	this->command_options.emplace_back(dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
 	this->command_options.emplace_back(
 		dpp::co_string, "question", "What is the question that needs to be solved?", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "solution", "The solution that needs to be entered", true);
+	this->command_options.emplace_back(dpp::co_string, "solution", "The solution that needs to be entered", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "badge", "The badge that will be granted", true);
+	this->command_options.emplace_back(dpp::co_string, "badge", "The badge that will be granted", true);
 
-	this->command_options.emplace_back(
-		dpp::co_integer, "xp", "The amount of 🌢 that will be granted", true);
+	this->command_options.emplace_back(dpp::co_integer, "xp", "The amount of 🌢 that will be granted", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "title", "The title for the challenge", true);
+	this->command_options.emplace_back(dpp::co_string, "title", "The title for the challenge", true);
 }
 
 void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -83,15 +78,14 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	size_t xp{static_cast<size_t>(std::get<long>(event.get_parameter("xp")))};
-	
+
 	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
 	if (title.empty()) {
 		return;
 	}
 
-
 	// create the challenge message
-	const auto& exp_string{ std::format("[{}🌢]", xp) };
+	const auto& exp_string{std::format("[{}🌢]", xp)};
 	dpp::embed embed = dpp::embed()
 						   .set_color(dpp::colors::green_apple)
 						   .set_title(title)
@@ -127,7 +121,7 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeBadgeRepository repo;
-			
+
 			const auto& guild_name{event.command.get_guild().name};
 			ChallengeBadgeDTO data{badge, xp, static_cast<size_t>(guild_id), message_id, solution, guild_name};
 
