@@ -9,7 +9,7 @@
 
 ProductsCommand::ProductsCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_product";
-	this->command_description = "Add a pdf to dropsoft.org/papers (Admin only!)";
+	this->command_description = "Add a pdf to dropsoft.org/papers (Dropsoft only!)";
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "title", "The title of the Document", true));
 
@@ -25,12 +25,7 @@ void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (event.command.guild_id != dpp::snowflake(808151108748836914ull)) {
-		event.reply("This command can only be executed on the DropSoft Server!");
-		return;
-	}
-
-	if (!Core::is_admin(event.command.member)) {
+	if (!Core::is_dropsoft_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
 	}

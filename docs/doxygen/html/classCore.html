@@ -105,7 +105,7 @@ $(function(){initNavTree('classCore.html',''); initResizable(); });
 <div class="dynheader">
 Collaboration diagram for Core:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCore__coll__graph.svg" width="155" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCore__coll__graph.svg" width="155" height="272"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -113,6 +113,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa36439a9b45ce71eae02e1e2151c8557" id="r_aa36439a9b45ce71eae02e1e2151c8557"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa36439a9b45ce71eae02e1e2151c8557">is_admin</a> (const dpp::guild_member &amp;member) noexcept -&gt; bool</td></tr>
 <tr class="memdesc:aa36439a9b45ce71eae02e1e2151c8557"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a guild member is admin of that guild  <br /></td></tr>
 <tr class="separator:aa36439a9b45ce71eae02e1e2151c8557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f02747717c2dcca752aa3db12cdc369" id="r_a3f02747717c2dcca752aa3db12cdc369"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f02747717c2dcca752aa3db12cdc369">is_dropsoft_admin</a> (const dpp::guild_member &amp;member) noexcept -&gt; bool</td></tr>
+<tr class="memdesc:a3f02747717c2dcca752aa3db12cdc369"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if a guild member is admin of dropsoft  <br /></td></tr>
+<tr class="separator:a3f02747717c2dcca752aa3db12cdc369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace334f8beaa881f83bfba40299f46aca" id="r_ace334f8beaa881f83bfba40299f46aca"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace334f8beaa881f83bfba40299f46aca">get_role_id</a> (const std::string &amp;mention) noexcept -&gt; std::string</td></tr>
 <tr class="memdesc:ace334f8beaa881f83bfba40299f46aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">gets the id of a mentioned role  <br /></td></tr>
 <tr class="separator:ace334f8beaa881f83bfba40299f46aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,6 +285,40 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>whether the member has admin right on guild or not </dd></dl>
+
+</div>
+</div>
+<a id="a3f02747717c2dcca752aa3db12cdc369" name="a3f02747717c2dcca752aa3db12cdc369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f02747717c2dcca752aa3db12cdc369">&#9670;&#160;</a></span>is_dropsoft_admin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Core::is_dropsoft_admin </td>
+          <td>(</td>
+          <td class="paramtype">const dpp::guild_member &amp;</td>          <td class="paramname"><span class="paramname"><em>member</em></span></td><td>)</td>
+          <td> -&gt; bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>checks if a guild member is admin of dropsoft </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">member</td><td>the guild member </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the member has admin right on dropsoft </dd></dl>
 
 </div>
 </div>

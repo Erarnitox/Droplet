@@ -38,6 +38,25 @@ auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
 }
 
 /**
+ * @brief checks if a guild member is admin of dropsoft
+ *
+ * @param member the guild member
+ * @return whether the member has admin right on dropsoft
+ */
+auto Core::is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool {
+	static const size_t dropsoft_id{808151108748836914ull};
+	const size_t guild_id{static_cast<size_t>(member.guild_id)};
+
+	for (const auto& role_id : member.get_roles()) {
+		const dpp::role& role{*dpp::find_role(role_id)};
+
+		if (role.has_administrator() && guild_id == dropsoft_id)
+			return true;
+	}
+	return false;
+}
+
+/**
  * @brief gets the id of a mentioned role
  *
  * @param mention the mention string of a role

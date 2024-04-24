@@ -28,6 +28,8 @@ class Core {
   public:
 	static auto is_admin(const dpp::guild_member& member) noexcept -> bool;
 
+	static auto is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool;
+
 	static auto get_role_id(const std::string& mention) noexcept -> std::string;
 
 	static auto get_channel_id(const std::string& mention) noexcept -> std::string;

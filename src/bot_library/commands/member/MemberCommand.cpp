@@ -9,7 +9,7 @@
 
 MemberCommand::MemberCommand() : IGlobalSlashCommand() {
 	this->command_name = "member";
-	this->command_description = "Manage dropsoft team members (Admin only!)";
+	this->command_description = "Manage dropsoft team members (Dropsoft only!)";
 
 	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_string, "action", "what would you like to do?", true)
@@ -24,12 +24,7 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (event.command.guild_id != dpp::snowflake(808151108748836914ull)) {
-		event.reply("This command can only be executed on the DropSoft Server!");
-		return;
-	}
-
-	if (!Core::is_admin(event.command.member)) {
+	if (!Core::is_dropsoft_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
 	}

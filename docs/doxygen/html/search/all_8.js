@@ -38,5 +38,6 @@ var searchData=
   ['irepository_3c_20userdto_20_3e_35',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20welcomechanneldto_20_3e_36',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
   ['is_5fadmin_37',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
-  ['is_5fsubscribed_38',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
+  ['is_5fdropsoft_5fadmin_38',['is_dropsoft_admin',['../classCore.html#a3f02747717c2dcca752aa3db12cdc369',1,'Core']]],
+  ['is_5fsubscribed_39',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
 ];

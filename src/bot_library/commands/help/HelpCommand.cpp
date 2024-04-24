@@ -25,7 +25,12 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
+
 		if (!Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)")) {
+			continue;
+		}
+
+		if (!Core::is_dropsoft_admin(event.command.member) && cmd->command_description.ends_with("(Dropsoft only!)")) {
 			continue;
 		}
 
