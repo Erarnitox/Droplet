@@ -15,7 +15,7 @@
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
           "CMAKE_BUILD_TYPE" : "Debug",
-          "CMAKE_CXX_FLAGS_RELEASE" : "-fsanitize=address",
+          "CMAKE_CXX_FLAGS" : "-flto -fvisibility=default -fsanitize=address,cfi,undefined,leak",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN" : "TRUE",
