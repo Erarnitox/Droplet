@@ -15,11 +15,11 @@ ProductsCommand::ProductsCommand() : IGlobalSlashCommand() {
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "name", "Name of the Product", true));
 
-	this->command_options.emplace_back(
-		dpp::command_option(dpp::co_string, "picture_url", "Preview Picture URL", true));
+	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "picture_url", "Preview Picture URL", true));
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "button_url", "Link to the Product", true));
-	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "button_text", "Message on the Button", true));
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "button_text", "Message on the Button", true));
 }
 
 void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -28,7 +28,7 @@ void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only Dropsoft-Admins are allowed to run this command!");
+		event.reply("Only DropSoft Admins are allowed to run this command!");
 		return;
 	}
 
@@ -36,17 +36,17 @@ void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto picture_url{Core::get_parameter(*Bot::ctx, event, "picture_url")};
 	const auto button_url{Core::get_parameter(*Bot::ctx, event, "button_url")};
 	const auto button_text{Core::get_parameter(*Bot::ctx, event, "button_text")};
-	
 
 	ProductRepository repo;
-	ProductDTO data{ 
-		static_cast<size_t>(random()%10000), 
-		picture_url, button_text,
-		0, name, button_url, 
-		"", 
-		ProductDTO::Type::DOWNLOAD 
-	};
-	
+	ProductDTO data{static_cast<size_t>(random() % 10000),
+					picture_url,
+					button_text,
+					0,
+					name,
+					button_url,
+					"",
+					ProductDTO::Type::DOWNLOAD};
+
 	if (repo.create(data)) {
 		auto msg{dpp::message("Product was added!").set_flags(dpp::m_ephemeral)};
 
@@ -61,6 +61,6 @@ void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	} else {
 		event.reply(dpp::message("Error: Product can't be saved to the database!").set_flags(dpp::m_ephemeral));
 	}
-	
+
 	return;
 }

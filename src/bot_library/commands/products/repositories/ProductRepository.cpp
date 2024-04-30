@@ -14,8 +14,14 @@ auto ProductRepository::create(const ProductDTO& object) -> bool {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.product_id, object.picture_url, 
-		object.button_text, object.price_in_cents, object.button_url, object.buy_url, static_cast<size_t>(object.type));
+	return database::execQuery(sql_string,
+							   object.product_id,
+							   object.picture_url,
+							   object.button_text,
+							   object.price_in_cents,
+							   object.button_url,
+							   object.buy_url,
+							   static_cast<size_t>(object.type));
 }
 
 auto ProductRepository::remove(size_t id) -> bool {

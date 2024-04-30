@@ -25,7 +25,7 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only admins are allowed to run this command!");
+		event.reply("Only DropSoft admins are allowed to run this command!");
 		return;
 	}
 
