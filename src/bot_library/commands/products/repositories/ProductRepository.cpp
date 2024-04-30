@@ -7,14 +7,15 @@
 auto ProductRepository::create(const ProductDTO& object) -> bool {
 	static std::string sql_string{
 		"INSERT INTO products"
-		"(title, description, url, author) VALUES "
-		"($1::varchar, $2::varchar, $3::varchar, $4::varchar)"};
+		"(product_id, picture_url, button_text, price_in_cents, name, button_url, buy_url, type) VALUES "
+		"($1::int8,   $2::varchar, $3::varchar, $4::int8, $5::varchar, $6::varchar, $7::varchar, $8::size_t)"};
 
 	if (!Database::hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.title, object.description, object.url, object.creator);
+	return database::execQuery(sql_string, object.product_id, object.picture_url, 
+		object.button_text, object.price_in_cents, object.button_url, object.buy_url, static_cast<size_t>(object.type));
 }
 
 auto ProductRepository::remove(size_t id) -> bool {

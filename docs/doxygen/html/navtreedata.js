@@ -39,7 +39,9 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -58,7 +60,7 @@ var NAVTREEINDEX =
 [
 "BlacklistCommand_8cpp.html",
 "classCleanUp.html#a239becb138ed1c5960edc48e96e58f54",
-"dir_c373500932cffa4d14439497d0f0f5ad.html"
+"dir_9e39e43419290f985330840a0969ba3a.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
