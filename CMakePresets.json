@@ -15,7 +15,7 @@
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
           "CMAKE_BUILD_TYPE" : "Debug",
-          "CMAKE_CXX_FLAGS" : "-fsanitize=address,undefined,leak",
+          "CMAKE_CXX_FLAGS_EXPERIMENTAL" : "-fsanitize=address,undefined,leak",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN" : "TRUE",
@@ -33,7 +33,7 @@
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
           "CMAKE_BUILD_TYPE" : "Release",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
-          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_CXX_COMPILER": "clang++-17",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
