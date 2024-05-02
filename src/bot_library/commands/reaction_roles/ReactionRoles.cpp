@@ -100,7 +100,7 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 		// send a confirmation to the admin
 		event.reply(
 			dpp::message(
-				std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: <@{}>", message_link, emoji, i_role_id))
+				std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: <@&{}>", message_link, emoji, i_role_id))
 				.set_flags(dpp::m_ephemeral));
 	} else {
 		event.reply(dpp::message("Reaction Role can't be saved to Database!").set_flags(dpp::m_ephemeral));
