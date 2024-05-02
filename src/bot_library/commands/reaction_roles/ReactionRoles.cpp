@@ -40,7 +40,7 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (emoji.empty())
 		return;
 
-	const auto role_id{std::get<dpp::snowflake>(event.get_parameter("member"))};
+	const auto role_id{std::get<dpp::snowflake>(event.get_parameter("role"))};
 	
 	const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size() - 3) : emoji};
 	if (usable_emoji.empty()) {
