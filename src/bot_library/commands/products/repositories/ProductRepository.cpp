@@ -8,7 +8,7 @@ auto ProductRepository::create(const ProductDTO& object) -> bool {
 	static std::string sql_string{
 		"INSERT INTO products"
 		"(product_id, picture_url, button_text, price_in_cents, name, button_url, buy_url, type) VALUES "
-		"($1::int8,   $2::varchar, $3::varchar, $4::int8, $5::varchar, $6::varchar, $7::varchar, $8::size_t)"};
+		"($1::int8,   $2::varchar, $3::varchar, $4::int8, $5::varchar, $6::varchar, $7::varchar, $8::int8)"};
 
 	if (!Database::hasConnection()) {
 		return false;
