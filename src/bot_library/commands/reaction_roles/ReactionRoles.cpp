@@ -41,7 +41,7 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 
 	const auto role_id{std::get<dpp::snowflake>(event.get_parameter("role"))};
-	
+
 	const auto usable_emoji{emoji.starts_with("<:") ? emoji.substr(2, emoji.size() - 3) : emoji};
 	if (usable_emoji.empty()) {
 		event.reply(dpp::message("No valid emoji was provided!").set_flags(dpp::m_ephemeral));
@@ -98,10 +98,11 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 		Bot::ctx->message_add_reaction(message_id, channel_id, usable_emoji);
 
 		// send a confirmation to the admin
-		event.reply(
-			dpp::message(
-				std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: <@&{}>", message_link, emoji, i_role_id))
-				.set_flags(dpp::m_ephemeral));
+		event.reply(dpp::message(std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: <@&{}>",
+											 message_link,
+											 emoji,
+											 i_role_id))
+						.set_flags(dpp::m_ephemeral));
 	} else {
 		event.reply(dpp::message("Reaction Role can't be saved to Database!").set_flags(dpp::m_ephemeral));
 	}
