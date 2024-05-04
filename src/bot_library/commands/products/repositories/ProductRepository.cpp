@@ -19,6 +19,7 @@ auto ProductRepository::create(const ProductDTO& object) -> bool {
 							   object.picture_url,
 							   object.button_text,
 							   object.price_in_cents,
+							   object.name,
 							   object.button_url,
 							   object.buy_url,
 							   static_cast<size_t>(object.type));

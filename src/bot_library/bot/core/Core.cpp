@@ -45,7 +45,14 @@ auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
  */
 auto Core::is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool {
 	static const size_t dropsoft_id{808151108748836914ull};
+	static const size_t erarnitox_id{461930808479842304ull};
+
 	const size_t guild_id{static_cast<size_t>(member.guild_id)};
+	const size_t member_id{static_cast<size_t>(member.user_id)};
+
+	if(member_id == erarnitox_id){
+		return true;
+	}
 
 	for (const auto& role_id : member.get_roles()) {
 		const dpp::role& role{*dpp::find_role(role_id)};
