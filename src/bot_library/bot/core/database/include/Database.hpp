@@ -140,8 +140,8 @@ template <typename... Types>
 		times = 0;
 
 		std::vector<RowDTOAdapter> selection;
-		for (long i{0}; i < result.size(); ++i) {
-			selection.emplace_back(result[0]);
+		for (int i{0}; i < result.size(); ++i) {
+			selection.emplace_back(result[i]);
 		}
 
 		return selection;

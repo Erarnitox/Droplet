@@ -50,7 +50,7 @@ auto Core::is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool {
 	const size_t guild_id{static_cast<size_t>(member.guild_id)};
 	const size_t member_id{static_cast<size_t>(member.user_id)};
 
-	if(member_id == erarnitox_id){
+	if (member_id == erarnitox_id) {
 		return true;
 	}
 
