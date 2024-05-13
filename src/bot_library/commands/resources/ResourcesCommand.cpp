@@ -44,7 +44,7 @@ void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto description{Core::get_parameter(*Bot::ctx, event, "description")};
 	const auto url{Core::get_parameter(*Bot::ctx, event, "url")};
 	const auto difficulty{std::stoi(Core::get_parameter(*Bot::ctx, event, "difficulty"))};
-	const auto tags{Core::get_parameter(*Bot::ctx, event, "tags")};
+	const auto tags{Core::get_parameter(*Bot::ctx, event, "tags", false)};
 
 	ResourceRepository repo;
 	ResourceDTO data{title,

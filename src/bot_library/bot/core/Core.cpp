@@ -219,14 +219,18 @@ void Core::timed_reply_private(dpp::cluster& bot,
  * @param name the name of the parameter
  * @return the parameter with the given name as a std::string
  */
-auto Core::get_parameter(dpp::cluster& bot, const dpp::slashcommand_t event, const std::string& name) noexcept
-	-> std::string {
+auto Core::get_parameter(dpp::cluster& bot,
+						 const dpp::slashcommand_t event,
+						 const std::string& name,
+						 bool required) noexcept -> std::string {
 	const auto variant{event.get_parameter(name)};
 	const auto value_ptr{std::get_if<std::string>(&variant)};
 
 	if (!value_ptr) {
-		Core::timed_reply_private(
-			bot, event, std::format("Could not retrieve parameter '{}' from the Message!", name), 3000);
+		if (required) [[likely]] {
+			Core::timed_reply_private(
+				bot, event, std::format("Could not retrieve parameter '{}' from the Message!", name), 3000);
+		}
 
 		return std::string("");
 	}

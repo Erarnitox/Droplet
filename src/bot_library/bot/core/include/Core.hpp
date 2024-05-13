@@ -56,7 +56,8 @@ class Core {
 
 	[[nodiscard]] static auto get_parameter(dpp::cluster& bot,
 											const dpp::slashcommand_t event,
-											const std::string& name) noexcept -> std::string;
+											const std::string& name,
+											bool required = true) noexcept -> std::string;
 
 	[[nodiscard]] static auto simple_hash(const std::string& string) -> std::string;
 };

@@ -134,9 +134,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a12bf346d638e3f248a3b2c303f6c51ca" id="r_a12bf346d638e3f248a3b2c303f6c51ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12bf346d638e3f248a3b2c303f6c51ca">timed_reply_private</a> (dpp::cluster &amp;bot, const dpp::form_submit_t event, const std::string &amp;message, size_t time_mills) noexcept</td></tr>
 <tr class="memdesc:a12bf346d638e3f248a3b2c303f6c51ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">replies to an event and displays the reply for a limited time and only to the sender of the event  <br /></td></tr>
 <tr class="separator:a12bf346d638e3f248a3b2c303f6c51ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb793f94fa5dbc24982319214d931934" id="r_acb793f94fa5dbc24982319214d931934"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb793f94fa5dbc24982319214d931934">get_parameter</a> (dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;name) noexcept -&gt; std::string</td></tr>
-<tr class="memdesc:acb793f94fa5dbc24982319214d931934"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the parameter from a slash command  <br /></td></tr>
-<tr class="separator:acb793f94fa5dbc24982319214d931934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a193661acb7d4262ba8bb33d9ea295f12" id="r_a193661acb7d4262ba8bb33d9ea295f12"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a193661acb7d4262ba8bb33d9ea295f12">get_parameter</a> (dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;name, bool required=true) noexcept -&gt; std::string</td></tr>
+<tr class="memdesc:a193661acb7d4262ba8bb33d9ea295f12"><td class="mdescLeft">&#160;</td><td class="mdescRight">get the parameter from a slash command  <br /></td></tr>
+<tr class="separator:a193661acb7d4262ba8bb33d9ea295f12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd02cc357f20b9f05ea4654118cc2713" id="r_afd02cc357f20b9f05ea4654118cc2713"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd02cc357f20b9f05ea4654118cc2713">simple_hash</a> (const std::string &amp;string) -&gt; std::string</td></tr>
 <tr class="separator:afd02cc357f20b9f05ea4654118cc2713"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -175,8 +175,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="acb793f94fa5dbc24982319214d931934" name="acb793f94fa5dbc24982319214d931934"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb793f94fa5dbc24982319214d931934">&#9670;&#160;</a></span>get_parameter()</h2>
+<a id="a193661acb7d4262ba8bb33d9ea295f12" name="a193661acb7d4262ba8bb33d9ea295f12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a193661acb7d4262ba8bb33d9ea295f12">&#9670;&#160;</a></span>get_parameter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +197,12 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>&#160;) -&gt; std::string</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>required</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;) -&gt; std::string</td>
         </tr>
       </table>
   </td>

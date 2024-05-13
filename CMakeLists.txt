@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.25)
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
-set(CPP_STANDARD 23)
-set(CXX_STANDARD 23)
+set(CPP_STANDARD 20)
+set(CXX_STANDARD 20)
 
 add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=1)
 add_compile_definitions(GLIBCXX_USE_CXX11_ABI=1)
