@@ -60,6 +60,7 @@
       "name" : "github",
       "displayName" : "github actions - Make and GCC",
       "description" : "Erarnitox's recommended settings for a release build. Uses gcc and make",
+      "generator" : "Unix Makefiles",
       "binaryDir" : "${sourceDir}/github",
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
