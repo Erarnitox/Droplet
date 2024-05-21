@@ -8,16 +8,17 @@
 #include <TextRepository.hpp>
 
 TextsCommand::TextsCommand() : IGlobalSlashCommand() {
-	this->command_name = "add_pdf";
-	this->command_description = "Add a pdf to dropsoft.org/papers (Dropsoft only!)";
+	this->command_name = "publish_ezine";
+	this->command_description = "Add a pdf to dropsoft.org/ezine (Dropsoft only!)";
 
-	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "title", "The title of the Document", true));
+	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "title", "The title of the E-Zine", true));
 
 	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_string, "description", "Document description", true));
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "url", "Link to the document", true));
-	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "author", "Author of the document", true));
+	this->command_options.emplace_back(
+		dpp::command_option(dpp::co_string, "author", "Author(s) of the document", true));
 }
 
 void TextsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -40,7 +41,7 @@ void TextsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	if (repo.create(data)) {
 		auto msg{dpp::message(std::format(
-			"Document was added!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://dropsoft.org/papers",
+			"E-Zine was published!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://dropsoft.org/ezine",
 			data.title,
 			data.description,
 			data.url))};
