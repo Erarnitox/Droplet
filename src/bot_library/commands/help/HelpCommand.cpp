@@ -19,9 +19,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 						 .set_title(std::format("{} - {}", "Droplet", this->command_name))
 						 .set_url("https://droplet.dropsoft.org/")
 						 .set_description("Usage Information for the Droplet Discord bot")
-						 .set_thumbnail("https://www.dropsoft.org/img/"
-										"logo_huc21a5771e65b8d5ba9ff88b74b45cd86_105986_"
-										"288x288_fill_box_center_3.png")};
+						 .set_thumbnail("https://www.dropsoft.org/media/icon_transparen_preview.png")};
 
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
@@ -56,7 +54,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
 	constexpr auto dropsoft_link{"https://dropsoft.org"};
 	*/
-	constexpr auto icon_url{"https://www.dropsoft.org/img/logo.png"};
+	constexpr auto icon_url{"https://www.dropsoft.org/media/icon_transparen_preview.png"};
 
 	auto footer{dpp::embed_footer()};
 	/*
