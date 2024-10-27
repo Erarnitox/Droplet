@@ -1,5 +1,5 @@
 set(CMAKE_CXX_STANDARD 17)
-CPMAddPackage("gh:jtv/libpqxx#7.9.0")
+CPMAddPackage("gh:jtv/libpqxx#7.9.2")
 
 add_library(database STATIC 
     Database.cpp

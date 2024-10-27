@@ -2,7 +2,7 @@
   "version" : 2,
   "cmakeMinimumRequired" : {
       "major" : 3,
-      "minor" : 20,
+      "minor" : 30,
       "patch" : 0
   },
   "configurePresets" : [
@@ -58,15 +58,15 @@
     },
     {
       "name" : "github",
-      "displayName" : "github actions - Make and GCC",
-      "description" : "Erarnitox's recommended settings for a release build. Uses gcc and make",
-      "generator" : "Unix Makefiles",
-      "binaryDir" : "${sourceDir}/github",
+      "displayName" : "Github Actions - (Linux) Ninja and Clang",
+      "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/release",
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
           "CMAKE_BUILD_TYPE" : "Release",
-          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/github",
-          "CMAKE_CXX_COMPILER": "g++",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
+          "CMAKE_CXX_COMPILER": "clang++-17",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_VOICE_SUPPORT" : "OFF"
       }

@@ -15,6 +15,6 @@ var searchData=
   ['timed_5freply_5fprivate_5ftemplate_12',['timed_reply_private_template',['../Core_8cpp.html#a2f03f2dc81ddd7bf10660ec8d26417c0',1,'Core.cpp']]],
   ['timed_5freply_5ftemplate_13',['timed_reply_template',['../Core_8cpp.html#a4388855bd03571b055b86daf3028427f',1,'Core.cpp']]],
   ['title_14',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO::title'],['../classTextDTO.html#aec1f3d73fa535492ff4c6b52b9da2fbf',1,'TextDTO::title']]],
-  ['type_15',['type',['../classProductDTO.html#ac01ec0b799e6169883e8c62d84c8e280',1,'ProductDTO']]],
-  ['type_16',['Type',['../classProductDTO.html#a34cfba4d5f6f0d62918a0ab4904f5c39',1,'ProductDTO']]]
+  ['type_15',['Type',['../classProductDTO.html#a34cfba4d5f6f0d62918a0ab4904f5c39',1,'ProductDTO']]],
+  ['type_16',['type',['../classProductDTO.html#ac01ec0b799e6169883e8c62d84c8e280',1,'ProductDTO']]]
 ];

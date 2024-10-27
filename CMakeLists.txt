@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 3.30)
 
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
@@ -19,7 +19,7 @@ find_package(OpenSSL REQUIRED)
 project(droplet 
 	VERSION 1.1.0 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
-	HOMEPAGE_URL "https://droplet.dropsoft.org"
+	HOMEPAGE_URL "https://droplet.erarnitox.de"
 	LANGUAGES CXX
 )
 
