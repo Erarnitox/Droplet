@@ -18,6 +18,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
 
     - name: Configure CMake
       run: cmake --preset github
