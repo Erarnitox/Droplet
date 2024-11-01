@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zliv-devel --allowerasing
+          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zlib-devel --allowerasing
           
       - name: Install CMake
         run: |
