@@ -61,12 +61,12 @@
       "displayName" : "Github Actions - (Linux) Ninja and Clang",
       "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
       "generator" : "Ninja",
-      "binaryDir" : "${sourceDir}/release",
+      "binaryDir" : "${sourceDir}/build",
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
           "CMAKE_BUILD_TYPE" : "Release",
-          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
-          "CMAKE_CXX_COMPILER": "clang++-17",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/build",
+          "CMAKE_CXX_COMPILER": "clang++",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "BUILD_VOICE_SUPPORT" : "OFF"
       }
