@@ -16,6 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
+    with:
+      dir: "/"
 
     - name: Configure CMake
       working-directory: /
