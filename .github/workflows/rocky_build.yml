@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zlib-devel --allowerasing
+          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zlib-devel postgresql postgresql-devel --allowerasing
           
       - name: Install CMake
         run: |
@@ -51,7 +51,8 @@ jobs:
           CXX: clang++
           OPENSSL_ROOT_DIR: /usr/include/openssl
           ZLIB_LIBRARY: /usr/lib64/libz.so
+          PostgreSQL_ROOT: /usr/include/pgsql
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY --preset github
+          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT --preset github
           cmake --build build
