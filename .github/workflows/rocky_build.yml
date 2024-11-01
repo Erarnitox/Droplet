@@ -50,6 +50,7 @@ jobs:
           CC: clang
           CXX: clang++
           OPENSSL_ROOT_DIR: /usr/include/openssl
+          ZLIB_LIBRARY: /usr/lib64/libz.so
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           cmake --preset github
