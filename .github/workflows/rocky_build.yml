@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Clang
         run: |
-          dnf install -y clang --allowerasing
+          dnf install -y clang clang-devel clang-tools --allowerasing
 
       - name: Checkout repository
         uses: actions/checkout@v3
