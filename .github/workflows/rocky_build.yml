@@ -35,7 +35,7 @@ jobs:
           wget https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux.zip
           unzip ninja-linux.zip
           chmod +x ninja
-          sudo mv ninja /usr/local/bin/
+          mv ninja /usr/local/bin/
           rm ninja-linux.zip
 
       - name: Install Clang
