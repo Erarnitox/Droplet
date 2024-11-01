@@ -53,5 +53,5 @@ jobs:
           ZLIB_LIBRARY: /usr/lib64/libz.so
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          cmake --preset github
+          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY --preset github
           cmake --build build
