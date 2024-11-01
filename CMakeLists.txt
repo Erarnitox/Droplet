@@ -10,7 +10,7 @@ add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=1)
 add_compile_definitions(GLIBCXX_USE_CXX11_ABI=1)
 
 set(BUILD_SHARED_LIBS OFF)
-set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
+# set(OPENSSL_USE_STATIC_LIBS ON) #no-shared
 set(OPENSSL_TEST OFF) #no-test
 set(DPP_BUILD_TEST OFF)
 
