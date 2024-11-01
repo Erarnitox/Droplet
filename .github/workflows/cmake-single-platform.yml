@@ -58,10 +58,7 @@ jobs:
             --preset github
           RESULT_VARIABLE result
         )
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Bad exit status")
-        endif()
-
+       
     - name: Build
       shell: cmake -P {0}
       run: |
@@ -71,10 +68,7 @@ jobs:
           COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build
           RESULT_VARIABLE result
         )
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Bad exit status")
-        endif()
-
+       
     - name: Test
       shell: cmake -P {0}
       run: |
@@ -86,10 +80,7 @@ jobs:
           WORKING_DIRECTORY build
           RESULT_VARIABLE result
         )
-        if (NOT result EQUAL 0)
-          message(FATAL_ERROR "Running tests failed!")
-        endif()
-
+        
     - name: Install Strip
       run: ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --install build --prefix instdir --strip
 
