@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          dnf install -y epel-release  # Enable EPEL repository for extra packages
-          dnf update -y
-          dnf install -y wget curl jq git
+          dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
+          dnf update -y --allowerasing
+          dnf install -y wget curl jq git --allowerasing
           
       - name: Install CMake
         run: |
@@ -31,11 +31,11 @@ jobs:
           
       - name: Install Ninja
         run: |
-          dnf install -y ninja-build
+          dnf install -y ninja-build --allowerasing
 
       - name: Install Clang
         run: |
-          dnf install -y clang
+          dnf install -y clang --allowerasing
 
       - name: Checkout repository
         uses: actions/checkout@v3
