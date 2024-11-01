@@ -31,7 +31,12 @@ jobs:
           
       - name: Install Ninja
         run: |
-          dnf install -y ninja-build --allowerasing
+          NINJA_VERSION=1.11.0  # Specify the desired version of Ninja
+          wget https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux.zip
+          unzip ninja-linux.zip
+          chmod +x ninja
+          sudo mv ninja /usr/local/bin/
+          rm ninja-linux.zip
 
       - name: Install Clang
         run: |
