@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git --allowerasing
+          dnf install -y wget curl jq git zip unzip --allowerasing
           
       - name: Install CMake
         run: |
