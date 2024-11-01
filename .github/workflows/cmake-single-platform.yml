@@ -19,8 +19,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: /
-      run: pwd; ls
-      run: cmake --preset github
+      run: pwd && ls && cmake --preset github
 
     - name: Build
       working-directory: /
