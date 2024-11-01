@@ -17,17 +17,14 @@ jobs:
     - uses: actions/checkout@v4
     - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
       with:
-        dir: "/"
+        dir: "."
 
     - name: Configure CMake
-      working-directory: /
       run: pwd && ls && cmake --preset github
 
     - name: Build
-      working-directory: /
       run: cmake --build build --config ${{env.BUILD_TYPE}}
 
     - name: Test
-      working-directory: /build
       run: ctest -C ${{env.BUILD_TYPE}}
 
