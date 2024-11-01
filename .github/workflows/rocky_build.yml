@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs --allowerasing
+          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zliv-devel --allowerasing
           
       - name: Install CMake
         run: |
@@ -51,6 +51,6 @@ jobs:
           CXX: clang++
           OPENSSL_ROOT_DIR: /usr/include/openssl
         run: |
-          git config --global --add safe.directory /__w/Droplet/Droplet
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
           cmake --preset github
           cmake --build build
