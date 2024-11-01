@@ -15,16 +15,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: UnsafePointer/cmake-clang-ninja-build-github-action@v1.4
 
     - name: Configure CMake
-      working-directory: ${{github.workspace}}
+      working-directory: /
+      run: pwd; ls
       run: cmake --preset github
 
     - name: Build
-      working-directory: ${{github.workspace}}
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      working-directory: /
+      run: cmake --build build --config ${{env.BUILD_TYPE}}
 
     - name: Test
-      working-directory: ${{github.workspace}}/build
+      working-directory: /build
       run: ctest -C ${{env.BUILD_TYPE}}
 
