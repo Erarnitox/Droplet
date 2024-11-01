@@ -19,7 +19,7 @@ jobs:
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git zip unzip openssl openssl-libs --allowerasing
+          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs --allowerasing
           
       - name: Install CMake
         run: |
@@ -49,6 +49,7 @@ jobs:
         env:
           CC: clang
           CXX: clang++
+          OPENSSL_ROOT_DIR: /usr/include/openssl
         run: |
           cmake --preset github
           cmake --build build
