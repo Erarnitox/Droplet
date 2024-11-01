@@ -1,0 +1,49 @@
+name: Build Project on Rocky Linux
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: rockylinux:9  # Use Rocky Linux 9 as the container environment
+
+    steps:
+      - name: Install dependencies
+        run: |
+          dnf install -y epel-release  # Enable EPEL repository for extra packages
+          dnf update -y
+          dnf install -y wget curl jq git
+          
+      - name: Install CMake
+        run: |
+          CMAKE_VERSION=$(curl -s https://api.github.com/repos/Kitware/CMake/releases/latest | jq -r ".tag_name" | sed 's/v//')
+          wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
+          chmod +x cmake-${CMAKE_VERSION}-linux-x86_64.sh
+          ./cmake-${CMAKE_VERSION}-linux-x86_64.sh --skip-license --prefix=/usr/local
+          rm cmake-${CMAKE_VERSION}-linux-x86_64.sh
+          
+      - name: Install Ninja
+        run: |
+          dnf install -y ninja-build
+
+      - name: Install Clang
+        run: |
+          dnf install -y clang
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Configure and Build with CMake
+        env:
+          CC: clang
+          CXX: clang++
+        run: |
+          cmake --preset github
+          cmake --build build
