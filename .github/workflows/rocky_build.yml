@@ -40,7 +40,7 @@ jobs:
 
       - name: Install Clang
         run: |
-          dnf install -y clang clang-devel --allowerasing
+          dnf install -y clang clang-devel clang-tools-extra --allowerasing
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -54,5 +54,5 @@ jobs:
           PostgreSQL_ROOT: /usr/include/pgsql
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT -DCMAKE_CXX_COMPILER_CLANG_SCAN_DEPS=OFF --preset github
+          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT --preset github
           cmake --build build
