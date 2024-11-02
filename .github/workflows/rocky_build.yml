@@ -43,7 +43,7 @@ jobs:
           dnf install -y clang clang-devel clang-tools-extra --allowerasing
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure and Build with CMake
         env:
