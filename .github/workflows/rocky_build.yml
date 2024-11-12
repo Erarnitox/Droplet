@@ -45,6 +45,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Restore build cache
+        id: build-cache
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/*.cpp', '**/*.h') }}
+          restore-keys: |
+            build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}
+
       - name: Configure and Build with CMake
         env:
           CC: clang
@@ -57,19 +66,25 @@ jobs:
           cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT --preset github
           cmake --build build
       
+      - name: Save build cache
+        if: steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: build
+          key: build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/*.cpp', '**/*.h') }}
+  
       # Deployment steps
-      - name: Deploy to Server
-        if: github.ref == 'refs/heads/main'
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
-          SERVER_DIR: "/bin/droplet"
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} -p ${SSH_PORT} << 'EOF'
-            mkdir /tmp/iwashere
-          EOF
+      # - name: Deploy to Server
+      #  if: github.ref == 'refs/heads/main'
+      #  env:
+      #    SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+      #    SSH_USER: ${{ secrets.SSH_USER }}
+      #    SSH_HOST: ${{ secrets.SSH_HOST }}
+      #    SSH_PORT: ${{ secrets.SSH_PORT }}
+      #    SERVER_DIR: "/bin/droplet"
+      #  run: |
+      #    mkdir -p ~/.ssh
+      #    echo "$SSH_PRIVATE_KEY" > ssh.key
+      #    ssh -o StrictHostKeyChecking=no -i ssh.key ${SSH_USER}@${SSH_HOST} -p ${SSH_PORT} << 'EOF'
+      #      mkdir /tmp/iwashere
+      #    EOF
