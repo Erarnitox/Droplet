@@ -2,7 +2,6 @@
 
 #include <message.h>
 
-#include <variant>
 
 HelpCommand::HelpCommand() : IGlobalSlashCommand() {
 	this->command_name = "help";
@@ -61,7 +60,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	footer.set_text(std::format(
 		"[Invite this Bot]({}) [Usage Manual]({}) [Visit Dropsoft]({})", invite_link, usage_guide, dropsoft_link));
 	*/
-	footer.set_text("Visit dropsoft.org for more information and features! 🚀");
+	footer.set_text("Visit https://erarnitox.de");
 	footer.set_icon(icon_url);
 
 	embed.set_footer(footer);
