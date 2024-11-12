@@ -71,7 +71,7 @@ Before contributing, please review the Contributing Guidelines.
 [MIT License](./LICENSE)
 
 ## Architecture
-### Architecure Document
+### Architecture Document
 ![architecture](docs/architecture.png)
 
 The goal with this design was that we have a stable and solid core that offers commands a stable API they can use. Additional commands should only be reigistered with the `Commands` class and don't need to worry about anything else.

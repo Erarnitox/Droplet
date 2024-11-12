@@ -65,6 +65,7 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT --preset github
           cmake --build build
+          strip build/droplet
       
       - name: Save build cache
         if: steps.build-cache.outputs.cache-hit != 'true'
@@ -74,6 +75,16 @@ jobs:
           key: build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/*.cpp', '**/*.h') }}
   
       # Deployment steps
+      - name: Copy binary to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "build/droplet"
+          target: /services/droplet/
+          
       # - name: Deploy to Server
       #  if: github.ref == 'refs/heads/main'
       #  env:
@@ -87,4 +98,4 @@ jobs:
       #    echo "$SSH_PRIVATE_KEY" > ssh.key
       #    ssh -o StrictHostKeyChecking=no -i ssh.key ${SSH_USER}@${SSH_HOST} -p ${SSH_PORT} << 'EOF'
       #      mkdir /tmp/iwashere
-      #    EOF
+      #    EOF 
