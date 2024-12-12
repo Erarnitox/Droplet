@@ -29,6 +29,8 @@
  * @return whether the member has admin right on guild or not
  */
 auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
+	if(member.is_guild_owner()) return true;
+	
 	for (const auto& role_id : member.get_roles()) {
 		const dpp::role& role{*dpp::find_role(role_id)};
 		if (role.has_administrator())
