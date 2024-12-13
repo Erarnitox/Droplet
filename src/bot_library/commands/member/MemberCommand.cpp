@@ -9,7 +9,7 @@
 
 MemberCommand::MemberCommand() : IGlobalSlashCommand() {
 	this->command_name = "member";
-	this->command_description = "Manage dropsoft team members (Dropsoft only!)";
+	this->command_description = "Manage Erarnitox's team members (Erarnitox only!)";
 
 	this->command_options.emplace_back(
 		dpp::command_option(dpp::co_string, "action", "what would you like to do?", true)
@@ -24,8 +24,8 @@ void MemberCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only DropSoft admins are allowed to run this command!");
+	if (!Core::is_erarnitox_admin(event.command.member)) {
+		event.reply("Only Erarnitox's admins are allowed to run this command!");
 		return;
 	}
 

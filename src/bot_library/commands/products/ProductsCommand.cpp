@@ -11,7 +11,7 @@
 ProductsCommand::ProductsCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_product";
 
-	this->command_description = "Add a product to dropsoft.org (Dropsoft only!)";
+	this->command_description = "Add a product to erarnitox.de (Erarnitox only!)";
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "name", "Name of the Product", true));
 
@@ -27,8 +27,8 @@ void ProductsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only DropSoft Admins are allowed to run this command!");
+	if (!Core::is_erarnitox_admin(event.command.member)) {
+		event.reply("Only Erarnitox's Admins are allowed to run this command!");
 		return;
 	}
 

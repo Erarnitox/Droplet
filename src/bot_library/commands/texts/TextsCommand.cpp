@@ -9,7 +9,7 @@
 
 TextsCommand::TextsCommand() : IGlobalSlashCommand() {
 	this->command_name = "publish_ezine";
-	this->command_description = "Add a pdf to dropsoft.org/ezine (Dropsoft only!)";
+	this->command_description = "Add a pdf to erarnitox.de/pub (Erarnitox only!)";
 
 	this->command_options.emplace_back(dpp::command_option(dpp::co_string, "title", "The title of the E-Zine", true));
 
@@ -26,8 +26,8 @@ void TextsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only DropSoft admins are allowed to run this command!");
+	if (!Core::is_erarnitox_admin(event.command.member)) {
+		event.reply("Only Erarnitox's admins are allowed to run this command!");
 		return;
 	}
 
@@ -41,7 +41,7 @@ void TextsCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	if (repo.create(data)) {
 		auto msg{dpp::message(std::format(
-			"E-Zine was published!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://dropsoft.org/ezine",
+			"E-Zine was published!\nTitle: {}\nDescription: {}\nURL: {}\nView here: https://erarnitox.de/pub",
 			data.title,
 			data.description,
 			data.url))};

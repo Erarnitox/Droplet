@@ -1,12 +1,12 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *  
  *  License: MIT License
  *
  *  Description: Entry Point for the main bot executable
  *
- *  Documentation: https://droplet.dropsoft.org/doxygen/html
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #include "BotLibrary.hpp"

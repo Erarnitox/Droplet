@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
@@ -28,7 +28,7 @@ class Core {
   public:
 	static auto is_admin(const dpp::guild_member& member) noexcept -> bool;
 
-	static auto is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool;
+	static auto is_erarnitox_admin(const dpp::guild_member& member) noexcept -> bool;
 
 	static auto get_role_id(const std::string& mention) noexcept -> std::string;
 

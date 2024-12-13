@@ -14,7 +14,7 @@
 
 BlacklistCommand::BlacklistCommand() : IGlobalSlashCommand() {
 	this->command_name = "blacklist";
-	this->command_description = "Blacklist a username using the portal (Dropsoft only!)";
+	this->command_description = "Blacklist a username using the portal (Erarnitox only!)";
 
 	this->command_options.emplace_back(dpp::co_string, "username", "The username to be blacklisted", true);
 }
@@ -24,8 +24,8 @@ void BlacklistCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (!Core::is_dropsoft_admin(event.command.member)) {
-		event.reply("Only DropSoft admins are allowed to run this command!");
+	if (!Core::is_erarnitox_admin(event.command.member)) {
+		event.reply("Only Erarnitox's admins are allowed to run this command!");
 		return;
 	}
 

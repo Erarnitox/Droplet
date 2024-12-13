@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
@@ -7,7 +7,7 @@
  *  Description: This class offers access to all the
  * 	core functionality and utility needed by the bot
  *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/core
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #include <dpp/permissions.h>
@@ -29,8 +29,9 @@
  * @return whether the member has admin right on guild or not
  */
 auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
-	if(member.is_guild_owner()) return true;
-	
+	if (member.is_guild_owner())
+		return true;
+
 	for (const auto& role_id : member.get_roles()) {
 		const dpp::role& role{*dpp::find_role(role_id)};
 		if (role.has_administrator())
@@ -40,13 +41,13 @@ auto Core::is_admin(const dpp::guild_member& member) noexcept -> bool {
 }
 
 /**
- * @brief checks if a guild member is admin of dropsoft
+ * @brief checks if a guild member is admin erarnitox's server
  *
  * @param member the guild member
- * @return whether the member has admin right on dropsoft
+ * @return whether the member has admin right on erarnitox's server
  */
-auto Core::is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool {
-	static const size_t dropsoft_id{808151108748836914ull};
+auto Core::is_erarnitox_admin(const dpp::guild_member& member) noexcept -> bool {
+	static const size_t erarnitox_server_id{808151108748836914ull};
 	static const size_t erarnitox_id{461930808479842304ull};
 
 	const size_t guild_id{static_cast<size_t>(member.guild_id)};
@@ -59,7 +60,7 @@ auto Core::is_dropsoft_admin(const dpp::guild_member& member) noexcept -> bool {
 	for (const auto& role_id : member.get_roles()) {
 		const dpp::role& role{*dpp::find_role(role_id)};
 
-		if (role.has_administrator() && guild_id == dropsoft_id)
+		if (role.has_administrator() && guild_id == erarnitox_server_id)
 			return true;
 	}
 	return false;

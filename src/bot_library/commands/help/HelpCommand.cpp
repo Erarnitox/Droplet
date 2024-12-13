@@ -2,7 +2,6 @@
 
 #include <message.h>
 
-
 HelpCommand::HelpCommand() : IGlobalSlashCommand() {
 	this->command_name = "help";
 	this->command_description = "List all available commands";
@@ -16,9 +15,9 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	dpp::embed embed{dpp::embed()
 						 .set_color(dpp::colors::discord_black)
 						 .set_title(std::format("{} - {}", "Droplet", this->command_name))
-						 .set_url("https://droplet.dropsoft.org/")
+						 .set_url("https://droplet.erarnitox.de/")
 						 .set_description("Usage Information for the Droplet Discord bot")
-						 .set_thumbnail("https://www.dropsoft.org/media/icon_transparen_preview.png")};
+						 .set_thumbnail("https://www.erarnitox.de/favicon-32x32.png")};
 
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
@@ -27,7 +26,8 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			continue;
 		}
 
-		if (!Core::is_dropsoft_admin(event.command.member) && cmd->command_description.ends_with("(Dropsoft only!)")) {
+		if (!Core::is_erarnitox_admin(event.command.member) &&
+			cmd->command_description.ends_with("(Erarnitox only!)")) {
 			continue;
 		}
 
@@ -51,14 +51,14 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	constexpr auto invite_link{
 		"https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=8&scope=bot"};
 	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
-	constexpr auto dropsoft_link{"https://dropsoft.org"};
+	constexpr auto erarnitox_link{"https://erarnitox.de"};
 	*/
-	constexpr auto icon_url{"https://www.dropsoft.org/media/icon_transparen_preview.png"};
+	constexpr auto icon_url{"https://www.erarnitox.de/favicon-32x32.png"};
 
 	auto footer{dpp::embed_footer()};
 	/*
 	footer.set_text(std::format(
-		"[Invite this Bot]({}) [Usage Manual]({}) [Visit Dropsoft]({})", invite_link, usage_guide, dropsoft_link));
+		"[Invite this Bot]({}) [Usage Manual]({}) [Visit Erarnitox]({})", invite_link, usage_guide, erarnitox_link));
 	*/
 	footer.set_text("Visit https://erarnitox.de");
 	footer.set_icon(icon_url);

@@ -7,8 +7,8 @@
 #include <variant>
 
 InviteCommand::InviteCommand() : IGlobalSlashCommand() {
-	this->command_name = "join_dropsoft";
-	this->command_description = "Get invited to the dropsoft discord server";
+	this->command_name = "join_erarnitox";
+	this->command_description = "Get invited to Erarnitox's discord server";
 }
 
 void InviteCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -17,7 +17,7 @@ void InviteCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	/* reply with the created embed */
-	event.reply(dpp::message(event.command.channel_id, "https://discord.dropsoft.org")
+	event.reply(dpp::message(event.command.channel_id, "https://discord.erarnitox.de")
 					.set_reference(event.command.id)
 					.set_flags(dpp::m_ephemeral));
 

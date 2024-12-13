@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
@@ -7,7 +7,7 @@
  *  Description: This class manages all commands and their registration
  *	so the bot knows about it.
  *
- *  Documentation: https://droplet.dropsoft.org/doxygen/html/commands
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #include <Commands.hpp>

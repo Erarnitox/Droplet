@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License

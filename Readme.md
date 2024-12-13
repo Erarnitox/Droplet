@@ -95,7 +95,7 @@ For questions, feedback, or support, please contact the project maintainer:
 
 You can also join my discord server below
 
-[![Discord](https://dcbadge.vercel.app/api/server/T3YvMPkZEd)](https://discord.dropsoft.org)
+[![Discord](https://dcbadge.vercel.app/api/server/T3YvMPkZEd)](https://discord.erarnitox.de)
 
 ---
 

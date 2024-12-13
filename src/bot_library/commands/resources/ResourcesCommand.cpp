@@ -9,7 +9,7 @@
 
 ResourcesCommand::ResourcesCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_resource";
-	this->command_description = "Add resource to dropsoft.org/resources";
+	this->command_description = "Add resource to droplet.erarnitox.de/resources";
 
 	this->command_options.emplace_back(dpp::co_string, "title", "The title of the resource", true);
 
@@ -60,7 +60,7 @@ void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (repo.create(data)) {
 		auto msg{
 			dpp::message(std::format("Resource was added!\nTitle: {}\nDescription: {}\nURL: {}\nTags: {}\nView here: "
-									 "https://dropsoft.org/resources",
+									 "https://droplet.erarnitox.de/resources",
 									 data.title,
 									 data.description,
 									 data.url,

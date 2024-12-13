@@ -1,4 +1,4 @@
-# DropSoft C++ Style Guide
+# Erarnitox's C++ Style Guide
 
 __**Author:** Erarnitox (David L. Partsch) - david@erarnitox.de__
 
@@ -78,7 +78,7 @@ Put a file header comment with the folling information into every file you creat
 Here is an example:
 ```cpp
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *  
  *  License: MIT License

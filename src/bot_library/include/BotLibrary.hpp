@@ -1,5 +1,5 @@
 /*
- *  (c) Copyright dropsoft.org - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
@@ -9,7 +9,7 @@
  * 	that can be used by the main binary and also
  * 	the unit_test binary.
  *
- *  Documentation: https://droplet.dropsoft.org/doxygen/bot_library
+ *  Documentation: https://droplet.erarnitox.de/doxygen/bot_library
  */
 
 #pragma once
