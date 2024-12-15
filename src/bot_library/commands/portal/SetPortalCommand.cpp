@@ -55,6 +55,7 @@ void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 }
 
 void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
+  // early returns
 	if(event.msg.author.is_bot()) {
 		return;
   } else if(event.msg.content.empty()) {
