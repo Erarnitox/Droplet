@@ -55,8 +55,11 @@ void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 }
 
 void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
-	if (event.msg.author.is_bot())
+	if(event.msg.author.is_bot()) {
 		return;
+  } else if(event.msg.content.empty()) {
+    return;
+  }
 
 	PortalRepository repo;
 	BlacklistRepository blacklist_repo;
@@ -74,7 +77,7 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 			if (portal.channel_id == event.msg.channel_id)
 				continue;
 			const auto& msg{dpp::message(portal.channel_id,
-										 std::format("**{}**: {}", event.msg.author.username, event.msg.content))};
+										 std::format("[**{}**]: {}", event.msg.author.username, event.msg.content))};
 			Bot::ctx->message_create(msg);
 		}
 	}
