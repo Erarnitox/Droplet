@@ -1,7 +1,7 @@
 var searchData=
 [
   ['category_0',['category',['../classResourceDTO.html#a38e02bbf54571e0566235ccd696da385',1,'ResourceDTO']]],
-  ['channel_5fid_1',['channel_id',['../classPortalDTO.html#a3efed35668cbd85158a82644ad1740e2',1,'PortalDTO::channel_id'],['../classGoodbyeChannelDTO.html#ab0f0f759ab213535239c3bdfb69e9afc',1,'GoodbyeChannelDTO::channel_id'],['../classLogChannelDTO.html#a4ef30ab62d59182cb1831ddcdfc4890a',1,'LogChannelDTO::channel_id'],['../classWelcomeChannelDTO.html#af476387b48a197604ba09c5655966a1c',1,'WelcomeChannelDTO::channel_id']]],
+  ['channel_5fid_1',['channel_id',['../classPortalDTO.html#a3efed35668cbd85158a82644ad1740e2',1,'PortalDTO']]],
   ['color_2',['color',['../classUserDTO.html#a06e1032927cb11351b82117b4375b92f',1,'UserDTO']]],
   ['command_5fdescription_3',['command_description',['../classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b',1,'IGlobalSlashCommand']]],
   ['command_5fname_4',['command_name',['../classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f',1,'IGlobalSlashCommand']]],

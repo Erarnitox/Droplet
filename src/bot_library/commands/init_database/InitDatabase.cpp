@@ -47,18 +47,6 @@ CREATE TABLE IF NOT EXISTS public.challenge_roles (
 	CONSTRAINT challenge_roles_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS public.goodbye_channels (
-	guild_id numeric NOT NULL,
-	channel_id numeric NULL,
-	CONSTRAINT goodbye_channels_pkey PRIMARY KEY (guild_id)
-);
-
-CREATE TABLE IF NOT EXISTS public.log_channels (
-	guild_id numeric NOT NULL,
-	channel_id numeric NULL,
-	CONSTRAINT log_channels_pkey PRIMARY KEY (guild_id)
-);
-
 CREATE TABLE IF NOT EXISTS public.reaction_roles (
 	id serial4 NOT NULL,
 	role_id int8 NULL,
@@ -67,11 +55,6 @@ CREATE TABLE IF NOT EXISTS public.reaction_roles (
 	emoji varchar NULL
 );
 
-CREATE TABLE IF NOT EXISTS public.welcome_channels (
-	guild_id numeric NOT NULL,
-	channel_id numeric NULL,
-	CONSTRAINT welcome_channels_pkey PRIMARY KEY (guild_id)
-);
 )ERARNITOX");
 
 	if (result) {

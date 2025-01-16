@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['goodbyechanneldto_0',['GoodbyeChannelDTO',['../classGoodbyeChannelDTO.html',1,'']]],
-  ['goodbyechannelrepository_1',['GoodbyeChannelRepository',['../classGoodbyeChannelRepository.html',1,'']]]
+  ['hasbadgerepository_0',['HasBadgeRepository',['../classHasBadgeRepository.html',1,'']]],
+  ['helpcommand_1',['HelpCommand',['../classHelpCommand.html',1,'']]]
 ];

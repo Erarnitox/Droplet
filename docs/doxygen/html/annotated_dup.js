@@ -14,8 +14,6 @@ var annotated_dup =
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", "classDatabase" ],
     [ "FlipCommand", "classFlipCommand.html", "classFlipCommand" ],
-    [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", "classGoodbyeChannelDTO" ],
-    [ "GoodbyeChannelRepository", "classGoodbyeChannelRepository.html", "classGoodbyeChannelRepository" ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", "classHasBadgeRepository" ],
     [ "HelpCommand", "classHelpCommand.html", "classHelpCommand" ],
     [ "IButtonCommand", "classIButtonCommand.html", "classIButtonCommand" ],
@@ -28,8 +26,6 @@ var annotated_dup =
     [ "IReactionCommand", "classIReactionCommand.html", "classIReactionCommand" ],
     [ "IReady", "classIReady.html", "classIReady" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],
-    [ "LogChannelDTO", "classLogChannelDTO.html", "classLogChannelDTO" ],
-    [ "LogChannelRepository", "classLogChannelRepository.html", "classLogChannelRepository" ],
     [ "PortalDTO", "classPortalDTO.html", "classPortalDTO" ],
     [ "PortalRepository", "classPortalRepository.html", "classPortalRepository" ],
     [ "ProfileCommand", "classProfileCommand.html", "classProfileCommand" ],
@@ -43,11 +39,8 @@ var annotated_dup =
     [ "RollCommand", "classRollCommand.html", "classRollCommand" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
     [ "ServerDetails", "classServerDetails.html", "classServerDetails" ],
-    [ "SetChannelCommand", "classSetChannelCommand.html", "classSetChannelCommand" ],
     [ "SetPortalCommand", "classSetPortalCommand.html", "classSetPortalCommand" ],
     [ "SetStatus", "classSetStatus.html", "classSetStatus" ],
     [ "UserDTO", "classUserDTO.html", "classUserDTO" ],
-    [ "UserRepository", "classUserRepository.html", "classUserRepository" ],
-    [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", "classWelcomeChannelDTO" ],
-    [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", "classWelcomeChannelRepository" ]
+    [ "UserRepository", "classUserRepository.html", "classUserRepository" ]
 ];

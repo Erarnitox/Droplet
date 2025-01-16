@@ -6,7 +6,6 @@ var hierarchy =
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
-    [ "GoodbyeChannelDTO", "classGoodbyeChannelDTO.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
     [ "IButtonCommand", "classIButtonCommand.html", [
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
@@ -29,12 +28,9 @@ var hierarchy =
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
-      [ "SetChannelCommand", "classSetChannelCommand.html", null ],
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
-    [ "IMemberCommand", "classIMemberCommand.html", [
-      [ "SetChannelCommand", "classSetChannelCommand.html", null ]
-    ] ],
+    [ "IMemberCommand", "classIMemberCommand.html", null ],
     [ "IMessageCommand", "classIMessageCommand.html", [
       [ "CleanUp", "classCleanUp.html", null ],
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
@@ -56,12 +52,6 @@ var hierarchy =
     [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
       [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
     ] ],
-    [ "IRepository< GoodbyeChannelDTO >", "classIRepository.html", [
-      [ "GoodbyeChannelRepository", "classGoodbyeChannelRepository.html", null ]
-    ] ],
-    [ "IRepository< LogChannelDTO >", "classIRepository.html", [
-      [ "LogChannelRepository", "classLogChannelRepository.html", null ]
-    ] ],
     [ "IRepository< PortalDTO >", "classIRepository.html", [
       [ "PortalRepository", "classPortalRepository.html", null ]
     ] ],
@@ -74,14 +64,9 @@ var hierarchy =
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
-    [ "IRepository< WelcomeChannelDTO >", "classIRepository.html", [
-      [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", null ]
-    ] ],
-    [ "LogChannelDTO", "classLogChannelDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
-    [ "UserDTO", "classUserDTO.html", null ],
-    [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
+    [ "UserDTO", "classUserDTO.html", null ]
 ];

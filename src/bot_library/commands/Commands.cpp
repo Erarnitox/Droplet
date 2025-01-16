@@ -30,7 +30,6 @@
 #include <ResourcesCommand.hpp>
 #include <RollCommand.hpp>
 #include <ServerDetails.hpp>
-#include <SetChannelCommand.hpp>
 #include <SetPortalCommand.hpp>
 #include <SetStatus.hpp>
 
@@ -53,10 +52,6 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());
 	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());
 	Bot::add_slash_command(std::make_shared<BlacklistCommand>());
-
-	const auto& set_channel_command{std::make_shared<SetChannelCommand>()};
-	Bot::add_slash_command(set_channel_command);
-	Bot::add_member_command(set_channel_command);
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);

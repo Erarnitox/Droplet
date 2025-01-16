@@ -4,13 +4,13 @@ add_library(commands STATIC
 
 target_include_directories(commands PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 
+## Only needed when porting to a new database
 # add_subdirectory(init_database)
 
 add_subdirectory(help)
 add_subdirectory(resources)
 add_subdirectory(reaction_roles)
 add_subdirectory(challenge_role)
-add_subdirectory(set_channel)
 add_subdirectory(clean_up)
 add_subdirectory(server_details)
 add_subdirectory(set_status)

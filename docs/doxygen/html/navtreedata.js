@@ -37,7 +37,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
+        [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -57,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BlacklistCommand_8cpp.html",
-"classIGlobalSlashCommand.html#a3bff2042604a2dc956fd53b662584925"
+"classPortalRepository.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

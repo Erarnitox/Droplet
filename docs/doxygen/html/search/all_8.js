@@ -27,14 +27,11 @@ var searchData=
   ['irepository_3c_20blacklistdto_20_3e_24',['IRepository&lt; BlacklistDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20challengebadgedto_20_3e_25',['IRepository&lt; ChallengeBadgeDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20challengeroledto_20_3e_26',['IRepository&lt; ChallengeRoleDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20goodbyechanneldto_20_3e_27',['IRepository&lt; GoodbyeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20logchanneldto_20_3e_28',['IRepository&lt; LogChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20portaldto_20_3e_29',['IRepository&lt; PortalDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20reactionroledto_20_3e_30',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20resourcedto_20_3e_31',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20userdto_20_3e_32',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['irepository_3c_20welcomechanneldto_20_3e_33',['IRepository&lt; WelcomeChannelDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_34',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
-  ['is_5ferarnitox_5fadmin_35',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
-  ['is_5fsubscribed_36',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
+  ['irepository_3c_20portaldto_20_3e_27',['IRepository&lt; PortalDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20reactionroledto_20_3e_28',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20resourcedto_20_3e_29',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
+  ['irepository_3c_20userdto_20_3e_30',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
+  ['is_5fadmin_31',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
+  ['is_5ferarnitox_5fadmin_32',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
+  ['is_5fsubscribed_33',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
 ];
