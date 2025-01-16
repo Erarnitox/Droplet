@@ -18,6 +18,8 @@
  * @return doesn't return anything
  */
 void InitDatabase::on_ready(const dpp::ready_t& event) {
+	(void)event;
+
 	auto result = database::execQuery(
 		R"ERARNITOX(
 CREATE SEQUENCE IF NOT EXISTS public.challenge_roles_id_seq

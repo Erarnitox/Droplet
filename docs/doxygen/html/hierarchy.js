@@ -23,8 +23,6 @@ var hierarchy =
       [ "FlipCommand", "classFlipCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
-      [ "MemberCommand", "classMemberCommand.html", null ],
-      [ "ProductsCommand", "classProductsCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "RemovePortalCommand", "classRemovePortalCommand.html", null ],
@@ -32,8 +30,7 @@ var hierarchy =
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetChannelCommand", "classSetChannelCommand.html", null ],
-      [ "SetPortalCommand", "classSetPortalCommand.html", null ],
-      [ "TextsCommand", "classTextsCommand.html", null ]
+      [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", [
       [ "SetChannelCommand", "classSetChannelCommand.html", null ]
@@ -65,23 +62,14 @@ var hierarchy =
     [ "IRepository< LogChannelDTO >", "classIRepository.html", [
       [ "LogChannelRepository", "classLogChannelRepository.html", null ]
     ] ],
-    [ "IRepository< MemberDTO >", "classIRepository.html", [
-      [ "MemberRepository", "classMemberRepository.html", null ]
-    ] ],
     [ "IRepository< PortalDTO >", "classIRepository.html", [
       [ "PortalRepository", "classPortalRepository.html", null ]
-    ] ],
-    [ "IRepository< ProductDTO >", "classIRepository.html", [
-      [ "ProductRepository", "classProductRepository.html", null ]
     ] ],
     [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
       [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
     ] ],
     [ "IRepository< ResourceDTO >", "classIRepository.html", [
       [ "ResourceRepository", "classResourceRepository.html", null ]
-    ] ],
-    [ "IRepository< TextDTO >", "classIRepository.html", [
-      [ "TextRepository", "classTextRepository.html", null ]
     ] ],
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
@@ -90,13 +78,10 @@ var hierarchy =
       [ "WelcomeChannelRepository", "classWelcomeChannelRepository.html", null ]
     ] ],
     [ "LogChannelDTO", "classLogChannelDTO.html", null ],
-    [ "MemberDTO", "classMemberDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
-    [ "ProductDTO", "classProductDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
-    [ "TextDTO", "classTextDTO.html", null ],
     [ "UserDTO", "classUserDTO.html", null ],
     [ "WelcomeChannelDTO", "classWelcomeChannelDTO.html", null ]
 ];

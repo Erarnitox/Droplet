@@ -6,7 +6,7 @@ var searchData=
   ['command_5fdescription_3',['command_description',['../classIGlobalSlashCommand.html#a84ad842dd0fe2dd9c0c73c23b3c7484b',1,'IGlobalSlashCommand']]],
   ['command_5fname_4',['command_name',['../classIGlobalSlashCommand.html#aa8051c4a03fa41b9c2aa13eae635215f',1,'IGlobalSlashCommand']]],
   ['command_5foptions_5',['command_options',['../classIGlobalSlashCommand.html#aa15ce287ef8586b3db053ce77d1b4447',1,'IGlobalSlashCommand']]],
-  ['creator_6',['creator',['../classResourceDTO.html#a5c814f2cc5440ddba00b17f6cbf54fec',1,'ResourceDTO::creator'],['../classTextDTO.html#a4cb9b7d72686e35829f9fd77e33ca203',1,'TextDTO::creator']]],
+  ['creator_6',['creator',['../classResourceDTO.html#a5c814f2cc5440ddba00b17f6cbf54fec',1,'ResourceDTO']]],
   ['creator_5fid_7',['creator_id',['../classResourceDTO.html#a3435d7d938bdb9cf939f53555bc08201',1,'ResourceDTO']]],
   ['ctx_8',['ctx',['../classBot.html#a33348129774eb659c662848b61897301',1,'Bot']]]
 ];

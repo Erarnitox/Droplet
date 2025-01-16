@@ -11,6 +11,7 @@
  */
 
 #include <Commands.hpp>
+#include <memory>
 
 ///////////////////////////////////////
 /// COMMAND HEADERS:
@@ -23,8 +24,6 @@
 #include <FlipCommand.hpp>
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
-#include <MemberCommand.hpp>
-#include <ProductsCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <RemovePortalCommand.hpp>
@@ -34,8 +33,6 @@
 #include <SetChannelCommand.hpp>
 #include <SetPortalCommand.hpp>
 #include <SetStatus.hpp>
-#include <TextsCommand.hpp>
-#include <memory>
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -51,11 +48,8 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
-	Bot::add_slash_command(std::make_shared<TextsCommand>());
-	Bot::add_slash_command(std::make_shared<ProductsCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
-	Bot::add_slash_command(std::make_shared<MemberCommand>());
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());
 	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());
 	Bot::add_slash_command(std::make_shared<BlacklistCommand>());

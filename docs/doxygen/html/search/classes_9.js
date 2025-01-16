@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['portaldto_0',['PortalDTO',['../classPortalDTO.html',1,'']]],
-  ['portalrepository_1',['PortalRepository',['../classPortalRepository.html',1,'']]],
-  ['productdto_2',['ProductDTO',['../classProductDTO.html',1,'']]],
-  ['productrepository_3',['ProductRepository',['../classProductRepository.html',1,'']]],
-  ['productscommand_4',['ProductsCommand',['../classProductsCommand.html',1,'']]],
-  ['profilecommand_5',['ProfileCommand',['../classProfileCommand.html',1,'']]]
+  ['reactionroledto_0',['ReactionRoleDTO',['../classReactionRoleDTO.html',1,'']]],
+  ['reactionrolerepository_1',['ReactionRoleRepository',['../classReactionRoleRepository.html',1,'']]],
+  ['reactionroles_2',['ReactionRoles',['../classReactionRoles.html',1,'']]],
+  ['removeportalcommand_3',['RemovePortalCommand',['../classRemovePortalCommand.html',1,'']]],
+  ['resourcedto_4',['ResourceDTO',['../classResourceDTO.html',1,'']]],
+  ['resourcerepository_5',['ResourceRepository',['../classResourceRepository.html',1,'']]],
+  ['resourcescommand_6',['ResourcesCommand',['../classResourcesCommand.html',1,'']]],
+  ['rollcommand_7',['RollCommand',['../classRollCommand.html',1,'']]],
+  ['rowdtoadapter_8',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
 ];

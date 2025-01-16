@@ -17,7 +17,8 @@ void InviteCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	/* reply with the created embed */
-	event.reply(dpp::message(event.command.channel_id, "https://discord.erarnitox.de")
+	event.reply(dpp::message(event.command.channel_id,
+							 "**Please click on the link below to join my server!**\nhttp://discord.erarnitox.de")
 					.set_reference(event.command.id)
 					.set_flags(dpp::m_ephemeral));
 
