@@ -6,8 +6,8 @@
 #include <variant>
 
 LearnCPPCommand::LearnCPPCommand() : IGlobalSlashCommand() {
-	this->command_name = "join_erarnitox";
-	this->command_description = "Get invited to Erarnitox's discord server";
+	this->command_name = "learn_cpp";
+	this->command_description = "Get started learning modern C++ today!";
 }
 
 void LearnCPPCommand::on_slashcommand(const dpp::slashcommand_t& event) {
