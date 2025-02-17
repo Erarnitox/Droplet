@@ -14,6 +14,8 @@
 
 #include "repositories/NotificationRepository.hpp"
 
+static std::map<std::string, std::string> latest_videos;
+
 static inline auto start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_user,
 											 const std::string& message,
@@ -24,13 +26,18 @@ static inline auto start_notification_deamon(size_t channel_id,
 		Bot::ctx->request(
 			std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id),
 			dpp::m_get,
-			[channel_id, message](const dpp::http_request_completion_t& cc) {
+			[channel_id, message, youtube_id](const dpp::http_request_completion_t& cc) {
 				if (cc.status > 300)
 					return;
 
 				const auto video_pattern{std::string("https://www.youtube.com/v/")};
 				const auto vid_id_size{11};
 				const auto yt_link{cc.body.substr(cc.body.find(video_pattern), video_pattern.size() + vid_id_size)};
+
+				const auto& key{ std::format("{}/{}", channel_id, youtube_id) };
+				if(latest_videos[key] == yt_link) return;
+				latest_videos[key] = yt_link;
+			
 				const auto& msg{dpp::message(channel_id, std::format("{}\n{}", message, yt_link))};
 				Bot::ctx->message_create(msg);
 			});
