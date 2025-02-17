@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['userdto_0',['UserDTO',['../classUserDTO.html',1,'']]],
-  ['userrepository_1',['UserRepository',['../classUserRepository.html',1,'']]]
+  ['serverdetails_0',['ServerDetails',['../classServerDetails.html',1,'']]],
+  ['setportalcommand_1',['SetPortalCommand',['../classSetPortalCommand.html',1,'']]],
+  ['setstatus_2',['SetStatus',['../classSetStatus.html',1,'']]]
 ];

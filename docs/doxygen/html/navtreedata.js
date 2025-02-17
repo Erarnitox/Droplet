@@ -57,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "BlacklistCommand_8cpp.html",
-"classPortalRepository.html"
+"classPortalDTO.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

@@ -22,6 +22,7 @@ var hierarchy =
       [ "FlipCommand", "classFlipCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
+      [ "LearnCPPCommand", "classLearnCPPCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "RemovePortalCommand", "classRemovePortalCommand.html", null ],

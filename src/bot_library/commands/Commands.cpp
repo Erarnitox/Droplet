@@ -24,6 +24,7 @@
 #include <FlipCommand.hpp>
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
+#include <LearnCPPCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <RemovePortalCommand.hpp>
@@ -46,6 +47,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
+	Bot::add_slash_command(std::make_shared<LearnCPPCommand>());
 	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());

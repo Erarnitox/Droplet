@@ -26,6 +26,7 @@ var annotated_dup =
     [ "IReactionCommand", "classIReactionCommand.html", "classIReactionCommand" ],
     [ "IReady", "classIReady.html", "classIReady" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],
+    [ "LearnCPPCommand", "classLearnCPPCommand.html", "classLearnCPPCommand" ],
     [ "PortalDTO", "classPortalDTO.html", "classPortalDTO" ],
     [ "PortalRepository", "classPortalRepository.html", "classPortalRepository" ],
     [ "ProfileCommand", "classProfileCommand.html", "classProfileCommand" ],
