@@ -71,6 +71,7 @@ var hierarchy =
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
+    [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "NotificationDTO", "classNotificationDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],

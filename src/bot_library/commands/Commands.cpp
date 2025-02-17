@@ -27,14 +27,14 @@
 #include <LearnCPPCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
+#include <RemoveNotificationCommand.hpp>
 #include <RemovePortalCommand.hpp>
 #include <ResourcesCommand.hpp>
 #include <RollCommand.hpp>
 #include <ServerDetails.hpp>
+#include <SetNotificationCommand.hpp>
 #include <SetPortalCommand.hpp>
 #include <SetStatus.hpp>
-#include <SetNotificationCommand.hpp>
-#include <RemoveNotificationCommand.hpp>
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -59,7 +59,6 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<BlacklistCommand>());
 	Bot::add_slash_command(std::make_shared<SetNotificationCommand>());
 	Bot::add_slash_command(std::make_shared<RemoveNotificationCommand>());
-
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);

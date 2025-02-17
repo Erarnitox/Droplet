@@ -3,6 +3,8 @@ add_library(notification_repository STATIC
     NotificationRepository.hpp
     NotificationDTO.hpp
     NotificationDTO.cpp
+    LatestEventsRepository.cpp
+    LatestEventsRepository.hpp
 )
 
 # enable additional warnings and static analysis for this target

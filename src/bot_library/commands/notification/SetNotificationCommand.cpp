@@ -12,9 +12,8 @@
 #include <format>
 #include <nlohmann/json.hpp>
 
+#include "LatestEventsRepository.hpp"
 #include "repositories/NotificationRepository.hpp"
-
-static std::map<std::string, std::string> latest_videos;
 
 static inline auto start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_user,
@@ -34,10 +33,12 @@ static inline auto start_notification_deamon(size_t channel_id,
 				const auto vid_id_size{11};
 				const auto yt_link{cc.body.substr(cc.body.find(video_pattern), video_pattern.size() + vid_id_size)};
 
-				const auto& key{ std::format("{}/{}", channel_id, youtube_id) };
-				if(latest_videos[key] == yt_link) return;
-				latest_videos[key] = yt_link;
-			
+				const auto& key{std::format("{}/{}", channel_id, youtube_id)};
+				if (LatestEventsRepository::exists(key, yt_link))
+					return;
+				if (not LatestEventsRepository::insert(key, yt_link))
+					return;
+
 				const auto& msg{dpp::message(channel_id, std::format("{}\n{}", message, yt_link))};
 				Bot::ctx->message_create(msg);
 			});
@@ -98,6 +99,9 @@ void SetNotificationCommand::on_ready(const dpp::ready_t& event) {
 	(void)event;
 
 	NotificationRepository repo;
+
+	if (not LatestEventsRepository::load())
+		return;
 
 	for (auto& job : repo.getAll()) {
 		if (job.type != "youtube")

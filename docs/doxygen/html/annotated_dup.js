@@ -26,6 +26,7 @@ var annotated_dup =
     [ "IReactionCommand", "classIReactionCommand.html", "classIReactionCommand" ],
     [ "IReady", "classIReady.html", "classIReady" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],
+    [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "LearnCPPCommand", "classLearnCPPCommand.html", "classLearnCPPCommand" ],
     [ "NotificationDTO", "classNotificationDTO.html", "classNotificationDTO" ],
     [ "NotificationRepository", "classNotificationRepository.html", "classNotificationRepository" ],

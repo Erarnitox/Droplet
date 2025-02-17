@@ -3,6 +3,7 @@
 #include <Database.hpp>
 #include <cstddef>
 #include <vector>
+#include "NotificationDTO.hpp"
 
 auto NotificationRepository::create(const NotificationDTO& object) -> bool {
 	static std::string sql_string{
@@ -30,8 +31,9 @@ auto NotificationRepository::remove(size_t id) -> bool {
 
 auto NotificationRepository::update(const NotificationDTO& object) -> bool {
 	static std::string sql_string{
-		"UPDATE notifications SET channel_id = $2::Int8 type = $3::varchar, data = $4::varchar, message = $5::varchar, "
-		"timestep = $6::int8 WHERE guild_id = $1"};
+		"UPDATE notifications SET channel_id = $2::int8, type = $3::varchar, data = $4::varchar, message = "
+		"$5::varchar, "
+		"timestep = $6::int8 WHERE guild_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -46,17 +48,16 @@ auto NotificationRepository::update(const NotificationDTO& object) -> bool {
 }
 
 auto NotificationRepository::get(size_t id) -> NotificationDTO {
-	/*
-	static std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=$1::int8"};
+	
+	static std::string sql_string{"SELECT channel_id FROM notifications WHERE guild_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, id)};
 
-	PortalDTO dto;
+	NotificationDTO dto;
 	dto.guild_id = id;
 	dto.channel_id = result.get<decltype(dto.channel_id)>("channel_id");
-	*/
-	(void)id;
-	return {};
+	
+	return dto;
 }
 
 auto NotificationRepository::getAll() -> std::vector<NotificationDTO> {
