@@ -2,9 +2,6 @@
 
 #include <message.h>
 
-#include <format>
-#include <variant>
-
 LearnCPPCommand::LearnCPPCommand() : IGlobalSlashCommand() {
 	this->command_name = "learn_cpp";
 	this->command_description = "Get started learning modern C++ today!";

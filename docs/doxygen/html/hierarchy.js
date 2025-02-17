@@ -25,10 +25,12 @@ var hierarchy =
       [ "LearnCPPCommand", "classLearnCPPCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],
+      [ "RemoveNotificationCommand", "classRemoveNotificationCommand.html", null ],
       [ "RemovePortalCommand", "classRemovePortalCommand.html", null ],
       [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
+      [ "SetNotificationCommand", "classSetNotificationCommand.html", null ],
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", null ],
@@ -41,6 +43,7 @@ var hierarchy =
     ] ],
     [ "IReady", "classIReady.html", [
       [ "InitDatabase", "classInitDatabase.html", null ],
+      [ "SetNotificationCommand", "classSetNotificationCommand.html", null ],
       [ "SetStatus", "classSetStatus.html", null ]
     ] ],
     [ "IRepository< DTO >", "classIRepository.html", null ],
@@ -52,6 +55,9 @@ var hierarchy =
     ] ],
     [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
       [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
+    ] ],
+    [ "IRepository< NotificationDTO >", "classIRepository.html", [
+      [ "NotificationRepository", "classNotificationRepository.html", null ]
     ] ],
     [ "IRepository< PortalDTO >", "classIRepository.html", [
       [ "PortalRepository", "classPortalRepository.html", null ]
@@ -65,6 +71,7 @@ var hierarchy =
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
+    [ "NotificationDTO", "classNotificationDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],

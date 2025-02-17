@@ -33,6 +33,8 @@
 #include <ServerDetails.hpp>
 #include <SetPortalCommand.hpp>
 #include <SetStatus.hpp>
+#include <SetNotificationCommand.hpp>
+#include <RemoveNotificationCommand.hpp>
 
 /**
  * @brief registers the commands so they are known to the bot
@@ -43,6 +45,7 @@ void Commands::registerCommands() {
 	/// REGISTER ALL COMMANDS HERE:
 	////////////////////////////////////
 	Bot::add_ready_command(std::make_shared<SetStatus>());
+	Bot::add_ready_command(std::make_shared<SetNotificationCommand>());
 	Bot::add_message_command(std::make_shared<CleanUp>());
 	Bot::add_slash_command(std::make_shared<HelpCommand>());
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
@@ -54,6 +57,9 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());
 	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());
 	Bot::add_slash_command(std::make_shared<BlacklistCommand>());
+	Bot::add_slash_command(std::make_shared<SetNotificationCommand>());
+	Bot::add_slash_command(std::make_shared<RemoveNotificationCommand>());
+
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);
