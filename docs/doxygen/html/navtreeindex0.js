@@ -92,7 +92,6 @@ var NAVTREEINDEX0 =
 "InviteCommand_8hpp.html":[2,0,0,0,1,7,1],
 "InviteCommand_8hpp_source.html":[2,0,0,0,1,7,1],
 "LatestEventsRepository_8cpp.html":[2,0,0,0,1,9,0,0],
-"LatestEventsRepository_8cpp.html#af133e63e94464d48d46fbbeb110a4f31":[2,0,0,0,1,9,0,0,0],
 "LatestEventsRepository_8hpp.html":[2,0,0,0,1,9,0,1],
 "LatestEventsRepository_8hpp_source.html":[2,0,0,0,1,9,0,1],
 "LearnCPPCommand_8cpp.html":[2,0,0,0,1,8,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classIMessageCommand.html#ab52ca884721d171494db9ab5020e1b8a":[1,0,20,2],
 "classIMessageCommand.html#afac5d989605caa799842929a528c3bea":[1,0,20,1],
 "classIReactionCommand.html":[1,0,23],
-"classIReactionCommand.html#a8136cfd6d776afe9ddee16cc0af88e04":[1,0,23,0]
+"classIReactionCommand.html#a8136cfd6d776afe9ddee16cc0af88e04":[1,0,23,0],
+"classIReactionCommand.html#a92e5dc9a88b9db4b4823f752734d0b90":[1,0,23,1]
 };

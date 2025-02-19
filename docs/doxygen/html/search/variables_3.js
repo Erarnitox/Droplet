@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['data_0',['data',['../classNotificationDTO.html#a18df54373d782ab31575d363a23f2046',1,'NotificationDTO']]],
-  ['description_1',['description',['../classResourceDTO.html#a17831d1cab1169239ae569cfb9e1995c',1,'ResourceDTO']]],
-  ['difficulty_2',['difficulty',['../classResourceDTO.html#a2056dbecffc35f4fbd9e40c292c3f6db',1,'ResourceDTO']]]
+  ['emoji_0',['emoji',['../classReactionRoleDTO.html#aa5699426d8b83a816ed2d750a0b9338b',1,'ReactionRoleDTO']]],
+  ['exp_1',['exp',['../classChallengeBadgeDTO.html#a82f79f139c60a6b40adfc88c9b9fd1f8',1,'ChallengeBadgeDTO::exp'],['../classUserDTO.html#ad1aeb3ee28c13b927062969eec30027b',1,'UserDTO::exp']]]
 ];

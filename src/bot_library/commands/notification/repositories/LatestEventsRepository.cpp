@@ -14,7 +14,6 @@ CREATE TABLE public.latest_events
 );
 */
 
-static std::mutex active_map_mutex;
 std::map<std::string, bool> LatestEventsRepository::active_events{};
 std::map<std::string, std::string> LatestEventsRepository::latest_events{};
 
@@ -24,7 +23,6 @@ auto LatestEventsRepository::is_active(const std::string& key) -> bool {
 }
 
 auto LatestEventsRepository::set_active (const std::string& key, bool active) -> void {
-	std::lock_guard<std::mutex> lock(active_map_mutex);
 	active_events[key] = active;
 }
 
@@ -71,12 +69,11 @@ auto LatestEventsRepository::exists(const std::string& key, const std::string& v
 auto LatestEventsRepository::load() -> bool {
 	static std::string sql_string{"SELECT key, latest FROM latest_events"};
 	auto result{database::execSelectAll(sql_string)};
-
+	
 	for (const auto& adapter : result) {
 		latest_events.insert_or_assign(adapter.get<std::string>("key"), adapter.get<std::string>("latest"));
-		active_events.insert_or_assign(adapter.get<std::string>("key"), true);
+		set_active(adapter.get<std::string>("key"), true);
 	}
 
-	active_map_mutex.unlock();
 	return true;
 }

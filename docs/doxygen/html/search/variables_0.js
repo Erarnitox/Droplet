@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['active_5fmap_5fmutex_0',['active_map_mutex',['../LatestEventsRepository_8cpp.html#af133e63e94464d48d46fbbeb110a4f31',1,'LatestEventsRepository.cpp']]]
+  ['badge_0',['badge',['../classChallengeBadgeDTO.html#ad6273881de0c2281ed22d751aef0c713',1,'ChallengeBadgeDTO']]],
+  ['button_5fcommands_1',['button_commands',['../classBot.html#add61d8dc757b40b1777804e861899cde',1,'Bot']]]
 ];

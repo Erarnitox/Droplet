@@ -18,30 +18,24 @@
 static inline auto start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_user,
 											 const std::string& message,
-											 size_t timestep_sec = 100) -> void {
+											 size_t timestep_sec = 500) -> void {
 	const dpp::timer_callback_t on_tick = [channel_id, youtube_user, message](dpp::timer deleteTimer) {
 		(void)deleteTimer;
 		const auto& youtube_id = youtube_user;	// TODO: resolve the id automatically
 		Bot::ctx->request(
 			std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id),
 			dpp::m_get,
-			[channel_id, message, youtube_id, &deleteTimer](const dpp::http_request_completion_t& cc) {
+			[channel_id, message, youtube_id](const dpp::http_request_completion_t& cc) {
 				const auto& key{std::format("{}/{}", channel_id, youtube_id)};
 
 				if (cc.status > 300) {
 					if(cc.status > 399)
 						(void) LatestEventsRepository::remove(key);
 					
-					const auto& msg{dpp::message(channel_id, "Received Server error from youtube!")};
-					Bot::ctx->message_create(msg);
-					Bot::ctx->stop_timer(deleteTimer);
 					return;
 				}
 				
 				if (not LatestEventsRepository::is_active(key)) {
-					const auto& msg{dpp::message(channel_id, "Notifications not active!")};
-					Bot::ctx->message_create(msg);
-					Bot::ctx->stop_timer(deleteTimer);
 					return;
 				}
 
@@ -50,14 +44,10 @@ static inline auto start_notification_deamon(size_t channel_id,
 				const auto yt_link{cc.body.substr(cc.body.find(video_pattern), video_pattern.size() + vid_id_size)};
 
 				if (LatestEventsRepository::exists(key, yt_link)){
-					const auto& msg{dpp::message(channel_id, "No new videos!")};
-					Bot::ctx->message_create(msg);
 					return;
 				}
 
 				if (not LatestEventsRepository::insert(key, yt_link)){
-					const auto& msg{dpp::message(channel_id, "Could not update the database!")};
-					Bot::ctx->message_create(msg);
 					return;
 				}
 
