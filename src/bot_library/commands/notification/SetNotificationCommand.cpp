@@ -22,12 +22,14 @@ static inline auto start_notification_deamon(size_t channel_id,
 	const dpp::timer_callback_t on_tick = [channel_id, youtube_user, message](dpp::timer deleteTimer) {
 		(void)deleteTimer;
 		const auto& youtube_id = youtube_user;	// TODO: resolve the id automatically
+		const auto& key{std::format("{}/{}", channel_id, youtube_id)};
+
+		LatestEventsRepository::set_active(key, true);
+
 		Bot::ctx->request(
 			std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id),
 			dpp::m_get,
-			[channel_id, message, youtube_id](const dpp::http_request_completion_t& cc) {
-				const auto& key{std::format("{}/{}", channel_id, youtube_id)};
-
+			[channel_id, message, youtube_id, key](const dpp::http_request_completion_t& cc) {
 				if (cc.status > 300) {
 					if(cc.status > 399)
 						(void) LatestEventsRepository::remove(key);

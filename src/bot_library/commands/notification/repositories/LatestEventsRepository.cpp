@@ -43,9 +43,8 @@ auto LatestEventsRepository::insert(const std::string& key, const std::string& v
 			"INSERT INTO latest_events"
 			"(key, latest) VALUES "
 			"($1::varchar, $2::varchar)"};
-		const bool active{ database::execQuery(sql_string, key, value) };
-		set_active(key, active);
-		return active;
+		
+		return database::execQuery(sql_string, key, value);
 	}
 }
 
@@ -72,7 +71,6 @@ auto LatestEventsRepository::load() -> bool {
 	
 	for (const auto& adapter : result) {
 		latest_events.insert_or_assign(adapter.get<std::string>("key"), adapter.get<std::string>("latest"));
-		set_active(adapter.get<std::string>("key"), true);
 	}
 
 	return true;
