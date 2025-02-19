@@ -25,15 +25,26 @@ static inline auto start_notification_deamon(size_t channel_id,
 		Bot::ctx->request(
 			std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id),
 			dpp::m_get,
-			[channel_id, message, youtube_id](const dpp::http_request_completion_t& cc) {
-				if (cc.status > 300)
+			[channel_id, message, youtube_id, &deleteTimer](const dpp::http_request_completion_t& cc) {
+				const auto& key{std::format("{}/{}", channel_id, youtube_id)};
+
+				if (cc.status > 300) {
+					if(cc.status > 399)
+						(void) LatestEventsRepository::remove(key);
+					
+					Bot::ctx->stop_timer(deleteTimer);
 					return;
+				}
+				
+				if (not LatestEventsRepository::is_active(key)) {
+					Bot::ctx->stop_timer(deleteTimer);
+					return;
+				}
 
 				const auto video_pattern{std::string("https://www.youtube.com/v/")};
 				const auto vid_id_size{11};
 				const auto yt_link{cc.body.substr(cc.body.find(video_pattern), video_pattern.size() + vid_id_size)};
 
-				const auto& key{std::format("{}/{}", channel_id, youtube_id)};
 				if (LatestEventsRepository::exists(key, yt_link))
 					return;
 				if (not LatestEventsRepository::insert(key, yt_link))

@@ -3,6 +3,7 @@
 #include <Database.hpp>
 #include <cstddef>
 #include <vector>
+
 #include "NotificationDTO.hpp"
 
 auto NotificationRepository::create(const NotificationDTO& object) -> bool {
@@ -48,7 +49,6 @@ auto NotificationRepository::update(const NotificationDTO& object) -> bool {
 }
 
 auto NotificationRepository::get(size_t id) -> NotificationDTO {
-	
 	static std::string sql_string{"SELECT channel_id FROM notifications WHERE guild_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, id)};
@@ -56,7 +56,7 @@ auto NotificationRepository::get(size_t id) -> NotificationDTO {
 	NotificationDTO dto;
 	dto.guild_id = id;
 	dto.channel_id = result.get<decltype(dto.channel_id)>("channel_id");
-	
+
 	return dto;
 }
 

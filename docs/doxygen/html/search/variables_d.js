@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['tags_0',['tags',['../classResourceDTO.html#a2909ad870a860773d901478d6a9cdba4',1,'ResourceDTO']]],
-  ['title_1',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO::title'],['../classTextDTO.html#aec1f3d73fa535492ff4c6b52b9da2fbf',1,'TextDTO::title']]],
-  ['type_2',['type',['../classProductDTO.html#ac01ec0b799e6169883e8c62d84c8e280',1,'ProductDTO']]]
+  ['url_0',['url',['../classResourceDTO.html#af8d89b505984b04aa7b73c3b2626087f',1,'ResourceDTO']]],
+  ['user_5fid_1',['user_id',['../classUserDTO.html#a19b58be5ca9ebc3c00ed8ace5d697c91',1,'UserDTO']]],
+  ['user_5fname_2',['user_name',['../classUserDTO.html#a951d3bc2fbe7cd316c973e85afdcaad3',1,'UserDTO']]],
+  ['username_3',['username',['../classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03',1,'BlacklistDTO']]]
 ];

@@ -2,6 +2,7 @@
 
 #include <Database.hpp>
 #include <cstddef>
+#include <mutex>
 #include <vector>
 
 /*
@@ -13,7 +14,19 @@ CREATE TABLE public.latest_events
 );
 */
 
+std::mutex active_map_mutex;
+std::map<std::string, bool> LatestEventsRepository::active_events{};
 std::map<std::string, std::string> LatestEventsRepository::latest_events{};
+
+auto LatestEventsRepository::is_active(const std::string& key) -> bool {
+	if(not active_events.contains(key)) return false;
+	return active_events.at(key);
+}
+
+auto LatestEventsRepository::set_active (const std::string& key, bool active) -> void {
+	std::lock_guard<std::mutex> lock(active_map_mutex);
+	active_events[key] = active;
+}
 
 auto LatestEventsRepository::insert(const std::string& key, const std::string& value) -> bool {
 	if (!Database::hasConnection()) {
@@ -27,13 +40,14 @@ auto LatestEventsRepository::insert(const std::string& key, const std::string& v
 		return database::execQuery(sql_string, key, value);
 	} else {
 		latest_events[key] = value;
-
+		
 		static std::string sql_string{
 			"INSERT INTO latest_events"
 			"(key, latest) VALUES "
 			"($1::varchar, $2::varchar)"};
-
-		return database::execQuery(sql_string, key, value);
+		const bool active{ database::execQuery(sql_string, key, value) };
+		set_active(key, active);
+		return active;
 	}
 }
 
@@ -45,8 +59,9 @@ auto LatestEventsRepository::remove(const std::string& key) -> bool {
 	}
 
 	latest_events.erase(key);
-
-	return database::execQuery(sql_string, key);
+	const bool disabled{ database::execQuery(sql_string, key) };
+	set_active(key, not disabled);
+	return disabled;
 }
 
 auto LatestEventsRepository::exists(const std::string& key, const std::string& value) -> bool {
@@ -59,6 +74,7 @@ auto LatestEventsRepository::load() -> bool {
 
 	for (const auto& adapter : result) {
 		latest_events.insert_or_assign(adapter.get<std::string>("key"), adapter.get<std::string>("latest"));
+		active_events.insert_or_assign(adapter.get<std::string>("key"), true);
 	}
 
 	return true;

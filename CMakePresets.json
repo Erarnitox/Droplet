@@ -20,7 +20,8 @@
           "CMAKE_CXX_COMPILER": "clang++",
           "USE_DEBUG_TOKEN" : "TRUE",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_VOICE_SUPPORT" : "OFF"
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden"
       }
     },
     {
@@ -35,7 +36,8 @@
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/release",
           "CMAKE_CXX_COMPILER": "clang++-17",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_VOICE_SUPPORT" : "OFF"
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden"
       }
     },
     {
@@ -53,7 +55,8 @@
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
           "CMAKE_UNITY_BUILD": true,
           "CMAKE_UNITY_BUILD_BATCH_SIZE": "32",
-          "BUILD_VOICE_SUPPORT" : "OFF"
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden"
       }
     },
     {
@@ -68,7 +71,8 @@
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/build",
           "CMAKE_CXX_COMPILER": "clang++",
           "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
-          "BUILD_VOICE_SUPPORT" : "OFF"
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden"
       }
     }
   ],

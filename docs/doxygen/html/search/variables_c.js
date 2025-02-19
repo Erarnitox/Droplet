@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['url_0',['url',['../classResourceDTO.html#af8d89b505984b04aa7b73c3b2626087f',1,'ResourceDTO']]],
-  ['user_5fid_1',['user_id',['../classUserDTO.html#a19b58be5ca9ebc3c00ed8ace5d697c91',1,'UserDTO']]],
-  ['user_5fname_2',['user_name',['../classUserDTO.html#a951d3bc2fbe7cd316c973e85afdcaad3',1,'UserDTO']]],
-  ['username_3',['username',['../classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03',1,'BlacklistDTO']]]
+  ['tags_0',['tags',['../classResourceDTO.html#a2909ad870a860773d901478d6a9cdba4',1,'ResourceDTO']]],
+  ['timestep_1',['timestep',['../classNotificationDTO.html#af506bd2b90b694de1fb6a0d6ca99ed5a',1,'NotificationDTO']]],
+  ['title_2',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO']]],
+  ['type_3',['type',['../classNotificationDTO.html#ab86a0b2056f4808258ca68c6cea72df8',1,'NotificationDTO']]]
 ];

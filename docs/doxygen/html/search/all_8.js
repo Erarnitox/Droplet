@@ -33,7 +33,8 @@ var searchData=
   ['irepository_3c_20reactionroledto_20_3e_30',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20resourcedto_20_3e_31',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20userdto_20_3e_32',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5fadmin_33',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
-  ['is_5ferarnitox_5fadmin_34',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
-  ['is_5fsubscribed_35',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
+  ['is_5factive_33',['is_active',['../classLatestEventsRepository.html#a9f5e360fc257a86d803ac84ea9a6a0c7',1,'LatestEventsRepository']]],
+  ['is_5fadmin_34',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
+  ['is_5ferarnitox_5fadmin_35',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
+  ['is_5fsubscribed_36',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
 ];

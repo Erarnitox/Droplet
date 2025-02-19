@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['tags_0',['tags',['../classResourceDTO.html#a2909ad870a860773d901478d6a9cdba4',1,'ResourceDTO']]],
-  ['timestep_1',['timestep',['../classNotificationDTO.html#af506bd2b90b694de1fb6a0d6ca99ed5a',1,'NotificationDTO']]],
-  ['title_2',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO']]],
-  ['type_3',['type',['../classNotificationDTO.html#ab86a0b2056f4808258ca68c6cea72df8',1,'NotificationDTO']]]
+  ['slash_5fcommands_0',['slash_commands',['../classBot.html#a1bc0790c4cf2ae3331ae344277e550a9',1,'Bot']]],
+  ['solution_1',['solution',['../classChallengeBadgeDTO.html#a0487112ea03e88cc5c404023ca0eac9f',1,'ChallengeBadgeDTO::solution'],['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO::solution']]]
 ];
