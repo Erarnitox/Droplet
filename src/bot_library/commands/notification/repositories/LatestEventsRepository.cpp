@@ -14,7 +14,7 @@ CREATE TABLE public.latest_events
 );
 */
 
-std::mutex active_map_mutex;
+static std::mutex active_map_mutex;
 std::map<std::string, bool> LatestEventsRepository::active_events{};
 std::map<std::string, std::string> LatestEventsRepository::latest_events{};
 
@@ -77,5 +77,6 @@ auto LatestEventsRepository::load() -> bool {
 		active_events.insert_or_assign(adapter.get<std::string>("key"), true);
 	}
 
+	active_map_mutex.unlock();
 	return true;
 }
