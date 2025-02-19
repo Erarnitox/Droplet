@@ -18,7 +18,7 @@
 static inline auto start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_user,
 											 const std::string& message,
-											 size_t timestep_sec = 500) -> void {
+											 size_t timestep_sec = 100) -> void {
 	const dpp::timer_callback_t on_tick = [channel_id, youtube_user, message](dpp::timer deleteTimer) {
 		(void)deleteTimer;
 		const auto& youtube_id = youtube_user;	// TODO: resolve the id automatically
@@ -32,11 +32,15 @@ static inline auto start_notification_deamon(size_t channel_id,
 					if(cc.status > 399)
 						(void) LatestEventsRepository::remove(key);
 					
+					const auto& msg{dpp::message(channel_id, "Received Server error from youtube!")};
+					Bot::ctx->message_create(msg);
 					Bot::ctx->stop_timer(deleteTimer);
 					return;
 				}
 				
 				if (not LatestEventsRepository::is_active(key)) {
+					const auto& msg{dpp::message(channel_id, "Notifications not active!")};
+					Bot::ctx->message_create(msg);
 					Bot::ctx->stop_timer(deleteTimer);
 					return;
 				}
@@ -45,10 +49,17 @@ static inline auto start_notification_deamon(size_t channel_id,
 				const auto vid_id_size{11};
 				const auto yt_link{cc.body.substr(cc.body.find(video_pattern), video_pattern.size() + vid_id_size)};
 
-				if (LatestEventsRepository::exists(key, yt_link))
+				if (LatestEventsRepository::exists(key, yt_link)){
+					const auto& msg{dpp::message(channel_id, "No new videos!")};
+					Bot::ctx->message_create(msg);
 					return;
-				if (not LatestEventsRepository::insert(key, yt_link))
+				}
+
+				if (not LatestEventsRepository::insert(key, yt_link)){
+					const auto& msg{dpp::message(channel_id, "Could not update the database!")};
+					Bot::ctx->message_create(msg);
 					return;
+				}
 
 				const auto& msg{dpp::message(channel_id, std::format("{}\n{}", message, yt_link))};
 				Bot::ctx->message_create(msg);
@@ -66,8 +77,7 @@ SetNotificationCommand::SetNotificationCommand() : IGlobalSlashCommand(), IReady
 
 	this->command_options.emplace_back(dpp::co_string, "youtube_id", "Youtube channel id", true);
 
-	this->command_options.emplace_back(
-		dpp::co_string, "message", "Supply a custom message that prepends the link", true);
+	this->command_options.emplace_back(dpp::co_string, "message", "Supply a custom message that prepends the link", true);
 }
 
 void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
@@ -76,7 +86,7 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	if (!Core::is_admin(event.command.member)) {
-		event.reply("Only admins are allowed to run this command!");
+		Core::timed_reply_private(*Bot::ctx, event, "Only admins are allowed to use this command!", 2000);
 		return;
 	}
 
@@ -98,11 +108,10 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	NotificationDTO data{guild_id, channel_id, "youtube", youtube_username, message, 500};
 
 	if (repo.create(data)) {
-		auto msg{dpp::message("Checking for youtube uploads! ...")};
 		start_notification_deamon(channel_id, youtube_username, message);
-		event.reply(msg);
+		Core::timed_reply_private(*Bot::ctx, event, "Notifications for youtube enabled!", 2000);
 	} else {
-		event.reply(dpp::message("Error: Failed to enable Upload notifications!").set_flags(dpp::m_ephemeral));
+		Core::timed_reply_private(*Bot::ctx, event, "Error: Failed to enable Upload notifications!", 2000);
 	}
 }
 
@@ -115,8 +124,7 @@ void SetNotificationCommand::on_ready(const dpp::ready_t& event) {
 		return;
 
 	for (auto& job : repo.getAll()) {
-		if (job.type != "youtube")
-			continue;
+		if (job.type != "youtube") continue;
 		start_notification_deamon(job.channel_id, job.data, job.message, job.timestep);
 	}
 }
