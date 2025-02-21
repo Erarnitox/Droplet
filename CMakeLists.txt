@@ -1,5 +1,19 @@
 cmake_minimum_required(VERSION 3.30)
 
+if(NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/cmake/CPM.cmake")
+  file(DOWNLOAD
+    "https://github.com/cpm-cmake/CPM.cmake/releases/latest/download/cpm.cmake"
+    "${CMAKE_CURRENT_LIST_DIR}/cmake/CPM.cmake"
+    STATUS status
+    SHOW_PROGRESS
+  )
+  list(GET status 0 status_code)
+  if(NOT status_code EQUAL 0)
+    message(FATAL_ERROR "Could not download CPM.cmake")
+  endif()
+endif()
+#list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 

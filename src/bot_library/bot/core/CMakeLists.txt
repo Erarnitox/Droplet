@@ -20,3 +20,11 @@ set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_link_libraries_system(core dpp)
 
 target_link_libraries(core PUBLIC database)
+
+CPMAddPackage("gh:libcpr/cpr#1.11.1")
+
+if(cpr_ADDED)
+  message(STATUS "CPR library added successfully.")
+endif()
+
+target_link_libraries(core PUBLIC cpr::cpr)

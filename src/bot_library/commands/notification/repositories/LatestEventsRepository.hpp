@@ -1,13 +1,16 @@
 #pragma once
 
-#include <map>
+#include <mutex>
 #include <string>
+#include <unordered_map>
 
 class LatestEventsRepository {
   private:
-	static std::map<std::string, std::string> latest_events;
-	static std::map<std::string, bool> active_events;
-	
+	static std::unordered_map<std::string, std::string> latest_events;
+	static std::unordered_map<std::string, bool> active_events;
+	static std::mutex active_events_mutex;
+	static std::mutex latest_events_mutex;
+
   public:
 	[[nodiscard]] static auto insert(const std::string& key, const std::string& value) -> bool;
 
