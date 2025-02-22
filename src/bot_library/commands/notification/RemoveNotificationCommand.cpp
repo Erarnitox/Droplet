@@ -7,6 +7,7 @@
 
 #include <Core.hpp>
 #include <NotificationRepository.hpp>
+#include "Bot.hpp"
 
 RemoveNotificationCommand::RemoveNotificationCommand() : IGlobalSlashCommand() {
 	this->command_name = "remove_notification";
@@ -18,7 +19,7 @@ void RemoveNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event
 		return;
 	}
 
-	if (!Core::is_admin(event.command.member)) {
+	if (not Core::is_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
 	}
@@ -32,14 +33,12 @@ void RemoveNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event
 
 	if (repo.get(data.guild_id).channel_id != 0) {
 		if (repo.remove(data.guild_id)) {
-			auto msg{dpp::message("Notifications where removed!")};
-			event.reply(msg);
+			Core::timed_reply_private(*Bot::ctx, event, "Notifications where removed!", 2000);
 		} else {
-			event.reply(dpp::message("Error: Failed to remove the Notifications!").set_flags(dpp::m_ephemeral));
+			Core::timed_reply_private(*Bot::ctx, event, "Error: Failed to remove the Notifications!", 2000);
 		}
 	} else {
-		auto msg{dpp::message("There are no Notifications on the Server!")};
-		event.reply(msg);
+		Core::timed_reply_private(*Bot::ctx, event, "There are no Notifications on the Server!", 2000);
 	}
 	return;
 }

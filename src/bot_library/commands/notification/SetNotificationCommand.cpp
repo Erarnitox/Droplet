@@ -113,7 +113,7 @@ SetNotificationCommand::SetNotificationCommand() : IGlobalSlashCommand(), IReady
 
 	this->command_options.emplace_back(dpp::co_channel, "channel", "In which channel to post the notifications", true);
 
-	this->command_options.emplace_back(dpp::co_string, "youtube_id", "Youtube channel id", true);
+	this->command_options.emplace_back(dpp::co_string, "youtube_channel", "Youtube channel", true);
 
 	this->command_options.emplace_back(
 		dpp::co_string, "message", "Supply a custom message that prepends the link", true);
@@ -133,7 +133,7 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto& guild_id{static_cast<size_t>(cmd.guild_id)};
 	const auto channel_id{std::get<dpp::snowflake>(event.get_parameter("channel"))};
 
-	const auto youtube_username{Core::get_parameter(*Bot::ctx, event, "youtube_id")};
+	const auto youtube_username{Core::get_parameter(*Bot::ctx, event, "youtube_channel")};
 	if (youtube_username.empty()) {
 		return;
 	}
