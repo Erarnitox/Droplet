@@ -18,7 +18,8 @@
 #include "repositories/NotificationRepository.hpp"
 
 static inline auto resolve_youtube_channel_id(const std::string& input) -> std::optional<std::string> {
-	if(input.starts_with("UC")) return input;
+	if (input.starts_with("UC"))
+		return input;
 
 	std::smatch match;
 	std::regex channelRegex{R"(youtube\.com\/channel\/([a-zA-Z0-9_-]+))"};
@@ -32,14 +33,14 @@ static inline auto resolve_youtube_channel_id(const std::string& input) -> std::
 		username = match[1].str();
 	}
 
-	if(username.empty()) {
+	if (username.empty()) {
 		std::regex handleRegex{R"(youtube\.com\/@([a-zA-Z0-9_-]+))"};
 		if (std::regex_search(input, match, handleRegex) && match.size() > 1) {
 			username = match[1].str();
 		}
 	}
 
-	if(username.empty()) {
+	if (username.empty()) {
 		username = input;
 	}
 
@@ -60,7 +61,6 @@ static inline auto start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_id,
 											 const std::string& message,
 											 size_t timestep_sec = 500) -> void {
-
 	const auto key{std::format("{}/{}", channel_id, youtube_id)};
 
 	const dpp::timer_callback_t on_tick{[channel_id, youtube_id, message, key](dpp::timer timer_handle) {
@@ -97,6 +97,7 @@ static inline auto start_notification_deamon(size_t channel_id,
 					}
 
 					dpp::message msg(channel_id, std::format("{}\n{}", message, yt_link));
+					msg.set_allowed_mentions(true, true, true, true);
 					Bot::ctx->message_create(msg);
 				} else {
 					Bot::ctx->stop_timer(timer_handle);
@@ -143,15 +144,15 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	const auto youtube_opt{ resolve_youtube_channel_id(youtube_username) };
+	const auto youtube_opt{resolve_youtube_channel_id(youtube_username)};
 	if (youtube_opt.has_value()) {
-		const auto& youtube_id{ youtube_opt.value() };
+		const auto& youtube_id{youtube_opt.value()};
 
 		NotificationRepository repo;
 		NotificationDTO data{guild_id, channel_id, "youtube", youtube_id, message, 500};
 
 		if (repo.create(data)) {
-			constexpr size_t timestep_sec{ 500 };
+			constexpr size_t timestep_sec{500};
 			start_notification_deamon(channel_id, youtube_id, message, timestep_sec);
 			Core::timed_reply_private(*Bot::ctx, event, "Notifications for youtube enabled!", 2000);
 		} else {
