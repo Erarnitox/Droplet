@@ -1,5 +1,6 @@
 add_subdirectory(bot)
 add_subdirectory(commands)
+add_subdirectory(restapi)
 
 add_library(bot_library STATIC
 	BotLibrary.cpp
@@ -22,3 +23,4 @@ target_include_directories(bot_library PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include
 
 target_link_libraries(bot_library PUBLIC bot)
 target_link_libraries(bot_library PUBLIC commands)
+target_link_libraries(bot_library PUBLIC restapi)

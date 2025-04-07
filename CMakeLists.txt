@@ -34,7 +34,7 @@ project(droplet
 	VERSION 1.1.0 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.erarnitox.de"
-	LANGUAGES CXX
+	LANGUAGES C CXX
 )
 
 # disable in source builds
@@ -78,17 +78,31 @@ add_subdirectory(src bin)
 set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/bot_token.txt")
 set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/db_connection.txt")
 set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}")
+set(CERTIFICATE_FILE "${CMAKE_BINARY_DIR}/server.crt")
+set(KEY_FILE "${CMAKE_BINARY_DIR}/server.key")
+
+add_custom_target(generate_ssl_cert
+    DEPENDS ${KEY_FILE} ${CERTIFICATE_FILE}
+)
  
 if(USE_DEBUG_TOKEN)
 	add_custom_command(
     	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
-    	POST_BUILD
+    	# POST_BUILD
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
  	)
 
+	 add_custom_command(
+		OUTPUT ${KEY_FILE} ${CERTIFICATE_FILE}
+		COMMAND ${CMAKE_COMMAND} -E echo "Generating SSL key and certificate..."
+		COMMAND openssl req -newkey rsa:2048 -nodes -keyout ${KEY_FILE} -x509 -days 365 -out ${CERTIFICATE_FILE} -subj "/CN=localhost"
+		COMMENT "Generating self-signed SSL certificate and key"
+		VERBATIM
+	)
+
  	add_custom_target(
-    	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+    	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt" ${KEY_FILE} ${CERTIFICATE_FILE}
  	)
 
  	add_dependencies(copy_credentials ${PROJECT_NAME})

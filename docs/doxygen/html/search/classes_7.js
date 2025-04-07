@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['notificationdto_0',['NotificationDTO',['../classNotificationDTO.html',1,'']]],
-  ['notificationrepository_1',['NotificationRepository',['../classNotificationRepository.html',1,'']]]
+  ['myrequesthandler_0',['MyRequestHandler',['../classMyRequestHandler.html',1,'']]],
+  ['myrequesthandlerfactory_1',['MyRequestHandlerFactory',['../classMyRequestHandlerFactory.html',1,'']]]
 ];

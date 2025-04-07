@@ -7,6 +7,12 @@ var hierarchy =
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
+    [ "HTTPRequestHandler", "classHTTPRequestHandler.html", [
+      [ "MyRequestHandler", "classMyRequestHandler.html", null ]
+    ] ],
+    [ "HTTPRequestHandlerFactory", "classHTTPRequestHandlerFactory.html", [
+      [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", null ]
+    ] ],
     [ "IButtonCommand", "classIButtonCommand.html", [
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
@@ -76,6 +82,10 @@ var hierarchy =
     [ "PortalDTO", "classPortalDTO.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
+    [ "RestApi", "classRestApi.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
+    [ "ServerApplication", "classServerApplication.html", [
+      [ "HttpsServerApp", "classHttpsServerApp.html", null ]
+    ] ],
     [ "UserDTO", "classUserDTO.html", null ]
 ];

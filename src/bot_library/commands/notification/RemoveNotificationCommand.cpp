@@ -7,6 +7,7 @@
 
 #include <Core.hpp>
 #include <NotificationRepository.hpp>
+
 #include "Bot.hpp"
 
 RemoveNotificationCommand::RemoveNotificationCommand() : IGlobalSlashCommand() {

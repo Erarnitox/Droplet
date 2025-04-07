@@ -17,7 +17,11 @@
 #include <Bot.hpp>
 #include <Commands.hpp>
 #include <Database.hpp>
+#include <RestApi.hpp>
 #include <fstream>
+#include <thread>
+
+#include "restapi/include/RestApi.hpp"
 
 /**
  * @brief this is the entry point of the binary that will start the bot
@@ -55,7 +59,14 @@ void start_bot(const bool IS_TEST) {
 		return;
 	}
 
+	std::cout << "Starting REST Server..." << std::endl;
+	std::thread rest_thread(RestApi::start);
+
+	std::cout << "Starting Discord Bot..." << std::endl;
 	Bot::run();
+
+	std::cout << "Shutting down..." << std::endl;
+	rest_thread.join();
 
 	return;
 }

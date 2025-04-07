@@ -16,7 +16,9 @@ var searchData=
   ['resourcerepository_2ehpp_13',['ResourceRepository.hpp',['../ResourceRepository_8hpp.html',1,'']]],
   ['resourcescommand_2ecpp_14',['ResourcesCommand.cpp',['../ResourcesCommand_8cpp.html',1,'']]],
   ['resourcescommand_2ehpp_15',['ResourcesCommand.hpp',['../ResourcesCommand_8hpp.html',1,'']]],
-  ['rollcommand_2ecpp_16',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
-  ['rollcommand_2ehpp_17',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
-  ['rowdtoadapter_2ehpp_18',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]]
+  ['restapi_2ecpp_16',['RestApi.cpp',['../RestApi_8cpp.html',1,'']]],
+  ['restapi_2ehpp_17',['RestApi.hpp',['../RestApi_8hpp.html',1,'']]],
+  ['rollcommand_2ecpp_18',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
+  ['rollcommand_2ehpp_19',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
+  ['rowdtoadapter_2ehpp_20',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]]
 ];

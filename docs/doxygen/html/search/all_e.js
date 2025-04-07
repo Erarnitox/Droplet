@@ -34,12 +34,15 @@ var searchData=
   ['resourcescommand_31',['ResourcesCommand',['../classResourcesCommand.html',1,'ResourcesCommand'],['../classResourcesCommand.html#aa5ced839ac0f95c12acb06665e818f3a',1,'ResourcesCommand::ResourcesCommand()']]],
   ['resourcescommand_2ecpp_32',['ResourcesCommand.cpp',['../ResourcesCommand_8cpp.html',1,'']]],
   ['resourcescommand_2ehpp_33',['ResourcesCommand.hpp',['../ResourcesCommand_8hpp.html',1,'']]],
-  ['role_5fid_34',['role_id',['../classReactionRoleDTO.html#a6b033e24f3e1494eca3654414c6dea4f',1,'ReactionRoleDTO']]],
-  ['roleid_35',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
-  ['rollcommand_36',['RollCommand',['../classRollCommand.html',1,'RollCommand'],['../classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0',1,'RollCommand::RollCommand()']]],
-  ['rollcommand_2ecpp_37',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
-  ['rollcommand_2ehpp_38',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
-  ['rowdtoadapter_39',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'RowDTOAdapter'],['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()']]],
-  ['rowdtoadapter_2ehpp_40',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
-  ['run_41',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
+  ['restapi_34',['RestApi',['../classRestApi.html',1,'']]],
+  ['restapi_2ecpp_35',['RestApi.cpp',['../RestApi_8cpp.html',1,'']]],
+  ['restapi_2ehpp_36',['RestApi.hpp',['../RestApi_8hpp.html',1,'']]],
+  ['role_5fid_37',['role_id',['../classReactionRoleDTO.html#a6b033e24f3e1494eca3654414c6dea4f',1,'ReactionRoleDTO']]],
+  ['roleid_38',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
+  ['rollcommand_39',['RollCommand',['../classRollCommand.html',1,'RollCommand'],['../classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0',1,'RollCommand::RollCommand()']]],
+  ['rollcommand_2ecpp_40',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
+  ['rollcommand_2ehpp_41',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
+  ['rowdtoadapter_42',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'RowDTOAdapter'],['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()']]],
+  ['rowdtoadapter_2ehpp_43',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
+  ['run_44',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
 ];
