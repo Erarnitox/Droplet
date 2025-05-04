@@ -15,6 +15,7 @@ With its sleek design and powerful capabilities, Droplet is the perfect companio
 - **Challenge Roles:** Create CTF-Style Challenges and reward solvers with roles.
 - **Reaction Roles:** Let Members choose their own roles by reacting to a configurable message.
 - **CTF-Challenges:** Create CTF-Style Challenges. Reward solvers with badges and exp.
+- **Youtube Feed:** Get Updated about any recent youtube uploads of youtube channels you fancy!
 - **Flip a Coin:** Flip a coin and gamble some exp.
 - **Greetings:** Joining and Leaving members will be announced by the bot in a configurable channel.
 - **Roll a Dice:** Roll a dice and gamble some exp.
@@ -45,6 +46,17 @@ cmake --preset release && cmake --build release
 The bot expects 2 files to be placed next to the binary:
 - **bot_token.txt** : holds the bot token in plan text
 - **db_connection.txt** : holds the connection string for your postgres database
+
+##### Certificates
+To enable the REST Server SSL Certificates are expected in the directory of the bot binary.
+You can use certbot to create these certificates for you and then create symlinks like this:
+
+```
+ln -s /etc/letsencrypt/live/<your_domain>/fullchain.pem server.crt
+ln -s /etc/letsencrypt/live/<your_domain>/privkey.pem server.key
+```
+
+**Note:** for debug builds self signed certificates are created automatically
 
 
 #### Run the bot:

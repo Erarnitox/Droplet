@@ -112,10 +112,16 @@ $(function(){initNavTree('RestApi_8cpp.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="RestApi_8hpp_source.html">RestApi.hpp</a>&quot;</code><br />
 <code>#include &lt;Poco/JSON/Object.h&gt;</code><br />
+<code>#include &lt;Poco/JSON/Stringifier.h&gt;</code><br />
+<code>#include &lt;Poco/Net/HTTPResponse.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="AuthHandler_8hpp_source.html">AuthHandler.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="JWTUtils_8hpp_source.html">JWTUtils.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="UserRepository_8hpp_source.html">UserRepository.hpp</a>&gt;</code><br />
 <code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;Poco/JSON/Parser.h&quot;</code><br />
 <code>#include &quot;Poco/Net/Context.h&quot;</code><br />
 <code>#include &quot;Poco/Net/HTTPRequestHandler.h&quot;</code><br />
 <code>#include &quot;Poco/Net/HTTPRequestHandlerFactory.h&quot;</code><br />
@@ -125,15 +131,17 @@ $(function(){initNavTree('RestApi_8cpp.html',''); initResizable(true); });
 <code>#include &quot;Poco/Net/SSLManager.h&quot;</code><br />
 <code>#include &quot;Poco/Net/SecureServerSocket.h&quot;</code><br />
 <code>#include &quot;Poco/Util/ServerApplication.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="Secrets_8hpp_source.html">Secrets.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="UserDTO_8hpp_source.html">UserDTO.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for RestApi.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="RestApi_8cpp__incl.svg" width="2559" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="RestApi_8cpp__incl.svg" width="3222" height="368"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyRequestHandler.html">MyRequestHandler</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStatusHandler.html">StatusHandler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMyRequestHandlerFactory.html">MyRequestHandlerFactory</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>

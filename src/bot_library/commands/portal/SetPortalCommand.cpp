@@ -79,6 +79,7 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 				continue;
 			const auto& msg{dpp::message(portal.channel_id,
 										 std::format("[**{}**]: {}", event.msg.author.username, event.msg.content))};
+
 			Bot::ctx->message_create(msg);
 		}
 	}

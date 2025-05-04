@@ -7,5 +7,7 @@ var searchData=
   ['add_5freaction_5fcommand_4',['add_reaction_command',['../classBot.html#a4557d749454cc12426fdb005dbde6eb9',1,'Bot']]],
   ['add_5fready_5fcommand_5',['add_ready_command',['../classBot.html#aeb452d3eceef5e0f4b160cb63d846a1a',1,'Bot']]],
   ['add_5fslash_5fcommand_6',['add_slash_command',['../classBot.html#a11e4bbfa0269e589e116ad22a43197df',1,'Bot']]],
-  ['assignresults_7',['assignResults',['../namespacedatabase.html#a7cc2e252117384b0bd7387924e990610',1,'database']]]
+  ['addresourcescommand_7',['AddResourcesCommand',['../classAddResourcesCommand.html#acb58daf9b766ca8cf6f4d8dfb327756c',1,'AddResourcesCommand']]],
+  ['assignresults_8',['assignResults',['../namespacedatabase.html#a7cc2e252117384b0bd7387924e990610',1,'database']]],
+  ['authhandler_9',['AuthHandler',['../classAuthHandler.html#a0e39716c5e5759383d987720486ef920',1,'AuthHandler']]]
 ];

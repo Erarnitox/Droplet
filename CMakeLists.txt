@@ -76,6 +76,7 @@ add_subdirectory(extern)
 add_subdirectory(src bin)
 
 set(TOKEN_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/bot_token.txt")
+set(SECRETS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/secrets.json")
 set(DB_CREDS_PATH "${CMAKE_CURRENT_LIST_DIR}/src/creds/db_connection.txt")
 set(BOT_BINARY_PATH "${CMAKE_BINARY_DIR}/bin/${PROJECT_NAME}")
 set(CERTIFICATE_FILE "${CMAKE_BINARY_DIR}/server.crt")
@@ -87,13 +88,14 @@ add_custom_target(generate_ssl_cert
  
 if(USE_DEBUG_TOKEN)
 	add_custom_command(
-    	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt"
+    	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt" "${CMAKE_BINARY_DIR}/secrets.json"
     	# POST_BUILD
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SECRETS_PATH} "${CMAKE_BINARY_DIR}/secrets.json"
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
  	)
 
-	 add_custom_command(
+	add_custom_command(
 		OUTPUT ${KEY_FILE} ${CERTIFICATE_FILE}
 		COMMAND ${CMAKE_COMMAND} -E echo "Generating SSL key and certificate..."
 		COMMAND openssl req -newkey rsa:2048 -nodes -keyout ${KEY_FILE} -x509 -days 365 -out ${CERTIFICATE_FILE} -subj "/CN=localhost"
@@ -102,7 +104,7 @@ if(USE_DEBUG_TOKEN)
 	)
 
  	add_custom_target(
-    	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt" ${KEY_FILE} ${CERTIFICATE_FILE}
+    	copy_credentials ALL DEPENDS "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt" "${CMAKE_BINARY_DIR}/secrets.json" ${KEY_FILE} ${CERTIFICATE_FILE}
  	)
 
  	add_dependencies(copy_credentials ${PROJECT_NAME})

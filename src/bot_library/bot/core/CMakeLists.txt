@@ -49,6 +49,9 @@ target_link_libraries(core PUBLIC
     Poco::Net
     Poco::NetSSL
     Poco::Util
+    Poco::JSON
+    Poco::JWT
+    Poco::Crypto
 )
 
 target_include_directories(core PUBLIC ${Poco_SOURCE_DIR}/NetSSL/include)

@@ -15,12 +15,18 @@
 #include "RestApi.hpp"
 
 #include <Poco/JSON/Object.h>
+#include <Poco/JSON/Stringifier.h>
+#include <Poco/Net/HTTPResponse.h>
 
+#include <AuthHandler.hpp>
+#include <JWTUtils.hpp>
+#include <UserRepository.hpp>
 #include <filesystem>
 #include <iostream>
 #include <string>
 #include <vector>
 
+#include "Poco/JSON/Parser.h"
 #include "Poco/Net/Context.h"
 #include "Poco/Net/HTTPRequestHandler.h"
 #include "Poco/Net/HTTPRequestHandlerFactory.h"
@@ -30,6 +36,8 @@
 #include "Poco/Net/SSLManager.h"
 #include "Poco/Net/SecureServerSocket.h"
 #include "Poco/Util/ServerApplication.h"
+#include "Secrets.hpp"
+#include "UserDTO.hpp"
 
 using namespace Poco::Net;
 using namespace Poco::Util;
@@ -41,14 +49,19 @@ const ushort RestApi::port{3000};
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-class MyRequestHandler : public HTTPRequestHandler {
+class StatusHandler : public HTTPRequestHandler {
   public:
 	void handleRequest(HTTPServerRequest& request, HTTPServerResponse& response) override {
 		(void)request;
 		response.setStatus(HTTPResponse::HTTP_OK);
 		response.setContentType("application/json");
 		std::ostream& out = response.send();
-		out << "{\"Status\": \"OK\"}";
+
+		Poco::JSON::Object json;
+		json.set("Status", "OK");
+		json.set("uri", request.getURI());
+
+		JSON::Stringifier::stringify(json, out);
 	}
 };
 
@@ -58,8 +71,16 @@ class MyRequestHandler : public HTTPRequestHandler {
 class MyRequestHandlerFactory : public HTTPRequestHandlerFactory {
   public:
 	HTTPRequestHandler* createRequestHandler(const HTTPServerRequest& request) override {
-		(void)request;
-		return new MyRequestHandler;
+		const auto& uri{request.getURI()};
+
+		if (uri.starts_with("/status")) {
+			return new StatusHandler;
+		} else if (uri.starts_with("/auth")) {
+			const Secrets& sec{Secrets::getInstance()};
+			return new AuthHandler(sec.getSecret("jwt_secret"), "erarnitox.de");
+		} else {
+			return nullptr;
+		}
 	}
 };
 

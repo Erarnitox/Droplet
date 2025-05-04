@@ -1,4 +1,5 @@
 add_subdirectory(core)
+add_subdirectory(secrets)
 
 add_library(bot STATIC
     Bot.cpp
@@ -16,4 +17,5 @@ set_property(TARGET bot PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
 target_include_directories(bot PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 target_link_libraries(bot PUBLIC core)
+target_link_libraries(bot PUBLIC secrets)
 

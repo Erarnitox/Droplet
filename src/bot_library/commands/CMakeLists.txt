@@ -7,6 +7,7 @@ target_include_directories(commands PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 ## Only needed when porting to a new database
 # add_subdirectory(init_database)
 
+add_subdirectory(auth)
 add_subdirectory(help)
 add_subdirectory(resources)
 add_subdirectory(reaction_roles)

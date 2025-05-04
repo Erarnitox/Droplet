@@ -1,6 +1,6 @@
 var RestApi_8cpp =
 [
-    [ "MyRequestHandler", "classMyRequestHandler.html", "classMyRequestHandler" ],
+    [ "StatusHandler", "classStatusHandler.html", "classStatusHandler" ],
     [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", "classMyRequestHandlerFactory" ],
     [ "HttpsServerApp", "classHttpsServerApp.html", "classHttpsServerApp" ]
 ];

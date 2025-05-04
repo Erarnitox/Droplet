@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "AuthUtil", "structAuthUtil.html", null ],
     [ "BlacklistDTO", "classBlacklistDTO.html", null ],
     [ "Bot", "classBot.html", null ],
     [ "ChallengeBadgeDTO", "classChallengeBadgeDTO.html", null ],
@@ -7,8 +8,9 @@ var hierarchy =
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
-    [ "HTTPRequestHandler", "classHTTPRequestHandler.html", [
-      [ "MyRequestHandler", "classMyRequestHandler.html", null ]
+    [ "Poco::Net::HTTPRequestHandler", null, [
+      [ "AuthHandler", "classAuthHandler.html", null ],
+      [ "StatusHandler", "classStatusHandler.html", null ]
     ] ],
     [ "HTTPRequestHandlerFactory", "classHTTPRequestHandlerFactory.html", [
       [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", null ]
@@ -22,10 +24,12 @@ var hierarchy =
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
+      [ "AddResourcesCommand", "classAddResourcesCommand.html", null ],
       [ "BlacklistCommand", "classBlacklistCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "FlipCommand", "classFlipCommand.html", null ],
+      [ "GetResourcesCommand", "classGetResourcesCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
       [ "LearnCPPCommand", "classLearnCPPCommand.html", null ],
@@ -33,7 +37,6 @@ var hierarchy =
       [ "ReactionRoles", "classReactionRoles.html", null ],
       [ "RemoveNotificationCommand", "classRemoveNotificationCommand.html", null ],
       [ "RemovePortalCommand", "classRemovePortalCommand.html", null ],
-      [ "ResourcesCommand", "classResourcesCommand.html", null ],
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetNotificationCommand", "classSetNotificationCommand.html", null ],
@@ -77,6 +80,9 @@ var hierarchy =
     [ "IRepository< UserDTO >", "classIRepository.html", [
       [ "UserRepository", "classUserRepository.html", null ]
     ] ],
+    [ "IRepository< WebUserDTO >", "classIRepository.html", [
+      [ "WebUserRepository", "classWebUserRepository.html", null ]
+    ] ],
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "NotificationDTO", "classNotificationDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
@@ -84,8 +90,10 @@ var hierarchy =
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RestApi", "classRestApi.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
+    [ "Secrets", "classSecrets.html", null ],
     [ "ServerApplication", "classServerApplication.html", [
       [ "HttpsServerApp", "classHttpsServerApp.html", null ]
     ] ],
-    [ "UserDTO", "classUserDTO.html", null ]
+    [ "UserDTO", "classUserDTO.html", null ],
+    [ "WebUserDTO", "classWebUserDTO.html", null ]
 ];

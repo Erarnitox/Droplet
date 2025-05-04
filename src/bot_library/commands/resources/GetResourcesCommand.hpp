@@ -2,9 +2,9 @@
 
 #include <Bot.hpp>
 
-class ResourcesCommand : public IGlobalSlashCommand {
+class GetResourcesCommand : public IGlobalSlashCommand {
   public:
-	ResourcesCommand();
+	GetResourcesCommand();
 
 	virtual void on_slashcommand(const dpp::slashcommand_t& event) override;
 };

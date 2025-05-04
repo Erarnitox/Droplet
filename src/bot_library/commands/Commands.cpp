@@ -17,11 +17,13 @@
 /// COMMAND HEADERS:
 ///////////////////////////////////////
 
+#include <AddResourcesCommand.hpp>
 #include <BlacklistCommand.hpp>
 #include <ChallengeBadgeCommand.hpp>
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
 #include <FlipCommand.hpp>
+#include <GetResourcesCommand.hpp>
 #include <HelpCommand.hpp>
 #include <InviteCommand.hpp>
 #include <LearnCPPCommand.hpp>
@@ -29,7 +31,6 @@
 #include <ReactionRoles.hpp>
 #include <RemoveNotificationCommand.hpp>
 #include <RemovePortalCommand.hpp>
-#include <ResourcesCommand.hpp>
 #include <RollCommand.hpp>
 #include <ServerDetails.hpp>
 #include <SetNotificationCommand.hpp>
@@ -51,7 +52,8 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ServerDetails>());
 	Bot::add_slash_command(std::make_shared<InviteCommand>());
 	Bot::add_slash_command(std::make_shared<LearnCPPCommand>());
-	Bot::add_slash_command(std::make_shared<ResourcesCommand>());
+	Bot::add_slash_command(std::make_shared<AddResourcesCommand>());
+	Bot::add_slash_command(std::make_shared<GetResourcesCommand>());
 	Bot::add_slash_command(std::make_shared<RollCommand>());
 	Bot::add_slash_command(std::make_shared<FlipCommand>());
 	Bot::add_slash_command(std::make_shared<ProfileCommand>());

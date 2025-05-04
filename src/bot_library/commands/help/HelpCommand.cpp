@@ -12,12 +12,13 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 
 	/* create the embed */
+	constexpr auto icon_url{"https://www.erarnitox.de/favicon-32x32.png"};
 	dpp::embed embed{dpp::embed()
 						 .set_color(dpp::colors::discord_black)
 						 .set_title(std::format("{} - {}", "Droplet", this->command_name))
 						 .set_url("https://droplet.erarnitox.de/")
 						 .set_description("Usage Information for the Droplet Discord bot")
-						 .set_thumbnail("https://www.erarnitox.de/favicon-32x32.png")};
+						 .set_thumbnail(icon_url)};
 
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
@@ -53,8 +54,6 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
 	constexpr auto erarnitox_link{"https://erarnitox.de"};
 	*/
-	constexpr auto icon_url{"https://www.erarnitox.de/favicon-32x32.png"};
-
 	auto footer{dpp::embed_footer()};
 	/*
 	footer.set_text(std::format(

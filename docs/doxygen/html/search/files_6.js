@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['latesteventsrepository_2ecpp_0',['LatestEventsRepository.cpp',['../LatestEventsRepository_8cpp.html',1,'']]],
-  ['latesteventsrepository_2ehpp_1',['LatestEventsRepository.hpp',['../LatestEventsRepository_8hpp.html',1,'']]],
-  ['learncppcommand_2ecpp_2',['LearnCPPCommand.cpp',['../LearnCPPCommand_8cpp.html',1,'']]],
-  ['learncppcommand_2ehpp_3',['LearnCPPCommand.hpp',['../LearnCPPCommand_8hpp.html',1,'']]]
+  ['hasbadgerepository_2ecpp_0',['HasBadgeRepository.cpp',['../HasBadgeRepository_8cpp.html',1,'']]],
+  ['hasbadgerepository_2ehpp_1',['HasBadgeRepository.hpp',['../HasBadgeRepository_8hpp.html',1,'']]],
+  ['helpcommand_2ecpp_2',['HelpCommand.cpp',['../HelpCommand_8cpp.html',1,'']]],
+  ['helpcommand_2ehpp_3',['HelpCommand.hpp',['../HelpCommand_8hpp.html',1,'']]]
 ];

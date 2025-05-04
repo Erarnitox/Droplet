@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['Type',['../classProductDTO.html#a34cfba4d5f6f0d62918a0ab4904f5c39',1,'ProductDTO']]]
+  ['authclearance_0',['AuthClearance',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839',1,'AuthUtils.hpp']]]
 ];

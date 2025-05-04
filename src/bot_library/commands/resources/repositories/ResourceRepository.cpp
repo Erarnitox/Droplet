@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <vector>
 
+#include "ResourceDTO.hpp"
+
 auto ResourceRepository::create(const ResourceDTO& object) -> bool {
 	static std::string sql_string{
 		"INSERT INTO resources"
@@ -68,4 +70,28 @@ auto ResourceRepository::get(size_t id) -> ResourceDTO {
 	return dto;
 	*/
 	return {};
+}
+
+auto ResourceRepository::get(const std::string& category) -> std::vector<ResourceDTO> {
+	static std::string sql_string{
+		std::string("SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags")
+			.append("  FROM resources")
+			.append(" WHERE category LIKE $1::varchar")};
+
+	auto result{database::execSelectAll(sql_string, category)};
+
+	std::vector<ResourceDTO> dtos;
+	dtos.reserve(result.size());
+
+	for (const auto& adapter : result) {
+		ResourceDTO dto;
+		dto.title = adapter.get<decltype(dto.title)>("title");
+		dto.category = adapter.get<decltype(dto.category)>("category");
+		dto.description = adapter.get<decltype(dto.description)>("description");
+		dto.url = adapter.get<decltype(dto.url)>("url");
+
+		dtos.push_back(dto);
+	}
+
+	return dtos;
 }

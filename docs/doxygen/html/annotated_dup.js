@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "AddResourcesCommand", "classAddResourcesCommand.html", "classAddResourcesCommand" ],
+    [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
+    [ "AuthUtil", "structAuthUtil.html", null ],
     [ "BlacklistCommand", "classBlacklistCommand.html", "classBlacklistCommand" ],
     [ "BlacklistDTO", "classBlacklistDTO.html", "classBlacklistDTO" ],
     [ "BlacklistRepository", "classBlacklistRepository.html", "classBlacklistRepository" ],
@@ -14,9 +17,9 @@ var annotated_dup =
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", "classDatabase" ],
     [ "FlipCommand", "classFlipCommand.html", "classFlipCommand" ],
+    [ "GetResourcesCommand", "classGetResourcesCommand.html", "classGetResourcesCommand" ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", "classHasBadgeRepository" ],
     [ "HelpCommand", "classHelpCommand.html", "classHelpCommand" ],
-    [ "HTTPRequestHandler", "classHTTPRequestHandler.html", null ],
     [ "HTTPRequestHandlerFactory", "classHTTPRequestHandlerFactory.html", null ],
     [ "HttpsServerApp", "classHttpsServerApp.html", "classHttpsServerApp" ],
     [ "IButtonCommand", "classIButtonCommand.html", "classIButtonCommand" ],
@@ -31,7 +34,6 @@ var annotated_dup =
     [ "IRepository", "classIRepository.html", "classIRepository" ],
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "LearnCPPCommand", "classLearnCPPCommand.html", "classLearnCPPCommand" ],
-    [ "MyRequestHandler", "classMyRequestHandler.html", "classMyRequestHandler" ],
     [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", "classMyRequestHandlerFactory" ],
     [ "NotificationDTO", "classNotificationDTO.html", "classNotificationDTO" ],
     [ "NotificationRepository", "classNotificationRepository.html", "classNotificationRepository" ],
@@ -45,15 +47,18 @@ var annotated_dup =
     [ "RemovePortalCommand", "classRemovePortalCommand.html", "classRemovePortalCommand" ],
     [ "ResourceDTO", "classResourceDTO.html", "classResourceDTO" ],
     [ "ResourceRepository", "classResourceRepository.html", "classResourceRepository" ],
-    [ "ResourcesCommand", "classResourcesCommand.html", "classResourcesCommand" ],
     [ "RestApi", "classRestApi.html", null ],
     [ "RollCommand", "classRollCommand.html", "classRollCommand" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],
+    [ "Secrets", "classSecrets.html", "classSecrets" ],
     [ "ServerApplication", "classServerApplication.html", null ],
     [ "ServerDetails", "classServerDetails.html", "classServerDetails" ],
     [ "SetNotificationCommand", "classSetNotificationCommand.html", "classSetNotificationCommand" ],
     [ "SetPortalCommand", "classSetPortalCommand.html", "classSetPortalCommand" ],
     [ "SetStatus", "classSetStatus.html", "classSetStatus" ],
+    [ "StatusHandler", "classStatusHandler.html", "classStatusHandler" ],
     [ "UserDTO", "classUserDTO.html", "classUserDTO" ],
-    [ "UserRepository", "classUserRepository.html", "classUserRepository" ]
+    [ "UserRepository", "classUserRepository.html", "classUserRepository" ],
+    [ "WebUserDTO", "classWebUserDTO.html", "classWebUserDTO" ],
+    [ "WebUserRepository", "classWebUserRepository.html", "classWebUserRepository" ]
 ];

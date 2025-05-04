@@ -2,7 +2,7 @@ var searchData=
 [
   ['ibuttoncommand_0',['IButtonCommand',['../classIButtonCommand.html',1,'']]],
   ['ibuttoncommand_2ehpp_1',['IButtonCommand.hpp',['../IButtonCommand_8hpp.html',1,'']]],
-  ['id_2',['id',['../classResourceDTO.html#a64e7321d52b8284435d6b9b6f01660b6',1,'ResourceDTO']]],
+  ['id_2',['id',['../classWebUserDTO.html#ae34cc16c00739685304225bc32fc0f0c',1,'WebUserDTO::id'],['../classResourceDTO.html#a64e7321d52b8284435d6b9b6f01660b6',1,'ResourceDTO::id']]],
   ['iformcommand_3',['IFormCommand',['../classIFormCommand.html',1,'']]],
   ['iformcommand_2ehpp_4',['IFormCommand.hpp',['../IFormCommand_8hpp.html',1,'']]],
   ['iglobalslashcommand_5',['IGlobalSlashCommand',['../classIGlobalSlashCommand.html',1,'']]],
@@ -33,8 +33,11 @@ var searchData=
   ['irepository_3c_20reactionroledto_20_3e_30',['IRepository&lt; ReactionRoleDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20resourcedto_20_3e_31',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20userdto_20_3e_32',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5factive_33',['is_active',['../classLatestEventsRepository.html#a9f5e360fc257a86d803ac84ea9a6a0c7',1,'LatestEventsRepository']]],
-  ['is_5fadmin_34',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
-  ['is_5ferarnitox_5fadmin_35',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
-  ['is_5fsubscribed_36',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]]
+  ['irepository_3c_20webuserdto_20_3e_33',['IRepository&lt; WebUserDTO &gt;',['../classIRepository.html',1,'']]],
+  ['is_5factive_34',['is_active',['../classLatestEventsRepository.html#a9f5e360fc257a86d803ac84ea9a6a0c7',1,'LatestEventsRepository']]],
+  ['is_5fadmin_35',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
+  ['is_5fauthorized_36',['is_authorized',['../structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f',1,'AuthUtil']]],
+  ['is_5ferarnitox_5fadmin_37',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
+  ['is_5fsubscribed_38',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]],
+  ['is_5fverified_39',['is_verified',['../classWebUserDTO.html#a02fd7d644bc1ce966347cc436154fd08',1,'WebUserDTO']]]
 ];

@@ -1,4 +1,4 @@
-#include "ResourcesCommand.hpp"
+#include "AddResourcesCommand.hpp"
 
 #include <appcommand.h>
 #include <colors.h>
@@ -7,7 +7,7 @@
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
 
-ResourcesCommand::ResourcesCommand() : IGlobalSlashCommand() {
+AddResourcesCommand::AddResourcesCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_resource";
 	this->command_description = "Add resource to droplet.erarnitox.de/resources";
 
@@ -32,7 +32,7 @@ ResourcesCommand::ResourcesCommand() : IGlobalSlashCommand() {
 	this->command_options.emplace_back(dpp::co_string, "tags", "Link to the resource", false);
 }
 
-void ResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
+void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}

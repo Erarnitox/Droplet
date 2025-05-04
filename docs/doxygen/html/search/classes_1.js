@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['challengebadgecommand_0',['ChallengeBadgeCommand',['../classChallengeBadgeCommand.html',1,'']]],
-  ['challengebadgedto_1',['ChallengeBadgeDTO',['../classChallengeBadgeDTO.html',1,'']]],
-  ['challengebadgerepository_2',['ChallengeBadgeRepository',['../classChallengeBadgeRepository.html',1,'']]],
-  ['challengerolecommand_3',['ChallengeRoleCommand',['../classChallengeRoleCommand.html',1,'']]],
-  ['challengeroledto_4',['ChallengeRoleDTO',['../classChallengeRoleDTO.html',1,'']]],
-  ['challengerolerepository_5',['ChallengeRoleRepository',['../classChallengeRoleRepository.html',1,'']]],
-  ['cleanup_6',['CleanUp',['../classCleanUp.html',1,'']]],
-  ['core_7',['Core',['../classCore.html',1,'']]]
+  ['blacklistcommand_0',['BlacklistCommand',['../classBlacklistCommand.html',1,'']]],
+  ['blacklistdto_1',['BlacklistDTO',['../classBlacklistDTO.html',1,'']]],
+  ['blacklistrepository_2',['BlacklistRepository',['../classBlacklistRepository.html',1,'']]],
+  ['bot_3',['Bot',['../classBot.html',1,'']]]
 ];

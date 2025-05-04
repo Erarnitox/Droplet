@@ -12,5 +12,7 @@ class ResourceRepository : public IRepository<ResourceDTO> {
 
 	[[nodiscard]] ResourceDTO get(size_t id) override;
 
+	[[nodiscard]] std::vector<ResourceDTO> get(const std::string& category);
+
 	[[nodiscard]] bool update(const ResourceDTO& object) override;
 };
