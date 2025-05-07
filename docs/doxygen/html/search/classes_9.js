@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['myrequesthandlerfactory_0',['MyRequestHandlerFactory',['../classMyRequestHandlerFactory.html',1,'']]]
+  ['latesteventsrepository_0',['LatestEventsRepository',['../classLatestEventsRepository.html',1,'']]],
+  ['learncppcommand_1',['LearnCPPCommand',['../classLearnCPPCommand.html',1,'']]]
 ];

@@ -26,6 +26,7 @@
 #include <string>
 #include <vector>
 
+#include "NotFoundHandler.hpp"
 #include "Poco/JSON/Parser.h"
 #include "Poco/Net/Context.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -36,8 +37,10 @@
 #include "Poco/Net/SSLManager.h"
 #include "Poco/Net/SecureServerSocket.h"
 #include "Poco/Util/ServerApplication.h"
+#include "RegistrationHandler.hpp"
 #include "Secrets.hpp"
 #include "UserDTO.hpp"
+#include "VerifyHandler.hpp"
 
 using namespace Poco::Net;
 using namespace Poco::Util;
@@ -78,8 +81,12 @@ class MyRequestHandlerFactory : public HTTPRequestHandlerFactory {
 		} else if (uri.starts_with("/auth")) {
 			const Secrets& sec{Secrets::getInstance()};
 			return new AuthHandler(sec.getSecret("jwt_secret"), "erarnitox.de");
+		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_POST && uri.starts_with("/register")) {
+			return new RegistrationHandler;
+		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/verify")) {
+			return new VerifyHandler;
 		} else {
-			return nullptr;
+			return new NotFoundHandler;
 		}
 	}
 };

@@ -116,12 +116,12 @@ $(function(){initNavTree('classWebUserRepository.html',''); initResizable(true);
 <div class="dynheader">
 Inheritance diagram for WebUserRepository:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWebUserRepository__inherit__graph.svg" width="212" height="546"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWebUserRepository__inherit__graph.svg" width="212" height="610"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for WebUserRepository:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWebUserRepository__coll__graph.svg" width="212" height="546"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWebUserRepository__coll__graph.svg" width="212" height="610"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -134,6 +134,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a76fbedde30a7e4275b206c55df7105fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d1e8667eecbc071d155b465c68713ac" id="r_a0d1e8667eecbc071d155b465c68713ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWebUserDTO.html">WebUserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d1e8667eecbc071d155b465c68713ac">get</a> (const std::string &amp;username)</td></tr>
 <tr class="separator:a0d1e8667eecbc071d155b465c68713ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a980fa4f65fb9ff0bbcd14ab3ce69b997" id="r_a980fa4f65fb9ff0bbcd14ab3ce69b997"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a980fa4f65fb9ff0bbcd14ab3ce69b997">getAll</a> ()</td></tr>
+<tr class="separator:a980fa4f65fb9ff0bbcd14ab3ce69b997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8ecbbc0a319672ff69200b24adc71a7" id="r_ae8ecbbc0a319672ff69200b24adc71a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8ecbbc0a319672ff69200b24adc71a7">verify</a> (const std::string &amp;token, size_t clearance)</td></tr>
+<tr class="separator:ae8ecbbc0a319672ff69200b24adc71a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a008996ded34493162b745e29abd0657e" id="r_a008996ded34493162b745e29abd0657e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a008996ded34493162b745e29abd0657e">exists</a> (const std::string &amp;username)</td></tr>
+<tr class="separator:a008996ded34493162b745e29abd0657e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55d2168f85465565520f0c0949903a82" id="r_a55d2168f85465565520f0c0949903a82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55d2168f85465565520f0c0949903a82">update</a> (const <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &amp;object) override</td></tr>
 <tr class="separator:a55d2168f85465565520f0c0949903a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -162,6 +168,31 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">IRepository&lt; WebUserDTO &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a008996ded34493162b745e29abd0657e" name="a008996ded34493162b745e29abd0657e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a008996ded34493162b745e29abd0657e">&#9670;&#160;</a></span>exists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WebUserRepository::exists </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -217,6 +248,31 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a980fa4f65fb9ff0bbcd14ab3ce69b997" name="a980fa4f65fb9ff0bbcd14ab3ce69b997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a980fa4f65fb9ff0bbcd14ab3ce69b997">&#9670;&#160;</a></span>getAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &gt; WebUserRepository::getAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a04e1693a2dca02578ccf27f240f4893a" name="a04e1693a2dca02578ccf27f240f4893a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a04e1693a2dca02578ccf27f240f4893a">&#9670;&#160;</a></span>remove()</h2>
 
@@ -268,6 +324,35 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">IRepository&lt; WebUserDTO &gt;</a>.</p>
+
+</div>
+</div>
+<a id="ae8ecbbc0a319672ff69200b24adc71a7" name="ae8ecbbc0a319672ff69200b24adc71a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8ecbbc0a319672ff69200b24adc71a7">&#9670;&#160;</a></span>verify()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WebUserRepository::verify </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>token</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>clearance</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

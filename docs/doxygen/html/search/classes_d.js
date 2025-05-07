@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['secrets_0',['Secrets',['../classSecrets.html',1,'']]],
-  ['serverapplication_1',['ServerApplication',['../classServerApplication.html',1,'']]],
-  ['serverdetails_2',['ServerDetails',['../classServerDetails.html',1,'']]],
-  ['setnotificationcommand_3',['SetNotificationCommand',['../classSetNotificationCommand.html',1,'']]],
-  ['setportalcommand_4',['SetPortalCommand',['../classSetPortalCommand.html',1,'']]],
-  ['setstatus_5',['SetStatus',['../classSetStatus.html',1,'']]],
-  ['statushandler_6',['StatusHandler',['../classStatusHandler.html',1,'']]]
+  ['reactionroledto_0',['ReactionRoleDTO',['../classReactionRoleDTO.html',1,'']]],
+  ['reactionrolerepository_1',['ReactionRoleRepository',['../classReactionRoleRepository.html',1,'']]],
+  ['reactionroles_2',['ReactionRoles',['../classReactionRoles.html',1,'']]],
+  ['registrationhandler_3',['RegistrationHandler',['../classRegistrationHandler.html',1,'']]],
+  ['removenotificationcommand_4',['RemoveNotificationCommand',['../classRemoveNotificationCommand.html',1,'']]],
+  ['removeportalcommand_5',['RemovePortalCommand',['../classRemovePortalCommand.html',1,'']]],
+  ['resourcedto_6',['ResourceDTO',['../classResourceDTO.html',1,'']]],
+  ['resourcerepository_7',['ResourceRepository',['../classResourceRepository.html',1,'']]],
+  ['restapi_8',['RestApi',['../classRestApi.html',1,'']]],
+  ['rollcommand_9',['RollCommand',['../classRollCommand.html',1,'']]],
+  ['rowdtoadapter_10',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
 ];

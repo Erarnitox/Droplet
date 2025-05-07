@@ -2,6 +2,10 @@ add_library(restapi STATIC
     RestApi.cpp
     JWTUtils.cpp
     AuthHandler.cpp
+    UserManager.cpp
+    NotFoundHandler.cpp
+    RegistrationHandler.cpp
+    VerifyHandler.cpp
 )
 
 # enable additional warnings and static analysis for this target
@@ -18,3 +22,4 @@ target_include_directories(restapi PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 target_link_libraries(restapi PRIVATE core)
 target_link_libraries(restapi PRIVATE secrets)
 target_link_libraries(restapi PRIVATE commands)
+target_link_libraries(restapi PRIVATE email)

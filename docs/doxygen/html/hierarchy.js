@@ -7,10 +7,14 @@ var hierarchy =
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
+    [ "EmailClient", "classEmailClient.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
     [ "Poco::Net::HTTPRequestHandler", null, [
       [ "AuthHandler", "classAuthHandler.html", null ],
-      [ "StatusHandler", "classStatusHandler.html", null ]
+      [ "NotFoundHandler", "classNotFoundHandler.html", null ],
+      [ "RegistrationHandler", "classRegistrationHandler.html", null ],
+      [ "StatusHandler", "classStatusHandler.html", null ],
+      [ "VerifyHandler", "classVerifyHandler.html", null ]
     ] ],
     [ "HTTPRequestHandlerFactory", "classHTTPRequestHandlerFactory.html", [
       [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", null ]
@@ -95,5 +99,6 @@ var hierarchy =
       [ "HttpsServerApp", "classHttpsServerApp.html", null ]
     ] ],
     [ "UserDTO", "classUserDTO.html", null ],
+    [ "UserManager", "classUserManager.html", null ],
     [ "WebUserDTO", "classWebUserDTO.html", null ]
 ];

@@ -7,35 +7,10 @@
 #include <WebUserDTO.hpp>
 #include <WebUserRepository.hpp>
 
-#include "Poco/HexBinaryEncoder.h"
 #include "Poco/Net/HTMLForm.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/HTTPServerRequest.h"
 #include "Poco/Net/HTTPServerResponse.h"
-#include "Poco/SHA2Engine.h"
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-static inline std::string hashPassword(const std::string& password) {
-	Poco::SHA2Engine sha256;
-	sha256.update(password);
-	const Poco::DigestEngine::Digest& digest = sha256.digest();
-
-	std::stringstream ss;
-	Poco::HexBinaryEncoder hexEncoder(ss);
-	hexEncoder.write(reinterpret_cast<const char*>(&digest[0]), static_cast<long>(digest.size()));
-	hexEncoder.close();
-
-	return ss.str();
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-static inline bool verifyPassword(const std::string& password, const std::string& storedHash) {
-	return hashPassword(password) == storedHash;
-}
 
 //-----------------------------------------------------
 //

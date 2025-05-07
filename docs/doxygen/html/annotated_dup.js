@@ -16,6 +16,7 @@ var annotated_dup =
     [ "CleanUp", "classCleanUp.html", "classCleanUp" ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", "classDatabase" ],
+    [ "EmailClient", "classEmailClient.html", "classEmailClient" ],
     [ "FlipCommand", "classFlipCommand.html", "classFlipCommand" ],
     [ "GetResourcesCommand", "classGetResourcesCommand.html", "classGetResourcesCommand" ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", "classHasBadgeRepository" ],
@@ -35,6 +36,7 @@ var annotated_dup =
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "LearnCPPCommand", "classLearnCPPCommand.html", "classLearnCPPCommand" ],
     [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", "classMyRequestHandlerFactory" ],
+    [ "NotFoundHandler", "classNotFoundHandler.html", "classNotFoundHandler" ],
     [ "NotificationDTO", "classNotificationDTO.html", "classNotificationDTO" ],
     [ "NotificationRepository", "classNotificationRepository.html", "classNotificationRepository" ],
     [ "PortalDTO", "classPortalDTO.html", "classPortalDTO" ],
@@ -43,6 +45,7 @@ var annotated_dup =
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", "classReactionRoleDTO" ],
     [ "ReactionRoleRepository", "classReactionRoleRepository.html", "classReactionRoleRepository" ],
     [ "ReactionRoles", "classReactionRoles.html", "classReactionRoles" ],
+    [ "RegistrationHandler", "classRegistrationHandler.html", "classRegistrationHandler" ],
     [ "RemoveNotificationCommand", "classRemoveNotificationCommand.html", "classRemoveNotificationCommand" ],
     [ "RemovePortalCommand", "classRemovePortalCommand.html", "classRemovePortalCommand" ],
     [ "ResourceDTO", "classResourceDTO.html", "classResourceDTO" ],
@@ -58,7 +61,9 @@ var annotated_dup =
     [ "SetStatus", "classSetStatus.html", "classSetStatus" ],
     [ "StatusHandler", "classStatusHandler.html", "classStatusHandler" ],
     [ "UserDTO", "classUserDTO.html", "classUserDTO" ],
+    [ "UserManager", "classUserManager.html", "classUserManager" ],
     [ "UserRepository", "classUserRepository.html", "classUserRepository" ],
+    [ "VerifyHandler", "classVerifyHandler.html", "classVerifyHandler" ],
     [ "WebUserDTO", "classWebUserDTO.html", "classWebUserDTO" ],
     [ "WebUserRepository", "classWebUserRepository.html", "classWebUserRepository" ]
 ];

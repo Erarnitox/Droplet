@@ -14,6 +14,7 @@
 
 #include <cstddef>
 // #include <iostream>
+#include <iostream>
 #include <pqxx/pqxx>
 #include <string>
 #include <variant>
@@ -80,8 +81,8 @@ template <typename... Types>
 		}
 		Database::reconnect();
 		return execQuery(query, args...);
-	} catch (...) {
-		// std::cout << std::format("Invalid exec for query:{}\n", query);
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\nInvalid exec for query:\n" << query << std::endl;
 		return false;
 	}
 }
@@ -114,8 +115,8 @@ template <typename... Types>
 		}
 		Database::reconnect();
 		return execSelect(query, args...);
-	} catch (...) {
-		// std::cout << std::format("Invalid selection for query: {}\n", query);
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\nInvalid selection for query:\n" << query << std::endl;
 		return {{}};  // return an empty selection
 	}
 }
@@ -153,8 +154,8 @@ template <typename... Types>
 		}
 		Database::reconnect();
 		return execSelectAll(query, args...);
-	} catch (...) {
-		// std::cout << std::format("Invalid selection for query: {}\n", query);
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\nInvalid selection for query:\n" << query << std::endl;
 		return {{}};  // return an empty selection
 	}
 }

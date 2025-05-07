@@ -10,11 +10,12 @@ var searchData=
   ['addresourcescommand_7',['AddResourcesCommand',['../classAddResourcesCommand.html',1,'AddResourcesCommand'],['../classAddResourcesCommand.html#acb58daf9b766ca8cf6f4d8dfb327756c',1,'AddResourcesCommand::AddResourcesCommand()']]],
   ['addresourcescommand_2ecpp_8',['AddResourcesCommand.cpp',['../AddResourcesCommand_8cpp.html',1,'']]],
   ['addresourcescommand_2ehpp_9',['AddResourcesCommand.hpp',['../AddResourcesCommand_8hpp.html',1,'']]],
-  ['assignresults_10',['assignResults',['../namespacedatabase.html#a7cc2e252117384b0bd7387924e990610',1,'database']]],
-  ['authclearance_11',['AuthClearance',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839',1,'AuthUtils.hpp']]],
-  ['authhandler_12',['AuthHandler',['../classAuthHandler.html',1,'AuthHandler'],['../classAuthHandler.html#a0e39716c5e5759383d987720486ef920',1,'AuthHandler::AuthHandler()']]],
-  ['authhandler_2ecpp_13',['AuthHandler.cpp',['../AuthHandler_8cpp.html',1,'']]],
-  ['authhandler_2ehpp_14',['AuthHandler.hpp',['../AuthHandler_8hpp.html',1,'']]],
-  ['authutil_15',['AuthUtil',['../structAuthUtil.html',1,'']]],
-  ['authutils_2ehpp_16',['AuthUtils.hpp',['../AuthUtils_8hpp.html',1,'']]]
+  ['adduser_10',['addUser',['../classUserManager.html#a82cbd2eef356989ff267b0b11b7b00e8',1,'UserManager']]],
+  ['assignresults_11',['assignResults',['../namespacedatabase.html#a7cc2e252117384b0bd7387924e990610',1,'database']]],
+  ['authclearance_12',['AuthClearance',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839',1,'AuthUtils.hpp']]],
+  ['authhandler_13',['AuthHandler',['../classAuthHandler.html',1,'AuthHandler'],['../classAuthHandler.html#a0e39716c5e5759383d987720486ef920',1,'AuthHandler::AuthHandler()']]],
+  ['authhandler_2ecpp_14',['AuthHandler.cpp',['../AuthHandler_8cpp.html',1,'']]],
+  ['authhandler_2ehpp_15',['AuthHandler.hpp',['../AuthHandler_8hpp.html',1,'']]],
+  ['authutil_16',['AuthUtil',['../structAuthUtil.html',1,'']]],
+  ['authutils_2ehpp_17',['AuthUtils.hpp',['../AuthUtils_8hpp.html',1,'']]]
 ];

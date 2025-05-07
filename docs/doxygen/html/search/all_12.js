@@ -7,8 +7,11 @@ var searchData=
   ['userdto_4',['UserDTO',['../classUserDTO.html',1,'UserDTO'],['../classUserDTO.html#a8c45d436e912575dd8af2269eedb4cf6',1,'UserDTO::UserDTO()=default'],['../classUserDTO.html#a5419d02450f3252944333b6dd23dfe84',1,'UserDTO::UserDTO(size_t user_id, const std::string &amp;user_name, const std::string &amp;color=&quot;00FF00&quot;, size_t exp=0, size_t is_subscribed=0)'],['../classUserDTO.html#a52836133d04f00a4170a2fb83fb60a1f',1,'UserDTO::UserDTO(const RowDTOAdapter &amp;row)']]],
   ['userdto_2ecpp_5',['UserDTO.cpp',['../UserDTO_8cpp.html',1,'']]],
   ['userdto_2ehpp_6',['UserDTO.hpp',['../UserDTO_8hpp.html',1,'']]],
-  ['username_7',['username',['../classWebUserDTO.html#a568688f55a2b03a633cdd48cc7da0c82',1,'WebUserDTO::username'],['../classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03',1,'BlacklistDTO::username']]],
-  ['userrepository_8',['UserRepository',['../classUserRepository.html',1,'']]],
-  ['userrepository_2ecpp_9',['UserRepository.cpp',['../UserRepository_8cpp.html',1,'']]],
-  ['userrepository_2ehpp_10',['UserRepository.hpp',['../UserRepository_8hpp.html',1,'']]]
+  ['usermanager_7',['UserManager',['../classUserManager.html',1,'']]],
+  ['usermanager_2ecpp_8',['UserManager.cpp',['../UserManager_8cpp.html',1,'']]],
+  ['usermanager_2ehpp_9',['UserManager.hpp',['../UserManager_8hpp.html',1,'']]],
+  ['username_10',['username',['../classWebUserDTO.html#a568688f55a2b03a633cdd48cc7da0c82',1,'WebUserDTO::username'],['../classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03',1,'BlacklistDTO::username']]],
+  ['userrepository_11',['UserRepository',['../classUserRepository.html',1,'']]],
+  ['userrepository_2ecpp_12',['UserRepository.cpp',['../UserRepository_8cpp.html',1,'']]],
+  ['userrepository_2ehpp_13',['UserRepository.hpp',['../UserRepository_8hpp.html',1,'']]]
 ];
