@@ -31,7 +31,7 @@ void VerifyHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::N
 
 		for (const auto& param : params) {
 			if (param.first == "token") {
-				token->assign(param.second);
+				token = param.second;
 				break;
 			}
 		}

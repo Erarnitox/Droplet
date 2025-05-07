@@ -50,6 +50,7 @@ var annotated_dup =
     [ "RemovePortalCommand", "classRemovePortalCommand.html", "classRemovePortalCommand" ],
     [ "ResourceDTO", "classResourceDTO.html", "classResourceDTO" ],
     [ "ResourceRepository", "classResourceRepository.html", "classResourceRepository" ],
+    [ "ResQueryHandler", "classResQueryHandler.html", "classResQueryHandler" ],
     [ "RestApi", "classRestApi.html", null ],
     [ "RollCommand", "classRollCommand.html", "classRollCommand" ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", "classRowDTOAdapter" ],

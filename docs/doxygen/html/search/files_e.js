@@ -16,9 +16,11 @@ var searchData=
   ['resourcedto_2ehpp_13',['ResourceDTO.hpp',['../ResourceDTO_8hpp.html',1,'']]],
   ['resourcerepository_2ecpp_14',['ResourceRepository.cpp',['../ResourceRepository_8cpp.html',1,'']]],
   ['resourcerepository_2ehpp_15',['ResourceRepository.hpp',['../ResourceRepository_8hpp.html',1,'']]],
-  ['restapi_2ecpp_16',['RestApi.cpp',['../RestApi_8cpp.html',1,'']]],
-  ['restapi_2ehpp_17',['RestApi.hpp',['../RestApi_8hpp.html',1,'']]],
-  ['rollcommand_2ecpp_18',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
-  ['rollcommand_2ehpp_19',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
-  ['rowdtoadapter_2ehpp_20',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]]
+  ['resqueryhandler_2ecpp_16',['ResQueryHandler.cpp',['../ResQueryHandler_8cpp.html',1,'']]],
+  ['resqueryhandler_2ehpp_17',['ResQueryHandler.hpp',['../ResQueryHandler_8hpp.html',1,'']]],
+  ['restapi_2ecpp_18',['RestApi.cpp',['../RestApi_8cpp.html',1,'']]],
+  ['restapi_2ehpp_19',['RestApi.hpp',['../RestApi_8hpp.html',1,'']]],
+  ['rollcommand_2ecpp_20',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
+  ['rollcommand_2ehpp_21',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
+  ['rowdtoadapter_2ehpp_22',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]]
 ];

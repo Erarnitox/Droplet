@@ -59,8 +59,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AddResourcesCommand_8cpp.html",
-"classChallengeRoleCommand.html#aef6c10aca072a31a7fe91f9d031fcb8b",
-"dir_a86e8473961eea730e8f4ad3944df8bc.html"
+"classChallengeRoleCommand.html#a537e810de3b18d1a31e2beee10e20997",
+"dir_7f79345f7cf6b2fc9b59fd294c3772c3.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

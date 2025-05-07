@@ -13,6 +13,7 @@ var hierarchy =
       [ "AuthHandler", "classAuthHandler.html", null ],
       [ "NotFoundHandler", "classNotFoundHandler.html", null ],
       [ "RegistrationHandler", "classRegistrationHandler.html", null ],
+      [ "ResQueryHandler", "classResQueryHandler.html", null ],
       [ "StatusHandler", "classStatusHandler.html", null ],
       [ "VerifyHandler", "classVerifyHandler.html", null ]
     ] ],

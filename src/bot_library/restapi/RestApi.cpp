@@ -38,8 +38,8 @@
 #include "Poco/Net/SecureServerSocket.h"
 #include "Poco/Util/ServerApplication.h"
 #include "RegistrationHandler.hpp"
+#include "ResQueryHandler.hpp"
 #include "Secrets.hpp"
-#include "UserDTO.hpp"
 #include "VerifyHandler.hpp"
 
 using namespace Poco::Net;
@@ -85,6 +85,8 @@ class MyRequestHandlerFactory : public HTTPRequestHandlerFactory {
 			return new RegistrationHandler;
 		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/verify")) {
 			return new VerifyHandler;
+		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/resources")) {
+			return new ResQueryHandler;
 		} else {
 			return new NotFoundHandler;
 		}

@@ -6,6 +6,7 @@ add_library(restapi STATIC
     NotFoundHandler.cpp
     RegistrationHandler.cpp
     VerifyHandler.cpp
+    ResQueryHandler.cpp
 )
 
 # enable additional warnings and static analysis for this target

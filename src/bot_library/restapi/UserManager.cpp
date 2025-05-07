@@ -1,10 +1,11 @@
+#include <Poco/Logger.h>
+
 #include <AuthUtils.hpp>
 #include <EmailClient.hpp>
 #include <UserManager.hpp>
 #include <WebUserDTO.hpp>
 #include <WebUserRepository.hpp>
 
-#include <Poco/Logger.h>
 #include "Poco/UUIDGenerator.h"
 #include "Secrets.hpp"
 
@@ -35,7 +36,7 @@ void UserManager::addUser(const std::string& email, const std::string& username,
 		user.is_verified = false;
 
 		if (repo.create(user)) {
-			//TODO: sendVerificationEmail(email, user.confirm_code);
+			// TODO: sendVerificationEmail(email, user.confirm_code);
 		}
 	}
 }
@@ -60,8 +61,8 @@ void UserManager::sendVerificationEmail(const std::string& email, const std::str
 					"Email Verification",
 					"To complete your registration, please click on the link below.\n"
 					"If you did not register on erarnitox.de, you can ignore this e-mail.\n\n"
-					"Verification Link:\nhttps://erarnitox.de/verify?token=" + token
-		);
+					"Verification Link:\nhttps://erarnitox.de/verify?token=" +
+						token);
 	} catch (const std::exception& ex) {
 		std::cerr << "STD error: " << ex.what() << "\n";
 		throw;

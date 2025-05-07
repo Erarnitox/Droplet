@@ -1,4 +1,5 @@
 target_include_directories(commands PUBLIC ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(commands PUBLIC ${CMAKE_CURRENT_LIST_DIR}/repositories)
 
 add_library(resources_command STATIC
     AddResourcesCommand.cpp

@@ -8,7 +8,8 @@ var searchData=
   ['removeportalcommand_5',['RemovePortalCommand',['../classRemovePortalCommand.html',1,'']]],
   ['resourcedto_6',['ResourceDTO',['../classResourceDTO.html',1,'']]],
   ['resourcerepository_7',['ResourceRepository',['../classResourceRepository.html',1,'']]],
-  ['restapi_8',['RestApi',['../classRestApi.html',1,'']]],
-  ['rollcommand_9',['RollCommand',['../classRollCommand.html',1,'']]],
-  ['rowdtoadapter_10',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
+  ['resqueryhandler_8',['ResQueryHandler',['../classResQueryHandler.html',1,'']]],
+  ['restapi_9',['RestApi',['../classRestApi.html',1,'']]],
+  ['rollcommand_10',['RollCommand',['../classRollCommand.html',1,'']]],
+  ['rowdtoadapter_11',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
 ];
