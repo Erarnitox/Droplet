@@ -6,6 +6,9 @@
 
 #include "ResourceDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 auto ResourceRepository::create(const ResourceDTO& object) -> bool {
 	static std::string sql_string{
 		"INSERT INTO resources"
@@ -28,6 +31,9 @@ auto ResourceRepository::create(const ResourceDTO& object) -> bool {
 							   object.tags);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 auto ResourceRepository::remove(size_t id) -> bool {
 	static std::string sql_string{"DELETE FROM resources WHERE id = $1::int8"};
 
@@ -38,6 +44,9 @@ auto ResourceRepository::remove(size_t id) -> bool {
 	return database::execQuery(sql_string, id);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 auto ResourceRepository::update(const ResourceDTO& object) -> bool {
 	(void)object;
 	/*
@@ -56,6 +65,9 @@ auto ResourceRepository::update(const ResourceDTO& object) -> bool {
 	return false;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 auto ResourceRepository::get(size_t id) -> ResourceDTO {
 	(void)id;
 	/*
@@ -72,13 +84,20 @@ auto ResourceRepository::get(size_t id) -> ResourceDTO {
 	return {};
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 auto ResourceRepository::get(const std::string& category) -> std::vector<ResourceDTO> {
 	static std::string sql_string{
 		std::string("SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags")
-			.append("  FROM resources")
-			.append(" WHERE category LIKE $1::varchar")};
+			.append("  FROM resources")};
+		
+		if(category != "*")
+			sql_string.append(" WHERE category LIKE $1::varchar");
 
-	auto result{database::execSelectAll(sql_string, category)};
+	const auto result{ category != "*" ?
+		database::execSelectAll(sql_string, category)
+		: database::execSelectAll(sql_string)};
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());
