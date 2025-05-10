@@ -79,4 +79,5 @@ void Commands::registerCommands() {
 	const auto& portal_command{std::make_shared<SetPortalCommand>()};
 	Bot::add_slash_command(portal_command);
 	Bot::add_message_command(portal_command);
+	Bot::add_reaction_command(portal_command);
 }

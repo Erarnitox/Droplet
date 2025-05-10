@@ -53,7 +53,8 @@ var hierarchy =
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
-      [ "ReactionRoles", "classReactionRoles.html", null ]
+      [ "ReactionRoles", "classReactionRoles.html", null ],
+      [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IReady", "classIReady.html", [
       [ "InitDatabase", "classInitDatabase.html", null ],

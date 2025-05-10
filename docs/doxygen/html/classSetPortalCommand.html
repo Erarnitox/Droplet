@@ -116,12 +116,12 @@ $(function(){initNavTree('classSetPortalCommand.html',''); initResizable(true); 
 <div class="dynheader">
 Inheritance diagram for SetPortalCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSetPortalCommand__inherit__graph.svg" width="366" height="326"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSetPortalCommand__inherit__graph.svg" width="540" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for SetPortalCommand:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classSetPortalCommand__coll__graph.svg" width="394" height="492"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classSetPortalCommand__coll__graph.svg" width="567" height="578"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -136,6 +136,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aee8274b4a5306c785873ad36043b1865"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a546e03f7d8acac758c41002963a8ee2f" id="r_a546e03f7d8acac758c41002963a8ee2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a546e03f7d8acac758c41002963a8ee2f">on_message_delete_bulk</a> (const dpp::message_delete_bulk_t &amp;event) override</td></tr>
 <tr class="separator:a546e03f7d8acac758c41002963a8ee2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aab1f0793a815ad1ffd43bc5ec2fb02" id="r_a6aab1f0793a815ad1ffd43bc5ec2fb02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aab1f0793a815ad1ffd43bc5ec2fb02">on_message_reaction_add</a> (const dpp::message_reaction_add_t &amp;event) override</td></tr>
+<tr class="separator:a6aab1f0793a815ad1ffd43bc5ec2fb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa060648f74731e7d214b2689febb667f" id="r_aa060648f74731e7d214b2689febb667f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa060648f74731e7d214b2689febb667f">on_message_reaction_remove</a> (const dpp::message_reaction_remove_t &amp;event) override</td></tr>
+<tr class="separator:aa060648f74731e7d214b2689febb667f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -244,6 +248,60 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classIMessageCommand.html#ab52ca884721d171494db9ab5020e1b8a">IMessageCommand</a>.</p>
+
+</div>
+</div>
+<a id="a6aab1f0793a815ad1ffd43bc5ec2fb02" name="a6aab1f0793a815ad1ffd43bc5ec2fb02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aab1f0793a815ad1ffd43bc5ec2fb02">&#9670;&#160;</a></span>on_message_reaction_add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetPortalCommand::on_message_reaction_add </td>
+          <td>(</td>
+          <td class="paramtype">const dpp::message_reaction_add_t &amp;</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIReactionCommand.html#a8136cfd6d776afe9ddee16cc0af88e04">IReactionCommand</a>.</p>
+
+</div>
+</div>
+<a id="aa060648f74731e7d214b2689febb667f" name="aa060648f74731e7d214b2689febb667f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa060648f74731e7d214b2689febb667f">&#9670;&#160;</a></span>on_message_reaction_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetPortalCommand::on_message_reaction_remove </td>
+          <td>(</td>
+          <td class="paramtype">const dpp::message_reaction_remove_t &amp;</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIReactionCommand.html#a92e5dc9a88b9db4b4823f752734d0b90">IReactionCommand</a>.</p>
 
 </div>
 </div>
