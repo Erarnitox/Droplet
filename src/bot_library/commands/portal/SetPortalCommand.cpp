@@ -78,13 +78,15 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		std::string reply_string;
 		if(not event.msg.message_reference.message_id.empty()) {
 			is_reply = true;
-			reply_string = std::format("[Reply to ({})]\n", event.msg.message_reference.message_id.str());
+			reply_string = std::format("__[Reply to this [Message]({})]__\n", event.msg.get_url());
 		}
 
 		auto msg{dpp::message(0, std::format("{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
 
 		if(not event.msg.file_data.empty()) {
-			msg.file_data = event.msg.file_data;
+			for(const auto& file : event.msg.file_data) {
+				msg.add_file(file.name, file.content);
+			}
 		}
 
 		const std::vector<PortalDTO>& portals{repo.getAll()};
