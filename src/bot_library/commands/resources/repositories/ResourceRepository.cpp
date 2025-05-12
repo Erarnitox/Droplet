@@ -91,13 +91,12 @@ auto ResourceRepository::get(const std::string& category) -> std::vector<Resourc
 	static std::string sql_string{
 		std::string("SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags")
 			.append("  FROM resources")};
-		
-		if(category != "*")
-			sql_string.append(" WHERE category LIKE $1::varchar");
 
-	const auto result{ category != "*" ?
-		database::execSelectAll(sql_string, category)
-		: database::execSelectAll(sql_string)};
+	if (category != "*")
+		sql_string.append(" WHERE category LIKE $1::varchar");
+
+	const auto result{category != "*" ? database::execSelectAll(sql_string, category)
+									  : database::execSelectAll(sql_string)};
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());

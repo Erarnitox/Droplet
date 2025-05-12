@@ -29,6 +29,7 @@
 #include <LearnCPPCommand.hpp>
 #include <ProfileCommand.hpp>
 #include <ReactionRoles.hpp>
+#include <ReminderCommand.hpp>
 #include <RemoveNotificationCommand.hpp>
 #include <RemovePortalCommand.hpp>
 #include <RollCommand.hpp>
@@ -61,6 +62,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<BlacklistCommand>());
 	Bot::add_slash_command(std::make_shared<SetNotificationCommand>());
 	Bot::add_slash_command(std::make_shared<RemoveNotificationCommand>());
+	Bot::add_slash_command(std::make_shared<ReminderCommand>());
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);

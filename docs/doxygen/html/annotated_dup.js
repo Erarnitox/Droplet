@@ -46,6 +46,7 @@ var annotated_dup =
     [ "ReactionRoleRepository", "classReactionRoleRepository.html", "classReactionRoleRepository" ],
     [ "ReactionRoles", "classReactionRoles.html", "classReactionRoles" ],
     [ "RegistrationHandler", "classRegistrationHandler.html", "classRegistrationHandler" ],
+    [ "ReminderCommand", "classReminderCommand.html", "classReminderCommand" ],
     [ "RemoveNotificationCommand", "classRemoveNotificationCommand.html", "classRemoveNotificationCommand" ],
     [ "RemovePortalCommand", "classRemovePortalCommand.html", "classRemovePortalCommand" ],
     [ "ResourceDTO", "classResourceDTO.html", "classResourceDTO" ],

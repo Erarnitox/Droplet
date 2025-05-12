@@ -112,16 +112,16 @@ $(function(){initNavTree('classNotificationRepository.html',''); initResizable(t
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="NotificationRepository_8hpp_source.html">NotificationRepository.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="notification_2repositories_2NotificationRepository_8hpp_source.html">NotificationRepository.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for NotificationRepository:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNotificationRepository__inherit__graph.svg" width="212" height="562"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNotificationRepository__inherit__graph.svg" width="211" height="668"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for NotificationRepository:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classNotificationRepository__coll__graph.svg" width="212" height="562"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classNotificationRepository__coll__graph.svg" width="211" height="668"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -136,10 +136,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7c57aba4073e4aedd7ae044f2760ec8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdb1573fa3a94fa9135c259513919b1e" id="r_abdb1573fa3a94fa9135c259513919b1e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdb1573fa3a94fa9135c259513919b1e">getAll</a> () -&gt; std::vector&lt; <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &gt;</td></tr>
 <tr class="separator:abdb1573fa3a94fa9135c259513919b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e89a2846e66cf8056585a1da0802d4a" id="r_a0e89a2846e66cf8056585a1da0802d4a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e89a2846e66cf8056585a1da0802d4a">create</a> (const <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &amp;object) -&gt; bool override</td></tr>
+<tr class="separator:a0e89a2846e66cf8056585a1da0802d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53a50aacf5aa8bf70827729ef8e62bb6" id="r_a53a50aacf5aa8bf70827729ef8e62bb6"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53a50aacf5aa8bf70827729ef8e62bb6">remove</a> (size_t id) -&gt; bool override</td></tr>
+<tr class="separator:a53a50aacf5aa8bf70827729ef8e62bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13e290784fd1970255bd19ae3fd39580" id="r_a13e290784fd1970255bd19ae3fd39580"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13e290784fd1970255bd19ae3fd39580">get</a> (size_t id) -&gt; <a class="el" href="classNotificationDTO.html">NotificationDTO</a> override</td></tr>
+<tr class="separator:a13e290784fd1970255bd19ae3fd39580"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c57aba4073e4aedd7ae044f2760ec8a" id="r_a7c57aba4073e4aedd7ae044f2760ec8a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c57aba4073e4aedd7ae044f2760ec8a">update</a> (const <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &amp;object) -&gt; bool override</td></tr>
+<tr class="separator:a7c57aba4073e4aedd7ae044f2760ec8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdb1573fa3a94fa9135c259513919b1e" id="r_abdb1573fa3a94fa9135c259513919b1e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdb1573fa3a94fa9135c259513919b1e">getAll</a> () -&gt; std::vector&lt; <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &gt;</td></tr>
+<tr class="separator:abdb1573fa3a94fa9135c259513919b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0e89a2846e66cf8056585a1da0802d4a" name="a0e89a2846e66cf8056585a1da0802d4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e89a2846e66cf8056585a1da0802d4a">&#9670;&#160;</a></span>create()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e89a2846e66cf8056585a1da0802d4a">&#9670;&#160;</a></span>create() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,8 +175,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a0e89a2846e66cf8056585a1da0802d4a" name="a0e89a2846e66cf8056585a1da0802d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e89a2846e66cf8056585a1da0802d4a">&#9670;&#160;</a></span>create() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto NotificationRepository::create </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>object</em></span></td><td>)</td>
+          <td> -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea">IRepository&lt; NotificationDTO &gt;</a>.</p>
+
+</div>
+</div>
 <a id="a13e290784fd1970255bd19ae3fd39580" name="a13e290784fd1970255bd19ae3fd39580"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a13e290784fd1970255bd19ae3fd39580">&#9670;&#160;</a></span>get()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a13e290784fd1970255bd19ae3fd39580">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -192,8 +229,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a13e290784fd1970255bd19ae3fd39580" name="a13e290784fd1970255bd19ae3fd39580"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13e290784fd1970255bd19ae3fd39580">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto NotificationRepository::get </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> -&gt;  <a class="el" href="classNotificationDTO.html">NotificationDTO</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIRepository.html#a589c909f9c95319a64649267aec0a323">IRepository&lt; NotificationDTO &gt;</a>.</p>
+
+</div>
+</div>
 <a id="abdb1573fa3a94fa9135c259513919b1e" name="abdb1573fa3a94fa9135c259513919b1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abdb1573fa3a94fa9135c259513919b1e">&#9670;&#160;</a></span>getAll()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abdb1573fa3a94fa9135c259513919b1e">&#9670;&#160;</a></span>getAll() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,8 +281,33 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="abdb1573fa3a94fa9135c259513919b1e" name="abdb1573fa3a94fa9135c259513919b1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdb1573fa3a94fa9135c259513919b1e">&#9670;&#160;</a></span>getAll() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto NotificationRepository::getAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> -&gt;  std::vector&lt; <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a53a50aacf5aa8bf70827729ef8e62bb6" name="a53a50aacf5aa8bf70827729ef8e62bb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53a50aacf5aa8bf70827729ef8e62bb6">&#9670;&#160;</a></span>remove()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a50aacf5aa8bf70827729ef8e62bb6">&#9670;&#160;</a></span>remove() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -244,8 +333,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a53a50aacf5aa8bf70827729ef8e62bb6" name="a53a50aacf5aa8bf70827729ef8e62bb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a50aacf5aa8bf70827729ef8e62bb6">&#9670;&#160;</a></span>remove() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto NotificationRepository::remove </td>
+          <td>(</td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
+          <td> -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIRepository.html#a76b35394a19b1e574c3a703ec13dccda">IRepository&lt; NotificationDTO &gt;</a>.</p>
+
+</div>
+</div>
 <a id="a7c57aba4073e4aedd7ae044f2760ec8a" name="a7c57aba4073e4aedd7ae044f2760ec8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c57aba4073e4aedd7ae044f2760ec8a">&#9670;&#160;</a></span>update()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c57aba4073e4aedd7ae044f2760ec8a">&#9670;&#160;</a></span>update() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -271,9 +387,38 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a7c57aba4073e4aedd7ae044f2760ec8a" name="a7c57aba4073e4aedd7ae044f2760ec8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c57aba4073e4aedd7ae044f2760ec8a">&#9670;&#160;</a></span>update() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto NotificationRepository::update </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classNotificationDTO.html">NotificationDTO</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>object</em></span></td><td>)</td>
+          <td> -&gt;  bool</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classIRepository.html#afdf77fe7abbb1cdf997e55a725f826fd">IRepository&lt; NotificationDTO &gt;</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>src/bot_library/commands/notification/repositories/<a class="el" href="NotificationRepository_8hpp_source.html">NotificationRepository.hpp</a></li>
-<li>src/bot_library/commands/notification/repositories/<a class="el" href="NotificationRepository_8cpp.html">NotificationRepository.cpp</a></li>
+<li>src/bot_library/commands/notification/repositories/<a class="el" href="notification_2repositories_2NotificationRepository_8hpp_source.html">NotificationRepository.hpp</a></li>
+<li>src/bot_library/commands/select/repositories/<a class="el" href="select_2repositories_2NotificationRepository_8hpp_source.html">NotificationRepository.hpp</a></li>
+<li>src/bot_library/commands/notification/repositories/<a class="el" href="notification_2repositories_2NotificationRepository_8cpp.html">NotificationRepository.cpp</a></li>
+<li>src/bot_library/commands/select/repositories/<a class="el" href="select_2repositories_2NotificationRepository_8cpp.html">NotificationRepository.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

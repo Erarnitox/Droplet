@@ -75,23 +75,27 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		}
 
 		// cheap way to sync replies
-		bool is_reply{ false };
+		bool is_reply{false};
 		std::string reply_string;
-		if(not event.msg.message_reference.message_id.empty()) {
+		const auto& ref{ event.msg.message_reference };
+		if (not ref.message_id.empty()) {
 			is_reply = true;
-			reply_string = std::format("> _[Reply to this [__Message__]({})]_\n", event.msg.get_url());
+			auto ref_msg{ Bot::ctx->message_get_sync(ref.message_id, ref.channel_id) };
+			reply_string = std::format("> __**reply to**__ {}:`{}`\n", ref_msg.author.get_mention(), ref_msg.content);
 		}
 
 		// build the message (template)
-		auto msg{dpp::message(0, std::format("{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
+		auto msg{dpp::message(
+			0,
+			std::format(
+				"{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
 
-		if(not event.msg.file_data.empty()) {
-			for(const auto& file : event.msg.attachments) {
-				const auto& file_url{ file.proxy_url };
-				msg.content.append(file_url);
-			}
-			
+		
+		for (const auto& file : event.msg.attachments) {
+			const auto& file_url{file.proxy_url};
+			msg.content.append(file_url);
 		}
+		
 
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {

@@ -4,8 +4,8 @@
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/URI.h>
 
-#include <ResourceRepository.hpp>
 #include <ResQueryHandler.hpp>
+#include <ResourceRepository.hpp>
 #include <optional>
 
 #include "Poco/JSON/Stringifier.h"
