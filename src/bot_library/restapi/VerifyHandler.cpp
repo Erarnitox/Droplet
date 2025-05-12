@@ -5,7 +5,6 @@
 
 #include <UserManager.hpp>
 #include <VerifyHandler.hpp>
-#include <optional>
 
 //-----------------------------------------------------
 //

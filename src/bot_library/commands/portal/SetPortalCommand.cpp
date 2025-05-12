@@ -74,20 +74,18 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 			}
 		}
 
+		// cheap way to sync replies
 		bool is_reply{ false };
 		std::string reply_string;
 		if(not event.msg.message_reference.message_id.empty()) {
 			is_reply = true;
-			reply_string = std::format("__[Reply to this [Message]({})]__\n", event.msg.get_url());
+			reply_string = std::format(">_[Reply to this [__Message__]({})]_\n", event.msg.get_url());
 		}
 
+		// build the message (template)
 		auto msg{dpp::message(0, std::format("{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
 
-		if(not event.msg.file_data.empty()) {
-			for(const auto& file : event.msg.file_data) {
-				msg.add_file(file.name, file.content);
-			}
-		}
+    //TODO: sync files
 
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {
