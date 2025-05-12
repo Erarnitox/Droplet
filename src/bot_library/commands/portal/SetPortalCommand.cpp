@@ -79,7 +79,7 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		std::string reply_string;
 		if(not event.msg.message_reference.message_id.empty()) {
 			is_reply = true;
-			reply_string = std::format(">_[Reply to this [__Message__]({})]_\n", event.msg.get_url());
+			reply_string = std::format("> _[Reply to this [__Message__]({})]_\n", event.msg.get_url());
 		}
 
 		// build the message (template)
