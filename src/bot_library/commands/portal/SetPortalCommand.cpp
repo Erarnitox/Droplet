@@ -85,7 +85,13 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		// build the message (template)
 		auto msg{dpp::message(0, std::format("{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
 
-    //TODO: sync files
+		if(not event.msg.file_data.empty()) {
+			for(const auto& file : event.msg.attachments) {
+				const auto& file_url{ file.proxy_url };
+				msg.content.append(file_url);
+			}
+			
+		}
 
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {
