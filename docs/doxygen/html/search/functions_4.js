@@ -4,5 +4,5 @@ var searchData=
   ['execquery_1',['execQuery',['../namespacedatabase.html#ad776af9117dfcb99ba717f690faf0829',1,'database']]],
   ['execselect_2',['execSelect',['../namespacedatabase.html#a0e9164716114c2db8c230823084c959f',1,'database']]],
   ['execselectall_3',['execSelectAll',['../namespacedatabase.html#a7b4c66b5989f9bb6c8a051ba6c8a4415',1,'database']]],
-  ['exists_4',['exists',['../classWebUserRepository.html#a008996ded34493162b745e29abd0657e',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#a31385e0f9a1a074a7aae9c8b011f5fb6',1,'LatestEventsRepository::exists(const std::string &amp;key, const std::string &amp;value) -&gt; bool'],['../classLatestEventsRepository.html#adaf3228284ebe22c8a97682537a138dd',1,'LatestEventsRepository::exists(const std::string &amp;key, const std::string &amp;value) -&gt; bool']]]
+  ['exists_4',['exists',['../classWebUserRepository.html#a008996ded34493162b745e29abd0657e',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#a31385e0f9a1a074a7aae9c8b011f5fb6',1,'LatestEventsRepository::exists()']]]
 ];

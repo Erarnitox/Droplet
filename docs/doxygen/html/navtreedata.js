@@ -38,7 +38,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -59,8 +59,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AddResourcesCommand_8cpp.html",
-"classChallengeRoleRepository.html",
-"dir_4bf8f6c3c349d2a29524f93c7ce04644.html"
+"classChallengeBadgeRepository.html#a2f817f45318ed2c0674a42f2821a1046",
+"dir_42e46aeb61d2312a1051b7f6e01ddc69.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

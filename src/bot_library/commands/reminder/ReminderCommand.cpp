@@ -48,7 +48,7 @@ void ReminderCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if(time_sec <= 0) {
+	if (time_sec <= 0) {
 		Core::timed_reply_private(*Bot::ctx, event, std::format("Reminder from the past:\n{}", message), 2000);
 	} else {
 		start_reminder(cmd.get_channel().id, cmd.usr.get_mention(), message, static_cast<size_t>(time_sec));

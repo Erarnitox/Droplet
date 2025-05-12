@@ -7,6 +7,8 @@
 
 #include <Core.hpp>
 #include <PortalRepository.hpp>
+#include <algorithm>
+#include <iterator>
 
 #include "IMessageCommand.hpp"
 #include "IReactionCommand.hpp"
@@ -77,11 +79,22 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		// cheap way to sync replies
 		bool is_reply{false};
 		std::string reply_string;
-		const auto& ref{ event.msg.message_reference };
+		const auto& ref{event.msg.message_reference};
 		if (not ref.message_id.empty()) {
-			is_reply = true;
-			auto ref_msg{ Bot::ctx->message_get_sync(ref.message_id, ref.channel_id) };
-			reply_string = std::format("> __**reply to**__ {}:`{}`\n", ref_msg.author.get_mention(), ref_msg.content);
+			auto ref_msg{Bot::ctx->message_get_sync(ref.message_id, ref.channel_id)};
+			auto content = ref_msg.content.substr(0, 32);
+
+			if (ref_msg.content.length() > 32) {
+				content.append("...");
+			}
+
+			if (not ref_msg.author.is_bot()) {
+				is_reply = true;
+				reply_string = std::format("> _reply to:_ `[{}]: {}`\n", ref_msg.author.username, content);
+			} else if (ref_msg.author.id == Bot::ctx->me.id) {
+				is_reply = true;
+				reply_string = std::format("> _reply to:_ `{}`\n", content);
+			}
 		}
 
 		// build the message (template)
@@ -90,12 +103,10 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 			std::format(
 				"{}[**{}**]: {}", (is_reply ? reply_string : ""), event.msg.author.username, event.msg.content))};
 
-		
 		for (const auto& file : event.msg.attachments) {
 			const auto& file_url{file.proxy_url};
 			msg.content.append(file_url);
 		}
-		
 
 		const std::vector<PortalDTO>& portals{repo.getAll()};
 		for (const PortalDTO& portal : portals) {

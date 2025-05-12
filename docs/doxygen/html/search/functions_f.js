@@ -2,8 +2,8 @@ var searchData=
 [
   ['send_0',['send',['../classEmailClient.html#ac0e3659cf20cfb8f6b70e76456a9403b',1,'EmailClient']]],
   ['serverdetails_1',['ServerDetails',['../classServerDetails.html#a607db65dd2155c9fc2aef035f51bf009',1,'ServerDetails']]],
-  ['set_5factive_2',['set_active',['../classLatestEventsRepository.html#a8ff806de4debf8be92e6041f8840d7db',1,'LatestEventsRepository::set_active(const std::string &amp;key, bool active) -&gt; void'],['../classLatestEventsRepository.html#a60890dbe425e3c7e432be3cab1ac7389',1,'LatestEventsRepository::set_active(const std::string &amp;key, bool active) -&gt; void']]],
-  ['setnotificationcommand_3',['SetNotificationCommand',['../classSetNotificationCommand.html#a4cc3f271595e537122b4c1872c2deac4',1,'SetNotificationCommand::SetNotificationCommand()'],['../classSetNotificationCommand.html#a4cc3f271595e537122b4c1872c2deac4',1,'SetNotificationCommand::SetNotificationCommand()']]],
+  ['set_5factive_2',['set_active',['../classLatestEventsRepository.html#a8ff806de4debf8be92e6041f8840d7db',1,'LatestEventsRepository']]],
+  ['setnotificationcommand_3',['SetNotificationCommand',['../classSetNotificationCommand.html#a4cc3f271595e537122b4c1872c2deac4',1,'SetNotificationCommand']]],
   ['setportalcommand_4',['SetPortalCommand',['../classSetPortalCommand.html#ac4cd698e778023db22eea4b6bfe99db8',1,'SetPortalCommand']]],
   ['simple_5fhash_5',['simple_hash',['../classCore.html#afd02cc357f20b9f05ea4654118cc2713',1,'Core']]],
   ['start_6',['start',['../classRestApi.html#ad3a8b65c50bb5e3b4556715aa34bad7b',1,'RestApi']]],
