@@ -22,6 +22,7 @@
 #include <ChallengeBadgeCommand.hpp>
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
+#include <ClearCommand.hpp>
 #include <FlipCommand.hpp>
 #include <GetResourcesCommand.hpp>
 #include <HelpCommand.hpp>
@@ -63,6 +64,7 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<SetNotificationCommand>());
 	Bot::add_slash_command(std::make_shared<RemoveNotificationCommand>());
 	Bot::add_slash_command(std::make_shared<ReminderCommand>());
+	Bot::add_slash_command(std::make_shared<ClearCommand>());
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);

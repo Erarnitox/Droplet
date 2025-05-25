@@ -33,6 +33,7 @@ var hierarchy =
       [ "BlacklistCommand", "classBlacklistCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
+      [ "ClearCommand", "classClearCommand.html", null ],
       [ "FlipCommand", "classFlipCommand.html", null ],
       [ "GetResourcesCommand", "classGetResourcesCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
