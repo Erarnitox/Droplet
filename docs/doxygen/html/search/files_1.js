@@ -9,5 +9,7 @@ var searchData=
   ['bot_2ecpp_6',['Bot.cpp',['../Bot_8cpp.html',1,'']]],
   ['bot_2ehpp_7',['Bot.hpp',['../Bot_8hpp.html',1,'']]],
   ['botlibrary_2ecpp_8',['BotLibrary.cpp',['../BotLibrary_8cpp.html',1,'']]],
-  ['botlibrary_2ehpp_9',['BotLibrary.hpp',['../BotLibrary_8hpp.html',1,'']]]
+  ['botlibrary_2ehpp_9',['BotLibrary.hpp',['../BotLibrary_8hpp.html',1,'']]],
+  ['bugreportcommand_2ecpp_10',['BugReportCommand.cpp',['../BugReportCommand_8cpp.html',1,'']]],
+  ['bugreportcommand_2ehpp_11',['BugReportCommand.hpp',['../BugReportCommand_8hpp.html',1,'']]]
 ];

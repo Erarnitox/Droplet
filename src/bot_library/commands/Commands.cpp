@@ -19,6 +19,7 @@
 
 #include <AddResourcesCommand.hpp>
 #include <BlacklistCommand.hpp>
+#include <BugReportCommand.hpp>
 #include <ChallengeBadgeCommand.hpp>
 #include <ChallengeRoleCommand.hpp>
 #include <CleanUp.hpp>
@@ -67,6 +68,10 @@ void Commands::registerCommands() {
 	Bot::add_slash_command(std::make_shared<ReminderCommand>());
 	Bot::add_slash_command(std::make_shared<ClearCommand>());
 	Bot::add_slash_command(std::make_shared<WarnCommand>());
+
+	const auto& bug_report_command{std::make_shared<BugReportCommand>()};
+	Bot::add_slash_command(bug_report_command);
+	Bot::add_form_command(bug_report_command);
 
 	const auto& challenge_command{std::make_shared<ChallengeRoleCommand>()};
 	Bot::add_slash_command(challenge_command);

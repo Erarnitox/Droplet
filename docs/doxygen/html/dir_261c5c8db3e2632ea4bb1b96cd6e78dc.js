@@ -1,6 +1,7 @@
 var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
 [
     [ "auth", "dir_5cf12758e48df8cfb5f70937ca86d61e.html", "dir_5cf12758e48df8cfb5f70937ca86d61e" ],
+    [ "bug_report", "dir_af5e0dec33088f3d40e7aa95cd0e5ced.html", "dir_af5e0dec33088f3d40e7aa95cd0e5ced" ],
     [ "challenge_badge", "dir_adcd489d00d8ca37449f57b9cfd13f65.html", "dir_adcd489d00d8ca37449f57b9cfd13f65" ],
     [ "challenge_role", "dir_c51bb8760eda2ecf5deaef23809ed440.html", "dir_c51bb8760eda2ecf5deaef23809ed440" ],
     [ "clean_up", "dir_e071329bb2fc8ace303f4ccc165742ca.html", "dir_e071329bb2fc8ace303f4ccc165742ca" ],

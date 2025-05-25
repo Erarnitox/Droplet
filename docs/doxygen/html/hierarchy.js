@@ -25,12 +25,14 @@ var hierarchy =
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
     [ "IFormCommand", "classIFormCommand.html", [
+      [ "BugReportCommand", "classBugReportCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
     [ "IGlobalSlashCommand", "classIGlobalSlashCommand.html", [
       [ "AddResourcesCommand", "classAddResourcesCommand.html", null ],
       [ "BlacklistCommand", "classBlacklistCommand.html", null ],
+      [ "BugReportCommand", "classBugReportCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ],
       [ "ClearCommand", "classClearCommand.html", null ],

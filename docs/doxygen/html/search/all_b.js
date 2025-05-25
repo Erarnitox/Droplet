@@ -9,5 +9,6 @@ var searchData=
   ['message_5fcommands_5ft_6',['message_commands_t',['../Bot_8hpp.html#ab06fb2862d61a59a864193b3986a4068',1,'Bot.hpp']]],
   ['message_5fid_7',['message_id',['../classReactionRoleDTO.html#a823af32d9d40913b165c20acbe266a89',1,'ReactionRoleDTO']]],
   ['messageid_8',['messageId',['../classChallengeBadgeDTO.html#ad60118673ab4672ca9fdc114eb80eea8',1,'ChallengeBadgeDTO::messageId'],['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO::messageId']]],
-  ['myrequesthandlerfactory_9',['MyRequestHandlerFactory',['../classMyRequestHandlerFactory.html',1,'']]]
+  ['modal_5fid_9',['MODAL_ID',['../BugReportCommand_8cpp.html#a5c5207fdbcbcf65930319b3ca2957218',1,'BugReportCommand.cpp']]],
+  ['myrequesthandlerfactory_10',['MyRequestHandlerFactory',['../classMyRequestHandlerFactory.html',1,'']]]
 ];
