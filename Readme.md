@@ -130,11 +130,3 @@ You can also join my discord server below
 
 #### Profile information:
 ![roll](docs/screenshots/profile.png)
-
----
-
-## Roadmap
-[Github Project](https://github.com/users/Erarnitox/projects/1/views/1)
-
-### Business Plan
-To get an idea of where we want to go with this project take a look at the [Business Plan](./docs/business_plan.md)

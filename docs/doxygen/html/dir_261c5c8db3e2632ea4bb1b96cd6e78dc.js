@@ -20,5 +20,6 @@ var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
     [ "roll", "dir_01a9593c77408e73511ed5f78e4e0ebc.html", "dir_01a9593c77408e73511ed5f78e4e0ebc" ],
     [ "server_details", "dir_25fa05427a0fbbf83099686a4dfd3c98.html", "dir_25fa05427a0fbbf83099686a4dfd3c98" ],
     [ "set_status", "dir_cc7ce3d766bf0a0ad188e6b0650c2ecf.html", "dir_cc7ce3d766bf0a0ad188e6b0650c2ecf" ],
+    [ "warn", "dir_ff2fc1f0aa105d37e1ee7fe2610880eb.html", "dir_ff2fc1f0aa105d37e1ee7fe2610880eb" ],
     [ "Commands.cpp", "Commands_8cpp.html", null ]
 ];

@@ -47,7 +47,8 @@ var hierarchy =
       [ "RollCommand", "classRollCommand.html", null ],
       [ "ServerDetails", "classServerDetails.html", null ],
       [ "SetNotificationCommand", "classSetNotificationCommand.html", null ],
-      [ "SetPortalCommand", "classSetPortalCommand.html", null ]
+      [ "SetPortalCommand", "classSetPortalCommand.html", null ],
+      [ "WarnCommand", "classWarnCommand.html", null ]
     ] ],
     [ "IMemberCommand", "classIMemberCommand.html", null ],
     [ "IMessageCommand", "classIMessageCommand.html", [

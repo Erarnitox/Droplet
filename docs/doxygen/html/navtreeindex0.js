@@ -67,7 +67,7 @@ var NAVTREEINDEX0 =
 "ClearCommand_8cpp.html":[2,0,0,0,1,4,0],
 "ClearCommand_8hpp.html":[2,0,0,0,1,4,1],
 "ClearCommand_8hpp_source.html":[2,0,0,0,1,4,1],
-"Commands_8cpp.html":[2,0,0,0,1,20],
+"Commands_8cpp.html":[2,0,0,0,1,21],
 "Commands_8hpp.html":[2,0,0,0,1,7,0],
 "Commands_8hpp_source.html":[2,0,0,0,1,7,0],
 "Core_8cpp.html":[2,0,0,0,0,0,3],
@@ -207,6 +207,9 @@ var NAVTREEINDEX0 =
 "VerifyHandler_8cpp.html":[2,0,0,0,3,8],
 "VerifyHandler_8hpp.html":[2,0,0,0,3,0,8],
 "VerifyHandler_8hpp_source.html":[2,0,0,0,3,0,8],
+"WarnCommand_8cpp.html":[2,0,0,0,1,20,0],
+"WarnCommand_8hpp.html":[2,0,0,0,1,20,1],
+"WarnCommand_8hpp_source.html":[2,0,0,0,1,20,1],
 "WebUserDTO_8cpp.html":[2,0,0,0,1,0,0],
 "WebUserDTO_8hpp.html":[2,0,0,0,1,0,1],
 "WebUserDTO_8hpp_source.html":[2,0,0,0,1,0,1],
@@ -246,8 +249,5 @@ var NAVTREEINDEX0 =
 "classChallengeBadgeDTO.html#a2a72857b09f726042e15df4f142245d8":[1,0,8,6],
 "classChallengeBadgeDTO.html#a7bed5dde65476fa4494d20c7a9a676a9":[1,0,8,1],
 "classChallengeBadgeDTO.html#a82f79f139c60a6b40adfc88c9b9fd1f8":[1,0,8,4],
-"classChallengeBadgeDTO.html#a9075292b5a0d1e0401f5cdcb93cfc977":[1,0,8,5],
-"classChallengeBadgeDTO.html#abe57e61c2f4d29b73f3d06f0ce6cf9de":[1,0,8,0],
-"classChallengeBadgeDTO.html#ad60118673ab4672ca9fdc114eb80eea8":[1,0,8,7],
-"classChallengeBadgeDTO.html#ad6273881de0c2281ed22d751aef0c713":[1,0,8,3]
+"classChallengeBadgeDTO.html#a9075292b5a0d1e0401f5cdcb93cfc977":[1,0,8,5]
 };

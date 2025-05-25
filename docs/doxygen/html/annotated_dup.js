@@ -67,6 +67,7 @@ var annotated_dup =
     [ "UserManager", "classUserManager.html", "classUserManager" ],
     [ "UserRepository", "classUserRepository.html", "classUserRepository" ],
     [ "VerifyHandler", "classVerifyHandler.html", "classVerifyHandler" ],
+    [ "WarnCommand", "classWarnCommand.html", "classWarnCommand" ],
     [ "WebUserDTO", "classWebUserDTO.html", "classWebUserDTO" ],
     [ "WebUserRepository", "classWebUserRepository.html", "classWebUserRepository" ]
 ];
