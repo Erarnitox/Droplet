@@ -26,7 +26,6 @@
 #include <string>
 #include <vector>
 
-#include "NotFoundHandler.hpp"
 #include "Poco/JSON/Parser.h"
 #include "Poco/Net/Context.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -37,9 +36,14 @@
 #include "Poco/Net/SSLManager.h"
 #include "Poco/Net/SecureServerSocket.h"
 #include "Poco/Util/ServerApplication.h"
+#include "Secrets.hpp"
+
+//----------------------------------------
+// Endpoints
+//----------------------------------------
+#include "NotFoundHandler.hpp"
 #include "RegistrationHandler.hpp"
 #include "ResQueryHandler.hpp"
-#include "Secrets.hpp"
 #include "VerifyHandler.hpp"
 
 using namespace Poco::Net;

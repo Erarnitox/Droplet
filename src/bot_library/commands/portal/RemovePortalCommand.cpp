@@ -12,11 +12,17 @@
 #include "repositories/PortalDTO.hpp"
 #include "repositories/PortalRepository.hpp"
 
+//----------------------------------------
+//
+//----------------------------------------
 RemovePortalCommand::RemovePortalCommand() : IGlobalSlashCommand() {
 	this->command_name = "remove_portal";
 	this->command_description = "Remove the portal from this server (Admin only!)";
 }
 
+//----------------------------------------
+//
+//----------------------------------------
 void RemovePortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;

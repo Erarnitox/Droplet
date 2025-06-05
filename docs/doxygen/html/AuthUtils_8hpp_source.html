@@ -115,94 +115,98 @@ $(function(){initNavTree('AuthUtils_8hpp_source.html',''); initResizable(true); 
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;Poco/JWT/Token.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Poco/Net/HTTPServerRequest.h&quot;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Poco/SHA2Engine.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">static</span> <span class="keyword">inline</span> std::string hashPassword(<span class="keyword">const</span> std::string&amp; password) {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    Poco::SHA2Engine sha256;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    sha256.update(password);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keyword">const</span> Poco::DigestEngine::Digest&amp; digest = sha256.digest();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    std::stringstream ss;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    Poco::HexBinaryEncoder hexEncoder(ss);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    hexEncoder.write(<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;digest[0]), <span class="keyword">static_cast&lt;</span><span class="keywordtype">long</span><span class="keyword">&gt;</span>(digest.size()));</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    hexEncoder.close();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">//</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> verifyPassword(<span class="keyword">const</span> std::string&amp; password, <span class="keyword">const</span> std::string&amp; storedHash) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> hashPassword(password) == storedHash;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">//</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">   35</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a> { <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a> = 0, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf">PUBLIC</a> = 10, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792">PRIVATE</a> = 100, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">SECRET</a> = 1000, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c">TOP_SECRET</a> = 10000, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3">BLACK</a> = 100000 };</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">//</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="foldopen" id="foldopen00040" data-start="{" data-end="};">
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structAuthUtil.html">   40</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structAuthUtil.html">AuthUtil</a> {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// Returns { sub, roles } on success; empty map on failure</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    [[nodiscard]]</div>
-<div class="foldopen" id="foldopen00043" data-start="{" data-end="}">
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">   43</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">is_authorized</a>(<span class="keyword">const</span> Poco::Net::HTTPServerRequest&amp; req,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                                     <a class="code hl_enumeration" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a> minClearance = <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">AuthClearance::SECRET</a>) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">if</span> (minClearance == <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">AuthClearance::NONE</a>)</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// no login required</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">if</span> (not req.has(<span class="stringliteral">&quot;Authorization&quot;</span>))</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// not logged in</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keyword">const</span> <span class="keyword">auto</span> auth = req.get(<span class="stringliteral">&quot;Authorization&quot;</span>);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">const</span> std::string bearer = <span class="stringliteral">&quot;Bearer &quot;</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">if</span> (auth.rfind(bearer, 0) != 0)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="comment">// extract the token</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">const</span> std::string jwt = auth.substr(bearer.size());</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">try</span> {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            Poco::JWT::Signer signer(<span class="stringliteral">&quot;&lt;secret&gt;&quot;</span>);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            Poco::JWT::Token token;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            signer.tryVerify(jwt, token);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; claims{token.payload()};</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; claim : claims) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; key{claim.first};</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; value{claim.second};</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keywordflow">if</span> (key == <span class="stringliteral">&quot;prv&quot;</span>) {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>                    <span class="keywordflow">if</span> (value.convert&lt;<span class="keywordtype">int</span>&gt;() &gt;= minClearance) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="Secrets_8hpp.html">Secrets.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">static</span> <span class="keyword">inline</span> std::string hashPassword(<span class="keyword">const</span> std::string&amp; password) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    Poco::SHA2Engine sha256;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    sha256.update(password);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">const</span> Poco::DigestEngine::Digest&amp; digest = sha256.digest();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    std::stringstream ss;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    Poco::HexBinaryEncoder hexEncoder(ss);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    hexEncoder.write(<span class="keyword">reinterpret_cast&lt;</span><span class="keyword">const </span><span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(&amp;digest[0]), <span class="keyword">static_cast&lt;</span><span class="keywordtype">long</span><span class="keyword">&gt;</span>(digest.size()));</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    hexEncoder.close();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">//</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> verifyPassword(<span class="keyword">const</span> std::string&amp; password, <span class="keyword">const</span> std::string&amp; storedHash) {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> hashPassword(password) == storedHash;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">//</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">   36</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a> { <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a> = 0, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf">PUBLIC</a> = 10, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792">PRIVATE</a> = 100, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">SECRET</a> = 1000, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c">TOP_SECRET</a> = 10000, <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3">BLACK</a> = 100000 };</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">//</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structAuthUtil.html">   41</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structAuthUtil.html">AuthUtil</a> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="comment">// Returns { sub, roles } on success; empty map on failure</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    [[nodiscard]]</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">   44</a></span>    <span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">is_authorized</a>(<span class="keyword">const</span> Poco::Net::HTTPServerRequest&amp; req,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                                     <a class="code hl_enumeration" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a> minClearance = <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">AuthClearance::SECRET</a>) {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">if</span> (minClearance == <a class="code hl_enumvalue" href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">AuthClearance::NONE</a>)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;  <span class="comment">// no login required</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> (not req.has(<span class="stringliteral">&quot;Authorization&quot;</span>))</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="comment">// not logged in</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keyword">const</span> <span class="keyword">auto</span> auth = req.get(<span class="stringliteral">&quot;Authorization&quot;</span>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keyword">const</span> std::string bearer = <span class="stringliteral">&quot;Bearer &quot;</span>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">if</span> (auth.rfind(bearer, 0) != 0)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">// extract the token</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keyword">const</span> std::string jwt = auth.substr(bearer.size());</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="keywordflow">try</span> {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; sec = <a class="code hl_function" href="classSecrets.html#a27641f82434c1c04244cc310a1d60b08">Secrets::getInstance</a>();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            Poco::JWT::Signer signer(sec.getSecret(<span class="stringliteral">&quot;jwt_secret&quot;</span>));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            Poco::JWT::Token token;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            signer.tryVerify(jwt, token);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            <span class="keyword">const</span> <span class="keyword">auto</span>&amp; claims{token.payload()};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; claim : claims) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; key{claim.first};</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>                <span class="keyword">const</span> <span class="keyword">auto</span>&amp; value{claim.second};</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>                <span class="keywordflow">if</span> (key == <span class="stringliteral">&quot;prv&quot;</span>) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                    <span class="keywordflow">if</span> (value.convert&lt;<span class="keywordtype">int</span>&gt;() &gt;= minClearance) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                    }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
 </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>};</div>
 </div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a></div><div class="ttdeci">AuthClearance</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792">PRIVATE</a></div><div class="ttdeci">@ PRIVATE</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">SECRET</a></div><div class="ttdeci">@ SECRET</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c">TOP_SECRET</a></div><div class="ttdeci">@ TOP_SECRET</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a></div><div class="ttdeci">@ NONE</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf">PUBLIC</a></div><div class="ttdeci">@ PUBLIC</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3">BLACK</a></div><div class="ttdeci">@ BLACK</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:35</div></div>
-<div class="ttc" id="astructAuthUtil_html"><div class="ttname"><a href="structAuthUtil.html">AuthUtil</a></div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:40</div></div>
-<div class="ttc" id="astructAuthUtil_html_a5bcbe94067c12d8aa153eb7dde332c2f"><div class="ttname"><a href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">AuthUtil::is_authorized</a></div><div class="ttdeci">static bool is_authorized(const Poco::Net::HTTPServerRequest &amp;req, AuthClearance minClearance=AuthClearance::SECRET)</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:43</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839">AuthClearance</a></div><div class="ttdeci">AuthClearance</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a0f0fd409954c4ec858e4cd7594059792">PRIVATE</a></div><div class="ttdeci">@ PRIVATE</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39">SECRET</a></div><div class="ttdeci">@ SECRET</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c">TOP_SECRET</a></div><div class="ttdeci">@ TOP_SECRET</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2">NONE</a></div><div class="ttdeci">@ NONE</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ae81e3f79af4b80e22c6b86d63ea397bf">PUBLIC</a></div><div class="ttdeci">@ PUBLIC</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aAuthUtils_8hpp_html_af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3"><div class="ttname"><a href="AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3">BLACK</a></div><div class="ttdeci">@ BLACK</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:36</div></div>
+<div class="ttc" id="aSecrets_8hpp_html"><div class="ttname"><a href="Secrets_8hpp.html">Secrets.hpp</a></div></div>
+<div class="ttc" id="aclassSecrets_html_a27641f82434c1c04244cc310a1d60b08"><div class="ttname"><a href="classSecrets.html#a27641f82434c1c04244cc310a1d60b08">Secrets::getInstance</a></div><div class="ttdeci">static Secrets &amp; getInstance()</div><div class="ttdef"><b>Definition</b> Secrets.cpp:19</div></div>
+<div class="ttc" id="astructAuthUtil_html"><div class="ttname"><a href="structAuthUtil.html">AuthUtil</a></div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:41</div></div>
+<div class="ttc" id="astructAuthUtil_html_a5bcbe94067c12d8aa153eb7dde332c2f"><div class="ttname"><a href="structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f">AuthUtil::is_authorized</a></div><div class="ttdeci">static bool is_authorized(const Poco::Net::HTTPServerRequest &amp;req, AuthClearance minClearance=AuthClearance::SECRET)</div><div class="ttdef"><b>Definition</b> AuthUtils.hpp:44</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

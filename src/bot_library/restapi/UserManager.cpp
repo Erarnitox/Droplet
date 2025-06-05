@@ -36,7 +36,7 @@ void UserManager::addUser(const std::string& email, const std::string& username,
 		user.is_verified = false;
 
 		if (repo.create(user)) {
-			// TODO: sendVerificationEmail(email, user.confirm_code);
+			sendVerificationEmail(email, user.confirm_code);
 		}
 	}
 }
@@ -55,7 +55,7 @@ bool UserManager::verifyUser(const std::string& token) {
 //-----------------------------------------------------
 void UserManager::sendVerificationEmail(const std::string& email, const std::string& token) {
 	try {
-		EmailClient client(smtpServer, 587, smtpUser, smtpPassword);
+		EmailClient client(smtpServer, 465, smtpUser, smtpPassword);
 		client.send(smtpUser,
 					{email},
 					"Email Verification",

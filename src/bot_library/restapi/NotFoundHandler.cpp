@@ -3,6 +3,9 @@
 
 #include <NotFoundHandler.hpp>
 
+//----------------------------------------
+//
+//----------------------------------------
 void NotFoundHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
 	response.setStatus(Poco::Net::HTTPResponse::HTTP_NOT_FOUND);
 	response.setContentType("application/json");

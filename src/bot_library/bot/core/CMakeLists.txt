@@ -21,12 +21,25 @@ target_link_libraries_system(core dpp)
 
 target_link_libraries(core PUBLIC database)
 
+find_package(OpenSSL REQUIRED)
+CPMAddPackage(
+    NAME curl
+    GITHUB_REPOSITORY curl/curl
+    GIT_TAG curl-8_10_1
+    OPTIONS
+        "CURL_USE_OPENSSL ON"
+        "CMAKE_USE_LIBSSH2 OFF"
+        "BUILD_CURL_EXE OFF"
+        "CURL_ZLIB OFF"
+)
+
 CPMAddPackage("gh:libcpr/cpr#1.11.1")
 
 if(cpr_ADDED)
   message(STATUS "CPR library added successfully.")
 endif()
 
+target_link_libraries(core PUBLIC CURL::libcurl)
 target_link_libraries(core PUBLIC cpr::cpr)
 
 # CPMAddPackage(

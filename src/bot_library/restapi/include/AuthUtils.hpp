@@ -5,6 +5,7 @@
 #include "Poco/JWT/Token.h"
 #include "Poco/Net/HTTPServerRequest.h"
 #include "Poco/SHA2Engine.h"
+#include "Secrets.hpp"
 
 //-----------------------------------------------------
 //
@@ -57,7 +58,8 @@ struct AuthUtil {
 		const std::string jwt = auth.substr(bearer.size());
 
 		try {
-			Poco::JWT::Signer signer("<secret>");
+			const auto& sec = Secrets::getInstance();
+			Poco::JWT::Signer signer(sec.getSecret("jwt_secret"));
 			Poco::JWT::Token token;
 			signer.tryVerify(jwt, token);
 
