@@ -61,18 +61,6 @@ std::string convert_to_crlf(std::string_view sv) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-void print_curl_protocols() {
-	curl_version_info_data* ver = curl_version_info(CURLVERSION_NOW);
-	const char* const* proto = ver->protocols;
-	while (*proto) {
-		std::cout << *proto << std::endl;
-		proto++;
-	}
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
 std::string build_payload(std::string_view from,
 						  const std::vector<std::string>& to,
 						  std::string_view subject,
@@ -168,9 +156,6 @@ void EmailClient::send(std::string_view from,
 		throw std::runtime_error("Failed to initialize libcurl");
 	}
 
-	// debug
-	// print_curl_protocols();
-
 	std::ostringstream url_ss;
 	url_ss << "smtps://" << _host << ":" << _port;
 	std::string url = url_ss.str();
@@ -179,9 +164,6 @@ void EmailClient::send(std::string_view from,
 	curl_easy_setopt(curl.get(), CURLOPT_PASSWORD, _password.c_str());
 	curl_easy_setopt(curl.get(), CURLOPT_MAIL_FROM, from.data());
 
-	// debug
-	// curl_easy_setopt(curl.get(), CURLOPT_VERBOSE, 1L);
-
 	CurlSlist recipients;
 	for (const auto& recipient : to) {
 		recipients.append(recipient.c_str());
@@ -189,9 +171,6 @@ void EmailClient::send(std::string_view from,
 	curl_easy_setopt(curl.get(), CURLOPT_MAIL_RCPT, recipients.get());
 
 	UploadContext ctx{payload, 0};
-
-	// debug
-	// std::cout << "\n\nEmail:\n" << payload << std::endl;
 
 	curl_easy_setopt(curl.get(), CURLOPT_READFUNCTION, payload_source);
 	curl_easy_setopt(curl.get(), CURLOPT_READDATA, &ctx);
