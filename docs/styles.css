@@ -25,6 +25,140 @@ header nav, header nav ul {
     background-color: #111;
 }
 
+/* Reset default table styles */
+#leaderboard {
+    width: 100%;
+    max-width: 800px; /* Constrain table width for better readability */
+    margin: 20px auto; /* Center the table */
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners apply to content */
+}
+
+/* Header styles */
+#leaderboard thead {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#leaderboard th {
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Body styles */
+#leaderboard tbody tr {
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+
+#leaderboard tbody tr:hover {
+    background-color: #f1f5f9; /* Light gray hover effect */
+    transform: scale(1.01); /* Slight zoom on hover */
+}
+
+/* Alternating row colors for readability */
+#leaderboard tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+/* Cell styles */
+#leaderboard td {
+    padding: 12px 15px;
+    font-size: 1em;
+    color: #1f2937; /* Dark gray text */
+    border-bottom: 1px solid #e5e7eb; /* Subtle row separator */
+}
+
+/* Rank column styling */
+#leaderboard td:first-child {
+    font-weight: bold;
+    color: #3b82f6; /* Blue for rank */
+    width: 15%; /* Fixed width for rank column */
+}
+
+/* Username column styling */
+#leaderboard td:nth-child(2) {
+    text-align: left;
+    width: 50%; /* Wider username column */
+}
+
+/* Experience column styling */
+#leaderboard td:nth-child(3) {
+    text-align: right; /* Align experience points to the right */
+    width: 35%;
+}
+
+/* Highlight top 3 ranks */
+#leaderboard tbody tr:nth-child(1) td:first-child {
+    color: #d4af37; /* Gold for 1st */
+}
+#leaderboard tbody tr:nth-child(2) td:first-child {
+    color: #a3a3a3; /* Silver for 2nd */
+}
+#leaderboard tbody tr:nth-child(3) td:first-child {
+    color: #cd7f32; /* Bronze for 3rd */
+}
+
+/* Error message styling */
+#leaderboard tbody tr td[colspan="3"] {
+    text-align: center;
+    color: red; /* Red for error */
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    #leaderboard {
+        margin: 10px;
+    }
+
+    #leaderboard th, #leaderboard td {
+        font-size: 0.9em;
+        padding: 10px;
+        text-align: left;
+    }
+
+    /* Stack table for very small screens */
+    #leaderboard thead {
+        display: none; /* Hide header on small screens */
+    }
+
+    #leaderboard tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    #leaderboard tbody td {
+        display: block;
+        text-align: left !important;
+        padding: 5px 10px;
+        border: none;
+    }
+
+    #leaderboard tbody td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: inline-block;
+        width: 100px;
+        color: #3b82f6;
+    }
+
+    #leaderboard tbody td:first-child:before { content: "Rank: "; }
+    #leaderboard tbody td:nth-child(2):before { content: "Username: "; }
+    #leaderboard tbody td:nth-child(3):before { content: "Score: "; }
+}
+
 ::selection, a:hover {
     color: #fff;
     background-color: #005ba1;

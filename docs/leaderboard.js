@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
         
         if(response.ok) {
-            const json = await response.json();
-            const users = json.users
+            const res_json = await response.json();
+            const users = res_json.users
             
             let leaderboard_table = document.getElementById("leaderboard");
 
