@@ -28,10 +28,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             const res_json = await response.json();
             const users = res_json.users
             
-            let leaderboard_table = document.getElementById("leaderboard");
+            const leaderboard_table = document.getElementById("leaderboard");
+            const tbody = leaderboard_table.querySelector('tbody');
 
             users.forEach((user, index) => {
-                const row = leaderboard_table.insertRow();
+                const row = tbody.insertRow();
                 row.insertCell().textContent = index + 1;
                 row.insertCell().textContent = user.user_name || 'Unknown';
                 row.insertCell().textContent = user.exp || 0;
@@ -40,7 +41,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     } catch (error) {
         console.log(error.message);
         const leaderboard_table = document.getElementById("leaderboard");
-        const row = leaderboard_table.insertRow();
+        const tbody = leaderboard_table.querySelector('tbody');
+        const row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;
         cell.textContent = 'Failed to load leaderboard';

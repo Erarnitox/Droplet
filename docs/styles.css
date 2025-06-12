@@ -66,7 +66,7 @@ header nav, header nav ul {
 #leaderboard td {
     padding: 12px 15px;
     font-size: 1em;
-    color: #1f2937; /* Dark gray text */
+    color: #a6bebe; /* Dark gray text */
     border-bottom: 1px solid #e5e7eb; /* Subtle row separator */
 }
 
@@ -90,13 +90,13 @@ header nav, header nav ul {
 }
 
 /* Highlight top 3 ranks */
-#leaderboard tbody tr:nth-child(1) td:first-child {
+#leaderboard tbody tr:nth-child(1) {
     background-color: #d4af37; /* Gold for 1st */
 }
-#leaderboard tbody tr:nth-child(2) td:first-child {
+#leaderboard tbody tr:nth-child(2) {
     background-color: #a3a3a3; /* Silver for 2nd */
 }
-#leaderboard tbody tr:nth-child(3) td:first-child {
+#leaderboard tbody tr:nth-child(3) {
     background-color: #cd7f32; /* Bronze for 3rd */
 }
 
