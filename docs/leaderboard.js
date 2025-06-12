@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', async function() {
             
             let leaderboard_table = document.getElementById("leaderboard");
 
-            users.forEach((user, index) => {
+            const topUsers = users.slice(0, 10);
+
+            topUsers.forEach((user, index) => {
                 const row = leaderboard_table.insertRow();
                 row.insertCell().textContent = index + 1;
                 row.insertCell().textContent = user.user_name || 'Unknown';
