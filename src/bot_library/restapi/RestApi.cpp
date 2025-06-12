@@ -90,9 +90,9 @@ class MyRequestHandlerFactory : public HTTPRequestHandlerFactory {
 			return new RegistrationHandler;
 		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/verify")) {
 			return new VerifyHandler;
-		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/resources")) {
+		} else if ((request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET || request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) && uri.starts_with("/resources")) {
 			return new ResQueryHandler;
-		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/leaderboard")) {
+		} else if ((request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET || request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) && uri.starts_with("/leaderboard")) {
 			return new LeaderboardHandler;
 		} else {
 			return new NotFoundHandler;

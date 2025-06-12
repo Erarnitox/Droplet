@@ -11,6 +11,19 @@
 //
 //-----------------------------------------------------
 void LeaderboardHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response) {
+	// Set CORS headers for all responses
+    response.set("Access-Control-Allow-Origin", "https://droplet.erarnitox.de");
+    response.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+    response.set("Access-Control-Allow-Headers", "Content-Type, Accept");
+    response.set("Access-Control-Allow-Credentials", "true");
+
+    // Handle pre-flight OPTIONS request
+    if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) {
+        response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
+        response.send(); // Send empty response for OPTIONS
+        return;
+    }
+
 	response.setContentType("application/json");
 	Poco::JSON::Object::Ptr responseJSON = new Poco::JSON::Object();
 
