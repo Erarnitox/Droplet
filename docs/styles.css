@@ -29,7 +29,6 @@ header nav, header nav ul {
 #leaderboard {
     width: 100%;
     border-collapse: collapse;
-    font-family: 'Arial', sans-serif;
 }
 
 /* Header styles */
@@ -41,116 +40,65 @@ header nav, header nav ul {
 }
 
 #leaderboard th {
-    padding: 15px;
-    font-size: 1.1em;
-    font-weight: 600;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
     text-align: left;
 }
 
-/* Body styles */
-#leaderboard tbody tr {
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
-}
-
-#leaderboard tbody tr:hover {
-    background-color: #f1f5f9; /* Light gray hover effect */
-    transform: scale(1.01); /* Slight zoom on hover */
-}
-
-/* Alternating row colors for readability */
 #leaderboard tbody tr:nth-child(even) {
-    background-color: #f8fafc;
+    background-color: #153560;
 }
 
-/* Cell styles */
 #leaderboard td {
-    padding: 12px 15px;
-    font-size: 1em;
-    color: #a6bebe; /* Dark gray text */
-    border-bottom: 1px solid #e5e7eb; /* Subtle row separator */
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    color: #a6bebe;
 }
 
-/* Rank column styling */
 #leaderboard td:first-child {
+    text-align: center;
     font-weight: bold;
-    color: #3b82f6; /* Blue for rank */
-    width: 15%; /* Fixed width for rank column */
+    color: #3b82f6;
+    width: 5%;
+    text-decoration: underline;
 }
 
-/* Username column styling */
 #leaderboard td:nth-child(2) {
     text-align: left;
-    width: 50%; /* Wider username column */
+    font-weight: bolder;
+    width: 50%;
 }
 
-/* Experience column styling */
 #leaderboard td:nth-child(3) {
-    text-align: left; /* Align experience points to the right */
-    width: 35%;
+    text-align: left;
+    font-weight: bold;
+    width: auto;
 }
 
-/* Highlight top 3 ranks */
-#leaderboard tbody tr:nth-child(1) {
-    background-color: #d4af37; /* Gold for 1st */
-}
-#leaderboard tbody tr:nth-child(2) {
-    background-color: #a3a3a3; /* Silver for 2nd */
-}
-#leaderboard tbody tr:nth-child(3) {
-    background-color: #cd7f32; /* Bronze for 3rd */
+#leaderboard tbody tr:nth-child(1) td {
+    background-color: #d4af37;
+    font-size: 1.3rem;
+    color: #111111;
 }
 
-/* Error message styling */
+#leaderboard tbody tr:nth-child(2) td {
+    background-color: #a3a3a3;
+    font-size: 1.2rem;
+    color: #212121;
+}
+
+#leaderboard tbody tr:nth-child(3) td {
+    background-color: #bd5f22;
+    font-size: 1.1rem;
+    color: #313131;
+}
+
 #leaderboard tbody tr td[colspan="3"] {
     text-align: center;
     color: red; /* Red for error */
     font-style: italic;
     padding: 20px;
-}
-
-/* Responsive design for smaller screens */
-@media (max-width: 600px) {
-    #leaderboard {
-        margin: 10px;
-    }
-
-    #leaderboard th, #leaderboard td {
-        font-size: 0.9em;
-        padding: 10px;
-        text-align: left;
-    }
-
-    /* Stack table for very small screens */
-    #leaderboard thead {
-        display: none; /* Hide header on small screens */
-    }
-
-    #leaderboard tbody tr {
-        display: block;
-        margin-bottom: 10px;
-        border: 1px solid #e5e7eb;
-        border-radius: 5px;
-        padding: 10px;
-    }
-
-    #leaderboard tbody td {
-        display: block;
-        text-align: left !important;
-        padding: 5px 10px;
-        border: none;
-    }
-
-    #leaderboard tbody td:before {
-        content: attr(data-label);
-        font-weight: bold;
-        display: inline-block;
-        width: 100px;
-        color: #3b82f6;
-    }
-
-    #leaderboard tbody td:first-child:before { content: "Rank: "; }
-    #leaderboard tbody td:nth-child(2):before { content: "Username: "; }
-    #leaderboard tbody td:nth-child(3):before { content: "Score: "; }
 }
 
 ::selection, a:hover {
