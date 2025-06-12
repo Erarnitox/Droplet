@@ -28,19 +28,13 @@ header nav, header nav ul {
 /* Reset default table styles */
 #leaderboard {
     width: 100%;
-    max-width: 800px; /* Constrain table width for better readability */
-    margin: 20px auto; /* Center the table */
     border-collapse: collapse;
     font-family: 'Arial', sans-serif;
-    background-color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    border-radius: 10px; /* Rounded corners */
-    overflow: hidden; /* Ensure rounded corners apply to content */
 }
 
 /* Header styles */
 #leaderboard thead {
-    background: linear-gradient(135deg, #1e3a8a, #3b82f6); /* Blue gradient */
+    background-color: #1f2937;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -91,19 +85,19 @@ header nav, header nav ul {
 
 /* Experience column styling */
 #leaderboard td:nth-child(3) {
-    text-align: right; /* Align experience points to the right */
+    text-align: left; /* Align experience points to the right */
     width: 35%;
 }
 
 /* Highlight top 3 ranks */
 #leaderboard tbody tr:nth-child(1) td:first-child {
-    color: #d4af37; /* Gold for 1st */
+    background-color: #d4af37; /* Gold for 1st */
 }
 #leaderboard tbody tr:nth-child(2) td:first-child {
-    color: #a3a3a3; /* Silver for 2nd */
+    background-color: #a3a3a3; /* Silver for 2nd */
 }
 #leaderboard tbody tr:nth-child(3) td:first-child {
-    color: #cd7f32; /* Bronze for 3rd */
+    background-color: #cd7f32; /* Bronze for 3rd */
 }
 
 /* Error message styling */
