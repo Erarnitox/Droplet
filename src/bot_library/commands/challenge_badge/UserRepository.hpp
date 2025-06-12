@@ -13,4 +13,6 @@ class UserRepository : public IRepository<UserDTO> {
 	[[nodiscard]] UserDTO get(size_t user_id) override;
 
 	[[nodiscard]] bool update(const UserDTO& object) override;
+
+	[[nodiscard]] std::vector<UserDTO> getTopTen();
 };

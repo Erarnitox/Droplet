@@ -7,6 +7,7 @@ add_library(restapi STATIC
     RegistrationHandler.cpp
     VerifyHandler.cpp
     ResQueryHandler.cpp
+    LeaderboardHandler.cpp
 )
 
 # enable additional warnings and static analysis for this target

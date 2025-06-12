@@ -36,6 +36,8 @@ var annotated_dup =
     [ "IReady", "classIReady.html", "classIReady" ],
     [ "IRepository", "classIRepository.html", "classIRepository" ],
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
+    [ "LeaderboardCommand", "classLeaderboardCommand.html", "classLeaderboardCommand" ],
+    [ "LeaderboardHandler", "classLeaderboardHandler.html", "classLeaderboardHandler" ],
     [ "LearnCPPCommand", "classLearnCPPCommand.html", "classLearnCPPCommand" ],
     [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", "classMyRequestHandlerFactory" ],
     [ "NotFoundHandler", "classNotFoundHandler.html", "classNotFoundHandler" ],

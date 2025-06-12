@@ -11,6 +11,7 @@ var hierarchy =
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
     [ "Poco::Net::HTTPRequestHandler", null, [
       [ "AuthHandler", "classAuthHandler.html", null ],
+      [ "LeaderboardHandler", "classLeaderboardHandler.html", null ],
       [ "NotFoundHandler", "classNotFoundHandler.html", null ],
       [ "RegistrationHandler", "classRegistrationHandler.html", null ],
       [ "ResQueryHandler", "classResQueryHandler.html", null ],
@@ -40,6 +41,7 @@ var hierarchy =
       [ "GetResourcesCommand", "classGetResourcesCommand.html", null ],
       [ "HelpCommand", "classHelpCommand.html", null ],
       [ "InviteCommand", "classInviteCommand.html", null ],
+      [ "LeaderboardCommand", "classLeaderboardCommand.html", null ],
       [ "LearnCPPCommand", "classLearnCPPCommand.html", null ],
       [ "ProfileCommand", "classProfileCommand.html", null ],
       [ "ReactionRoles", "classReactionRoles.html", null ],

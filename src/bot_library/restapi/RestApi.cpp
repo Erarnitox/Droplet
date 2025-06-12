@@ -41,6 +41,7 @@
 //----------------------------------------
 // Endpoints
 //----------------------------------------
+#include "LeaderboardHandler.hpp"
 #include "NotFoundHandler.hpp"
 #include "RegistrationHandler.hpp"
 #include "ResQueryHandler.hpp"
@@ -91,6 +92,8 @@ class MyRequestHandlerFactory : public HTTPRequestHandlerFactory {
 			return new VerifyHandler;
 		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/resources")) {
 			return new ResQueryHandler;
+		} else if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET && uri.starts_with("/leaderboard")) {
+			return new LeaderboardHandler;
 		} else {
 			return new NotFoundHandler;
 		}

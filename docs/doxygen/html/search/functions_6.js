@@ -9,5 +9,6 @@ var searchData=
   ['getconnection_6',['getConnection',['../classDatabase.html#a28222c3f00e644b78800e1a8dadd03e3',1,'Database']]],
   ['getinstance_7',['getInstance',['../classSecrets.html#a27641f82434c1c04244cc310a1d60b08',1,'Secrets::getInstance()'],['../classUserManager.html#a9ef5c8c2213c93ca39a1f4ac314c364a',1,'UserManager::getInstance()']]],
   ['getresourcescommand_8',['GetResourcesCommand',['../classGetResourcesCommand.html#aeaa7d808324c0d4f7fb53e02f8255a0c',1,'GetResourcesCommand']]],
-  ['getsecret_9',['getSecret',['../classSecrets.html#a147fbc3753f46e7762ec1c4a95dcbb6e',1,'Secrets']]]
+  ['getsecret_9',['getSecret',['../classSecrets.html#a147fbc3753f46e7762ec1c4a95dcbb6e',1,'Secrets']]],
+  ['gettopten_10',['getTopTen',['../classUserRepository.html#aeb3c5a10f60b89e867281bb61e752a7d',1,'UserRepository']]]
 ];

@@ -12,7 +12,8 @@ var searchData=
   ['getresourcescommand_2ecpp_9',['GetResourcesCommand.cpp',['../GetResourcesCommand_8cpp.html',1,'']]],
   ['getresourcescommand_2ehpp_10',['GetResourcesCommand.hpp',['../GetResourcesCommand_8hpp.html',1,'']]],
   ['getsecret_11',['getSecret',['../classSecrets.html#a147fbc3753f46e7762ec1c4a95dcbb6e',1,'Secrets']]],
-  ['guild_5fid_12',['guild_id',['../classNotificationDTO.html#af0756ead7f648c5554c48958bd044724',1,'NotificationDTO::guild_id'],['../classPortalDTO.html#af3157a6c89a465a2442d7ce1c4216c31',1,'PortalDTO::guild_id'],['../classReactionRoleDTO.html#a82b054d972ed009fddb9147301dbc552',1,'ReactionRoleDTO::guild_id'],['../classResourceDTO.html#aac7e41794a0514eea8aebcd939b1aa83',1,'ResourceDTO::guild_id']]],
-  ['guild_5fname_13',['guild_name',['../classChallengeBadgeDTO.html#a9075292b5a0d1e0401f5cdcb93cfc977',1,'ChallengeBadgeDTO']]],
-  ['guildid_14',['guildId',['../classChallengeBadgeDTO.html#a2a72857b09f726042e15df4f142245d8',1,'ChallengeBadgeDTO::guildId'],['../classChallengeRoleDTO.html#a0c631538b24da4f86b1486ee8cf1c1e7',1,'ChallengeRoleDTO::guildId']]]
+  ['gettopten_12',['getTopTen',['../classUserRepository.html#aeb3c5a10f60b89e867281bb61e752a7d',1,'UserRepository']]],
+  ['guild_5fid_13',['guild_id',['../classNotificationDTO.html#af0756ead7f648c5554c48958bd044724',1,'NotificationDTO::guild_id'],['../classPortalDTO.html#af3157a6c89a465a2442d7ce1c4216c31',1,'PortalDTO::guild_id'],['../classReactionRoleDTO.html#a82b054d972ed009fddb9147301dbc552',1,'ReactionRoleDTO::guild_id'],['../classResourceDTO.html#aac7e41794a0514eea8aebcd939b1aa83',1,'ResourceDTO::guild_id']]],
+  ['guild_5fname_14',['guild_name',['../classChallengeBadgeDTO.html#a9075292b5a0d1e0401f5cdcb93cfc977',1,'ChallengeBadgeDTO']]],
+  ['guildid_15',['guildId',['../classChallengeBadgeDTO.html#a2a72857b09f726042e15df4f142245d8',1,'ChallengeBadgeDTO::guildId'],['../classChallengeRoleDTO.html#a0c631538b24da4f86b1486ee8cf1c1e7',1,'ChallengeRoleDTO::guildId']]]
 ];
