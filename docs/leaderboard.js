@@ -25,13 +25,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
         
         if(response.ok) {
-            const users = await response.json();
+            const users = await response.json().users;
             
             let leaderboard_table = document.getElementById("leaderboard");
 
-            const topUsers = users.slice(0, 10);
-
-            topUsers.forEach((user, index) => {
+            users.forEach((user, index) => {
                 const row = leaderboard_table.insertRow();
                 row.insertCell().textContent = index + 1;
                 row.insertCell().textContent = user.user_name || 'Unknown';
