@@ -62,7 +62,7 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
 		ResourceRepository repo;
 		auto resources{Poco::JSON::Array()};
 
-		for (const auto& res : repo.get(category.value_or(""))) {
+		for (const auto& res : repo.get(category.value_or("all"))) {
 			auto resource{Poco::JSON::Object()};
 			resource.set("title", res.title);
 			resource.set("description", res.description);

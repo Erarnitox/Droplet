@@ -13,10 +13,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
         // get parameters:
         const urlParams = new URLSearchParams(window.location.search);
-        const category = urlParams.get('category');
+        const category = urlParams.get('category') || 'all';
         const tagsInput = urlParams.get('tags') || '';
         const tags = tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag);
-        const difficulty = urlParams.get('difficulty');
+        const difficulty = urlParams.get('difficulty') || 0;
 
         // Construct query parameters for backend
         const params = new URLSearchParams();
@@ -24,17 +24,18 @@ document.addEventListener('DOMContentLoaded', async function() {
             params.append('category', category);
         }
 
-        /*
         if (difficulty && difficulty != 0) {
             params.append('difficulty', difficulty);
         }
         if (tags && tags.length > 0) {
             params.append('tags', tags.join(','));
-        }*/
+        }
 
         const backend_port = 3000;
         const hostname = 'api.erarnitox.de';
-        const response = await fetch(`${window.location.protocol}//${hostname}:${backend_port}/resources${params.toString() ? '?' + params.toString() : ''}`, {
+        const url = `${window.location.protocol}//${hostname}:${backend_port}/resources${params.toString() ? '?' + params.toString() : ''}`;
+
+        const response = await fetch(url, {
             method: 'GET',
             mode: 'cors',
             credentials: 'include',

@@ -89,16 +89,16 @@ auto ResourceRepository::get(size_t id) -> ResourceDTO {
 //-----------------------------------------------------
 auto ResourceRepository::get(const std::string& category) -> std::vector<ResourceDTO> {
 	std::string sql_string{
-		std::string("SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags")
-			.append("  FROM resources")};
+        "SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags"
+        " FROM resources"
+    };
 
-	if (category != "*" || not category.empty())
-		sql_string.append(" WHERE category LIKE $1::varchar");
+    const bool is_wildcard = category == "all" || category.empty() || category == "*";
+    if (not is_wildcard) {
+        sql_string.append(" WHERE category LIKE $1::varchar");
+    }
 
-	const auto result{(category != "*" || not category.empty()) 
-		? database::execSelectAll(sql_string, category)
-		: database::execSelectAll(sql_string
-	)};
+    const auto result = is_wildcard ? database::execSelectAll(sql_string) : database::execSelectAll(sql_string, category);
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());
