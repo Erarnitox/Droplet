@@ -46,6 +46,21 @@ header nav, header nav ul {
     text-align: left;
 }
 
+#reslist tbody tr {
+    outline: 0.05rem;
+    outline-style: solid;
+    outline-color: grey;
+}
+
+#reslist tbody tr:hover {
+    background-color: azure !important;
+    color: blue !important;
+}
+
+#reslist tbody tr td{
+    text-align: left;
+}
+
 #leaderboard tbody tr:nth-child(even), #reslist tbody tr:nth-child(even) {
     background-color: #153560;
 }
