@@ -11,8 +11,7 @@
 
 document.addEventListener('DOMContentLoaded', async function() {
     try {
-        let backend_port = 3000;
-        
+        const backend_port = 3000; 
         const hostname = 'api.erarnitox.de';
         const response = await fetch(`${window.location.protocol}//${hostname}:${backend_port}/leaderboard`, {
             method: 'GET',

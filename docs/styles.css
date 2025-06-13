@@ -26,31 +26,31 @@ header nav, header nav ul {
 }
 
 /* Reset default table styles */
-#leaderboard {
+#leaderboard, #reslist {
     width: 100%;
     border-collapse: collapse;
 }
 
 /* Header styles */
-#leaderboard thead {
+#leaderboard thead, #reslist thead {
     background-color: #1f2937;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-#leaderboard th {
+#leaderboard th, #reslist th {
     padding: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
     text-align: left;
 }
 
-#leaderboard tbody tr:nth-child(even) {
+#leaderboard tbody tr:nth-child(even), #reslist tbody tr:nth-child(even) {
     background-color: #153560;
 }
 
-#leaderboard td {
+#leaderboard td, #leaderboard td {
     padding: 0.5rem;
     font-size: 1.1rem;
     color: #a6bebe;
@@ -94,7 +94,7 @@ header nav, header nav ul {
     color: #313131;
 }
 
-#leaderboard tbody tr td[colspan="3"] {
+#leaderboard tbody tr td[colspan="3"], #reslist tbody tr td[colspan="4"] {
     text-align: center;
     color: red; /* Red for error */
     font-style: italic;

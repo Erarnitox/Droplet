@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Droplet - Discord bot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./resources.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="flex-container-hz">
+                <ul>
+                    <li><a href="./index.html"><img class="logo-img" src="./logo.png" alt="erarnitox logo"></a></li>
+                    <li><a href="./resources.html">Resources</a></li>
+                    <li><a href="./leaderboard.html">Top 10</a></li>
+                </ul>
+                <!--<a href="./login" class="button" id="login-btn">Login</a>-->
+            </div>
+        </nav>
+        <h1>Resources</h1>
+        <h3>Resources that where submitted using the Droplet bot</h3>
+    </header>
+    <div class="spacer"></div>
+    <form id="resource-filter" method="GET" action="">
+            <b>Filters:</b>
+            <label for="category-input">Category:</label>
+            <input type="text" id="category-input" name="category" placeholder="e.g., cpp,malware,osint,pentesting,...">
+            <label for="difficulty-select">Difficulty:</label>
+            <select id="difficulty-select" name="difficulty">
+                <option value="1">Noob</option>
+                <option value="2">Beginner</option>
+                <option value="3">Intermediate</option>
+                <option value="4">Advanced</option>
+                <option value="5">Expert</option>
+            </select>
+            <label for="tags-input">Tags (comma-separated):</label>
+            <input type="text" id="tags-input" name="tags">
+            <button type="submit">Apply Filters</button>
+    </form>
+    <table id="reslist">
+        <thead>
+            <tr>
+                <th>Category</th>
+	            <th>Title</th>
+	            <th>Description</th>
+	            <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <footer>
+        <p>&copy; 2025 <a href="https://erarnitox.de">Erarnitox</a> | <a href="./terms.html">Terms of Service</a> | <a href="./privacy.html">Privacy Policy</a></p>
+    </footer>
+</body>
+</html>
