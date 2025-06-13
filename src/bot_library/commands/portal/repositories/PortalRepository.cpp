@@ -7,7 +7,7 @@
 #include "PortalDTO.hpp"
 
 auto PortalRepository::create(const PortalDTO& object) -> bool {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO portals"
 		"(guild_id, channel_id) VALUES "
 		"($1::int8, $2::int8)"};
@@ -20,7 +20,7 @@ auto PortalRepository::create(const PortalDTO& object) -> bool {
 }
 
 auto PortalRepository::remove(size_t id) -> bool {
-	static std::string sql_string{"DELETE FROM portals WHERE guild_id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM portals WHERE guild_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -30,7 +30,7 @@ auto PortalRepository::remove(size_t id) -> bool {
 }
 
 auto PortalRepository::update(const PortalDTO& object) -> bool {
-	static std::string sql_string{"UPDATE portals SET channel_id = $2::Int8 WHERE guild_id = $1"};
+	const static std::string sql_string{"UPDATE portals SET channel_id = $2::Int8 WHERE guild_id = $1"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -44,7 +44,7 @@ auto PortalRepository::update(const PortalDTO& object) -> bool {
 }
 
 auto PortalRepository::get(size_t id) -> PortalDTO {
-	static std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=$1::int8"};
+	const static std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, id)};
 
@@ -56,7 +56,7 @@ auto PortalRepository::get(size_t id) -> PortalDTO {
 }
 
 auto PortalRepository::getAll() -> std::vector<PortalDTO> {
-	static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
+	const static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
 	auto result{database::execSelectAll(sql_string)};
 
 	std::vector<PortalDTO> dtos;

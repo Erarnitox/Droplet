@@ -27,7 +27,7 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
         response.send(); // Send empty response for OPTIONS
         return;
     }
-	
+
 	response.setContentType("application/json");
 	Poco::JSON::Object::Ptr responseJSON = new Poco::JSON::Object();
 
@@ -54,12 +54,15 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
 			if (param.first == "tags") {
 				// TODO: parse tags
 			}
+			if (param.first == "difficulty") {
+				// TODO: parse difficulty
+			}
 		}
 
 		ResourceRepository repo;
 		auto resources{Poco::JSON::Array()};
 
-		for (const auto& res : repo.get(category.value_or("C++"))) {
+		for (const auto& res : repo.get(category.value_or(""))) {
 			auto resource{Poco::JSON::Object()};
 			resource.set("title", res.title);
 			resource.set("description", res.description);

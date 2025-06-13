@@ -7,7 +7,7 @@
 #include "BlacklistDTO.hpp"
 
 auto BlacklistRepository::create(const BlacklistDTO& object) -> bool {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO blacklist"
 		"(username) VALUES "
 		"($1::varchar)"};
@@ -20,7 +20,7 @@ auto BlacklistRepository::create(const BlacklistDTO& object) -> bool {
 }
 
 auto BlacklistRepository::remove(size_t id) -> bool {
-	static std::string sql_string{"DELETE FROM blacklist WHERE id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM blacklist WHERE id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -40,7 +40,7 @@ auto BlacklistRepository::get(size_t id) -> BlacklistDTO {
 }
 
 auto BlacklistRepository::getAll() -> std::vector<BlacklistDTO> {
-	static std::string sql_string{"SELECT username FROM blacklist"};
+	const static std::string sql_string{"SELECT username FROM blacklist"};
 	auto result{database::execSelectAll(sql_string)};
 
 	std::vector<BlacklistDTO> dtos;

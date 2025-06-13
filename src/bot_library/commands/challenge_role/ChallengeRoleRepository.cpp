@@ -7,7 +7,7 @@
 #include "ChallengeRoleDTO.hpp"
 
 bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO challenge_roles(role_id, guild_id, message_id, flag) VALUES "
 		"($1::int8, "
 		"$2::int8, $3::int8, $4::varchar)"};
@@ -23,7 +23,7 @@ bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) {
 }
 
 bool ChallengeRoleRepository::remove(size_t messageId) {
-	static std::string sql_string{"DELETE FROM challenge_roles WHERE message_id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM challenge_roles WHERE message_id = $1::int8"};
 
 	if (!Database::hasConnection())
 		return false;
@@ -32,7 +32,7 @@ bool ChallengeRoleRepository::remove(size_t messageId) {
 }
 
 bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"UPDATE challenge_roles(role_id, guild_id, message_id, flag) VALUES "
 		"($1::int8, "
 		"$2::Int8, $3::int8, $4::varchar) WHERE message_id = $3"};
@@ -48,7 +48,7 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) {
 }
 
 ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) {
-	static std::string sql_string{"SELECT role_id, flag FROM challenge_roles WHERE message_id=$1::int8"};
+	const static std::string sql_string{"SELECT role_id, flag FROM challenge_roles WHERE message_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, messageId)};
 

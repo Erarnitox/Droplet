@@ -20,15 +20,17 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         // Construct query parameters for backend
         const params = new URLSearchParams();
-        if (category) {
+        if (category && category.length > 0) {
             params.append('category', category);
         }
-        if (difficulty) {
+
+        /*
+        if (difficulty && difficulty != 0) {
             params.append('difficulty', difficulty);
         }
-        if (tags.length > 0) {
+        if (tags && tags.length > 0) {
             params.append('tags', tags.join(','));
-        }
+        }*/
 
         const backend_port = 3000;
         const hostname = 'api.erarnitox.de';

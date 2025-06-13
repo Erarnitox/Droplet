@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------
 bool WebUserRepository::create(const WebUserDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO users(username, password, clearance, email, confirm_code, is_verified) VALUES "
 		"($1::varchar, $2::varchar, $3::int4, $4::varchar, $5::varchar, $6::bool)"};
 
@@ -30,7 +30,7 @@ bool WebUserRepository::create(const WebUserDTO& object) {
 //
 //-----------------------------------------------------
 bool WebUserRepository::remove(size_t user_id) {
-	static std::string sql_string{"DELETE FROM users WHERE id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM users WHERE id = $1::int8"};
 
 	if (!Database::hasConnection())
 		return false;
@@ -42,7 +42,7 @@ bool WebUserRepository::remove(size_t user_id) {
 //
 //-----------------------------------------------------
 bool WebUserRepository::update(const WebUserDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"UPDATE users "
 		"  SET username = $2::varchar, password = $3::varchar, "
 		"      clearance = $4::int8, email = $5::varchar, "
@@ -70,7 +70,7 @@ bool WebUserRepository::update(const WebUserDTO& object) {
 //
 //-----------------------------------------------------
 WebUserDTO WebUserRepository::get(size_t user_id) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"SELECT username, password, clearance, email, confirm_code, is_verified FROM users WHERE id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, user_id)};
@@ -91,7 +91,7 @@ WebUserDTO WebUserRepository::get(size_t user_id) {
 //
 //-----------------------------------------------------
 WebUserDTO WebUserRepository::get(const std::string& username) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"SELECT id, password, clearance, email, confirm_code, is_verified FROM users WHERE username=$1::varchar"};
 
 	auto result{database::execSelect(sql_string, username)};
@@ -112,7 +112,7 @@ WebUserDTO WebUserRepository::get(const std::string& username) {
 //
 //-----------------------------------------------------
 std::vector<WebUserDTO> WebUserRepository::getAll() {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, confirm_code, is_verified FROM users"};
 
 	auto result{database::execSelectAll(sql_string)};
@@ -148,7 +148,7 @@ bool WebUserRepository::exists(const std::string& username) {
 //
 //-----------------------------------------------------
 bool WebUserRepository::verify(const std::string& token, size_t clearance) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, is_verified FROM users WHERE confirm_code=$1::varchar"};
 
 	auto result{database::execSelect(sql_string, token)};

@@ -7,7 +7,7 @@
 #include "ReactionRoleDTO.hpp"
 
 bool ReactionRoleRepository::create(const ReactionRoleDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO reaction_roles(role_id, message_id, guild_id, emoji) VALUES "
 		"($1::int8, "
 		"$2::int8, $3::int8, $4::varchar)"};
@@ -23,7 +23,7 @@ bool ReactionRoleRepository::create(const ReactionRoleDTO& object) {
 }
 
 bool ReactionRoleRepository::remove(size_t message_id) {
-	static std::string sql_string{"DELETE FROM reaction_roles WHERE message_id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM reaction_roles WHERE message_id = $1::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -33,7 +33,7 @@ bool ReactionRoleRepository::remove(size_t message_id) {
 }
 
 bool ReactionRoleRepository::update(const ReactionRoleDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"UPDATE reaction_roles(role_id, message_id, guild_id, emoji) VALUES "
 		"($1::int8, "
 		"$2::Int8, $3::int8, $4::varchar) WHERE message_id = $3"};
@@ -52,7 +52,7 @@ ReactionRoleDTO ReactionRoleRepository::get(size_t message_id) {
 }
 
 ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string& emoji) {
-	static std::string sql_string{"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
+	const static std::string sql_string{"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
 
 	auto result{database::execSelect(sql_string, message_id, emoji)};
 

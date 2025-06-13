@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------
 bool UserRepository::create(const UserDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"INSERT INTO usr(user_id, user_name, color, exp, is_subscribed) VALUES "
 		"($1::int8, $2::varchar, $3::varchar, $4::int8, $5::int8)"};
 
@@ -28,7 +28,7 @@ bool UserRepository::create(const UserDTO& object) {
 //
 //-----------------------------------------------------
 bool UserRepository::remove(size_t user_id) {
-	static std::string sql_string{"DELETE FROM usr WHERE user_id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM usr WHERE user_id = $1::int8"};
 
 	if (!Database::hasConnection())
 		return false;
@@ -40,7 +40,7 @@ bool UserRepository::remove(size_t user_id) {
 //
 //-----------------------------------------------------
 bool UserRepository::update(const UserDTO& object) {
-	static std::string sql_string{
+	const static std::string sql_string{
 		"UPDATE usr SET user_name = $2::varchar, color = $3::varchar, "
 		"exp = $4::int8, is_subscribed = $5::int8 "
 		"WHERE user_id = $1::int8"};
@@ -60,7 +60,7 @@ bool UserRepository::update(const UserDTO& object) {
 //
 //-----------------------------------------------------
 UserDTO UserRepository::get(size_t user_id) {
-	static std::string sql_string{"SELECT user_name, color, exp, is_subscribed FROM usr WHERE user_id=$1::int8"};
+	const static std::string sql_string{"SELECT user_name, color, exp, is_subscribed FROM usr WHERE user_id=$1::int8"};
 
 	auto result{database::execSelect(sql_string, user_id)};
 
