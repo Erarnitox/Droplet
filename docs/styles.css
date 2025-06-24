@@ -14,6 +14,17 @@ header {
     margin: 0%;
 }
 
+.video-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 header nav, header nav ul {
     padding-top: 0%;
     margin-top: 0%;
@@ -65,10 +76,14 @@ header nav, header nav ul {
     background-color: #153560;
 }
 
-#leaderboard td, #leaderboard td {
+#leaderboard td, #restlist td {
     padding: 0.5rem;
-    font-size: 1.1rem;
+    font-size: min(1.1rem, 15px);
     color: #a6bebe;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #leaderboard td:first-child {
