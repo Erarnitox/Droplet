@@ -3,56 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Droplet - Discord bot</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="./resources.js"></script>
+    <title>Droplet - Resources</title>
+    <meta property="og:title" content="Droplet - Community Resources">
+    <meta property="og:description" content="Discover community-submitted hacking resources shared using the Droplet bot.">
+    <meta property="og:url" content="https://yourdomain.com/resources.html">
+    <meta property="og:image" content="https://yourdomain.com/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to integrate with Tailwind, primarily for font and specific element overrides */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Specific text alignment for table columns */
+        #reslist tbody tr td { text-align: left; }
+
+        /* Hover effect for table rows */
+        #reslist tbody tr:hover {
+            background-color: rgba(59, 130, 246, 0.2) !important; /* Tailwind blue-500 with transparency */
+            color: #fff !important;
+        }
+    </style>
+    <script src="./resources.js" defer></script>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="flex-container-hz">
-                <ul>
-                    <li><a href="./index.html"><img class="logo-img" src="./logo.png" alt="erarnitox logo"></a></li>
-                    <li><a href="./resources.html">Resources</a></li>
-                    <li><a href="./leaderboard.html">Top 10</a></li>
+<body class="bg-gray-900 text-gray-300 min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-2 flex items-center justify-between flex-wrap">
+            <div class="flex items-center space-x-4">
+                <a href="./index.html">
+                    <img class="h-10 w-auto rounded-md" src="./logo.png" alt="Droplet logo"
+                         onerror="this.onerror=null;this.src='https://placehold.co/40x40/4B5563/FFFFFF?text=Logo';">
+                </a>
+                <h1 class="text-2xl font-extrabold text-blue-400">Droplet</h1>
+            </div>
+            <div class="flex-grow flex justify-center mt-2 md:mt-0">
+                <ul class="flex space-x-6">
+                    <li><a href="./resources.html" class="hover:text-blue-400 transition-colors duration-200">Resources</a></li>
+                    <li><a href="./leaderboard.html" class="hover:text-blue-400 transition-colors duration-200">Top 10</a></li>
                 </ul>
-                <!--<a href="./login" class="button" id="login-btn">Login</a>-->
             </div>
         </nav>
-        <h1>Resources</h1>
-        <h3>Resources that where submitted using the Droplet bot</h3>
     </header>
-    <div class="spacer"></div>
-    <form id="resource-filter" method="GET" action="">
-            <b>Filters:</b>
-            <label for="category-input">Category:</label>
-            <input type="text" id="category-input" name="category" placeholder="e.g., cpp,malware,osint,pentesting,...">
-            <label for="difficulty-select">Difficulty:</label>
-            <select id="difficulty-select" name="difficulty">
-                <option value="0">All</option>
-                <option value="1">Noob</option>
-                <option value="2">Beginner</option>
-                <option value="3">Intermediate</option>
-                <option value="4">Advanced</option>
-                <option value="5">Expert</option>
-            </select>
-            <label for="tags-input">Tags (comma-separated):</label>
-            <input type="text" id="tags-input" name="tags">
-            <button type="submit">Apply Filters</button>
-    </form>
-    <table id="reslist">
-        <thead>
-            <tr>
-                <th>Category</th>
-	            <th>Title</th>
-	            <th>Description</th>
-	            <th>Tags</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <footer>
-        <p>&copy; 2025 <a href="https://erarnitox.de">Erarnitox</a> | <a href="./terms.html">Terms of Service</a> | <a href="./privacy.html">Privacy Policy</a></p>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <section class="text-center mb-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-2">Resources</h2>
+            <h3 class="text-lg text-gray-400">Resources that were submitted using the Droplet bot</h3>
+        </section>
+
+        <div class="h-1 bg-blue-600 my-8 rounded-full"></div>
+
+        <form id="resource-filter" class="bg-gray-800 p-6 rounded-lg shadow-md mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <b class="col-span-full text-white text-lg font-semibold text-center md:text-left mb-2 md:mb-0">Filters:</b>
+
+            <div class="flex flex-col">
+                <label for="category-input" class="text-gray-400 text-sm mb-1 text-left">Category:</label>
+                <input type="text" id="category-input" name="category" placeholder="e.g., cpp,malware,osint,pentesting,..."
+                       class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="flex flex-col">
+                <label for="difficulty-select" class="text-gray-400 text-sm mb-1 text-left">Difficulty:</label>
+                <select id="difficulty-select" name="difficulty"
+                        class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="0">All</option>
+                    <option value="1">Noob</option>
+                    <option value="2">Beginner</option>
+                    <option value="3">Intermediate</option>
+                    <option value="4">Advanced</option>
+                    <option value="5">Expert</option>
+                </select>
+            </div>
+
+            <div class="flex flex-col">
+                <label for="tags-input" class="text-gray-400 text-sm mb-1 text-left">Tags (comma-separated):</label>
+                <input type="text" id="tags-input" name="tags"
+                       class="w-full bg-gray-700 text-white border border-gray-600 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <button type="submit" class="col-span-1 md:col-span-2 lg:col-span-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors duration-200 w-full">
+                Apply Filters
+            </button>
+        </form>
+
+        <div class="overflow-x-auto rounded-lg shadow-lg">
+            <table id="reslist" class="min-w-full bg-gray-800 divide-y divide-gray-700">
+                <thead class="bg-gray-700 text-gray-200 uppercase text-sm tracking-wider">
+                    <tr>
+                        <th class="py-3 px-4 text-left font-semibold">Category</th>
+                        <th class="py-3 px-4 text-left font-semibold">Title</th>
+                        <th class="py-3 px-4 text-left font-semibold">Description</th>
+                        <th class="py-3 px-4 text-left font-semibold">Tags</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    <tr>
+                        <td colspan="4" class="text-center py-8 text-red-400 italic">Loading resources data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12 rounded-t-lg shadow-inner">
+        <p class="text-sm">
+            © 2025 <a href="https://erarnitox.de" class="hover:text-blue-400 transition-colors duration-200">Erarnitox</a> |
+            <a href="./terms.html" class="hover:text-blue-400 transition-colors duration-200">Terms of Service</a> |
+            <a href="./privacy.html" class="hover:text-blue-400 transition-colors duration-200">Privacy Policy</a>
+        </p>
     </footer>
 </body>
 </html>
+

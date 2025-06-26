@@ -4,107 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Droplet - Discord bot</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta property="og:title" content="Droplet - The hackers friendly Discord bot">
+    <meta property="og:description" content="Empower Your Discord Community and Unleash its Full Potential with Droplet.">
+    <meta property="og:url" content="https://droplet.erarnitox.de/index.html">
+    <meta property="og:image" content="https://droplet.erarnitox.de/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles to integrate with Tailwind, primarily for font and specific element overrides */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Ensure scroll behavior is smooth for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Video container aspect ratio */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+            height: 0;
+            overflow: hidden;
+            margin-top: 2rem; /* Add some margin from header */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem; /* Rounded corners for the video */
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="flex-container-hz">
-                <ul>
-                    <li><a href="./index.html"><img class="logo-img" src="./logo.png" alt="erarnitox logo"></a></li>
-                    <li><a href="./resources.html">Resources</a></li>
-                    <li><a href="./leaderboard.html">Top 10</a></li>
-                </ul>
-                <!--<a href="./login" class="button" id="login-btn">Login</a>-->
+<body class="bg-gray-900 text-gray-300 min-h-screen flex flex-col">
+    <header class="bg-gray-800 text-white shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-2 flex items-center justify-between flex-wrap">
+            <div class="flex items-center space-x-4">
+                <a href="./index.html">
+                    <img class="h-10 w-auto rounded-md" src="./logo.png" alt="Droplet logo"> 
+                </a>
+                <h1 class="text-2xl font-extrabold text-blue-400">Droplet</h1>
             </div>
-        </nav>
-        <h1>Droplet</h1>
-        <h2>The hackers friendly Discord bot</h2>
-        <p>Empower Your Discord Community and Unleash its Full Potential</p>
-        <img alt="logo" src="logo.png" height="200px">
-        <br>
-        <div class="action-buttons">
-            <a href="https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=2215135296&scope=bot" class="btn"><b>Add to Discord</b></a>
-            <!--
-                <a href="/premium" class="btn-premium"><b>Premium</b></a>
-            -->
-        </div>
+            <div class="flex-grow flex justify-center mt-2 md:mt-0">
+                <ul class="flex space-x-6">
+                    <li><a href="./resources.html" class="hover:text-blue-400 transition-colors duration-200">Resources</a></li>
+                    <li><a href="./leaderboard.html" class="hover:text-blue-400 transition-colors duration-200">Top 10</a></li>
+                </ul>
+            </div>
+            </nav>
     </header>
-    <div class="spacer">   
-    </div>
-    <nav>
-        <div class="info-buttons"></div>
-            <a href="#features" class="btn">Show Features</a>
-            <a href="./doxygen/html/index.html" class="btn">Documentation for Developers</a>
-            <a href="https://github.com/Erarnitox/Droplet" class="btn">View Code on Github</a>
-        </div>
-    </nav>
-    <div class="spacer">   
-    </div>
-    <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/yQ-tVt4eMz8?si=2U5Ok50P-OCPIs5b"></iframe>
-    </div>
-    <h1 id="feature-header">Features:</h1>
-    <section id="features" class="features">
-        <div class="feature">
-            <h2>Challenge Roles</h2>
-            <p>Create CTF-Style Challenges and give out Roles as a Reward!</p>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <section class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">The hackers friendly Discord bot</h2>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">Empower Your Discord Community and Unleash its Full Potential</p>
+            <img alt="Droplet logo" src="logo.png" class="mx-auto w-48 h-48 object-contain mb-8 rounded-full shadow-lg"
+                 onerror="this.onerror=null;this.src='https://placehold.co/192x192/4B5563/FFFFFF?text=Bot+Logo';">
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=2215135296&scope=bot"
+                   class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                    Add to Discord
+                </a>
+                <a href="https://erarnitox.de/pub/thanks" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                    </svg>
+                    Donate
+                </a>
+                </div>
+        </section>
+
+        <div class="h-1 bg-blue-600 my-8 rounded-full"></div>
+
+        <section class="text-center mb-12">
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4">
+                <a href="#features" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">Show Features</a>
+                <a href="./doxygen/html/index.html" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200" target="_blank" rel="noopener noreferrer">Documentation for Developers</a>
+                <a href="https://github.com/Erarnitox/Droplet" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-200" target="_blank" rel="noopener noreferrer">View Code on Github</a>
+            </div>
+        </section>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/yQ-tVt4eMz8?si=2U5Ok50P-OCPIs5b" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
 
-        <div class="feature">
-            <h2>CTF Leaderborad</h2>
-            <p>Create CTF-Style Challenges and reward solves with exp and badges.
-            Points will be synched accross all Servers where Droplet got invited</p>
-        </div>
+        <h2 id="features" class="text-3xl md:text-4xl font-bold text-white text-center mt-12 mb-8">Features:</h2>
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Challenge Roles</h3>
+                <p class="text-gray-400">Create CTF-Style Challenges and give out Roles as a Reward!</p>
+            </div>
 
-        <div class="feature">
-            <h2>Flip a coin</h2>
-            <p>/flip let's you flip a coin and gamble for exp.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">YouTube Notifications</h3>
+                <p class="text-gray-400">Create custom YouTube-Upload notifications for your server!</p>
+            </div>
 
-        <div class="feature">
-            <h2>Roll a dice</h2>
-            <p>/roll let's you roll a dice and gamble for exp.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">CTF Leaderboard</h3>
+                <p class="text-gray-400">Create CTF-Style Challenges and reward solves with exp and badges. Points will be synced across all Servers where Droplet is invited.</p>
+            </div>
 
-        <div class="feature">
-            <h2>Help</h2>
-            <p>/help will dynamically create a manual for you
-                based on what commands are accessible to you.
-            </p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Flip a coin</h3>
+                <p class="text-gray-400">`/flip` lets you flip a coin and gamble for exp.</p>
+            </div>
 
-        <div class="feature">
-            <h2>Member Greetings</h2>
-            <p>Newly joined Members will be greated by the bot.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Roll a dice</h3>
+                <p class="text-gray-400">`/roll` lets you roll a dice and gamble for exp.</p>
+            </div>
 
-        <div class="feature">
-            <h2>Goodbye!</h2>
-            <p>Droplet says goodbye to members when they leave.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Help</h3>
+                <p class="text-gray-400">`/help` will dynamically create a manual for you based on what commands are accessible to you.</p>
+            </div>
 
-        <div class="feature">
-            <h2>Reaction Roles</h2>
-            <p>Let your members assign their own roles by reacting to a configurable message.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Member Greetings</h3>
+                <p class="text-gray-400">Newly joined Members will be greeted by the bot.</p>
+            </div>
 
-        <div class="feature">
-            <h2>Server Details</h2>
-            <p>Get a quick insight into your Server.</p>
-        </div>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Goodbye!</h3>
+                <p class="text-gray-400">Droplet says goodbye to members when they leave.</p>
+            </div>
 
-        <div class="feature">
-            <h2>And even more!</h2>
-            <p>Features are added and improved constantly, so why don't you 
-               invite it to your server and give it a try!</p>
-        </div>
-        
-        <!-- Add more feature sections as needed -->
-    </section>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Reaction Roles</h3>
+                <p class="text-gray-400">Let your members assign their own roles by reacting to a configurable message.</p>
+            </div>
 
-    <footer>
-        <p>&copy; 2025 <a href="https://erarnitox.de">Erarnitox</a> | <a href="./terms.html">Terms of Service</a> | <a href="./privacy.html">Privacy Policy</a></p>
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">Server Details</h3>
+                <p class="text-gray-400">Get a quick insight into your Server.</p>
+            </div>
+
+            <div class="feature bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-300 mb-2">And even more!</h3>
+                <p class="text-gray-400">Features are added and improved constantly, so why don't you invite it to your server and give it a try!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-12 rounded-t-lg shadow-inner">
+        <p class="text-sm">
+            © 2025 <a href="https://erarnitox.de" class="hover:text-blue-400 transition-colors duration-200">Erarnitox</a> |
+            <a href="./terms.html" class="hover:text-blue-400 transition-colors duration-200">Terms of Service</a> |
+            <a href="./privacy.html" class="hover:text-blue-400 transition-colors duration-200">Privacy Policy</a>
+        </p>
     </footer>
 </body>
 </html>
+

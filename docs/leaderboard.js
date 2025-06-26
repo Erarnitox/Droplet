@@ -6,7 +6,7 @@
  *  
  *  License: MIT License
  *
- *  Join us: https://discord.dropsoft.org
+ *  Join us: https://discord.erarnitox.de
 */
 
 document.addEventListener('DOMContentLoaded', async function() {
