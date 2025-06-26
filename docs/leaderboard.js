@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             
             const leaderboard_table = document.getElementById("leaderboard");
             const tbody = leaderboard_table.querySelector('tbody');
+            tbody.innerHTML = '';
 
             users.forEach((user, index) => {
                 const row = tbody.insertRow();
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log(error.message);
         const leaderboard_table = document.getElementById("leaderboard");
         const tbody = leaderboard_table.querySelector('tbody');
+        tbody.innerHTML = '';
         const row = tbody.insertRow();
         const cell = row.insertCell();
         cell.colSpan = 3;

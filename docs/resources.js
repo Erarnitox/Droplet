@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     filterForm.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent page reload
         
-        const newCategory = document.getElementById('category-input').value.trim().toLowerCase();
+        const newCategory = document.getElementById('category-input').value.trim();
         const newDifficulty = parseInt(document.getElementById('difficulty-select').value, 10);
         const newTags = document.getElementById('tags-input').value.split(',').map(tag => tag.trim()).filter(tag => tag);
 
@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         const newUrl = `${window.location.pathname}?${newUrlParams.toString()}`;
         window.history.pushState({path: newUrl}, '', newUrl);
 
-        // Fetch and render resources with the new filters
         fetchAndRenderResources(newFilters);
     });
 });
