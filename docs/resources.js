@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
                 // Filter by difficulty
                 if (filters.difficulty && filters.difficulty > 0) {
-                    resources = resources.filter(res => res.difficulty === filters.difficulty);
+                    resources = resources.filter(res => res.difficulty == filters.difficulty);
                 }
 
                 // Filter by tags
