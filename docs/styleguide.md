@@ -98,7 +98,8 @@ Consistent naming makes code self-documenting.
 
 ### Initialization
 
-  * **Uniform Initialization**: Always use list initialization (brace-initialization `{}`) for variables to prevent narrowing conversions and promote consistency.
+  * **Uniform Initialization**: Always use list initialization (brace-initialization `{}`) for trivial types to prevent narrowing conversions and promote consistency.
+    For non trivial types `operator=` is also permitted to explicitly avoid creating a `initializer_list` object.
     ```cpp
     auto f{0.5f}; // Correct: float literal
     int count{0};  // Correct
@@ -198,13 +199,13 @@ auto handle_button_clicks(const dpp::button_click_t& event, dpp::cluster& bot) -
 
 #### Special Purpose Comments
 
-  * `// TODO:`: Use for functionality that needs to be implemented or completed. Include a brief description and optionally your name/initials and date.
-    `// TODO(erarnitox): Implement error handling for database connection (2025-07-07)`
-  * `// FIXME:`: Use for code that is broken, partially working, or known to have issues that need fixing.
-    `// FIXME: This mutex might cause a deadlock in high-concurrency scenarios.`
-  * `// HACK:`: Use for a temporary or ugly solution that needs refactoring. Explain why it's a hack and what the proper solution would be.
-  * `// NOTE:`: Use for important observations, caveats, or design decisions that readers should be aware of.
-  * `// REVIEW:`: Use to flag code that needs a specific review or discussion point.
+  * `//TODO:`: Use for functionality that needs to be implemented or completed. Include a brief description and optionally your name/initials and date.
+    `//TODO(erarnitox): Implement error handling for database connection (2025-07-07)`
+  * `//FIXME:`: Use for code that is broken, partially working, or known to have issues that need fixing.
+    `//FIXME: This mutex might cause a deadlock in high-concurrency scenarios.`
+  * `//HACK:`: Use for a temporary or ugly solution that needs refactoring. Explain why it's a hack and what the proper solution would be.
+  * `//NOTE:`: Use for important observations, caveats, or design decisions that readers should be aware of.
+  * `//REVIEW:`: Use to flag code that needs a specific review or discussion point.
 
 ## Modern C++ Features
 

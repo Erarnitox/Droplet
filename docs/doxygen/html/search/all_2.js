@@ -35,7 +35,7 @@ var searchData=
   ['commands_2ecpp_32',['Commands.cpp',['../Commands_8cpp.html',1,'']]],
   ['commands_2ehpp_33',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
   ['confirm_5fcode_34',['confirm_code',['../classWebUserDTO.html#a8e1402c9eddcf81bf109c924fa0b8508',1,'WebUserDTO']]],
-  ['connect_35',['connect',['../classDatabase.html#a58c87a8dae61a42827e381fad896843a',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool'],['../classDatabase.html#af87eb106420c387fb721a5dc74d168fb',1,'Database::connect(const std::string &amp;connection_string) -&gt; bool']]],
+  ['connect_35',['connect',['../classDatabase.html#ac65d02389e50f7c4a953e7eb64333624',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port)'],['../classDatabase.html#a6ca7b3a992dacbb096fa4f2e12509249',1,'Database::connect(const std::string &amp;connection_string)']]],
   ['connection_36',['Connection',['../namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297',1,'NativeDatabase']]],
   ['core_37',['Core',['../classCore.html',1,'']]],
   ['core_2ecpp_38',['Core.cpp',['../Core_8cpp.html',1,'']]],

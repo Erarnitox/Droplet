@@ -12,14 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: rockylinux:9  # Use Rocky Linux 9 as the container environment
+      image: rockylinux:10  # Use Rocky Linux 10 as the container environment
 
     steps:
       - name: Install dependencies
         run: |
           dnf install -y epel-release --allowerasing  # Enable EPEL repository for extra packages
           dnf update -y --allowerasing
-          dnf install -y wget curl jq git zip unzip openssl openssl-devel openssl-libs zlib zlib-devel postgresql postgresql-devel --allowerasing
+          dnf install -y wget curl jq sed git zip unzip openssl openssl-devel openssl-libs zlib zlib-devel postgresql postgresql-devel --allowerasing
           
       - name: Install CMake
         run: |
@@ -31,7 +31,7 @@ jobs:
           
       - name: Install Ninja
         run: |
-          NINJA_VERSION=1.11.0  # Specify the desired version of Ninja
+          NINJA_VERSION=1.13.0  # Specify the desired version of Ninja
           wget https://github.com/ninja-build/ninja/releases/download/v${NINJA_VERSION}/ninja-linux.zip
           unzip ninja-linux.zip
           chmod +x ninja

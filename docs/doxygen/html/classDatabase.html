@@ -28,7 +28,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
   <td id="projectalign">
-   <div id="projectname">droplet<span id="projectnumber">&#160;1.1.0</span>
+   <div id="projectname">droplet<span id="projectnumber">&#160;1.3.0</span>
    </div>
    <div id="projectbrief">A multipurpose Discord bot with the hacker in mind</div>
   </td>
@@ -108,18 +108,18 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a58c87a8dae61a42827e381fad896843a" id="r_a58c87a8dae61a42827e381fad896843a"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58c87a8dae61a42827e381fad896843a">connect</a> (const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool</td></tr>
-<tr class="memdesc:a58c87a8dae61a42827e381fad896843a"><td class="mdescLeft">&#160;</td><td class="mdescRight">connect to a postgres database  <br /></td></tr>
-<tr class="memitem:af87eb106420c387fb721a5dc74d168fb" id="r_af87eb106420c387fb721a5dc74d168fb"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af87eb106420c387fb721a5dc74d168fb">connect</a> (const std::string &amp;connection_string) -&gt; bool</td></tr>
-<tr class="memdesc:af87eb106420c387fb721a5dc74d168fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">connect to a postgres database  <br /></td></tr>
-<tr class="memitem:a3d5230049dfb0e02c2f5d3f0563ea51a" id="r_a3d5230049dfb0e02c2f5d3f0563ea51a"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d5230049dfb0e02c2f5d3f0563ea51a">hasConnection</a> () noexcept -&gt; bool</td></tr>
-<tr class="memdesc:a3d5230049dfb0e02c2f5d3f0563ea51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the database has an active connection  <br /></td></tr>
-<tr class="memitem:a2974f64723a9216f5acf53ef711d8694" id="r_a2974f64723a9216f5acf53ef711d8694"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2974f64723a9216f5acf53ef711d8694">reconnect</a> () noexcept -&gt; void</td></tr>
-<tr class="memdesc:a2974f64723a9216f5acf53ef711d8694"><td class="mdescLeft">&#160;</td><td class="mdescRight">reconnects to the database server if the connection was lost  <br /></td></tr>
-<tr class="memitem:a2f95325a894c1ef936087996de0c73a4" id="r_a2f95325a894c1ef936087996de0c73a4"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f95325a894c1ef936087996de0c73a4">disconnect</a> () noexcept -&gt; void</td></tr>
-<tr class="memdesc:a2f95325a894c1ef936087996de0c73a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">disconnect from a postgres database  <br /></td></tr>
-<tr class="memitem:a6c8ef036faf39ba2360ca59e86d9ba81" id="r_a6c8ef036faf39ba2360ca59e86d9ba81"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c8ef036faf39ba2360ca59e86d9ba81">getConnection</a> () noexcept -&gt; <a class="el" href="namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297">NativeDatabase::Connection</a> *</td></tr>
-<tr class="memdesc:a6c8ef036faf39ba2360ca59e86d9ba81"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the database connection. Reconnects if the <a class="el" href="classDatabase.html">Database</a> has no active connection  <br /></td></tr>
+<tr class="memitem:ac65d02389e50f7c4a953e7eb64333624" id="r_ac65d02389e50f7c4a953e7eb64333624"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac65d02389e50f7c4a953e7eb64333624">connect</a> (const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port)</td></tr>
+<tr class="memdesc:ac65d02389e50f7c4a953e7eb64333624"><td class="mdescLeft">&#160;</td><td class="mdescRight">connect to a postgres database  <br /></td></tr>
+<tr class="memitem:a6ca7b3a992dacbb096fa4f2e12509249" id="r_a6ca7b3a992dacbb096fa4f2e12509249"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ca7b3a992dacbb096fa4f2e12509249">connect</a> (const std::string &amp;connection_string)</td></tr>
+<tr class="memdesc:a6ca7b3a992dacbb096fa4f2e12509249"><td class="mdescLeft">&#160;</td><td class="mdescRight">connect to a postgres database  <br /></td></tr>
+<tr class="memitem:a0f89d6dbf384feb4ccfc6f98035f02be" id="r_a0f89d6dbf384feb4ccfc6f98035f02be"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f89d6dbf384feb4ccfc6f98035f02be">hasConnection</a> () noexcept</td></tr>
+<tr class="memdesc:a0f89d6dbf384feb4ccfc6f98035f02be"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks if the database has an active connection  <br /></td></tr>
+<tr class="memitem:aeb1134fb82cb898cf37311c9ee3f7d1b" id="r_aeb1134fb82cb898cf37311c9ee3f7d1b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb1134fb82cb898cf37311c9ee3f7d1b">reconnect</a> () noexcept</td></tr>
+<tr class="memdesc:aeb1134fb82cb898cf37311c9ee3f7d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">reconnects to the database server if the connection was lost  <br /></td></tr>
+<tr class="memitem:ab7e1c62e43062c0be8cd28ebca49de90" id="r_ab7e1c62e43062c0be8cd28ebca49de90"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7e1c62e43062c0be8cd28ebca49de90">disconnect</a> () noexcept</td></tr>
+<tr class="memdesc:ab7e1c62e43062c0be8cd28ebca49de90"><td class="mdescLeft">&#160;</td><td class="mdescRight">disconnect from a postgres database  <br /></td></tr>
+<tr class="memitem:a40816570310d258ad057fde78f65f6f3" id="r_a40816570310d258ad057fde78f65f6f3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297">NativeDatabase::Connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40816570310d258ad057fde78f65f6f3">getConnection</a> () noexcept</td></tr>
+<tr class="memdesc:a40816570310d258ad057fde78f65f6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns the database connection. Reconnects if the <a class="el" href="classDatabase.html">Database</a> has no active connection  <br /></td></tr>
 </table>
 <a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaf65e5124c0d7f9c72f4db9403ad0d2d" name="aaf65e5124c0d7f9c72f4db9403ad0d2d"></a>
@@ -148,8 +148,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="af87eb106420c387fb721a5dc74d168fb" name="af87eb106420c387fb721a5dc74d168fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af87eb106420c387fb721a5dc74d168fb">&#9670;&#160;</a></span>connect() <span class="overload">[1/2]</span></h2>
+<a id="a6ca7b3a992dacbb096fa4f2e12509249" name="a6ca7b3a992dacbb096fa4f2e12509249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ca7b3a992dacbb096fa4f2e12509249">&#9670;&#160;</a></span>connect() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +161,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">bool Database::connect </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>connection_string</em></span></td><td>)</td>
-          <td> -&gt; bool</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -182,8 +182,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a58c87a8dae61a42827e381fad896843a" name="a58c87a8dae61a42827e381fad896843a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58c87a8dae61a42827e381fad896843a">&#9670;&#160;</a></span>connect() <span class="overload">[2/2]</span></h2>
+<a id="ac65d02389e50f7c4a953e7eb64333624" name="ac65d02389e50f7c4a953e7eb64333624"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac65d02389e50f7c4a953e7eb64333624">&#9670;&#160;</a></span>connect() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,7 +214,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>port</em></span>&#160;) -&gt; bool</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>port</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -239,8 +239,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f95325a894c1ef936087996de0c73a4" name="a2f95325a894c1ef936087996de0c73a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f95325a894c1ef936087996de0c73a4">&#9670;&#160;</a></span>disconnect()</h2>
+<a id="ab7e1c62e43062c0be8cd28ebca49de90" name="ab7e1c62e43062c0be8cd28ebca49de90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7e1c62e43062c0be8cd28ebca49de90">&#9670;&#160;</a></span>disconnect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -252,7 +252,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">void Database::disconnect </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> -&gt; void</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -273,8 +273,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6c8ef036faf39ba2360ca59e86d9ba81" name="a6c8ef036faf39ba2360ca59e86d9ba81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c8ef036faf39ba2360ca59e86d9ba81">&#9670;&#160;</a></span>getConnection()</h2>
+<a id="a40816570310d258ad057fde78f65f6f3" name="a40816570310d258ad057fde78f65f6f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40816570310d258ad057fde78f65f6f3">&#9670;&#160;</a></span>getConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +286,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297">NativeDatabase::Connection</a> * Database::getConnection </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> -&gt; <a class="el" href="namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297">NativeDatabase::Connection</a>*</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -301,8 +301,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a3d5230049dfb0e02c2f5d3f0563ea51a" name="a3d5230049dfb0e02c2f5d3f0563ea51a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d5230049dfb0e02c2f5d3f0563ea51a">&#9670;&#160;</a></span>hasConnection()</h2>
+<a id="a0f89d6dbf384feb4ccfc6f98035f02be" name="a0f89d6dbf384feb4ccfc6f98035f02be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f89d6dbf384feb4ccfc6f98035f02be">&#9670;&#160;</a></span>hasConnection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -314,7 +314,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">bool Database::hasConnection </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> -&gt; bool</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -329,8 +329,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a2974f64723a9216f5acf53ef711d8694" name="a2974f64723a9216f5acf53ef711d8694"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2974f64723a9216f5acf53ef711d8694">&#9670;&#160;</a></span>reconnect()</h2>
+<a id="aeb1134fb82cb898cf37311c9ee3f7d1b" name="aeb1134fb82cb898cf37311c9ee3f7d1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb1134fb82cb898cf37311c9ee3f7d1b">&#9670;&#160;</a></span>reconnect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -342,7 +342,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="memname">void Database::reconnect </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> -&gt; void</td>
+          <td></td>
         </tr>
       </table>
   </td>

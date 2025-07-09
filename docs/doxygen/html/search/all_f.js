@@ -15,7 +15,7 @@ var searchData=
   ['read_5fdatabase_5fcredentials_12',['read_database_credentials',['../BotLibrary_8cpp.html#a79b187d8c716521887dddfcb0b30856a',1,'BotLibrary.cpp']]],
   ['ready_5fcommands_13',['ready_commands',['../classBot.html#af2c83ed74013f331ea9ddb65e7828584',1,'Bot']]],
   ['ready_5fcommands_5ft_14',['ready_commands_t',['../Bot_8hpp.html#ac92e8fc040b969f0be38dcaf55399d80',1,'Bot.hpp']]],
-  ['reconnect_15',['reconnect',['../classDatabase.html#a2974f64723a9216f5acf53ef711d8694',1,'Database']]],
+  ['reconnect_15',['reconnect',['../classDatabase.html#aeb1134fb82cb898cf37311c9ee3f7d1b',1,'Database']]],
   ['registercommands_16',['registerCommands',['../namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e',1,'Commands']]],
   ['registrationhandler_17',['RegistrationHandler',['../classRegistrationHandler.html',1,'']]],
   ['registrationhandler_2ecpp_18',['RegistrationHandler.cpp',['../RegistrationHandler_8cpp.html',1,'']]],

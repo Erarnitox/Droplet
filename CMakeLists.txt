@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 4.0)
 
 if(NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/cmake/CPM.cmake")
   file(DOWNLOAD
@@ -17,8 +17,8 @@ endif()
 include(cmake/utility.cmake)
 include(cmake/CPM.cmake)
 
-set(CPP_STANDARD 20)
-set(CXX_STANDARD 20)
+set(CPP_STANDARD 23)
+set(CXX_STANDARD 23)
 
 add_compile_definitions(_GLIBCXX_USE_CXX11_ABI=1)
 add_compile_definitions(GLIBCXX_USE_CXX11_ABI=1)
@@ -31,7 +31,7 @@ set(DPP_BUILD_TEST OFF)
 find_package(OpenSSL REQUIRED)
 
 project(droplet 
-	VERSION 1.1.0 # https://semver.org/
+	VERSION 1.3.0 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.erarnitox.de"
 	LANGUAGES C CXX
