@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: rockylinux:10  # Use Rocky Linux 10 as the container environment
+      image: rockylinux:9  # Use Rocky Linux 9 as the container environment
 
     steps:
       - name: Install dependencies
