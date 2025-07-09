@@ -6,7 +6,7 @@ var searchData=
   ['get_5fparameter_3',['get_parameter',['../classCore.html#a193661acb7d4262ba8bb33d9ea295f12',1,'Core']]],
   ['get_5frole_5fid_4',['get_role_id',['../classCore.html#ace334f8beaa881f83bfba40299f46aca',1,'Core']]],
   ['getall_5',['getAll',['../classWebUserRepository.html#a980fa4f65fb9ff0bbcd14ab3ce69b997',1,'WebUserRepository::getAll()'],['../classNotificationRepository.html#abdb1573fa3a94fa9135c259513919b1e',1,'NotificationRepository::getAll()'],['../classBlacklistRepository.html#a8ac8c975af05794c5c0c2b2dc3298f59',1,'BlacklistRepository::getAll()'],['../classPortalRepository.html#aa2d7f2db05223d0a3d90de368603f058',1,'PortalRepository::getAll()']]],
-  ['getconnection_6',['getConnection',['../classDatabase.html#a28222c3f00e644b78800e1a8dadd03e3',1,'Database']]],
+  ['getconnection_6',['getConnection',['../classDatabase.html#a6c8ef036faf39ba2360ca59e86d9ba81',1,'Database']]],
   ['getinstance_7',['getInstance',['../classSecrets.html#a27641f82434c1c04244cc310a1d60b08',1,'Secrets::getInstance()'],['../classUserManager.html#a9ef5c8c2213c93ca39a1f4ac314c364a',1,'UserManager::getInstance()']]],
   ['getresourcescommand_8',['GetResourcesCommand',['../classGetResourcesCommand.html#aeaa7d808324c0d4f7fb53e02f8255a0c',1,'GetResourcesCommand']]],
   ['getsecret_9',['getSecret',['../classSecrets.html#a147fbc3753f46e7762ec1c4a95dcbb6e',1,'Secrets']]],

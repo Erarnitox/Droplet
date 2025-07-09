@@ -52,7 +52,8 @@ ReactionRoleDTO ReactionRoleRepository::get(size_t message_id) {
 }
 
 ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string& emoji) {
-	const static std::string sql_string{"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
+	const static std::string sql_string{
+		"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
 
 	auto result{database::execSelect(sql_string, message_id, emoji)};
 

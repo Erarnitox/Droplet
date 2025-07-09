@@ -1,5 +1,5 @@
 # make catch2 available
-CPMAddPackage("gh:catchorg/Catch2@3.4.0")
+CPMAddPackage("gh:catchorg/Catch2@3.8.1")
 
 # use CDash https://my.cdash.org
 # (test dashboard for the build server maybe)

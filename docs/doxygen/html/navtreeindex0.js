@@ -83,6 +83,8 @@ var NAVTREEINDEX0 =
 "Core_8cpp.html#a4388855bd03571b055b86daf3028427f":[2,0,0,0,0,0,3,1],
 "Core_8hpp.html":[2,0,0,0,0,0,1,0],
 "Core_8hpp_source.html":[2,0,0,0,0,0,1,0],
+"DatabaseBackend_8hpp.html":[2,0,0,0,0,0,0,0,1],
+"DatabaseBackend_8hpp_source.html":[2,0,0,0,0,0,0,0,1],
 "Database_8cpp.html":[2,0,0,0,0,0,0,1],
 "Database_8hpp.html":[2,0,0,0,0,0,0,0,0],
 "Database_8hpp_source.html":[2,0,0,0,0,0,0,0,0],
@@ -192,8 +194,8 @@ var NAVTREEINDEX0 =
 "RollCommand_8cpp.html":[2,0,0,0,1,19,0],
 "RollCommand_8hpp.html":[2,0,0,0,1,19,1],
 "RollCommand_8hpp_source.html":[2,0,0,0,1,19,1],
-"RowDTOAdapter_8hpp.html":[2,0,0,0,0,0,0,0,1],
-"RowDTOAdapter_8hpp_source.html":[2,0,0,0,0,0,0,0,1],
+"RowDTOAdapter_8hpp.html":[2,0,0,0,0,0,0,0,2],
+"RowDTOAdapter_8hpp_source.html":[2,0,0,0,0,0,0,0,2],
 "Secrets_8cpp.html":[2,0,0,0,0,3,1],
 "Secrets_8hpp.html":[2,0,0,0,0,3,0,0],
 "Secrets_8hpp_source.html":[2,0,0,0,0,3,0,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03":[1,0,4,3],
 "classBlacklistRepository.html":[1,0,5],
 "classBlacklistRepository.html#a27c477e1471dbf05c9cf29fcaee852ad":[1,0,5,4],
-"classBlacklistRepository.html#a8a1d73da29c62247d80d8e3f4f3c3b51":[1,0,5,0],
-"classBlacklistRepository.html#a8ac8c975af05794c5c0c2b2dc3298f59":[1,0,5,2],
-"classBlacklistRepository.html#ad53f9e2a587ac6cd2c9ba731a56ab178":[1,0,5,1]
+"classBlacklistRepository.html#a8a1d73da29c62247d80d8e3f4f3c3b51":[1,0,5,0]
 };

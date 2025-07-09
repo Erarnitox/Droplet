@@ -2,6 +2,7 @@
 
 #include <Database.hpp>
 #include <cstddef>
+#include <string>
 #include <vector>
 
 #include "PortalDTO.hpp"
@@ -30,7 +31,8 @@ auto PortalRepository::remove(size_t id) -> bool {
 }
 
 auto PortalRepository::update(const PortalDTO& object) -> bool {
-	const static std::string sql_string{"UPDATE portals SET channel_id = $2::Int8 WHERE guild_id = $1"};
+	const std::string sql_string{"UPDATE portals SET channel_id = " + std::to_string(object.channel_id) +
+								 " WHERE guild_id = " + std::to_string(object.guild_id)};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -40,13 +42,13 @@ auto PortalRepository::update(const PortalDTO& object) -> bool {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.guild_id, object.channel_id);
+	return database::execQuery(sql_string);
 }
 
 auto PortalRepository::get(size_t id) -> PortalDTO {
-	const static std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=$1::int8"};
+	const std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=" + std::to_string(id)};
 
-	auto result{database::execSelect(sql_string, id)};
+	auto result{database::execSelect(sql_string)};
 
 	PortalDTO dto;
 	dto.guild_id = id;

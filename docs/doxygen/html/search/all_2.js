@@ -36,13 +36,14 @@ var searchData=
   ['commands_2ehpp_33',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
   ['confirm_5fcode_34',['confirm_code',['../classWebUserDTO.html#a8e1402c9eddcf81bf109c924fa0b8508',1,'WebUserDTO']]],
   ['connect_35',['connect',['../classDatabase.html#a58c87a8dae61a42827e381fad896843a',1,'Database::connect(const std::string &amp;db_name, const std::string &amp;user, const std::string &amp;password, const std::string &amp;host, const std::string &amp;port) -&gt; bool'],['../classDatabase.html#af87eb106420c387fb721a5dc74d168fb',1,'Database::connect(const std::string &amp;connection_string) -&gt; bool']]],
-  ['core_36',['Core',['../classCore.html',1,'']]],
-  ['core_2ecpp_37',['Core.cpp',['../Core_8cpp.html',1,'']]],
-  ['core_2ehpp_38',['Core.hpp',['../Core_8hpp.html',1,'']]],
-  ['create_39',['create',['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()'],['../classWebUserRepository.html#ac8acac3820ef9e06d951259d08733580',1,'WebUserRepository::create()'],['../classChallengeBadgeRepository.html#a2f817f45318ed2c0674a42f2821a1046',1,'ChallengeBadgeRepository::create()'],['../classHasBadgeRepository.html#a506cc925a5a4d1fa98778aa3234784c7',1,'HasBadgeRepository::create()'],['../classUserRepository.html#afa092efc176e5c078a644195c41c37b0',1,'UserRepository::create()'],['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classNotificationRepository.html#a0e89a2846e66cf8056585a1da0802d4a',1,'NotificationRepository::create()'],['../classBlacklistRepository.html#a8a1d73da29c62247d80d8e3f4f3c3b51',1,'BlacklistRepository::create()'],['../classPortalRepository.html#a61673a0ac6f7b6e42646c35f2803e5fa',1,'PortalRepository::create()'],['../classReactionRoleRepository.html#ab369c767273130b3c9e94102c5c764fa',1,'ReactionRoleRepository::create()'],['../classResourceRepository.html#aa375b9c45ab9792128d8a38e8494cfa2',1,'ResourceRepository::create()']]],
-  ['createrequesthandler_40',['createRequestHandler',['../classMyRequestHandlerFactory.html#ad362c57264a19622b5b5265da3dde7f1',1,'MyRequestHandlerFactory']]],
-  ['creator_41',['creator',['../classResourceDTO.html#a5c814f2cc5440ddba00b17f6cbf54fec',1,'ResourceDTO']]],
-  ['creator_5fid_42',['creator_id',['../classResourceDTO.html#a3435d7d938bdb9cf939f53555bc08201',1,'ResourceDTO']]],
-  ['ctx_43',['ctx',['../classBot.html#a33348129774eb659c662848b61897301',1,'Bot']]],
-  ['ctx_5ft_44',['ctx_t',['../Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8',1,'Bot.hpp']]]
+  ['connection_36',['Connection',['../namespaceNativeDatabase.html#afc776c4ae35c5a55e9cc3751e47e0297',1,'NativeDatabase']]],
+  ['core_37',['Core',['../classCore.html',1,'']]],
+  ['core_2ecpp_38',['Core.cpp',['../Core_8cpp.html',1,'']]],
+  ['core_2ehpp_39',['Core.hpp',['../Core_8hpp.html',1,'']]],
+  ['create_40',['create',['../classIRepository.html#a1379e79aa2c999cfa0c3b97270f1daea',1,'IRepository::create()'],['../classWebUserRepository.html#ac8acac3820ef9e06d951259d08733580',1,'WebUserRepository::create()'],['../classChallengeBadgeRepository.html#a2f817f45318ed2c0674a42f2821a1046',1,'ChallengeBadgeRepository::create()'],['../classHasBadgeRepository.html#a506cc925a5a4d1fa98778aa3234784c7',1,'HasBadgeRepository::create()'],['../classUserRepository.html#afa092efc176e5c078a644195c41c37b0',1,'UserRepository::create()'],['../classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d',1,'ChallengeRoleRepository::create()'],['../classNotificationRepository.html#a0e89a2846e66cf8056585a1da0802d4a',1,'NotificationRepository::create()'],['../classBlacklistRepository.html#a8a1d73da29c62247d80d8e3f4f3c3b51',1,'BlacklistRepository::create()'],['../classPortalRepository.html#a61673a0ac6f7b6e42646c35f2803e5fa',1,'PortalRepository::create()'],['../classReactionRoleRepository.html#ab369c767273130b3c9e94102c5c764fa',1,'ReactionRoleRepository::create()'],['../classResourceRepository.html#aa375b9c45ab9792128d8a38e8494cfa2',1,'ResourceRepository::create()']]],
+  ['createrequesthandler_41',['createRequestHandler',['../classMyRequestHandlerFactory.html#ad362c57264a19622b5b5265da3dde7f1',1,'MyRequestHandlerFactory']]],
+  ['creator_42',['creator',['../classResourceDTO.html#a5c814f2cc5440ddba00b17f6cbf54fec',1,'ResourceDTO']]],
+  ['creator_5fid_43',['creator_id',['../classResourceDTO.html#a3435d7d938bdb9cf939f53555bc08201',1,'ResourceDTO']]],
+  ['ctx_44',['ctx',['../classBot.html#a33348129774eb659c662848b61897301',1,'Bot']]],
+  ['ctx_5ft_45',['ctx_t',['../Bot_8hpp.html#a6d0a16df908b3399fa6674e3e37fc8e8',1,'Bot.hpp']]]
 ];

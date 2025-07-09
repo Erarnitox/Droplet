@@ -12,45 +12,32 @@
 
 #pragma once
 
-#include <cstddef>
-// #include <iostream>
 #include <iostream>
-#include <pqxx/pqxx>
 #include <string>
-#include <variant>
 #include <vector>
-// #include <format>
 
+#include "DatabaseBackend.hpp"
 #include "RowDTOAdapter.hpp"
 
 class Database {
   public:
 	Database() = delete;
 
-	[[nodiscard]] static auto connect(const std::string& db_name,
+	[[nodiscard]] static bool connect(const std::string& db_name,
 									  const std::string& user,
 									  const std::string& password,
 									  const std::string& host,
-									  const std::string& port) -> bool;
+									  const std::string& port);
 
-	[[nodiscard]] static auto connect(const std::string& connection_string) -> bool;
+	[[nodiscard]] static bool connect(const std::string& connection_string);
 
-	static auto hasConnection() noexcept -> bool;
-	static auto reconnect() noexcept -> void;
-	static auto disconnect() noexcept -> void;
-	static auto getConnection() noexcept -> pqxx::connection*;
+	static bool hasConnection() noexcept;
+	static void reconnect() noexcept;
+	static void disconnect() noexcept;
+	static NativeDatabase::Connection* getConnection() noexcept;
 };
 
 namespace database {
-
-// Compile time "for" loop
-template <size_t I = 0, typename... Types>
-constexpr void assignResults(const pqxx::result& result, std::vector<std::variant<Types...>>& args) {
-	if constexpr (I < sizeof...(Types)) {
-		args[I] = result.at(0, I).template get<std::variant_alternative_t<I, std::variant<Types...>>>().value();
-		assignResults<I + 1>(result, args);
-	}
-}
 
 /**
  * @brief executes a query on the database
@@ -60,20 +47,21 @@ constexpr void assignResults(const pqxx::result& result, std::vector<std::varian
  * @return error code if the query was executed
  */
 template <typename... Types>
-[[nodiscard("You need to check if the Query was executed on the Database!")]] auto execQuery(const std::string& query,
-																							 Types&&... args) noexcept
-	-> bool {
+[[nodiscard("You need to check if the Query was executed on the Database!")]] bool execQuery(const std::string& query,
+																							 Types&&... args) noexcept {
 	static int times = 0;
 	try {
-		pqxx::work txn(*Database::getConnection());
+		NativeDatabase::Transaction txn(*Database::getConnection());
 
 		// perform the database transaction
-		pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
+		const NativeDatabase::ParameterList params{std::forward<Types>(args)...};
+		const NativeDatabase::Result result = txn.exec(query, params);
+
 		txn.commit();
 
 		times = 0;
 		return true;
-	} catch (const pqxx::broken_connection& e) {
+	} catch (const NativeDatabase::BrokenConnectionException& e) {
 		++times;
 		if (times > 10) {
 			times = 0;
@@ -95,23 +83,24 @@ template <typename... Types>
  * @return RowDTOAdapter that represents the selected database row
  */
 template <typename... Types>
-[[nodiscard]] auto execSelect(const std::string& query, Types&&... args) noexcept -> RowDTOAdapter {
+[[nodiscard]] RowDTOAdapter execSelect(const std::string& query, Types&&... args) noexcept {
 	static int times = 0;
 	try {
-		pqxx::work txn(*Database::getConnection());
+		NativeDatabase::Transaction txn(*Database::getConnection());
 
 		// perform the database transaction
-		pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
+		const NativeDatabase::ParameterList params{std::forward<Types>(args)...};
+		const NativeDatabase::Result result = txn.exec(query, params);
 		txn.commit();
 
 		times = 0;
 
 		return {result[0]};
-	} catch (const pqxx::broken_connection& e) {
+	} catch (const NativeDatabase::BrokenConnectionException& e) {
 		++times;
 		if (times > 10) {
 			times = 0;
-			return {pqxx::row()};
+			return {NativeDatabase::Row()};
 		}
 		Database::reconnect();
 		return execSelect(query, args...);
@@ -129,13 +118,15 @@ template <typename... Types>
  * @return std::vector<RowDTOAdapter> that represents the selected database rows
  */
 template <typename... Types>
-[[nodiscard]] auto execSelectAll(const std::string& query, Types&&... args) noexcept -> std::vector<RowDTOAdapter> {
+[[nodiscard]] std::vector<RowDTOAdapter> execSelectAll(const std::string& query, Types&&... args) noexcept {
 	static int times = 0;
 	try {
-		pqxx::work txn(*Database::getConnection());
+		NativeDatabase::Transaction txn(*Database::getConnection());
 
 		// perform the database transaction
-		pqxx::result result = txn.exec_params(query, std::forward<Types>(args)...);
+		const NativeDatabase::ParameterList params{std::forward<Types>(args)...};
+		const NativeDatabase::Result result = txn.exec(query, params);
+
 		txn.commit();
 
 		times = 0;
@@ -146,11 +137,11 @@ template <typename... Types>
 		}
 
 		return selection;
-	} catch (const pqxx::broken_connection& e) {
+	} catch (const NativeDatabase::BrokenConnectionException& e) {
 		++times;
 		if (times > 10) {
 			times = 0;
-			return {pqxx::row()};
+			return {NativeDatabase::Row()};
 		}
 		Database::reconnect();
 		return execSelectAll(query, args...);

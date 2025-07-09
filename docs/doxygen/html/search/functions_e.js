@@ -13,6 +13,6 @@ var searchData=
   ['removeportalcommand_10',['RemovePortalCommand',['../classRemovePortalCommand.html#a7cb68571ebe0722dedb102a6b955d849',1,'RemovePortalCommand']]],
   ['resourcedto_11',['ResourceDTO',['../classResourceDTO.html#a2fcbec1f62372cf29d8b7d4b077b8d5c',1,'ResourceDTO::ResourceDTO()=default'],['../classResourceDTO.html#a66ad52341f25f8c1a1d271230459163d',1,'ResourceDTO::ResourceDTO(std::string title, std::string category, std::string description, std::string url, int difficulty, size_t guild_id, std::string creator, size_t creator_id, std::string tags)'],['../classResourceDTO.html#a7755108e1bbfca73c81122916e7bd1b5',1,'ResourceDTO::ResourceDTO(const RowDTOAdapter &amp;row)']]],
   ['rollcommand_12',['RollCommand',['../classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0',1,'RollCommand']]],
-  ['rowdtoadapter_13',['RowDTOAdapter',['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter']]],
+  ['rowdtoadapter_13',['RowDTOAdapter',['../classRowDTOAdapter.html#a857abcc88df58fb05ee255b179464663',1,'RowDTOAdapter']]],
   ['run_14',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
 ];

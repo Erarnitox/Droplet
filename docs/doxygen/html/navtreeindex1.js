@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classBlacklistRepository.html#a8ac8c975af05794c5c0c2b2dc3298f59":[1,0,5,2],
+"classBlacklistRepository.html#ad53f9e2a587ac6cd2c9ba731a56ab178":[1,0,5,1],
 "classBlacklistRepository.html#ad9805b13d0d2badd4df868626031b1ab":[1,0,5,3],
 "classBot.html":[1,0,6],
 "classBugReportCommand.html":[1,0,7],
@@ -210,7 +212,7 @@ var NAVTREEINDEX1 =
 "classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0":[1,0,57,0],
 "classRowDTOAdapter.html":[1,0,58],
 "classRowDTOAdapter.html#a760e0591bdb09679c3956ecc2a1e556c":[1,0,58,1],
-"classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f":[1,0,58,0],
+"classRowDTOAdapter.html#a857abcc88df58fb05ee255b179464663":[1,0,58,0],
 "classSecrets.html":[1,0,59],
 "classSecrets.html#a147fbc3753f46e7762ec1c4a95dcbb6e":[1,0,59,0],
 "classServerApplication.html":[1,0,60],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "classUserManager.html#a82cbd2eef356989ff267b0b11b7b00e8":[1,0,67,0],
 "classUserRepository.html":[1,0,68],
 "classUserRepository.html#aa1f93d291d8ea7faff4ccbd3cd209f40":[1,0,68,4],
-"classUserRepository.html#ab0131ea2661b7044324338957080f145":[1,0,68,3],
-"classUserRepository.html#aeb3c5a10f60b89e867281bb61e752a7d":[1,0,68,2],
-"classUserRepository.html#afa092efc176e5c078a644195c41c37b0":[1,0,68,0]
+"classUserRepository.html#ab0131ea2661b7044324338957080f145":[1,0,68,3]
 };

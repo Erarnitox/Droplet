@@ -14,15 +14,15 @@
 
 #pragma once
 
-#include <pqxx/pqxx>
+#include "DatabaseBackend.hpp"
 
-// Adapter class to convert pqxx::row to GenericDTO
+// Adapter class to convert DatabaseRow to GenericDTO
 class RowDTOAdapter {
   private:
-	const pqxx::row row_;
+	const NativeDatabase::Row row_;
 
   public:
-	RowDTOAdapter(const pqxx::row& row) : row_(row) {
+	RowDTOAdapter(const NativeDatabase::Row& row) : row_(row) {
 	}
 
 	/**

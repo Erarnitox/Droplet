@@ -16,9 +16,10 @@ var searchData=
   ['bot_2ehpp_13',['Bot.hpp',['../Bot_8hpp.html',1,'']]],
   ['botlibrary_2ecpp_14',['BotLibrary.cpp',['../BotLibrary_8cpp.html',1,'']]],
   ['botlibrary_2ehpp_15',['BotLibrary.hpp',['../BotLibrary_8hpp.html',1,'']]],
-  ['bugreportcommand_16',['BugReportCommand',['../classBugReportCommand.html',1,'BugReportCommand'],['../classBugReportCommand.html#a36155ca74f2d9b94e93494e624285296',1,'BugReportCommand::BugReportCommand()']]],
-  ['bugreportcommand_2ecpp_17',['BugReportCommand.cpp',['../BugReportCommand_8cpp.html',1,'']]],
-  ['bugreportcommand_2ehpp_18',['BugReportCommand.hpp',['../BugReportCommand_8hpp.html',1,'']]],
-  ['button_5fcommands_19',['button_commands',['../classBot.html#add61d8dc757b40b1777804e861899cde',1,'Bot']]],
-  ['button_5fcommands_5ft_20',['button_commands_t',['../Bot_8hpp.html#a651d4a8a29b449b669f135532f258df1',1,'Bot.hpp']]]
+  ['brokenconnectionexception_16',['BrokenConnectionException',['../namespaceNativeDatabase.html#a1a63b4b75f07c63924e7f82a728c63e3',1,'NativeDatabase']]],
+  ['bugreportcommand_17',['BugReportCommand',['../classBugReportCommand.html',1,'BugReportCommand'],['../classBugReportCommand.html#a36155ca74f2d9b94e93494e624285296',1,'BugReportCommand::BugReportCommand()']]],
+  ['bugreportcommand_2ecpp_18',['BugReportCommand.cpp',['../BugReportCommand_8cpp.html',1,'']]],
+  ['bugreportcommand_2ehpp_19',['BugReportCommand.hpp',['../BugReportCommand_8hpp.html',1,'']]],
+  ['button_5fcommands_20',['button_commands',['../classBot.html#add61d8dc757b40b1777804e861899cde',1,'Bot']]],
+  ['button_5fcommands_5ft_21',['button_commands_t',['../Bot_8hpp.html#a651d4a8a29b449b669f135532f258df1',1,'Bot.hpp']]]
 ];

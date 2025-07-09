@@ -43,12 +43,14 @@ var searchData=
   ['restapi_40',['RestApi',['../classRestApi.html',1,'']]],
   ['restapi_2ecpp_41',['RestApi.cpp',['../RestApi_8cpp.html',1,'']]],
   ['restapi_2ehpp_42',['RestApi.hpp',['../RestApi_8hpp.html',1,'']]],
-  ['role_5fid_43',['role_id',['../classReactionRoleDTO.html#a6b033e24f3e1494eca3654414c6dea4f',1,'ReactionRoleDTO']]],
-  ['roleid_44',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
-  ['rollcommand_45',['RollCommand',['../classRollCommand.html',1,'RollCommand'],['../classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0',1,'RollCommand::RollCommand()']]],
-  ['rollcommand_2ecpp_46',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
-  ['rollcommand_2ehpp_47',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
-  ['rowdtoadapter_48',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'RowDTOAdapter'],['../classRowDTOAdapter.html#a8e1bb64444a418f7d5130418778f3d6f',1,'RowDTOAdapter::RowDTOAdapter()']]],
-  ['rowdtoadapter_2ehpp_49',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
-  ['run_50',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
+  ['result_43',['Result',['../namespaceNativeDatabase.html#ad704c352a39d16ebdefadd4eb548b7ca',1,'NativeDatabase']]],
+  ['role_5fid_44',['role_id',['../classReactionRoleDTO.html#a6b033e24f3e1494eca3654414c6dea4f',1,'ReactionRoleDTO']]],
+  ['roleid_45',['roleId',['../classChallengeRoleDTO.html#a03b3e7200b4f637ae7d9f15801419ba7',1,'ChallengeRoleDTO']]],
+  ['rollcommand_46',['RollCommand',['../classRollCommand.html',1,'RollCommand'],['../classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0',1,'RollCommand::RollCommand()']]],
+  ['rollcommand_2ecpp_47',['RollCommand.cpp',['../RollCommand_8cpp.html',1,'']]],
+  ['rollcommand_2ehpp_48',['RollCommand.hpp',['../RollCommand_8hpp.html',1,'']]],
+  ['row_49',['Row',['../namespaceNativeDatabase.html#ab64434eb625cc75d2aab92851ae94ede',1,'NativeDatabase']]],
+  ['rowdtoadapter_50',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'RowDTOAdapter'],['../classRowDTOAdapter.html#a857abcc88df58fb05ee255b179464663',1,'RowDTOAdapter::RowDTOAdapter()']]],
+  ['rowdtoadapter_2ehpp_51',['RowDTOAdapter.hpp',['../RowDTOAdapter_8hpp.html',1,'']]],
+  ['run_52',['run',['../classBot.html#ace392c01b2968a6f354225d2e71a7074',1,'Bot']]]
 ];

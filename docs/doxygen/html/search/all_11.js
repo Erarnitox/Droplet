@@ -8,5 +8,6 @@ var searchData=
   ['timestep_5',['timestep',['../classNotificationDTO.html#af506bd2b90b694de1fb6a0d6ca99ed5a',1,'NotificationDTO']]],
   ['title_6',['title',['../classResourceDTO.html#a4f8d9e09cddca1e6f987335242e933b6',1,'ResourceDTO']]],
   ['top_5fsecret_7',['TOP_SECRET',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c',1,'AuthUtils.hpp']]],
-  ['type_8',['type',['../classNotificationDTO.html#ab86a0b2056f4808258ca68c6cea72df8',1,'NotificationDTO']]]
+  ['transaction_8',['Transaction',['../namespaceNativeDatabase.html#a5756728de1e25982e4285c8200e1f40b',1,'NativeDatabase']]],
+  ['type_9',['type',['../classNotificationDTO.html#ab86a0b2056f4808258ca68c6cea72df8',1,'NotificationDTO']]]
 ];

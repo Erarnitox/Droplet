@@ -61,7 +61,8 @@ auto NotificationRepository::get(size_t id) -> NotificationDTO {
 }
 
 auto NotificationRepository::getAll() -> std::vector<NotificationDTO> {
-	const static std::string sql_string{"SELECT guild_id, channel_id, type, data, message, timestep FROM notifications"};
+	const static std::string sql_string{
+		"SELECT guild_id, channel_id, type, data, message, timestep FROM notifications"};
 	auto result{database::execSelectAll(sql_string)};
 
 	std::vector<NotificationDTO> dtos;

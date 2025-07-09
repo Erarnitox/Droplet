@@ -36,18 +36,11 @@ bool HasBadgeRepository::remove(size_t user_id, size_t message_id) {
 std::vector<size_t> HasBadgeRepository::get(size_t user_id) {
 	const static std::string sql_string{"SELECT message_id FROM has_badge WHERE user_id=$1::int8"};
 
-	// auto result{database::execSelect(sql_string, user_id)};
+	const auto role_dtos{database::execSelectAll(sql_string, user_id)};
 	std::vector<size_t> roles;
 
-	{  // Database Transaction Block
-		pqxx::work txn(*Database::getConnection());
-		pqxx::result result = txn.exec_params(sql_string, user_id);
-		txn.commit();
-
-		for (const auto& row : result) {
-			const auto dto{RowDTOAdapter(row)};
-			roles.push_back(dto.get<size_t>("message_id"));
-		}
+	for (const auto& dto : role_dtos) {
+		roles.push_back(dto.get<size_t>("message_id"));
 	}
 
 	return roles;

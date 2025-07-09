@@ -13,12 +13,11 @@
 #include "Database.hpp"
 
 #include <format>
-#include <iostream>
 #include <memory>
-#include <pqxx/except.hxx>
-#include <pqxx/pqxx>
 
-static std::unique_ptr<pqxx::connection> conn;
+#include "DatabaseBackend.hpp"
+
+static std::unique_ptr<NativeDatabase::Connection> conn;
 
 /**
  * @brief connect to a postgres database
@@ -36,7 +35,7 @@ bool Database::connect(const std::string& db_name,
 					   const std::string& host,
 					   const std::string& port) {
 	Database::disconnect();
-	conn = std::make_unique<pqxx::connection>(
+	conn = std::make_unique<NativeDatabase::Connection>(
 		std::format("dbname={} user={} password={} hostaddr={} port={}", db_name, user, password, host, port));
 
 	return conn->is_open();
@@ -49,7 +48,7 @@ bool Database::connect(const std::string& db_name,
  * @return returns a bool if the connection was successful
  */
 bool Database::connect(const std::string& connection_string) {
-	conn = std::make_unique<pqxx::connection>(connection_string);
+	conn = std::make_unique<NativeDatabase::Connection>(connection_string);
 	return conn->is_open();
 }
 
@@ -67,7 +66,7 @@ void Database::disconnect() noexcept {
  * @return returns true if the database is connected, false otherwise
  */
 bool Database::hasConnection() noexcept {
-	if (!conn)
+	if (not conn)
 		return false;
 	return conn->is_open();
 }
@@ -78,19 +77,19 @@ bool Database::hasConnection() noexcept {
  */
 void Database::reconnect() noexcept {
 	static int times = 0;
-	if (!conn)
+	if (not conn)
 		return;
 
 	try {
 		++times;
 		bool connected{conn && conn->is_open()};
-		if (!connected) {
+		if (not connected) {
 			// conn->activate();
 			connected = Database::connect(conn->connection_string());
 		}
 		if (connected)
 			times = 0;
-	} catch (const pqxx::broken_connection& e) {
+	} catch (const NativeDatabase::BrokenConnectionException& e) {
 		if (times > 10) {
 			times = 0;
 			return;
@@ -105,8 +104,8 @@ void Database::reconnect() noexcept {
  * @brief returns the database connection. Reconnects if the Database has no active connection
  * @return the active database connection as pqxx::connection pointer
  */
-pqxx::connection* Database::getConnection() noexcept {
-	if (!Database::hasConnection()) {
+NativeDatabase::Connection* Database::getConnection() noexcept {
+	if (not Database::hasConnection()) {
 		Database::reconnect();
 	}
 	return conn.get();
