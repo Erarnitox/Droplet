@@ -7,48 +7,48 @@
 
 #include "PortalDTO.hpp"
 
-auto PortalRepository::create(const PortalDTO& object) -> bool {
+bool PortalRepository::create(const PortalDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO portals"
 		"(guild_id, channel_id) VALUES "
 		"($1::int8, $2::int8)"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
 	return database::execQuery(sql_string, object.guild_id, object.channel_id);
 }
 
-auto PortalRepository::remove(size_t id) -> bool {
+bool PortalRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM portals WHERE guild_id = $1::int8"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
 	return database::execQuery(sql_string, id);
 }
 
-auto PortalRepository::update(const PortalDTO& object) -> bool {
+bool PortalRepository::update(const PortalDTO& object) noexcept {
 	const std::string sql_string{"UPDATE portals SET channel_id = " + std::to_string(object.channel_id) +
 								 " WHERE guild_id = " + std::to_string(object.guild_id)};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
-	if (!object.guild_id) {
+	if (not object.guild_id) {
 		return false;
 	}
 
 	return database::execQuery(sql_string);
 }
 
-auto PortalRepository::get(size_t id) -> PortalDTO {
+PortalDTO PortalRepository::get(size_t id) noexcept {
 	const std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=" + std::to_string(id)};
 
-	auto result{database::execSelect(sql_string)};
+	const auto result{database::execSelect(sql_string)};
 
 	PortalDTO dto;
 	dto.guild_id = id;
@@ -57,9 +57,9 @@ auto PortalRepository::get(size_t id) -> PortalDTO {
 	return dto;
 }
 
-auto PortalRepository::getAll() -> std::vector<PortalDTO> {
+std::vector<PortalDTO> PortalRepository::getAll() noexcept {
 	const static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
-	auto result{database::execSelectAll(sql_string)};
+	const auto result{database::execSelectAll(sql_string)};
 
 	std::vector<PortalDTO> dtos;
 	dtos.reserve(result.size());

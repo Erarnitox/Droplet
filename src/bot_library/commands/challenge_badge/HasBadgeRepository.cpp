@@ -4,7 +4,7 @@
 
 #include "RowDTOAdapter.hpp"
 
-bool HasBadgeRepository::create(size_t user_id, size_t message_id) {
+bool HasBadgeRepository::create(size_t user_id, size_t message_id) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO has_badge(user_id, message_id) VALUES "
 		"($1::int8, $2::int8)"};
@@ -19,7 +19,7 @@ bool HasBadgeRepository::create(size_t user_id, size_t message_id) {
 	return database::execQuery(sql_string, user_id, message_id);
 }
 
-bool HasBadgeRepository::remove(size_t user_id, size_t message_id) {
+bool HasBadgeRepository::remove(size_t user_id, size_t message_id) noexcept {
 	std::string sql_string{"DELETE FROM has_badge WHERE user_id = $1::int8"};
 
 	if (message_id) {
@@ -33,7 +33,7 @@ bool HasBadgeRepository::remove(size_t user_id, size_t message_id) {
 	return database::execQuery(sql_string, user_id, message_id);
 }
 
-std::vector<size_t> HasBadgeRepository::get(size_t user_id) {
+std::vector<size_t> HasBadgeRepository::get(size_t user_id) noexcept {
 	const static std::string sql_string{"SELECT message_id FROM has_badge WHERE user_id=$1::int8"};
 
 	const auto role_dtos{database::execSelectAll(sql_string, user_id)};

@@ -5,13 +5,13 @@
 
 class PortalRepository : public IRepository<PortalDTO> {
   public:
-	[[nodiscard]] auto create(const PortalDTO& object) -> bool override;
+	[[nodiscard]] bool create(const PortalDTO& object) noexcept override;
 
-	[[nodiscard]] auto remove(size_t id) -> bool override;
+	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] auto get(size_t id) -> PortalDTO override;
+	[[nodiscard]] PortalDTO get(size_t id) noexcept override;
 
-	[[nodiscard]] auto update(const PortalDTO& object) -> bool override;
+	[[nodiscard]] bool update(const PortalDTO& object) noexcept override;
 
-	[[nodiscard]] auto getAll() -> std::vector<PortalDTO>;
+	[[nodiscard]] std::vector<PortalDTO> getAll() noexcept;
 };

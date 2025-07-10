@@ -9,13 +9,13 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-auto ResourceRepository::create(const ResourceDTO& object) -> bool {
+bool ResourceRepository::create(const ResourceDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO resources"
 		"(title, category, description, url, difficulty, guild_id, creator, creator_id, tags) VALUES "
 		"($1::varchar, $2::varchar, $3::varchar, $4::varchar, $5::int8, $6::int8, $7::varchar, $8::int8, $9::varchar)"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
@@ -34,10 +34,10 @@ auto ResourceRepository::create(const ResourceDTO& object) -> bool {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-auto ResourceRepository::remove(size_t id) -> bool {
+bool ResourceRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM resources WHERE id = $1::int8"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
@@ -47,7 +47,7 @@ auto ResourceRepository::remove(size_t id) -> bool {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-auto ResourceRepository::update(const ResourceDTO& object) -> bool {
+bool ResourceRepository::update(const ResourceDTO& object) noexcept {
 	(void)object;
 	/*
 	static std::string sql_string{"UPDATE welcome_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
@@ -68,7 +68,7 @@ auto ResourceRepository::update(const ResourceDTO& object) -> bool {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-auto ResourceRepository::get(size_t id) -> ResourceDTO {
+ResourceDTO ResourceRepository::get(size_t id) noexcept {
 	(void)id;
 	/*
 	static std::string sql_string{"SELECT channel_id FROM welcome_channels WHERE guild_id=$1::int8"};
@@ -87,7 +87,7 @@ auto ResourceRepository::get(size_t id) -> ResourceDTO {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-auto ResourceRepository::get(const std::string& category) -> std::vector<ResourceDTO> {
+std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) noexcept {
 	std::string sql_string{
 		"SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags"
 		" FROM resources"};

@@ -1,7 +1,7 @@
 var classChallengeBadgeRepository =
 [
-    [ "create", "classChallengeBadgeRepository.html#a2f817f45318ed2c0674a42f2821a1046", null ],
-    [ "get", "classChallengeBadgeRepository.html#a9b6c396ebdbe811e88d80fe14190d549", null ],
-    [ "remove", "classChallengeBadgeRepository.html#a0aab99e5fb34d0d2cdc419381958d731", null ],
-    [ "update", "classChallengeBadgeRepository.html#a204a82208a43d2fabb06a4a8468e6b9f", null ]
+    [ "create", "classChallengeBadgeRepository.html#af1caf2e90ee8b0d778444c3326871589", null ],
+    [ "get", "classChallengeBadgeRepository.html#a2a6b2fc2ef3625ecad1468db763051d6", null ],
+    [ "remove", "classChallengeBadgeRepository.html#a39a5d5336a335e90d3f7bf5d2d6f4899", null ],
+    [ "update", "classChallengeBadgeRepository.html#a7d1b12a8d20b40141be955cf4649f2bf", null ]
 ];

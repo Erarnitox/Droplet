@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "WebUserRepository.hpp"
 
 #include <Database.hpp>
@@ -8,12 +19,12 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::create(const WebUserDTO& object) {
+bool WebUserRepository::create(const WebUserDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO users(username, password, clearance, email, confirm_code, is_verified) VALUES "
 		"($1::varchar, $2::varchar, $3::int4, $4::varchar, $5::varchar, $6::bool)"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
@@ -29,10 +40,10 @@ bool WebUserRepository::create(const WebUserDTO& object) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::remove(size_t user_id) {
+bool WebUserRepository::remove(size_t user_id) noexcept {
 	const static std::string sql_string{"DELETE FROM users WHERE id = $1::int8"};
 
-	if (!Database::hasConnection())
+	if (not Database::hasConnection())
 		return false;
 
 	return database::execQuery(sql_string, user_id);
@@ -41,7 +52,7 @@ bool WebUserRepository::remove(size_t user_id) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::update(const WebUserDTO& object) {
+bool WebUserRepository::update(const WebUserDTO& object) noexcept {
 	const static std::string sql_string{
 		"UPDATE users "
 		"  SET username = $2::varchar, password = $3::varchar, "
@@ -49,10 +60,10 @@ bool WebUserRepository::update(const WebUserDTO& object) {
 		"      confirm_code = $6::varchar, is_verified = $7::bool "
 		"WHERE id = $1::int8"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
-	if (!object.id) {
+	if (not object.id) {
 		return false;
 	}
 
@@ -69,11 +80,11 @@ bool WebUserRepository::update(const WebUserDTO& object) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-WebUserDTO WebUserRepository::get(size_t user_id) {
+WebUserDTO WebUserRepository::get(size_t user_id) noexcept {
 	const static std::string sql_string{
 		"SELECT username, password, clearance, email, confirm_code, is_verified FROM users WHERE id=$1::int8"};
 
-	auto result{database::execSelect(sql_string, user_id)};
+	const auto result{database::execSelect(sql_string, user_id)};
 
 	WebUserDTO dto;
 	dto.id = user_id;
@@ -90,11 +101,11 @@ WebUserDTO WebUserRepository::get(size_t user_id) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-WebUserDTO WebUserRepository::get(const std::string& username) {
+WebUserDTO WebUserRepository::get(const std::string& username) noexcept {
 	const static std::string sql_string{
 		"SELECT id, password, clearance, email, confirm_code, is_verified FROM users WHERE username=$1::varchar"};
 
-	auto result{database::execSelect(sql_string, username)};
+	const auto result{database::execSelect(sql_string, username)};
 
 	WebUserDTO dto;
 	dto.id = result.get<decltype(dto.id)>("id");
@@ -111,11 +122,11 @@ WebUserDTO WebUserRepository::get(const std::string& username) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<WebUserDTO> WebUserRepository::getAll() {
+std::vector<WebUserDTO> WebUserRepository::getAll() noexcept {
 	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, confirm_code, is_verified FROM users"};
 
-	auto result{database::execSelectAll(sql_string)};
+	const auto result{database::execSelectAll(sql_string)};
 
 	std::vector<WebUserDTO> dtos;
 	dtos.reserve(result.size());
@@ -139,7 +150,7 @@ std::vector<WebUserDTO> WebUserRepository::getAll() {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::exists(const std::string& username) {
+bool WebUserRepository::exists(const std::string& username) noexcept {
 	const auto& dto{get(username)};
 	return dto.id != 0;
 }
@@ -147,11 +158,11 @@ bool WebUserRepository::exists(const std::string& username) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::verify(const std::string& token, size_t clearance) {
+bool WebUserRepository::verify(const std::string& token, size_t clearance) noexcept {
 	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, is_verified FROM users WHERE confirm_code=$1::varchar"};
 
-	auto result{database::execSelect(sql_string, token)};
+	const auto result{database::execSelect(sql_string, token)};
 
 	WebUserDTO dto;
 	dto.id = result.get<decltype(dto.id)>("id");

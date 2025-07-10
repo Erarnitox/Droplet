@@ -20,7 +20,6 @@
 #include <IMessageCommand.hpp>
 #include <IReactionCommand.hpp>
 #include <IReady.hpp>
-#include <map>
 #include <memory>
 #include <string>
 #include <vector>

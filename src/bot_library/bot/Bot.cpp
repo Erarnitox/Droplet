@@ -35,7 +35,6 @@ ready_commands_t Bot::ready_commands;
  * @brief initializes our bot and sets the bot token
  *
  * @param token the token to be used by the bot
- * @return doesn't return anything
  */
 void Bot::init(const std::string& token) {
 	const auto intents{dpp::i_default_intents | dpp::i_message_content | dpp::i_guild_messages};
@@ -54,7 +53,6 @@ void Bot::init(const std::string& token) {
  * @brief registers new slash commands with the bot
  *
  * @param slash_command the command that implements the IGlobalSlashCommand interface
- * @return doesn't return anything
  */
 void Bot::add_slash_command(const std::shared_ptr<IGlobalSlashCommand>& slash_command) {
 	Bot::slash_commands[slash_command->command_name] = slash_command;
@@ -64,7 +62,6 @@ void Bot::add_slash_command(const std::shared_ptr<IGlobalSlashCommand>& slash_co
  * @brief registers new button commands with the bot
  *
  * @param button_command the command that implements the IButtonCommand interface
- * @return doesn't return anything
  */
 void Bot::add_button_command(const std::shared_ptr<IButtonCommand>& button_command) {
 	Bot::button_commands.push_back(button_command);
@@ -74,7 +71,6 @@ void Bot::add_button_command(const std::shared_ptr<IButtonCommand>& button_comma
  * @brief registers new form commands with the bot
  *
  * @param form_command the command that implements the IFormCommand interface
- * @return doesn't return anything
  */
 void Bot::add_form_command(const std::shared_ptr<IFormCommand>& form_command) {
 	Bot::form_commands.push_back(form_command);
@@ -84,7 +80,6 @@ void Bot::add_form_command(const std::shared_ptr<IFormCommand>& form_command) {
  * @brief registers new member commands with the bot
  *
  * @param member_command the command that implements the IMemberCommand interface
- * @return doesn't return anything
  */
 void Bot::add_member_command(const std::shared_ptr<IMemberCommand>& member_command) {
 	Bot::member_commands.push_back(member_command);
@@ -94,7 +89,6 @@ void Bot::add_member_command(const std::shared_ptr<IMemberCommand>& member_comma
  * @brief registers new message commands with the bot
  *
  * @param message_command the command that implements the IMessageCommand interface
- * @return doesn't return anything
  */
 void Bot::add_message_command(const std::shared_ptr<IMessageCommand>& message_command) {
 	Bot::message_commands.push_back(message_command);
@@ -104,7 +98,6 @@ void Bot::add_message_command(const std::shared_ptr<IMessageCommand>& message_co
  * @brief registers new reaction commands with the bot
  *
  * @param reaction_command the command that implements the IReactionCommand interface
- * @return doesn't return anything
  */
 void Bot::add_reaction_command(const std::shared_ptr<IReactionCommand>& reaction_command) {
 	Bot::reaction_commands.push_back(reaction_command);
@@ -114,7 +107,6 @@ void Bot::add_reaction_command(const std::shared_ptr<IReactionCommand>& reaction
  * @brief registers new ready commands with the bot
  *
  * @param ready_command the command that implements the IReady interface
- * @return doesn't return anything
  */
 void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 	Bot::ready_commands.push_back(ready_command);
@@ -128,7 +120,7 @@ constexpr char HASH_FILE[]{"command_hash"};
  *
  * @return returns the read checksum or 0 if none could be read
  */
-static inline auto get_prior_hash() -> size_t {
+static inline size_t get_prior_hash() {
 	std::ifstream hash_file;
 	hash_file.open(HASH_FILE, std::ios::in | std::ios::binary);
 
@@ -147,7 +139,7 @@ static inline auto get_prior_hash() -> size_t {
  * @param slash_commands a list of slash commands
  * @return returns the calculated checksum for the provided list of slash commands
  */
-static inline auto get_current_hash(const slash_commands_t& slash_commands) -> size_t {
+static inline size_t get_current_hash(const slash_commands_t& slash_commands) {
 	size_t sum{0};
 
 	// calculate a simple checksum
@@ -165,7 +157,6 @@ static inline auto get_current_hash(const slash_commands_t& slash_commands) -> s
  * @brief saves a checksum to a file on disc
  *
  * @param hash the hash to be saved to file
- * @return doesn't return anything
  */
 static inline void save_hash_to_file(size_t hash) {
 	std::ofstream hash_file;
@@ -183,7 +174,6 @@ static inline void save_hash_to_file(size_t hash) {
  *
  * @param ctx the dpp::cluster (bot)
  * @param slash_commands a list of commands that will be registerd
- * @return doesn't return anything
  */
 static inline void register_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
 	ctx->on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
@@ -221,7 +211,6 @@ static inline void register_global_slash_commands(ctx_t& ctx, const slash_comman
  * @brief handle the logging events
  *
  * @param ctx the cluster that can be thought of the current bot instance
- * @return doesn't return anything but might produce console and file output
  */
 static inline void handle_on_log(ctx_t& ctx) {
 	//-----------------------------------------------------------------------------
@@ -256,7 +245,6 @@ static inline void handle_on_log(ctx_t& ctx) {
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered slash commands
- * @return doesn't return anything
  */
 static inline void handle_global_slash_commands(ctx_t& ctx, const slash_commands_t& slash_commands) {
 	ctx->on_slashcommand([&slash_commands](const dpp::slashcommand_t& event) {
@@ -272,7 +260,6 @@ static inline void handle_global_slash_commands(ctx_t& ctx, const slash_commands
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered message commands
- * @return doesn't return anything
  */
 static inline void handle_message_create(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_create([&message_commands](const dpp::message_create_t& event) {
@@ -287,7 +274,6 @@ static inline void handle_message_create(ctx_t& ctx, const message_commands_t& m
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered message commands
- * @return doesn't return anything
  */
 static inline void handle_message_delete(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_delete([&message_commands](const dpp::message_delete_t& event) {
@@ -302,7 +288,6 @@ static inline void handle_message_delete(ctx_t& ctx, const message_commands_t& m
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered message commands
- * @return doesn't return anything
  */
 static inline void handle_message_delete_bulk(ctx_t& ctx, const message_commands_t& message_commands) {
 	ctx->on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
@@ -317,7 +302,6 @@ static inline void handle_message_delete_bulk(ctx_t& ctx, const message_commands
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered member commands
- * @return doesn't return anything
  */
 static inline void handle_guild_member_add(ctx_t& ctx, const member_commands_t& member_commands) {
 	ctx->on_guild_member_add([&member_commands](const dpp::guild_member_add_t& event) {
@@ -332,7 +316,6 @@ static inline void handle_guild_member_add(ctx_t& ctx, const member_commands_t& 
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param slash_commands a list of registered member commands
- * @return doesn't return anything
  */
 static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_t& member_commands) {
 	ctx->on_guild_member_remove([&member_commands](const dpp::guild_member_remove_t& event) {
@@ -347,7 +330,6 @@ static inline void handle_guild_member_remove(ctx_t& ctx, const member_commands_
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param button_commands a list of registered button commands
- * @return doesn't return anything
  */
 static inline void handle_button_click(ctx_t& ctx, const button_commands_t& button_commands) {
 	ctx->on_button_click([&button_commands](const dpp::button_click_t& event) {
@@ -362,7 +344,6 @@ static inline void handle_button_click(ctx_t& ctx, const button_commands_t& butt
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param form_commands a list of registered form commands
- * @return doesn't return anything
  */
 static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_commands) {
 	ctx->on_form_submit([&form_commands](const dpp::form_submit_t& event) {
@@ -377,7 +358,6 @@ static inline void handle_form_submit(ctx_t& ctx, const form_commands_t& form_co
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param reaction_commands a list of registered reaction commands
- * @return doesn't return anything
  */
 static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	ctx->on_message_reaction_add([&reaction_commands](const dpp::message_reaction_add_t& event) {
@@ -392,7 +372,6 @@ static inline void handle_reaction_add(ctx_t& ctx, const reaction_commands_t& re
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param reaction_commands a list of registered reaction commands
- * @return doesn't return anything
  */
 static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t& reaction_commands) {
 	ctx->on_message_reaction_remove([&reaction_commands](const dpp::message_reaction_remove_t& event) {
@@ -407,7 +386,6 @@ static inline void handle_reaction_remove(ctx_t& ctx, const reaction_commands_t&
  *
  * @param ctx the cluster that can be thought of as the current bot instance
  * @param ready_commands a list of registered ready commands
- * @return doesn't return anything
  */
 static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_commands) {
 	ctx->on_ready([&ready_commands](const dpp::ready_t& event) {
@@ -420,7 +398,6 @@ static inline void handle_ready(ctx_t& ctx, const ready_commands_t& ready_comman
 /**
  * @brief registeres all callbacks and starts the bot
  *
- * @return doesn't return anything
  */
 void Bot::run() {
 	// custom logger

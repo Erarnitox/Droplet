@@ -1,8 +1,8 @@
 var classNotificationRepository =
 [
-    [ "create", "classNotificationRepository.html#a0e89a2846e66cf8056585a1da0802d4a", null ],
-    [ "get", "classNotificationRepository.html#a13e290784fd1970255bd19ae3fd39580", null ],
-    [ "getAll", "classNotificationRepository.html#abdb1573fa3a94fa9135c259513919b1e", null ],
-    [ "remove", "classNotificationRepository.html#a53a50aacf5aa8bf70827729ef8e62bb6", null ],
-    [ "update", "classNotificationRepository.html#a7c57aba4073e4aedd7ae044f2760ec8a", null ]
+    [ "create", "classNotificationRepository.html#a761d5a3e1b5ef6d10bd0fcc91df8d6da", null ],
+    [ "get", "classNotificationRepository.html#a5870dc22628341efe7f7393529f86f68", null ],
+    [ "getAll", "classNotificationRepository.html#a51c3a42b84fb196a5911d7e0b57b86d4", null ],
+    [ "remove", "classNotificationRepository.html#a7ff1ade1ac6ddfd21e850ea0feaa7c7d", null ],
+    [ "update", "classNotificationRepository.html#a6011ebca370349d98f8e70b9821fb2c6", null ]
 ];

@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <RowDTOAdapter.hpp>
@@ -21,5 +32,5 @@ class WebUserDTO {
 			   const std::string& email,
 			   const std::string& confirm_code = "",
 			   bool is_verified = false);
-	WebUserDTO(const RowDTOAdapter& row);
+	explicit WebUserDTO(const RowDTOAdapter& row);
 };

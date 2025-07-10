@@ -12,15 +12,15 @@ class LatestEventsRepository {
 	static std::mutex latest_events_mutex;
 
   public:
-	[[nodiscard]] static auto insert(const std::string& key, const std::string& value) -> bool;
+	[[nodiscard]] static bool insert(const std::string& key, const std::string& value) noexcept;
 
-	[[nodiscard]] static auto remove(const std::string& key) -> bool;
+	[[nodiscard]] static bool remove(const std::string& key) noexcept;
 
-	[[nodiscard]] static auto exists(const std::string& key, const std::string& value) -> bool;
+	[[nodiscard]] static bool exists(const std::string& key, const std::string& value) noexcept;
 
-	[[nodiscard]] static auto load() -> bool;
+	[[nodiscard]] static bool load() noexcept;
 
-	static auto set_active(const std::string& key, bool active) -> void;
+	static void set_active(const std::string& key, bool active) noexcept;
 
-	[[nodiscard]] static auto is_active(const std::string& key) -> bool;
+	[[nodiscard]] static bool is_active(const std::string& key) noexcept;
 };

@@ -1,7 +1,7 @@
 var classChallengeRoleRepository =
 [
-    [ "create", "classChallengeRoleRepository.html#a58c9d5292fcd0e9d7deacb7c1817bb0d", null ],
-    [ "get", "classChallengeRoleRepository.html#af881879d809edaa713ee45c7c5545d5a", null ],
-    [ "remove", "classChallengeRoleRepository.html#ab8d00d15aec3b6e73dd6a6c1712a1c50", null ],
-    [ "update", "classChallengeRoleRepository.html#a4a8a9c3394b9e945896f36075a203b7a", null ]
+    [ "create", "classChallengeRoleRepository.html#acee44f6225108c865fd22749cb855e96", null ],
+    [ "get", "classChallengeRoleRepository.html#a262f47d381db6e81d137b2a766cdbe85", null ],
+    [ "remove", "classChallengeRoleRepository.html#ab168d51c2ed96691981c43dbc322ff85", null ],
+    [ "update", "classChallengeRoleRepository.html#a07c65fb05bb34cff910daa88370dfebf", null ]
 ];

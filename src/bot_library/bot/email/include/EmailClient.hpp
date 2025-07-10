@@ -4,7 +4,8 @@
  *
  *  License: MIT License
  *
- *  Description: This class provides a Singleton to access secrets
+ *  Description: A simple email client to send emails from the bot
+ *  using an external SMTP server
  *
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/database
  */

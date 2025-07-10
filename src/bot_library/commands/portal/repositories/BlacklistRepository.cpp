@@ -6,42 +6,42 @@
 
 #include "BlacklistDTO.hpp"
 
-auto BlacklistRepository::create(const BlacklistDTO& object) -> bool {
+bool BlacklistRepository::create(const BlacklistDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO blacklist"
 		"(username) VALUES "
 		"($1::varchar)"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
 	return database::execQuery(sql_string, object.username);
 }
 
-auto BlacklistRepository::remove(size_t id) -> bool {
+bool BlacklistRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM blacklist WHERE id = $1::int8"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
 	return database::execQuery(sql_string, id);
 }
 
-auto BlacklistRepository::update(const BlacklistDTO& object) -> bool {
+bool BlacklistRepository::update(const BlacklistDTO& object) noexcept {
 	(void)object;
 	return false;
 }
 
-auto BlacklistRepository::get(size_t id) -> BlacklistDTO {
+BlacklistDTO BlacklistRepository::get(size_t id) noexcept {
 	(void)id;
 	return {};
 }
 
-auto BlacklistRepository::getAll() -> std::vector<BlacklistDTO> {
+std::vector<BlacklistDTO> BlacklistRepository::getAll() noexcept {
 	const static std::string sql_string{"SELECT username FROM blacklist"};
-	auto result{database::execSelectAll(sql_string)};
+	const auto result{database::execSelectAll(sql_string)};
 
 	std::vector<BlacklistDTO> dtos;
 	dtos.reserve(result.size());

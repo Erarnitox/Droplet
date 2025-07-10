@@ -4,5 +4,5 @@ var searchData=
   ['execquery_1',['execQuery',['../namespacedatabase.html#a93d0695f576fbed2473613202a49f18c',1,'database']]],
   ['execselect_2',['execSelect',['../namespacedatabase.html#abd8f8b4ba43768a73c508f6664382ec1',1,'database']]],
   ['execselectall_3',['execSelectAll',['../namespacedatabase.html#a06985d2541356fd010fac89a0de557ec',1,'database']]],
-  ['exists_4',['exists',['../classWebUserRepository.html#a008996ded34493162b745e29abd0657e',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#a31385e0f9a1a074a7aae9c8b011f5fb6',1,'LatestEventsRepository::exists()']]]
+  ['exists_4',['exists',['../classWebUserRepository.html#aeeff2bfe8a699b1a6c348a27990eee68',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#ac1995532f62ad8a468616ebba6ca219c',1,'LatestEventsRepository::exists()']]]
 ];

@@ -23,6 +23,10 @@
 #pragma clang diagnostic pop
 #endif
 
+/**
+ * For now these are just some type definitions to abstract away the pqxx native types.
+ * Later this could be expanded to an interface to allow for multiple different database libraries
+ */
 namespace NativeDatabase {
 using Row = pqxx::row;
 using Connection = pqxx::connection;

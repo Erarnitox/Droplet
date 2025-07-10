@@ -6,13 +6,13 @@
 
 class UserRepository : public IRepository<UserDTO> {
   public:
-	[[nodiscard]] bool create(const UserDTO& object) override;
+	[[nodiscard]] bool create(const UserDTO& object) noexcept override;
 
-	[[nodiscard]] bool remove(size_t user_id) override;
+	[[nodiscard]] bool remove(size_t user_id) noexcept override;
 
-	[[nodiscard]] UserDTO get(size_t user_id) override;
+	[[nodiscard]] UserDTO get(size_t user_id) noexcept override;
 
-	[[nodiscard]] bool update(const UserDTO& object) override;
+	[[nodiscard]] bool update(const UserDTO& object) noexcept override;
 
-	[[nodiscard]] std::vector<UserDTO> getTopTen();
+	[[nodiscard]] std::vector<UserDTO> getTopTen() noexcept;
 };

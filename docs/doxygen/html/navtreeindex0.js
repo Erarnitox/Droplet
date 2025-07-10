@@ -248,6 +248,6 @@ var NAVTREEINDEX0 =
 "classBlacklistDTO.html#ad66799c3f78b8cde3a32458df8db5c46":[1,0,4,0],
 "classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03":[1,0,4,3],
 "classBlacklistRepository.html":[1,0,5],
-"classBlacklistRepository.html#a27c477e1471dbf05c9cf29fcaee852ad":[1,0,5,4],
-"classBlacklistRepository.html#a8a1d73da29c62247d80d8e3f4f3c3b51":[1,0,5,0]
+"classBlacklistRepository.html#a04489af65e7d0dee28252cd35606b0bd":[1,0,5,4],
+"classBlacklistRepository.html#a06fe2e5e3242776e7cc9b6c7ab52aeed":[1,0,5,0]
 };

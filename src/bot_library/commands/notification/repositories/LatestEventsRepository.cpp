@@ -17,21 +17,21 @@ std::mutex LatestEventsRepository::latest_events_mutex{};
 std::unordered_map<std::string, bool> LatestEventsRepository::active_events{};
 std::unordered_map<std::string, std::string> LatestEventsRepository::latest_events{};
 
-auto LatestEventsRepository::is_active(const std::string& key) -> bool {
+bool LatestEventsRepository::is_active(const std::string& key) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(active_events_mutex)};
 	if (not active_events.contains(key))
 		return false;
 	return active_events.at(key);
 }
 
-auto LatestEventsRepository::set_active(const std::string& key, bool active) -> void {
+void LatestEventsRepository::set_active(const std::string& key, bool active) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(active_events_mutex)};
 	active_events[key] = active;
 }
 
-auto LatestEventsRepository::insert(const std::string& key, const std::string& value) -> bool {
+bool LatestEventsRepository::insert(const std::string& key, const std::string& value) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
@@ -52,11 +52,11 @@ auto LatestEventsRepository::insert(const std::string& key, const std::string& v
 	}
 }
 
-auto LatestEventsRepository::remove(const std::string& key) -> bool {
+bool LatestEventsRepository::remove(const std::string& key) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	static const std::string sql_string{"DELETE FROM latest_events WHERE key = $1::varchar"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
 
@@ -66,15 +66,15 @@ auto LatestEventsRepository::remove(const std::string& key) -> bool {
 	return disabled;
 }
 
-auto LatestEventsRepository::exists(const std::string& key, const std::string& value) -> bool {
+bool LatestEventsRepository::exists(const std::string& key, const std::string& value) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	return latest_events.contains(key) && latest_events.at(key) == value;
 }
 
-auto LatestEventsRepository::load() -> bool {
+bool LatestEventsRepository::load() noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	static const std::string sql_string{"SELECT key, latest FROM latest_events"};
-	auto result{database::execSelectAll(sql_string)};
+	const auto result{database::execSelectAll(sql_string)};
 
 	for (const auto& adapter : result) {
 		latest_events.insert_or_assign(adapter.get<std::string>("key"), adapter.get<std::string>("latest"));

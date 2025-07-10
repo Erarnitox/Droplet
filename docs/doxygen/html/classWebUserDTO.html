@@ -106,7 +106,9 @@ Collaboration diagram for WebUserDTO:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a11ad67db39be3795be88afcd6ab305e2" id="r_a11ad67db39be3795be88afcd6ab305e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11ad67db39be3795be88afcd6ab305e2">WebUserDTO</a> ()=default</td></tr>
 <tr class="memitem:aeb8fb59af06115f48740672532d45c21" id="r_aeb8fb59af06115f48740672532d45c21"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb8fb59af06115f48740672532d45c21">WebUserDTO</a> (size_t <a class="el" href="#ae34cc16c00739685304225bc32fc0f0c">id</a>, const std::string &amp;<a class="el" href="#a568688f55a2b03a633cdd48cc7da0c82">username</a>, const std::string &amp;<a class="el" href="#a948ed4561f179491bcecfc03e1d60a62">password</a>, size_t <a class="el" href="#a12133d219f8b082a1c17c557c352d4cd">clearance</a>, const std::string &amp;<a class="el" href="#a9e58c25da85c8bdac76443151eb90a85">email</a>, const std::string &amp;<a class="el" href="#a8e1402c9eddcf81bf109c924fa0b8508">confirm_code</a>=&quot;&quot;, bool <a class="el" href="#a02fd7d644bc1ce966347cc436154fd08">is_verified</a>=false)</td></tr>
+<tr class="memdesc:aeb8fb59af06115f48740672532d45c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for a <a class="el" href="classWebUserDTO.html">WebUserDTO</a> Object.  <br /></td></tr>
 <tr class="memitem:ab20fda2e87aea60b219ceb79fa225137" id="r_ab20fda2e87aea60b219ceb79fa225137"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab20fda2e87aea60b219ceb79fa225137">WebUserDTO</a> (const <a class="el" href="classRowDTOAdapter.html">RowDTOAdapter</a> &amp;row)</td></tr>
+<tr class="memdesc:ab20fda2e87aea60b219ceb79fa225137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to construct a <a class="el" href="classWebUserDTO.html">WebUserDTO</a> Object from a <a class="el" href="classDatabase.html">Database</a> Row.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -188,6 +190,20 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor for a <a class="el" href="classWebUserDTO.html">WebUserDTO</a> Object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>the user id </td></tr>
+    <tr><td class="paramname">username</td><td>the users username </td></tr>
+    <tr><td class="paramname">password</td><td>the users password </td></tr>
+    <tr><td class="paramname">clearance</td><td>the users clearance level (used for access control) </td></tr>
+    <tr><td class="paramname">email</td><td>the users email address </td></tr>
+    <tr><td class="paramname">confirm_code</td><td>the confirmation code that was sent to the user to validate the email address </td></tr>
+    <tr><td class="paramname">is_verified</td><td>did the user already verify his email? </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ab20fda2e87aea60b219ceb79fa225137" name="ab20fda2e87aea60b219ceb79fa225137"></a>
@@ -195,6 +211,9 @@ Public Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">WebUserDTO::WebUserDTO </td>
@@ -203,7 +222,20 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Constructor to construct a <a class="el" href="classWebUserDTO.html">WebUserDTO</a> Object from a <a class="el" href="classDatabase.html">Database</a> Row. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">row</td><td>The User-Database Row the <a class="el" href="classWebUserDTO.html">WebUserDTO</a> Object should pull its data from </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -15,7 +15,7 @@ var searchData=
   ['initdatabase_12',['InitDatabase',['../classInitDatabase.html',1,'']]],
   ['initdatabase_2ecpp_13',['InitDatabase.cpp',['../InitDatabase_8cpp.html',1,'']]],
   ['initdatabase_2ehpp_14',['InitDatabase.hpp',['../InitDatabase_8hpp.html',1,'']]],
-  ['insert_15',['insert',['../classLatestEventsRepository.html#a71b1acf65c304679e535e4b424512d45',1,'LatestEventsRepository']]],
+  ['insert_15',['insert',['../classLatestEventsRepository.html#a0eb330aa10b8da37a60f5c9333ba8552',1,'LatestEventsRepository']]],
   ['invitecommand_16',['InviteCommand',['../classInviteCommand.html',1,'InviteCommand'],['../classInviteCommand.html#a7bdab4129c544c27bc4af6e537f29a3b',1,'InviteCommand::InviteCommand()']]],
   ['invitecommand_2ecpp_17',['InviteCommand.cpp',['../InviteCommand_8cpp.html',1,'']]],
   ['invitecommand_2ehpp_18',['InviteCommand.hpp',['../InviteCommand_8hpp.html',1,'']]],
@@ -34,10 +34,10 @@ var searchData=
   ['irepository_3c_20resourcedto_20_3e_31',['IRepository&lt; ResourceDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20userdto_20_3e_32',['IRepository&lt; UserDTO &gt;',['../classIRepository.html',1,'']]],
   ['irepository_3c_20webuserdto_20_3e_33',['IRepository&lt; WebUserDTO &gt;',['../classIRepository.html',1,'']]],
-  ['is_5factive_34',['is_active',['../classLatestEventsRepository.html#a9f5e360fc257a86d803ac84ea9a6a0c7',1,'LatestEventsRepository']]],
-  ['is_5fadmin_35',['is_admin',['../classCore.html#aa36439a9b45ce71eae02e1e2151c8557',1,'Core']]],
+  ['is_5factive_34',['is_active',['../classLatestEventsRepository.html#ad7de0b2800126285534e9e470dd4bb10',1,'LatestEventsRepository']]],
+  ['is_5fadmin_35',['is_admin',['../classCore.html#a66ef60374aed0172382524e520ec52b7',1,'Core']]],
   ['is_5fauthorized_36',['is_authorized',['../structAuthUtil.html#a5bcbe94067c12d8aa153eb7dde332c2f',1,'AuthUtil']]],
-  ['is_5ferarnitox_5fadmin_37',['is_erarnitox_admin',['../classCore.html#a0badc742f544e4037445fbb41bb6cfef',1,'Core']]],
+  ['is_5ferarnitox_5fadmin_37',['is_erarnitox_admin',['../classCore.html#a0c5f3e3e6cf2a5d2650ccc7fa26288e7',1,'Core']]],
   ['is_5fsubscribed_38',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]],
   ['is_5fverified_39',['is_verified',['../classWebUserDTO.html#a02fd7d644bc1ce966347cc436154fd08',1,'WebUserDTO']]]
 ];

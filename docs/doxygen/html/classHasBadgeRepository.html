@@ -104,14 +104,14 @@ Collaboration diagram for HasBadgeRepository:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a506cc925a5a4d1fa98778aa3234784c7" id="r_a506cc925a5a4d1fa98778aa3234784c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a506cc925a5a4d1fa98778aa3234784c7">create</a> (size_t user_id, size_t message_id)</td></tr>
-<tr class="memitem:aad3f0651959cb93710b743b333e08777" id="r_aad3f0651959cb93710b743b333e08777"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad3f0651959cb93710b743b333e08777">remove</a> (size_t user_id, size_t message_id=0)</td></tr>
-<tr class="memitem:afbcfa6e7d173b1e9b5ed32380c5f0ee2" id="r_afbcfa6e7d173b1e9b5ed32380c5f0ee2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afbcfa6e7d173b1e9b5ed32380c5f0ee2">removeBadge</a> (size_t message_id)</td></tr>
-<tr class="memitem:a86de8b5815f2053fd35b86ad040034ec" id="r_a86de8b5815f2053fd35b86ad040034ec"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86de8b5815f2053fd35b86ad040034ec">get</a> (size_t user_id)</td></tr>
+<tr class="memitem:a76ca7b47aa886be570178f753dc9e189" id="r_a76ca7b47aa886be570178f753dc9e189"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76ca7b47aa886be570178f753dc9e189">create</a> (size_t user_id, size_t message_id) noexcept</td></tr>
+<tr class="memitem:a0ed4daeaaa7c4d63f5d82aad38b528bb" id="r_a0ed4daeaaa7c4d63f5d82aad38b528bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ed4daeaaa7c4d63f5d82aad38b528bb">remove</a> (size_t user_id, size_t message_id=0) noexcept</td></tr>
+<tr class="memitem:aaec6a475283c90e3f933d2428d81714c" id="r_aaec6a475283c90e3f933d2428d81714c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaec6a475283c90e3f933d2428d81714c">removeBadge</a> (size_t message_id) noexcept</td></tr>
+<tr class="memitem:ad09a927df6f6c7f4bb7cc40abf3f7d4e" id="r_ad09a927df6f6c7f4bb7cc40abf3f7d4e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad09a927df6f6c7f4bb7cc40abf3f7d4e">get</a> (size_t user_id) noexcept</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a506cc925a5a4d1fa98778aa3234784c7" name="a506cc925a5a4d1fa98778aa3234784c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a506cc925a5a4d1fa98778aa3234784c7">&#9670;&#160;</a></span>create()</h2>
+<a id="a76ca7b47aa886be570178f753dc9e189" name="a76ca7b47aa886be570178f753dc9e189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ca7b47aa886be570178f753dc9e189">&#9670;&#160;</a></span>create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -132,15 +132,15 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a86de8b5815f2053fd35b86ad040034ec" name="a86de8b5815f2053fd35b86ad040034ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86de8b5815f2053fd35b86ad040034ec">&#9670;&#160;</a></span>get()</h2>
+<a id="ad09a927df6f6c7f4bb7cc40abf3f7d4e" name="ad09a927df6f6c7f4bb7cc40abf3f7d4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09a927df6f6c7f4bb7cc40abf3f7d4e">&#9670;&#160;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -157,15 +157,15 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="aad3f0651959cb93710b743b333e08777" name="aad3f0651959cb93710b743b333e08777"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad3f0651959cb93710b743b333e08777">&#9670;&#160;</a></span>remove()</h2>
+<a id="a0ed4daeaaa7c4d63f5d82aad38b528bb" name="a0ed4daeaaa7c4d63f5d82aad38b528bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed4daeaaa7c4d63f5d82aad38b528bb">&#9670;&#160;</a></span>remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,15 +186,15 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="afbcfa6e7d173b1e9b5ed32380c5f0ee2" name="afbcfa6e7d173b1e9b5ed32380c5f0ee2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbcfa6e7d173b1e9b5ed32380c5f0ee2">&#9670;&#160;</a></span>removeBadge()</h2>
+<a id="aaec6a475283c90e3f933d2428d81714c" name="aaec6a475283c90e3f933d2428d81714c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaec6a475283c90e3f933d2428d81714c">&#9670;&#160;</a></span>removeBadge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +211,7 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel noexcept">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -6,11 +6,11 @@
 
 class ChallengeBadgeRepository : public IRepository<ChallengeBadgeDTO> {
   public:
-	[[nodiscard]] bool create(const ChallengeBadgeDTO& object) override;
+	[[nodiscard]] bool create(const ChallengeBadgeDTO& object) noexcept override;
 
-	[[nodiscard]] bool remove(size_t messageId) override;
+	[[nodiscard]] bool remove(size_t messageId) noexcept override;
 
-	[[nodiscard]] ChallengeBadgeDTO get(size_t messageId) override;
+	[[nodiscard]] ChallengeBadgeDTO get(size_t messageId) noexcept override;
 
-	[[nodiscard]] bool update(const ChallengeBadgeDTO& object) override;
+	[[nodiscard]] bool update(const ChallengeBadgeDTO& object) noexcept override;
 };

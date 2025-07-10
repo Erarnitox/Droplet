@@ -5,13 +5,13 @@
 
 class NotificationRepository : public IRepository<NotificationDTO> {
   public:
-	[[nodiscard]] auto create(const NotificationDTO& object) -> bool override;
+	[[nodiscard]] bool create(const NotificationDTO& object) noexcept override;
 
-	[[nodiscard]] auto remove(size_t id) -> bool override;
+	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] auto get(size_t id) -> NotificationDTO override;
+	[[nodiscard]] NotificationDTO get(size_t id) noexcept override;
 
-	[[nodiscard]] auto update(const NotificationDTO& object) -> bool override;
+	[[nodiscard]] bool update(const NotificationDTO& object) noexcept override;
 
-	[[nodiscard]] auto getAll() -> std::vector<NotificationDTO>;
+	[[nodiscard]] std::vector<NotificationDTO> getAll() noexcept;
 };

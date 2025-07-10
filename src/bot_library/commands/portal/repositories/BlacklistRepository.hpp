@@ -1,17 +1,18 @@
 #pragma once
 
+#include <vector>
 #include "BlacklistDTO.hpp"
 #include "IRepository.hpp"
 
 class BlacklistRepository : public IRepository<BlacklistDTO> {
   public:
-	[[nodiscard]] auto create(const BlacklistDTO& object) -> bool override;
+	[[nodiscard]] bool create(const BlacklistDTO& object) noexcept override;
 
-	[[nodiscard]] auto remove(size_t id) -> bool override;
+	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] auto get(size_t id) -> BlacklistDTO override;
+	[[nodiscard]] BlacklistDTO get(size_t id) noexcept override;
 
-	[[nodiscard]] auto update(const BlacklistDTO& object) -> bool override;
+	[[nodiscard]] bool update(const BlacklistDTO& object) noexcept override;
 
-	[[nodiscard]] auto getAll() -> std::vector<BlacklistDTO>;
+	[[nodiscard]] std::vector<BlacklistDTO> getAll() noexcept;
 };

@@ -12,5 +12,5 @@ var searchData=
   ['learncppcommand_9',['LearnCPPCommand',['../classLearnCPPCommand.html',1,'LearnCPPCommand'],['../classLearnCPPCommand.html#a20927bedb73bd0c19a08f2b46538f1df',1,'LearnCPPCommand::LearnCPPCommand()']]],
   ['learncppcommand_2ecpp_10',['LearnCPPCommand.cpp',['../LearnCPPCommand_8cpp.html',1,'']]],
   ['learncppcommand_2ehpp_11',['LearnCPPCommand.hpp',['../LearnCPPCommand_8hpp.html',1,'']]],
-  ['load_12',['load',['../classLatestEventsRepository.html#af4ae60532e9eeb547db30bf04b3a9dcb',1,'LatestEventsRepository']]]
+  ['load_12',['load',['../classLatestEventsRepository.html#a259bb02092755a2e57b50871e4a7a4c9',1,'LatestEventsRepository']]]
 ];

@@ -19,6 +19,11 @@
 #include "DatabaseBackend.hpp"
 #include "RowDTOAdapter.hpp"
 
+/**
+ * This is a Database class to manage the connection to a Database
+ * it is a wrapper around a Platform specific Database connection
+ * for now this is a Postgres Database using the pqxx Library
+ */
 class Database {
   public:
 	Database() = delete;
@@ -47,8 +52,7 @@ namespace database {
  * @return error code if the query was executed
  */
 template <typename... Types>
-[[nodiscard("You need to check if the Query was executed on the Database!")]] bool execQuery(const std::string& query,
-																							 Types&&... args) noexcept {
+[[nodiscard]] bool execQuery(const std::string& query, Types&&... args) noexcept {
 	static int times = 0;
 	try {
 		NativeDatabase::Transaction txn(*Database::getConnection());

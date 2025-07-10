@@ -26,13 +26,13 @@
 
 class Core {
   public:
-	static auto is_admin(const dpp::guild_member& member) noexcept -> bool;
+	static bool is_admin(const dpp::guild_member& member) noexcept;
 
-	static auto is_erarnitox_admin(const dpp::guild_member& member) noexcept -> bool;
+	static bool is_erarnitox_admin(const dpp::guild_member& member) noexcept;
 
-	static auto get_role_id(const std::string& mention) noexcept -> std::string;
+	static std::string get_role_id(const std::string& mention) noexcept;
 
-	static auto get_channel_id(const std::string& mention) noexcept -> std::string;
+	static std::string get_channel_id(const std::string& mention) noexcept;
 
 	static void timed_reply(dpp::cluster& bot,
 							const dpp::slashcommand_t event,
@@ -54,10 +54,10 @@ class Core {
 									const std::string& message,
 									size_t time_mills) noexcept;
 
-	[[nodiscard]] static auto get_parameter(dpp::cluster& bot,
-											const dpp::slashcommand_t event,
-											const std::string& name,
-											bool required = true) noexcept -> std::string;
+	[[nodiscard]] static std::string get_parameter(dpp::cluster& bot,
+												   const dpp::slashcommand_t event,
+												   const std::string& name,
+												   bool required = true) noexcept;
 
-	[[nodiscard]] static auto simple_hash(const std::string& string) -> std::string;
+	[[nodiscard]] static std::string simple_hash(const std::string& string) noexcept;
 };
