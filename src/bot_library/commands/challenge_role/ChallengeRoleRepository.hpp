@@ -1,9 +1,23 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <IRepository.hpp>
 
 #include "ChallengeRoleDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class ChallengeRoleRepository : public IRepository<ChallengeRoleDTO> {
   public:
 	[[nodiscard]] bool create(const ChallengeRoleDTO& object) noexcept override;

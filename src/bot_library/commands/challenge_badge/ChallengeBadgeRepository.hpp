@@ -1,9 +1,23 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <IRepository.hpp>
 
 #include "ChallengeBadgeDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class ChallengeBadgeRepository : public IRepository<ChallengeBadgeDTO> {
   public:
 	[[nodiscard]] bool create(const ChallengeBadgeDTO& object) noexcept override;

@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include <Poco/JSON/Object.h>
 #include <Poco/JSON/Parser.h>
 
@@ -24,9 +35,9 @@ void AuthHandler::handleRequest(Poco::Net::HTTPServerRequest& req, Poco::Net::HT
 		return;
 	}
 
-	Poco::Net::HTMLForm form(req, req.stream());
+	const Poco::Net::HTMLForm form(req, req.stream());
 
-	auto grant = form.get("grant_type", "");
+	const auto grant = form.get("grant_type", "");
 	if (grant != "password") {
 		resp.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 		resp.send() << R"({"error":"unsupported_grant_type"})";

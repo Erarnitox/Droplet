@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "LeaderboardCommand.hpp"
 
 #include <appcommand.h>
@@ -7,11 +18,17 @@
 #include <Core.hpp>
 #include <UserRepository.hpp>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 LeaderboardCommand::LeaderboardCommand() : IGlobalSlashCommand() {
 	this->command_name = "leaderboard";
 	this->command_description = "Get a Leaderboard of the top 10 hackers!";
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void LeaderboardCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;

@@ -1,9 +1,24 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <vector>
+
 #include "BlacklistDTO.hpp"
 #include "IRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class BlacklistRepository : public IRepository<BlacklistDTO> {
   public:
 	[[nodiscard]] bool create(const BlacklistDTO& object) noexcept override;

@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "RemovePortalCommand.hpp"
 
 #include <appcommand.h>
@@ -28,7 +39,7 @@ void RemovePortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	if (!Core::is_admin(event.command.member)) {
+	if (not Core::is_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
 	}
@@ -38,7 +49,7 @@ void RemovePortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto& channel_id{static_cast<size_t>(cmd.channel_id)};
 
 	PortalRepository repo;
-	PortalDTO data{guild_id, channel_id};
+	const PortalDTO data{guild_id, channel_id};
 
 	if (repo.get(data.guild_id).channel_id != 0) {
 		if (repo.remove(data.guild_id)) {

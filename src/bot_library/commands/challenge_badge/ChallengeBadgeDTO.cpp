@@ -1,5 +1,19 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ChallengeBadgeDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ChallengeBadgeDTO::ChallengeBadgeDTO(const std::string& badge,
 									 size_t exp,
 									 size_t guildId,
@@ -9,6 +23,9 @@ ChallengeBadgeDTO::ChallengeBadgeDTO(const std::string& badge,
 	: badge{badge}, exp{exp}, guildId{guildId}, messageId{messageId}, solution{solution}, guild_name{guild_name} {
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ChallengeBadgeDTO::ChallengeBadgeDTO(const RowDTOAdapter& row)
 	: badge{row.get<std::string>("badge")},
 	  exp{row.get<size_t>("exp")},

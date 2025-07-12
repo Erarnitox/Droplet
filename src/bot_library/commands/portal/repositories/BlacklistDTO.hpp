@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <RowDTOAdapter.hpp>
@@ -9,12 +20,16 @@ CREATE TABLE public.blacklist (
 	username varchar null
 );
 */
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class BlacklistDTO {
   public:
 	std::string username;
 
 	BlacklistDTO() = default;
-	BlacklistDTO(std::string username);
+	explicit BlacklistDTO(std::string username);
 
-	BlacklistDTO(const RowDTOAdapter& row);
+	explicit BlacklistDTO(const RowDTOAdapter& row);
 };

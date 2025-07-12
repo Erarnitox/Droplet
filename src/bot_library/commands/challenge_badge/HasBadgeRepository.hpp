@@ -1,7 +1,21 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <vector>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class HasBadgeRepository {
   public:
 	[[nodiscard]] bool create(size_t user_id, size_t message_id) noexcept;

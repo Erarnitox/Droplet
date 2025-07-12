@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "BlacklistCommand.hpp"
 
 #include <appcommand.h>
@@ -12,6 +23,9 @@
 #include "repositories/BlacklistDTO.hpp"
 #include "repositories/BlacklistRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 BlacklistCommand::BlacklistCommand() : IGlobalSlashCommand() {
 	this->command_name = "blacklist";
 	this->command_description = "Blacklist a username using the portal (Erarnitox only!)";
@@ -19,12 +33,15 @@ BlacklistCommand::BlacklistCommand() : IGlobalSlashCommand() {
 	this->command_options.emplace_back(dpp::co_string, "username", "The username to be blacklisted", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void BlacklistCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
 
-	if (!Core::is_erarnitox_admin(event.command.member)) {
+	if (not Core::is_erarnitox_admin(event.command.member)) {
 		event.reply("Only Erarnitox's admins are allowed to run this command!");
 		return;
 	}

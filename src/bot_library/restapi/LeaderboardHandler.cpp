@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include <Poco/JSON/Array.h>
 #include <Poco/JSON/Object.h>
 #include <Poco/Net/HTTPServerRequest.h>
@@ -37,8 +48,8 @@ void LeaderboardHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
 	}
 
 	try {
-		Poco::URI uri(request.getURI());
-		Poco::URI::QueryParameters params = uri.getQueryParameters();
+		const Poco::URI uri(request.getURI());
+		const Poco::URI::QueryParameters params = uri.getQueryParameters();
 
 		std::optional<std::string> category{std::nullopt};
 		std::optional<std::vector<std::string>> tags{std::nullopt};

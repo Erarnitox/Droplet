@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "RemoveNotificationCommand.hpp"
 
 #include <appcommand.h>
@@ -10,11 +21,17 @@
 
 #include "Bot.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 RemoveNotificationCommand::RemoveNotificationCommand() : IGlobalSlashCommand() {
 	this->command_name = "remove_notification";
 	this->command_description = "Remove notification events from this server (Admin only!)";
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void RemoveNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
@@ -30,7 +47,7 @@ void RemoveNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event
 	const auto& channel_id{static_cast<size_t>(cmd.channel_id)};
 
 	NotificationRepository repo;
-	NotificationDTO data{guild_id, channel_id, {}, {}, {}};
+	const NotificationDTO data{guild_id, channel_id, {}, {}, {}};
 
 	if (repo.get(data.guild_id).channel_id != 0) {
 		if (repo.remove(data.guild_id)) {

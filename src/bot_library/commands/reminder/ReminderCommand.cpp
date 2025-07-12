@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ReminderCommand.hpp"
 
 #include <appcommand.h>
@@ -10,6 +21,9 @@
 #include <Core.hpp>
 #include <format>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 static inline auto start_reminder(size_t channel_id,
 								  const std::string& user,
 								  const std::string& message,
@@ -25,6 +39,9 @@ static inline auto start_reminder(size_t channel_id,
 	Bot::ctx->start_timer(on_tick, timestep_sec);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ReminderCommand::ReminderCommand() : IGlobalSlashCommand() {
 	this->command_name = "reminder";
 	this->command_description = "Set a reminder for yourself!";
@@ -35,6 +52,9 @@ ReminderCommand::ReminderCommand() : IGlobalSlashCommand() {
 	this->command_options.emplace_back(dpp::co_string, "message", "The Message for the Reminder", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ReminderCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;

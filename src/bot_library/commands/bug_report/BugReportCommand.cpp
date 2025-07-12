@@ -1,6 +1,15 @@
-#include "BugReportCommand.hpp"
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
 
-#include <message.h>
+#include "BugReportCommand.hpp"
 
 #include <format>
 
@@ -82,10 +91,9 @@ void BugReportCommand::on_form_submit(const dpp::form_submit_t& event) {
 	Bot::ctx->direct_message_create(
 		ERARNITOX_ID, dpp::message(message), [event](const dpp::confirmation_callback_t& cc) {
 			if (not cc.is_error()) {
-				Core::timed_reply_private(*Bot::ctx, event, "Thanks for your report!", 3000);
+				event.reply("Thanks for your report!");
 			} else {
-				Core::timed_reply_private(
-					*Bot::ctx, event, "Sending failed! Please contact @erarnitox directly!", 5000);
+				event.reply("Sending failed! Please contact @erarnitox directly!");
 			}
 		});
 }

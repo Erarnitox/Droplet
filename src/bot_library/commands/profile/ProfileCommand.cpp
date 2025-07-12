@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ProfileCommand.hpp"
 
 #include <colors.h>
@@ -15,12 +26,18 @@
 #include <string>
 #include <vector>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ProfileCommand::ProfileCommand() : IGlobalSlashCommand() {
 	this->command_name = "profile";
 	this->command_description = "View Profile Information";
 	this->command_options.emplace_back(dpp::co_user, "user", "User to view the Profile of", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
@@ -47,7 +64,7 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (user_dto.user_id) {
 		// Get all badges a the user has earned:
 		for (const auto badge_id : has_badge_repo.get(static_cast<size_t>(user_id))) {
-			ChallengeBadgeDTO badge_dto{badge_repo.get(badge_id)};
+			const ChallengeBadgeDTO badge_dto{badge_repo.get(badge_id)};
 
 			try {
 				badges.at(badge_dto.guild_name).push_back(badge_dto.badge);
@@ -86,6 +103,4 @@ void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
-
-	return;
 }

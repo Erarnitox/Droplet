@@ -120,11 +120,12 @@ class HttpsServerApp : public ServerApplication {
 				const std::string certificateFile{"server.crt"};
 				const std::string privateKeyFile{"server.key"};
 
-				if (!std::filesystem::exists(certificateFile)) {
+				if (not std::filesystem::exists(certificateFile)) {
 					std::cerr << "Error: " << certificateFile << " does not exist!" << std::endl;
 					return Application::EXIT_IOERR;
 				}
-				if (!std::filesystem::exists(privateKeyFile)) {
+
+				if (not std::filesystem::exists(privateKeyFile)) {
 					std::cerr << "Error: " << privateKeyFile << " does not exist!" << std::endl;
 					return Application::EXIT_IOERR;
 				}

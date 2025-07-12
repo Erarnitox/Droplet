@@ -1,5 +1,19 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "UserDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 UserDTO::UserDTO(size_t user_id,
 				 const std::string& user_name,
 				 const std::string& color,
@@ -8,6 +22,9 @@ UserDTO::UserDTO(size_t user_id,
 	: user_id{user_id}, user_name{user_name}, color{color}, exp{exp}, is_subscribed{is_subscribed} {
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 UserDTO::UserDTO(const RowDTOAdapter& row)
 	: user_id{row.get<size_t>("user_id")},
 	  user_name{row.get<std::string>("user_name")},

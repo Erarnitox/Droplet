@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <RowDTOAdapter.hpp>
@@ -10,6 +21,10 @@ CREATE TABLE public.portals (
 	channel_id int8 null
 );
 */
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class PortalDTO {
   public:
 	size_t guild_id;
@@ -18,5 +33,5 @@ class PortalDTO {
 	PortalDTO() = default;
 	PortalDTO(size_t guild_id, size_t channel_id);
 
-	PortalDTO(const RowDTOAdapter& row);
+	explicit PortalDTO(const RowDTOAdapter& row);
 };

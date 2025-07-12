@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include <Poco/Base64Encoder.h>
 #include <Poco/JWT/Signer.h>
 #include <Poco/JWT/Token.h>
@@ -7,6 +18,9 @@
 
 #include "Poco/Timestamp.h"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 std::string JWTUtils::generateToken(const Poco::JSON::Object& claims,
 									const std::string& secret,
 									const std::string& issuer) {
@@ -20,6 +34,6 @@ std::string JWTUtils::generateToken(const Poco::JSON::Object& claims,
 		token.payload().set(claim.first, claim.second);
 	}
 
-	Poco::JWT::Signer signer(secret);
+	const Poco::JWT::Signer signer(secret);
 	return signer.sign(token, Poco::JWT::Signer::ALGO_HS256);
 }

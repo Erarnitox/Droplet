@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "RollCommand.hpp"
 
 #include <appcommand.h>
@@ -7,12 +18,18 @@
 #include "UserDTO.hpp"
 #include "UserRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 RollCommand::RollCommand() : IGlobalSlashCommand() {
 	this->command_name = "roll";
 	this->command_description = "Roll a dice";
 	this->command_options.emplace_back(dpp::command_option(dpp::co_integer, "bidding", "Bidding amount in 🌢", true));
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
@@ -67,7 +84,7 @@ void RollCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		user_dto.exp -= static_cast<size_t>(bidding);
 	}
 
-	if (!user_repo.update(user_dto)) {
+	if (not user_repo.update(user_dto)) {
 		event.reply(dpp::message("Oh no! Something went wrong! Sowwy! :c").set_flags(dpp::m_ephemeral));
 		return;
 	}

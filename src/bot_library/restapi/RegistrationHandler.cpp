@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include <Poco/JSON/Object.h>
 #include <Poco/Net/HTMLForm.h>
 #include <Poco/Net/HTTPRequest.h>
@@ -46,7 +57,7 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 
 		Poco::JSON::Object::Ptr json = result.extract<Poco::JSON::Object::Ptr>();
 
-		if (!json->has("username") || !json->has("email") || !json->has("password")) {
+		if (not json->has("username") || not json->has("email") || not json->has("password")) {
 			response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 			Poco::JSON::Object::Ptr resp = new Poco::JSON::Object();
 			resp->set("status", "error");

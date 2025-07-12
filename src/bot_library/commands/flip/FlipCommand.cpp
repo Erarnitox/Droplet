@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "FlipCommand.hpp"
 
 #include <colors.h>
@@ -7,18 +18,24 @@
 #include "UserDTO.hpp"
 #include "UserRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 FlipCommand::FlipCommand() : IGlobalSlashCommand() {
 	this->command_name = "flip";
 	this->command_description = "Flip a coin";
 	this->command_options.emplace_back(dpp::co_integer, "bidding", "Bidding amount in 🌢", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
 
-	long bidding{std::get<long>(event.get_parameter("bidding"))};
+	const long bidding{std::get<long>(event.get_parameter("bidding"))};
 	if (bidding < 1) {
 		event.reply(dpp::message("Bidding amount can't be smaller than 1").set_flags(dpp::m_ephemeral));
 		return;
@@ -26,7 +43,7 @@ void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	// Get the user sending the event
 	const auto& member{event.command.member};
-	if (!member.user_id) {
+	if (not member.user_id) {
 		event.reply(dpp::message("Can't get the member using this command. Try again!").set_flags(dpp::m_ephemeral));
 		return;
 	}
@@ -51,8 +68,8 @@ void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	static auto tails_url{std::string("https://www.erarnitox.de/res/tails.png")};
-	static auto heads_url{std::string("https://www.erarnitox.de/res/heads.png")};
+	static const auto tails_url{std::string("https://www.erarnitox.de/res/tails.png")};
+	static const auto heads_url{std::string("https://www.erarnitox.de/res/heads.png")};
 
 	const auto result{std::rand() % 2};
 
@@ -62,17 +79,17 @@ void FlipCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		user_dto.exp -= static_cast<size_t>(bidding);
 	}
 
-	if (!user_repo.update(user_dto)) {
+	if (not user_repo.update(user_dto)) {
 		event.reply(dpp::message("Oh no! Something went wrong! Sowwy! :c").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
 	/* create the embed */
-	dpp::embed embed{dpp::embed()
-						 .set_color(result ? dpp::colors::green : dpp::colors::red)
-						 .set_title(result ? "HEADS $_$" : "TAILS :c")
-						 .set_image(result ? heads_url : tails_url)
-						 .add_field("New Balance", std::format("{}🌢", user_dto.exp))};
+	const dpp::embed embed{dpp::embed()
+							   .set_color(result ? dpp::colors::green : dpp::colors::red)
+							   .set_title(result ? "HEADS $_$" : "TAILS :c")
+							   .set_image(result ? heads_url : tails_url)
+							   .add_field("New Balance", std::format("{}🌢", user_dto.exp))};
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));

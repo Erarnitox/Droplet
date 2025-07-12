@@ -94,21 +94,32 @@ $(function(){initNavTree('RegistrationHandler_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">RegistrationHandler.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="RegistrationHandler_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;Poco/Net/HTTPRequestHandler.h&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//-----------------------------------------------------</span></div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classRegistrationHandler.html">    8</a></span><span class="keyword">class </span><a class="code hl_class" href="classRegistrationHandler.html">RegistrationHandler</a> : <span class="keyword">public</span> Poco::Net::HTTPRequestHandler {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRegistrationHandler.html#a1e683b4ec47f184eb2f15cac7c337200">handleRequest</a>(Poco::Net::HTTPServerRequest&amp; req, Poco::Net::HTTPServerResponse&amp; resp) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>};</div>
+<a href="RegistrationHandler_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (c) Copyright erarnitox.de - All rights reserved</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *  Author: Erarnitox &lt;david@erarnitox.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  License: MIT License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *  Description:</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *  Documentation: https://droplet.erarnitox.de/doxygen/html/</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;Poco/Net/HTTPRequestHandler.h&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classRegistrationHandler.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classRegistrationHandler.html">RegistrationHandler</a> : <span class="keyword">public</span> Poco::Net::HTTPRequestHandler {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classRegistrationHandler.html#a1e683b4ec47f184eb2f15cac7c337200">handleRequest</a>(Poco::Net::HTTPServerRequest&amp; req, Poco::Net::HTTPServerResponse&amp; resp) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
 </div>
-<div class="ttc" id="aclassRegistrationHandler_html"><div class="ttname"><a href="classRegistrationHandler.html">RegistrationHandler</a></div><div class="ttdef"><b>Definition</b> RegistrationHandler.hpp:8</div></div>
-<div class="ttc" id="aclassRegistrationHandler_html_a1e683b4ec47f184eb2f15cac7c337200"><div class="ttname"><a href="classRegistrationHandler.html#a1e683b4ec47f184eb2f15cac7c337200">RegistrationHandler::handleRequest</a></div><div class="ttdeci">void handleRequest(Poco::Net::HTTPServerRequest &amp;req, Poco::Net::HTTPServerResponse &amp;resp) override</div><div class="ttdef"><b>Definition</b> RegistrationHandler.cpp:16</div></div>
+<div class="ttc" id="aclassRegistrationHandler_html"><div class="ttname"><a href="classRegistrationHandler.html">RegistrationHandler</a></div><div class="ttdef"><b>Definition</b> RegistrationHandler.hpp:19</div></div>
+<div class="ttc" id="aclassRegistrationHandler_html_a1e683b4ec47f184eb2f15cac7c337200"><div class="ttname"><a href="classRegistrationHandler.html#a1e683b4ec47f184eb2f15cac7c337200">RegistrationHandler::handleRequest</a></div><div class="ttdeci">void handleRequest(Poco::Net::HTTPServerRequest &amp;req, Poco::Net::HTTPServerResponse &amp;resp) override</div><div class="ttdef"><b>Definition</b> RegistrationHandler.cpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

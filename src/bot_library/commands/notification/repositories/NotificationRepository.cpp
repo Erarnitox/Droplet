@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "NotificationRepository.hpp"
 
 #include <Database.hpp>
@@ -6,6 +17,9 @@
 
 #include "NotificationDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool NotificationRepository::create(const NotificationDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO notifications"
@@ -17,10 +31,12 @@ bool NotificationRepository::create(const NotificationDTO& object) noexcept {
 	}
 
 	return database::execQuery(
-		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep
-	);
+		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool NotificationRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM notifications WHERE guild_id = $1::int8"};
 
@@ -31,12 +47,14 @@ bool NotificationRepository::remove(size_t id) noexcept {
 	return database::execQuery(sql_string, id);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 	const static std::string sql_string{
 		"UPDATE notifications SET channel_id = $2::int8, type = $3::varchar, data = $4::varchar, message = "
 		"$5::varchar, "
-		"timestep = $6::int8 WHERE guild_id = $1::int8"
-	};
+		"timestep = $6::int8 WHERE guild_id = $1::int8"};
 
 	if (not Database::hasConnection()) {
 		return false;
@@ -47,10 +65,12 @@ bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 	}
 
 	return database::execQuery(
-		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep
-	);
+		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 NotificationDTO NotificationRepository::get(size_t id) noexcept {
 	const static std::string sql_string{"SELECT channel_id FROM notifications WHERE guild_id=$1::int8"};
 
@@ -63,10 +83,12 @@ NotificationDTO NotificationRepository::get(size_t id) noexcept {
 	return dto;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 std::vector<NotificationDTO> NotificationRepository::getAll() noexcept {
 	const static std::string sql_string{
-		"SELECT guild_id, channel_id, type, data, message, timestep FROM notifications"
-	};
+		"SELECT guild_id, channel_id, type, data, message, timestep FROM notifications"};
 
 	const auto result{database::execSelectAll(sql_string)};
 

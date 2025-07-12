@@ -1,9 +1,23 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <IRepository.hpp>
 
 #include "ResourceDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class ResourceRepository : public IRepository<ResourceDTO> {
   public:
 	[[nodiscard]] bool create(const ResourceDTO& object) noexcept override;

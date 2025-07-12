@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "PortalRepository.hpp"
 
 #include <Database.hpp>
@@ -7,6 +18,9 @@
 
 #include "PortalDTO.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool PortalRepository::create(const PortalDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO portals"
@@ -20,6 +34,9 @@ bool PortalRepository::create(const PortalDTO& object) noexcept {
 	return database::execQuery(sql_string, object.guild_id, object.channel_id);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool PortalRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM portals WHERE guild_id = $1::int8"};
 
@@ -30,6 +47,9 @@ bool PortalRepository::remove(size_t id) noexcept {
 	return database::execQuery(sql_string, id);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool PortalRepository::update(const PortalDTO& object) noexcept {
 	const std::string sql_string{"UPDATE portals SET channel_id = " + std::to_string(object.channel_id) +
 								 " WHERE guild_id = " + std::to_string(object.guild_id)};
@@ -45,6 +65,9 @@ bool PortalRepository::update(const PortalDTO& object) noexcept {
 	return database::execQuery(sql_string);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 PortalDTO PortalRepository::get(size_t id) noexcept {
 	const std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=" + std::to_string(id)};
 
@@ -57,6 +80,9 @@ PortalDTO PortalRepository::get(size_t id) noexcept {
 	return dto;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 std::vector<PortalDTO> PortalRepository::getAll() noexcept {
 	const static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
 	const auto result{database::execSelectAll(sql_string)};

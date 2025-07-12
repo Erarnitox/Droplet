@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ReactionRoles.hpp"
 
 #include <appcommand.h>
@@ -11,6 +22,9 @@
 #include "ReactionRoleDTO.hpp"
 #include "ReactionRoleRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 	this->command_name = "reaction_role";
 	this->command_description = "Create reaction Roles (Admin only!)";
@@ -22,12 +36,15 @@ ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 	this->command_options.emplace_back(dpp::co_role, "role", "The role that will be granted", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
 
-	if (!Core::is_admin(event.command.member)) {
+	if (not Core::is_admin(event.command.member)) {
 		event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
 		return;
 	}
@@ -110,14 +127,17 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	return;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& event) {
 	const auto message_id{event.message_id};
-	if (!message_id) {
+	if (not message_id) {
 		return;
 	}
 
 	const auto user_id{event.reacting_user.id};
-	if (!user_id) {
+	if (not user_id) {
 		return;
 	}
 
@@ -130,9 +150,9 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 	const auto usable_emoji{Core::simple_hash(emoji)};
 
 	ReactionRoleRepository repo;
-	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
+	const ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
-	if (!dto.role_id) {
+	if (not dto.role_id) {
 		return;
 	}
 
@@ -141,14 +161,17 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 	return;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remove_t& event) {
 	const auto message_id{event.message_id};
-	if (!message_id) {
+	if (not message_id) {
 		return;
 	}
 
 	const auto user_id{event.reacting_user_id};
-	if (!user_id) {
+	if (not user_id) {
 		return;
 	}
 
@@ -161,9 +184,9 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 	const auto usable_emoji{Core::simple_hash(emoji)};
 
 	ReactionRoleRepository repo;
-	ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
+	const ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
-	if (!dto.role_id) {
+	if (not dto.role_id) {
 		return;
 	}
 

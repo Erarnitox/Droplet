@@ -1,7 +1,21 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "SetStatus.hpp"
 
 #include <presence.h>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void SetStatus::on_ready(const dpp::ready_t& event) {
 	(void)event;
 

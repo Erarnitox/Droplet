@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ChallengeRoleCommand.hpp"
 
 #include <appcommand.h>
@@ -11,6 +22,9 @@
 #include "IFormCommand.hpp"
 #include "IGlobalSlashCommand.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
 	this->command_name = "challenge_role";
 	this->command_description = "Create challenge Roles (Admin only!)";
@@ -27,12 +41,15 @@ ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCom
 	this->command_options.emplace_back(dpp::co_string, "title", "The title for the challenge", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != "challenge_role") {
 		return;
 	}
 
-	if (!Core::is_admin(event.command.member)) {
+	if (not Core::is_admin(event.command.member)) {
 		event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
 		return;
 	}
@@ -68,17 +85,17 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 
 	const auto guild_id{event.command.guild_id};
-	if (!guild_id) {
+	if (not guild_id) {
 		event.reply(dpp::message("Something went wrong...").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
 	// create the challenge message
-	dpp::embed embed = dpp::embed()
-						   .set_color(dpp::colors::black)
-						   .set_title(title)
-						   .add_field("Challenge:", question, true)
-						   .add_field("Role Reward:", role.get_mention(), false);
+	const dpp::embed embed = dpp::embed()
+								 .set_color(dpp::colors::black)
+								 .set_title(title)
+								 .add_field("Challenge:", question, true)
+								 .add_field("Role Reward:", role.get_mention(), false);
 
 	dpp::message msg(channel_id, embed);
 
@@ -108,7 +125,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 			// save the needed information in the database
 			ChallengeRoleRepository repo;
-			ChallengeRoleDTO data{role_id, guild_id, message_id, solution};
+			const ChallengeRoleDTO data{role_id, guild_id, message_id, solution};
 			if (repo.create(data)) {
 				Bot::ctx->log(dpp::ll_info,
 							  std::format("Challenge role with message_id={} was "
@@ -133,6 +150,9 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	return;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ChallengeRoleCommand::on_button_click(const dpp::button_click_t& event) {
 	if (event.custom_id != "solve_challenge_btn") {
 		return;
@@ -166,16 +186,16 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto msg_id{event.command.message_id};
 	const auto member{event.command.member};
 
-	if (!msg_id || !member.user_id) {
+	if (not msg_id || not member.user_id) {
 		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
 	// get the correct answer and reward role from the database
 	ChallengeRoleRepository repo;
-	ChallengeRoleDTO dto = repo.get(msg_id);
+	const ChallengeRoleDTO dto = repo.get(msg_id);
 
-	if (!dto.roleId || dto.solution.size() == 0) {
+	if (not dto.roleId || dto.solution.empty()) {
 		Bot::ctx->log(dpp::ll_warning,
 					  std::format("Got invalid data from Database in "
 								  "ChallengeRoleCommand::handleFormSubmits.\nData: "
@@ -190,7 +210,7 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 
 	const auto entered_variant{event.components[0].components[0].value};
 	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
-	if (!entered_ptr) {
+	if (not entered_ptr) {
 		Bot::ctx->log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298365")

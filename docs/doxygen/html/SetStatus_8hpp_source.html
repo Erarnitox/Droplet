@@ -94,20 +94,34 @@ $(function(){initNavTree('SetStatus_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">SetStatus.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="SetStatus_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classSetStatus.html">    5</a></span><span class="keyword">class </span><a class="code hl_class" href="classSetStatus.html">SetStatus</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIReady.html">IReady</a> {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSetStatus.html#a05bb4679ae640e91409b527d02728cb6">on_ready</a>(<span class="keyword">const</span> dpp::ready_t&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>};</div>
+<a href="SetStatus_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (c) Copyright erarnitox.de - All rights reserved</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *  Author: Erarnitox &lt;david@erarnitox.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  License: MIT License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *  Description:</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *  Documentation: https://droplet.erarnitox.de/doxygen/html/</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classSetStatus.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classSetStatus.html">SetStatus</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIReady.html">IReady</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classSetStatus.html#a05bb4679ae640e91409b527d02728cb6">on_ready</a>(<span class="keyword">const</span> dpp::ready_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
 </div>
 <div class="ttc" id="aBot_8hpp_html"><div class="ttname"><a href="Bot_8hpp.html">Bot.hpp</a></div></div>
 <div class="ttc" id="aclassIReady_html"><div class="ttname"><a href="classIReady.html">IReady</a></div><div class="ttdef"><b>Definition</b> IReady.hpp:6</div></div>
-<div class="ttc" id="aclassSetStatus_html"><div class="ttname"><a href="classSetStatus.html">SetStatus</a></div><div class="ttdef"><b>Definition</b> SetStatus.hpp:5</div></div>
-<div class="ttc" id="aclassSetStatus_html_a05bb4679ae640e91409b527d02728cb6"><div class="ttname"><a href="classSetStatus.html#a05bb4679ae640e91409b527d02728cb6">SetStatus::on_ready</a></div><div class="ttdeci">virtual void on_ready(const dpp::ready_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetStatus.cpp:5</div></div>
+<div class="ttc" id="aclassSetStatus_html"><div class="ttname"><a href="classSetStatus.html">SetStatus</a></div><div class="ttdef"><b>Definition</b> SetStatus.hpp:19</div></div>
+<div class="ttc" id="aclassSetStatus_html_a05bb4679ae640e91409b527d02728cb6"><div class="ttname"><a href="classSetStatus.html#a05bb4679ae640e91409b527d02728cb6">SetStatus::on_ready</a></div><div class="ttdeci">virtual void on_ready(const dpp::ready_t &amp;event) override</div><div class="ttdef"><b>Definition</b> SetStatus.cpp:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

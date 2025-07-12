@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "AddResourcesCommand.hpp"
 
 #include <appcommand.h>
@@ -7,6 +18,9 @@
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 AddResourcesCommand::AddResourcesCommand() : IGlobalSlashCommand() {
 	this->command_name = "add_resource";
 	this->command_description = "Add resource to droplet.erarnitox.de/resources";
@@ -32,6 +46,9 @@ AddResourcesCommand::AddResourcesCommand() : IGlobalSlashCommand() {
 	this->command_options.emplace_back(dpp::co_string, "tags", "Link to the resource", false);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
@@ -47,15 +64,15 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto tags{Core::get_parameter(*Bot::ctx, event, "tags", false)};
 
 	ResourceRepository repo;
-	ResourceDTO data{title,
-					 category,
-					 description,
-					 url,
-					 difficulty,
-					 cmd.guild_id,
-					 cmd.member.get_user()->username,
-					 cmd.member.user_id,
-					 tags};
+	const ResourceDTO data{title,
+						   category,
+						   description,
+						   url,
+						   difficulty,
+						   cmd.guild_id,
+						   cmd.member.get_user()->username,
+						   cmd.member.user_id,
+						   tags};
 
 	if (repo.create(data)) {
 		auto msg{

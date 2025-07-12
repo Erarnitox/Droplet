@@ -1,9 +1,23 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #pragma once
 
 #include <mutex>
 #include <string>
 #include <unordered_map>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 class LatestEventsRepository {
   private:
 	static std::unordered_map<std::string, std::string> latest_events;

@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "SetNotificationCommand.hpp"
 
 #include <appcommand.h>
@@ -17,7 +28,10 @@
 #include "LatestEventsRepository.hpp"
 #include "repositories/NotificationRepository.hpp"
 
-static inline auto resolve_youtube_channel_id(const std::string& input) -> std::optional<std::string> {
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+static inline std::optional<std::string> resolve_youtube_channel_id(const std::string& input) {
 	if (input.starts_with("UC"))
 		return input;
 
@@ -57,10 +71,13 @@ static inline auto resolve_youtube_channel_id(const std::string& input) -> std::
 	}
 }
 
-static inline auto start_notification_deamon(size_t channel_id,
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+static inline void start_notification_deamon(size_t channel_id,
 											 const std::string& youtube_id,
 											 const std::string& message,
-											 size_t timestep_sec = 500) -> void {
+											 size_t timestep_sec = 500) {
 	const auto key{std::format("{}/{}", channel_id, youtube_id)};
 
 	const dpp::timer_callback_t on_tick{[channel_id, youtube_id, message, key](dpp::timer timer_handle) {
@@ -108,6 +125,9 @@ static inline auto start_notification_deamon(size_t channel_id,
 	Bot::ctx->start_timer(on_tick, timestep_sec);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 SetNotificationCommand::SetNotificationCommand() : IGlobalSlashCommand(), IReady() {
 	this->command_name = "youtube_uploads";
 	this->command_description = "Get notifications about youtube uploads to discord (Admin only!)";
@@ -120,12 +140,15 @@ SetNotificationCommand::SetNotificationCommand() : IGlobalSlashCommand(), IReady
 		dpp::co_string, "message", "Supply a custom message that prepends the link", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
 	}
 
-	if (!Core::is_admin(event.command.member)) {
+	if (not Core::is_admin(event.command.member)) {
 		Core::timed_reply_private(*Bot::ctx, event, "Only admins are allowed to use this command!", 2000);
 		return;
 	}
@@ -149,7 +172,7 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		const auto& youtube_id{youtube_opt.value()};
 
 		NotificationRepository repo;
-		NotificationDTO data{guild_id, channel_id, "youtube", youtube_id, message, 500};
+		const NotificationDTO data{guild_id, channel_id, "youtube", youtube_id, message, 500};
 
 		if (repo.create(data)) {
 			constexpr size_t timestep_sec{500};
@@ -163,6 +186,9 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	}
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void SetNotificationCommand::on_ready(const dpp::ready_t& event) {
 	(void)event;
 

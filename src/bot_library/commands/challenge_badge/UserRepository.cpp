@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "UserRepository.hpp"
 
 #include <Database.hpp>
@@ -13,10 +24,11 @@ bool UserRepository::create(const UserDTO& object) noexcept {
 		"INSERT INTO usr(user_id, user_name, color, exp, is_subscribed) VALUES "
 		"($1::int8, $2::varchar, $3::varchar, $4::int8, $5::int8)"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
-	if (!object.user_id) {
+
+	if (not object.user_id) {
 		return false;
 	}
 
@@ -30,7 +42,7 @@ bool UserRepository::create(const UserDTO& object) noexcept {
 bool UserRepository::remove(size_t user_id) noexcept {
 	const static std::string sql_string{"DELETE FROM usr WHERE user_id = $1::int8"};
 
-	if (!Database::hasConnection())
+	if (not Database::hasConnection())
 		return false;
 
 	return database::execQuery(sql_string, user_id);
@@ -45,10 +57,10 @@ bool UserRepository::update(const UserDTO& object) noexcept {
 		"exp = $4::int8, is_subscribed = $5::int8 "
 		"WHERE user_id = $1::int8"};
 
-	if (!Database::hasConnection()) {
+	if (not Database::hasConnection()) {
 		return false;
 	}
-	if (!object.user_id) {
+	if (not object.user_id) {
 		return false;
 	}
 
@@ -62,7 +74,7 @@ bool UserRepository::update(const UserDTO& object) noexcept {
 UserDTO UserRepository::get(size_t user_id) noexcept {
 	const static std::string sql_string{"SELECT user_name, color, exp, is_subscribed FROM usr WHERE user_id=$1::int8"};
 
-	auto result{database::execSelect(sql_string, user_id)};
+	const auto result{database::execSelect(sql_string, user_id)};
 
 	UserDTO dto;
 	dto.user_id = user_id;

@@ -1,12 +1,29 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "HelpCommand.hpp"
 
 #include <message.h>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 HelpCommand::HelpCommand() : IGlobalSlashCommand() {
 	this->command_name = "help";
 	this->command_description = "List all available commands";
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name)
 		return;
@@ -23,19 +40,19 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	for (auto& command : Bot::slash_commands) {
 		const auto& cmd{command.second};
 
-		if (!Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)")) {
+		if (not Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)")) {
 			continue;
 		}
 
-		if (!Core::is_erarnitox_admin(event.command.member) &&
+		if (not Core::is_erarnitox_admin(event.command.member) &&
 			cmd->command_description.ends_with("(Erarnitox only!)")) {
 			continue;
 		}
 
-		auto& options{cmd->command_options};
+		const auto& options{cmd->command_options};
 		std::string options_string;
 
-		for (auto& option : options) {
+		for (const auto& option : options) {
 			if (option.required)
 				options_string.append(std::format(" <{}>", option.name));
 			else

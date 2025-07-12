@@ -1,3 +1,14 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "ChallengeBadgeCommand.hpp"
 
 #include <appcommand.h>
@@ -19,6 +30,9 @@
 #include "UserDTO.hpp"
 #include "UserRepository.hpp"
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
 	this->command_name = "challenge_badge";
 	this->command_description = "Create challenge Badge (Admin only!)";
@@ -37,6 +51,9 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 	this->command_options.emplace_back(dpp::co_string, "title", "The title for the challenge", true);
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
@@ -77,7 +94,7 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		return;
 	}
 
-	size_t xp{static_cast<size_t>(std::get<long>(event.get_parameter("xp")))};
+	const size_t xp{static_cast<size_t>(std::get<long>(event.get_parameter("xp")))};
 
 	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
 	if (title.empty()) {
@@ -149,6 +166,9 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	return;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ChallengeBadgeCommand::on_button_click(const dpp::button_click_t& event) {
 	if (event.custom_id != "solve_challenge_badge_btn") {
 		return;
@@ -173,6 +193,9 @@ void ChallengeBadgeCommand::on_button_click(const dpp::button_click_t& event) {
 	return;
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	if (event.custom_id != "challenge_badge_solution") {
 		return;
@@ -182,16 +205,16 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto msg_id{event.command.message_id};
 	const auto member{event.command.member};
 
-	if (!msg_id || !member.user_id) {
+	if (not msg_id || not member.user_id) {
 		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
 	// get the correct answer and reward role from the database
 	ChallengeBadgeRepository badge_repo;
-	ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
+	const ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
 
-	if (!badge_dto.badge.size() || !badge_dto.solution.size()) {
+	if (badge_dto.badge.empty() || badge_dto.solution.empty()) {
 		Bot::ctx->log(dpp::ll_warning,
 					  std::format("Got invalid data from Database in "
 								  "ChallengeBadgeCommand::handleFormSubmits.\nData: "

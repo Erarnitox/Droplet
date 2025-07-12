@@ -94,25 +94,39 @@ $(function(){initNavTree('CleanUp_8hpp_source.html','',''); });
   <div class="headertitle"><div class="title">CleanUp.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="CleanUp_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="foldopen" id="foldopen00005" data-start="{" data-end="};">
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="classCleanUp.html">    5</a></span><span class="keyword">class </span><a class="code hl_class" href="classCleanUp.html">CleanUp</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIMessageCommand.html">IMessageCommand</a> {</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a239becb138ed1c5960edc48e96e58f54">on_message_create</a>(<span class="keyword">const</span> dpp::message_create_t&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a8397ec2c347261ec94d08afd1263a1bc">on_message_delete</a>(<span class="keyword">const</span> dpp::message_delete_t&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a224108f81d957b48bf2519503e955b22">on_message_delete_bulk</a>(<span class="keyword">const</span> dpp::message_delete_bulk_t&amp; event) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>};</div>
+<a href="CleanUp_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  (c) Copyright erarnitox.de - All rights reserved</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *  Author: Erarnitox &lt;david@erarnitox.de&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment"> *  License: MIT License</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment"> *  Description:</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment"> *  Documentation: https://droplet.erarnitox.de/doxygen/html/</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="Bot_8hpp.html">Bot.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">//</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">//-----------------------------------------------------</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="classCleanUp.html">   19</a></span><span class="keyword">class </span><a class="code hl_class" href="classCleanUp.html">CleanUp</a> : <span class="keyword">public</span> <a class="code hl_class" href="classIMessageCommand.html">IMessageCommand</a> {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a239becb138ed1c5960edc48e96e58f54">on_message_create</a>(<span class="keyword">const</span> dpp::message_create_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a8397ec2c347261ec94d08afd1263a1bc">on_message_delete</a>(<span class="keyword">const</span> dpp::message_delete_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classCleanUp.html#a224108f81d957b48bf2519503e955b22">on_message_delete_bulk</a>(<span class="keyword">const</span> dpp::message_delete_bulk_t&amp; event) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
 </div>
 <div class="ttc" id="aBot_8hpp_html"><div class="ttname"><a href="Bot_8hpp.html">Bot.hpp</a></div></div>
-<div class="ttc" id="aclassCleanUp_html"><div class="ttname"><a href="classCleanUp.html">CleanUp</a></div><div class="ttdef"><b>Definition</b> CleanUp.hpp:5</div></div>
-<div class="ttc" id="aclassCleanUp_html_a224108f81d957b48bf2519503e955b22"><div class="ttname"><a href="classCleanUp.html#a224108f81d957b48bf2519503e955b22">CleanUp::on_message_delete_bulk</a></div><div class="ttdeci">virtual void on_message_delete_bulk(const dpp::message_delete_bulk_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:51</div></div>
-<div class="ttc" id="aclassCleanUp_html_a239becb138ed1c5960edc48e96e58f54"><div class="ttname"><a href="classCleanUp.html#a239becb138ed1c5960edc48e96e58f54">CleanUp::on_message_create</a></div><div class="ttdeci">virtual void on_message_create(const dpp::message_create_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:9</div></div>
-<div class="ttc" id="aclassCleanUp_html_a8397ec2c347261ec94d08afd1263a1bc"><div class="ttname"><a href="classCleanUp.html#a8397ec2c347261ec94d08afd1263a1bc">CleanUp::on_message_delete</a></div><div class="ttdeci">virtual void on_message_delete(const dpp::message_delete_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:46</div></div>
+<div class="ttc" id="aclassCleanUp_html"><div class="ttname"><a href="classCleanUp.html">CleanUp</a></div><div class="ttdef"><b>Definition</b> CleanUp.hpp:19</div></div>
+<div class="ttc" id="aclassCleanUp_html_a224108f81d957b48bf2519503e955b22"><div class="ttname"><a href="classCleanUp.html#a224108f81d957b48bf2519503e955b22">CleanUp::on_message_delete_bulk</a></div><div class="ttdeci">virtual void on_message_delete_bulk(const dpp::message_delete_bulk_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:72</div></div>
+<div class="ttc" id="aclassCleanUp_html_a239becb138ed1c5960edc48e96e58f54"><div class="ttname"><a href="classCleanUp.html#a239becb138ed1c5960edc48e96e58f54">CleanUp::on_message_create</a></div><div class="ttdeci">virtual void on_message_create(const dpp::message_create_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:21</div></div>
+<div class="ttc" id="aclassCleanUp_html_a8397ec2c347261ec94d08afd1263a1bc"><div class="ttname"><a href="classCleanUp.html#a8397ec2c347261ec94d08afd1263a1bc">CleanUp::on_message_delete</a></div><div class="ttdeci">virtual void on_message_delete(const dpp::message_delete_t &amp;event) override</div><div class="ttdef"><b>Definition</b> CleanUp.cpp:64</div></div>
 <div class="ttc" id="aclassIMessageCommand_html"><div class="ttname"><a href="classIMessageCommand.html">IMessageCommand</a></div><div class="ttdef"><b>Definition</b> IMessageCommand.hpp:6</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

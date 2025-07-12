@@ -1,12 +1,29 @@
+/*
+ *  (c) Copyright erarnitox.de - All rights reserved
+ *  Author: Erarnitox <david@erarnitox.de>
+ *
+ *  License: MIT License
+ *
+ *  Description:
+ *
+ *  Documentation: https://droplet.erarnitox.de/doxygen/html/
+ */
+
 #include "LearnCPPCommand.hpp"
 
 #include <message.h>
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 LearnCPPCommand::LearnCPPCommand() : IGlobalSlashCommand() {
 	this->command_name = "learn_cpp";
 	this->command_description = "Get started learning modern C++ today!";
 }
 
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 void LearnCPPCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	if (event.command.get_command_name() != this->command_name) {
 		return;
