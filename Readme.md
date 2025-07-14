@@ -7,6 +7,14 @@ Droplet is a feature-rich Discord bot written in modern C++ to enhance your disc
 It offers a wide range of functionalities and commands to engage with your community, moderate, entertain users.
 With its sleek design and powerful capabilities, Droplet is the perfect companion for managing your Discord server.
 
+<p align="center">
+    <a href="https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=2215135296&scope=bot">Invite to Server</a>
+    |
+    <a href="https://top.gg/bot/1071149612305498162">Top.gg</a>
+    |
+    <a href="https://droplet.erarnitox.de">Website</a>
+</p>
+
 ---
 
 ## Features
