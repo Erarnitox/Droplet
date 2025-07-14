@@ -62,20 +62,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		embed.add_field(std::string("/").append(cmd->command_name).append(options_string), cmd->command_description);
 	}
 
-	/*
-	//TODO: figure out how to have hyperlinks in the footer
-	- make a tutorial video about droplet
-	- write a usage guide and link it here
-	constexpr auto invite_link{
-		"https://discord.com/api/oauth2/authorize?client_id=1071149612305498162&permissions=8&scope=bot"};
-	constexpr auto usage_guide{"https://droplet.erarnitox.de/guide.html"};
-	constexpr auto erarnitox_link{"https://erarnitox.de"};
-	*/
-	auto footer{dpp::embed_footer()};
-	/*
-	footer.set_text(std::format(
-		"[Invite this Bot]({}) [Usage Manual]({}) [Visit Erarnitox]({})", invite_link, usage_guide, erarnitox_link));
-	*/
+	auto footer{ dpp::embed_footer() };
 	footer.set_text("Visit https://erarnitox.de");
 	footer.set_icon(icon_url);
 
@@ -83,5 +70,4 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
-	// Bot::ctx->message_create(dpp::message(event.command.channel_id, embed).set_reference(event.command.id));
 }

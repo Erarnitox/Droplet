@@ -62,13 +62,9 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
 			if (param.first == "category") {
 				category = param.second;
 			}
-			if (param.first == "tags") {
-				// TODO: parse tags
-			}
-			if (param.first == "difficulty") {
-				// TODO: parse difficulty
-			}
 		}
+
+		// tags and difficulty get filtered client side
 
 		ResourceRepository repo;
 		auto resources{Poco::JSON::Array()};
