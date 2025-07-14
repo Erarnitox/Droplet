@@ -156,7 +156,7 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 		return;
 	}
 
-	Bot::ctx->guild_member_add_role(event.reacting_guild->id, event.reacting_member.user_id, dto.role_id);
+	Bot::ctx->guild_member_add_role(event.reacting_guild.id, event.reacting_member.user_id, dto.role_id);
 
 	return;
 }
@@ -190,7 +190,7 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 		return;
 	}
 
-	Bot::ctx->guild_member_remove_role(event.reacting_guild->id, event.reacting_user_id, dto.role_id);
+	Bot::ctx->guild_member_remove_role(event.reacting_guild.id, event.reacting_user_id, dto.role_id);
 
 	return;
 }

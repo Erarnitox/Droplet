@@ -224,6 +224,7 @@ var NAVTREEINDEX0 =
 "VerifyHandler_8hpp.html":[2,0,0,0,3,0,9],
 "VerifyHandler_8hpp_source.html":[2,0,0,0,3,0,9],
 "WarnCommand_8cpp.html":[2,0,0,0,1,22,0],
+"WarnCommand_8cpp.html#a3a33f1e8fab630ed898e0389b886c21c":[2,0,0,0,1,22,0,0],
 "WarnCommand_8hpp.html":[2,0,0,0,1,22,1],
 "WarnCommand_8hpp_source.html":[2,0,0,0,1,22,1],
 "WebUserDTO_8cpp.html":[2,0,0,0,1,0,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classBlacklistDTO.html#ad66799c3f78b8cde3a32458df8db5c46":[1,0,4,0],
 "classBlacklistDTO.html#ad9109cb4d9396fa267b01fb474e7db03":[1,0,4,3],
 "classBlacklistRepository.html":[1,0,5],
-"classBlacklistRepository.html#a04489af65e7d0dee28252cd35606b0bd":[1,0,5,4],
-"classBlacklistRepository.html#a06fe2e5e3242776e7cc9b6c7ab52aeed":[1,0,5,0]
+"classBlacklistRepository.html#a04489af65e7d0dee28252cd35606b0bd":[1,0,5,4]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"classUserRepository.html#a3e63accd025bf7b2e9fbebedca156439":[1,0,68,2],
 "classUserRepository.html#a675afb15461a95d7bda3e91f376c619f":[1,0,68,1],
 "classUserRepository.html#ab5c3499fb581da12dea954cc56c6f2fd":[1,0,68,4],
 "classUserRepository.html#afb9d2c2fa30988b2330ffe4e60daad45":[1,0,68,3],

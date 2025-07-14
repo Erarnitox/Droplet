@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classBlacklistRepository.html#a06fe2e5e3242776e7cc9b6c7ab52aeed":[1,0,5,0],
 "classBlacklistRepository.html#a355782c5e5bb2bdb1417f38b484b8078":[1,0,5,2],
 "classBlacklistRepository.html#a6b44e05e1503fc76dd3532907926a242":[1,0,5,1],
 "classBlacklistRepository.html#a873ff2f983d72927599778ea88d8e079":[1,0,5,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "classUserManager.html#a2c0c7e653e5594b00410302956cccd41":[1,0,67,1],
 "classUserManager.html#a82cbd2eef356989ff267b0b11b7b00e8":[1,0,67,0],
 "classUserRepository.html":[1,0,68],
-"classUserRepository.html#a1ae266557c77cd118fcb174b3205a4ac":[1,0,68,0],
-"classUserRepository.html#a3e63accd025bf7b2e9fbebedca156439":[1,0,68,2]
+"classUserRepository.html#a1ae266557c77cd118fcb174b3205a4ac":[1,0,68,0]
 };

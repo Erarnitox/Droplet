@@ -62,7 +62,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 		embed.add_field(std::string("/").append(cmd->command_name).append(options_string), cmd->command_description);
 	}
 
-	auto footer{ dpp::embed_footer() };
+	auto footer{dpp::embed_footer()};
 	footer.set_text("Visit https://erarnitox.de");
 	footer.set_icon(icon_url);
 

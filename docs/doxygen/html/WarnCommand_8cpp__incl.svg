@@ -12,9 +12,9 @@
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title=" ">
-<polygon fill="#999999" stroke="#666666" points="921.62,-424 792.38,-424 792.38,-392 921.62,-392 921.62,-424"/>
-<text xml:space="preserve" text-anchor="start" x="800.38" y="-410.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot_library/commands</text>
-<text xml:space="preserve" text-anchor="middle" x="857" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00">/warn/WarnCommand.cpp</text>
+<polygon fill="#999999" stroke="#666666" points="972.62,-424 843.38,-424 843.38,-392 972.62,-392 972.62,-424"/>
+<text xml:space="preserve" text-anchor="start" x="851.38" y="-410.5" font-family="Helvetica,sans-Serif" font-size="10.00">src/bot_library/commands</text>
+<text xml:space="preserve" text-anchor="middle" x="908" y="-398.5" font-family="Helvetica,sans-Serif" font-size="10.00">/warn/WarnCommand.cpp</text>
 </a>
 </g>
 </g>
@@ -31,8 +31,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M844.12,-391.55C837.4,-383.48 829.12,-373.55 822.1,-365.12"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="824.9,-363.01 815.81,-357.57 819.52,-367.49 824.9,-363.01"/>
+<path fill="none" stroke="#63b8ff" d="M881.99,-391.55C866.79,-382.52 847.69,-371.17 832.57,-362.19"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="834.52,-359.28 824.14,-357.18 830.95,-365.3 834.52,-359.28"/>
 </a>
 </g>
 </g>
@@ -49,8 +49,26 @@
 <g id="edge47_Node000001_Node000025" class="edge">
 <title>Node1&#45;&gt;Node25</title>
 <g id="a_edge47_Node000001_Node000025"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M870.13,-391.55C877,-383.48 885.43,-373.55 892.6,-365.12"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="895.21,-367.45 899.02,-357.56 889.88,-362.91 895.21,-367.45"/>
+<path fill="none" stroke="#63b8ff" d="M908,-391.55C908,-384.34 908,-375.66 908,-367.88"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="911.5,-367.92 908,-357.92 904.5,-367.92 911.5,-367.92"/>
+</a>
+</g>
+</g>
+<!-- Node26 -->
+<g id="Node000026" class="node">
+<title>Node26</title>
+<g id="a_Node000026"><a xlink:title=" ">
+<polygon fill="#e0e0e0" stroke="#999999" points="998,-356 958,-356 958,-336 998,-336 998,-356"/>
+<text xml:space="preserve" text-anchor="middle" x="978" y="-342.5" font-family="Helvetica,sans-Serif" font-size="10.00">role.h</text>
+</a>
+</g>
+</g>
+<!-- Node1&#45;&gt;Node26 -->
+<g id="edge48_Node000001_Node000026" class="edge">
+<title>Node1&#45;&gt;Node26</title>
+<g id="a_edge48_Node000001_Node000026"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M926.03,-391.55C935.95,-383.04 948.28,-372.48 958.44,-363.77"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="960.56,-366.56 965.87,-357.39 956,-361.24 960.56,-366.56"/>
 </a>
 </g>
 </g>
