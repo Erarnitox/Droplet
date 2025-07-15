@@ -111,7 +111,7 @@ Collaboration diagram for IRepository&lt; DTO &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab1c1f339472248cfbaab0a70a3df8b31" id="r_ab1c1f339472248cfbaab0a70a3df8b31"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1c1f339472248cfbaab0a70a3df8b31">create</a> (const DTO &amp;object) noexcept=0</td></tr>
 <tr class="memitem:a567274b192c3b9365860a0c8edcfc388" id="r_a567274b192c3b9365860a0c8edcfc388"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a567274b192c3b9365860a0c8edcfc388">remove</a> (size_t index) noexcept=0</td></tr>
-<tr class="memitem:a1994992b2ac07b0fcfe48b207b80dd77" id="r_a1994992b2ac07b0fcfe48b207b80dd77"><td class="memItemLeft" align="right" valign="top">virtual DTO&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1994992b2ac07b0fcfe48b207b80dd77">get</a> (size_t index) noexcept=0</td></tr>
+<tr class="memitem:abc84d16fcc0b6080cfd3bae92e710b9a" id="r_abc84d16fcc0b6080cfd3bae92e710b9a"><td class="memItemLeft" align="right" valign="top">virtual DTO&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc84d16fcc0b6080cfd3bae92e710b9a">get</a> (size_t index) const noexcept=0</td></tr>
 <tr class="memitem:a1d893789ba1a6dc13840ce204ea8bc4a" id="r_a1d893789ba1a6dc13840ce204ea8bc4a"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d893789ba1a6dc13840ce204ea8bc4a">update</a> (const DTO &amp;object) noexcept=0</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -144,8 +144,8 @@ template&lt;typename DTO&gt; </div>
 
 </div>
 </div>
-<a id="a1994992b2ac07b0fcfe48b207b80dd77" name="a1994992b2ac07b0fcfe48b207b80dd77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1994992b2ac07b0fcfe48b207b80dd77">&#9670;&#160;</a></span>get()</h2>
+<a id="abc84d16fcc0b6080cfd3bae92e710b9a" name="abc84d16fcc0b6080cfd3bae92e710b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc84d16fcc0b6080cfd3bae92e710b9a">&#9670;&#160;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +159,7 @@ template&lt;typename DTO&gt; </div>
           <td class="memname">virtual DTO <a class="el" href="classIRepository.html">IRepository</a>&lt; DTO &gt;::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -169,7 +169,7 @@ template&lt;typename DTO&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classBlacklistRepository.html#a6b44e05e1503fc76dd3532907926a242">BlacklistRepository</a>, <a class="el" href="classChallengeBadgeRepository.html#a2a6b2fc2ef3625ecad1468db763051d6">ChallengeBadgeRepository</a>, <a class="el" href="classChallengeRoleRepository.html#a262f47d381db6e81d137b2a766cdbe85">ChallengeRoleRepository</a>, <a class="el" href="classNotificationRepository.html#a5870dc22628341efe7f7393529f86f68">NotificationRepository</a>, <a class="el" href="classPortalRepository.html#af4e187c0575acfba6d40a359f15596d1">PortalRepository</a>, <a class="el" href="classReactionRoleRepository.html#a5ab9247deea7dc28f16b413d05aee910">ReactionRoleRepository</a>, <a class="el" href="classResourceRepository.html#a7dfca166d7a409399f85945f4de8501f">ResourceRepository</a>, <a class="el" href="classUserRepository.html#a675afb15461a95d7bda3e91f376c619f">UserRepository</a>, and <a class="el" href="classWebUserRepository.html#ad47f5f0b2fdfed29c4876798cf3356c9">WebUserRepository</a>.</p>
+<p>Implemented in <a class="el" href="classBlacklistRepository.html#ad9a44d59780635b1eacd120b46d20458">BlacklistRepository</a>, <a class="el" href="classChallengeBadgeRepository.html#add883c31ac3b9d3a20de37c66a6ff2fc">ChallengeBadgeRepository</a>, <a class="el" href="classChallengeRoleRepository.html#ad8ef19456c85b897ee2bbb56cd6b65db">ChallengeRoleRepository</a>, <a class="el" href="classNotificationRepository.html#a35b52c800fedcf57a945328382425f05">NotificationRepository</a>, <a class="el" href="classPortalRepository.html#af96683d396a08877c409a11927e897fb">PortalRepository</a>, <a class="el" href="classReactionRoleRepository.html#a5e013360d1ecb34f5ef80b4a07beb150">ReactionRoleRepository</a>, <a class="el" href="classResourceRepository.html#aa427c9e38bc0c9c67fee903baa3b6514">ResourceRepository</a>, <a class="el" href="classUserRepository.html#a995f3749e3ed3fb187717736daa1d709">UserRepository</a>, and <a class="el" href="classWebUserRepository.html#a5af2d3f1dd8be12dea1cac5a07647311">WebUserRepository</a>.</p>
 
 </div>
 </div>

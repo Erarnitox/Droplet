@@ -23,9 +23,9 @@ class PortalRepository : public IRepository<PortalDTO> {
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] PortalDTO get(size_t id) noexcept override;
+	[[nodiscard]] PortalDTO get(size_t id) const noexcept override;
 
 	[[nodiscard]] bool update(const PortalDTO& object) noexcept override;
 
-	[[nodiscard]] std::vector<PortalDTO> getAll() noexcept;
+	[[nodiscard]] std::vector<PortalDTO> getAll() const noexcept;
 };

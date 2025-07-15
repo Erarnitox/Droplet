@@ -71,7 +71,7 @@ bool UserRepository::update(const UserDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-UserDTO UserRepository::get(size_t user_id) noexcept {
+UserDTO UserRepository::get(size_t user_id) const noexcept {
 	const static std::string sql_string{"SELECT user_name, color, exp, is_subscribed FROM usr WHERE user_id=$1::int8"};
 
 	const auto result{database::execSelect(sql_string, user_id)};
@@ -89,7 +89,7 @@ UserDTO UserRepository::get(size_t user_id) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<UserDTO> UserRepository::getTopTen() noexcept {
+std::vector<UserDTO> UserRepository::getTopTen() const noexcept {
 	const static std::string sql_string{
 		std::string("SELECT user_id, user_name, color, exp "
 					"    FROM usr "

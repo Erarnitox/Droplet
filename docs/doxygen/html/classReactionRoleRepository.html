@@ -111,8 +111,8 @@ Collaboration diagram for ReactionRoleRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a63bedd4cc4765bd7a0e13120c66539fb" id="r_a63bedd4cc4765bd7a0e13120c66539fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63bedd4cc4765bd7a0e13120c66539fb">create</a> (const <a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a> &amp;object) noexcept override</td></tr>
 <tr class="memitem:af3a1d3592f384ed42c208bbb5602bc66" id="r_af3a1d3592f384ed42c208bbb5602bc66"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3a1d3592f384ed42c208bbb5602bc66">remove</a> (size_t message_id) noexcept override</td></tr>
-<tr class="memitem:a5ab9247deea7dc28f16b413d05aee910" id="r_a5ab9247deea7dc28f16b413d05aee910"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ab9247deea7dc28f16b413d05aee910">get</a> (size_t message_id) noexcept override</td></tr>
-<tr class="memitem:ac2f4e3fbaf302da1737bc285f1cad5bf" id="r_ac2f4e3fbaf302da1737bc285f1cad5bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2f4e3fbaf302da1737bc285f1cad5bf">get</a> (size_t message_id, const std::string &amp;emoji) noexcept</td></tr>
+<tr class="memitem:a5e013360d1ecb34f5ef80b4a07beb150" id="r_a5e013360d1ecb34f5ef80b4a07beb150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e013360d1ecb34f5ef80b4a07beb150">get</a> (size_t message_id) const noexcept override</td></tr>
+<tr class="memitem:a8ffdbf74880b40894ae9202e10222804" id="r_a8ffdbf74880b40894ae9202e10222804"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ffdbf74880b40894ae9202e10222804">get</a> (size_t message_id, const std::string &amp;emoji) const noexcept</td></tr>
 <tr class="memitem:aa9bd9301e0f09ff334eca5b0a52018c6" id="r_aa9bd9301e0f09ff334eca5b0a52018c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9bd9301e0f09ff334eca5b0a52018c6">update</a> (const <a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a> &amp;object) noexcept override</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -143,8 +143,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a5ab9247deea7dc28f16b413d05aee910" name="a5ab9247deea7dc28f16b413d05aee910"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ab9247deea7dc28f16b413d05aee910">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
+<a id="a5e013360d1ecb34f5ef80b4a07beb150" name="a5e013360d1ecb34f5ef80b4a07beb150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e013360d1ecb34f5ef80b4a07beb150">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classReactionRoleDTO.html">ReactionRoleDTO</a> ReactionRoleRepository::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>message_id</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -166,12 +166,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIRepository.html#a1994992b2ac07b0fcfe48b207b80dd77">IRepository&lt; ReactionRoleDTO &gt;</a>.</p>
+<p>Implements <a class="el" href="classIRepository.html#abc84d16fcc0b6080cfd3bae92e710b9a">IRepository&lt; ReactionRoleDTO &gt;</a>.</p>
 
 </div>
 </div>
-<a id="ac2f4e3fbaf302da1737bc285f1cad5bf" name="ac2f4e3fbaf302da1737bc285f1cad5bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2f4e3fbaf302da1737bc285f1cad5bf">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+<a id="a8ffdbf74880b40894ae9202e10222804" name="a8ffdbf74880b40894ae9202e10222804"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ffdbf74880b40894ae9202e10222804">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,7 +187,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>emoji</em></span>&#160;)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>emoji</em></span>&#160;) const</td>
         </tr>
       </table>
   </td>

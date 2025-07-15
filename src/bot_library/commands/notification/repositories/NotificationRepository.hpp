@@ -23,9 +23,9 @@ class NotificationRepository : public IRepository<NotificationDTO> {
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] NotificationDTO get(size_t id) noexcept override;
+	[[nodiscard]] NotificationDTO get(size_t id) const noexcept override;
 
 	[[nodiscard]] bool update(const NotificationDTO& object) noexcept override;
 
-	[[nodiscard]] std::vector<NotificationDTO> getAll() noexcept;
+	[[nodiscard]] std::vector<NotificationDTO> getAll() const noexcept;
 };

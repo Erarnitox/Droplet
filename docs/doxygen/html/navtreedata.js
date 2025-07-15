@@ -61,7 +61,7 @@ var NAVTREEINDEX =
 [
 "AddResourcesCommand_8cpp.html",
 "classBlacklistRepository.html#a06fe2e5e3242776e7cc9b6c7ab52aeed",
-"classUserRepository.html#a3e63accd025bf7b2e9fbebedca156439"
+"classUserRepository.html#a8caf00b544639e6e35ff68ffbea0aaa2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

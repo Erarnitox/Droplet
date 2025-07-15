@@ -98,44 +98,47 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		// cheap way to sync replies
 		const auto& ref{event.msg.message_reference};
 		if (not ref.message_id.empty()) {
-			Bot::ctx->message_get(ref.message_id, ref.channel_id, [&](const dpp::confirmation_callback_t& callback) {
-				if (callback.is_error())
-					return;
+			Bot::ctx->message_get(
+				ref.message_id,
+				ref.channel_id,
+				[event = std::move(event), repo = std::move(repo)](const dpp::confirmation_callback_t& callback) {
+					if (callback.is_error())
+						return;
 
-				const auto& ref_msg{callback.get<dpp::message>()};
-				bool is_reply{false};
-				std::string reply_string;
+					const auto& ref_msg{callback.get<dpp::message>()};
+					bool is_reply{false};
+					std::string reply_string;
 
-				auto content = ref_msg.content.substr(0, 32);
+					auto content = ref_msg.content.substr(0, 32);
 
-				if (ref_msg.content.length() > 32) {
-					content.append("...");
-				}
+					if (ref_msg.content.length() > 32) {
+						content.append("...");
+					}
 
-				if (not ref_msg.author.is_bot()) {
-					is_reply = true;
-					reply_string = std::format("> _reply to:_ `[{}]: {}`\n", ref_msg.author.username, content);
-				} else if (ref_msg.author.id == Bot::ctx->me.id) {
-					is_reply = true;
-					reply_string = std::format("> _reply to:_ `{}`\n", content);
-				}
+					if (not ref_msg.author.is_bot()) {
+						is_reply = true;
+						reply_string = std::format("> _reply to:_ `[{}]: {}`\n", ref_msg.author.username, content);
+					} else if (ref_msg.author.id == Bot::ctx->me.id) {
+						is_reply = true;
+						reply_string = std::format("> _reply to:_ `{}`\n", content);
+					}
 
-				// build the message (template)
-				auto msg{dpp::message(0,
-									  std::format("{}[**{}**]: {}",
-												  (is_reply ? reply_string : ""),
-												  event.msg.author.username,
-												  event.msg.content))};
+					// build the message (template)
+					auto msg{dpp::message(0,
+										  std::format("{}[**{}**]: {}",
+													  (is_reply ? reply_string : ""),
+													  event.msg.author.username,
+													  event.msg.content))};
 
-				const std::vector<PortalDTO>& portals{repo.getAll()};
-				for (const PortalDTO& portal : portals) {
-					if (portal.channel_id == event.msg.channel_id)
-						continue;
+					const std::vector<PortalDTO>& portals{repo.getAll()};
+					for (const PortalDTO& portal : portals) {
+						if (portal.channel_id == event.msg.channel_id)
+							continue;
 
-					msg.set_channel_id(portal.channel_id);
-					Bot::ctx->message_create(msg);
-				}
-			});
+						msg.set_channel_id(portal.channel_id);
+						Bot::ctx->message_create(msg);
+					}
+				});
 		}
 	}
 }

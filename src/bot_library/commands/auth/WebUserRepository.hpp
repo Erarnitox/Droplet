@@ -25,15 +25,15 @@ class WebUserRepository : public IRepository<WebUserDTO> {
 
 	[[nodiscard]] bool remove(size_t user_id) noexcept override;
 
-	[[nodiscard]] WebUserDTO get(size_t user_id) noexcept override;
+	[[nodiscard]] WebUserDTO get(size_t user_id) const noexcept override;
 
-	[[nodiscard]] WebUserDTO get(const std::string& username) noexcept;
+	[[nodiscard]] WebUserDTO get(const std::string& username) const noexcept;
 
-	[[nodiscard]] std::vector<WebUserDTO> getAll() noexcept;
+	[[nodiscard]] std::vector<WebUserDTO> getAll() const noexcept;
 
 	[[nodiscard]] bool verify(const std::string& token, size_t clearance) noexcept;
 
-	[[nodiscard]] bool exists(const std::string& username) noexcept;
+	[[nodiscard]] bool exists(const std::string& username) const noexcept;
 
 	[[nodiscard]] bool update(const WebUserDTO& object) noexcept override;
 };

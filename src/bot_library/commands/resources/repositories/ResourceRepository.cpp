@@ -79,7 +79,7 @@ bool ResourceRepository::update(const ResourceDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ResourceDTO ResourceRepository::get(size_t id) noexcept {
+ResourceDTO ResourceRepository::get(size_t id) const noexcept {
 	(void)id;
 	/*
 	static std::string sql_string{"SELECT channel_id FROM welcome_channels WHERE guild_id=$1::int8"};
@@ -98,7 +98,7 @@ ResourceDTO ResourceRepository::get(size_t id) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) noexcept {
+std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) const noexcept {
 	std::string sql_string{
 		"SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags"
 		" FROM resources"};

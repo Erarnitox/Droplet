@@ -80,7 +80,7 @@ bool WebUserRepository::update(const WebUserDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-WebUserDTO WebUserRepository::get(size_t user_id) noexcept {
+WebUserDTO WebUserRepository::get(size_t user_id) const noexcept {
 	const static std::string sql_string{
 		"SELECT username, password, clearance, email, confirm_code, is_verified FROM users WHERE id=$1::int8"};
 
@@ -101,7 +101,7 @@ WebUserDTO WebUserRepository::get(size_t user_id) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-WebUserDTO WebUserRepository::get(const std::string& username) noexcept {
+WebUserDTO WebUserRepository::get(const std::string& username) const noexcept {
 	const static std::string sql_string{
 		"SELECT id, password, clearance, email, confirm_code, is_verified FROM users WHERE username=$1::varchar"};
 
@@ -122,7 +122,7 @@ WebUserDTO WebUserRepository::get(const std::string& username) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<WebUserDTO> WebUserRepository::getAll() noexcept {
+std::vector<WebUserDTO> WebUserRepository::getAll() const noexcept {
 	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, confirm_code, is_verified FROM users"};
 
@@ -150,7 +150,7 @@ std::vector<WebUserDTO> WebUserRepository::getAll() noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool WebUserRepository::exists(const std::string& username) noexcept {
+bool WebUserRepository::exists(const std::string& username) const noexcept {
 	const auto& dto{get(username)};
 	return dto.id != 0;
 }

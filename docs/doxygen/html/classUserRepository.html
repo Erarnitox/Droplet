@@ -111,9 +111,9 @@ Collaboration diagram for UserRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ae266557c77cd118fcb174b3205a4ac" id="r_a1ae266557c77cd118fcb174b3205a4ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae266557c77cd118fcb174b3205a4ac">create</a> (const <a class="el" href="classUserDTO.html">UserDTO</a> &amp;object) noexcept override</td></tr>
 <tr class="memitem:afb9d2c2fa30988b2330ffe4e60daad45" id="r_afb9d2c2fa30988b2330ffe4e60daad45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb9d2c2fa30988b2330ffe4e60daad45">remove</a> (size_t user_id) noexcept override</td></tr>
-<tr class="memitem:a675afb15461a95d7bda3e91f376c619f" id="r_a675afb15461a95d7bda3e91f376c619f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUserDTO.html">UserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a675afb15461a95d7bda3e91f376c619f">get</a> (size_t user_id) noexcept override</td></tr>
+<tr class="memitem:a995f3749e3ed3fb187717736daa1d709" id="r_a995f3749e3ed3fb187717736daa1d709"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUserDTO.html">UserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a995f3749e3ed3fb187717736daa1d709">get</a> (size_t user_id) const noexcept override</td></tr>
 <tr class="memitem:ab5c3499fb581da12dea954cc56c6f2fd" id="r_ab5c3499fb581da12dea954cc56c6f2fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5c3499fb581da12dea954cc56c6f2fd">update</a> (const <a class="el" href="classUserDTO.html">UserDTO</a> &amp;object) noexcept override</td></tr>
-<tr class="memitem:a3e63accd025bf7b2e9fbebedca156439" id="r_a3e63accd025bf7b2e9fbebedca156439"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classUserDTO.html">UserDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e63accd025bf7b2e9fbebedca156439">getTopTen</a> () noexcept</td></tr>
+<tr class="memitem:a8caf00b544639e6e35ff68ffbea0aaa2" id="r_a8caf00b544639e6e35ff68ffbea0aaa2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classUserDTO.html">UserDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8caf00b544639e6e35ff68ffbea0aaa2">getTopTen</a> () const noexcept</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a1ae266557c77cd118fcb174b3205a4ac" name="a1ae266557c77cd118fcb174b3205a4ac"></a>
@@ -143,8 +143,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a675afb15461a95d7bda3e91f376c619f" name="a675afb15461a95d7bda3e91f376c619f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a675afb15461a95d7bda3e91f376c619f">&#9670;&#160;</a></span>get()</h2>
+<a id="a995f3749e3ed3fb187717736daa1d709" name="a995f3749e3ed3fb187717736daa1d709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a995f3749e3ed3fb187717736daa1d709">&#9670;&#160;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classUserDTO.html">UserDTO</a> UserRepository::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>user_id</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -166,12 +166,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIRepository.html#a1994992b2ac07b0fcfe48b207b80dd77">IRepository&lt; UserDTO &gt;</a>.</p>
+<p>Implements <a class="el" href="classIRepository.html#abc84d16fcc0b6080cfd3bae92e710b9a">IRepository&lt; UserDTO &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a3e63accd025bf7b2e9fbebedca156439" name="a3e63accd025bf7b2e9fbebedca156439"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e63accd025bf7b2e9fbebedca156439">&#9670;&#160;</a></span>getTopTen()</h2>
+<a id="a8caf00b544639e6e35ff68ffbea0aaa2" name="a8caf00b544639e6e35ff68ffbea0aaa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8caf00b544639e6e35ff68ffbea0aaa2">&#9670;&#160;</a></span>getTopTen()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">std::vector&lt; <a class="el" href="classUserDTO.html">UserDTO</a> &gt; UserRepository::getTopTen </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>

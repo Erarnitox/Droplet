@@ -24,9 +24,9 @@ class UserRepository : public IRepository<UserDTO> {
 
 	[[nodiscard]] bool remove(size_t user_id) noexcept override;
 
-	[[nodiscard]] UserDTO get(size_t user_id) noexcept override;
+	[[nodiscard]] UserDTO get(size_t user_id) const noexcept override;
 
 	[[nodiscard]] bool update(const UserDTO& object) noexcept override;
 
-	[[nodiscard]] std::vector<UserDTO> getTopTen() noexcept;
+	[[nodiscard]] std::vector<UserDTO> getTopTen() const noexcept;
 };

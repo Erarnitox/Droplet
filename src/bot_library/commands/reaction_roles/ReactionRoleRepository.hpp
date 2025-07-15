@@ -24,9 +24,9 @@ class ReactionRoleRepository : public IRepository<ReactionRoleDTO> {
 
 	[[nodiscard]] bool remove(size_t message_id) noexcept override;
 
-	[[nodiscard]] ReactionRoleDTO get(size_t message_id) noexcept override;
+	[[nodiscard]] ReactionRoleDTO get(size_t message_id) const noexcept override;
 
-	[[nodiscard]] ReactionRoleDTO get(size_t message_id, const std::string& emoji) noexcept;
+	[[nodiscard]] ReactionRoleDTO get(size_t message_id, const std::string& emoji) const noexcept;
 
 	[[nodiscard]] bool update(const ReactionRoleDTO& object) noexcept override;
 };

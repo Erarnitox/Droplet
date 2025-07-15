@@ -24,7 +24,7 @@ class ChallengeRoleRepository : public IRepository<ChallengeRoleDTO> {
 
 	[[nodiscard]] bool remove(size_t messageId) noexcept override;
 
-	[[nodiscard]] ChallengeRoleDTO get(size_t messageId) noexcept override;
+	[[nodiscard]] ChallengeRoleDTO get(size_t messageId) const noexcept override;
 
 	[[nodiscard]] bool update(const ChallengeRoleDTO& object) noexcept override;
 };

@@ -57,7 +57,7 @@ bool BlacklistRepository::update(const BlacklistDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-BlacklistDTO BlacklistRepository::get(size_t id) noexcept {
+BlacklistDTO BlacklistRepository::get(size_t id) const noexcept {
 	(void)id;
 	return {};
 }
@@ -65,7 +65,7 @@ BlacklistDTO BlacklistRepository::get(size_t id) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<BlacklistDTO> BlacklistRepository::getAll() noexcept {
+std::vector<BlacklistDTO> BlacklistRepository::getAll() const noexcept {
 	const static std::string sql_string{"SELECT username FROM blacklist"};
 	const auto result{database::execSelectAll(sql_string)};
 

@@ -25,9 +25,9 @@ class BlacklistRepository : public IRepository<BlacklistDTO> {
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
 
-	[[nodiscard]] BlacklistDTO get(size_t id) noexcept override;
+	[[nodiscard]] BlacklistDTO get(size_t id) const noexcept override;
 
 	[[nodiscard]] bool update(const BlacklistDTO& object) noexcept override;
 
-	[[nodiscard]] std::vector<BlacklistDTO> getAll() noexcept;
+	[[nodiscard]] std::vector<BlacklistDTO> getAll() const noexcept;
 };

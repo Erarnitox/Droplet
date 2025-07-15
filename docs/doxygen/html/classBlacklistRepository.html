@@ -111,9 +111,9 @@ Collaboration diagram for BlacklistRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a06fe2e5e3242776e7cc9b6c7ab52aeed" id="r_a06fe2e5e3242776e7cc9b6c7ab52aeed"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06fe2e5e3242776e7cc9b6c7ab52aeed">create</a> (const <a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> &amp;object) noexcept override</td></tr>
 <tr class="memitem:a873ff2f983d72927599778ea88d8e079" id="r_a873ff2f983d72927599778ea88d8e079"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a873ff2f983d72927599778ea88d8e079">remove</a> (size_t id) noexcept override</td></tr>
-<tr class="memitem:a6b44e05e1503fc76dd3532907926a242" id="r_a6b44e05e1503fc76dd3532907926a242"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBlacklistDTO.html">BlacklistDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b44e05e1503fc76dd3532907926a242">get</a> (size_t id) noexcept override</td></tr>
+<tr class="memitem:ad9a44d59780635b1eacd120b46d20458" id="r_ad9a44d59780635b1eacd120b46d20458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classBlacklistDTO.html">BlacklistDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9a44d59780635b1eacd120b46d20458">get</a> (size_t id) const noexcept override</td></tr>
 <tr class="memitem:a04489af65e7d0dee28252cd35606b0bd" id="r_a04489af65e7d0dee28252cd35606b0bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04489af65e7d0dee28252cd35606b0bd">update</a> (const <a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> &amp;object) noexcept override</td></tr>
-<tr class="memitem:a355782c5e5bb2bdb1417f38b484b8078" id="r_a355782c5e5bb2bdb1417f38b484b8078"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a355782c5e5bb2bdb1417f38b484b8078">getAll</a> () noexcept</td></tr>
+<tr class="memitem:af9b3843f79df8e8f1b3d25d25bd24136" id="r_af9b3843f79df8e8f1b3d25d25bd24136"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9b3843f79df8e8f1b3d25d25bd24136">getAll</a> () const noexcept</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a06fe2e5e3242776e7cc9b6c7ab52aeed" name="a06fe2e5e3242776e7cc9b6c7ab52aeed"></a>
@@ -143,8 +143,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a6b44e05e1503fc76dd3532907926a242" name="a6b44e05e1503fc76dd3532907926a242"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b44e05e1503fc76dd3532907926a242">&#9670;&#160;</a></span>get()</h2>
+<a id="ad9a44d59780635b1eacd120b46d20458" name="ad9a44d59780635b1eacd120b46d20458"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a44d59780635b1eacd120b46d20458">&#9670;&#160;</a></span>get()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> BlacklistRepository::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -166,12 +166,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIRepository.html#a1994992b2ac07b0fcfe48b207b80dd77">IRepository&lt; BlacklistDTO &gt;</a>.</p>
+<p>Implements <a class="el" href="classIRepository.html#abc84d16fcc0b6080cfd3bae92e710b9a">IRepository&lt; BlacklistDTO &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a355782c5e5bb2bdb1417f38b484b8078" name="a355782c5e5bb2bdb1417f38b484b8078"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a355782c5e5bb2bdb1417f38b484b8078">&#9670;&#160;</a></span>getAll()</h2>
+<a id="af9b3843f79df8e8f1b3d25d25bd24136" name="af9b3843f79df8e8f1b3d25d25bd24136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9b3843f79df8e8f1b3d25d25bd24136">&#9670;&#160;</a></span>getAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">std::vector&lt; <a class="el" href="classBlacklistDTO.html">BlacklistDTO</a> &gt; BlacklistRepository::getAll </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>

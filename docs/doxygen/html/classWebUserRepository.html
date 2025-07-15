@@ -111,11 +111,11 @@ Collaboration diagram for WebUserRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae647fa8dec8a088e8b62e28f4de0875b" id="r_ae647fa8dec8a088e8b62e28f4de0875b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae647fa8dec8a088e8b62e28f4de0875b">create</a> (const <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &amp;object) noexcept override</td></tr>
 <tr class="memitem:a0192cd043f2e24ced319fb698170c6a5" id="r_a0192cd043f2e24ced319fb698170c6a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0192cd043f2e24ced319fb698170c6a5">remove</a> (size_t user_id) noexcept override</td></tr>
-<tr class="memitem:ad47f5f0b2fdfed29c4876798cf3356c9" id="r_ad47f5f0b2fdfed29c4876798cf3356c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWebUserDTO.html">WebUserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad47f5f0b2fdfed29c4876798cf3356c9">get</a> (size_t user_id) noexcept override</td></tr>
-<tr class="memitem:a1048e9c1f0b8dcd96576cbaf5c6862b3" id="r_a1048e9c1f0b8dcd96576cbaf5c6862b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWebUserDTO.html">WebUserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1048e9c1f0b8dcd96576cbaf5c6862b3">get</a> (const std::string &amp;username) noexcept</td></tr>
-<tr class="memitem:a61097e00faa70588898e07d340cf9814" id="r_a61097e00faa70588898e07d340cf9814"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61097e00faa70588898e07d340cf9814">getAll</a> () noexcept</td></tr>
+<tr class="memitem:a5af2d3f1dd8be12dea1cac5a07647311" id="r_a5af2d3f1dd8be12dea1cac5a07647311"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWebUserDTO.html">WebUserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5af2d3f1dd8be12dea1cac5a07647311">get</a> (size_t user_id) const noexcept override</td></tr>
+<tr class="memitem:a528f33ec3cd9574f2758556f7fbb26ac" id="r_a528f33ec3cd9574f2758556f7fbb26ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classWebUserDTO.html">WebUserDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a528f33ec3cd9574f2758556f7fbb26ac">get</a> (const std::string &amp;username) const noexcept</td></tr>
+<tr class="memitem:a584e3e298e6c6b69f445ba849545f964" id="r_a584e3e298e6c6b69f445ba849545f964"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a584e3e298e6c6b69f445ba849545f964">getAll</a> () const noexcept</td></tr>
 <tr class="memitem:a70942544175ef9e373b78256045c915c" id="r_a70942544175ef9e373b78256045c915c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70942544175ef9e373b78256045c915c">verify</a> (const std::string &amp;token, size_t clearance) noexcept</td></tr>
-<tr class="memitem:aeeff2bfe8a699b1a6c348a27990eee68" id="r_aeeff2bfe8a699b1a6c348a27990eee68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeeff2bfe8a699b1a6c348a27990eee68">exists</a> (const std::string &amp;username) noexcept</td></tr>
+<tr class="memitem:a36c9a81840063617290508846bcd886e" id="r_a36c9a81840063617290508846bcd886e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36c9a81840063617290508846bcd886e">exists</a> (const std::string &amp;username) const noexcept</td></tr>
 <tr class="memitem:a03c160b919dfc2f85bfe7979f1bfc8f2" id="r_a03c160b919dfc2f85bfe7979f1bfc8f2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03c160b919dfc2f85bfe7979f1bfc8f2">update</a> (const <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &amp;object) noexcept override</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -146,8 +146,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aeeff2bfe8a699b1a6c348a27990eee68" name="aeeff2bfe8a699b1a6c348a27990eee68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeeff2bfe8a699b1a6c348a27990eee68">&#9670;&#160;</a></span>exists()</h2>
+<a id="a36c9a81840063617290508846bcd886e" name="a36c9a81840063617290508846bcd886e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36c9a81840063617290508846bcd886e">&#9670;&#160;</a></span>exists()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +159,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">bool WebUserRepository::exists </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -171,8 +171,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a1048e9c1f0b8dcd96576cbaf5c6862b3" name="a1048e9c1f0b8dcd96576cbaf5c6862b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1048e9c1f0b8dcd96576cbaf5c6862b3">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
+<a id="a528f33ec3cd9574f2758556f7fbb26ac" name="a528f33ec3cd9574f2758556f7fbb26ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a528f33ec3cd9574f2758556f7fbb26ac">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,7 +184,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classWebUserDTO.html">WebUserDTO</a> WebUserRepository::get </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>username</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -196,8 +196,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad47f5f0b2fdfed29c4876798cf3356c9" name="ad47f5f0b2fdfed29c4876798cf3356c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad47f5f0b2fdfed29c4876798cf3356c9">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+<a id="a5af2d3f1dd8be12dea1cac5a07647311" name="a5af2d3f1dd8be12dea1cac5a07647311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5af2d3f1dd8be12dea1cac5a07647311">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +209,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classWebUserDTO.html">WebUserDTO</a> WebUserRepository::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>user_id</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -219,12 +219,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIRepository.html#a1994992b2ac07b0fcfe48b207b80dd77">IRepository&lt; WebUserDTO &gt;</a>.</p>
+<p>Implements <a class="el" href="classIRepository.html#abc84d16fcc0b6080cfd3bae92e710b9a">IRepository&lt; WebUserDTO &gt;</a>.</p>
 
 </div>
 </div>
-<a id="a61097e00faa70588898e07d340cf9814" name="a61097e00faa70588898e07d340cf9814"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61097e00faa70588898e07d340cf9814">&#9670;&#160;</a></span>getAll()</h2>
+<a id="a584e3e298e6c6b69f445ba849545f964" name="a584e3e298e6c6b69f445ba849545f964"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a584e3e298e6c6b69f445ba849545f964">&#9670;&#160;</a></span>getAll()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,7 +236,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">std::vector&lt; <a class="el" href="classWebUserDTO.html">WebUserDTO</a> &gt; WebUserRepository::getAll </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>

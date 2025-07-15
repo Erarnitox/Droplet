@@ -68,7 +68,7 @@ bool PortalRepository::update(const PortalDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-PortalDTO PortalRepository::get(size_t id) noexcept {
+PortalDTO PortalRepository::get(size_t id) const noexcept {
 	const std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=" + std::to_string(id)};
 
 	const auto result{database::execSelect(sql_string)};
@@ -83,7 +83,7 @@ PortalDTO PortalRepository::get(size_t id) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-std::vector<PortalDTO> PortalRepository::getAll() noexcept {
+std::vector<PortalDTO> PortalRepository::getAll() const noexcept {
 	const static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
 	const auto result{database::execSelectAll(sql_string)};
 

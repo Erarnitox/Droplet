@@ -1,31 +1,30 @@
 <map id="src/bot_library/commands/challenge_role/ChallengeRoleRepository.cpp" name="src/bot_library/commands/challenge_role/ChallengeRoleRepository.cpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="142,5,426,48"/>
-<area shape="rect" id="Node000002" href="$ChallengeRoleRepository_8hpp.html" title=" " alt="" coords="53,96,246,123"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,51,185,90,182,85,248,46"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,245,70,272"/>
-<area shape="poly" id="edge15_Node000001_Node000004" title=" " alt="" coords="143,46,89,66,65,80,43,98,25,120,17,142,16,167,20,197,29,230,24,231,15,198,11,167,12,141,20,118,40,94,62,76,87,61,141,41"/>
-<area shape="rect" id="Node000005" href="$ChallengeRoleDTO_8hpp.html" title=" " alt="" coords="166,171,325,197"/>
-<area shape="poly" id="edge17_Node000001_Node000005" title=" " alt="" coords="282,49,255,156,250,155,277,48"/>
-<area shape="rect" id="Node000010" href="$Database_8hpp.html" title=" " alt="" coords="349,171,451,197"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="301,47,384,156,380,160,297,50"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="510,245,568,272"/>
-<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="314,46,384,100,465,169,522,231,518,235,461,173,381,104,311,50"/>
-<area shape="rect" id="Node000003" href="$IRepository_8hpp.html" title=" " alt="" coords="29,171,142,197"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="140,125,109,161,105,157,136,121"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="168,121,218,159,215,163,165,125"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="79,199,56,234,52,231,75,196"/>
-<area shape="rect" id="Node000006" href="$RowDTOAdapter_8hpp.html" title=" " alt="" coords="194,245,340,272"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="252,197,261,230,256,231,247,199"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="116,245,170,272"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="229,200,175,238,172,234,226,196"/>
-<area shape="rect" id="Node000007" href="$DatabaseBackend_8hpp.html" title=" " alt="" coords="245,320,398,347"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="278,271,305,306,301,309,274,274"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="281,395,362,421"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="324,347,324,379,319,379,319,347"/>
-<area shape="poly" id="edge14_Node000010_Node000006" title=" " alt="" coords="378,200,304,240,302,235,376,196"/>
-<area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="396,199,338,307,333,305,391,197"/>
-<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="353,201,185,247,183,242,352,195"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="415,245,486,272"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="411,196,436,231,431,234,407,199"/>
-<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="426,196,502,235,500,240,423,200"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="53,5,337,48"/>
+<area shape="rect" id="Node000002" href="$ChallengeRoleRepository_8hpp.html" title=" " alt="" coords="32,96,225,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,50,151,86,146,82,176,47"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="7,245,71,272"/>
+<area shape="poly" id="edge15_Node000001_Node000004" title=" " alt="" coords="86,51,51,70,23,98,14,113,10,130,10,166,18,201,29,230,24,232,12,202,4,166,5,129,9,111,18,94,48,66,84,46"/>
+<area shape="rect" id="Node000005" href="$ChallengeRoleDTO_8hpp.html" title=" " alt="" coords="167,171,327,197"/>
+<area shape="poly" id="edge16_Node000001_Node000005" title=" " alt="" coords="213,47,228,69,240,95,247,126,250,155,245,155,242,127,235,97,223,72,209,50"/>
+<area shape="rect" id="Node000010" href="$Database_8hpp.html" title=" " alt="" coords="351,171,453,197"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="224,46,374,159,371,163,221,51"/>
+<area shape="rect" id="Node000003" href="$IRepository_8hpp.html" title=" " alt="" coords="31,171,143,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,125,104,159,99,156,119,122"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="150,121,215,160,212,165,148,125"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="81,199,58,234,53,231,76,196"/>
+<area shape="rect" id="Node000006" href="$RowDTOAdapter_8hpp.html" title=" " alt="" coords="141,245,287,272"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="244,199,228,232,223,230,239,197"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="311,245,364,272"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="264,196,312,234,309,238,261,200"/>
+<area shape="rect" id="Node000007" href="$DatabaseBackend_8hpp.html" title=" " alt="" coords="230,320,384,347"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="232,270,281,308,277,313,228,275"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="266,395,348,421"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="310,347,310,379,304,379,304,347"/>
+<area shape="poly" id="edge14_Node000010_Node000006" title=" " alt="" coords="370,200,262,242,260,237,368,195"/>
+<area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="403,198,396,233,379,273,361,295,341,313,337,309,357,291,374,271,391,232,398,197"/>
+<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="393,200,361,235,357,232,389,196"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="439,245,511,272"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="416,196,453,232,450,236,413,200"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="534,245,592,272"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="431,195,522,236,520,241,429,200"/>
 </map>

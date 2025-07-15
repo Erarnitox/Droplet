@@ -33,21 +33,21 @@ void warn_user(const dpp::slashcommand_t& event,
 	const auto role_id{warned_role.id};
 
 	Bot::ctx->guild_get_member(
-		guild_id, user_id, [event, guild_id, user_id, role_id](const dpp::confirmation_callback_t& cc_member) {
+		guild_id, user_id, [event = std::move(event), role_id](const dpp::confirmation_callback_t& cc_member) {
 			if (cc_member.is_error()) {
 				event.reply("Couldn't get user details!");
 				return;
 			}
-
+			
 			const auto member{std::get<dpp::guild_member>(cc_member.value)};
 			const auto username{member.get_mention()};
 			const auto member_roles{member.get_roles()};
 
 			if (std::find(member_roles.begin(), member_roles.end(), role_id) != member_roles.end()) {
-				Bot::ctx->guild_ban_add(guild_id, user_id);
+				Bot::ctx->guild_ban_add(member.guild_id, member.user_id);
 				event.reply(username + " has been banned from the server for repeated violation of rules");
 			} else {
-				Bot::ctx->guild_member_add_role(guild_id, user_id, role_id);
+				Bot::ctx->guild_member_add_role(member.guild_id, member.user_id, role_id);
 				event.reply(username + " has been warned!");
 			}
 		});

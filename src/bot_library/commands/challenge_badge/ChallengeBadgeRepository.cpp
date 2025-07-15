@@ -69,7 +69,7 @@ bool ChallengeBadgeRepository::update(const ChallengeBadgeDTO& object) noexcept 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) noexcept {
+ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) const noexcept {
 	const static std::string sql_string{
 		"SELECT badge_emoji, exp, flag, guild_name FROM challenge_badges WHERE message_id=$1::int8"};
 

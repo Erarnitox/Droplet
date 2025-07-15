@@ -111,8 +111,8 @@ Collaboration diagram for ResourceRepository:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cc1556b456230f3d5abc1328ca4c797" id="r_a4cc1556b456230f3d5abc1328ca4c797"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cc1556b456230f3d5abc1328ca4c797">create</a> (const <a class="el" href="classResourceDTO.html">ResourceDTO</a> &amp;object) noexcept override</td></tr>
 <tr class="memitem:a870dcc704af4a1ecbc8dd1a509edef9f" id="r_a870dcc704af4a1ecbc8dd1a509edef9f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a870dcc704af4a1ecbc8dd1a509edef9f">remove</a> (size_t id) noexcept override</td></tr>
-<tr class="memitem:a7dfca166d7a409399f85945f4de8501f" id="r_a7dfca166d7a409399f85945f4de8501f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classResourceDTO.html">ResourceDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dfca166d7a409399f85945f4de8501f">get</a> (size_t id) noexcept override</td></tr>
-<tr class="memitem:aaca126c55312e84b87906c16428d3a84" id="r_aaca126c55312e84b87906c16428d3a84"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classResourceDTO.html">ResourceDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaca126c55312e84b87906c16428d3a84">get</a> (const std::string &amp;category) noexcept</td></tr>
+<tr class="memitem:aa427c9e38bc0c9c67fee903baa3b6514" id="r_aa427c9e38bc0c9c67fee903baa3b6514"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classResourceDTO.html">ResourceDTO</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa427c9e38bc0c9c67fee903baa3b6514">get</a> (size_t id) const noexcept override</td></tr>
+<tr class="memitem:a5952fc2341b678abe6b337ef16c3249f" id="r_a5952fc2341b678abe6b337ef16c3249f"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classResourceDTO.html">ResourceDTO</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5952fc2341b678abe6b337ef16c3249f">get</a> (const std::string &amp;category) const noexcept</td></tr>
 <tr class="memitem:a28f0b9f9cf4c605207b9d26b1fe28689" id="r_a28f0b9f9cf4c605207b9d26b1fe28689"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a28f0b9f9cf4c605207b9d26b1fe28689">update</a> (const <a class="el" href="classResourceDTO.html">ResourceDTO</a> &amp;object) noexcept override</td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
@@ -143,8 +143,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaca126c55312e84b87906c16428d3a84" name="aaca126c55312e84b87906c16428d3a84"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaca126c55312e84b87906c16428d3a84">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
+<a id="a5952fc2341b678abe6b337ef16c3249f" name="a5952fc2341b678abe6b337ef16c3249f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5952fc2341b678abe6b337ef16c3249f">&#9670;&#160;</a></span>get() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +156,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">std::vector&lt; <a class="el" href="classResourceDTO.html">ResourceDTO</a> &gt; ResourceRepository::get </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>category</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -168,8 +168,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7dfca166d7a409399f85945f4de8501f" name="a7dfca166d7a409399f85945f4de8501f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dfca166d7a409399f85945f4de8501f">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
+<a id="aa427c9e38bc0c9c67fee903baa3b6514" name="aa427c9e38bc0c9c67fee903baa3b6514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa427c9e38bc0c9c67fee903baa3b6514">&#9670;&#160;</a></span>get() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,7 +181,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname"><a class="el" href="classResourceDTO.html">ResourceDTO</a> ResourceRepository::get </td>
           <td>(</td>
           <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -191,7 +191,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="classIRepository.html#a1994992b2ac07b0fcfe48b207b80dd77">IRepository&lt; ResourceDTO &gt;</a>.</p>
+<p>Implements <a class="el" href="classIRepository.html#abc84d16fcc0b6080cfd3bae92e710b9a">IRepository&lt; ResourceDTO &gt;</a>.</p>
 
 </div>
 </div>

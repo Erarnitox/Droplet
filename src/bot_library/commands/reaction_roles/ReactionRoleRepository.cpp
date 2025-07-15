@@ -13,7 +13,6 @@
 
 #include <Database.hpp>
 #include <cstddef>
-#include <vector>
 
 #include "ReactionRoleDTO.hpp"
 
@@ -70,14 +69,14 @@ bool ReactionRoleRepository::update(const ReactionRoleDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ReactionRoleDTO ReactionRoleRepository::get(size_t message_id) noexcept {
+ReactionRoleDTO ReactionRoleRepository::get(size_t message_id) const noexcept {
 	return {0, message_id, 0, ""};
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string& emoji) noexcept {
+ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string& emoji) const noexcept {
 	const static std::string sql_string{
 		"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
 

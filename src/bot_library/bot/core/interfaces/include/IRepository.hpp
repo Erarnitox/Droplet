@@ -22,7 +22,7 @@ class IRepository {
 
 	[[nodiscard]] virtual bool remove(size_t index) noexcept = 0;
 
-	[[nodiscard]] virtual DTO get(size_t index) noexcept = 0;
+	[[nodiscard]] virtual DTO get(size_t index) const noexcept = 0;
 
 	[[nodiscard]] virtual bool update(const DTO& object) noexcept = 0;
 };

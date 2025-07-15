@@ -13,7 +13,6 @@
 
 #include <Database.hpp>
 #include <cstddef>
-#include <vector>
 
 #include "ChallengeRoleDTO.hpp"
 
@@ -70,7 +69,7 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) noexcept {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) noexcept {
+ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) const noexcept {
 	const static std::string sql_string{"SELECT role_id, flag FROM challenge_roles WHERE message_id=$1::int8"};
 
 	const auto result{database::execSelect(sql_string, messageId)};

@@ -9,6 +9,6 @@ var searchData=
   ['execquery_6',['execQuery',['../namespacedatabase.html#a93d0695f576fbed2473613202a49f18c',1,'database']]],
   ['execselect_7',['execSelect',['../namespacedatabase.html#abd8f8b4ba43768a73c508f6664382ec1',1,'database']]],
   ['execselectall_8',['execSelectAll',['../namespacedatabase.html#a06985d2541356fd010fac89a0de557ec',1,'database']]],
-  ['exists_9',['exists',['../classWebUserRepository.html#aeeff2bfe8a699b1a6c348a27990eee68',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#ac1995532f62ad8a468616ebba6ca219c',1,'LatestEventsRepository::exists()']]],
+  ['exists_9',['exists',['../classWebUserRepository.html#a36c9a81840063617290508846bcd886e',1,'WebUserRepository::exists()'],['../classLatestEventsRepository.html#ac1995532f62ad8a468616ebba6ca219c',1,'LatestEventsRepository::exists()']]],
   ['exp_10',['exp',['../classChallengeBadgeDTO.html#a82f79f139c60a6b40adfc88c9b9fd1f8',1,'ChallengeBadgeDTO::exp'],['../classUserDTO.html#ad1aeb3ee28c13b927062969eec30027b',1,'UserDTO::exp']]]
 ];
