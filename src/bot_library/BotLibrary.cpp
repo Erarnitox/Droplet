@@ -43,7 +43,7 @@ void start_bot(const bool IS_TEST) {
 		const auto db_connection_string{read_database_credentials("db_connection.txt")};
 
 		const auto connected{Database::connect(db_connection_string)};
-		if (!connected) {
+		if (not connected) {
 			return;
 		}
 	} catch (const char* const error_message) {

@@ -38,7 +38,7 @@ void warn_user(const dpp::slashcommand_t& event,
 				event.reply("Couldn't get user details!");
 				return;
 			}
-			
+
 			const auto member{std::get<dpp::guild_member>(cc_member.value)};
 			const auto username{member.get_mention()};
 			const auto member_roles{member.get_roles()};
