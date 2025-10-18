@@ -46,7 +46,7 @@ bool ResourceRepository::create(const ResourceDTO& object) noexcept {
 //
 //-----------------------------------------------------
 bool ResourceRepository::remove(size_t id) noexcept {
-	const static std::string sql_string{"DELETE FROM resources WHERE id = $1::int8"};
+	const static std::string sql_string{"DELETE FROM resources WHERE id=$1::int8"};
 
 	if (not Database::hasConnection()) {
 		return false;
@@ -61,7 +61,7 @@ bool ResourceRepository::remove(size_t id) noexcept {
 bool ResourceRepository::update(const ResourceDTO& object) noexcept {
 	(void)object;
 	/*
-	static std::string sql_string{"UPDATE welcome_channels SET channel_id = $2::Int8 WHERE guild_id = $1"};
+	static std::string sql_string{"UPDATE welcome_channels SET channel_id=$1::int8 WHERE guild_id=$2::int8"};
 
 	if (!Database::hasConnection()) {
 		return false;
@@ -71,7 +71,7 @@ bool ResourceRepository::update(const ResourceDTO& object) noexcept {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.guild_id, object.channel_id);
+	return database::execQuery(sql_string, object.channel_id, object.guild_id);
 	*/
 	return false;
 }
@@ -105,7 +105,7 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 
 	const bool is_wildcard = category == "all" || category.empty() || category == "*";
 	if (not is_wildcard) {
-		sql_string.append(" WHERE category = ?");
+		sql_string.append(" WHERE category=$1::varchar");
 	}
 
 	const auto result = database::execSelectAll(sql_string, category);
