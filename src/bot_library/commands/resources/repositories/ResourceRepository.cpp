@@ -108,7 +108,10 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 		sql_string.append(" WHERE category=$1::varchar");
 	}
 
-	const auto result = database::execSelectAll(sql_string, category);
+	const auto result{ is_wildcard ?
+    database::execSelectAll(sql_string) :
+    database::execSelectAll(sql_string, category)
+  };
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());
