@@ -105,10 +105,10 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 
 	const bool is_wildcard = category == "all" || category.empty() || category == "*";
 	if (not is_wildcard) {
-		sql_string.append(" WHERE category LIKE " + category);
+		sql_string.append(" WHERE category = ?");
 	}
 
-	const auto result = database::execSelectAll(sql_string);
+	const auto result = database::execSelectAll(sql_string, category);
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());
