@@ -15,7 +15,9 @@
       "cacheVariables" : {
           "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
           "CMAKE_BUILD_TYPE" : "Debug",
-          "CMAKE_CXX_FLAGS_EXPERIMENTAL" : "-fsanitize=address,undefined,leak",
+          "CMAKE_CXX_FLAGS" : "-fsanitize=address,undefined,leak -fno-omit-frame-pointer -g",
+          "CMAKE_EXE_LINKER_FLAGS": "-fsanitize=address,undefined,leak",
+          "CMAKE_SHARED_LINKER_FLAGS": "-fsanitize=address,undefined,leak",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug",
           "CMAKE_CXX_COMPILER": "clang++",
           "CMAKE_C_COMPILER": "clang",
