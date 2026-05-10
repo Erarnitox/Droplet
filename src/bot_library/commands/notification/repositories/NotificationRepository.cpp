@@ -20,9 +20,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-NotificationRepository::NotificationRepository() : executor_(DatabaseExecutor::application_instance()) {}
+NotificationRepository::NotificationRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-NotificationRepository::NotificationRepository(DatabaseExecutor& executor) : executor_(executor) {}
+NotificationRepository::NotificationRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

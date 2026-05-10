@@ -13,7 +13,10 @@
 #include <EmailClient.hpp>
 #include <chrono>
 #include <cstring>
+#include <iomanip>
 #include <iostream>
+#include <locale>
+#include <sstream>
 
 #include "curl/curl.h"
 

@@ -17,6 +17,7 @@ var dir_261c5c8db3e2632ea4bb1b96cd6e78dc =
     [ "portal", "dir_7cc000a715c59c08d2b57e79abb2c661.html", "dir_7cc000a715c59c08d2b57e79abb2c661" ],
     [ "profile", "dir_3f526b2c6f77046a2bd3d6f486c710c8.html", "dir_3f526b2c6f77046a2bd3d6f486c710c8" ],
     [ "reaction_roles", "dir_55709f21cee890691a392e71066e61b8.html", "dir_55709f21cee890691a392e71066e61b8" ],
+    [ "registration", "dir_0c373d8db6e5810cf6a9d12b774cb07c.html", "dir_0c373d8db6e5810cf6a9d12b774cb07c" ],
     [ "reminder", "dir_3e8cc6431741829dffe86c5cfebdd20b.html", "dir_3e8cc6431741829dffe86c5cfebdd20b" ],
     [ "resources", "dir_4664096a0ece9a7aba46a7b7bb421972.html", "dir_4664096a0ece9a7aba46a7b7bb421972" ],
     [ "roll", "dir_01a9593c77408e73511ed5f78e4e0ebc.html", "dir_01a9593c77408e73511ed5f78e4e0ebc" ],

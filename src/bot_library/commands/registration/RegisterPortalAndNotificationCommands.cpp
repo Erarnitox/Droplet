@@ -5,8 +5,6 @@
  *  License: MIT License
  */
 
-#include "RegisterModules.hpp"
-
 #include <BlacklistCommand.hpp>
 #include <Bot.hpp>
 #include <RemoveNotificationCommand.hpp>
@@ -14,6 +12,8 @@
 #include <SetNotificationCommand.hpp>
 #include <SetPortalCommand.hpp>
 #include <memory>
+
+#include "RegisterModules.hpp"
 
 void register_portal_and_notification_commands() {
 	Bot::add_slash_command(std::make_shared<RemovePortalCommand>());

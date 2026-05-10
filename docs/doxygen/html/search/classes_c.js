@@ -1,6 +1,18 @@
 var searchData=
 [
-  ['portaldto_0',['PortalDTO',['../classPortalDTO.html',1,'']]],
-  ['portalrepository_1',['PortalRepository',['../classPortalRepository.html',1,'']]],
-  ['profilecommand_2',['ProfileCommand',['../classProfileCommand.html',1,'']]]
+  ['reactionroledto_0',['ReactionRoleDTO',['../classReactionRoleDTO.html',1,'']]],
+  ['reactionrolerepository_1',['ReactionRoleRepository',['../classReactionRoleRepository.html',1,'']]],
+  ['reactionroles_2',['ReactionRoles',['../classReactionRoles.html',1,'']]],
+  ['registrationhandler_3',['RegistrationHandler',['../classRegistrationHandler.html',1,'']]],
+  ['remindercommand_4',['ReminderCommand',['../classReminderCommand.html',1,'']]],
+  ['removenotificationcommand_5',['RemoveNotificationCommand',['../classRemoveNotificationCommand.html',1,'']]],
+  ['removeportalcommand_6',['RemovePortalCommand',['../classRemovePortalCommand.html',1,'']]],
+  ['resourcedto_7',['ResourceDTO',['../classResourceDTO.html',1,'']]],
+  ['resourcerepository_8',['ResourceRepository',['../classResourceRepository.html',1,'']]],
+  ['resqueryhandler_9',['ResQueryHandler',['../classResQueryHandler.html',1,'']]],
+  ['restapi_10',['RestApi',['../classRestApi.html',1,'']]],
+  ['restapirequesthandlerfactory_11',['RestApiRequestHandlerFactory',['../classRestApiRequestHandlerFactory.html',1,'']]],
+  ['restapiserverapplication_12',['RestApiServerApplication',['../classRestApiServerApplication.html',1,'']]],
+  ['rollcommand_13',['RollCommand',['../classRollCommand.html',1,'']]],
+  ['rowdtoadapter_14',['RowDTOAdapter',['../classRowDTOAdapter.html',1,'']]]
 ];

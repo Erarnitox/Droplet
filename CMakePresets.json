@@ -30,6 +30,30 @@
       }
     },
     {
+      "name" : "valgrind",
+      "displayName" : "Valgrind / GDB - Debug symbols, no sanitizers",
+      "description" : "Same as debug but without ASan/LSan so Valgrind memcheck and GDB work reliably.",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/debug-valgrind",
+      "cacheVariables" : {
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
+          "CMAKE_BUILD_TYPE" : "Debug",
+          "CMAKE_CXX_FLAGS" : "-g -O1",
+          "CMAKE_EXE_LINKER_FLAGS": "",
+          "CMAKE_SHARED_LINKER_FLAGS": "",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/debug-valgrind",
+          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_C_COMPILER": "clang",
+          "USE_DEBUG_TOKEN" : "TRUE",
+          "CMAKE_BUILD_WITH_INSTALL_RPATH": true,
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden",
+          "CMAKE_VISIBILITY_INLINES_HIDDEN" : "YES",
+          "CMAKE_POLICY_VERSION_MINIMUM" : "3.5",
+          "CMAKE_CXX_SCAN_FOR_MODULES" : "OFF"
+      }
+    },
+    {
       "name" : "release",
       "displayName" : "Buildserver - (Linux) Ninja and Clang",
       "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
@@ -94,6 +118,10 @@
     {
       "name": "debug",
       "configurePreset": "debug"
+    },
+    {
+      "name": "valgrind",
+      "configurePreset": "valgrind"
     },
     {
       "name": "release",

@@ -1,5 +1,8 @@
 var namespaces_dup =
 [
+    [ "CommandRegistration", "namespaceCommandRegistration.html", [
+      [ "register_all", "namespaceCommandRegistration.html#a31c9054b78a121ef88e27e14c3c88495", null ]
+    ] ],
     [ "Commands", "namespaceCommands.html", [
       [ "registerCommands", "namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e", null ]
     ] ],

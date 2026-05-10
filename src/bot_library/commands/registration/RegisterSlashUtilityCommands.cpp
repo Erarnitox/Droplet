@@ -5,8 +5,6 @@
  *  License: MIT License
  */
 
-#include "RegisterModules.hpp"
-
 #include <Bot.hpp>
 #include <ClearCommand.hpp>
 #include <FlipCommand.hpp>
@@ -20,6 +18,8 @@
 #include <ServerDetails.hpp>
 #include <WarnCommand.hpp>
 #include <memory>
+
+#include "RegisterModules.hpp"
 
 void register_slash_utility_commands() {
 	Bot::add_slash_command(std::make_shared<HelpCommand>());

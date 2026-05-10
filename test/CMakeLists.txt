@@ -18,7 +18,7 @@ add_executable(unit_tests
 )
 
 target_link_libraries(unit_tests PRIVATE bot_library)
-target_link_libraries(unit_tests PRIVATE Catch2::Catch2WithMain)
+target_link_libraries_system(unit_tests PRIVATE Catch2::Catch2WithMain)
 target_compile_features(unit_tests PRIVATE cxx_std_17)
 
 # manually adding unittest

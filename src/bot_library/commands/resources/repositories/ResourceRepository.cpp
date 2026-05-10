@@ -20,9 +20,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ResourceRepository::ResourceRepository() : executor_(DatabaseExecutor::application_instance()) {}
+ResourceRepository::ResourceRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-ResourceRepository::ResourceRepository(DatabaseExecutor& executor) : executor_(executor) {}
+ResourceRepository::ResourceRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //
@@ -116,7 +118,7 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 	}
 
 	const auto result{is_wildcard ? executor_.execSelectAll(sql_string)
-								 : executor_.execSelectAll(sql_string, category)};
+								  : executor_.execSelectAll(sql_string, category)};
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());

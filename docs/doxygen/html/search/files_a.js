@@ -7,5 +7,7 @@ var searchData=
   ['leaderboardhandler_2ecpp_4',['LeaderboardHandler.cpp',['../LeaderboardHandler_8cpp.html',1,'']]],
   ['leaderboardhandler_2ehpp_5',['LeaderboardHandler.hpp',['../LeaderboardHandler_8hpp.html',1,'']]],
   ['learncppcommand_2ecpp_6',['LearnCPPCommand.cpp',['../LearnCPPCommand_8cpp.html',1,'']]],
-  ['learncppcommand_2ehpp_7',['LearnCPPCommand.hpp',['../LearnCPPCommand_8hpp.html',1,'']]]
+  ['learncppcommand_2ehpp_7',['LearnCPPCommand.hpp',['../LearnCPPCommand_8hpp.html',1,'']]],
+  ['learncpptutorialhint_2ecpp_8',['LearnCppTutorialHint.cpp',['../LearnCppTutorialHint_8cpp.html',1,'']]],
+  ['learncpptutorialhint_2ehpp_9',['LearnCppTutorialHint.hpp',['../LearnCppTutorialHint_8hpp.html',1,'']]]
 ];

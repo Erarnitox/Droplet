@@ -12,13 +12,13 @@
 
 #include "Bot.hpp"
 
-#include "BotEventSubscriptions.hpp"
-
 #include <appcommand.h>
 #include <dpp/cluster.h>
 #include <intents.h>
 
 #include <memory>
+
+#include "BotEventSubscriptions.hpp"
 
 ctx_t Bot::ctx;
 button_commands_t Bot::button_commands;
@@ -73,4 +73,15 @@ void Bot::add_ready_command(const std::shared_ptr<IReady>& ready_command) {
 void Bot::run() {
 	subscribe_bot_event_handlers(ctx);
 	Bot::ctx->start(dpp::st_wait);
+}
+
+void Bot::shutdown() noexcept {
+	Bot::ctx.reset();
+	Bot::slash_commands.clear();
+	Bot::button_commands.clear();
+	Bot::form_commands.clear();
+	Bot::member_commands.clear();
+	Bot::message_commands.clear();
+	Bot::reaction_commands.clear();
+	Bot::ready_commands.clear();
 }

@@ -8,8 +8,12 @@ var searchData=
   ['blacklistrepository_2ehpp_5',['BlacklistRepository.hpp',['../BlacklistRepository_8hpp.html',1,'']]],
   ['bot_2ecpp_6',['Bot.cpp',['../Bot_8cpp.html',1,'']]],
   ['bot_2ehpp_7',['Bot.hpp',['../Bot_8hpp.html',1,'']]],
-  ['botlibrary_2ecpp_8',['BotLibrary.cpp',['../BotLibrary_8cpp.html',1,'']]],
-  ['botlibrary_2ehpp_9',['BotLibrary.hpp',['../BotLibrary_8hpp.html',1,'']]],
-  ['bugreportcommand_2ecpp_10',['BugReportCommand.cpp',['../BugReportCommand_8cpp.html',1,'']]],
-  ['bugreportcommand_2ehpp_11',['BugReportCommand.hpp',['../BugReportCommand_8hpp.html',1,'']]]
+  ['boteventsubscriptions_2ecpp_8',['BotEventSubscriptions.cpp',['../BotEventSubscriptions_8cpp.html',1,'']]],
+  ['boteventsubscriptions_2ehpp_9',['BotEventSubscriptions.hpp',['../BotEventSubscriptions_8hpp.html',1,'']]],
+  ['botlibrary_2ecpp_10',['BotLibrary.cpp',['../BotLibrary_8cpp.html',1,'']]],
+  ['botlibrary_2ehpp_11',['BotLibrary.hpp',['../BotLibrary_8hpp.html',1,'']]],
+  ['botslashcommandregistrar_2ecpp_12',['BotSlashCommandRegistrar.cpp',['../BotSlashCommandRegistrar_8cpp.html',1,'']]],
+  ['botslashcommandregistrar_2ehpp_13',['BotSlashCommandRegistrar.hpp',['../BotSlashCommandRegistrar_8hpp.html',1,'']]],
+  ['bugreportcommand_2ecpp_14',['BugReportCommand.cpp',['../BugReportCommand_8cpp.html',1,'']]],
+  ['bugreportcommand_2ehpp_15',['BugReportCommand.hpp',['../BugReportCommand_8hpp.html',1,'']]]
 ];

@@ -30,7 +30,7 @@ set(DPP_BUILD_TEST OFF)
 
 find_package(OpenSSL REQUIRED)
 
-project(droplet 
+project(droplet
 	VERSION 1.3.0 # https://semver.org/
 	DESCRIPTION "A multipurpose Discord bot with the hacker in mind"
 	HOMEPAGE_URL "https://droplet.erarnitox.de"
@@ -69,6 +69,21 @@ else()
 	message(FATAL_ERROR "git was not found!")
 endif()
 
+if(NOT WIN32 OR MINGW)
+	if(NOT ZLIB_LIBRARY)
+		find_library(DROPLET_ZLIB_LIBRARY NAMES z zlib libz DOC "zlib library")
+		if(DROPLET_ZLIB_LIBRARY)
+			set(ZLIB_LIBRARY "${DROPLET_ZLIB_LIBRARY}" CACHE FILEPATH "zlib library")
+		endif()
+	endif()
+	if(NOT ZLIB_INCLUDE_DIR)
+		find_path(DROPLET_ZLIB_INCLUDE_DIR NAMES zlib.h PATH_SUFFIXES zlib DOC "zlib include directory")
+		if(DROPLET_ZLIB_INCLUDE_DIR)
+			set(ZLIB_INCLUDE_DIR "${DROPLET_ZLIB_INCLUDE_DIR}" CACHE PATH "zlib include directory")
+		endif()
+	endif()
+endif()
+
 # subdirectory for third party dependencies
 add_subdirectory(extern)
 
@@ -85,7 +100,7 @@ set(KEY_FILE "${CMAKE_BINARY_DIR}/server.key")
 add_custom_target(generate_ssl_cert
     DEPENDS ${KEY_FILE} ${CERTIFICATE_FILE}
 )
- 
+
 if(USE_DEBUG_TOKEN)
 	add_custom_command(
     	OUTPUT "${CMAKE_BINARY_DIR}/bot_token.txt" "${CMAKE_BINARY_DIR}/db_connection.txt" "${CMAKE_BINARY_DIR}/secrets.json"
@@ -109,7 +124,7 @@ if(USE_DEBUG_TOKEN)
 
  	add_dependencies(copy_credentials ${PROJECT_NAME})
 endif()
-  
+
 # tests
 add_subdirectory(test)
 
@@ -124,4 +139,3 @@ if(CMAKE_BUILD_TYPE STREQUAL Debug)
 
 	copy_compile_commands()
 endif()
- 

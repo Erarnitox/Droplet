@@ -19,9 +19,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeRoleRepository::ChallengeRoleRepository() : executor_(DatabaseExecutor::application_instance()) {}
+ChallengeRoleRepository::ChallengeRoleRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-ChallengeRoleRepository::ChallengeRoleRepository(DatabaseExecutor& executor) : executor_(executor) {}
+ChallengeRoleRepository::ChallengeRoleRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

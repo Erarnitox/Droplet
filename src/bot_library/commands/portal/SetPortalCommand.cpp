@@ -13,13 +13,12 @@
 
 #include <appcommand.h>
 #include <colors.h>
+#include <dpp/utility.h>
 #include <message.h>
 #include <snowflake.h>
-#include <dpp/utility.h>
 
 #include <Core.hpp>
 #include <PortalRepository.hpp>
-
 #include <string_view>
 
 #include "IMessageCommand.hpp"
@@ -130,11 +129,9 @@ std::string format_reply_banner(const dpp::message& ref_msg, const dpp::message&
 	const std::string jump = jump_markdown_for_message(ref_msg, portal_context_msg);
 
 	if (ref_msg.author.id == Bot::ctx->me.id) {
-		return std::format(
-			"↩️ _Reply to portal relay:_ {}{}{}\n", preview, media_annotation(ref_msg), jump);
+		return std::format("↩️ _Reply to portal relay:_ {}{}{}\n", preview, media_annotation(ref_msg), jump);
 	}
-	return std::format(
-		"↩️ _Reply to_ **{}**: {}{}{}\n", who, preview, media_annotation(ref_msg), jump);
+	return std::format("↩️ _Reply to_ **{}**: {}{}{}\n", who, preview, media_annotation(ref_msg), jump);
 }
 
 /** Bottom line: who spoke (and optional commentary / media on the outer message). */
@@ -228,8 +225,7 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		[event = std::move(event), repo = std::move(repo), forward_banner](std::string reply_banner) {
 			const std::string header = std::format("{}{}", forward_banner, reply_banner);
 			const std::string body_line = format_outgoing_body_line(event.msg);
-			const std::string full_content =
-				header.empty() ? body_line : std::format("{}\n{}", header, body_line);
+			const std::string full_content = header.empty() ? body_line : std::format("{}\n{}", header, body_line);
 
 			const auto& portals{repo.getAll()};
 			for (const auto& portal : portals) {
@@ -247,8 +243,7 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 	const bool needs_reply_lookup = not ref.message_id.empty() && not is_forward;
 
 	if (needs_reply_lookup) {
-		const dpp::snowflake ref_channel_id =
-			ref.channel_id.empty() ? event.msg.channel_id : ref.channel_id;
+		const dpp::snowflake ref_channel_id = ref.channel_id.empty() ? event.msg.channel_id : ref.channel_id;
 		const dpp::message portal_source_for_links = event.msg;
 		const dpp::snowflake reply_message_id = ref.message_id;
 		const dpp::snowflake guild_for_jump = event.msg.guild_id;
@@ -261,19 +256,16 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 			 ref_channel_id,
 			 guild_for_jump](const dpp::confirmation_callback_t& callback) {
 				if (callback.is_error()) {
-					const std::string url =
-						dpp::utility::message_url(guild_for_jump, ref_channel_id, reply_message_id);
+					const std::string url = dpp::utility::message_url(guild_for_jump, ref_channel_id, reply_message_id);
 					if (not url.empty()) {
-						send_to_portals(std::format(
-							"↩️ _Reply (preview unavailable)_ · [Jump]({})\n", url));
+						send_to_portals(std::format("↩️ _Reply (preview unavailable)_ · [Jump]({})\n", url));
 					} else {
 						send_to_portals("");
 					}
 					return;
 				}
 
-				send_to_portals(
-					format_reply_banner(callback.get<dpp::message>(), portal_source_for_links));
+				send_to_portals(format_reply_banner(callback.get<dpp::message>(), portal_source_for_links));
 			});
 	} else {
 		send_to_portals("");

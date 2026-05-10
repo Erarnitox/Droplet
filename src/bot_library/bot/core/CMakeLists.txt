@@ -17,7 +17,7 @@ target_include_directories(core PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 
 set_property(TARGET core PROPERTY CXX_STANDARD ${CPP_STANDARD})
 
-target_link_libraries_system(core dpp)
+target_link_libraries_system(core PUBLIC dpp)
 
 target_link_libraries(core PUBLIC database)
 
@@ -39,8 +39,7 @@ if(cpr_ADDED)
   message(STATUS "CPR library added successfully.")
 endif()
 
-target_link_libraries(core PUBLIC CURL::libcurl)
-target_link_libraries(core PUBLIC cpr::cpr)
+target_link_libraries_system(core PUBLIC CURL::libcurl cpr::cpr)
 
 # CPMAddPackage(
 #  NAME Boost
@@ -57,7 +56,7 @@ set("POCO_ENABLE_CRYPTO" ON)
 
 CPMAddPackage("gh:pocoproject/poco#poco-1.14.1-release")
 
-target_link_libraries(core PUBLIC
+target_link_libraries_system(core PUBLIC
     Poco::Foundation
     Poco::Net
     Poco::NetSSL
@@ -67,4 +66,4 @@ target_link_libraries(core PUBLIC
     Poco::Crypto
 )
 
-target_include_directories(core PUBLIC ${Poco_SOURCE_DIR}/NetSSL/include)
+target_include_directories(core SYSTEM PUBLIC ${Poco_SOURCE_DIR}/NetSSL/include)

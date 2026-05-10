@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['id_0',['id',['../classWebUserDTO.html#ae34cc16c00739685304225bc32fc0f0c',1,'WebUserDTO::id'],['../classResourceDTO.html#a64e7321d52b8284435d6b9b6f01660b6',1,'ResourceDTO::id']]],
-  ['is_5fsubscribed_1',['is_subscribed',['../classUserDTO.html#acf80ed2d179aad02d81f8144119c4ac1',1,'UserDTO']]],
-  ['is_5fverified_2',['is_verified',['../classWebUserDTO.html#a02fd7d644bc1ce966347cc436154fd08',1,'WebUserDTO']]]
+  ['member_5fcommands_0',['member_commands',['../classBot.html#a8e2756c880a674d1838e9cabde0c7a08',1,'Bot']]],
+  ['message_1',['message',['../classNotificationDTO.html#aeb8418ce585e23ea82b1999e8ff4b6cf',1,'NotificationDTO']]],
+  ['message_5fcommands_2',['message_commands',['../classBot.html#ad411ef198698ed464ccf6910f8fe0a2a',1,'Bot']]],
+  ['message_5fid_3',['message_id',['../classReactionRoleDTO.html#a823af32d9d40913b165c20acbe266a89',1,'ReactionRoleDTO']]],
+  ['messageid_4',['messageId',['../classChallengeBadgeDTO.html#ad60118673ab4672ca9fdc114eb80eea8',1,'ChallengeBadgeDTO::messageId'],['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO::messageId']]],
+  ['modal_5fid_5',['MODAL_ID',['../BugReportCommand_8cpp.html#a5c5207fdbcbcf65930319b3ca2957218',1,'BugReportCommand.cpp']]]
 ];

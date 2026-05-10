@@ -19,9 +19,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeBadgeRepository::ChallengeBadgeRepository() : executor_(DatabaseExecutor::application_instance()) {}
+ChallengeBadgeRepository::ChallengeBadgeRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-ChallengeBadgeRepository::ChallengeBadgeRepository(DatabaseExecutor& executor) : executor_(executor) {}
+ChallengeBadgeRepository::ChallengeBadgeRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

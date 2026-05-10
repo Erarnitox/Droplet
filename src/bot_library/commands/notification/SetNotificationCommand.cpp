@@ -94,9 +94,7 @@ static inline void start_notification_deamon(size_t channel_id,
 		const auto url{std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id)};
 
 		Bot::ctx->request(
-			url,
-			dpp::m_get,
-			[channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
+			url, dpp::m_get, [channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
 				const auto stop_timer_and_release = [key, timer_handle]() {
 					Bot::ctx->stop_timer(timer_handle);
 					std::lock_guard<std::mutex> lock(youtube_daemon_mutex);

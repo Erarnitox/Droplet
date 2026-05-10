@@ -7,25 +7,28 @@
 
 #pragma once
 
-#include "IDatabaseConnectionProvider.hpp"
-#include "RowDTOAdapter.hpp"
-
 #include <iostream>
 #include <string>
 #include <utility>
 #include <vector>
+
+#include "IDatabaseConnectionProvider.hpp"
+#include "RowDTOAdapter.hpp"
 
 /**
  * Executes queries/transactions against a connection provided by IDatabaseConnectionProvider.
  */
 class DatabaseExecutor {
   public:
-	explicit DatabaseExecutor(IDatabaseConnectionProvider& provider) noexcept : provider_(provider) {}
+	explicit DatabaseExecutor(IDatabaseConnectionProvider& provider) noexcept : provider_(provider) {
+	}
 
 	DatabaseExecutor(const DatabaseExecutor&) = delete;
 	DatabaseExecutor& operator=(const DatabaseExecutor&) = delete;
 
-	[[nodiscard]] bool hasConnection() const noexcept { return provider_.hasConnection(); }
+	[[nodiscard]] bool hasConnection() const noexcept {
+		return provider_.hasConnection();
+	}
 
 	template <typename... Types>
 	[[nodiscard]] bool execQuery(const std::string& query, Types&&... args) noexcept;
@@ -92,7 +95,7 @@ template <typename... Types>
 
 template <typename... Types>
 [[nodiscard]] std::vector<RowDTOAdapter> DatabaseExecutor::execSelectAll(const std::string& query,
-																		   Types&&... args) noexcept {
+																		 Types&&... args) noexcept {
 	static thread_local int times = 0;
 	try {
 		NativeDatabase::Transaction txn(*provider_.getConnection());

@@ -1,5 +1,7 @@
 var classPortalRepository =
 [
+    [ "PortalRepository", "classPortalRepository.html#a37ce345f4546d52313f81f4682452a49", null ],
+    [ "PortalRepository", "classPortalRepository.html#aa9df818bfd579ea1ff7b68d52a413e4a", null ],
     [ "create", "classPortalRepository.html#a8879c8a36c16c51bd1591aab861d38d4", null ],
     [ "get", "classPortalRepository.html#af96683d396a08877c409a11927e897fb", null ],
     [ "getAll", "classPortalRepository.html#ac71d503a9bc2cbe568c47a6f7a836ee8", null ],

@@ -7,17 +7,16 @@
 
 #include "RestApiServerApplication.hpp"
 
-#include "RestApiRequestHandlerFactory.hpp"
+#include <filesystem>
+#include <iostream>
 
 #include "Poco/Net/Context.h"
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPServerParams.h"
+#include "Poco/Net/SSLManager.h"
 #include "Poco/Net/SecureServerSocket.h"
 #include "Poco/Net/ServerSocket.h"
-#include "Poco/Net/SSLManager.h"
-
-#include <filesystem>
-#include <iostream>
+#include "RestApiRequestHandlerFactory.hpp"
 
 using namespace Poco::Net;
 using namespace Poco::Util;
@@ -26,10 +25,8 @@ int RestApiServerApplication::main(const std::vector<std::string>& args) {
 	(void)args;
 	const uint16_t port{RestApi::port};
 
-	std::unique_ptr<ServerSocket> pSocket;
-
 	try {
-		if constexpr (RestApi::ssl_enabled) {
+		if (RestApi::ssl_enabled) {
 			const std::string certificateFile{"server.crt"};
 			const std::string privateKeyFile{"server.key"};
 
@@ -46,31 +43,36 @@ int RestApiServerApplication::main(const std::vector<std::string>& args) {
 			Poco::Net::initializeSSL();
 			const std::string privateKeyPassphrase = "";
 			Poco::Net::Context::Ptr context = new Poco::Net::Context(Poco::Net::Context::SERVER_USE,
-																	   privateKeyFile,
-																	   certificateFile,
-																	   privateKeyPassphrase,
-																	   Poco::Net::Context::VERIFY_NONE);
+																	 privateKeyFile,
+																	 certificateFile,
+																	 privateKeyPassphrase,
+																	 Poco::Net::Context::VERIFY_NONE);
 
-			pSocket = std::make_unique<SecureServerSocket>(port, 64, context);
-		} else {
-			pSocket = std::make_unique<ServerSocket>(port);
+			// Stack sockets: Poco HTTPServer duplicates the listener; pairing HTTPServer with the
+			// socket in one scope avoids orphaned allocations reported by Valgrind.
+			SecureServerSocket socket(port, 64, context);
+			HTTPServer server(new RestApiRequestHandlerFactory, socket, new HTTPServerParams);
+			std::cout << "REST Server is running on https://localhost:" << port << std::endl;
+			server.start();
+			waitForTerminationRequest();
+			server.stop();
+			Poco::Net::uninitializeSSL();
+			return Application::EXIT_OK;
 		}
+
+		ServerSocket socket(port);
+		HTTPServer server(new RestApiRequestHandlerFactory, socket, new HTTPServerParams);
+		std::cout << "REST Server is running on http://localhost:" << port << std::endl;
+		server.start();
+		waitForTerminationRequest();
+		server.stop();
+		return Application::EXIT_OK;
+
 	} catch (const Poco::Exception& e) {
 		std::cout << "Error: " << e.displayText() << std::endl;
+		if (RestApi::ssl_enabled) {
+			Poco::Net::uninitializeSSL();
+		}
 		return Application::EXIT_IOERR;
 	}
-
-	HTTPServer server(new RestApiRequestHandlerFactory, *pSocket, new HTTPServerParams);
-	std::cout << "REST Server is running on " << (RestApi::ssl_enabled ? "https" : "http") << "://localhost:" << port
-			  << std::endl;
-	server.start();
-
-	waitForTerminationRequest();
-	server.stop();
-
-	if constexpr (RestApi::ssl_enabled) {
-		Poco::Net::uninitializeSSL();
-	}
-
-	return Application::EXIT_OK;
 }

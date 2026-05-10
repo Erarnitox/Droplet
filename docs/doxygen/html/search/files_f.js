@@ -9,5 +9,7 @@ var searchData=
   ['setportalcommand_2ecpp_6',['SetPortalCommand.cpp',['../SetPortalCommand_8cpp.html',1,'']]],
   ['setportalcommand_2ehpp_7',['SetPortalCommand.hpp',['../SetPortalCommand_8hpp.html',1,'']]],
   ['setstatus_2ecpp_8',['SetStatus.cpp',['../SetStatus_8cpp.html',1,'']]],
-  ['setstatus_2ehpp_9',['SetStatus.hpp',['../SetStatus_8hpp.html',1,'']]]
+  ['setstatus_2ehpp_9',['SetStatus.hpp',['../SetStatus_8hpp.html',1,'']]],
+  ['statushandler_2ecpp_10',['StatusHandler.cpp',['../StatusHandler_8cpp.html',1,'']]],
+  ['statushandler_2ehpp_11',['StatusHandler.hpp',['../StatusHandler_8hpp.html',1,'']]]
 ];

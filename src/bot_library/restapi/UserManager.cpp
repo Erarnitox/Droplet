@@ -16,6 +16,7 @@
 #include <UserManager.hpp>
 #include <WebUserDTO.hpp>
 #include <WebUserRepository.hpp>
+#include <mutex>
 
 #include "Poco/UUIDGenerator.h"
 #include "Secrets.hpp"

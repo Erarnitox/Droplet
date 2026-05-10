@@ -54,4 +54,6 @@ class Bot {
 	static void add_reaction_command(const std::shared_ptr<IReactionCommand>& button_command);
 	static void add_ready_command(const std::shared_ptr<IReady>& ready_command);
 	static void run();
+	/** Drop cluster and registered commands so connections and handlers are torn down before exit. */
+	static void shutdown() noexcept;
 };

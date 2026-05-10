@@ -20,9 +20,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-BlacklistRepository::BlacklistRepository() : executor_(DatabaseExecutor::application_instance()) {}
+BlacklistRepository::BlacklistRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-BlacklistRepository::BlacklistRepository(DatabaseExecutor& executor) : executor_(executor) {}
+BlacklistRepository::BlacklistRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

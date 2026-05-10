@@ -3,6 +3,8 @@ target_include_directories(commands PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 add_library(learncpp_command STATIC
     LearnCPPCommand.cpp
     LearnCPPCommand.hpp
+    LearnCppTutorialHint.cpp
+    LearnCppTutorialHint.hpp
 )
 
 # enable additional warnings and static analysis for this target

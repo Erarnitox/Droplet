@@ -19,9 +19,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-WebUserRepository::WebUserRepository() : executor_(DatabaseExecutor::application_instance()) {}
+WebUserRepository::WebUserRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-WebUserRepository::WebUserRepository(DatabaseExecutor& executor) : executor_(executor) {}
+WebUserRepository::WebUserRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

@@ -43,10 +43,14 @@ void start_bot(const bool IS_TEST) {
 
 		const auto connected{Database::connect(db_connection_string)};
 		if (not connected) {
+			Database::disconnect();
+			Bot::shutdown();
 			return;
 		}
 	} catch (const std::exception& ex) {
 		std::cerr << ex.what();
+		Database::disconnect();
+		Bot::shutdown();
 		return;
 	}
 	//------------------------------------------------------------------------------
@@ -55,6 +59,8 @@ void start_bot(const bool IS_TEST) {
 	Commands::registerCommands();
 
 	if (IS_TEST) {
+		Database::disconnect();
+		Bot::shutdown();
 		return;
 	}
 
@@ -67,7 +73,8 @@ void start_bot(const bool IS_TEST) {
 	std::cout << "Shutting down..." << std::endl;
 	rest_thread.join();
 
-	return;
+	Database::disconnect();
+	Bot::shutdown();
 }
 
 /**

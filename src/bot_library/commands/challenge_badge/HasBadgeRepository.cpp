@@ -18,9 +18,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-HasBadgeRepository::HasBadgeRepository() : executor_(DatabaseExecutor::application_instance()) {}
+HasBadgeRepository::HasBadgeRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-HasBadgeRepository::HasBadgeRepository(DatabaseExecutor& executor) : executor_(executor) {}
+HasBadgeRepository::HasBadgeRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

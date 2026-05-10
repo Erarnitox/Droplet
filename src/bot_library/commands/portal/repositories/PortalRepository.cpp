@@ -21,9 +21,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-PortalRepository::PortalRepository() : executor_(DatabaseExecutor::application_instance()) {}
+PortalRepository::PortalRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-PortalRepository::PortalRepository(DatabaseExecutor& executor) : executor_(executor) {}
+PortalRepository::PortalRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

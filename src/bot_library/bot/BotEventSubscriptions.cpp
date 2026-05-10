@@ -7,8 +7,6 @@
 
 #include "BotEventSubscriptions.hpp"
 
-#include "BotSlashCommandRegistrar.hpp"
-
 #include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 #include <dpp/utility.h>
@@ -16,6 +14,8 @@
 #include <cstdio>
 #include <format>
 #include <string>
+
+#include "BotSlashCommandRegistrar.hpp"
 
 namespace {
 

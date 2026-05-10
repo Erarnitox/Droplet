@@ -9,6 +9,9 @@
 
 #include "RestApiServerApplication.hpp"
 
+const bool RestApi::ssl_enabled{true};
+const unsigned short RestApi::port{3000};
+
 void RestApi::start() {
 	RestApiServerApplication app;
 	int argc = 1;

@@ -7,17 +7,16 @@
 
 #include "RestApiRequestHandlerFactory.hpp"
 
+#include <AuthHandler.hpp>
+
 #include "LeaderboardHandler.hpp"
 #include "NotFoundHandler.hpp"
+#include "Poco/Net/HTTPRequest.h"
 #include "RegistrationHandler.hpp"
 #include "ResQueryHandler.hpp"
 #include "Secrets.hpp"
 #include "StatusHandler.hpp"
 #include "VerifyHandler.hpp"
-
-#include <AuthHandler.hpp>
-
-#include "Poco/Net/HTTPRequest.h"
 
 Poco::Net::HTTPRequestHandler* RestApiRequestHandlerFactory::createRequestHandler(
 	const Poco::Net::HTTPServerRequest& request) {

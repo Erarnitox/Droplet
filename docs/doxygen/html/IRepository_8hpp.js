@@ -1,4 +1,6 @@
 var IRepository_8hpp =
 [
-    [ "IRepository< DTO >", "classIRepository.html", "classIRepository" ]
+    [ "IRepositoryReader&lt; DTO &gt;", "classIRepositoryReader.html", "classIRepositoryReader" ],
+    [ "IRepositoryWriter&lt; DTO &gt;", "classIRepositoryWriter.html", "classIRepositoryWriter" ],
+    [ "IRepository&lt; DTO &gt;", "classIRepository.html", null ]
 ];

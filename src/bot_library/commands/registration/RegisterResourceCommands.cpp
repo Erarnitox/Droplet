@@ -5,12 +5,12 @@
  *  License: MIT License
  */
 
-#include "RegisterModules.hpp"
-
 #include <AddResourcesCommand.hpp>
 #include <Bot.hpp>
 #include <GetResourcesCommand.hpp>
 #include <memory>
+
+#include "RegisterModules.hpp"
 
 void register_resource_commands() {
 	Bot::add_slash_command(std::make_shared<AddResourcesCommand>());

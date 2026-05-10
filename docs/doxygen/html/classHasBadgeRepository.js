@@ -1,5 +1,7 @@
 var classHasBadgeRepository =
 [
+    [ "HasBadgeRepository", "classHasBadgeRepository.html#afabf45193cd67374c42f23841a503e7a", null ],
+    [ "HasBadgeRepository", "classHasBadgeRepository.html#acba56098abf8678240bc468b03ae9ea9", null ],
     [ "create", "classHasBadgeRepository.html#a76ca7b47aa886be570178f753dc9e189", null ],
     [ "get", "classHasBadgeRepository.html#a1b3506c7ff3da73ee17ba8d8123a239a", null ],
     [ "remove", "classHasBadgeRepository.html#a0ed4daeaaa7c4d63f5d82aad38b528bb", null ],

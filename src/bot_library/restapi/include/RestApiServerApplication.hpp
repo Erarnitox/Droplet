@@ -7,9 +7,8 @@
 
 #pragma once
 
-#include "RestApi.hpp"
-
 #include "Poco/Util/ServerApplication.h"
+#include "RestApi.hpp"
 
 /**
  * Poco ServerApplication that binds the HTTPS (or HTTP) REST listener for Droplet.

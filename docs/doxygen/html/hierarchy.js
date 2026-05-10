@@ -7,6 +7,7 @@ var hierarchy =
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
     [ "Core", "classCore.html", null ],
     [ "Database", "classDatabase.html", null ],
+    [ "DatabaseExecutor", "classDatabaseExecutor.html", null ],
     [ "EmailClient", "classEmailClient.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
     [ "Poco::Net::HTTPRequestHandler", null, [
@@ -18,13 +19,14 @@ var hierarchy =
       [ "StatusHandler", "classStatusHandler.html", null ],
       [ "VerifyHandler", "classVerifyHandler.html", null ]
     ] ],
-    [ "HTTPRequestHandlerFactory", "classHTTPRequestHandlerFactory.html", [
-      [ "MyRequestHandlerFactory", "classMyRequestHandlerFactory.html", null ]
+    [ "Poco::Net::HTTPRequestHandlerFactory", "classPoco_1_1Net_1_1HTTPRequestHandlerFactory.html", [
+      [ "RestApiRequestHandlerFactory", "classRestApiRequestHandlerFactory.html", null ]
     ] ],
     [ "IButtonCommand", "classIButtonCommand.html", [
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
+    [ "IDatabaseConnectionProvider", "classIDatabaseConnectionProvider.html", null ],
     [ "IFormCommand", "classIFormCommand.html", [
       [ "BugReportCommand", "classBugReportCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
@@ -57,6 +59,7 @@ var hierarchy =
     [ "IMemberCommand", "classIMemberCommand.html", null ],
     [ "IMessageCommand", "classIMessageCommand.html", [
       [ "CleanUp", "classCleanUp.html", null ],
+      [ "LearnCppTutorialHint", "classLearnCppTutorialHint.html", null ],
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
@@ -68,33 +71,83 @@ var hierarchy =
       [ "SetNotificationCommand", "classSetNotificationCommand.html", null ],
       [ "SetStatus", "classSetStatus.html", null ]
     ] ],
-    [ "IRepository< DTO >", "classIRepository.html", null ],
-    [ "IRepository< BlacklistDTO >", "classIRepository.html", [
-      [ "BlacklistRepository", "classBlacklistRepository.html", null ]
+    [ "IRepositoryReader&lt; DTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< DTO >", "classIRepository.html", null ]
     ] ],
-    [ "IRepository< ChallengeBadgeDTO >", "classIRepository.html", [
-      [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html", null ]
+    [ "IRepositoryReader&lt; BlacklistDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< BlacklistDTO >", "classIRepository.html", [
+        [ "BlacklistRepository", "classBlacklistRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
-      [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
+    [ "IRepositoryReader&lt; ChallengeBadgeDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< ChallengeBadgeDTO >", "classIRepository.html", [
+        [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< NotificationDTO >", "classIRepository.html", [
-      [ "NotificationRepository", "classNotificationRepository.html", null ]
+    [ "IRepositoryReader&lt; ChallengeRoleDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", [
+        [ "ChallengeRoleRepository", "classChallengeRoleRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< PortalDTO >", "classIRepository.html", [
-      [ "PortalRepository", "classPortalRepository.html", null ]
+    [ "IRepositoryReader&lt; NotificationDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< NotificationDTO >", "classIRepository.html", [
+        [ "NotificationRepository", "classNotificationRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
-      [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
+    [ "IRepositoryReader&lt; PortalDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< PortalDTO >", "classIRepository.html", [
+        [ "PortalRepository", "classPortalRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< ResourceDTO >", "classIRepository.html", [
-      [ "ResourceRepository", "classResourceRepository.html", null ]
+    [ "IRepositoryReader&lt; ReactionRoleDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< ReactionRoleDTO >", "classIRepository.html", [
+        [ "ReactionRoleRepository", "classReactionRoleRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< UserDTO >", "classIRepository.html", [
-      [ "UserRepository", "classUserRepository.html", null ]
+    [ "IRepositoryReader&lt; ResourceDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< ResourceDTO >", "classIRepository.html", [
+        [ "ResourceRepository", "classResourceRepository.html", null ]
+      ] ]
     ] ],
-    [ "IRepository< WebUserDTO >", "classIRepository.html", [
-      [ "WebUserRepository", "classWebUserRepository.html", null ]
+    [ "IRepositoryReader&lt; UserDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< UserDTO >", "classIRepository.html", [
+        [ "UserRepository", "classUserRepository.html", null ]
+      ] ]
+    ] ],
+    [ "IRepositoryReader&lt; WebUserDTO &gt;", "classIRepositoryReader.html", [
+      [ "IRepository< WebUserDTO >", "classIRepository.html", [
+        [ "WebUserRepository", "classWebUserRepository.html", null ]
+      ] ]
+    ] ],
+    [ "IRepositoryWriter&lt; DTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< DTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; BlacklistDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< BlacklistDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; ChallengeBadgeDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< ChallengeBadgeDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; ChallengeRoleDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< ChallengeRoleDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; NotificationDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< NotificationDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; PortalDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< PortalDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; ReactionRoleDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< ReactionRoleDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; ResourceDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< ResourceDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; UserDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< UserDTO >", "classIRepository.html", null ]
+    ] ],
+    [ "IRepositoryWriter&lt; WebUserDTO &gt;", "classIRepositoryWriter.html", [
+      [ "IRepository< WebUserDTO >", "classIRepository.html", null ]
     ] ],
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "NotificationDTO", "classNotificationDTO.html", null ],
@@ -104,8 +157,8 @@ var hierarchy =
     [ "RestApi", "classRestApi.html", null ],
     [ "RowDTOAdapter", "classRowDTOAdapter.html", null ],
     [ "Secrets", "classSecrets.html", null ],
-    [ "ServerApplication", "classServerApplication.html", [
-      [ "HttpsServerApp", "classHttpsServerApp.html", null ]
+    [ "Poco::Util::ServerApplication", "classPoco_1_1Util_1_1ServerApplication.html", [
+      [ "RestApiServerApplication", "classRestApiServerApplication.html", null ]
     ] ],
     [ "UserDTO", "classUserDTO.html", null ],
     [ "UserManager", "classUserManager.html", null ],

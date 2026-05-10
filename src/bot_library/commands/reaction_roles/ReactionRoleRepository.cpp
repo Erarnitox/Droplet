@@ -19,9 +19,11 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ReactionRoleRepository::ReactionRoleRepository() : executor_(DatabaseExecutor::application_instance()) {}
+ReactionRoleRepository::ReactionRoleRepository() : executor_(DatabaseExecutor::application_instance()) {
+}
 
-ReactionRoleRepository::ReactionRoleRepository(DatabaseExecutor& executor) : executor_(executor) {}
+ReactionRoleRepository::ReactionRoleRepository(DatabaseExecutor& executor) : executor_(executor) {
+}
 
 //-----------------------------------------------------
 //

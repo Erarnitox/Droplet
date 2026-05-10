@@ -9,5 +9,6 @@ var searchData=
   ['add_5fslash_5fcommand_6',['add_slash_command',['../classBot.html#a11e4bbfa0269e589e116ad22a43197df',1,'Bot']]],
   ['addresourcescommand_7',['AddResourcesCommand',['../classAddResourcesCommand.html#acb58daf9b766ca8cf6f4d8dfb327756c',1,'AddResourcesCommand']]],
   ['adduser_8',['addUser',['../classUserManager.html#a82cbd2eef356989ff267b0b11b7b00e8',1,'UserManager']]],
-  ['authhandler_9',['AuthHandler',['../classAuthHandler.html#a0e39716c5e5759383d987720486ef920',1,'AuthHandler']]]
+  ['application_5finstance_9',['application_instance',['../classDatabaseExecutor.html#ae2e17b1927744223bcfee99a089b7206',1,'DatabaseExecutor']]],
+  ['authhandler_10',['AuthHandler',['../classAuthHandler.html#a0e39716c5e5759383d987720486ef920',1,'AuthHandler']]]
 ];

@@ -13,9 +13,13 @@ namespace {
 
 class GlobalDatabaseConnectionProvider final : public IDatabaseConnectionProvider {
   public:
-	[[nodiscard]] bool hasConnection() noexcept override { return Database::hasConnection(); }
+	[[nodiscard]] bool hasConnection() noexcept override {
+		return Database::hasConnection();
+	}
 
-	void reconnect() noexcept override { Database::reconnect(); }
+	void reconnect() noexcept override {
+		Database::reconnect();
+	}
 
 	[[nodiscard]] NativeDatabase::Connection* getConnection() noexcept override {
 		return Database::getConnection();

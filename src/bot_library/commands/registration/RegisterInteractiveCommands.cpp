@@ -5,14 +5,14 @@
  *  License: MIT License
  */
 
-#include "RegisterModules.hpp"
-
 #include <Bot.hpp>
 #include <BugReportCommand.hpp>
 #include <ChallengeBadgeCommand.hpp>
 #include <ChallengeRoleCommand.hpp>
 #include <ReactionRoles.hpp>
 #include <memory>
+
+#include "RegisterModules.hpp"
 
 void register_interactive_commands() {
 	const auto& bug_report_command{std::make_shared<BugReportCommand>()};

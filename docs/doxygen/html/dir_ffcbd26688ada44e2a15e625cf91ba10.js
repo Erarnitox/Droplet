@@ -8,6 +8,9 @@ var dir_ffcbd26688ada44e2a15e625cf91ba10 =
     [ "RegistrationHandler.hpp", "RegistrationHandler_8hpp.html", "RegistrationHandler_8hpp" ],
     [ "ResQueryHandler.hpp", "ResQueryHandler_8hpp.html", "ResQueryHandler_8hpp" ],
     [ "RestApi.hpp", "RestApi_8hpp.html", "RestApi_8hpp" ],
+    [ "RestApiRequestHandlerFactory.hpp", "RestApiRequestHandlerFactory_8hpp.html", "RestApiRequestHandlerFactory_8hpp" ],
+    [ "RestApiServerApplication.hpp", "RestApiServerApplication_8hpp.html", "RestApiServerApplication_8hpp" ],
+    [ "StatusHandler.hpp", "StatusHandler_8hpp.html", "StatusHandler_8hpp" ],
     [ "UserManager.hpp", "UserManager_8hpp.html", "UserManager_8hpp" ],
     [ "VerifyHandler.hpp", "VerifyHandler_8hpp.html", "VerifyHandler_8hpp" ]
 ];

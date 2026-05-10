@@ -163,12 +163,35 @@ macro(copy_compile_commands)
     )
 endmacro()
 
-# link system libraries to target
+# Link third-party targets while treating their headers as system includes (-isystem).
+# Plain target_link_libraries pulls INTERFACE_INCLUDE_DIRECTORIES as normal -I paths, so
+# -Werror / -Wall still fires inside vendor headers. LINK_ONLY drops compile-time usage
+# requirements from the dependency; we re-add only its include dirs marked SYSTEM.
 function(target_link_libraries_system target)
   set(libs ${ARGN})
+  list(LENGTH libs _n)
+  if(_n EQUAL 0)
+    return()
+  endif()
+
+  list(GET libs 0 _first)
+  if(_first STREQUAL "PUBLIC" OR _first STREQUAL "PRIVATE" OR _first STREQUAL "INTERFACE")
+    list(REMOVE_AT libs 0)
+    set(_visibility ${_first})
+  else()
+    set(_visibility PUBLIC)
+  endif()
+
   foreach(lib ${libs})
-    get_target_property(lib_include_dirs ${lib} INTERFACE_INCLUDE_DIRECTORIES)
-    target_include_directories(${target} SYSTEM PUBLIC ${lib_include_dirs})
-    target_link_libraries(${target} PUBLIC ${lib})
-  endforeach(lib)
-endfunction(target_link_libraries_system)
+    if(NOT TARGET ${lib})
+      message(FATAL_ERROR "target_link_libraries_system: '${lib}' is not a CMake target")
+    endif()
+
+    # Use a generator expression so INTERFACE_INCLUDE_DIRECTORIES with $<BUILD_INTERFACE:...>
+    # (and similar) resolves correctly; get_target_property is often empty at configure time.
+    target_include_directories(${target} SYSTEM ${_visibility}
+      $<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>)
+
+    target_link_libraries(${target} ${_visibility} $<LINK_ONLY:${lib}>)
+  endforeach()
+endfunction()
