@@ -11,7 +11,7 @@
 
 #include "LatestEventsRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <mutex>
 
 /*
@@ -51,7 +51,8 @@ void LatestEventsRepository::set_active(const std::string& key, bool active) noe
 //-----------------------------------------------------
 bool LatestEventsRepository::insert(const std::string& key, const std::string& value) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
-	if (not Database::hasConnection()) {
+	auto& exec = DatabaseExecutor::application_instance();
+	if (not exec.hasConnection()) {
 		return false;
 	}
 
@@ -59,7 +60,7 @@ bool LatestEventsRepository::insert(const std::string& key, const std::string& v
 		latest_events[key] = value;
 
 		static std::string sql_string("UPDATE latest_events SET latest = $2::varchar WHERE key = $1::varchar");
-		return database::execQuery(sql_string, key, value);
+		return exec.execQuery(sql_string, key, value);
 	} else {
 		latest_events[key] = value;
 
@@ -68,7 +69,7 @@ bool LatestEventsRepository::insert(const std::string& key, const std::string& v
 			"(key, latest) VALUES "
 			"($1::varchar, $2::varchar)"};
 
-		return database::execQuery(sql_string, key, value);
+		return exec.execQuery(sql_string, key, value);
 	}
 }
 
@@ -79,12 +80,13 @@ bool LatestEventsRepository::remove(const std::string& key) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	static const std::string sql_string{"DELETE FROM latest_events WHERE key = $1::varchar"};
 
-	if (not Database::hasConnection()) {
+	auto& exec = DatabaseExecutor::application_instance();
+	if (not exec.hasConnection()) {
 		return false;
 	}
 
 	latest_events.erase(key);
-	const bool disabled{database::execQuery(sql_string, key)};
+	const bool disabled{exec.execQuery(sql_string, key)};
 	set_active(key, not disabled);
 	return disabled;
 }
@@ -100,10 +102,40 @@ bool LatestEventsRepository::exists(const std::string& key, const std::string& v
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
+bool LatestEventsRepository::try_claim_new_latest(const std::string& key, const std::string& yt_link) noexcept {
+	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
+	auto& exec = DatabaseExecutor::application_instance();
+	if (not exec.hasConnection()) {
+		return false;
+	}
+
+	const auto it = latest_events.find(key);
+	if (it != latest_events.end() && it->second == yt_link) {
+		return false;
+	}
+
+	const bool key_existed = (it != latest_events.end());
+	latest_events[key] = yt_link;
+
+	static std::string update_sql{"UPDATE latest_events SET latest = $2::varchar WHERE key = $1::varchar"};
+	static const std::string insert_sql{
+		"INSERT INTO latest_events"
+		"(key, latest) VALUES "
+		"($1::varchar, $2::varchar)"};
+
+	if (key_existed) {
+		return exec.execQuery(update_sql, key, yt_link);
+	}
+	return exec.execQuery(insert_sql, key, yt_link);
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
 bool LatestEventsRepository::load() noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	static const std::string sql_string{"SELECT key, latest FROM latest_events"};
-	const auto result{database::execSelectAll(sql_string)};
+	const auto result{DatabaseExecutor::application_instance().execSelectAll(sql_string)};
 
 	for (const auto& adapter : result) {
 		latest_events.insert_or_assign(adapter.get<std::string>("key"), adapter.get<std::string>("latest"));

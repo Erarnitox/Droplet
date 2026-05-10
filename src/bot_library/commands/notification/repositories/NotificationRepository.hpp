@@ -14,11 +14,16 @@
 #include "IRepository.hpp"
 #include "NotificationDTO.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class NotificationRepository : public IRepository<NotificationDTO> {
   public:
+	NotificationRepository();
+	explicit NotificationRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const NotificationDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
@@ -28,4 +33,7 @@ class NotificationRepository : public IRepository<NotificationDTO> {
 	[[nodiscard]] bool update(const NotificationDTO& object) noexcept override;
 
 	[[nodiscard]] std::vector<NotificationDTO> getAll() const noexcept;
+
+  private:
+	DatabaseExecutor& executor_;
 };

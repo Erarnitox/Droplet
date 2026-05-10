@@ -15,11 +15,16 @@
 
 #include "UserDTO.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class UserRepository : public IRepository<UserDTO> {
   public:
+	UserRepository();
+	explicit UserRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const UserDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t user_id) noexcept override;
@@ -29,4 +34,7 @@ class UserRepository : public IRepository<UserDTO> {
 	[[nodiscard]] bool update(const UserDTO& object) noexcept override;
 
 	[[nodiscard]] std::vector<UserDTO> getTopTen() const noexcept;
+
+  private:
+	DatabaseExecutor& executor_;
 };

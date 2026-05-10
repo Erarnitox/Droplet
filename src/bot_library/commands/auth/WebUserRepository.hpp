@@ -16,11 +16,16 @@
 
 #include "WebUserDTO.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class WebUserRepository : public IRepository<WebUserDTO> {
   public:
+	WebUserRepository();
+	explicit WebUserRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const WebUserDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t user_id) noexcept override;
@@ -36,4 +41,7 @@ class WebUserRepository : public IRepository<WebUserDTO> {
 	[[nodiscard]] bool exists(const std::string& username) const noexcept;
 
 	[[nodiscard]] bool update(const WebUserDTO& object) noexcept override;
+
+  private:
+	DatabaseExecutor& executor_;
 };

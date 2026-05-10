@@ -11,11 +11,18 @@
 
 #include "ResourceRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 #include <vector>
 
 #include "ResourceDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+ResourceRepository::ResourceRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+ResourceRepository::ResourceRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -26,11 +33,11 @@ bool ResourceRepository::create(const ResourceDTO& object) noexcept {
 		"(title, category, description, url, difficulty, guild_id, creator, creator_id, tags) VALUES "
 		"($1::varchar, $2::varchar, $3::varchar, $4::varchar, $5::int8, $6::int8, $7::varchar, $8::int8, $9::varchar)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string,
+	return executor_.execQuery(sql_string,
 							   object.title,
 							   object.category,
 							   object.description,
@@ -48,11 +55,11 @@ bool ResourceRepository::create(const ResourceDTO& object) noexcept {
 bool ResourceRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM resources WHERE id=$1::int8"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, id);
+	return executor_.execQuery(sql_string, id);
 }
 
 //-----------------------------------------------------
@@ -108,10 +115,8 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 		sql_string.append(" WHERE category=$1::varchar");
 	}
 
-	const auto result{ is_wildcard ?
-    database::execSelectAll(sql_string) :
-    database::execSelectAll(sql_string, category)
-  };
+	const auto result{is_wildcard ? executor_.execSelectAll(sql_string)
+								 : executor_.execSelectAll(sql_string, category)};
 
 	std::vector<ResourceDTO> dtos;
 	dtos.reserve(result.size());

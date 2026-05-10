@@ -14,11 +14,16 @@
 #include "IRepository.hpp"
 #include "PortalDTO.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class PortalRepository : public IRepository<PortalDTO> {
   public:
+	PortalRepository();
+	explicit PortalRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const PortalDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
@@ -28,4 +33,7 @@ class PortalRepository : public IRepository<PortalDTO> {
 	[[nodiscard]] bool update(const PortalDTO& object) noexcept override;
 
 	[[nodiscard]] std::vector<PortalDTO> getAll() const noexcept;
+
+  private:
+	DatabaseExecutor& executor_;
 };

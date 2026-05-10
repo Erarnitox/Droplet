@@ -1,5 +1,8 @@
 add_library(restapi STATIC
     RestApi.cpp
+    StatusHandler.cpp
+    RestApiRequestHandlerFactory.cpp
+    RestApiServerApplication.cpp
     JWTUtils.cpp
     AuthHandler.cpp
     UserManager.cpp

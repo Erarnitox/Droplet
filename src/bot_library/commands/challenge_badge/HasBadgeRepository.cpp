@@ -11,9 +11,16 @@
 
 #include "HasBadgeRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 
 #include "RowDTOAdapter.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+HasBadgeRepository::HasBadgeRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+HasBadgeRepository::HasBadgeRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -23,7 +30,7 @@ bool HasBadgeRepository::create(size_t user_id, size_t message_id) noexcept {
 		"INSERT INTO has_badge(user_id, message_id) VALUES "
 		"($1::int8, $2::int8)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
@@ -31,7 +38,7 @@ bool HasBadgeRepository::create(size_t user_id, size_t message_id) noexcept {
 		return false;
 	}
 
-	return database::execQuery(sql_string, user_id, message_id);
+	return executor_.execQuery(sql_string, user_id, message_id);
 }
 
 //-----------------------------------------------------
@@ -44,11 +51,11 @@ bool HasBadgeRepository::remove(size_t user_id, size_t message_id) noexcept {
 		sql_string = "DELETE FROM has_badge WHERE user_id = $1::int8 AND message_id = $2::int8";
 	}
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, user_id, message_id);
+	return executor_.execQuery(sql_string, user_id, message_id);
 }
 
 //-----------------------------------------------------
@@ -57,7 +64,7 @@ bool HasBadgeRepository::remove(size_t user_id, size_t message_id) noexcept {
 std::vector<size_t> HasBadgeRepository::get(size_t user_id) const noexcept {
 	const static std::string sql_string{"SELECT message_id FROM has_badge WHERE user_id=$1::int8"};
 
-	const auto role_dtos{database::execSelectAll(sql_string, user_id)};
+	const auto role_dtos{executor_.execSelectAll(sql_string, user_id)};
 	std::vector<size_t> roles;
 
 	for (const auto& dto : role_dtos) {

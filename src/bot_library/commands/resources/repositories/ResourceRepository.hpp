@@ -15,11 +15,16 @@
 
 #include "ResourceDTO.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class ResourceRepository : public IRepository<ResourceDTO> {
   public:
+	ResourceRepository();
+	explicit ResourceRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const ResourceDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
@@ -29,4 +34,7 @@ class ResourceRepository : public IRepository<ResourceDTO> {
 	[[nodiscard]] std::vector<ResourceDTO> get(const std::string& category) const noexcept;
 
 	[[nodiscard]] bool update(const ResourceDTO& object) noexcept override;
+
+  private:
+	DatabaseExecutor& executor_;
 };

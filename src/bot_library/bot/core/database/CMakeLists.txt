@@ -2,6 +2,7 @@ CPMAddPackage("gh:jtv/libpqxx#7.10.1")
 
 add_library(database STATIC 
     Database.cpp
+    DatabaseExecutor.cpp
 )
 
 # enable additional warnings and static analysis for this target

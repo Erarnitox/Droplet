@@ -11,10 +11,17 @@
 
 #include "WebUserRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 
 #include "WebUserDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+WebUserRepository::WebUserRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+WebUserRepository::WebUserRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -24,11 +31,11 @@ bool WebUserRepository::create(const WebUserDTO& object) noexcept {
 		"INSERT INTO users(username, password, clearance, email, confirm_code, is_verified) VALUES "
 		"($1::varchar, $2::varchar, $3::int4, $4::varchar, $5::varchar, $6::bool)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string,
+	return executor_.execQuery(sql_string,
 							   object.username,
 							   object.password,
 							   object.clearance,
@@ -43,10 +50,10 @@ bool WebUserRepository::create(const WebUserDTO& object) noexcept {
 bool WebUserRepository::remove(size_t user_id) noexcept {
 	const static std::string sql_string{"DELETE FROM users WHERE id = $1::int8"};
 
-	if (not Database::hasConnection())
+	if (not executor_.hasConnection())
 		return false;
 
-	return database::execQuery(sql_string, user_id);
+	return executor_.execQuery(sql_string, user_id);
 }
 
 //-----------------------------------------------------
@@ -60,14 +67,14 @@ bool WebUserRepository::update(const WebUserDTO& object) noexcept {
 		"      confirm_code = $6::varchar, is_verified = $7::bool "
 		"WHERE id = $1::int8"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.id) {
 		return false;
 	}
 
-	return database::execQuery(sql_string,
+	return executor_.execQuery(sql_string,
 							   object.id,
 							   object.username,
 							   object.password,
@@ -84,7 +91,7 @@ WebUserDTO WebUserRepository::get(size_t user_id) const noexcept {
 	const static std::string sql_string{
 		"SELECT username, password, clearance, email, confirm_code, is_verified FROM users WHERE id=$1::int8"};
 
-	const auto result{database::execSelect(sql_string, user_id)};
+	const auto result{executor_.execSelect(sql_string, user_id)};
 
 	WebUserDTO dto;
 	dto.id = user_id;
@@ -105,7 +112,7 @@ WebUserDTO WebUserRepository::get(const std::string& username) const noexcept {
 	const static std::string sql_string{
 		"SELECT id, password, clearance, email, confirm_code, is_verified FROM users WHERE username=$1::varchar"};
 
-	const auto result{database::execSelect(sql_string, username)};
+	const auto result{executor_.execSelect(sql_string, username)};
 
 	WebUserDTO dto;
 	dto.id = result.get<decltype(dto.id)>("id");
@@ -126,7 +133,7 @@ std::vector<WebUserDTO> WebUserRepository::getAll() const noexcept {
 	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, confirm_code, is_verified FROM users"};
 
-	const auto result{database::execSelectAll(sql_string)};
+	const auto result{executor_.execSelectAll(sql_string)};
 
 	std::vector<WebUserDTO> dtos;
 	dtos.reserve(result.size());
@@ -162,7 +169,7 @@ bool WebUserRepository::verify(const std::string& token, size_t clearance) noexc
 	const static std::string sql_string{
 		"SELECT id, username, password, clearance, email, is_verified FROM users WHERE confirm_code=$1::varchar"};
 
-	const auto result{database::execSelect(sql_string, token)};
+	const auto result{executor_.execSelect(sql_string, token)};
 
 	WebUserDTO dto;
 	dto.id = result.get<decltype(dto.id)>("id");

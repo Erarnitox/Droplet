@@ -11,12 +11,19 @@
 
 #include "PortalRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 #include <string>
 #include <vector>
 
 #include "PortalDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+PortalRepository::PortalRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+PortalRepository::PortalRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -27,11 +34,11 @@ bool PortalRepository::create(const PortalDTO& object) noexcept {
 		"(guild_id, channel_id) VALUES "
 		"($1::int8, $2::int8)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.guild_id, object.channel_id);
+	return executor_.execQuery(sql_string, object.guild_id, object.channel_id);
 }
 
 //-----------------------------------------------------
@@ -40,11 +47,11 @@ bool PortalRepository::create(const PortalDTO& object) noexcept {
 bool PortalRepository::remove(size_t id) noexcept {
 	const static std::string sql_string{"DELETE FROM portals WHERE guild_id = $1::int8"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, id);
+	return executor_.execQuery(sql_string, id);
 }
 
 //-----------------------------------------------------
@@ -54,7 +61,7 @@ bool PortalRepository::update(const PortalDTO& object) noexcept {
 	const std::string sql_string{"UPDATE portals SET channel_id = " + std::to_string(object.channel_id) +
 								 " WHERE guild_id = " + std::to_string(object.guild_id)};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
@@ -62,7 +69,7 @@ bool PortalRepository::update(const PortalDTO& object) noexcept {
 		return false;
 	}
 
-	return database::execQuery(sql_string);
+	return executor_.execQuery(sql_string);
 }
 
 //-----------------------------------------------------
@@ -71,7 +78,7 @@ bool PortalRepository::update(const PortalDTO& object) noexcept {
 PortalDTO PortalRepository::get(size_t id) const noexcept {
 	const std::string sql_string{"SELECT channel_id FROM portals WHERE guild_id=" + std::to_string(id)};
 
-	const auto result{database::execSelect(sql_string)};
+	const auto result{executor_.execSelect(sql_string)};
 
 	PortalDTO dto;
 	dto.guild_id = id;
@@ -85,7 +92,7 @@ PortalDTO PortalRepository::get(size_t id) const noexcept {
 //-----------------------------------------------------
 std::vector<PortalDTO> PortalRepository::getAll() const noexcept {
 	const static std::string sql_string{"SELECT guild_id, channel_id FROM portals"};
-	const auto result{database::execSelectAll(sql_string)};
+	const auto result{executor_.execSelectAll(sql_string)};
 
 	std::vector<PortalDTO> dtos;
 	dtos.reserve(result.size());

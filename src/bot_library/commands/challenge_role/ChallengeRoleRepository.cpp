@@ -11,10 +11,17 @@
 
 #include "ChallengeRoleRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 
 #include "ChallengeRoleDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+ChallengeRoleRepository::ChallengeRoleRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+ChallengeRoleRepository::ChallengeRoleRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -25,14 +32,14 @@ bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) noexcept {
 		"($1::int8, "
 		"$2::int8, $3::int8, $4::varchar)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.messageId) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
+	return executor_.execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }
 
 //-----------------------------------------------------
@@ -41,10 +48,10 @@ bool ChallengeRoleRepository::create(const ChallengeRoleDTO& object) noexcept {
 bool ChallengeRoleRepository::remove(size_t messageId) noexcept {
 	const static std::string sql_string{"DELETE FROM challenge_roles WHERE message_id = $1::int8"};
 
-	if (not Database::hasConnection())
+	if (not executor_.hasConnection())
 		return false;
 
-	return database::execQuery(sql_string, messageId);
+	return executor_.execQuery(sql_string, messageId);
 }
 
 //-----------------------------------------------------
@@ -56,14 +63,14 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) noexcept {
 		"($1::int8, "
 		"$2::Int8, $3::int8, $4::varchar) WHERE message_id = $3"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.messageId) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
+	return executor_.execQuery(sql_string, object.roleId, object.guildId, object.messageId, object.solution);
 }
 
 //-----------------------------------------------------
@@ -72,7 +79,7 @@ bool ChallengeRoleRepository::update(const ChallengeRoleDTO& object) noexcept {
 ChallengeRoleDTO ChallengeRoleRepository::get(size_t messageId) const noexcept {
 	const static std::string sql_string{"SELECT role_id, flag FROM challenge_roles WHERE message_id=$1::int8"};
 
-	const auto result{database::execSelect(sql_string, messageId)};
+	const auto result{executor_.execSelect(sql_string, messageId)};
 
 	ChallengeRoleDTO dto;
 	dto.messageId = messageId;

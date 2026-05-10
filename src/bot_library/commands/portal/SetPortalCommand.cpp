@@ -14,17 +14,148 @@
 #include <appcommand.h>
 #include <colors.h>
 #include <message.h>
-#include <restresults.h>
 #include <snowflake.h>
+#include <dpp/utility.h>
 
 #include <Core.hpp>
 #include <PortalRepository.hpp>
+
+#include <string_view>
 
 #include "IMessageCommand.hpp"
 #include "IReactionCommand.hpp"
 #include "repositories/BlacklistRepository.hpp"
 #include "repositories/PortalDTO.hpp"
 #include "repositories/PortalRepository.hpp"
+
+namespace {
+
+constexpr std::size_t k_quote_preview_max = 160;
+constexpr std::size_t k_forward_preview_max = 280;
+
+std::string truncate_preview(std::string_view text, std::size_t max_len = k_quote_preview_max) {
+	if (text.empty()) {
+		return {};
+	}
+	if (text.size() <= max_len) {
+		return std::string(text);
+	}
+	return std::string(text.substr(0, max_len - 3)) + "...";
+}
+
+/** Single-line preview (quoted banners can't rely on multi-line markdown in relay messages). */
+std::string flatten_preview(std::string text) {
+	for (char& c : text) {
+		if (c == '\n' || c == '\r') {
+			c = ' ';
+		}
+	}
+	return text;
+}
+
+std::string display_name_for_message(const dpp::message& m) {
+	const std::string nick = m.member.get_nickname();
+	if (!nick.empty()) {
+		return nick;
+	}
+	if (!m.author.global_name.empty()) {
+		return std::string(m.author.global_name);
+	}
+	return m.author.username;
+}
+
+/** Short note when the original had attachments, embeds, or stickers. */
+std::string media_annotation(const dpp::message& m) {
+	std::string out;
+	if (!m.attachments.empty()) {
+		out += std::format(" · {} attachment(s)", m.attachments.size());
+	}
+	if (!m.embeds.empty()) {
+		out += " · embed";
+	}
+	if (!m.stickers.empty()) {
+		out += " · sticker";
+	}
+	return out;
+}
+
+/** Markdown link to open the message in Discord (needs guild + channel + message id). */
+std::string jump_markdown_for_message(const dpp::message& target, const dpp::message& id_fallback) {
+	const dpp::snowflake gid = target.guild_id.empty() ? id_fallback.guild_id : target.guild_id;
+	const dpp::snowflake cid = target.channel_id.empty() ? id_fallback.channel_id : target.channel_id;
+	const dpp::snowflake mid = target.id;
+	const std::string url = dpp::utility::message_url(gid, cid, mid);
+	if (url.empty()) {
+		return {};
+	}
+	return std::format(" · [Jump]({})", url);
+}
+
+bool message_has_relayable_payload(const dpp::message& msg) {
+	if (!msg.content.empty()) {
+		return true;
+	}
+	if (!msg.attachments.empty() || !msg.embeds.empty() || !msg.stickers.empty()) {
+		return true;
+	}
+	if (msg.message_reference.type == dpp::mrt_forward && !msg.message_snapshots.messages.empty()) {
+		return true;
+	}
+	return false;
+}
+
+std::string format_forwarded_snapshots_block(const dpp::message& msg) {
+	if (msg.message_reference.type != dpp::mrt_forward || msg.message_snapshots.messages.empty()) {
+		return {};
+	}
+
+	std::string block = "📨 **Forwarded**\n";
+	for (const auto& inner : msg.message_snapshots.messages) {
+		const std::string who = display_name_for_message(inner);
+		std::string body =
+			inner.content.empty() ? std::string("(no text)") : truncate_preview(inner.content, k_forward_preview_max);
+		body = flatten_preview(std::move(body));
+		const std::string jump = jump_markdown_for_message(inner, msg);
+		block += std::format("> **{}**: {}{}{}\n", who, body, media_annotation(inner), jump);
+	}
+	return block;
+}
+
+std::string format_reply_banner(const dpp::message& ref_msg, const dpp::message& portal_context_msg) {
+	const std::string who = display_name_for_message(ref_msg);
+	std::string preview =
+		ref_msg.content.empty() ? std::string("(no text)") : truncate_preview(ref_msg.content, k_quote_preview_max);
+	preview = flatten_preview(std::move(preview));
+
+	const std::string jump = jump_markdown_for_message(ref_msg, portal_context_msg);
+
+	if (ref_msg.author.id == Bot::ctx->me.id) {
+		return std::format(
+			"↩️ _Reply to portal relay:_ {}{}{}\n", preview, media_annotation(ref_msg), jump);
+	}
+	return std::format(
+		"↩️ _Reply to_ **{}**: {}{}{}\n", who, preview, media_annotation(ref_msg), jump);
+}
+
+/** Bottom line: who spoke (and optional commentary / media on the outer message). */
+std::string format_outgoing_body_line(const dpp::message& msg) {
+	const std::string who = display_name_for_message(msg);
+	const bool forwarded = (msg.message_reference.type == dpp::mrt_forward);
+
+	const std::string jump = jump_markdown_for_message(msg, msg);
+
+	if (forwarded && msg.content.empty()) {
+		return std::format("_**{}** forwarded the message above._{}{}", who, media_annotation(msg), jump);
+	}
+
+	if (msg.content.empty()) {
+		return std::format("**{}**{}{}", who, media_annotation(msg), jump);
+	}
+
+	return std::format("**{}**: {}", who, msg.content) + media_annotation(msg) + jump;
+}
+
+}  // namespace
 
 //-----------------------------------------------------
 //
@@ -67,29 +198,22 @@ void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	} else {
 		event.reply(dpp::message("Error: Failed to save Portal to the Database!").set_flags(dpp::m_ephemeral));
 	}
-	return;
-
-	event.reply(dpp::message("Error: Something went wrong!").set_flags(dpp::m_ephemeral));
-	return;
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
-	// Early returns for bots or empty messages
-	if (event.msg.author.is_bot() || event.msg.content.empty()) {
+	if (event.msg.author.is_bot() || not message_has_relayable_payload(event.msg)) {
 		return;
 	}
 
 	PortalRepository repo;
 
-	// Check if the message is in a registered portal channel for this guild
 	if (repo.get(event.msg.guild_id).channel_id != event.msg.channel_id) {
 		return;
 	}
 
-	// Check against the blacklist
 	BlacklistRepository blacklist_repo;
 	const auto& blacklisted_users{blacklist_repo.getAll()};
 	for (const auto& user : blacklisted_users) {
@@ -98,54 +222,61 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		}
 	}
 
-	const auto send_to_portals = [event = std::move(event), repo = std::move(repo)](const std::string& prefix = "") {
-		// Build the final message content
-		const auto full_content = std::format("{}[**{}**]: {}", prefix, event.msg.author.username, event.msg.content);
+	const std::string forward_banner = format_forwarded_snapshots_block(event.msg);
 
-		const auto& portals{repo.getAll()};
-		for (const auto& portal : portals) {
-			// Skip the channel the message came from
-			if (portal.channel_id == event.msg.channel_id) {
-				continue;
+	const auto send_to_portals =
+		[event = std::move(event), repo = std::move(repo), forward_banner](std::string reply_banner) {
+			const std::string header = std::format("{}{}", forward_banner, reply_banner);
+			const std::string body_line = format_outgoing_body_line(event.msg);
+			const std::string full_content =
+				header.empty() ? body_line : std::format("{}\n{}", header, body_line);
+
+			const auto& portals{repo.getAll()};
+			for (const auto& portal : portals) {
+				if (portal.channel_id == event.msg.channel_id) {
+					continue;
+				}
+
+				dpp::message msg_to_send(portal.channel_id, full_content);
+				Bot::ctx->message_create(msg_to_send);
 			}
+		};
 
-			// FIX: Create a NEW message object for each send operation.
-			dpp::message msg_to_send(portal.channel_id, full_content);
-			Bot::ctx->message_create(msg_to_send);
-		}
-	};
-
-	// Check if the message is a reply
 	const auto& ref{event.msg.message_reference};
-	if (not ref.message_id.empty()) {
+	const bool is_forward = (ref.type == dpp::mrt_forward);
+	const bool needs_reply_lookup = not ref.message_id.empty() && not is_forward;
+
+	if (needs_reply_lookup) {
+		const dpp::snowflake ref_channel_id =
+			ref.channel_id.empty() ? event.msg.channel_id : ref.channel_id;
+		const dpp::message portal_source_for_links = event.msg;
+		const dpp::snowflake reply_message_id = ref.message_id;
+		const dpp::snowflake guild_for_jump = event.msg.guild_id;
 		Bot::ctx->message_get(
 			ref.message_id,
-			ref.channel_id,
-			[send_to_portals = std::move(send_to_portals)](const dpp::confirmation_callback_t& callback) {
+			ref_channel_id,
+			[send_to_portals = std::move(send_to_portals),
+			 portal_source_for_links,
+			 reply_message_id,
+			 ref_channel_id,
+			 guild_for_jump](const dpp::confirmation_callback_t& callback) {
 				if (callback.is_error()) {
-					send_to_portals();
+					const std::string url =
+						dpp::utility::message_url(guild_for_jump, ref_channel_id, reply_message_id);
+					if (not url.empty()) {
+						send_to_portals(std::format(
+							"↩️ _Reply (preview unavailable)_ · [Jump]({})\n", url));
+					} else {
+						send_to_portals("");
+					}
 					return;
 				}
 
-				const auto& ref_msg{callback.get<dpp::message>()};
-				std::string reply_prefix;
-				auto content = ref_msg.content.substr(0, 32);
-
-				if (ref_msg.content.length() > 32) {
-					content.append("...");
-				}
-
-				if (not ref_msg.author.is_bot()) {
-					reply_prefix = std::format("> _reply to:_ `[{}]: {}`\n", ref_msg.author.username, content);
-				} else if (ref_msg.author.id == Bot::ctx->me.id) {
-					// Prettify replies to the bot itself
-					reply_prefix = std::format("> _reply to:_ `{}`\n", content);
-				}
-
-				send_to_portals(reply_prefix);
+				send_to_portals(
+					format_reply_banner(callback.get<dpp::message>(), portal_source_for_links));
 			});
 	} else {
-		send_to_portals();
+		send_to_portals("");
 	}
 }
 

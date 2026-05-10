@@ -4,6 +4,8 @@ add_subdirectory(email)
 
 add_library(bot STATIC
     Bot.cpp
+    BotSlashCommandRegistrar.cpp
+    BotEventSubscriptions.cpp
 )
 
 # enable additional warnings and static analysis for this target

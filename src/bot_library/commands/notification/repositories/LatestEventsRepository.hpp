@@ -32,6 +32,13 @@ class LatestEventsRepository {
 
 	[[nodiscard]] static bool exists(const std::string& key, const std::string& value) noexcept;
 
+	/**
+	 * If \p yt_link is already the stored latest for \p key, returns false.
+	 * Otherwise updates memory + DB and returns true so the caller may announce once.
+	 * Thread-safe vs other LatestEventsRepository calls; use this instead of exists()+insert().
+	 */
+	[[nodiscard]] static bool try_claim_new_latest(const std::string& key, const std::string& yt_link) noexcept;
+
 	[[nodiscard]] static bool load() noexcept;
 
 	static void set_active(const std::string& key, bool active) noexcept;

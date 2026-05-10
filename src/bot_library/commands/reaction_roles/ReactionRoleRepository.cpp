@@ -11,10 +11,17 @@
 
 #include "ReactionRoleRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 
 #include "ReactionRoleDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+ReactionRoleRepository::ReactionRoleRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+ReactionRoleRepository::ReactionRoleRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -25,14 +32,14 @@ bool ReactionRoleRepository::create(const ReactionRoleDTO& object) noexcept {
 		"($1::int8, "
 		"$2::int8, $3::int8, $4::varchar)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.message_id) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, object.role_id, object.message_id, object.guild_id, object.emoji);
+	return executor_.execQuery(sql_string, object.role_id, object.message_id, object.guild_id, object.emoji);
 }
 
 //-----------------------------------------------------
@@ -41,11 +48,11 @@ bool ReactionRoleRepository::create(const ReactionRoleDTO& object) noexcept {
 bool ReactionRoleRepository::remove(size_t message_id) noexcept {
 	const static std::string sql_string{"DELETE FROM reaction_roles WHERE message_id = $1::int8"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return database::execQuery(sql_string, message_id);
+	return executor_.execQuery(sql_string, message_id);
 }
 
 //-----------------------------------------------------
@@ -57,13 +64,13 @@ bool ReactionRoleRepository::update(const ReactionRoleDTO& object) noexcept {
 		"($1::int8, "
 		"$2::Int8, $3::int8, $4::varchar) WHERE message_id = $3"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.message_id)
 		return false;
 
-	return database::execQuery(sql_string, object.role_id, object.message_id, object.guild_id, object.emoji);
+	return executor_.execQuery(sql_string, object.role_id, object.message_id, object.guild_id, object.emoji);
 }
 
 //-----------------------------------------------------
@@ -80,7 +87,7 @@ ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string
 	const static std::string sql_string{
 		"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
 
-	auto result{database::execSelect(sql_string, message_id, emoji)};
+	auto result{executor_.execSelect(sql_string, message_id, emoji)};
 
 	ReactionRoleDTO dto;
 	dto.message_id = message_id;

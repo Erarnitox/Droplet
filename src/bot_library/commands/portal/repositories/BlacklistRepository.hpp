@@ -16,11 +16,16 @@
 #include "BlacklistDTO.hpp"
 #include "IRepository.hpp"
 
+class DatabaseExecutor;
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 class BlacklistRepository : public IRepository<BlacklistDTO> {
   public:
+	BlacklistRepository();
+	explicit BlacklistRepository(DatabaseExecutor& executor);
+
 	[[nodiscard]] bool create(const BlacklistDTO& object) noexcept override;
 
 	[[nodiscard]] bool remove(size_t id) noexcept override;
@@ -30,4 +35,7 @@ class BlacklistRepository : public IRepository<BlacklistDTO> {
 	[[nodiscard]] bool update(const BlacklistDTO& object) noexcept override;
 
 	[[nodiscard]] std::vector<BlacklistDTO> getAll() const noexcept;
+
+  private:
+	DatabaseExecutor& executor_;
 };

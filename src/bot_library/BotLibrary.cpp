@@ -19,9 +19,8 @@
 #include <Database.hpp>
 #include <RestApi.hpp>
 #include <fstream>
+#include <stdexcept>
 #include <thread>
-
-#include "restapi/include/RestApi.hpp"
 
 /**
  * @brief this is the entry point of the binary that will start the bot
@@ -31,8 +30,8 @@ void start_bot(const bool IS_TEST) {
 	// initialize bot
 	try {
 		Bot::init(read_bot_token("bot_token.txt"));
-	} catch (const char* const error_message) {
-		std::cerr << error_message;
+	} catch (const std::exception& ex) {
+		std::cerr << ex.what();
 		return;
 	}
 
@@ -46,8 +45,8 @@ void start_bot(const bool IS_TEST) {
 		if (not connected) {
 			return;
 		}
-	} catch (const char* const error_message) {
-		std::cerr << error_message;
+	} catch (const std::exception& ex) {
+		std::cerr << ex.what();
 		return;
 	}
 	//------------------------------------------------------------------------------
@@ -84,13 +83,11 @@ std::string read_bot_token(const std::string& file) {
 	if (file_stream.is_open()) {
 		file_stream >> bot_token;
 	} else {
-		// something went wrong opening the file
-		throw("ERROR: bot token file could not be opened!");
+		throw std::runtime_error("ERROR: bot token file could not be opened!");
 	}
 
 	if (bot_token.size() < 1) {
-		// something went wrong reading the token
-		throw("ERROR: NO bot token found!");
+		throw std::runtime_error("ERROR: NO bot token found!");
 	}
 
 	return bot_token;
@@ -109,11 +106,11 @@ std::string read_database_credentials(const std::string& file) {
 	if (file_stream.is_open()) {
 		std::getline(file_stream, connection_string);
 	} else {
-		throw("ERROR: Cant read Database connection string!");
+		throw std::runtime_error("ERROR: Cant read Database connection string!");
 	}
 
 	if (connection_string.size() < 1) {
-		throw("ERROR: NO DATABASE CREDENTIALS PROVIDED!");
+		throw std::runtime_error("ERROR: NO DATABASE CREDENTIALS PROVIDED!");
 	}
 
 	return connection_string;

@@ -11,10 +11,17 @@
 
 #include "UserRepository.hpp"
 
-#include <Database.hpp>
+#include <DatabaseExecutor.hpp>
 #include <cstddef>
 
 #include "UserDTO.hpp"
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+UserRepository::UserRepository() : executor_(DatabaseExecutor::application_instance()) {}
+
+UserRepository::UserRepository(DatabaseExecutor& executor) : executor_(executor) {}
 
 //-----------------------------------------------------
 //
@@ -24,7 +31,7 @@ bool UserRepository::create(const UserDTO& object) noexcept {
 		"INSERT INTO usr(user_id, user_name, color, exp, is_subscribed) VALUES "
 		"($1::int8, $2::varchar, $3::varchar, $4::int8, $5::int8)"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 
@@ -32,7 +39,7 @@ bool UserRepository::create(const UserDTO& object) noexcept {
 		return false;
 	}
 
-	return database::execQuery(
+	return executor_.execQuery(
 		sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
 }
 
@@ -42,10 +49,10 @@ bool UserRepository::create(const UserDTO& object) noexcept {
 bool UserRepository::remove(size_t user_id) noexcept {
 	const static std::string sql_string{"DELETE FROM usr WHERE user_id = $1::int8"};
 
-	if (not Database::hasConnection())
+	if (not executor_.hasConnection())
 		return false;
 
-	return database::execQuery(sql_string, user_id);
+	return executor_.execQuery(sql_string, user_id);
 }
 
 //-----------------------------------------------------
@@ -57,14 +64,14 @@ bool UserRepository::update(const UserDTO& object) noexcept {
 		"exp = $4::int8, is_subscribed = $5::int8 "
 		"WHERE user_id = $1::int8"};
 
-	if (not Database::hasConnection()) {
+	if (not executor_.hasConnection()) {
 		return false;
 	}
 	if (not object.user_id) {
 		return false;
 	}
 
-	return database::execQuery(
+	return executor_.execQuery(
 		sql_string, object.user_id, object.user_name, object.color, object.exp, object.is_subscribed);
 }
 
@@ -74,7 +81,7 @@ bool UserRepository::update(const UserDTO& object) noexcept {
 UserDTO UserRepository::get(size_t user_id) const noexcept {
 	const static std::string sql_string{"SELECT user_name, color, exp, is_subscribed FROM usr WHERE user_id=$1::int8"};
 
-	const auto result{database::execSelect(sql_string, user_id)};
+	const auto result{executor_.execSelect(sql_string, user_id)};
 
 	UserDTO dto;
 	dto.user_id = user_id;
@@ -95,7 +102,7 @@ std::vector<UserDTO> UserRepository::getTopTen() const noexcept {
 					"    FROM usr "
 					"ORDER BY exp DESC "
 					"   LIMIT 10")};
-	const auto result = database::execSelectAll(sql_string);
+	const auto result = executor_.execSelectAll(sql_string);
 
 	std::vector<UserDTO> dtos;
 	dtos.reserve(result.size());

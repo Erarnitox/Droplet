@@ -22,11 +22,20 @@
 #include <Core.hpp>
 #include <NotificationRepository.hpp>
 #include <format>
+#include <mutex>
 #include <optional>
 #include <regex>
+#include <unordered_map>
 
 #include "LatestEventsRepository.hpp"
 #include "repositories/NotificationRepository.hpp"
+
+namespace {
+
+std::mutex youtube_daemon_mutex;
+std::unordered_map<std::string, dpp::timer> youtube_daemon_timers;
+
+}  // namespace
 
 //-----------------------------------------------------
 //
@@ -87,29 +96,36 @@ static inline void start_notification_deamon(size_t channel_id,
 		Bot::ctx->request(
 			url,
 			dpp::m_get,
-			[channel_id, message, youtube_id, key, timer_handle](const dpp::http_request_completion_t& cc) {
+			[channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
+				const auto stop_timer_and_release = [key, timer_handle]() {
+					Bot::ctx->stop_timer(timer_handle);
+					std::lock_guard<std::mutex> lock(youtube_daemon_mutex);
+					const auto it{youtube_daemon_timers.find(key)};
+					if (it != youtube_daemon_timers.end() && it->second == timer_handle) {
+						youtube_daemon_timers.erase(it);
+					}
+				};
+
 				if (cc.status >= 300) {
 					if (cc.status >= 400) {
-						if (LatestEventsRepository::remove(key))
-							Bot::ctx->stop_timer(timer_handle);
+						if (LatestEventsRepository::remove(key)) {
+							stop_timer_and_release();
+						}
 					}
 					return;
 				}
 
 				if (not LatestEventsRepository::is_active(key)) {
-					Bot::ctx->stop_timer(timer_handle);
+					stop_timer_and_release();
 					return;
 				}
 
 				static const std::regex video_regex{R"(https:\/\/www\.youtube\.com\/v\/([a-zA-Z0-9_-]+))"};
 				std::smatch match;
 				if (std::regex_search(cc.body, match, video_regex) && match.size() > 1) {
-					std::string video_id = match[1].str();
-					std::string yt_link = std::format("https://www.youtube.com/v/{}", video_id);
-					if (LatestEventsRepository::exists(key, yt_link)) {
-						return;
-					}
-					if (not LatestEventsRepository::insert(key, yt_link)) {
+					const std::string video_id = match[1].str();
+					const std::string yt_link = std::format("https://www.youtube.com/v/{}", video_id);
+					if (not LatestEventsRepository::try_claim_new_latest(key, yt_link)) {
 						return;
 					}
 
@@ -117,12 +133,18 @@ static inline void start_notification_deamon(size_t channel_id,
 					msg.set_allowed_mentions(true, true, true, true);
 					Bot::ctx->message_create(msg);
 				} else {
-					Bot::ctx->stop_timer(timer_handle);
+					stop_timer_and_release();
 				}
 			});
 	}};
 
-	Bot::ctx->start_timer(on_tick, timestep_sec);
+	std::lock_guard<std::mutex> lock(youtube_daemon_mutex);
+	if (const auto it{youtube_daemon_timers.find(key)}; it != youtube_daemon_timers.end()) {
+		Bot::ctx->stop_timer(it->second);
+		youtube_daemon_timers.erase(it);
+	}
+	const dpp::timer new_handle{Bot::ctx->start_timer(on_tick, timestep_sec)};
+	youtube_daemon_timers.emplace(key, new_handle);
 }
 
 //-----------------------------------------------------

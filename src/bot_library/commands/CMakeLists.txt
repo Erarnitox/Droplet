@@ -1,5 +1,11 @@
 add_library(commands STATIC 
     Commands.cpp
+    registration/RegisterAllCommands.cpp
+    registration/RegisterEssentialCommands.cpp
+    registration/RegisterSlashUtilityCommands.cpp
+    registration/RegisterResourceCommands.cpp
+    registration/RegisterPortalAndNotificationCommands.cpp
+    registration/RegisterInteractiveCommands.cpp
 )
 
 target_include_directories(commands PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")

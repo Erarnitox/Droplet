@@ -24,9 +24,9 @@ auto start_bot(bool IS_TEST = false) -> void;
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-[[nodiscard]] static std::string read_bot_token(const std::string& file);
+[[nodiscard]] std::string read_bot_token(const std::string& file);
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-[[nodiscard]] static std::string read_database_credentials(const std::string& file);
+[[nodiscard]] std::string read_database_credentials(const std::string& file);
