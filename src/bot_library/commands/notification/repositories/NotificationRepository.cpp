@@ -81,13 +81,18 @@ bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 //
 //-----------------------------------------------------
 NotificationDTO NotificationRepository::get(size_t id) const noexcept {
-	const static std::string sql_string{"SELECT channel_id FROM notifications WHERE guild_id=$1::int8"};
+	const static std::string sql_string{
+		"SELECT channel_id, type, data, message, timestep FROM notifications WHERE guild_id=$1::int8"};
 
 	const auto result{executor_.execSelect(sql_string, id)};
 
 	NotificationDTO dto;
 	dto.guild_id = id;
 	dto.channel_id = result.get<decltype(dto.channel_id)>("channel_id");
+	dto.timestep = result.get<decltype(dto.timestep)>("timestep");
+	dto.type = result.get<decltype(dto.type)>("type");
+	dto.data = result.get<decltype(dto.data)>("data");
+	dto.message = result.get<decltype(dto.message)>("message");
 
 	return dto;
 }

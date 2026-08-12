@@ -14,6 +14,10 @@
 #include <dispatcher.h>
 
 #include <Bot.hpp>
+#include <string>
+
+/** Stop the youtube upload poller for \p key (`{discord_channel_id}/{youtube_channel_id}`). */
+void stop_youtube_notification_daemon(const std::string& key);
 
 //-----------------------------------------------------
 //

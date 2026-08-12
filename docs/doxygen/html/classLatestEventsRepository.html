@@ -99,7 +99,7 @@ $(function(){initNavTree('classLatestEventsRepository.html','','classLatestEvent
 <div class="dynheader">
 Collaboration diagram for LatestEventsRepository:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classLatestEventsRepository__coll__graph.svg" width="166" height="208"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="classLatestEventsRepository__coll__graph.svg" width="162" height="208"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
@@ -107,7 +107,7 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0eb330aa10b8da37a60f5c9333ba8552" id="r_a0eb330aa10b8da37a60f5c9333ba8552"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a0eb330aa10b8da37a60f5c9333ba8552">insert</a> (const std::string &amp;key, const std::string &amp;value) noexcept</td></tr>
 <tr class="memitem:a80c41dc3fb57da25e851025f96b1155b" id="r_a80c41dc3fb57da25e851025f96b1155b"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a80c41dc3fb57da25e851025f96b1155b">remove</a> (const std::string &amp;key) noexcept</td></tr>
 <tr class="memitem:ac1995532f62ad8a468616ebba6ca219c" id="r_ac1995532f62ad8a468616ebba6ca219c"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ac1995532f62ad8a468616ebba6ca219c">exists</a> (const std::string &amp;key, const std::string &amp;value) noexcept</td></tr>
-<tr class="memitem:a06363dd03e9c4734ab18d73378ab4429" id="r_a06363dd03e9c4734ab18d73378ab4429"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a06363dd03e9c4734ab18d73378ab4429">try_claim_new_latest</a> (const std::string &amp;key, const std::string &amp;yt_link) noexcept</td></tr>
+<tr class="memitem:a93c3709146aa26d481cfee2081c8ac99" id="r_a93c3709146aa26d481cfee2081c8ac99"><td class="memItemLeft">static <a class="el" href="LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7">YoutubeClaimResult</a>&#160;</td><td class="memItemRight"><a class="el" href="#a93c3709146aa26d481cfee2081c8ac99">try_claim_video</a> (const std::string &amp;key, const std::string &amp;video_id, const std::string &amp;title) noexcept</td></tr>
 <tr class="memitem:a259bb02092755a2e57b50871e4a7a4c9" id="r_a259bb02092755a2e57b50871e4a7a4c9"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#a259bb02092755a2e57b50871e4a7a4c9">load</a> () noexcept</td></tr>
 <tr class="memitem:ad735433c85731bdfc9bf5c1a524525ea" id="r_ad735433c85731bdfc9bf5c1a524525ea"><td class="memItemLeft">static void&#160;</td><td class="memItemRight"><a class="el" href="#ad735433c85731bdfc9bf5c1a524525ea">set_active</a> (const std::string &amp;key, bool active) noexcept</td></tr>
 <tr class="memitem:ad7de0b2800126285534e9e470dd4bb10" id="r_ad7de0b2800126285534e9e470dd4bb10"><td class="memItemLeft">static bool&#160;</td><td class="memItemRight"><a class="el" href="#ad7de0b2800126285534e9e470dd4bb10">is_active</a> (const std::string &amp;key) noexcept</td></tr>
@@ -275,8 +275,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a06363dd03e9c4734ab18d73378ab4429" name="a06363dd03e9c4734ab18d73378ab4429"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06363dd03e9c4734ab18d73378ab4429">&#9670;&#160;</a></span>try_claim_new_latest()</h2>
+<a id="a93c3709146aa26d481cfee2081c8ac99" name="a93c3709146aa26d481cfee2081c8ac99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c3709146aa26d481cfee2081c8ac99">&#9670;&#160;</a></span>try_claim_video()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -285,14 +285,19 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool LatestEventsRepository::try_claim_new_latest </td>
+          <td class="memname"><a class="el" href="LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7">YoutubeClaimResult</a> LatestEventsRepository::try_claim_video </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>key</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>yt_link</em></span>&#160;)</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>video_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -301,7 +306,6 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>If <code class="param">yt_link</code> is already the stored latest for <code class="param">key</code>, returns false. Otherwise updates memory + DB and returns true so the caller may announce once. Thread-safe vs other <a class="el" href="classLatestEventsRepository.html">LatestEventsRepository</a> calls; use this instead of <a class="el" href="#ac1995532f62ad8a468616ebba6ca219c">exists()</a>+<a class="el" href="#a0eb330aa10b8da37a60f5c9333ba8552">insert()</a>. </p>
 
 </div>
 </div>

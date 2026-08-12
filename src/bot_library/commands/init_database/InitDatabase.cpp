@@ -55,6 +55,13 @@ CREATE TABLE IF NOT EXISTS public.reaction_roles (
 	emoji varchar NULL
 );
 
+CREATE TABLE IF NOT EXISTS public.youtube_announced (
+	key varchar NOT NULL,
+	video_id varchar NOT NULL,
+	title varchar NULL,
+	PRIMARY KEY (key, video_id)
+);
+
 )ERARNITOX");
 
 	if (result) {

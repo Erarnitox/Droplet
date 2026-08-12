@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['top_5fsecret_0',['TOP_SECRET',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a6a5aa20b71da2350aed4a068a0ee351c',1,'AuthUtils.hpp']]]
+  ['none_0',['NONE',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839ac157bdf0b85a40d2619cbc8bc1ae5fe2',1,'AuthUtils.hpp']]]
 ];

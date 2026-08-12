@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['black_0',['BLACK',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839af77fb67151d0c18d397069ad8c271ba3',1,'AuthUtils.hpp']]]
+  ['alreadyannounced_0',['AlreadyAnnounced',['../LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7a3849c76665e9deb99334c72051ded8af',1,'LatestEventsRepository.hpp']]]
 ];

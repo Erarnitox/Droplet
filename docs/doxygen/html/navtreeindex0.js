@@ -146,6 +146,11 @@ var NAVTREEINDEX0 =
 "JWTUtils_8hpp_source.html":[2,0,0,0,3,0,2],
 "LatestEventsRepository_8cpp.html":[2,0,0,0,1,13,0,0],
 "LatestEventsRepository_8hpp.html":[2,0,0,0,1,13,0,1],
+"LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7":[2,0,0,0,1,13,0,1,1],
+"LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7a30fa4b9595875c0498e063b76870c5e0":[2,0,0,0,1,13,0,1,1,1],
+"LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7a3849c76665e9deb99334c72051ded8af":[2,0,0,0,1,13,0,1,1,0],
+"LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7a9d8b15ef78357692564f5aced0c68eaf":[2,0,0,0,1,13,0,1,1,2],
+"LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7ad7c8c85bf79bbe1b7188497c32c3b0ca":[2,0,0,0,1,13,0,1,1,3],
 "LatestEventsRepository_8hpp_source.html":[2,0,0,0,1,13,0,1],
 "LeaderboardCommand_8cpp.html":[2,0,0,0,1,11,0],
 "LeaderboardCommand_8hpp.html":[2,0,0,0,1,11,1],
@@ -244,10 +249,5 @@ var NAVTREEINDEX0 =
 "Secrets_8cpp.html":[2,0,0,0,0,3,1],
 "Secrets_8hpp.html":[2,0,0,0,0,3,0,0],
 "Secrets_8hpp_source.html":[2,0,0,0,0,3,0,0],
-"ServerDetails_8cpp.html":[2,0,0,0,1,21,0],
-"ServerDetails_8hpp.html":[2,0,0,0,1,21,1],
-"ServerDetails_8hpp_source.html":[2,0,0,0,1,21,1],
-"SetNotificationCommand_8cpp.html":[2,0,0,0,1,13,3],
-"SetNotificationCommand_8hpp.html":[2,0,0,0,1,13,4],
-"SetNotificationCommand_8hpp_source.html":[2,0,0,0,1,13,4]
+"ServerDetails_8cpp.html":[2,0,0,0,1,21,0]
 };

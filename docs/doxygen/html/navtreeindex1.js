@@ -1,5 +1,12 @@
 var NAVTREEINDEX1 =
 {
+"ServerDetails_8hpp.html":[2,0,0,0,1,21,1],
+"ServerDetails_8hpp_source.html":[2,0,0,0,1,21,1],
+"SetNotificationCommand_8cpp.html":[2,0,0,0,1,13,3],
+"SetNotificationCommand_8cpp.html#ae0408324533799cf3818aab8a6db40e0":[2,0,0,0,1,13,3,0],
+"SetNotificationCommand_8hpp.html":[2,0,0,0,1,13,4],
+"SetNotificationCommand_8hpp.html#ae0408324533799cf3818aab8a6db40e0":[2,0,0,0,1,13,4,1],
+"SetNotificationCommand_8hpp_source.html":[2,0,0,0,1,13,4],
 "SetPortalCommand_8cpp.html":[2,0,0,0,1,14,5],
 "SetPortalCommand_8hpp.html":[2,0,0,0,1,14,6],
 "SetPortalCommand_8hpp_source.html":[2,0,0,0,1,14,6],
@@ -242,12 +249,5 @@ var NAVTREEINDEX1 =
 "classReactionRoleDTO.html#abee34636f9e2c38869f3c848641fd03c":[1,0,48,0],
 "classReactionRoleRepository.html":[1,0,49],
 "classReactionRoleRepository.html#a193b5b121cc956e9f34ccad7111150bf":[1,0,49,0],
-"classReactionRoleRepository.html#a5e013360d1ecb34f5ef80b4a07beb150":[1,0,49,3],
-"classReactionRoleRepository.html#a63bedd4cc4765bd7a0e13120c66539fb":[1,0,49,2],
-"classReactionRoleRepository.html#a7ea35652fb06a6b47413d3356ba05cdd":[1,0,49,1],
-"classReactionRoleRepository.html#a8ffdbf74880b40894ae9202e10222804":[1,0,49,4],
-"classReactionRoleRepository.html#aa9bd9301e0f09ff334eca5b0a52018c6":[1,0,49,6],
-"classReactionRoleRepository.html#af3a1d3592f384ed42c208bbb5602bc66":[1,0,49,5],
-"classReactionRoles.html":[1,0,50],
-"classReactionRoles.html#a2b267aebc8f3c9e5a80637aff51871d0":[1,0,50,2]
+"classReactionRoleRepository.html#a5e013360d1ecb34f5ef80b4a07beb150":[1,0,49,3]
 };

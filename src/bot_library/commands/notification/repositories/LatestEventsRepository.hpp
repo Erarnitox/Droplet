@@ -14,6 +14,17 @@
 #include <mutex>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+enum class YoutubeClaimResult {
+	AlreadyAnnounced,  // video id already recorded; do not post
+	Seeded,	 // first observation for this key; record without posting
+	Claimed,  // new video id claimed; caller should post
+	Failed,	 // DB/connection failure; do not post
+};
 
 //-----------------------------------------------------
 //
@@ -21,6 +32,7 @@
 class LatestEventsRepository {
   private:
 	static std::unordered_map<std::string, std::string> latest_events;
+	static std::unordered_map<std::string, std::unordered_set<std::string>> announced_videos;
 	static std::unordered_map<std::string, bool> active_events;
 	static std::mutex active_events_mutex;
 	static std::mutex latest_events_mutex;
@@ -32,12 +44,9 @@ class LatestEventsRepository {
 
 	[[nodiscard]] static bool exists(const std::string& key, const std::string& value) noexcept;
 
-	/**
-	 * If \p yt_link is already the stored latest for \p key, returns false.
-	 * Otherwise updates memory + DB and returns true so the caller may announce once.
-	 * Thread-safe vs other LatestEventsRepository calls; use this instead of exists()+insert().
-	 */
-	[[nodiscard]] static bool try_claim_new_latest(const std::string& key, const std::string& yt_link) noexcept;
+	[[nodiscard]] static YoutubeClaimResult try_claim_video(const std::string& key,
+															const std::string& video_id,
+															const std::string& title) noexcept;
 
 	[[nodiscard]] static bool load() noexcept;
 

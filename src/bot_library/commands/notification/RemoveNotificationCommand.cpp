@@ -18,8 +18,11 @@
 
 #include <Core.hpp>
 #include <NotificationRepository.hpp>
+#include <format>
 
 #include "Bot.hpp"
+#include "LatestEventsRepository.hpp"
+#include "SetNotificationCommand.hpp"
 
 //-----------------------------------------------------
 //
@@ -44,13 +47,17 @@ void RemoveNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event
 
 	const auto& cmd{event.command};
 	const auto& guild_id{static_cast<size_t>(cmd.guild_id)};
-	const auto& channel_id{static_cast<size_t>(cmd.channel_id)};
 
 	NotificationRepository repo;
-	const NotificationDTO data{guild_id, channel_id, {}, {}, {}};
+	const auto existing{repo.get(guild_id)};
 
-	if (repo.get(data.guild_id).channel_id != 0) {
-		if (repo.remove(data.guild_id)) {
+	if (existing.channel_id != 0) {
+		if (repo.remove(guild_id)) {
+			if (existing.type == "youtube" && not existing.data.empty()) {
+				const auto key{std::format("{}/{}", existing.channel_id, existing.data)};
+				stop_youtube_notification_daemon(key);
+				(void)LatestEventsRepository::remove(key);
+			}
 			Core::timed_reply_private(*Bot::ctx, event, "Notifications where removed!", 2000);
 		} else {
 			Core::timed_reply_private(*Bot::ctx, event, "Error: Failed to remove the Notifications!", 2000);

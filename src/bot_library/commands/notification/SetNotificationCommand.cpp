@@ -35,12 +35,45 @@ namespace {
 std::mutex youtube_daemon_mutex;
 std::unordered_map<std::string, dpp::timer> youtube_daemon_timers;
 
-}  // namespace
+struct YoutubeFeedEntry {
+	std::string video_id;
+	std::string title;
+};
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-static inline std::optional<std::string> resolve_youtube_channel_id(const std::string& input) {
+[[nodiscard]] std::optional<YoutubeFeedEntry> parse_latest_youtube_entry(const std::string& atom_body) {
+	static const std::regex entry_regex{R"(<entry>([\s\S]*?)</entry>)"};
+	std::smatch entry_match;
+	if (not std::regex_search(atom_body, entry_match, entry_regex) || entry_match.size() < 2) {
+		return std::nullopt;
+	}
+
+	const std::string entry{entry_match[1].str()};
+
+	static const std::regex video_id_regex{R"(<yt:videoId>([^<]+)</yt:videoId>)"};
+	std::smatch video_match;
+	if (not std::regex_search(entry, video_match, video_id_regex) || video_match.size() < 2) {
+		return std::nullopt;
+	}
+
+	YoutubeFeedEntry parsed;
+	parsed.video_id = video_match[1].str();
+
+	static const std::regex title_regex{R"(<title[^>]*>([^<]*)</title>)"};
+	std::smatch title_match;
+	if (std::regex_search(entry, title_match, title_regex) && title_match.size() > 1) {
+		parsed.title = title_match[1].str();
+	}
+
+	return parsed;
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+[[nodiscard]] std::optional<std::string> resolve_youtube_channel_id(const std::string& input) {
 	if (input.starts_with("UC"))
 		return input;
 
@@ -83,10 +116,10 @@ static inline std::optional<std::string> resolve_youtube_channel_id(const std::s
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-static inline void start_notification_deamon(size_t channel_id,
-											 const std::string& youtube_id,
-											 const std::string& message,
-											 size_t timestep_sec = 500) {
+void start_notification_deamon(size_t channel_id,
+							   const std::string& youtube_id,
+							   const std::string& message,
+							   size_t timestep_sec = 500) {
 	const auto key{std::format("{}/{}", channel_id, youtube_id)};
 
 	const dpp::timer_callback_t on_tick{[channel_id, youtube_id, message, key](dpp::timer timer_handle) {
@@ -104,12 +137,15 @@ static inline void start_notification_deamon(size_t channel_id,
 					}
 				};
 
+				// Keep announced history on errors. Retry 5xx; stop timer on hard 4xx.
+				if (cc.status >= 500) {
+					return;
+				}
+				if (cc.status >= 400) {
+					stop_timer_and_release();
+					return;
+				}
 				if (cc.status >= 300) {
-					if (cc.status >= 400) {
-						if (LatestEventsRepository::remove(key)) {
-							stop_timer_and_release();
-						}
-					}
 					return;
 				}
 
@@ -118,21 +154,22 @@ static inline void start_notification_deamon(size_t channel_id,
 					return;
 				}
 
-				static const std::regex video_regex{R"(https:\/\/www\.youtube\.com\/v\/([a-zA-Z0-9_-]+))"};
-				std::smatch match;
-				if (std::regex_search(cc.body, match, video_regex) && match.size() > 1) {
-					const std::string video_id = match[1].str();
-					const std::string yt_link = std::format("https://www.youtube.com/v/{}", video_id);
-					if (not LatestEventsRepository::try_claim_new_latest(key, yt_link)) {
-						return;
-					}
-
-					dpp::message msg(channel_id, std::format("{}\n{}", message, yt_link));
-					msg.set_allowed_mentions(true, true, true, true);
-					Bot::ctx->message_create(msg);
-				} else {
+				const auto entry_opt{parse_latest_youtube_entry(cc.body)};
+				if (not entry_opt.has_value()) {
 					stop_timer_and_release();
+					return;
 				}
+
+				const auto& entry = entry_opt.value();
+				const auto claim{LatestEventsRepository::try_claim_video(key, entry.video_id, entry.title)};
+				if (claim != YoutubeClaimResult::Claimed) {
+					return;
+				}
+
+				const auto yt_link{std::format("https://www.youtube.com/watch?v={}", entry.video_id)};
+				dpp::message msg(channel_id, std::format("{}\n{}", message, yt_link));
+				msg.set_allowed_mentions(true, true, true, true);
+				Bot::ctx->message_create(msg);
 			});
 	}};
 
@@ -143,6 +180,23 @@ static inline void start_notification_deamon(size_t channel_id,
 	}
 	const dpp::timer new_handle{Bot::ctx->start_timer(on_tick, timestep_sec)};
 	youtube_daemon_timers.emplace(key, new_handle);
+}
+
+}  // namespace
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+void stop_youtube_notification_daemon(const std::string& key) {
+	LatestEventsRepository::set_active(key, false);
+
+	std::lock_guard<std::mutex> lock(youtube_daemon_mutex);
+	const auto it{youtube_daemon_timers.find(key)};
+	if (it == youtube_daemon_timers.end()) {
+		return;
+	}
+	Bot::ctx->stop_timer(it->second);
+	youtube_daemon_timers.erase(it);
 }
 
 //-----------------------------------------------------

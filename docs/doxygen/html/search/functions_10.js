@@ -4,5 +4,5 @@ var searchData=
   ['timed_5freply_5fprivate_1',['timed_reply_private',['../classCore.html#a2bfeb777dbd2f650e9a8e6d2666c707f',1,'Core::timed_reply_private(dpp::cluster &amp;bot, const dpp::slashcommand_t event, const std::string &amp;message, size_t time_mills) noexcept'],['../classCore.html#a12bf346d638e3f248a3b2c303f6c51ca',1,'Core::timed_reply_private(dpp::cluster &amp;bot, const dpp::form_submit_t event, const std::string &amp;message, size_t time_mills) noexcept']]],
   ['timed_5freply_5fprivate_5ftemplate_2',['timed_reply_private_template',['../Core_8cpp.html#a2f03f2dc81ddd7bf10660ec8d26417c0',1,'Core.cpp']]],
   ['timed_5freply_5ftemplate_3',['timed_reply_template',['../Core_8cpp.html#a4388855bd03571b055b86daf3028427f',1,'Core.cpp']]],
-  ['try_5fclaim_5fnew_5flatest_4',['try_claim_new_latest',['../classLatestEventsRepository.html#a06363dd03e9c4734ab18d73378ab4429',1,'LatestEventsRepository']]]
+  ['try_5fclaim_5fvideo_4',['try_claim_video',['../classLatestEventsRepository.html#a93c3709146aa26d481cfee2081c8ac99',1,'LatestEventsRepository']]]
 ];

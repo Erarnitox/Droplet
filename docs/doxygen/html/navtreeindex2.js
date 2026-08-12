@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"classReactionRoleRepository.html#a63bedd4cc4765bd7a0e13120c66539fb":[1,0,49,2],
+"classReactionRoleRepository.html#a7ea35652fb06a6b47413d3356ba05cdd":[1,0,49,1],
+"classReactionRoleRepository.html#a8ffdbf74880b40894ae9202e10222804":[1,0,49,4],
+"classReactionRoleRepository.html#aa9bd9301e0f09ff334eca5b0a52018c6":[1,0,49,6],
+"classReactionRoleRepository.html#af3a1d3592f384ed42c208bbb5602bc66":[1,0,49,5],
+"classReactionRoles.html":[1,0,50],
+"classReactionRoles.html#a2b267aebc8f3c9e5a80637aff51871d0":[1,0,50,2],
 "classReactionRoles.html#a7fcf436595cfd9ab562e2eccb4e6c5c6":[1,0,50,3],
 "classReactionRoles.html#aacb182ff3ed3a4aa1780a4e1be25ffb4":[1,0,50,1],
 "classReactionRoles.html#af3287915f0ba49a1ca82ce529dba89de":[1,0,50,0],

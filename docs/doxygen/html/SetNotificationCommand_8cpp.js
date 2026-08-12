@@ -1,4 +1,4 @@
 var SetNotificationCommand_8cpp =
 [
-    [ "resolve_youtube_channel_id", "SetNotificationCommand_8cpp.html#a3e60c994f04634c6dfa3f89157ffd34c", null ]
+    [ "stop_youtube_notification_daemon", "SetNotificationCommand_8cpp.html#ae0408324533799cf3818aab8a6db40e0", null ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['secret_0',['SECRET',['../AuthUtils_8hpp.html#af038aeea2e437b969d0179fa86371839a17f23bacc01aeec374c822c346fcee39',1,'AuthUtils.hpp']]]
+  ['failed_0',['Failed',['../LatestEventsRepository_8hpp.html#af26620f1e2e0c482fae43d85f02ddce7ad7c8c85bf79bbe1b7188497c32c3b0ca',1,'LatestEventsRepository.hpp']]]
 ];
