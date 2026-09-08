@@ -5,6 +5,8 @@ add_library(notification_command STATIC
     SetNotificationCommand.hpp
     RemoveNotificationCommand.cpp
     RemoveNotificationCommand.hpp
+    YoutubeFeed.cpp
+    YoutubeFeed.hpp
 )
 
 add_subdirectory(repositories)

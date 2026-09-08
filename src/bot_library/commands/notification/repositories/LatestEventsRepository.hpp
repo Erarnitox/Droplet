@@ -37,6 +37,11 @@ class LatestEventsRepository {
 	static std::mutex active_events_mutex;
 	static std::mutex latest_events_mutex;
 
+	[[nodiscard]] static YoutubeClaimResult record_video(const std::string& key,
+														 const std::string& video_id,
+														 const std::string& title,
+														 bool allow_announce) noexcept;
+
   public:
 	[[nodiscard]] static bool insert(const std::string& key, const std::string& value) noexcept;
 
@@ -47,6 +52,15 @@ class LatestEventsRepository {
 	[[nodiscard]] static YoutubeClaimResult try_claim_video(const std::string& key,
 															const std::string& video_id,
 															const std::string& title) noexcept;
+
+	/** Record \p video_id without announcing. Never returns Claimed. */
+	[[nodiscard]] static YoutubeClaimResult seed_video(const std::string& key,
+													   const std::string& video_id,
+													   const std::string& title) noexcept;
+
+	[[nodiscard]] static bool has_announced(const std::string& key) noexcept;
+
+	[[nodiscard]] static std::unordered_set<std::string> announced_ids(const std::string& key) noexcept;
 
 	[[nodiscard]] static bool load() noexcept;
 

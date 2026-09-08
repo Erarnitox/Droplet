@@ -22,53 +22,20 @@
 #include <Core.hpp>
 #include <NotificationRepository.hpp>
 #include <format>
+#include <map>
 #include <mutex>
 #include <optional>
 #include <regex>
 #include <unordered_map>
 
 #include "LatestEventsRepository.hpp"
+#include "YoutubeFeed.hpp"
 #include "repositories/NotificationRepository.hpp"
 
 namespace {
 
 std::mutex youtube_daemon_mutex;
 std::unordered_map<std::string, dpp::timer> youtube_daemon_timers;
-
-struct YoutubeFeedEntry {
-	std::string video_id;
-	std::string title;
-};
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-[[nodiscard]] std::optional<YoutubeFeedEntry> parse_latest_youtube_entry(const std::string& atom_body) {
-	static const std::regex entry_regex{R"(<entry>([\s\S]*?)</entry>)"};
-	std::smatch entry_match;
-	if (not std::regex_search(atom_body, entry_match, entry_regex) || entry_match.size() < 2) {
-		return std::nullopt;
-	}
-
-	const std::string entry{entry_match[1].str()};
-
-	static const std::regex video_id_regex{R"(<yt:videoId>([^<]+)</yt:videoId>)"};
-	std::smatch video_match;
-	if (not std::regex_search(entry, video_match, video_id_regex) || video_match.size() < 2) {
-		return std::nullopt;
-	}
-
-	YoutubeFeedEntry parsed;
-	parsed.video_id = video_match[1].str();
-
-	static const std::regex title_regex{R"(<title[^>]*>([^<]*)</title>)"};
-	std::smatch title_match;
-	if (std::regex_search(entry, title_match, title_regex) && title_match.size() > 1) {
-		parsed.title = title_match[1].str();
-	}
-
-	return parsed;
-}
 
 //-----------------------------------------------------
 //
@@ -127,7 +94,9 @@ void start_notification_deamon(size_t channel_id,
 		const auto url{std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id)};
 
 		Bot::ctx->request(
-			url, dpp::m_get, [channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
+			url,
+			dpp::m_get,
+			[channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
 				const auto stop_timer_and_release = [key, timer_handle]() {
 					Bot::ctx->stop_timer(timer_handle);
 					std::lock_guard<std::mutex> lock(youtube_daemon_mutex);
@@ -137,8 +106,9 @@ void start_notification_deamon(size_t channel_id,
 					}
 				};
 
-				// Keep announced history on errors. Retry 5xx; stop timer on hard 4xx.
-				if (cc.status >= 500) {
+				// Keep announced history on errors. Retry 5xx, 3xx, status 0, and parse misses;
+				// stop the timer only on hard 4xx.
+				if (cc.status < 200 || cc.status >= 500) {
 					return;
 				}
 				if (cc.status >= 400) {
@@ -154,23 +124,34 @@ void start_notification_deamon(size_t channel_id,
 					return;
 				}
 
-				const auto entry_opt{parse_latest_youtube_entry(cc.body)};
-				if (not entry_opt.has_value()) {
-					stop_timer_and_release();
+				const auto entries{parse_youtube_feed(cc.body)};
+				if (entries.empty()) {
 					return;
 				}
 
-				const auto& entry = entry_opt.value();
-				const auto claim{LatestEventsRepository::try_claim_video(key, entry.video_id, entry.title)};
-				if (claim != YoutubeClaimResult::Claimed) {
-					return;
+				const auto known{LatestEventsRepository::announced_ids(key)};
+				const auto plan{plan_youtube_uploads(entries, known)};
+
+				for (const auto& entry : plan.to_seed) {
+					(void)LatestEventsRepository::seed_video(key, entry.video_id, entry.title);
 				}
 
-				const auto yt_link{std::format("https://www.youtube.com/watch?v={}", entry.video_id)};
-				dpp::message msg(channel_id, std::format("{}\n{}", message, yt_link));
-				msg.set_allowed_mentions(true, true, true, true);
-				Bot::ctx->message_create(msg);
-			});
+				for (const auto& entry : plan.to_announce) {
+					const auto claim{LatestEventsRepository::try_claim_video(key, entry.video_id, entry.title)};
+					if (claim != YoutubeClaimResult::Claimed) {
+						continue;
+					}
+
+					const auto yt_link{std::format("https://www.youtube.com/watch?v={}", entry.video_id)};
+					dpp::message msg(channel_id, std::format("{}\n{}", message, yt_link));
+					msg.set_allowed_mentions(true, true, true, true);
+					Bot::ctx->message_create(msg);
+				}
+			},
+			"",
+			"text/plain",
+			{{"User-Agent", "DropletDiscordBot (https://github.com/Erarnitox/DropletDiscordBot)"},
+			 {"Accept", "application/atom+xml, application/xml;q=0.9, text/xml;q=0.8, */*;q=0.1"}});
 	}};
 
 	std::lock_guard<std::mutex> lock(youtube_daemon_mutex);

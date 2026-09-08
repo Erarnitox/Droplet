@@ -159,9 +159,10 @@ bool LatestEventsRepository::exists(const std::string& key, const std::string& v
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-YoutubeClaimResult LatestEventsRepository::try_claim_video(const std::string& key,
-														   const std::string& video_id,
-														   const std::string& title) noexcept {
+YoutubeClaimResult LatestEventsRepository::record_video(const std::string& key,
+														const std::string& video_id,
+														const std::string& title,
+														bool allow_announce) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	auto& exec = DatabaseExecutor::application_instance();
 	if (not exec.hasConnection() || video_id.empty()) {
@@ -195,7 +196,49 @@ YoutubeClaimResult LatestEventsRepository::try_claim_video(const std::string& ke
 		return YoutubeClaimResult::Failed;
 	}
 
-	return key_had_history ? YoutubeClaimResult::Claimed : YoutubeClaimResult::Seeded;
+	if (allow_announce && key_had_history) {
+		return YoutubeClaimResult::Claimed;
+	}
+	return YoutubeClaimResult::Seeded;
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+YoutubeClaimResult LatestEventsRepository::try_claim_video(const std::string& key,
+														   const std::string& video_id,
+														   const std::string& title) noexcept {
+	return record_video(key, video_id, title, true);
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+YoutubeClaimResult LatestEventsRepository::seed_video(const std::string& key,
+													  const std::string& video_id,
+													  const std::string& title) noexcept {
+	return record_video(key, video_id, title, false);
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+bool LatestEventsRepository::has_announced(const std::string& key) noexcept {
+	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
+	const auto it{announced_videos.find(key)};
+	return it != announced_videos.end() && not it->second.empty();
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+std::unordered_set<std::string> LatestEventsRepository::announced_ids(const std::string& key) noexcept {
+	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
+	const auto it{announced_videos.find(key)};
+	if (it == announced_videos.end()) {
+		return {};
+	}
+	return it->second;
 }
 
 //-----------------------------------------------------

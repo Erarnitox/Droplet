@@ -15,9 +15,10 @@ add_executable(unit_tests
     main_test.cpp
     core_test.cpp
     database_test.cpp
+    youtube_feed_test.cpp
 )
 
-target_link_libraries(unit_tests PRIVATE bot_library)
+target_link_libraries(unit_tests PRIVATE bot_library notification_command)
 target_link_libraries_system(unit_tests PRIVATE Catch2::Catch2WithMain)
 target_compile_features(unit_tests PRIVATE cxx_std_17)
 
