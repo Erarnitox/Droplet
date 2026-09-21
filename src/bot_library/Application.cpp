@@ -72,7 +72,13 @@ void Application::run(bool is_test) {
 	}
 
 	std::cout << "Starting REST Server..." << std::endl;
-	std::thread rest_thread([&db] { RestApi::start(db); });
+	std::thread rest_thread([&db] {
+		try {
+			RestApi::start(db);
+		} catch (const std::exception& ex) {
+			std::cerr << "REST server failed to start: " << ex.what() << '\n';
+		}
+	});
 
 	std::cout << "Starting Discord Bot..." << std::endl;
 	bot->run();
