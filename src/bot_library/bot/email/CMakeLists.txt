@@ -8,6 +8,9 @@ target_include_directories(email PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 target_link_libraries(email PRIVATE core)
 
 find_package(OpenSSL REQUIRED)
+# curl 8.22+ defaults CURL_USE_LIBPSL ON and treats libpsl as required.
+# Rocky CI and this SMTP client do not need the Public Suffix List.
+set(CURL_USE_LIBPSL OFF CACHE BOOL "Use libpsl" FORCE)
 CPMAddPackage(
     NAME curl
     GITHUB_REPOSITORY curl/curl
@@ -15,6 +18,7 @@ CPMAddPackage(
     OPTIONS
         "CURL_USE_OPENSSL ON"
         "CURL_USE_LIBSSH2 OFF"
+        "CURL_USE_LIBPSL OFF"
         "BUILD_CURL_EXE OFF"
         "CURL_ZLIB OFF"
         "BUILD_TESTING OFF"
