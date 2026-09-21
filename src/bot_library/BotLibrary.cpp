@@ -3,86 +3,20 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description: This Library combines all the
- * 	fuctionality of the bot into a static library
- * 	that can be used by the main binary and also
- * 	the unit_test binary.
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/index.html
  */
 
 #include "BotLibrary.hpp"
 
-#include <Bot.hpp>
-#include <Commands.hpp>
-#include <Database.hpp>
-#include <RestApi.hpp>
 #include <fstream>
 #include <stdexcept>
-#include <thread>
 
-/**
- * @brief this is the entry point of the binary that will start the bot
- * @return doesn't return anything
- */
+#include "Application.hpp"
+
 void start_bot(const bool IS_TEST) {
-	// initialize bot
-	try {
-		Bot::init(read_bot_token("bot_token.txt"));
-	} catch (const std::exception& ex) {
-		std::cerr << ex.what();
-		return;
-	}
-
-	//-----------------------------------------------------------------------------
-	// connect to the Database
-	//-----------------------------------------------------------------------------
-	try {
-		const auto db_connection_string{read_database_credentials("db_connection.txt")};
-
-		const auto connected{Database::connect(db_connection_string)};
-		if (not connected) {
-			Database::disconnect();
-			Bot::shutdown();
-			return;
-		}
-	} catch (const std::exception& ex) {
-		std::cerr << ex.what();
-		Database::disconnect();
-		Bot::shutdown();
-		return;
-	}
-	//------------------------------------------------------------------------------
-
-	// Command Registration:
-	Commands::registerCommands();
-
-	if (IS_TEST) {
-		Database::disconnect();
-		Bot::shutdown();
-		return;
-	}
-
-	std::cout << "Starting REST Server..." << std::endl;
-	std::thread rest_thread(RestApi::start);
-
-	std::cout << "Starting Discord Bot..." << std::endl;
-	Bot::run();
-
-	std::cout << "Shutting down..." << std::endl;
-	rest_thread.join();
-
-	Database::disconnect();
-	Bot::shutdown();
+	Application app;
+	app.run(IS_TEST);
 }
 
-/**
- * @brief reads the bot token from a file
- *
- * @param file the name of the file holding the bot token
- * @return returns the bot token as a std::string
- */
 std::string read_bot_token(const std::string& file) {
 	std::ifstream file_stream(file);
 	std::string bot_token;
@@ -100,12 +34,6 @@ std::string read_bot_token(const std::string& file) {
 	return bot_token;
 }
 
-/**
- * @brief reads the connection string for the postgres database from a file
- *
- * @param file the name of the file holding the connection string
- * @return returns the connection string as a std::string
- */
 std::string read_database_credentials(const std::string& file) {
 	std::ifstream file_stream(file);
 	std::string connection_string;

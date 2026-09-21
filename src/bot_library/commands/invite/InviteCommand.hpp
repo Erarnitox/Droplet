@@ -3,22 +3,21 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+
 class InviteCommand : public IGlobalSlashCommand {
   public:
-	InviteCommand();
+	static constexpr std::string_view k_name{"join_erarnitox"};
+	static constexpr std::string_view k_description{"Get invited to Erarnitox's discord server"};
+
+	explicit InviteCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 };

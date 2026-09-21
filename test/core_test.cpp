@@ -16,6 +16,12 @@ TEST_CASE("BotLibraryCoreTest", "[core]") {
     const std::string channel_mention("<#459859776352944129>");
     std::string channel_id{ "459859776352944129" };
     REQUIRE(Core::get_channel_id(channel_mention) == channel_id);
-    
+
+    REQUIRE(Core::simple_hash("").empty());
+    REQUIRE_FALSE(Core::simple_hash("droplet").empty());
+
+    REQUIRE(Core::strip_broadcast_mentions("hello @everyone there @here") == "hello  there ");
+    REQUIRE(Core::strip_broadcast_mentions("no pings") == "no pings");
+
     REQUIRE(true);
 }

@@ -3,22 +3,21 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+
 class ServerDetails : public IGlobalSlashCommand {
   public:
-	ServerDetails();
+	static constexpr std::string_view k_name{"server_details"};
+	static constexpr std::string_view k_description{"Display general server information"};
+
+	explicit ServerDetails(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 };

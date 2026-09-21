@@ -3,29 +3,30 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <dispatcher.h>
+#include <IGlobalSlashCommand.hpp>
+#include <IReady.hpp>
+#include <string_view>
 
-#include <Bot.hpp>
-#include <string>
+struct AppContext;
+class DatabaseExecutor;
+class YoutubeNotificationService;
 
-/** Stop the youtube upload poller for \p key (`{discord_channel_id}/{youtube_channel_id}`). */
-void stop_youtube_notification_daemon(const std::string& key);
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
 class SetNotificationCommand : public IGlobalSlashCommand, public IReady {
   public:
-	SetNotificationCommand();
+	static constexpr std::string_view k_name{"youtube_uploads"};
+	static constexpr std::string_view k_description{"Get notifications about youtube uploads to discord (Admin only!)"};
+
+	explicit SetNotificationCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 	void on_ready(const dpp::ready_t& event) override;
+
+  private:
+	dpp::cluster& discord_;
+	DatabaseExecutor& db_;
+	YoutubeNotificationService& youtube_;
 };

@@ -1,5 +1,5 @@
 var classRollCommand =
 [
-    [ "RollCommand", "classRollCommand.html#af35d663f605259d3c268f2d93c4a5fa0", null ],
+    [ "RollCommand", "classRollCommand.html#a798043238d62127aa5bc912c32c3351c", null ],
     [ "on_slashcommand", "classRollCommand.html#aeae5cf023e79996e1cc3c70a293e415f", null ]
 ];

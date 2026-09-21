@@ -5,15 +5,7 @@ add_library(set_status STATIC
     SetStatus.hpp
 )
 
-# enable additional warnings and static analysis for this target
-if (MSVC)
-    # for windows msvc or clang-cl
-    target_compile_options(set_status PRIVATE "/W4")
-else()
-    target_compile_options(set_status PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
-endif()
-
+droplet_target_warnings(set_status)
 set_property(TARGET set_status PROPERTY CXX_STANDARD ${CPP_STANDARD})
 target_link_libraries(set_status PUBLIC bot)
-
 target_link_libraries(commands PRIVATE set_status)

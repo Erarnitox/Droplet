@@ -16,6 +16,7 @@
 #include <Core.hpp>
 #include <array>
 #include <regex>
+#include <string_view>
 
 /**
  * @brief checks if a guild member is admin of that guild
@@ -101,7 +102,7 @@ std::string Core::get_channel_id(const std::string& mention) noexcept {
  */
 template <typename CMD_TYPE>
 void timed_reply_template(dpp::cluster& bot,
-						  const CMD_TYPE event,
+						  const CMD_TYPE& event,
 						  const std::string& message,
 						  size_t time_mills) noexcept {
 	event.reply(message);
@@ -124,7 +125,7 @@ void timed_reply_template(dpp::cluster& bot,
  * @return doesn't return
  */
 void Core::timed_reply(dpp::cluster& bot,
-					   const dpp::slashcommand_t event,
+					   const dpp::slashcommand_t& event,
 					   const std::string& message,
 					   size_t time_mills) noexcept {
 	timed_reply_template<dpp::slashcommand_t>(bot, event, message, time_mills);
@@ -140,7 +141,7 @@ void Core::timed_reply(dpp::cluster& bot,
  * @return doesn't return
  */
 void Core::timed_reply(dpp::cluster& bot,
-					   const dpp::form_submit_t event,
+					   const dpp::form_submit_t& event,
 					   const std::string& message,
 					   size_t time_mills) noexcept {
 	timed_reply_template<dpp::form_submit_t>(bot, event, message, time_mills);
@@ -157,7 +158,7 @@ void Core::timed_reply(dpp::cluster& bot,
  */
 template <typename CMD_TYPE>
 void timed_reply_private_template(dpp::cluster& bot,
-								  const CMD_TYPE event,
+								  const CMD_TYPE& event,
 								  const std::string& message,
 								  size_t time_mills) noexcept {
 	event.reply(dpp::message(message).set_flags(dpp::m_ephemeral));
@@ -181,7 +182,7 @@ void timed_reply_private_template(dpp::cluster& bot,
  * @return doesn't return
  */
 void Core::timed_reply_private(dpp::cluster& bot,
-							   const dpp::slashcommand_t event,
+							   const dpp::slashcommand_t& event,
 							   const std::string& message,
 							   size_t time_mills) noexcept {
 	timed_reply_private_template<dpp::slashcommand_t>(bot, event, message, time_mills);
@@ -198,7 +199,7 @@ void Core::timed_reply_private(dpp::cluster& bot,
  * @return doesn't return
  */
 void Core::timed_reply_private(dpp::cluster& bot,
-							   const dpp::form_submit_t event,
+							   const dpp::form_submit_t& event,
 							   const std::string& message,
 							   size_t time_mills) noexcept {
 	timed_reply_private_template<dpp::form_submit_t>(bot, event, message, time_mills);
@@ -213,7 +214,7 @@ void Core::timed_reply_private(dpp::cluster& bot,
  * @return the parameter with the given name as a std::string
  */
 std::string Core::get_parameter(dpp::cluster& bot,
-								const dpp::slashcommand_t event,
+								const dpp::slashcommand_t& event,
 								const std::string& name,
 								bool required) noexcept {
 	const auto variant{event.get_parameter(name)};
@@ -236,7 +237,11 @@ std::string Core::get_parameter(dpp::cluster& bot,
  * @param string the data to be hashed
  * @return the generated hash (similar to md5) as a std::string
  */
-std::string Core::simple_hash(const std::string& string) noexcept {
+std::string Core::simple_hash(std::string_view string) noexcept {
+	if (string.empty()) {
+		return {};
+	}
+
 	std::array<unsigned, 32> hash{};
 	constexpr std::array<char, 37> alphabet{"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"};
 
@@ -244,16 +249,32 @@ std::string Core::simple_hash(const std::string& string) noexcept {
 											  157, 163, 167, 173, 179, 181, 191, 193, 197, 199};
 
 	for (unsigned i{0}; i < string.size() || i < 32; ++i) {
-		hash[i % 32] ^= (((unsigned)string[i % string.size()]) % primes[i % primes.size()]) ^ i;
+		const unsigned ch{static_cast<unsigned>(static_cast<unsigned char>(string[i % string.size()]))};
+		hash[i % 32] ^= (ch % primes[i % primes.size()]) ^ i;
 	}
 
 	std::string result;
 	result.reserve(64);
 
 	for (size_t i{0}; i < 32; ++i) {
-		result += alphabet[(((unsigned)hash[i]) / 11) % 31];
-		result += alphabet[((unsigned)hash[i]) % 37];
+		result += alphabet[(hash[i] / 11) % 31];
+		result += alphabet[hash[i] % 37];
 	}
 
 	return result;
+}
+
+std::string Core::strip_broadcast_mentions(std::string_view text) {
+	std::string out{text};
+	constexpr std::string_view needles[]{"@everyone", "@here"};
+	for (const auto needle : needles) {
+		for (auto pos = out.find(needle); pos != std::string::npos; pos = out.find(needle, pos)) {
+			out.replace(pos, needle.size(), "");
+		}
+	}
+	return out;
+}
+
+void Core::disable_all_mentions(dpp::message& message) noexcept {
+	message.set_allowed_mentions(false, false, false, false);
 }

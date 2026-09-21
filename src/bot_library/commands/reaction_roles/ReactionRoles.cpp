@@ -13,6 +13,7 @@
 
 #include <appcommand.h>
 
+#include <AppContext.hpp>
 #include <format>
 
 #include "Core.hpp"
@@ -23,9 +24,10 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
-	this->command_name = "reaction_role";
-	this->command_description = "Create reaction Roles (Admin only!)";
+ReactionRoles::ReactionRoles(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 
 	this->command_options.emplace_back(dpp::co_string, "message_link", "A link to the message to react to", true);
 
@@ -38,20 +40,16 @@ ReactionRoles::ReactionRoles() : IGlobalSlashCommand(), IReactionCommand() {
 //
 //-----------------------------------------------------
 void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	if (not Core::is_admin(event.command.member)) {
 		event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
-	const auto message_link{Core::get_parameter(*Bot::ctx, event, "message_link")};
+	const auto message_link{Core::get_parameter(discord_, event, "message_link")};
 	if (message_link.empty())
 		return;
 
-	const auto emoji{Core::get_parameter(*Bot::ctx, event, "emoji")};
+	const auto emoji{Core::get_parameter(discord_, event, "emoji")};
 	if (emoji.empty())
 		return;
 
@@ -100,7 +98,7 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	//--------------------------------------------------
 
 	// Insert Reaction Role into Database
-	ReactionRoleRepository repo;
+	ReactionRoleRepository repo{db_};
 
 	const size_t i_role_id{static_cast<size_t>(role_id)};
 	const size_t i_message_id{static_cast<size_t>(std::stoll(message_id))};
@@ -110,7 +108,7 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	if (repo.create(dto)) {
 		// Let the bot react to the message
-		Bot::ctx->message_add_reaction(message_id, channel_id, usable_emoji);
+		discord_.message_add_reaction(message_id, channel_id, usable_emoji);
 
 		// send a confirmation to the admin
 		event.reply(dpp::message(std::format("Reaction Role Created!\nMessage: {}\nReaction: {}\nRole: <@&{}>",
@@ -147,14 +145,14 @@ void ReactionRoles::on_message_reaction_add(const dpp::message_reaction_add_t& e
 
 	const auto usable_emoji{Core::simple_hash(emoji)};
 
-	ReactionRoleRepository repo;
+	ReactionRoleRepository repo{db_};
 	const ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
 	if (not dto.role_id) {
 		return;
 	}
 
-	Bot::ctx->guild_member_add_role(event.reacting_guild.id, event.reacting_member.user_id, dto.role_id);
+	discord_.guild_member_add_role(event.reacting_guild.id, event.reacting_member.user_id, dto.role_id);
 
 	return;
 }
@@ -181,14 +179,14 @@ void ReactionRoles::on_message_reaction_remove(const dpp::message_reaction_remov
 
 	const auto usable_emoji{Core::simple_hash(emoji)};
 
-	ReactionRoleRepository repo;
+	ReactionRoleRepository repo{db_};
 	const ReactionRoleDTO dto{repo.get(message_id, usable_emoji)};
 
 	if (not dto.role_id) {
 		return;
 	}
 
-	Bot::ctx->guild_member_remove_role(event.reacting_guild.id, event.reacting_user_id, dto.role_id);
+	discord_.guild_member_remove_role(event.reacting_guild.id, event.reacting_user_id, dto.role_id);
 
 	return;
 }

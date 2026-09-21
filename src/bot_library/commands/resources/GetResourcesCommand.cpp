@@ -15,15 +15,16 @@
 #include <colors.h>
 #include <dispatcher.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-GetResourcesCommand::GetResourcesCommand() : IGlobalSlashCommand() {
-	this->command_name = "get_resource";
-	this->command_description = "Query resources from droplet.erarnitox.de/resources";
+GetResourcesCommand::GetResourcesCommand(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 	this->command_options.emplace_back(dpp::co_string, "category", "The category of the resource", true);
 }
 
@@ -31,13 +32,9 @@ GetResourcesCommand::GetResourcesCommand() : IGlobalSlashCommand() {
 //
 //-----------------------------------------------------
 void GetResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
+	const auto category{Core::get_parameter(discord_, event, "category", true)};
 
-	const auto category{Core::get_parameter(*Bot::ctx, event, "category", true)};
-
-	ResourceRepository repo;
+	ResourceRepository repo{db_};
 
 	const std::vector<ResourceDTO> resources = repo.get(category);
 

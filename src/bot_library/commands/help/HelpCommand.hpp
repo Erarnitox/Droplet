@@ -3,22 +3,25 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <CommandTypes.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+
 class HelpCommand : public IGlobalSlashCommand {
   public:
-	HelpCommand();
+	static constexpr std::string_view k_name{"help"};
+	static constexpr std::string_view k_description{"List all available commands"};
+
+	explicit HelpCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
+
+  private:
+	slash_commands_t& slash_commands_;
 };

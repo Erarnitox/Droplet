@@ -1,19 +1,18 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- */
-
 #pragma once
 
 #include "Poco/Util/ServerApplication.h"
 #include "RestApi.hpp"
 
-/**
- * Poco ServerApplication that binds the HTTPS (or HTTP) REST listener for Droplet.
- */
+class DatabaseExecutor;
+
 class RestApiServerApplication final : public Poco::Util::ServerApplication {
+  public:
+	explicit RestApiServerApplication(DatabaseExecutor& db) : db_(db) {
+	}
+
   protected:
 	int main(const std::vector<std::string>& args) override;
+
+  private:
+	DatabaseExecutor& db_;
 };

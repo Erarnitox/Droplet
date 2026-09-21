@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['leaderboardcommand_0',['LeaderboardCommand',['../classLeaderboardCommand.html#aaa5ff5772143e46b32228e312c1619fe',1,'LeaderboardCommand']]],
-  ['learncppcommand_1',['LearnCPPCommand',['../classLearnCPPCommand.html#a20927bedb73bd0c19a08f2b46538f1df',1,'LearnCPPCommand']]],
-  ['learncpptutorialhint_2',['LearnCppTutorialHint',['../classLearnCppTutorialHint.html#a3e1acf028f4fbba0359537f0eca0ef6c',1,'LearnCppTutorialHint']]],
-  ['load_3',['load',['../classLatestEventsRepository.html#a259bb02092755a2e57b50871e4a7a4c9',1,'LatestEventsRepository']]]
+  ['jwt_5fgrants_5fclearance_0',['jwt_grants_clearance',['../AuthUtils_8cpp.html#abf77d432a32d959d5f45e4517d767848',1,'jwt_grants_clearance(const std::string &amp;jwt, const std::string &amp;hmac_secret, int min_clearance):&#160;AuthUtils.cpp'],['../AuthUtils_8hpp.html#abf77d432a32d959d5f45e4517d767848',1,'jwt_grants_clearance(const std::string &amp;jwt, const std::string &amp;hmac_secret, int min_clearance):&#160;AuthUtils.cpp']]],
+  ['jwt_5fsecret_5fis_5fstrong_1',['jwt_secret_is_strong',['../AuthUtils_8cpp.html#ad3620e172758d05e161ac5cabbc073f1',1,'jwt_secret_is_strong(std::string_view secret) noexcept:&#160;AuthUtils.cpp'],['../AuthUtils_8hpp.html#ad3620e172758d05e161ac5cabbc073f1',1,'jwt_secret_is_strong(std::string_view secret) noexcept:&#160;AuthUtils.cpp']]]
 ];

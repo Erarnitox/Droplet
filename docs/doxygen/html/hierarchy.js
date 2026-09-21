@@ -1,12 +1,16 @@
 var hierarchy =
 [
+    [ "AppContext", "structAppContext.html", null ],
+    [ "Application", "classApplication.html", null ],
     [ "AuthUtil", "structAuthUtil.html", null ],
     [ "BlacklistDTO", "classBlacklistDTO.html", null ],
+    [ "BlacklistIndex", "classBlacklistIndex.html", null ],
     [ "Bot", "classBot.html", null ],
     [ "ChallengeBadgeDTO", "classChallengeBadgeDTO.html", null ],
     [ "ChallengeRoleDTO", "classChallengeRoleDTO.html", null ],
+    [ "ConnectionLease", "classConnectionLease.html", null ],
+    [ "ConnectionPool", "classConnectionPool.html", null ],
     [ "Core", "classCore.html", null ],
-    [ "Database", "classDatabase.html", null ],
     [ "DatabaseExecutor", "classDatabaseExecutor.html", null ],
     [ "EmailClient", "classEmailClient.html", null ],
     [ "HasBadgeRepository", "classHasBadgeRepository.html", null ],
@@ -26,7 +30,6 @@ var hierarchy =
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
       [ "ChallengeRoleCommand", "classChallengeRoleCommand.html", null ]
     ] ],
-    [ "IDatabaseConnectionProvider", "classIDatabaseConnectionProvider.html", null ],
     [ "IFormCommand", "classIFormCommand.html", [
       [ "BugReportCommand", "classBugReportCommand.html", null ],
       [ "ChallengeBadgeCommand", "classChallengeBadgeCommand.html", null ],
@@ -63,8 +66,7 @@ var hierarchy =
       [ "SetPortalCommand", "classSetPortalCommand.html", null ]
     ] ],
     [ "IReactionCommand", "classIReactionCommand.html", [
-      [ "ReactionRoles", "classReactionRoles.html", null ],
-      [ "SetPortalCommand", "classSetPortalCommand.html", null ]
+      [ "ReactionRoles", "classReactionRoles.html", null ]
     ] ],
     [ "IReady", "classIReady.html", [
       [ "InitDatabase", "classInitDatabase.html", null ],
@@ -152,6 +154,7 @@ var hierarchy =
     [ "LatestEventsRepository", "classLatestEventsRepository.html", null ],
     [ "NotificationDTO", "classNotificationDTO.html", null ],
     [ "PortalDTO", "classPortalDTO.html", null ],
+    [ "PortalIndex", "classPortalIndex.html", null ],
     [ "ReactionRoleDTO", "classReactionRoleDTO.html", null ],
     [ "ResourceDTO", "classResourceDTO.html", null ],
     [ "RestApi", "classRestApi.html", null ],
@@ -162,5 +165,8 @@ var hierarchy =
     ] ],
     [ "UserDTO", "classUserDTO.html", null ],
     [ "UserManager", "classUserManager.html", null ],
-    [ "WebUserDTO", "classWebUserDTO.html", null ]
+    [ "WebUserDTO", "classWebUserDTO.html", null ],
+    [ "YoutubeFeedEntry", "structYoutubeFeedEntry.html", null ],
+    [ "YoutubeFeedPlan", "structYoutubeFeedPlan.html", null ],
+    [ "YoutubeNotificationService", "classYoutubeNotificationService.html", null ]
 ];

@@ -70,7 +70,7 @@ void VerifyHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco::N
 	} catch (const std::exception& e) {
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 		responseJSON->set("status", "error");
-		responseJSON->set("message", std::string("Error: ") + e.what());
+		responseJSON->set("message", "Invalid verification request");
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
 	}

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['field_5fdesc_0',['FIELD_DESC',['../BugReportCommand_8cpp.html#a465b724a1c93f77e0922ca1e8d4fc590',1,'BugReportCommand.cpp']]],
-  ['field_5fexpected_1',['FIELD_EXPECTED',['../BugReportCommand_8cpp.html#afd02986b3ee364aac196051b100e75c8',1,'BugReportCommand.cpp']]],
-  ['field_5fsteps_2',['FIELD_STEPS',['../BugReportCommand_8cpp.html#a2b1c8afa69c4f24bb6d14ce1b91a691c',1,'BugReportCommand.cpp']]],
-  ['form_5fcommands_3',['form_commands',['../classBot.html#a663beec14e7da41988653b029bce6fa1',1,'Bot']]]
+  ['email_0',['email',['../classWebUserDTO.html#a9e58c25da85c8bdac76443151eb90a85',1,'WebUserDTO']]],
+  ['emoji_1',['emoji',['../classReactionRoleDTO.html#aa5699426d8b83a816ed2d750a0b9338b',1,'ReactionRoleDTO']]],
+  ['erarnitox_5fid_2',['ERARNITOX_ID',['../BugReportCommand_8cpp.html#a03f3090d456732f15d5f5b796d29befa',1,'BugReportCommand.cpp']]],
+  ['exp_3',['exp',['../classChallengeBadgeDTO.html#a82f79f139c60a6b40adfc88c9b9fd1f8',1,'ChallengeBadgeDTO::exp'],['../classUserDTO.html#ad1aeb3ee28c13b927062969eec30027b',1,'UserDTO::exp']]]
 ];

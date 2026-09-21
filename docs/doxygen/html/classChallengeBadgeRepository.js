@@ -1,6 +1,5 @@
 var classChallengeBadgeRepository =
 [
-    [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html#a0fe912614fbe8f71237315eae77afcd6", null ],
     [ "ChallengeBadgeRepository", "classChallengeBadgeRepository.html#a51ed055a0a8663d2da31f232701d9593", null ],
     [ "create", "classChallengeBadgeRepository.html#af1caf2e90ee8b0d778444c3326871589", null ],
     [ "get", "classChallengeBadgeRepository.html#add883c31ac3b9d3a20de37c66a6ff2fc", null ],

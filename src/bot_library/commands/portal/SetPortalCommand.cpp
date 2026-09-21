@@ -17,15 +17,14 @@
 #include <message.h>
 #include <snowflake.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
+#include <PortalIndex.hpp>
 #include <PortalRepository.hpp>
 #include <string_view>
 
 #include "IMessageCommand.hpp"
 #include "IReactionCommand.hpp"
-#include "repositories/BlacklistRepository.hpp"
-#include "repositories/PortalDTO.hpp"
-#include "repositories/PortalRepository.hpp"
 
 namespace {
 
@@ -120,7 +119,9 @@ std::string format_forwarded_snapshots_block(const dpp::message& msg) {
 	return block;
 }
 
-std::string format_reply_banner(const dpp::message& ref_msg, const dpp::message& portal_context_msg) {
+std::string format_reply_banner(const dpp::message& ref_msg,
+								const dpp::message& portal_context_msg,
+								dpp::snowflake bot_user_id) {
 	const std::string who = display_name_for_message(ref_msg);
 	std::string preview =
 		ref_msg.content.empty() ? std::string("(no text)") : truncate_preview(ref_msg.content, k_quote_preview_max);
@@ -128,7 +129,7 @@ std::string format_reply_banner(const dpp::message& ref_msg, const dpp::message&
 
 	const std::string jump = jump_markdown_for_message(ref_msg, portal_context_msg);
 
-	if (ref_msg.author.id == Bot::ctx->me.id) {
+	if (ref_msg.author.id == bot_user_id) {
 		return std::format("↩️ _Reply to portal relay:_ {}{}{}\n", preview, media_annotation(ref_msg), jump);
 	}
 	return std::format("↩️ _Reply to_ **{}**: {}{}{}\n", who, preview, media_annotation(ref_msg), jump);
@@ -157,19 +158,17 @@ std::string format_outgoing_body_line(const dpp::message& msg) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-SetPortalCommand::SetPortalCommand() : IGlobalSlashCommand(), IMessageCommand(), IReactionCommand() {
-	this->command_name = "set_portal";
-	this->command_description = "Set a channel as a portal for foreign messages (Admin only!)";
+SetPortalCommand::SetPortalCommand(AppContext& ctx)
+	: discord_(ctx.discord), db_(ctx.db), portal_index_(ctx.portal_index), blacklist_index_(ctx.blacklist_index) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	if (not Core::is_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
@@ -179,17 +178,21 @@ void SetPortalCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto& guild_id{static_cast<size_t>(cmd.guild_id)};
 	const auto& channel_id{static_cast<size_t>(cmd.channel_id)};
 
-	PortalRepository repo;
+	PortalRepository repo{db_};
 	const PortalDTO data{guild_id, channel_id};
+	const auto existing{repo.get(data.guild_id)};
 
-	if (repo.get(data.guild_id).channel_id != 0) {
+	if (existing.channel_id != 0) {
 		if (repo.update(data)) {
+			portal_index_.remove(static_cast<std::uint64_t>(existing.channel_id));
+			portal_index_.add(static_cast<std::uint64_t>(channel_id));
 			auto msg{dpp::message("Portal was moved here!")};
 			event.reply(msg);
 		} else {
 			event.reply(dpp::message("Error: Failed to update the Portal!").set_flags(dpp::m_ephemeral));
 		}
 	} else if (repo.create(data)) {
+		portal_index_.add(static_cast<std::uint64_t>(channel_id));
 		auto msg{dpp::message("Portal enabled! ...")};
 		event.reply(msg);
 	} else {
@@ -205,38 +208,34 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		return;
 	}
 
-	PortalRepository repo;
-
-	if (repo.get(event.msg.guild_id).channel_id != event.msg.channel_id) {
+	if (not portal_index_.contains(static_cast<std::uint64_t>(event.msg.channel_id))) {
 		return;
 	}
 
-	BlacklistRepository blacklist_repo;
-	const auto& blacklisted_users{blacklist_repo.getAll()};
-	for (const auto& user : blacklisted_users) {
-		if (user.username == event.msg.author.username) {
-			return;
-		}
+	if (blacklist_index_.contains(event.msg.author.username)) {
+		return;
 	}
 
+	PortalRepository repo{db_};
 	const std::string forward_banner = format_forwarded_snapshots_block(event.msg);
+	const dpp::snowflake bot_user_id = discord_.me.id;
 
-	const auto send_to_portals =
-		[event = std::move(event), repo = std::move(repo), forward_banner](std::string reply_banner) {
-			const std::string header = std::format("{}{}", forward_banner, reply_banner);
-			const std::string body_line = format_outgoing_body_line(event.msg);
-			const std::string full_content = header.empty() ? body_line : std::format("{}\n{}", header, body_line);
+	const auto send_to_portals = [this, event, repo, forward_banner](std::string reply_banner) {
+		const std::string header = std::format(
+			"{}{}", Core::strip_broadcast_mentions(forward_banner), Core::strip_broadcast_mentions(reply_banner));
+		const std::string body_line = Core::strip_broadcast_mentions(format_outgoing_body_line(event.msg));
+		const std::string full_content = header.empty() ? body_line : std::format("{}\n{}", header, body_line);
 
-			const auto& portals{repo.getAll()};
-			for (const auto& portal : portals) {
-				if (portal.channel_id == event.msg.channel_id) {
-					continue;
-				}
-
-				dpp::message msg_to_send(portal.channel_id, full_content);
-				Bot::ctx->message_create(msg_to_send);
+		for (const auto& portal : repo.getAll()) {
+			if (portal.channel_id == event.msg.channel_id) {
+				continue;
 			}
-		};
+
+			dpp::message msg_to_send(portal.channel_id, full_content);
+			Core::disable_all_mentions(msg_to_send);
+			discord_.message_create(msg_to_send);
+		}
+	};
 
 	const auto& ref{event.msg.message_reference};
 	const bool is_forward = (ref.type == dpp::mrt_forward);
@@ -247,14 +246,11 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 		const dpp::message portal_source_for_links = event.msg;
 		const dpp::snowflake reply_message_id = ref.message_id;
 		const dpp::snowflake guild_for_jump = event.msg.guild_id;
-		Bot::ctx->message_get(
+		discord_.message_get(
 			ref.message_id,
 			ref_channel_id,
-			[send_to_portals = std::move(send_to_portals),
-			 portal_source_for_links,
-			 reply_message_id,
-			 ref_channel_id,
-			 guild_for_jump](const dpp::confirmation_callback_t& callback) {
+			[send_to_portals, portal_source_for_links, reply_message_id, ref_channel_id, guild_for_jump, bot_user_id](
+				const dpp::confirmation_callback_t& callback) {
 				if (callback.is_error()) {
 					const std::string url = dpp::utility::message_url(guild_for_jump, ref_channel_id, reply_message_id);
 					if (not url.empty()) {
@@ -265,37 +261,10 @@ void SetPortalCommand::on_message_create(const dpp::message_create_t& event) {
 					return;
 				}
 
-				send_to_portals(format_reply_banner(callback.get<dpp::message>(), portal_source_for_links));
+				send_to_portals(
+					format_reply_banner(callback.get<dpp::message>(), portal_source_for_links, bot_user_id));
 			});
 	} else {
 		send_to_portals("");
 	}
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-void SetPortalCommand::on_message_delete(const dpp::message_delete_t& event) {
-	(void)event;
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-void SetPortalCommand::on_message_delete_bulk(const dpp::message_delete_bulk_t& event) {
-	(void)event;
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-void SetPortalCommand::on_message_reaction_add(const dpp::message_reaction_add_t& event) {
-	(void)event;
-}
-
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-void SetPortalCommand::on_message_reaction_remove(const dpp::message_reaction_remove_t& event) {
-	(void)event;
 }

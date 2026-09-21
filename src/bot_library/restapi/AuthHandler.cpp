@@ -47,12 +47,25 @@ void AuthHandler::handleRequest(Poco::Net::HTTPServerRequest& req, Poco::Net::HT
 	const std::string username = form.get("username", "");
 	const std::string password = form.get("password", "");
 
-	WebUserRepository repo;
-	WebUserDTO user_dto = repo.get(username);
-
-	if (not verifyPassword(password, user_dto.password)) {
+	if (username.empty() || password.empty()) {
 		resp.setStatus(Poco::Net::HTTPResponse::HTTP_UNAUTHORIZED);
 		resp.send() << R"({"error":"invalid_grant"})";
+		return;
+	}
+
+	WebUserRepository repo{db_};
+	WebUserDTO user_dto = repo.get(username);
+
+	if (user_dto.id == 0 || user_dto.username.empty() || not user_dto.is_verified ||
+		not verifyPassword(password, user_dto.password)) {
+		resp.setStatus(Poco::Net::HTTPResponse::HTTP_UNAUTHORIZED);
+		resp.send() << R"({"error":"invalid_grant"})";
+		return;
+	}
+
+	if (!jwt_secret_is_strong(_secret)) {
+		resp.setStatus(Poco::Net::HTTPResponse::HTTP_INTERNAL_SERVER_ERROR);
+		resp.send() << R"({"error":"server_misconfigured"})";
 		return;
 	}
 

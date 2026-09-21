@@ -1,4 +1,4 @@
 var RegisterAllCommands_8hpp =
 [
-    [ "CommandRegistration::register_all", "namespaceCommandRegistration.html#a31c9054b78a121ef88e27e14c3c88495", null ]
+    [ "CommandRegistration::register_all", "namespaceCommandRegistration.html#a6dc7f9e729eed95289d96cbb5b77ef24", null ]
 ];

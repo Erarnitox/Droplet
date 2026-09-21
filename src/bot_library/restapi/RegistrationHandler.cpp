@@ -16,6 +16,7 @@
 #include <Poco/Net/HTTPServerResponse.h>
 #include <Poco/StreamCopier.h>
 
+#include <AuthUtils.hpp>
 #include <RegistrationHandler.hpp>
 #include <UserManager.hpp>
 
@@ -71,6 +72,18 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 		const std::string email = json->getValue<std::string>("email");
 		const std::string password = json->getValue<std::string>("password");
 
+		if (username.find('\r') != std::string::npos || username.find('\n') != std::string::npos ||
+			email.find('\r') != std::string::npos || email.find('\n') != std::string::npos ||
+			password.size() < k_password_min_length) {
+			response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
+			Poco::JSON::Object::Ptr resp = new Poco::JSON::Object();
+			resp->set("status", "error");
+			resp->set("message", "Invalid registration fields");
+			std::ostream& ostr = response.send();
+			Poco::JSON::Stringifier::stringify(resp, ostr);
+			return;
+		}
+
 		UserManager::getInstance().addUser(email, username, password);
 
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_OK);
@@ -81,7 +94,7 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 	} catch (const std::exception& e) {
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 		responseJSON->set("status", "error");
-		responseJSON->set("message", std::string("Error: ") + e.what());
+		responseJSON->set("message", "Invalid registration request");
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
 	}

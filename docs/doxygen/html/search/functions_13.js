@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['warn_5fuser_0',['warn_user',['../WarnCommand_8cpp.html#a3a33f1e8fab630ed898e0389b886c21c',1,'WarnCommand.cpp']]],
-  ['warncommand_1',['WarnCommand',['../classWarnCommand.html#a3a1214df3b1657b8bef300c11433b11e',1,'WarnCommand']]],
-  ['webuserdto_2',['WebUserDTO',['../classWebUserDTO.html#a11ad67db39be3795be88afcd6ab305e2',1,'WebUserDTO::WebUserDTO()=default'],['../classWebUserDTO.html#aeb8fb59af06115f48740672532d45c21',1,'WebUserDTO::WebUserDTO(size_t id, const std::string &amp;username, const std::string &amp;password, size_t clearance, const std::string &amp;email, const std::string &amp;confirm_code=&quot;&quot;, bool is_verified=false)'],['../classWebUserDTO.html#ab20fda2e87aea60b219ceb79fa225137',1,'WebUserDTO::WebUserDTO(const RowDTOAdapter &amp;row)']]],
-  ['webuserrepository_3',['WebUserRepository',['../classWebUserRepository.html#af8130112f4dbad28e41f558ad31e0b63',1,'WebUserRepository::WebUserRepository()'],['../classWebUserRepository.html#a50e1eacf31c3064206f80382dfa5a7fe',1,'WebUserRepository::WebUserRepository(DatabaseExecutor &amp;executor)']]]
+  ['verify_0',['verify',['../classWebUserRepository.html#a70942544175ef9e373b78256045c915c',1,'WebUserRepository']]],
+  ['verifypassword_1',['verifyPassword',['../AuthUtils_8cpp.html#abe7c8fbe75349e73c967f96448c7464f',1,'verifyPassword(const std::string &amp;password, const std::string &amp;storedHash):&#160;AuthUtils.cpp'],['../AuthUtils_8hpp.html#abe7c8fbe75349e73c967f96448c7464f',1,'verifyPassword(const std::string &amp;password, const std::string &amp;storedHash):&#160;AuthUtils.cpp']]],
+  ['verifyuser_2',['verifyUser',['../classUserManager.html#a2c0c7e653e5594b00410302956cccd41',1,'UserManager']]]
 ];

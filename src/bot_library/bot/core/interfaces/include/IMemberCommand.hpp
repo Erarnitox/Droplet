@@ -5,7 +5,13 @@
 
 class IMemberCommand {
   public:
-	virtual void on_guild_member_add(const dpp::guild_member_add_t& event) = 0;
+	virtual ~IMemberCommand() = default;
 
-	virtual void on_guild_member_remove(const dpp::guild_member_remove_t& event) = 0;
+	virtual void on_guild_member_add(const dpp::guild_member_add_t& event) {
+		(void)event;
+	}
+
+	virtual void on_guild_member_remove(const dpp::guild_member_remove_t& event) {
+		(void)event;
+	}
 };

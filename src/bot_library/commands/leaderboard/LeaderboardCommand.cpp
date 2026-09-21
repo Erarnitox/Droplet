@@ -15,26 +15,25 @@
 #include <colors.h>
 #include <dispatcher.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
+#include <UserDTO.hpp>
 #include <UserRepository.hpp>
+#include <vector>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-LeaderboardCommand::LeaderboardCommand() : IGlobalSlashCommand() {
-	this->command_name = "leaderboard";
-	this->command_description = "Get a Leaderboard of the top 10 hackers!";
+LeaderboardCommand::LeaderboardCommand(AppContext& ctx) : db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void LeaderboardCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
-	UserRepository repo;
+	UserRepository repo{db_};
 
 	const std::vector<UserDTO> users = repo.getTopTen();
 

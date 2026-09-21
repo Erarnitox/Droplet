@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['slash_5fcommands_0',['slash_commands',['../classBot.html#a1bc0790c4cf2ae3331ae344277e550a9',1,'Bot']]],
-  ['solution_1',['solution',['../classChallengeBadgeDTO.html#a0487112ea03e88cc5c404023ca0eac9f',1,'ChallengeBadgeDTO::solution'],['../classChallengeRoleDTO.html#afd20d1eb158006aab306a35278b7afdb',1,'ChallengeRoleDTO::solution']]],
-  ['ssl_5fenabled_2',['ssl_enabled',['../classRestApi.html#a7ba220accb0beb6eebc893685e51b6d1',1,'RestApi']]]
+  ['password_0',['password',['../classWebUserDTO.html#a948ed4561f179491bcecfc03e1d60a62',1,'WebUserDTO']]],
+  ['port_1',['port',['../classRestApi.html#a1f7b652ad7c31e4607f379253f6faab7',1,'RestApi']]],
+  ['portal_5findex_2',['portal_index',['../structAppContext.html#a391c957b5347144681ad8540d9c73c64',1,'AppContext']]],
+  ['published_3',['published',['../structYoutubeFeedEntry.html#a97fde20c40f672194d95c7ba353ee8bc',1,'YoutubeFeedEntry']]]
 ];

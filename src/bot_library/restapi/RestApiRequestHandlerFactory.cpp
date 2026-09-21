@@ -27,7 +27,7 @@ Poco::Net::HTTPRequestHandler* RestApiRequestHandlerFactory::createRequestHandle
 	}
 	if (uri.starts_with("/auth")) {
 		const Secrets& sec{Secrets::getInstance()};
-		return new AuthHandler(sec.getSecret("jwt_secret"), "erarnitox.de");
+		return new AuthHandler(sec.getSecret("jwt_secret"), "erarnitox.de", db_);
 	}
 	if (request.getMethod() == Poco::Net::HTTPRequest::HTTP_POST && uri.starts_with("/register")) {
 		return new RegistrationHandler;
@@ -38,12 +38,12 @@ Poco::Net::HTTPRequestHandler* RestApiRequestHandlerFactory::createRequestHandle
 	if ((request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET ||
 		 request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) &&
 		uri.starts_with("/resources")) {
-		return new ResQueryHandler;
+		return new ResQueryHandler(db_);
 	}
 	if ((request.getMethod() == Poco::Net::HTTPRequest::HTTP_GET ||
 		 request.getMethod() == Poco::Net::HTTPRequest::HTTP_OPTIONS) &&
 		uri.starts_with("/leaderboard")) {
-		return new LeaderboardHandler;
+		return new LeaderboardHandler(db_);
 	}
 	return new NotFoundHandler;
 }

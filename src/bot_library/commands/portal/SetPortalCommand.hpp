@@ -3,30 +3,32 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <IMessageCommand.hpp>
+#include <string_view>
 
-#include "IMessageCommand.hpp"
-#include "IReactionCommand.hpp"
+struct AppContext;
+class DatabaseExecutor;
+class PortalIndex;
+class BlacklistIndex;
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
-class SetPortalCommand : public IGlobalSlashCommand, public IMessageCommand, public IReactionCommand {
+class SetPortalCommand : public IGlobalSlashCommand, public IMessageCommand {
   public:
-	SetPortalCommand();
+	static constexpr std::string_view k_name{"set_portal"};
+	static constexpr std::string_view k_description{"Set a channel as a portal for foreign messages (Admin only!)"};
+
+	explicit SetPortalCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
 	void on_message_create(const dpp::message_create_t& event) override;
-	void on_message_delete(const dpp::message_delete_t& event) override;
-	void on_message_delete_bulk(const dpp::message_delete_bulk_t& event) override;
-	void on_message_reaction_add(const dpp::message_reaction_add_t& event) override;
-	void on_message_reaction_remove(const dpp::message_reaction_remove_t& event) override;
+
+  private:
+	dpp::cluster& discord_;
+	DatabaseExecutor& db_;
+	PortalIndex& portal_index_;
+	BlacklistIndex& blacklist_index_;
 };

@@ -11,23 +11,24 @@
 
 #include "HelpCommand.hpp"
 
+#include <colors.h>
 #include <message.h>
+
+#include <AppContext.hpp>
+#include <Core.hpp>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-HelpCommand::HelpCommand() : IGlobalSlashCommand() {
-	this->command_name = "help";
-	this->command_description = "List all available commands";
+HelpCommand::HelpCommand(AppContext& ctx) : slash_commands_(ctx.slash_commands) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name)
-		return;
-
 	/* create the embed */
 	constexpr auto icon_url{"https://www.erarnitox.de/favicon-32x32.png"};
 	dpp::embed embed{dpp::embed()
@@ -37,7 +38,7 @@ void HelpCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 						 .set_description("Usage Information for the Droplet Discord bot")
 						 .set_thumbnail(icon_url)};
 
-	for (auto& command : Bot::slash_commands) {
+	for (auto& command : slash_commands_) {
 		const auto& cmd{command.second};
 
 		if (not Core::is_admin(event.command.member) && cmd->command_description.ends_with("(Admin only!)")) {

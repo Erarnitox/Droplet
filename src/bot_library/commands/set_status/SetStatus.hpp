@@ -3,20 +3,20 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IReady.hpp>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+
 class SetStatus : public IReady {
   public:
-	virtual void on_ready(const dpp::ready_t& event) override;
+	explicit SetStatus(AppContext& ctx);
+
+	void on_ready(const dpp::ready_t& event) override;
+
+  private:
+	dpp::cluster& discord_;
 };

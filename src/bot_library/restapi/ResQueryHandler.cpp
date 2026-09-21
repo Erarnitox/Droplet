@@ -66,7 +66,7 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
 
 		// tags and difficulty get filtered client side
 
-		ResourceRepository repo;
+		ResourceRepository repo{db_};
 		auto resources{Poco::JSON::Array()};
 
 		for (const auto& res : repo.get(category.value_or("all"))) {
@@ -88,10 +88,10 @@ void ResQueryHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Poco:
 		responseJSON->set("resources", resources);
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
-	} catch (const std::exception& e) {
+	} catch (const std::exception&) {
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 		responseJSON->set("status", "error");
-		responseJSON->set("message", std::string("Error: ") + e.what());
+		responseJSON->set("message", "Unable to load resources");
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
 	}

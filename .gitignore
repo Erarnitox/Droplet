@@ -1,8 +1,10 @@
-# Ignore the build trees
-debug
-release
-jumbo
-build
+# Ignore the build trees (CMakePresets.json binaryDir values)
+debug/
+debug-valgrind/
+perf-build/
+release/
+jumbo/
+build/
 
 # Ignore generaed and user files
 **/CMakeCache.txt

@@ -16,6 +16,7 @@
 #include <message.h>
 #include <misc-enum.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
 #include <format>
 #include <string>
@@ -33,9 +34,10 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
-	this->command_name = "challenge_badge";
-	this->command_description = "Create challenge Badge (Admin only!)";
+ChallengeBadgeCommand::ChallengeBadgeCommand(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 
 	this->command_options.emplace_back(dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
@@ -55,10 +57,6 @@ ChallengeBadgeCommand::ChallengeBadgeCommand() : IGlobalSlashCommand(), IButtonC
 //
 //-----------------------------------------------------
 void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	if (!Core::is_admin(event.command.member)) {
 		event.reply(dpp::message("Only admins are allowed to use this command!").set_flags(dpp::m_ephemeral));
 		return;
@@ -79,24 +77,29 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	const auto channel{event.command.get_resolved_channel(channel_id)};
 
-	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
+	const auto question{Core::get_parameter(discord_, event, "question")};
 	if (question.empty()) {
 		return;
 	}
 
-	const auto solution{Core::get_parameter(*Bot::ctx, event, "solution")};
+	const auto solution{Core::get_parameter(discord_, event, "solution")};
 	if (solution.empty()) {
 		return;
 	}
 
-	const auto badge{Core::get_parameter(*Bot::ctx, event, "badge")};
+	const auto badge{Core::get_parameter(discord_, event, "badge")};
 	if (badge.empty()) {
 		return;
 	}
 
-	const size_t xp{static_cast<size_t>(std::get<long>(event.get_parameter("xp")))};
+	const auto xp_param{std::get<long>(event.get_parameter("xp"))};
+	if (xp_param < 0) {
+		event.reply(dpp::message("XP reward cannot be negative!").set_flags(dpp::m_ephemeral));
+		return;
+	}
+	const size_t xp{static_cast<size_t>(xp_param)};
 
-	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
+	const auto title{Core::get_parameter(discord_, event, "title")};
 	if (title.empty()) {
 		return;
 	}
@@ -120,8 +123,8 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 														 .set_id("solve_challenge_badge_btn")));
 
 	// send the challenge message
-	Bot::ctx->message_create(
-		msg, [badge, xp, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
+	discord_.message_create(
+		msg, [this, badge, xp, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
 			size_t message_id{0};
@@ -137,23 +140,23 @@ void ChallengeBadgeCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			}
 
 			// save the needed information in the database
-			ChallengeBadgeRepository repo;
+			ChallengeBadgeRepository repo{db_};
 
 			const auto& guild_name{event.command.get_guild().name};
 			ChallengeBadgeDTO data{badge, xp, static_cast<size_t>(guild_id), message_id, solution, guild_name};
 
 			if (repo.create(data)) {
-				Bot::ctx->log(dpp::ll_info,
-							  std::format("Challenge badge with message_id={} was "
-										  "inserted into the Databse",
-										  message_id));
+				discord_.log(dpp::ll_info,
+							 std::format("Challenge badge with message_id={} was "
+										 "inserted into the Databse",
+										 message_id));
 			} else {
 				event.reply(dpp::message("Could not save Challenge Data to Database! ...").set_flags(dpp::m_ephemeral));
-				Bot::ctx->log(dpp::ll_error,
-							  std::format("Challenge Badge Data could not be saved to "
-										  "Database! (message_id={})",
-										  message_id));
-				Bot::ctx->message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
+				discord_.log(dpp::ll_error,
+							 std::format("Challenge Badge Data could not be saved to "
+										 "Database! (message_id={})",
+										 message_id));
+				discord_.message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
 				return;
 			}
 
@@ -211,16 +214,16 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	}
 
 	// get the correct answer and reward role from the database
-	ChallengeBadgeRepository badge_repo;
+	ChallengeBadgeRepository badge_repo{db_};
 	const ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
 
 	if (badge_dto.badge.empty() || badge_dto.solution.empty()) {
-		Bot::ctx->log(dpp::ll_warning,
-					  std::format("Got invalid data from Database in "
-								  "ChallengeBadgeCommand::handleFormSubmits.\nData: "
-								  "badge={}, dto.solution={}",
-								  badge_dto.badge,
-								  badge_dto.solution));
+		discord_.log(dpp::ll_warning,
+					 std::format("Got invalid data from Database in "
+								 "ChallengeBadgeCommand::handleFormSubmits.\nData: "
+								 "badge={}, dto.solution={}",
+								 badge_dto.badge,
+								 badge_dto.solution));
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298374")
 						.set_flags(dpp::m_ephemeral));
@@ -230,7 +233,7 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto entered_variant{event.components[0].components[0].value};
 	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
 	if (!entered_ptr) {
-		Bot::ctx->log(dpp::ll_warning, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
+		discord_.log(dpp::ll_warning, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298375")
 						.set_flags(dpp::m_ephemeral));
@@ -240,13 +243,13 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto& entered{*entered_ptr};
 
 	if (entered == badge_dto.solution) {
-		UserRepository user_repo;
+		UserRepository user_repo{db_};
 		UserDTO user_dto{member.user_id, member.get_user()->username};
 
 		if (user_repo.create(user_dto)) {
-			Bot::ctx->log(dpp::ll_info, "User has been created!");
+			discord_.log(dpp::ll_info, "User has been created!");
 		} else {
-			Bot::ctx->log(dpp::ll_info, "User does already exist!");
+			discord_.log(dpp::ll_info, "User does already exist!");
 			user_dto = user_repo.get(member.user_id);
 		}
 
@@ -255,11 +258,11 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 			return;
 		}
 
-		HasBadgeRepository has_badge_repository;
+		HasBadgeRepository has_badge_repository{db_};
 		if (has_badge_repository.create(user_dto.user_id, msg_id)) {
 			user_dto.exp += badge_dto.exp;
 			if (!user_repo.update(user_dto)) {
-				Bot::ctx->log(dpp::ll_error, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
+				discord_.log(dpp::ll_error, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
 
 				event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 										 "@erarnitox with this error code: 298377")

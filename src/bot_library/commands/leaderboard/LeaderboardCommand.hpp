@@ -3,22 +3,25 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+class DatabaseExecutor;
+
 class LeaderboardCommand : public IGlobalSlashCommand {
   public:
-	LeaderboardCommand();
+	static constexpr std::string_view k_name{"leaderboard"};
+	static constexpr std::string_view k_description{"Get a Leaderboard of the top 10 hackers!"};
 
-	virtual void on_slashcommand(const dpp::slashcommand_t& event) override;
+	explicit LeaderboardCommand(AppContext& ctx);
+
+	void on_slashcommand(const dpp::slashcommand_t& event) override;
+
+  private:
+	DatabaseExecutor& db_;
 };

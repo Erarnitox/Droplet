@@ -1,5 +1,6 @@
 var classIMemberCommand =
 [
-    [ "on_guild_member_add", "classIMemberCommand.html#a1c7cfcdb58ae71b4d759fcd6d53f5e53", null ],
-    [ "on_guild_member_remove", "classIMemberCommand.html#ab30375790dc8efa5961aff149361e590", null ]
+    [ "~IMemberCommand", "classIMemberCommand.html#ae58b1ecc769f266df75737f91f225fcb", null ],
+    [ "on_guild_member_add", "classIMemberCommand.html#a8b7733f3c99ac9fad723f6c228018e7a", null ],
+    [ "on_guild_member_remove", "classIMemberCommand.html#a99583bfd27aefc76a97833d062627545", null ]
 ];

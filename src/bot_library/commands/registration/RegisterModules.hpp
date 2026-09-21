@@ -1,14 +1,10 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- */
-
 #pragma once
 
-void register_essential_commands();
-void register_slash_utility_commands();
-void register_resource_commands();
-void register_portal_and_notification_commands();
-void register_interactive_commands();
+#include <AppContext.hpp>
+#include <Bot.hpp>
+
+void register_essential_commands(Bot& bot, AppContext& ctx);
+void register_slash_utility_commands(Bot& bot, AppContext& ctx);
+void register_resource_commands(Bot& bot, AppContext& ctx);
+void register_portal_and_notification_commands(Bot& bot, AppContext& ctx);
+void register_interactive_commands(Bot& bot, AppContext& ctx);

@@ -54,7 +54,7 @@ void LeaderboardHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
 		std::optional<std::string> category{std::nullopt};
 		std::optional<std::vector<std::string>> tags{std::nullopt};
 
-		UserRepository repo;
+		UserRepository repo{db_};
 		auto users{Poco::JSON::Array()};
 
 		for (const auto& user : repo.getTopTen()) {
@@ -70,10 +70,10 @@ void LeaderboardHandler::handleRequest(Poco::Net::HTTPServerRequest& request, Po
 		responseJSON->set("users", users);
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
-	} catch (const std::exception& e) {
+	} catch (const std::exception&) {
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 		responseJSON->set("status", "error");
-		responseJSON->set("message", std::string("Error: ") + e.what());
+		responseJSON->set("message", "Unable to load leaderboard");
 		std::ostream& ostr = response.send();
 		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
 	}

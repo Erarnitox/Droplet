@@ -12,7 +12,9 @@
 #include "ChallengeRoleCommand.hpp"
 
 #include <appcommand.h>
+#include <colors.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
 #include <variant>
 
@@ -25,9 +27,10 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ChallengeRoleCommand::ChallengeRoleCommand() : IGlobalSlashCommand(), IButtonCommand(), IFormCommand() {
-	this->command_name = "challenge_role";
-	this->command_description = "Create challenge Roles (Admin only!)";
+ChallengeRoleCommand::ChallengeRoleCommand(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 
 	this->command_options.emplace_back(dpp::co_channel, "channel", "In which channel to post the challenge in", true);
 
@@ -56,12 +59,12 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	const auto channel_id{std::get<dpp::snowflake>(event.get_parameter("channel"))};
 
-	const auto question{Core::get_parameter(*Bot::ctx, event, "question")};
+	const auto question{Core::get_parameter(discord_, event, "question")};
 	if (question.empty()) {
 		return;
 	}
 
-	const auto solution{Core::get_parameter(*Bot::ctx, event, "solution")};
+	const auto solution{Core::get_parameter(discord_, event, "solution")};
 	if (solution.empty()) {
 		return;
 	}
@@ -69,7 +72,7 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto role_id{std::get<dpp::snowflake>(event.get_parameter("role"))};
 	const auto role{event.command.get_resolved_role(role_id)};
 
-	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
+	const auto title{Core::get_parameter(discord_, event, "title")};
 	if (title.empty()) {
 		return;
 	}
@@ -107,8 +110,9 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 														 .set_id("solve_challenge_btn")));
 
 	// send the challenge message
-	Bot::ctx->message_create(
-		msg, [role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
+	discord_.message_create(
+		msg,
+		[this, role_id, role, event, question, solution, guild_id](const dpp::confirmation_callback_t& cb) -> void {
 			auto sent_message{cb.value};
 
 			size_t message_id{0};
@@ -124,20 +128,20 @@ void ChallengeRoleCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			}
 
 			// save the needed information in the database
-			ChallengeRoleRepository repo;
+			ChallengeRoleRepository repo{db_};
 			const ChallengeRoleDTO data{role_id, guild_id, message_id, solution};
 			if (repo.create(data)) {
-				Bot::ctx->log(dpp::ll_info,
-							  std::format("Challenge role with message_id={} was "
-										  "inserted into the Databse",
-										  message_id));
+				discord_.log(dpp::ll_info,
+							 std::format("Challenge role with message_id={} was "
+										 "inserted into the Databse",
+										 message_id));
 			} else {
 				event.reply(dpp::message("Could not save Challenge Data to Database! ...").set_flags(dpp::m_ephemeral));
-				Bot::ctx->log(dpp::ll_error,
-							  std::format("Challenge Role Data could not be saved to "
-										  "Database! (message_id={})",
-										  message_id));
-				Bot::ctx->message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
+				discord_.log(dpp::ll_error,
+							 std::format("Challenge Role Data could not be saved to "
+										 "Database! (message_id={})",
+										 message_id));
+				discord_.message_delete(message_id, std::get<dpp::message>(sent_message).channel_id);
 				return;
 			}
 
@@ -192,16 +196,16 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 	}
 
 	// get the correct answer and reward role from the database
-	ChallengeRoleRepository repo;
+	ChallengeRoleRepository repo{db_};
 	const ChallengeRoleDTO dto = repo.get(msg_id);
 
 	if (not dto.roleId || dto.solution.empty()) {
-		Bot::ctx->log(dpp::ll_warning,
-					  std::format("Got invalid data from Database in "
-								  "ChallengeRoleCommand::handleFormSubmits.\nData: "
-								  "roleId={}, dto.solution={}",
-								  dto.roleId,
-								  dto.solution));
+		discord_.log(dpp::ll_warning,
+					 std::format("Got invalid data from Database in "
+								 "ChallengeRoleCommand::handleFormSubmits.\nData: "
+								 "roleId={}, dto.solution={}",
+								 dto.roleId,
+								 dto.solution));
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298364")
 						.set_flags(dpp::m_ephemeral));
@@ -211,7 +215,7 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto entered_variant{event.components[0].components[0].value};
 	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
 	if (not entered_ptr) {
-		Bot::ctx->log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
+		discord_.log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
 		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 								 "@erarnitox with this error code: 298365")
 						.set_flags(dpp::m_ephemeral));
@@ -221,7 +225,7 @@ void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto& entered{*entered_ptr};
 
 	if (entered == dto.solution) {
-		Bot::ctx->guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
+		discord_.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
 
 		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))
 						.set_flags(dpp::m_ephemeral));

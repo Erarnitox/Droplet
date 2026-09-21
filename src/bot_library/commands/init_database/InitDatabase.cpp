@@ -11,6 +11,8 @@
 
 #include "InitDatabase.hpp"
 
+#include <AppContext.hpp>
+
 /**
  * @brief Initializes the Database Tables once the bot is ready
  *

@@ -1,10 +1,3 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- */
-
 #include <Bot.hpp>
 #include <ClearCommand.hpp>
 #include <FlipCommand.hpp>
@@ -21,16 +14,16 @@
 
 #include "RegisterModules.hpp"
 
-void register_slash_utility_commands() {
-	Bot::add_slash_command(std::make_shared<HelpCommand>());
-	Bot::add_slash_command(std::make_shared<ServerDetails>());
-	Bot::add_slash_command(std::make_shared<InviteCommand>());
-	Bot::add_slash_command(std::make_shared<LearnCPPCommand>());
-	Bot::add_slash_command(std::make_shared<RollCommand>());
-	Bot::add_slash_command(std::make_shared<FlipCommand>());
-	Bot::add_slash_command(std::make_shared<ProfileCommand>());
-	Bot::add_slash_command(std::make_shared<ReminderCommand>());
-	Bot::add_slash_command(std::make_shared<ClearCommand>());
-	Bot::add_slash_command(std::make_shared<WarnCommand>());
-	Bot::add_slash_command(std::make_shared<LeaderboardCommand>());
+void register_slash_utility_commands(Bot& bot, AppContext& ctx) {
+	bot.add_slash_command(std::make_shared<HelpCommand>(ctx));
+	bot.add_slash_command(std::make_shared<ServerDetails>(ctx));
+	bot.add_slash_command(std::make_shared<InviteCommand>(ctx));
+	bot.add_slash_command(std::make_shared<LearnCPPCommand>(ctx));
+	bot.add_slash_command(std::make_shared<RollCommand>(ctx));
+	bot.add_slash_command(std::make_shared<FlipCommand>(ctx));
+	bot.add_slash_command(std::make_shared<ProfileCommand>(ctx));
+	bot.add_slash_command(std::make_shared<ReminderCommand>(ctx));
+	bot.add_slash_command(std::make_shared<ClearCommand>(ctx));
+	bot.add_slash_command(std::make_shared<WarnCommand>(ctx));
+	bot.add_slash_command(std::make_shared<LeaderboardCommand>(ctx));
 }

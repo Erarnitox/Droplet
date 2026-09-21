@@ -15,15 +15,17 @@
 #include <colors.h>
 #include <dispatcher.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-AddResourcesCommand::AddResourcesCommand() : IGlobalSlashCommand() {
-	this->command_name = "add_resource";
-	this->command_description = "Add resource to droplet.erarnitox.de/resources";
+AddResourcesCommand::AddResourcesCommand(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 
 	this->command_options.emplace_back(dpp::co_string, "title", "The title of the resource", true);
 
@@ -50,20 +52,21 @@ AddResourcesCommand::AddResourcesCommand() : IGlobalSlashCommand() {
 //
 //-----------------------------------------------------
 void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
+	if (not Core::is_admin(event.command.member)) {
+		event.reply(dpp::message("Only admins are allowed to run this command!").set_flags(dpp::m_ephemeral));
 		return;
 	}
 
 	const auto& cmd{event.command};
 
-	const auto title{Core::get_parameter(*Bot::ctx, event, "title")};
-	const auto category{Core::get_parameter(*Bot::ctx, event, "category")};
-	const auto description{Core::get_parameter(*Bot::ctx, event, "description")};
-	const auto url{Core::get_parameter(*Bot::ctx, event, "url")};
-	const auto difficulty{std::stoi(Core::get_parameter(*Bot::ctx, event, "difficulty"))};
-	const auto tags{Core::get_parameter(*Bot::ctx, event, "tags", false)};
+	const auto title{Core::get_parameter(discord_, event, "title")};
+	const auto category{Core::get_parameter(discord_, event, "category")};
+	const auto description{Core::get_parameter(discord_, event, "description")};
+	const auto url{Core::get_parameter(discord_, event, "url")};
+	const auto difficulty{std::stoi(Core::get_parameter(discord_, event, "difficulty"))};
+	const auto tags{Core::get_parameter(discord_, event, "tags", false)};
 
-	ResourceRepository repo;
+	ResourceRepository repo{db_};
 	const ResourceDTO data{title,
 						   category,
 						   description,
@@ -83,9 +86,9 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 									 data.url,
 									 tags.empty() ? "NONE" : tags))};
 
-		dpp::command_completion_event_t callback = [event](const dpp::confirmation_callback_t& res) {
+		dpp::command_completion_event_t callback = [this, event](const dpp::confirmation_callback_t& res) {
 			const auto& message{res.get<dpp::message>()};
-			Bot::ctx->message_pin(message.channel_id, message.id);
+			discord_.message_pin(message.channel_id, message.id);
 			return;
 		};
 

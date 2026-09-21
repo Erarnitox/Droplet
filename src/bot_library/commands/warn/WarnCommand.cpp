@@ -14,52 +14,51 @@
 #include <message.h>
 #include <role.h>
 
+#include <AppContext.hpp>
+#include <Core.hpp>
+
 //----------------------------------------
 //
 //----------------------------------------
-WarnCommand::WarnCommand() : IGlobalSlashCommand() {
-	this->command_name = "warn";
-	this->command_description = "Warn a user. Bans the user if already warned";
+WarnCommand::WarnCommand(AppContext& ctx) : discord_(ctx.discord) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 	this->command_options.emplace_back(dpp::co_user, "user", "User to warn", true);
 }
 
 //----------------------------------------
 //
 //----------------------------------------
-void warn_user(const dpp::slashcommand_t& event,
-			   const dpp::snowflake guild_id,
-			   const dpp::snowflake user_id,
-			   const dpp::role& warned_role) {
+void WarnCommand::warn_user(const dpp::slashcommand_t& event,
+							const dpp::snowflake guild_id,
+							const dpp::snowflake user_id,
+							const dpp::role& warned_role) {
 	const auto role_id{warned_role.id};
 
-	Bot::ctx->guild_get_member(
-		guild_id, user_id, [event = std::move(event), role_id](const dpp::confirmation_callback_t& cc_member) {
-			if (cc_member.is_error()) {
-				event.reply("Couldn't get user details!");
-				return;
-			}
+	discord_.guild_get_member(guild_id, user_id, [this, event, role_id](const dpp::confirmation_callback_t& cc_member) {
+		if (cc_member.is_error()) {
+			event.reply("Couldn't get user details!");
+			return;
+		}
 
-			const auto member{std::get<dpp::guild_member>(cc_member.value)};
-			const auto username{member.get_mention()};
-			const auto member_roles{member.get_roles()};
+		const auto member{std::get<dpp::guild_member>(cc_member.value)};
+		const auto username{member.get_mention()};
+		const auto member_roles{member.get_roles()};
 
-			if (std::find(member_roles.begin(), member_roles.end(), role_id) != member_roles.end()) {
-				Bot::ctx->guild_ban_add(member.guild_id, member.user_id);
-				event.reply(username + " has been banned from the server for repeated violation of rules");
-			} else {
-				Bot::ctx->guild_member_add_role(member.guild_id, member.user_id, role_id);
-				event.reply(username + " has been warned!");
-			}
-		});
+		if (std::find(member_roles.begin(), member_roles.end(), role_id) != member_roles.end()) {
+			discord_.guild_ban_add(member.guild_id, member.user_id);
+			event.reply(username + " has been banned from the server for repeated violation of rules");
+		} else {
+			discord_.guild_member_add_role(member.guild_id, member.user_id, role_id);
+			event.reply(username + " has been warned!");
+		}
+	});
 }
 
 //----------------------------------------
 //
 //----------------------------------------
 void WarnCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name)
-		return;
-
 	if (not Core::is_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
@@ -68,7 +67,7 @@ void WarnCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto& guild_id{event.command.guild_id};
 	const auto user_id{std::get<dpp::snowflake>(event.get_parameter("user"))};
 
-	Bot::ctx->roles_get(guild_id, [event, guild_id, user_id](const dpp::confirmation_callback_t& cc_roles) {
+	discord_.roles_get(guild_id, [this, event, guild_id, user_id](const dpp::confirmation_callback_t& cc_roles) {
 		if (cc_roles.is_error()) {
 			event.reply("Failed to obtain roles");
 			return;
@@ -91,14 +90,15 @@ void WarnCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 			new_role.guild_id = guild_id;
 			new_role.colour = 0xFFAA00;
 			new_role.permissions = 0;
-			Bot::ctx->role_create(new_role, [&](const dpp::confirmation_callback_t& callback) {
-				if (callback.is_error()) {
-					event.reply("Something went wrong!");
-					return;
-				}
+			discord_.role_create(new_role,
+								 [this, event, guild_id, user_id](const dpp::confirmation_callback_t& callback) {
+									 if (callback.is_error()) {
+										 event.reply("Something went wrong!");
+										 return;
+									 }
 
-				warn_user(event, guild_id, user_id, callback.get<dpp::role>());
-			});
+									 warn_user(event, guild_id, user_id, callback.get<dpp::role>());
+								 });
 			return;
 		} else {
 			warn_user(event, guild_id, user_id, warned_role.value());

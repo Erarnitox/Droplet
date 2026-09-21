@@ -195,3 +195,13 @@ function(target_link_libraries_system target)
     target_link_libraries(${target} ${_visibility} $<LINK_ONLY:${lib}>)
   endforeach()
 endfunction()
+
+function(droplet_target_warnings target)
+	if(MSVC)
+		target_compile_options(${target} PRIVATE /W4)
+	else()
+		target_compile_options(${target} PRIVATE
+			-Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion
+			-Wnon-virtual-dtor -Wold-style-cast -Wnull-dereference)
+	endif()
+endfunction()

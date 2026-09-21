@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['database_0',['database',['../namespacedatabase.html',1,'']]]
+  ['jwtutils_0',['JWTUtils',['../namespaceJWTUtils.html',1,'']]]
 ];

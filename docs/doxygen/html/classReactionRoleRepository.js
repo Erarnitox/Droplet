@@ -1,6 +1,5 @@
 var classReactionRoleRepository =
 [
-    [ "ReactionRoleRepository", "classReactionRoleRepository.html#a193b5b121cc956e9f34ccad7111150bf", null ],
     [ "ReactionRoleRepository", "classReactionRoleRepository.html#a7ea35652fb06a6b47413d3356ba05cdd", null ],
     [ "create", "classReactionRoleRepository.html#a63bedd4cc4765bd7a0e13120c66539fb", null ],
     [ "get", "classReactionRoleRepository.html#a5e013360d1ecb34f5ef80b4a07beb150", null ],

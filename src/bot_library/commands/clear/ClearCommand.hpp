@@ -3,22 +3,24 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+struct AppContext;
+
 class ClearCommand : public IGlobalSlashCommand {
   public:
-	ClearCommand();
+	static constexpr std::string_view k_name{"clear"};
+	static constexpr std::string_view k_description{"clear the current channel completely"};
+
+	explicit ClearCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
+
+  private:
+	dpp::cluster& discord_;
 };

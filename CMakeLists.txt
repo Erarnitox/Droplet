@@ -44,11 +44,16 @@ endif()
 
 option(USE_DEBUG_TOKEN "copy debug token and database connection")
 
-# use interprocedural optimization
+# use interprocedural optimization (ThinLTO + ASan/UBSan hides libstdc++ symbols)
 include(CheckIPOSupported)
-check_ipo_Supported(RESULT ipo_supported)
+check_ipo_supported(RESULT ipo_supported)
 if(ipo_supported)
-	set(CMAKE_INTERPROCEDURAL_OPTIMITZATION True)
+	if(CMAKE_CXX_FLAGS MATCHES "fsanitize" OR CMAKE_EXE_LINKER_FLAGS MATCHES "fsanitize")
+		set(CMAKE_INTERPROCEDURAL_OPTIMIZATION FALSE)
+		message(STATUS "IPO disabled because sanitizers are enabled")
+	else()
+		set(CMAKE_INTERPROCEDURAL_OPTIMIZATION True)
+	endif()
 endif()
 
 # disable compiler specific C++ extensions
@@ -108,12 +113,17 @@ if(USE_DEBUG_TOKEN)
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TOKEN_PATH} "${CMAKE_BINARY_DIR}/bot_token.txt"
 		COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SECRETS_PATH} "${CMAKE_BINARY_DIR}/secrets.json"
      	COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DB_CREDS_PATH} "${CMAKE_BINARY_DIR}/db_connection.txt"
+		COMMAND ${CMAKE_COMMAND} -E chmod 0600
+			"${CMAKE_BINARY_DIR}/bot_token.txt"
+			"${CMAKE_BINARY_DIR}/secrets.json"
+			"${CMAKE_BINARY_DIR}/db_connection.txt"
  	)
 
 	add_custom_command(
 		OUTPUT ${KEY_FILE} ${CERTIFICATE_FILE}
 		COMMAND ${CMAKE_COMMAND} -E echo "Generating SSL key and certificate..."
 		COMMAND openssl req -newkey rsa:2048 -nodes -keyout ${KEY_FILE} -x509 -days 365 -out ${CERTIFICATE_FILE} -subj "/CN=localhost"
+		COMMAND ${CMAKE_COMMAND} -E chmod 0600 ${KEY_FILE}
 		COMMENT "Generating self-signed SSL certificate and key"
 		VERBATIM
 	)

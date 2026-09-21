@@ -8,18 +8,9 @@ add_library(bot STATIC
     BotEventSubscriptions.cpp
 )
 
-# enable additional warnings and static analysis for this target
-if (MSVC)
-    # for windows msvc or clang-cl
-    target_compile_options(bot PRIVATE "/W4")
-else()
-    target_compile_options(bot PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
-endif()
-
+droplet_target_warnings(bot)
 set_property(TARGET bot PROPERTY CXX_STANDARD ${CPP_STANDARD})
-
 target_include_directories(bot PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
 target_link_libraries(bot PUBLIC core)
 target_link_libraries(bot PUBLIC secrets)
 target_link_libraries(bot PUBLIC email)
-

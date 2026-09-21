@@ -17,6 +17,7 @@
 #include <message.h>
 #include <misc-enum.h>
 
+#include <AppContext.hpp>
 #include <ChallengeBadgeDTO.hpp>
 #include <ChallengeBadgeRepository.hpp>
 #include <HasBadgeRepository.hpp>
@@ -29,9 +30,9 @@
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ProfileCommand::ProfileCommand() : IGlobalSlashCommand() {
-	this->command_name = "profile";
-	this->command_description = "View Profile Information";
+ProfileCommand::ProfileCommand(AppContext& ctx) : discord_(ctx.discord), db_(ctx.db) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 	this->command_options.emplace_back(dpp::co_user, "user", "User to view the Profile of", true);
 }
 
@@ -39,27 +40,23 @@ ProfileCommand::ProfileCommand() : IGlobalSlashCommand() {
 //
 //-----------------------------------------------------
 void ProfileCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	const auto user_id{std::get<dpp::snowflake>(event.get_parameter("user"))};
 	const auto member{event.command.get_resolved_member(user_id)};
 
 	// Get the user from the usr Table
-	UserRepository user_repo;
+	UserRepository user_repo{db_};
 	UserDTO user_dto{};
 
 	try {
 		user_dto = user_repo.get(static_cast<size_t>(user_id));
 	} catch (...) {
-		Bot::ctx->log(dpp::ll_warning, "User is not in usr database yet");
+		discord_.log(dpp::ll_warning, "User is not in usr database yet");
 	}
 
 	std::map<std::string, std::vector<std::string>> badges;
 
-	ChallengeBadgeRepository badge_repo;
-	HasBadgeRepository has_badge_repo;
+	ChallengeBadgeRepository badge_repo{db_};
+	HasBadgeRepository has_badge_repo{db_};
 
 	if (user_dto.user_id) {
 		// Get all badges a the user has earned:

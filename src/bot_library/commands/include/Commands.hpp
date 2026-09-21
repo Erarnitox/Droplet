@@ -1,21 +1,8 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
- */
-
 #pragma once
 
+#include <AppContext.hpp>
 #include <Bot.hpp>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
 namespace Commands {
-void registerCommands();
+void registerCommands(Bot& bot, AppContext& ctx);
 }

@@ -3,24 +3,30 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <dispatcher.h>
+#include <IGlobalSlashCommand.hpp>
+#include <string>
+#include <string_view>
 
-#include <Bot.hpp>
+struct AppContext;
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
 class ReminderCommand : public IGlobalSlashCommand {
   public:
-	ReminderCommand();
+	static constexpr std::string_view k_name{"reminder"};
+	static constexpr std::string_view k_description{"Set a reminder for yourself!"};
+
+	explicit ReminderCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
+
+  private:
+	void start_reminder(size_t channel_id,
+						dpp::snowflake user_id,
+						const std::string& user_mention,
+						const std::string& message,
+						size_t timestep_sec);
+	dpp::cluster& discord_;
 };

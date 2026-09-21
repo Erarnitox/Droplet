@@ -95,13 +95,33 @@
       }
     },
     {
+      "name" : "perf",
+      "displayName" : "RelWithDebInfo for perf / vectorizer remarks",
+      "description" : "Frame pointers, debug info, Clang loop-vectorize remarks. No sanitizers.",
+      "generator" : "Ninja",
+      "binaryDir" : "${sourceDir}/perf-build",
+      "cacheVariables" : {
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
+          "CMAKE_BUILD_TYPE" : "RelWithDebInfo",
+          "CMAKE_CXX_FLAGS" : "-fno-omit-frame-pointer -g -Rpass=loop-vectorize -Rpass-missed=loop-vectorize",
+          "CMAKE_INSTALL_PREFIX" : "${sourceDir}/perf-build",
+          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_C_COMPILER": "clang",
+          "USE_DEBUG_TOKEN" : "FALSE",
+          "BUILD_VOICE_SUPPORT" : "OFF",
+          "CMAKE_CXX_VISIBILITY_PRESET" : "hidden",
+          "CMAKE_VISIBILITY_INLINES_HIDDEN" : "YES",
+          "CMAKE_POLICY_VERSION_MINIMUM" : "3.5"
+      }
+    },
+    {
       "name" : "github",
       "displayName" : "Github Actions - (Linux) Ninja and Clang",
       "description" : "Erarnitox's recommended settings for a release build. Uses clang and Ninja",
       "generator" : "Ninja",
       "binaryDir" : "${sourceDir}/build",
       "cacheVariables" : {
-          "CMAKE_EXPORT_COMPILE_COMMANDS" : false,
+          "CMAKE_EXPORT_COMPILE_COMMANDS" : true,
           "CMAKE_BUILD_TYPE" : "Release",
           "CMAKE_INSTALL_PREFIX" : "${sourceDir}/build",
           "CMAKE_CXX_COMPILER": "clang++",
@@ -134,6 +154,10 @@
     {
       "name": "github",
       "configurePreset": "github"
+    },
+    {
+      "name": "perf",
+      "configurePreset": "perf"
     }
   ]
 }

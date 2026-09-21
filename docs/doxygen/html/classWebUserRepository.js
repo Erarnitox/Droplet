@@ -1,6 +1,5 @@
 var classWebUserRepository =
 [
-    [ "WebUserRepository", "classWebUserRepository.html#af8130112f4dbad28e41f558ad31e0b63", null ],
     [ "WebUserRepository", "classWebUserRepository.html#a50e1eacf31c3064206f80382dfa5a7fe", null ],
     [ "create", "classWebUserRepository.html#ae647fa8dec8a088e8b62e28f4de0875b", null ],
     [ "exists", "classWebUserRepository.html#a36c9a81840063617290508846bcd886e", null ],

@@ -8,5 +8,7 @@ var searchData=
   ['challengerolerepository_5',['ChallengeRoleRepository',['../classChallengeRoleRepository.html',1,'']]],
   ['cleanup_6',['CleanUp',['../classCleanUp.html',1,'']]],
   ['clearcommand_7',['ClearCommand',['../classClearCommand.html',1,'']]],
-  ['core_8',['Core',['../classCore.html',1,'']]]
+  ['connectionlease_8',['ConnectionLease',['../classConnectionLease.html',1,'']]],
+  ['connectionpool_9',['ConnectionPool',['../classConnectionPool.html',1,'']]],
+  ['core_10',['Core',['../classCore.html',1,'']]]
 ];

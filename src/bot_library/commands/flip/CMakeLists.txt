@@ -5,16 +5,8 @@ add_library(flip_command STATIC
     FlipCommand.hpp
 )
 
-# enable additional warnings and static analysis for this target
-if (MSVC)
-    # for windows msvc or clang-cl
-    target_compile_options(flip_command PRIVATE "/W4")
-else()
-    target_compile_options(flip_command PRIVATE -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion)
-endif()
-
+droplet_target_warnings(flip_command)
 set_property(TARGET flip_command PROPERTY CXX_STANDARD ${CPP_STANDARD})
-target_link_libraries(flip_command PRIVATE user_repository)
 target_link_libraries(flip_command PUBLIC bot)
-
+target_link_libraries(flip_command PUBLIC persistence)
 target_link_libraries(commands PRIVATE flip_command)

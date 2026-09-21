@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['email_0',['email',['../classWebUserDTO.html#a9e58c25da85c8bdac76443151eb90a85',1,'WebUserDTO']]],
-  ['emoji_1',['emoji',['../classReactionRoleDTO.html#aa5699426d8b83a816ed2d750a0b9338b',1,'ReactionRoleDTO']]],
-  ['erarnitox_5fid_2',['ERARNITOX_ID',['../BugReportCommand_8cpp.html#a03f3090d456732f15d5f5b796d29befa',1,'BugReportCommand.cpp']]],
-  ['exp_3',['exp',['../classChallengeBadgeDTO.html#a82f79f139c60a6b40adfc88c9b9fd1f8',1,'ChallengeBadgeDTO::exp'],['../classUserDTO.html#ad1aeb3ee28c13b927062969eec30027b',1,'UserDTO::exp']]]
+  ['data_0',['data',['../classNotificationDTO.html#a18df54373d782ab31575d363a23f2046',1,'NotificationDTO']]],
+  ['db_1',['db',['../structAppContext.html#a9b5e17244b15e677ff78ba69a0b1dded',1,'AppContext']]],
+  ['description_2',['description',['../classResourceDTO.html#a17831d1cab1169239ae569cfb9e1995c',1,'ResourceDTO']]],
+  ['difficulty_3',['difficulty',['../classResourceDTO.html#a2056dbecffc35f4fbd9e40c292c3f6db',1,'ResourceDTO']]],
+  ['discord_4',['discord',['../structAppContext.html#a61bbc0a618611b8bba7dcc25c4bf92ec',1,'AppContext']]]
 ];

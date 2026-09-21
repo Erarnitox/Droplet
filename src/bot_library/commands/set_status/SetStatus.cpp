@@ -13,15 +13,14 @@
 
 #include <presence.h>
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
+#include <AppContext.hpp>
+
+SetStatus::SetStatus(AppContext& ctx) : discord_(ctx.discord) {
+}
+
 void SetStatus::on_ready(const dpp::ready_t& event) {
 	(void)event;
-
-	Bot::ctx->set_presence(dpp::presence(dpp::presence_status::ps_online,
-										 dpp::activity_type::at_custom,
-										 std::string("Empower Your Discord Community and Unleash its Full Potential")));
-
-	return;
+	discord_.set_presence(dpp::presence(dpp::presence_status::ps_online,
+										dpp::activity_type::at_custom,
+										std::string("Empower Your Discord Community and Unleash its Full Potential")));
 }

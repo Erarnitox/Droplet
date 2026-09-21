@@ -13,21 +13,22 @@
 
 #include <message.h>
 
+#include <AppContext.hpp>
+#include <Core.hpp>
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ClearCommand::ClearCommand() : IGlobalSlashCommand() {
-	this->command_name = "clear";
-	this->command_description = "clear the current channel completely";
+ClearCommand::ClearCommand(AppContext& ctx) : discord_(ctx.discord) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
+	this->admin_only = true;
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void ClearCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name)
-		return;
-
 	if (not Core::is_admin(event.command.member)) {
 		event.reply("Only admins are allowed to run this command!");
 		return;
@@ -35,6 +36,6 @@ void ClearCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 	event.reply("Channel will be cleaned shortly...");
 
-	Bot::ctx->channel_delete(event.command.channel_id);
-	Bot::ctx->channel_create(event.command.channel);
+	discord_.channel_delete(event.command.channel_id);
+	discord_.channel_create(event.command.channel);
 }

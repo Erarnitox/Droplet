@@ -18,33 +18,36 @@
 #include <queues.h>
 #include <snowflake.h>
 
+#include <AppContext.hpp>
 #include <Core.hpp>
 #include <format>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-static inline auto start_reminder(size_t channel_id,
-								  const std::string& user,
-								  const std::string& message,
-								  size_t timestep_sec = 500) -> void {
-	const dpp::timer_callback_t on_tick{[channel_id, user, message](dpp::timer timer_handle) {
-		const auto reminder_msg{std::format("**REMINDER:** {}\n{}", user, message)};
+void ReminderCommand::start_reminder(size_t channel_id,
+									 dpp::snowflake user_id,
+									 const std::string& user_mention,
+									 const std::string& message,
+									 size_t timestep_sec) {
+	const dpp::timer_callback_t on_tick{[this, channel_id, user_id, user_mention, message](dpp::timer timer_handle) {
+		const auto reminder_msg{
+			std::format("**REMINDER:** {}\n{}", user_mention, Core::strip_broadcast_mentions(message))};
 		dpp::message msg(channel_id, reminder_msg);
-		msg.set_allowed_mentions(true, false, false, true);
-		Bot::ctx->message_create(msg);
-		Bot::ctx->stop_timer(timer_handle);
+		msg.set_allowed_mentions(false, false, false, false, {user_id}, {});
+		discord_.message_create(msg);
+		discord_.stop_timer(timer_handle);
 	}};
 
-	Bot::ctx->start_timer(on_tick, timestep_sec);
+	discord_.start_timer(on_tick, timestep_sec);
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ReminderCommand::ReminderCommand() : IGlobalSlashCommand() {
-	this->command_name = "reminder";
-	this->command_description = "Set a reminder for yourself!";
+ReminderCommand::ReminderCommand(AppContext& ctx) : discord_(ctx.discord) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 
 	this->command_options.emplace_back(
 		dpp::co_integer, "time_seconds", "How long to wait until the reminder is sent? (In seconds)", true);
@@ -56,22 +59,18 @@ ReminderCommand::ReminderCommand() : IGlobalSlashCommand() {
 //
 //-----------------------------------------------------
 void ReminderCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	const auto& cmd{event.command};
 	const auto time_sec{std::get<long>(event.get_parameter("time_seconds"))};
 
-	const auto message{Core::get_parameter(*Bot::ctx, event, "message")};
+	const auto message{Core::get_parameter(discord_, event, "message")};
 	if (message.empty()) {
 		return;
 	}
 
 	if (time_sec <= 0) {
-		Core::timed_reply_private(*Bot::ctx, event, std::format("Reminder from the past:\n{}", message), 2000);
+		Core::timed_reply_private(discord_, event, std::format("Reminder from the past:\n{}", message), 2000);
 	} else {
-		start_reminder(cmd.get_channel().id, cmd.usr.get_mention(), message, static_cast<size_t>(time_sec));
-		Core::timed_reply_private(*Bot::ctx, event, "Reminder set!", 2000);
+		start_reminder(cmd.get_channel().id, cmd.usr.id, cmd.usr.get_mention(), message, static_cast<size_t>(time_sec));
+		Core::timed_reply_private(discord_, event, "Reminder set!", 2000);
 	}
 }

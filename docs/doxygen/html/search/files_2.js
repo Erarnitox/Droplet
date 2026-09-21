@@ -18,6 +18,10 @@ var searchData=
   ['clearcommand_2ehpp_15',['ClearCommand.hpp',['../ClearCommand_8hpp.html',1,'']]],
   ['commands_2ecpp_16',['Commands.cpp',['../Commands_8cpp.html',1,'']]],
   ['commands_2ehpp_17',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
-  ['core_2ecpp_18',['Core.cpp',['../Core_8cpp.html',1,'']]],
-  ['core_2ehpp_19',['Core.hpp',['../Core_8hpp.html',1,'']]]
+  ['commandtypes_2ehpp_18',['CommandTypes.hpp',['../CommandTypes_8hpp.html',1,'']]],
+  ['connectionpool_2ecpp_19',['ConnectionPool.cpp',['../ConnectionPool_8cpp.html',1,'']]],
+  ['connectionpool_2ehpp_20',['ConnectionPool.hpp',['../ConnectionPool_8hpp.html',1,'']]],
+  ['core_2ecpp_21',['Core.cpp',['../Core_8cpp.html',1,'']]],
+  ['core_2ehpp_22',['Core.hpp',['../Core_8hpp.html',1,'']]],
+  ['cpplearningintent_2ehpp_23',['CppLearningIntent.hpp',['../CppLearningIntent_8hpp.html',1,'']]]
 ];

@@ -11,6 +11,7 @@
 
 #include "BugReportCommand.hpp"
 
+#include <AppContext.hpp>
 #include <format>
 
 constexpr auto MODAL_ID{"bug_report_modal"};
@@ -22,18 +23,15 @@ constexpr dpp::snowflake ERARNITOX_ID{461930808479842304};
 //----------------------------------------
 //
 //----------------------------------------
-BugReportCommand::BugReportCommand() : IGlobalSlashCommand(), IFormCommand() {
-	this->command_name = "report_bug";
-	this->command_description = "Report a bug to the developers";
+BugReportCommand::BugReportCommand(AppContext& ctx) : discord_(ctx.discord) {
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 }
 
 //----------------------------------------
 //
 //----------------------------------------
 void BugReportCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name)
-		return;
-
 	dpp::interaction_modal_response modal(MODAL_ID, "Droplet - Bug Report");
 
 	modal.add_component(dpp::component()
@@ -88,7 +86,7 @@ void BugReportCommand::on_form_submit(const dpp::form_submit_t& event) {
 					steps,
 					expected)};
 
-	Bot::ctx->direct_message_create(
+	discord_.direct_message_create(
 		ERARNITOX_ID, dpp::message(message), [event](const dpp::confirmation_callback_t& cc) {
 			if (not cc.is_error()) {
 				event.reply("Thanks for your report!");

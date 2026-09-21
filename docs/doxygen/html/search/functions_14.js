@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['_7eemailclient_0',['~EmailClient',['../classEmailClient.html#a4799e0e1f78d3dfbc2e1858b7ce628e6',1,'EmailClient']]],
-  ['_7eidatabaseconnectionprovider_1',['~IDatabaseConnectionProvider',['../classIDatabaseConnectionProvider.html#a35fe73e343503f6a2dd51a5b39807169',1,'IDatabaseConnectionProvider']]],
-  ['_7eirepositoryreader_2',['~IRepositoryReader',['../classIRepositoryReader.html#af96db4cdc0743f6bde3675da3c57b410',1,'IRepositoryReader']]],
-  ['_7eirepositorywriter_3',['~IRepositoryWriter',['../classIRepositoryWriter.html#a5a841cbf4e7b655b96d9ec9630ad9bf1',1,'IRepositoryWriter']]]
+  ['warncommand_0',['WarnCommand',['../classWarnCommand.html#a16ccd3088fc7d4ccc0693524eebeced7',1,'WarnCommand']]],
+  ['webuserdto_1',['WebUserDTO',['../classWebUserDTO.html#a11ad67db39be3795be88afcd6ab305e2',1,'WebUserDTO::WebUserDTO()=default'],['../classWebUserDTO.html#aeb8fb59af06115f48740672532d45c21',1,'WebUserDTO::WebUserDTO(size_t id, const std::string &amp;username, const std::string &amp;password, size_t clearance, const std::string &amp;email, const std::string &amp;confirm_code=&quot;&quot;, bool is_verified=false)'],['../classWebUserDTO.html#ab20fda2e87aea60b219ceb79fa225137',1,'WebUserDTO::WebUserDTO(const RowDTOAdapter &amp;row)']]],
+  ['webuserrepository_2',['WebUserRepository',['../classWebUserRepository.html#a50e1eacf31c3064206f80382dfa5a7fe',1,'WebUserRepository']]]
 ];

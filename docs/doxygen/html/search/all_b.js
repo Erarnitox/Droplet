@@ -1,13 +1,21 @@
 var searchData=
 [
-  ['main_0',['main',['../classRestApiServerApplication.html#af8c8c7bbc00d7ac8551f37b438a8fdb2',1,'RestApiServerApplication::main()'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]],
-  ['main_2ecpp_1',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['member_5fcommands_2',['member_commands',['../classBot.html#a8e2756c880a674d1838e9cabde0c7a08',1,'Bot']]],
-  ['member_5fcommands_5ft_3',['member_commands_t',['../Bot_8hpp.html#ae84f04b1d7ef4b3e145d354e2799b051',1,'Bot.hpp']]],
-  ['message_4',['message',['../classNotificationDTO.html#aeb8418ce585e23ea82b1999e8ff4b6cf',1,'NotificationDTO']]],
-  ['message_5fcommands_5',['message_commands',['../classBot.html#ad411ef198698ed464ccf6910f8fe0a2a',1,'Bot']]],
-  ['message_5fcommands_5ft_6',['message_commands_t',['../Bot_8hpp.html#ab06fb2862d61a59a864193b3986a4068',1,'Bot.hpp']]],
-  ['message_5fid_7',['message_id',['../classReactionRoleDTO.html#a823af32d9d40913b165c20acbe266a89',1,'ReactionRoleDTO']]],
-  ['messageid_8',['messageId',['../classChallengeBadgeDTO.html#ad60118673ab4672ca9fdc114eb80eea8',1,'ChallengeBadgeDTO::messageId'],['../classChallengeRoleDTO.html#a22f6ecb0a1e2481e198c27f0dc3d5338',1,'ChallengeRoleDTO::messageId']]],
-  ['modal_5fid_9',['MODAL_ID',['../BugReportCommand_8cpp.html#a5c5207fdbcbcf65930319b3ca2957218',1,'BugReportCommand.cpp']]]
+  ['latesteventsrepository_0',['LatestEventsRepository',['../classLatestEventsRepository.html',1,'LatestEventsRepository'],['../classLatestEventsRepository.html#acb2658f3c694459c86078980ebd0641e',1,'LatestEventsRepository::LatestEventsRepository()']]],
+  ['latesteventsrepository_2ecpp_1',['LatestEventsRepository.cpp',['../LatestEventsRepository_8cpp.html',1,'']]],
+  ['latesteventsrepository_2ehpp_2',['LatestEventsRepository.hpp',['../LatestEventsRepository_8hpp.html',1,'']]],
+  ['leaderboardcommand_3',['LeaderboardCommand',['../classLeaderboardCommand.html',1,'LeaderboardCommand'],['../classLeaderboardCommand.html#a1f7cf06ec0a273b3c319c57359db3b09',1,'LeaderboardCommand::LeaderboardCommand()']]],
+  ['leaderboardcommand_2ecpp_4',['LeaderboardCommand.cpp',['../LeaderboardCommand_8cpp.html',1,'']]],
+  ['leaderboardcommand_2ehpp_5',['LeaderboardCommand.hpp',['../LeaderboardCommand_8hpp.html',1,'']]],
+  ['leaderboardhandler_6',['LeaderboardHandler',['../classLeaderboardHandler.html',1,'LeaderboardHandler'],['../classLeaderboardHandler.html#a25ce1c77a1bd602b93eae56a89ae0ea5',1,'LeaderboardHandler::LeaderboardHandler()']]],
+  ['leaderboardhandler_2ecpp_7',['LeaderboardHandler.cpp',['../LeaderboardHandler_8cpp.html',1,'']]],
+  ['leaderboardhandler_2ehpp_8',['LeaderboardHandler.hpp',['../LeaderboardHandler_8hpp.html',1,'']]],
+  ['learncppcommand_9',['LearnCPPCommand',['../classLearnCPPCommand.html',1,'LearnCPPCommand'],['../classLearnCPPCommand.html#a1ca1caf67e5896d6321ce39a00b78b38',1,'LearnCPPCommand::LearnCPPCommand()']]],
+  ['learncppcommand_2ecpp_10',['LearnCPPCommand.cpp',['../LearnCPPCommand_8cpp.html',1,'']]],
+  ['learncppcommand_2ehpp_11',['LearnCPPCommand.hpp',['../LearnCPPCommand_8hpp.html',1,'']]],
+  ['learncpptutorialhint_12',['LearnCppTutorialHint',['../classLearnCppTutorialHint.html',1,'LearnCppTutorialHint'],['../classLearnCppTutorialHint.html#a9f2da2663a9606225a23879d2da112f4',1,'LearnCppTutorialHint::LearnCppTutorialHint()']]],
+  ['learncpptutorialhint_2ecpp_13',['LearnCppTutorialHint.cpp',['../LearnCppTutorialHint_8cpp.html',1,'']]],
+  ['learncpptutorialhint_2ehpp_14',['LearnCppTutorialHint.hpp',['../LearnCppTutorialHint_8hpp.html',1,'']]],
+  ['load_15',['load',['../classLatestEventsRepository.html#a259bb02092755a2e57b50871e4a7a4c9',1,'LatestEventsRepository']]],
+  ['load_5ffrom_5fdatabase_16',['load_from_database',['../classYoutubeNotificationService.html#a1160d5169c04b2e2f94ccdb0f99cf43e',1,'YoutubeNotificationService']]],
+  ['lowercase_5fascii_17',['lowercase_ascii',['../namespacecpp__learning__intent.html#a664e84dbf20c262de6d88946dae55398',1,'cpp_learning_intent']]]
 ];

@@ -2,11 +2,12 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+#include <ConnectionPool.hpp>
 #include <Database.hpp>
 
 TEST_CASE("DatabaseTest", "[database]") {
-    //REQUIRE_FALSE(Database::connect("dbname=database user=user password=123456 hostaddr=192.168.50.50 port=2332"));
-
-    Database::disconnect();
-    REQUIRE_FALSE(Database::hasConnection());
+	ConnectionPool pool;
+	REQUIRE_FALSE(pool.has_connection());
+	DatabaseExecutor executor{pool};
+	REQUIRE_FALSE(executor.hasConnection());
 }

@@ -1,15 +1,16 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- */
-
 #pragma once
 
 #include "Poco/Net/HTTPRequestHandlerFactory.h"
 
+class DatabaseExecutor;
+
 class RestApiRequestHandlerFactory final : public Poco::Net::HTTPRequestHandlerFactory {
   public:
+	explicit RestApiRequestHandlerFactory(DatabaseExecutor& db) : db_(db) {
+	}
+
 	Poco::Net::HTTPRequestHandler* createRequestHandler(const Poco::Net::HTTPServerRequest& request) override;
+
+  private:
+	DatabaseExecutor& db_;
 };

@@ -11,24 +11,25 @@
 
 #include "ServerDetails.hpp"
 
+#include <colors.h>
+#include <message.h>
+
+#include <AppContext.hpp>
 #include <variant>
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-ServerDetails::ServerDetails() : IGlobalSlashCommand() {
-	this->command_name = "server_details";
-	this->command_description = "Display general server information";
+ServerDetails::ServerDetails(AppContext& ctx) {
+	(void)ctx;
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void ServerDetails::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	const auto& guild{event.command.get_guild()};
 
 	/* create the embed */

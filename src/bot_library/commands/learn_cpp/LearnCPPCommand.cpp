@@ -13,22 +13,21 @@
 
 #include <message.h>
 
+#include <AppContext.hpp>
+
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-LearnCPPCommand::LearnCPPCommand() : IGlobalSlashCommand() {
-	this->command_name = "learn_cpp";
-	this->command_description = "Get started learning modern C++ today!";
+LearnCPPCommand::LearnCPPCommand(AppContext& ctx) {
+	(void)ctx;
+	this->command_name = std::string(k_name);
+	this->command_description = std::string(k_description);
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void LearnCPPCommand::on_slashcommand(const dpp::slashcommand_t& event) {
-	if (event.command.get_command_name() != this->command_name) {
-		return;
-	}
-
 	/* reply with the created embed */
 	event.reply(dpp::message(event.command.channel_id,
 							 "If you have always wanted to learn C++\n"

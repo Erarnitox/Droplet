@@ -17,6 +17,7 @@
 #include <WebUserDTO.hpp>
 #include <WebUserRepository.hpp>
 #include <mutex>
+#include <stdexcept>
 
 #include "Poco/UUIDGenerator.h"
 #include "Secrets.hpp"
@@ -36,14 +37,22 @@ UserManager::UserManager() {
 //-----------------------------------------------------
 void UserManager::addUser(const std::string& email, const std::string& username, const std::string& password) {
 	std::lock_guard<Poco::Mutex> lock(mutex);
-	WebUserRepository repo;
+	if (db_ == nullptr) {
+		return;
+	}
+	if (password.size() < k_password_min_length || email.find('\r') != std::string::npos ||
+		email.find('\n') != std::string::npos || username.find('\r') != std::string::npos ||
+		username.find('\n') != std::string::npos) {
+		throw std::invalid_argument("Invalid registration fields");
+	}
+	WebUserRepository repo{*db_};
 
 	if (not repo.exists(username)) {
 		WebUserDTO user;
 		user.username = username;
 		user.email = email;
 		user.password = hashPassword(password);
-		user.clearance = AuthClearance::PUBLIC;
+		user.clearance = static_cast<size_t>(AuthClearance::PUBLIC);
 		user.confirm_code = Poco::UUIDGenerator().createRandom().toString();
 		user.is_verified = false;
 
@@ -58,8 +67,11 @@ void UserManager::addUser(const std::string& email, const std::string& username,
 //-----------------------------------------------------
 bool UserManager::verifyUser(const std::string& token) {
 	std::lock_guard<Poco::Mutex> lock(mutex);
-	WebUserRepository repo;
-	return repo.verify(token, AuthClearance::PRIVATE);
+	if (db_ == nullptr) {
+		return false;
+	}
+	WebUserRepository repo{*db_};
+	return repo.verify(token, static_cast<size_t>(AuthClearance::PRIVATE));
 }
 
 //-----------------------------------------------------

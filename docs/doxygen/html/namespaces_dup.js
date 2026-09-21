@@ -1,15 +1,15 @@
 var namespaces_dup =
 [
     [ "CommandRegistration", "namespaceCommandRegistration.html", [
-      [ "register_all", "namespaceCommandRegistration.html#a31c9054b78a121ef88e27e14c3c88495", null ]
+      [ "register_all", "namespaceCommandRegistration.html#a6dc7f9e729eed95289d96cbb5b77ef24", null ]
     ] ],
     [ "Commands", "namespaceCommands.html", [
-      [ "registerCommands", "namespaceCommands.html#ac8282fb3530c7c026d83e7256b5b301e", null ]
+      [ "registerCommands", "namespaceCommands.html#ad3334dfe522c32606e8528732dff655c", null ]
     ] ],
-    [ "database", "namespacedatabase.html", [
-      [ "execQuery", "namespacedatabase.html#a93d0695f576fbed2473613202a49f18c", null ],
-      [ "execSelect", "namespacedatabase.html#abd8f8b4ba43768a73c508f6664382ec1", null ],
-      [ "execSelectAll", "namespacedatabase.html#a06985d2541356fd010fac89a0de557ec", null ]
+    [ "cpp_learning_intent", "namespacecpp__learning__intent.html", [
+      [ "lowercase_ascii", "namespacecpp__learning__intent.html#a664e84dbf20c262de6d88946dae55398", null ],
+      [ "mentions_cpp_learning_intent", "namespacecpp__learning__intent.html#a75a5bc1368f508ca42d8209ec0dcac2c", null ],
+      [ "k_phrases", "namespacecpp__learning__intent.html#a9d80fd7a5ad15dc40ae8c4120927bdf0", null ]
     ] ],
     [ "JWTUtils", "namespaceJWTUtils.html", [
       [ "generateToken", "namespaceJWTUtils.html#a481651c78525908d15b0f05ff341146e", null ]

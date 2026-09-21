@@ -5,5 +5,7 @@
 
 class IButtonCommand {
   public:
+	virtual ~IButtonCommand() = default;
+
 	virtual void on_button_click(const dpp::button_click_t& event) = 0;
 };

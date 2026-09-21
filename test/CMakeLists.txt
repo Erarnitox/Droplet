@@ -16,11 +16,25 @@ add_executable(unit_tests
     core_test.cpp
     database_test.cpp
     youtube_feed_test.cpp
+    auth_test.cpp
 )
 
-target_link_libraries(unit_tests PRIVATE bot_library notification_command)
+# bot_library already pulls notification_command via commands; linking it again
+# duplicates ThinLTO bitcode and breaks ASan+LTO ("at most one ThinLTO module").
+target_link_libraries(unit_tests PRIVATE bot_library)
 target_link_libraries_system(unit_tests PRIVATE Catch2::Catch2WithMain)
-target_compile_features(unit_tests PRIVATE cxx_std_17)
+target_compile_features(unit_tests PRIVATE cxx_std_23)
+droplet_target_warnings(unit_tests)
+# Catch2 TEST_CASE macros use __COUNTER__, which Clang pedantic treats as a C2y extension.
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+	target_compile_options(unit_tests PRIVATE -Wno-c2y-extensions)
+endif()
+
+add_executable(hotpath_bench hotpath_bench.cpp)
+target_compile_features(hotpath_bench PRIVATE cxx_std_23)
+target_include_directories(hotpath_bench PRIVATE
+	"${PROJECT_SOURCE_DIR}/src/bot_library/commands/learn_cpp")
+droplet_target_warnings(hotpath_bench)
 
 # manually adding unittest
 # add_test(NAME main_test COMMAND unit_tests)

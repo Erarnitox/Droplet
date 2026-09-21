@@ -14,6 +14,7 @@
 #include <Poco/JSON/Object.h>
 #include <Poco/JSON/Parser.h>
 
+#include <cstddef>
 #include <string>
 
 //-----------------------------------------------------
@@ -23,6 +24,7 @@ class Secrets {
   public:
 	static Secrets& getInstance();
 	[[nodiscard]] std::string getSecret(const std::string& key, const std::string& fallback = "") const;
+	[[nodiscard]] std::string requireSecret(const std::string& key, std::size_t min_len) const;
 
   private:
 	Secrets();

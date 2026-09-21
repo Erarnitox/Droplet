@@ -13,10 +13,12 @@
 #include <EmailClient.hpp>
 #include <chrono>
 #include <cstring>
+#include <ctime>
 #include <iomanip>
 #include <iostream>
 #include <locale>
 #include <sstream>
+#include <stdexcept>
 
 #include "curl/curl.h"
 
@@ -82,10 +84,13 @@ std::string build_payload(std::string_view from,
 
 	auto now = std::chrono::system_clock::now();
 	auto time_t_now = std::chrono::system_clock::to_time_t(now);
-	std::tm* tm_now = std::gmtime(&time_t_now);
+	std::tm tm_now{};
+	if (gmtime_r(&time_t_now, &tm_now) == nullptr) {
+		tm_now = {};
+	}
 	std::stringstream date_ss;
 	date_ss.imbue(std::locale("C"));
-	date_ss << std::put_time(tm_now, "%a, %d %b %Y %H:%M:%S +0000");
+	date_ss << std::put_time(&tm_now, "%a, %d %b %Y %H:%M:%S +0000");
 	payload_ss << "Date: " << date_ss.str() << "\r\n";
 
 	payload_ss << "Content-Type: text/plain; charset=utf-8\r\n";
@@ -154,7 +159,20 @@ void EmailClient::send(std::string_view from,
 					   const std::vector<std::string>& to,
 					   std::string_view subject,
 					   std::string_view body) {
-	const std::string payload = build_payload(from, to, subject, body);
+	const auto has_crlf = [](std::string_view s) {
+		return s.find('\r') != std::string_view::npos || s.find('\n') != std::string_view::npos;
+	};
+	if (has_crlf(from) || has_crlf(subject)) {
+		throw std::invalid_argument("Email header contains CR/LF");
+	}
+	for (const auto& recipient : to) {
+		if (has_crlf(recipient)) {
+			throw std::invalid_argument("Email recipient contains CR/LF");
+		}
+	}
+
+	const std::string from_addr{from};
+	const std::string payload = build_payload(from_addr, to, subject, body);
 	std::unique_ptr<CURL, CurlEasyDeleter> curl(curl_easy_init());
 	if (not curl) {
 		throw std::runtime_error("Failed to initialize libcurl");
@@ -166,7 +184,7 @@ void EmailClient::send(std::string_view from,
 	curl_easy_setopt(curl.get(), CURLOPT_URL, url.c_str());
 	curl_easy_setopt(curl.get(), CURLOPT_USERNAME, _username.c_str());
 	curl_easy_setopt(curl.get(), CURLOPT_PASSWORD, _password.c_str());
-	curl_easy_setopt(curl.get(), CURLOPT_MAIL_FROM, from.data());
+	curl_easy_setopt(curl.get(), CURLOPT_MAIL_FROM, from_addr.c_str());
 
 	CurlSlist recipients;
 	for (const auto& recipient : to) {
@@ -179,7 +197,7 @@ void EmailClient::send(std::string_view from,
 	curl_easy_setopt(curl.get(), CURLOPT_READFUNCTION, payload_source);
 	curl_easy_setopt(curl.get(), CURLOPT_READDATA, &ctx);
 	curl_easy_setopt(curl.get(), CURLOPT_UPLOAD, 1L);
-	curl_easy_setopt(curl.get(), CURLOPT_USE_SSL, (long)CURLUSESSL_ALL);
+	curl_easy_setopt(curl.get(), CURLOPT_USE_SSL, static_cast<long>(CURLUSESSL_ALL));
 
 	CURLcode res = curl_easy_perform(curl.get());
 	if (res != CURLE_OK) {

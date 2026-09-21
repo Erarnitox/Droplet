@@ -1,4 +1,4 @@
-add_library(commands STATIC 
+add_library(commands STATIC
     Commands.cpp
     registration/RegisterAllCommands.cpp
     registration/RegisterEssentialCommands.cpp
@@ -9,11 +9,10 @@ add_library(commands STATIC
 )
 
 target_include_directories(commands PUBLIC "${CMAKE_CURRENT_LIST_DIR}/include")
+droplet_target_warnings(commands)
+target_link_libraries(commands PUBLIC bot)
+target_link_libraries(commands PUBLIC persistence)
 
-## Only needed when porting to a new database
-# add_subdirectory(init_database)
-
-add_subdirectory(auth)
 add_subdirectory(help)
 add_subdirectory(resources)
 add_subdirectory(reaction_roles)

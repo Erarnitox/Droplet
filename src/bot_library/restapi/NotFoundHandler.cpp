@@ -9,10 +9,14 @@
  *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
+#include <Poco/JSON/Object.h>
+#include <Poco/JSON/Stringifier.h>
 #include <Poco/Net/HTTPResponse.h>
+#include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
 
 #include <NotFoundHandler.hpp>
+#include <format>
 
 //----------------------------------------
 //

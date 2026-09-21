@@ -10,6 +10,7 @@
 #include <dpp/cluster.h>
 #include <dpp/dispatcher.h>
 #include <dpp/once.h>
+#include <dpp/permissions.h>
 
 #include <fstream>
 #include <string>
@@ -38,6 +39,9 @@ constexpr char HASH_FILE[]{"command_hash"};
 		for (const auto& option : slash_command.second->command_options) {
 			sum ^= std::hash<std::string>{}(option.name);
 		}
+		if (slash_command.second->admin_only) {
+			sum ^= 0x9e3779b97f4a7c15ull;
+		}
 	}
 	return sum;
 }
@@ -54,29 +58,32 @@ void save_hash_to_file(size_t hash) {
 
 }  // namespace
 
-void register_global_slash_commands_on_ready(ctx_t& ctx, const slash_commands_t& slash_commands) {
-	ctx->on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
+void register_global_slash_commands_on_ready(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
+	ctx.on_ready([&ctx, &slash_commands](const dpp::ready_t& event) -> void {
 		(void)event;
 
-		ctx->log(dpp::ll_trace, "Registering Slash commands...");
+		ctx.log(dpp::ll_info, "Registering Slash commands...");
 
 		if (dpp::run_once<struct register_bot_commands>()) {
 			const auto pHash{get_prior_hash()};
 			const auto nHash{get_current_hash(slash_commands)};
 
 			if (pHash != nHash) {
-				ctx->global_bulk_command_delete();
+				ctx.global_bulk_command_delete();
 			};
 
 			for (const auto& slash_command : slash_commands) {
 				dpp::slashcommand tmp_command(
-					slash_command.first, slash_command.second->command_description, ctx->me.id);
+					slash_command.first, slash_command.second->command_description, ctx.me.id);
 
 				for (const auto& option : slash_command.second->command_options) {
 					tmp_command.add_option(option);
 				}
+				if (slash_command.second->admin_only) {
+					tmp_command.set_default_permissions(dpp::p_administrator);
+				}
 
-				ctx->global_command_create(tmp_command);
+				ctx.global_command_create(tmp_command);
 			}
 			save_hash_to_file(nHash);
 		}

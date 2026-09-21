@@ -1,14 +1,10 @@
-/*
- *  (c) Copyright erarnitox.de - All rights reserved
- *  Author: Erarnitox <david@erarnitox.de>
- *
- *  License: MIT License
- */
-
 #pragma once
+
+struct AppContext;
+class Bot;
 
 namespace CommandRegistration {
 
-void register_all();
+void register_all(Bot& bot, AppContext& ctx);
 
 }

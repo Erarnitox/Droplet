@@ -1,6 +1,7 @@
 var classIMessageCommand =
 [
-    [ "on_message_create", "classIMessageCommand.html#a889218ba3dd6603f010975a522bb7eb8", null ],
-    [ "on_message_delete", "classIMessageCommand.html#afac5d989605caa799842929a528c3bea", null ],
-    [ "on_message_delete_bulk", "classIMessageCommand.html#ab52ca884721d171494db9ab5020e1b8a", null ]
+    [ "~IMessageCommand", "classIMessageCommand.html#a1984759c82e7c5a944373369989425db", null ],
+    [ "on_message_create", "classIMessageCommand.html#a7afa820442c01188433fb7b25a82f113", null ],
+    [ "on_message_delete", "classIMessageCommand.html#ac3df6310c14bc352535f5060aac47e07", null ],
+    [ "on_message_delete_bulk", "classIMessageCommand.html#a25da5a732c9f57d8fe240b2e71155f90", null ]
 ];

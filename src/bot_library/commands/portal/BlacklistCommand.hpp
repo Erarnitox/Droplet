@@ -3,24 +3,28 @@
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
- *
- *  Description:
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/
  */
 
 #pragma once
 
-#include <Bot.hpp>
+#include <IGlobalSlashCommand.hpp>
+#include <string_view>
 
-#include "IMessageCommand.hpp"
+struct AppContext;
+class DatabaseExecutor;
+class BlacklistIndex;
 
-//-----------------------------------------------------
-//
-//-----------------------------------------------------
 class BlacklistCommand : public IGlobalSlashCommand {
   public:
-	BlacklistCommand();
+	static constexpr std::string_view k_name{"blacklist"};
+	static constexpr std::string_view k_description{"Blacklist a username using the portal (Erarnitox only!)"};
+
+	explicit BlacklistCommand(AppContext& ctx);
 
 	void on_slashcommand(const dpp::slashcommand_t& event) override;
+
+  private:
+	dpp::cluster& discord_;
+	DatabaseExecutor& db_;
+	BlacklistIndex& blacklist_index_;
 };

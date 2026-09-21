@@ -1,13 +1,11 @@
 /*
- *  (c) Copyright erarnitox - All rights reserved
+ *  (c) Copyright erarnitox.de - All rights reserved
  *  Author: Erarnitox <david@erarnitox.de>
  *
  *  License: MIT License
  *
- *  Description: This class offers access to all the
- * 	core functionality and utility needed by the bot
- *
- *  Documentation: https://droplet.erarnitox.de/doxygen/html/core
+ *  Description: Discord helper utilities used by commands. Intentionally does
+ *  not include Database or command interfaces (stable, minimal core surface).
  */
 
 #pragma once
@@ -15,14 +13,8 @@
 #include <dpp/dpp.h>
 #include <dpp/misc-enum.h>
 
-#include <Database.hpp>
-#include <IButtonCommand.hpp>
-#include <IFormCommand.hpp>
-#include <IGlobalSlashCommand.hpp>
-#include <IMemberCommand.hpp>
-#include <IMessageCommand.hpp>
-#include <IReactionCommand.hpp>
 #include <string>
+#include <string_view>
 
 class Core {
   public:
@@ -35,29 +27,33 @@ class Core {
 	static std::string get_channel_id(const std::string& mention) noexcept;
 
 	static void timed_reply(dpp::cluster& bot,
-							const dpp::slashcommand_t event,
+							const dpp::slashcommand_t& event,
 							const std::string& message,
 							size_t time_mills) noexcept;
 
 	static void timed_reply(dpp::cluster& bot,
-							const dpp::form_submit_t event,
+							const dpp::form_submit_t& event,
 							const std::string& message,
 							size_t time_mills) noexcept;
 
 	static void timed_reply_private(dpp::cluster& bot,
-									const dpp::slashcommand_t event,
+									const dpp::slashcommand_t& event,
 									const std::string& message,
 									size_t time_mills) noexcept;
 
 	static void timed_reply_private(dpp::cluster& bot,
-									const dpp::form_submit_t event,
+									const dpp::form_submit_t& event,
 									const std::string& message,
 									size_t time_mills) noexcept;
 
 	[[nodiscard]] static std::string get_parameter(dpp::cluster& bot,
-												   const dpp::slashcommand_t event,
+												   const dpp::slashcommand_t& event,
 												   const std::string& name,
 												   bool required = true) noexcept;
 
-	[[nodiscard]] static std::string simple_hash(const std::string& string) noexcept;
+	[[nodiscard]] static std::string simple_hash(std::string_view string) noexcept;
+
+	[[nodiscard]] static std::string strip_broadcast_mentions(std::string_view text);
+
+	static void disable_all_mentions(dpp::message& message) noexcept;
 };
