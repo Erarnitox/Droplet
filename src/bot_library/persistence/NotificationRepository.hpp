@@ -36,5 +36,7 @@ class NotificationRepository : public IRepository<NotificationDTO> {
 	[[nodiscard]] std::vector<NotificationDTO> getAll() const noexcept;
 
   private:
+	[[nodiscard]] bool ensure_broadcast_column() const noexcept;
+
 	DatabaseExecutor& executor_;
 };

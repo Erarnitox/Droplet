@@ -50,12 +50,13 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto youtube_opt{resolve_youtube_channel(youtube_username)};
 	if (youtube_opt.has_value()) {
 		const auto& youtube_id{youtube_opt.value()};
+		const bool allow_broadcast{Core::is_erarnitox_admin(event.command.member)};
 		NotificationRepository repo{db_};
-		const NotificationDTO data{guild_id, channel_id, "youtube", youtube_id, message, 500};
+		const NotificationDTO data{guild_id, channel_id, "youtube", youtube_id, message, 500, allow_broadcast};
 
 		if (repo.create(data)) {
 			constexpr size_t timestep_sec{500};
-			youtube_.start_job(channel_id, youtube_id, message, timestep_sec);
+			youtube_.start_job(channel_id, youtube_id, message, timestep_sec, allow_broadcast);
 			Core::timed_reply_private(discord_, event, "Notifications for youtube enabled!", 2000);
 		} else {
 			Core::timed_reply_private(discord_, event, "Can't find the given youtube channel!", 2000);

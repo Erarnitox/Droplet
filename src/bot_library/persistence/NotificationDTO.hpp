@@ -12,7 +12,8 @@ CREATE TABLE public.notifications
   type varchar,
   data varchar,
   message varchar,
-  timestep int8 null
+  timestep int8 null,
+  allow_broadcast boolean NOT NULL DEFAULT false
 );
 
 */
@@ -24,6 +25,7 @@ class NotificationDTO {
 	std::string type;
 	std::string data;
 	std::string message;
+	bool allow_broadcast{};
 
 	NotificationDTO() = default;
 	NotificationDTO(size_t guild_id,
@@ -31,7 +33,8 @@ class NotificationDTO {
 					const std::string& type,
 					const std::string& data,
 					const std::string& message,
-					size_t timestep = 3600);
+					size_t timestep = 3600,
+					bool allow_broadcast = false);
 
 	NotificationDTO(const RowDTOAdapter& row);
 };

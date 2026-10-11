@@ -1,6 +1,6 @@
-#include <catch2/catch_test_macros.hpp>
-
 #include <YoutubeFeed.hpp>
+#include <YoutubeNotificationService.hpp>
+#include <catch2/catch_test_macros.hpp>
 #include <string>
 #include <unordered_set>
 
@@ -84,6 +84,15 @@ TEST_CASE("plan_youtube_uploads does not announce older unseeded videos", "[yout
 	REQUIRE(plan.to_seed.size() == 2);
 	CHECK(plan.to_seed[0].video_id == "-hlUJbEWnI4");
 	CHECK(plan.to_seed[1].video_id == "-oAIBPxUUEc");
+}
+
+TEST_CASE("format_youtube_notification keeps broadcast mentions only when allowed", "[youtube]") {
+	constexpr std::string_view message{"hello @everyone there @here"};
+	constexpr std::string_view url{"https://www.youtube.com/watch?v=abc"};
+
+	CHECK(format_youtube_notification(message, url, true) ==
+		  "hello @everyone there @here\nhttps://www.youtube.com/watch?v=abc");
+	CHECK(format_youtube_notification(message, url, false) == "hello  there \nhttps://www.youtube.com/watch?v=abc");
 }
 
 TEST_CASE("plan_youtube_uploads seeds the window when no announced id is in the feed", "[youtube]") {

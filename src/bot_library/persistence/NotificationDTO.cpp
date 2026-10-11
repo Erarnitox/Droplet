@@ -7,8 +7,15 @@ NotificationDTO::NotificationDTO(size_t guild_id,
 								 const std::string& type,
 								 const std::string& data,
 								 const std::string& message,
-								 size_t timestep)
-	: guild_id{guild_id}, channel_id{channel_id}, timestep{timestep}, type{type}, data{data}, message{message} {
+								 size_t timestep,
+								 bool allow_broadcast)
+	: guild_id{guild_id},
+	  channel_id{channel_id},
+	  timestep{timestep},
+	  type{type},
+	  data{data},
+	  message{message},
+	  allow_broadcast{allow_broadcast} {
 }
 
 NotificationDTO::NotificationDTO(const RowDTOAdapter& row)
@@ -17,5 +24,6 @@ NotificationDTO::NotificationDTO(const RowDTOAdapter& row)
 	  timestep{row.get<size_t>("timestep")},
 	  type{row.get<std::string>("type")},
 	  data{row.get<std::string>("type")},
-	  message{row.get<std::string>("message")} {
+	  message{row.get<std::string>("message")},
+	  allow_broadcast{row.get<bool>("allow_broadcast")} {
 }

@@ -26,18 +26,38 @@ NotificationRepository::NotificationRepository(DatabaseExecutor& executor) : exe
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-bool NotificationRepository::create(const NotificationDTO& object) noexcept {
+bool NotificationRepository::ensure_broadcast_column() const noexcept {
 	const static std::string sql_string{
-		"INSERT INTO notifications"
-		"(guild_id, channel_id, type, data, message, timestep) VALUES "
-		"($1::int8, $2::int8, $3::varchar, $4::varchar, $5::varchar, $6::int8)"};
+		"ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS allow_broadcast boolean NOT NULL DEFAULT false"};
 
 	if (not executor_.hasConnection()) {
 		return false;
 	}
 
-	return executor_.execQuery(
-		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep);
+	return executor_.execQuery(sql_string);
+}
+
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+bool NotificationRepository::create(const NotificationDTO& object) noexcept {
+	const static std::string sql_string{
+		"INSERT INTO notifications"
+		"(guild_id, channel_id, type, data, message, timestep, allow_broadcast) VALUES "
+		"($1::int8, $2::int8, $3::varchar, $4::varchar, $5::varchar, $6::int8, $7::boolean)"};
+
+	if (not executor_.hasConnection() || not ensure_broadcast_column()) {
+		return false;
+	}
+
+	return executor_.execQuery(sql_string,
+							   object.guild_id,
+							   object.channel_id,
+							   object.type,
+							   object.data,
+							   object.message,
+							   object.timestep,
+							   object.allow_broadcast);
 }
 
 //-----------------------------------------------------
@@ -60,9 +80,9 @@ bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 	const static std::string sql_string{
 		"UPDATE notifications SET channel_id = $2::int8, type = $3::varchar, data = $4::varchar, message = "
 		"$5::varchar, "
-		"timestep = $6::int8 WHERE guild_id = $1::int8"};
+		"timestep = $6::int8, allow_broadcast = $7::boolean WHERE guild_id = $1::int8"};
 
-	if (not executor_.hasConnection()) {
+	if (not executor_.hasConnection() || not ensure_broadcast_column()) {
 		return false;
 	}
 
@@ -70,8 +90,14 @@ bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 		return false;
 	}
 
-	return executor_.execQuery(
-		sql_string, object.guild_id, object.channel_id, object.type, object.data, object.message, object.timestep);
+	return executor_.execQuery(sql_string,
+							   object.guild_id,
+							   object.channel_id,
+							   object.type,
+							   object.data,
+							   object.message,
+							   object.timestep,
+							   object.allow_broadcast);
 }
 
 //-----------------------------------------------------
@@ -79,7 +105,11 @@ bool NotificationRepository::update(const NotificationDTO& object) noexcept {
 //-----------------------------------------------------
 NotificationDTO NotificationRepository::get(size_t id) const noexcept {
 	const static std::string sql_string{
-		"SELECT channel_id, type, data, message, timestep FROM notifications WHERE guild_id=$1::int8"};
+		"SELECT channel_id, type, data, message, timestep, allow_broadcast FROM notifications WHERE guild_id=$1::int8"};
+
+	if (not ensure_broadcast_column()) {
+		return {};
+	}
 
 	const auto result{executor_.execSelect(sql_string, id)};
 
@@ -90,6 +120,7 @@ NotificationDTO NotificationRepository::get(size_t id) const noexcept {
 	dto.type = result.get<decltype(dto.type)>("type");
 	dto.data = result.get<decltype(dto.data)>("data");
 	dto.message = result.get<decltype(dto.message)>("message");
+	dto.allow_broadcast = result.get<bool>("allow_broadcast");
 
 	return dto;
 }
@@ -99,7 +130,11 @@ NotificationDTO NotificationRepository::get(size_t id) const noexcept {
 //-----------------------------------------------------
 std::vector<NotificationDTO> NotificationRepository::getAll() const noexcept {
 	const static std::string sql_string{
-		"SELECT guild_id, channel_id, type, data, message, timestep FROM notifications"};
+		"SELECT guild_id, channel_id, type, data, message, timestep, allow_broadcast FROM notifications"};
+
+	if (not ensure_broadcast_column()) {
+		return {};
+	}
 
 	const auto result{executor_.execSelectAll(sql_string)};
 
@@ -114,6 +149,7 @@ std::vector<NotificationDTO> NotificationRepository::getAll() const noexcept {
 		dto.type = adapter.get<decltype(dto.type)>("type");
 		dto.data = adapter.get<decltype(dto.data)>("data");
 		dto.message = adapter.get<decltype(dto.message)>("message");
+		dto.allow_broadcast = adapter.get<bool>("allow_broadcast");
 
 		dtos.push_back(dto);
 	}
