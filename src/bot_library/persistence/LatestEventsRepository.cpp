@@ -78,7 +78,7 @@ LatestEventsRepository::LatestEventsRepository(DatabaseExecutor& executor) : exe
 }
 
 bool LatestEventsRepository::is_active(const std::string& key) noexcept {
-	const auto lock{std::lock_guard<std::mutex>(active_events_mutex)};
+	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	if (not active_events.contains(key))
 		return false;
 	return active_events.at(key);
@@ -88,7 +88,7 @@ bool LatestEventsRepository::is_active(const std::string& key) noexcept {
 //
 //-----------------------------------------------------
 void LatestEventsRepository::set_active(const std::string& key, bool active) noexcept {
-	const auto lock{std::lock_guard<std::mutex>(active_events_mutex)};
+	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
 	active_events[key] = active;
 }
 
@@ -102,20 +102,23 @@ bool LatestEventsRepository::insert(const std::string& key, const std::string& v
 	}
 
 	if (latest_events.contains(key)) {
-		latest_events[key] = value;
-
 		static std::string sql_string("UPDATE latest_events SET latest = $2::varchar WHERE key = $1::varchar");
-		return executor_.execQuery(sql_string, key, value);
-	} else {
+		if (not executor_.execQuery(sql_string, key, value)) {
+			return false;
+		}
 		latest_events[key] = value;
-
-		static const std::string sql_string{
-			"INSERT INTO latest_events"
-			"(key, latest) VALUES "
-			"($1::varchar, $2::varchar)"};
-
-		return executor_.execQuery(sql_string, key, value);
+		return true;
 	}
+
+	static const std::string sql_string{
+		"INSERT INTO latest_events"
+		"(key, latest) VALUES "
+		"($1::varchar, $2::varchar)"};
+	if (not executor_.execQuery(sql_string, key, value)) {
+		return false;
+	}
+	latest_events.emplace(key, value);
+	return true;
 }
 
 //-----------------------------------------------------
@@ -132,12 +135,11 @@ bool LatestEventsRepository::remove(const std::string& key) noexcept {
 
 	latest_events.erase(key);
 	announced_videos.erase(key);
+	active_events[key] = false;
 
 	const bool deleted_latest{executor_.execQuery(delete_latest_sql, key)};
 	const bool deleted_announced{executor_.execQuery(delete_announced_sql, key)};
-	const bool disabled{deleted_latest || deleted_announced};
-	set_active(key, not disabled);
-	return disabled;
+	return deleted_latest || deleted_announced;
 }
 
 //-----------------------------------------------------
@@ -160,6 +162,11 @@ YoutubeClaimResult LatestEventsRepository::record_video(const std::string& key,
 		return YoutubeClaimResult::Failed;
 	}
 
+	const auto active_it{active_events.find(key)};
+	if (active_it == active_events.end() || not active_it->second) {
+		return YoutubeClaimResult::Failed;
+	}
+
 	auto& known = announced_videos[key];
 	if (known.contains(video_id)) {
 		return YoutubeClaimResult::AlreadyAnnounced;
@@ -175,17 +182,26 @@ YoutubeClaimResult LatestEventsRepository::record_video(const std::string& key,
 
 	const auto inserted{executor_.execSelectAll(insert_announced_sql, key, video_id, title)};
 	if (inserted.empty()) {
+		static const std::string exists_sql{
+			"SELECT video_id FROM youtube_announced WHERE key = $1::varchar AND video_id = $2::varchar"};
+		const auto existing{executor_.execSelectAll(exists_sql, key, video_id)};
+		if (existing.empty()) {
+			return YoutubeClaimResult::Failed;
+		}
 		known.insert(video_id);
 		return YoutubeClaimResult::AlreadyAnnounced;
 	}
 
-	known.insert(video_id);
-
 	const bool tip_existed = latest_events.contains(key);
-	latest_events[key] = video_id;
 	if (not persist_latest_tip(executor_, key, video_id, tip_existed)) {
+		static const std::string delete_one_sql{
+			"DELETE FROM youtube_announced WHERE key = $1::varchar AND video_id = $2::varchar"};
+		(void)executor_.execQuery(delete_one_sql, key, video_id);
 		return YoutubeClaimResult::Failed;
 	}
+
+	known.insert(video_id);
+	latest_events[key] = video_id;
 
 	if (allow_announce && key_had_history) {
 		return YoutubeClaimResult::Claimed;

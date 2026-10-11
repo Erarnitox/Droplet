@@ -50,6 +50,5 @@ class LatestEventsRepository {
 	std::unordered_map<std::string, std::string> latest_events;
 	std::unordered_map<std::string, std::unordered_set<std::string>> announced_videos;
 	std::unordered_map<std::string, bool> active_events;
-	std::mutex active_events_mutex;
 	std::mutex latest_events_mutex;
 };

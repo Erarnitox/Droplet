@@ -19,9 +19,9 @@
 //-----------------------------------------------------
 class ChallengeRoleDTO {
   public:
-	size_t roleId;
-	size_t guildId;
-	size_t messageId;
+	size_t roleId{};
+	size_t guildId{};
+	size_t messageId{};
 	std::string solution;
 
 	ChallengeRoleDTO() = default;

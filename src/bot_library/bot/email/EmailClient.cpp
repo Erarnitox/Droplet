@@ -166,8 +166,8 @@ void EmailClient::send(std::string_view from,
 		throw std::invalid_argument("Email header contains CR/LF");
 	}
 	for (const auto& recipient : to) {
-		if (has_crlf(recipient)) {
-			throw std::invalid_argument("Email recipient contains CR/LF");
+		if (recipient.empty() || recipient.find_first_of("\r\n<>,;\"\\ \t") != std::string::npos) {
+			throw std::invalid_argument("Email recipient is not a plausible address");
 		}
 	}
 

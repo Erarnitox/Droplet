@@ -12,6 +12,7 @@
 #include <openssl/rand.h>
 
 #include <array>
+#include <cstdint>
 #include <sstream>
 #include <stdexcept>
 
@@ -125,7 +126,107 @@ bool jwt_secret_is_strong(std::string_view secret) noexcept {
 	return secret.size() >= k_jwt_secret_min_bytes;
 }
 
+bool email_address_is_plausible(std::string_view email) noexcept {
+	if (email.size() < 6 || email.size() > k_email_max_length) {
+		return false;
+	}
+	if (email.find_first_of(" \t\r\n<>,;\"\\") != std::string_view::npos) {
+		return false;
+	}
+	const auto at{email.find('@')};
+	if (at == std::string_view::npos || at == 0 || email.find('@', at + 1) != std::string_view::npos) {
+		return false;
+	}
+	const auto local{email.substr(0, at)};
+	const auto domain{email.substr(at + 1)};
+	if (local.empty() || domain.size() < 3) {
+		return false;
+	}
+	if (local.front() == '.' || local.back() == '.' || domain.front() == '.' || domain.back() == '.') {
+		return false;
+	}
+	return domain.find('.') != std::string_view::npos;
+}
+
+bool registration_fields_valid(std::string_view username,
+							   std::string_view email,
+							   std::string_view password) noexcept {
+	if (username.empty() || username.size() > k_username_max_length) {
+		return false;
+	}
+	if (username.find_first_of("\r\n") != std::string_view::npos) {
+		return false;
+	}
+	if (password.size() < k_password_min_length || password.size() > k_password_max_length) {
+		return false;
+	}
+	return email_address_is_plausible(email);
+}
+
+bool declared_body_too_large(const Poco::Net::HTTPServerRequest& request, std::size_t max_bytes) noexcept {
+	const auto length{request.getContentLength64()};
+	return length >= 0 && static_cast<std::uint64_t>(length) > max_bytes;
+}
+
+std::optional<std::string> read_limited(std::istream& input, std::size_t max_bytes) {
+	std::string body;
+	body.reserve(max_bytes < 4096 ? max_bytes : 4096);
+	char buffer[1024];
+	while (input) {
+		input.read(buffer, static_cast<std::streamsize>(sizeof(buffer)));
+		const auto count{input.gcount()};
+		if (count <= 0) {
+			break;
+		}
+		if (body.size() + static_cast<std::size_t>(count) > max_bytes) {
+			return std::nullopt;
+		}
+		body.append(buffer, static_cast<std::size_t>(count));
+	}
+	return body;
+}
+
+std::string http_client_key(const Poco::Net::HTTPServerRequest& request) {
+	try {
+		return request.clientAddress().host().toString();
+	} catch (const std::exception&) {
+		return "unknown";
+	}
+}
+
+RequestRateLimiter::RequestRateLimiter(std::size_t max_events, std::chrono::milliseconds window)
+	: max_events_{max_events == 0 ? 1 : max_events}, window_{window} {
+}
+
+bool RequestRateLimiter::allow(std::string_view key) {
+	const auto now{std::chrono::steady_clock::now()};
+	std::lock_guard<std::mutex> lock(mutex_);
+	auto& stamps{hits_[std::string{key}]};
+	const auto cutoff{now - window_};
+	while (not stamps.empty() && stamps.front() <= cutoff) {
+		stamps.pop_front();
+	}
+	if (stamps.size() >= max_events_) {
+		return false;
+	}
+	stamps.push_back(now);
+	return true;
+}
+
+RequestRateLimiter& registration_rate_limiter() {
+	static RequestRateLimiter limiter{5, std::chrono::seconds{60}};
+	return limiter;
+}
+
+RequestRateLimiter& auth_rate_limiter() {
+	static RequestRateLimiter limiter{10, std::chrono::seconds{60}};
+	return limiter;
+}
+
 std::string hashPassword(const std::string& password) {
+	if (password.size() > k_password_max_length) {
+		throw std::invalid_argument("password exceeds maximum length");
+	}
 	std::array<unsigned char, k_salt_len> salt{};
 	if (RAND_bytes(salt.data(), static_cast<int>(salt.size())) != 1) {
 		throw std::runtime_error("Failed to generate password salt");

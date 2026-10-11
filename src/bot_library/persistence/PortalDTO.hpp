@@ -27,8 +27,8 @@ CREATE TABLE public.portals (
 //-----------------------------------------------------
 class PortalDTO {
   public:
-	size_t guild_id;
-	size_t channel_id;
+	size_t guild_id{};
+	size_t channel_id{};
 
 	PortalDTO() = default;
 	PortalDTO(size_t guild_id, size_t channel_id);

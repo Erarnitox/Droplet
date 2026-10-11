@@ -66,6 +66,10 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto difficulty{std::stoi(Core::get_parameter(discord_, event, "difficulty"))};
 	const auto tags{Core::get_parameter(discord_, event, "tags", false)};
 
+	const dpp::user* const cached_user{cmd.member.get_user()};
+	const std::string username{cached_user != nullptr ? cached_user->username
+													  : event.command.get_issuing_user().username};
+
 	ResourceRepository repo{db_};
 	const ResourceDTO data{title,
 						   category,
@@ -73,7 +77,7 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 						   url,
 						   difficulty,
 						   cmd.guild_id,
-						   cmd.member.get_user()->username,
+						   username,
 						   cmd.member.user_id,
 						   tags};
 

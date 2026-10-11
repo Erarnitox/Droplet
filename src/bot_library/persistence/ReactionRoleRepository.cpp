@@ -84,13 +84,14 @@ ReactionRoleDTO ReactionRoleRepository::get(size_t message_id) const noexcept {
 //-----------------------------------------------------
 ReactionRoleDTO ReactionRoleRepository::get(size_t message_id, const std::string& emoji) const noexcept {
 	const static std::string sql_string{
-		"SELECT role_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
+		"SELECT role_id, guild_id FROM reaction_roles WHERE message_id=$1::int8 AND emoji=$2::varchar"};
 
 	auto result{executor_.execSelect(sql_string, message_id, emoji)};
 
 	ReactionRoleDTO dto;
 	dto.message_id = message_id;
 	dto.role_id = result.get<decltype(dto.role_id)>("role_id");
+	dto.guild_id = result.get<decltype(dto.guild_id)>("guild_id");
 	dto.emoji = emoji;
 
 	return dto;

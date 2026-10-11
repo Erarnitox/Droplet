@@ -18,7 +18,10 @@
 
 #include <AppContext.hpp>
 #include <Core.hpp>
+#include <cstdint>
 #include <format>
+#include <limits>
+#include <optional>
 #include <string>
 #include <variant>
 
@@ -243,8 +246,12 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 	const auto& entered{*entered_ptr};
 
 	if (entered == badge_dto.solution) {
+		const dpp::user* const cached_user{member.get_user()};
+		const std::string username{cached_user != nullptr ? cached_user->username
+														  : event.command.get_issuing_user().username};
+
 		UserRepository user_repo{db_};
-		UserDTO user_dto{member.user_id, member.get_user()->username};
+		UserDTO user_dto{member.user_id, username};
 
 		if (user_repo.create(user_dto)) {
 			discord_.log(dpp::ll_info, "User has been created!");
@@ -260,21 +267,26 @@ void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
 
 		HasBadgeRepository has_badge_repository{db_};
 		if (has_badge_repository.create(user_dto.user_id, msg_id)) {
-			user_dto.exp += badge_dto.exp;
-			if (!user_repo.update(user_dto)) {
+			const bool reward_fits{badge_dto.exp <= static_cast<size_t>(std::numeric_limits<std::int64_t>::max())};
+			const auto new_exp{reward_fits ? user_repo.try_adjust_exp(user_dto.user_id,
+																	   static_cast<std::int64_t>(badge_dto.exp),
+																	   0)
+										   : std::nullopt};
+			if (not new_exp.has_value()) {
+				(void)has_badge_repository.remove(user_dto.user_id, msg_id);
 				discord_.log(dpp::ll_error, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
 
 				event.reply(dpp::message("OOPS! Something went wrong! Please contact "
 										 "@erarnitox with this error code: 298377")
 								.set_flags(dpp::m_ephemeral));
 				return;
-			} else {
-				event.reply(
-					dpp::message(
-						std::format("You have been awarded the Badge{} and {}🌢", badge_dto.badge, badge_dto.exp))
-						.set_flags(dpp::m_ephemeral));
-				return;
 			}
+
+			event.reply(dpp::message(std::format("You have been awarded the Badge{} and {}🌢",
+												 badge_dto.badge,
+												 badge_dto.exp))
+							.set_flags(dpp::m_ephemeral));
+			return;
 		}
 
 		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))

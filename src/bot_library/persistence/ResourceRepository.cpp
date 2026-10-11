@@ -106,7 +106,7 @@ ResourceDTO ResourceRepository::get(size_t id) const noexcept {
 //-----------------------------------------------------
 std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) const noexcept {
 	std::string sql_string{
-		"SELECT title, category, description, url, difficulty, guild_id, creator, creator_id, tags"
+		"SELECT id, title, category, description, url, difficulty, guild_id, creator, creator_id, tags"
 		" FROM resources"};
 
 	const bool is_wildcard = category == "all" || category.empty() || category == "*";
@@ -122,10 +122,16 @@ std::vector<ResourceDTO> ResourceRepository::get(const std::string& category) co
 
 	for (const auto& adapter : result) {
 		ResourceDTO dto;
+		dto.id = adapter.get<decltype(dto.id)>("id");
 		dto.title = adapter.get<decltype(dto.title)>("title");
 		dto.category = adapter.get<decltype(dto.category)>("category");
 		dto.description = adapter.get<decltype(dto.description)>("description");
 		dto.url = adapter.get<decltype(dto.url)>("url");
+		dto.difficulty = adapter.get<decltype(dto.difficulty)>("difficulty");
+		dto.guild_id = adapter.get<decltype(dto.guild_id)>("guild_id");
+		dto.creator = adapter.get<decltype(dto.creator)>("creator");
+		dto.creator_id = adapter.get<decltype(dto.creator_id)>("creator_id");
+		dto.tags = adapter.get<decltype(dto.tags)>("tags");
 
 		dtos.push_back(dto);
 	}

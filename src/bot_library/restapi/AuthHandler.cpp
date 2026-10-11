@@ -18,6 +18,8 @@
 #include <WebUserDTO.hpp>
 #include <WebUserRepository.hpp>
 
+#include <sstream>
+
 #include "Poco/Net/HTMLForm.h"
 #include "Poco/Net/HTTPResponse.h"
 #include "Poco/Net/HTTPServerRequest.h"
@@ -35,7 +37,28 @@ void AuthHandler::handleRequest(Poco::Net::HTTPServerRequest& req, Poco::Net::HT
 		return;
 	}
 
-	const Poco::Net::HTMLForm form(req, req.stream());
+	if (declared_body_too_large(req, k_auth_body_max_bytes)) {
+		resp.setStatus(Poco::Net::HTTPResponse::HTTP_REQUEST_ENTITY_TOO_LARGE);
+		resp.send() << R"({"error":"request_too_large"})";
+		return;
+	}
+
+	if (not auth_rate_limiter().allow(http_client_key(req))) {
+		resp.setStatus(static_cast<Poco::Net::HTTPResponse::HTTPStatus>(429));
+		resp.setReason("Too Many Requests");
+		resp.send() << R"({"error":"too_many_requests"})";
+		return;
+	}
+
+	const auto body{read_limited(req.stream(), k_auth_body_max_bytes)};
+	if (not body.has_value()) {
+		resp.setStatus(Poco::Net::HTTPResponse::HTTP_REQUEST_ENTITY_TOO_LARGE);
+		resp.send() << R"({"error":"request_too_large"})";
+		return;
+	}
+
+	std::istringstream body_stream{*body};
+	const Poco::Net::HTMLForm form(req, body_stream);
 
 	const auto grant = form.get("grant_type", "");
 	if (grant != "password") {
@@ -47,7 +70,8 @@ void AuthHandler::handleRequest(Poco::Net::HTTPServerRequest& req, Poco::Net::HT
 	const std::string username = form.get("username", "");
 	const std::string password = form.get("password", "");
 
-	if (username.empty() || password.empty()) {
+	if (username.empty() || username.size() > k_username_max_length || password.empty() ||
+		password.size() > k_password_max_length) {
 		resp.setStatus(Poco::Net::HTTPResponse::HTTP_UNAUTHORIZED);
 		resp.send() << R"({"error":"invalid_grant"})";
 		return;

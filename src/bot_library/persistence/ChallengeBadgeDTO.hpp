@@ -20,9 +20,9 @@
 class ChallengeBadgeDTO {
   public:
 	std::string badge;
-	size_t exp;
-	size_t guildId;
-	size_t messageId;
+	size_t exp{};
+	size_t guildId{};
+	size_t messageId{};
 	std::string solution;
 	std::string guild_name;
 

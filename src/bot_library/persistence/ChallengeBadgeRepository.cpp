@@ -77,7 +77,7 @@ bool ChallengeBadgeRepository::update(const ChallengeBadgeDTO& object) noexcept 
 //-----------------------------------------------------
 ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) const noexcept {
 	const static std::string sql_string{
-		"SELECT badge_emoji, exp, flag, guild_name FROM challenge_badges WHERE message_id=$1::int8"};
+		"SELECT badge_emoji, exp, flag, guild_name, guild_id FROM challenge_badges WHERE message_id=$1::int8"};
 
 	const auto result{executor_.execSelect(sql_string, messageId)};
 
@@ -87,6 +87,7 @@ ChallengeBadgeDTO ChallengeBadgeRepository::get(size_t messageId) const noexcept
 	dto.exp = result.get<decltype(dto.exp)>("exp");
 	dto.solution = result.get<decltype(dto.solution)>("flag");
 	dto.guild_name = result.get<decltype(dto.guild_name)>("guild_name");
+	dto.guildId = result.get<decltype(dto.guildId)>("guild_id");
 
 	return dto;
 }

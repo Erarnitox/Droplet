@@ -18,6 +18,7 @@
 #include <WebUserRepository.hpp>
 #include <mutex>
 #include <stdexcept>
+#include <utility>
 
 #include "Poco/UUIDGenerator.h"
 #include "Secrets.hpp"
@@ -36,29 +37,38 @@ UserManager::UserManager() {
 //
 //-----------------------------------------------------
 void UserManager::addUser(const std::string& email, const std::string& username, const std::string& password) {
-	std::lock_guard<Poco::Mutex> lock(mutex);
-	if (db_ == nullptr) {
-		return;
-	}
-	if (password.size() < k_password_min_length || email.find('\r') != std::string::npos ||
-		email.find('\n') != std::string::npos || username.find('\r') != std::string::npos ||
-		username.find('\n') != std::string::npos) {
+	if (not registration_fields_valid(username, email, password)) {
 		throw std::invalid_argument("Invalid registration fields");
 	}
-	WebUserRepository repo{*db_};
 
-	if (not repo.exists(username)) {
+	const std::string password_hash{hashPassword(password)};
+	std::string confirm_code;
+	bool created{false};
+	{
+		std::lock_guard<Poco::Mutex> lock(mutex);
+		if (db_ == nullptr) {
+			return;
+		}
+		WebUserRepository repo{*db_};
+		if (repo.exists(username)) {
+			return;
+		}
+
 		WebUserDTO user;
 		user.username = username;
 		user.email = email;
-		user.password = hashPassword(password);
+		user.password = password_hash;
 		user.clearance = static_cast<size_t>(AuthClearance::PUBLIC);
 		user.confirm_code = Poco::UUIDGenerator().createRandom().toString();
 		user.is_verified = false;
-
-		if (repo.create(user)) {
-			sendVerificationEmail(email, user.confirm_code);
+		created = repo.create(user);
+		if (created) {
+			confirm_code = std::move(user.confirm_code);
 		}
+	}
+
+	if (created) {
+		sendVerificationEmail(email, confirm_code);
 	}
 }
 

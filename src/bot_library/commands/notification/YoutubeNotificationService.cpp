@@ -75,19 +75,28 @@ void YoutubeNotificationService::start_job(std::size_t channel_id,
 	const auto key{std::format("{}/{}", channel_id, youtube_id)};
 
 	const dpp::timer_callback_t on_tick{[this, channel_id, youtube_id, message, key](dpp::timer timer_handle) {
-		events_.set_active(key, true);
+		{
+			std::lock_guard<std::mutex> lock(mutex_);
+			const auto it{timers_.find(key)};
+			if (it == timers_.end() || it->second != timer_handle) {
+				return;
+			}
+			events_.set_active(key, true);
+		}
 		const auto url{std::format("https://www.youtube.com/feeds/videos.xml?channel_id={}", youtube_id)};
 
 		discord_.request(url,
 						 dpp::m_get,
 						 [this, channel_id, message, key, timer_handle](const dpp::http_request_completion_t& cc) {
 							 const auto stop_timer_and_release = [this, key, timer_handle]() {
-								 discord_.stop_timer(timer_handle);
 								 std::lock_guard<std::mutex> lock(mutex_);
 								 const auto it{timers_.find(key)};
-								 if (it != timers_.end() && it->second == timer_handle) {
-									 timers_.erase(it);
+								 if (it == timers_.end() || it->second != timer_handle) {
+									 return;
 								 }
+								 events_.set_active(key, false);
+								 discord_.stop_timer(it->second);
+								 timers_.erase(it);
 							 };
 
 							 if (cc.status < 200 || cc.status >= 500) {
@@ -120,7 +129,7 @@ void YoutubeNotificationService::start_job(std::size_t channel_id,
 
 							 for (const auto& entry : plan.to_announce) {
 								 const auto claim{events_.try_claim_video(key, entry.video_id, entry.title)};
-								 if (claim != YoutubeClaimResult::Claimed) {
+								 if (claim != YoutubeClaimResult::Claimed || not events_.is_active(key)) {
 									 continue;
 								 }
 
@@ -148,10 +157,9 @@ void YoutubeNotificationService::start_job(std::size_t channel_id,
 }
 
 void YoutubeNotificationService::stop_job(const std::string& key) {
-	events_.set_active(key, false);
+	std::lock_guard<std::mutex> lock(mutex_);
 	(void)events_.remove(key);
 
-	std::lock_guard<std::mutex> lock(mutex_);
 	const auto it{timers_.find(key)};
 	if (it == timers_.end()) {
 		return;

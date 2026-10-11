@@ -18,9 +18,9 @@
 //-----------------------------------------------------
 class ReactionRoleDTO {
   public:
-	size_t role_id;
-	size_t message_id;
-	size_t guild_id;
+	size_t role_id{};
+	size_t message_id{};
+	size_t guild_id{};
 	std::string emoji;
 
 	ReactionRoleDTO() = default;

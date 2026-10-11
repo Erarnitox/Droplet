@@ -16,13 +16,13 @@
 
 class WebUserDTO {
   public:
-	size_t id;
+	size_t id{};
 	std::string username;
 	std::string password;
-	size_t clearance;
+	size_t clearance{};
 	std::string email;
 	std::string confirm_code;
-	bool is_verified;
+	bool is_verified{};
 
 	WebUserDTO() = default;
 	WebUserDTO(size_t id,

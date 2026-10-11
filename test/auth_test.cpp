@@ -9,13 +9,45 @@
 #include <Poco/SHA2Engine.h>
 #include <Poco/Timespan.h>
 #include <Poco/Timestamp.h>
+#include <chrono>
 #include <sstream>
+#include <stdexcept>
 
 namespace {
 
 constexpr const char* k_secret{"0123456789ABCDEF0123456789ABCDEF"};
 
 }  // namespace
+
+TEST_CASE("registration fields reject oversized passwords and unsafe emails", "[auth]") {
+	REQUIRE(email_address_is_plausible("person@example.com"));
+	REQUIRE_FALSE(email_address_is_plausible("person@example.com>, <other@evil.com"));
+	REQUIRE_FALSE(email_address_is_plausible("a@b"));
+	REQUIRE_FALSE(email_address_is_plausible("has space@example.com"));
+	REQUIRE(registration_fields_valid("alice", "alice@example.com", "long-enough"));
+	REQUIRE_FALSE(registration_fields_valid("alice", "alice@example.com", "short"));
+	REQUIRE_FALSE(registration_fields_valid("alice", "alice@example.com", std::string(k_password_max_length + 1, 'x')));
+	REQUIRE_THROWS_AS(hashPassword(std::string(k_password_max_length + 1, 'x')), std::invalid_argument);
+}
+
+TEST_CASE("request rate limiter blocks one client without blocking another", "[auth]") {
+	RequestRateLimiter limiter{2, std::chrono::seconds{60}};
+	REQUIRE(limiter.allow("10.0.0.1"));
+	REQUIRE(limiter.allow("10.0.0.1"));
+	REQUIRE_FALSE(limiter.allow("10.0.0.1"));
+	REQUIRE(limiter.allow("10.0.0.2"));
+}
+
+TEST_CASE("read_limited stops at the configured maximum", "[auth]") {
+	std::istringstream input{"0123456789"};
+	const auto capped{read_limited(input, 4)};
+	REQUIRE_FALSE(capped.has_value());
+
+	std::istringstream exact{"abcd"};
+	const auto accepted{read_limited(exact, 4)};
+	REQUIRE(accepted.has_value());
+	REQUIRE(*accepted == "abcd");
+}
 
 TEST_CASE("password hashing uses salted pbkdf2 and rejects mismatches", "[auth]") {
 	const auto stored{hashPassword("correct horse battery")};

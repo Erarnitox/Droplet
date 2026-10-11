@@ -19,11 +19,11 @@
 //-----------------------------------------------------
 class UserDTO {
   public:
-	size_t user_id;
+	size_t user_id{};
 	std::string user_name;
 	std::string color;
-	size_t exp;
-	size_t is_subscribed;
+	size_t exp{};
+	size_t is_subscribed{};
 
 	UserDTO() = default;
 	UserDTO(size_t user_id,

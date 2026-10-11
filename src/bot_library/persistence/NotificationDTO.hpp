@@ -18,9 +18,9 @@ CREATE TABLE public.notifications
 */
 class NotificationDTO {
   public:
-	size_t guild_id;
-	size_t channel_id;
-	size_t timestep;
+	size_t guild_id{};
+	size_t channel_id{};
+	size_t timestep{};
 	std::string type;
 	std::string data;
 	std::string message;

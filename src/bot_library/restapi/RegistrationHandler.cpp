@@ -14,13 +14,13 @@
 #include <Poco/Net/HTTPRequest.h>
 #include <Poco/Net/HTTPServerRequest.h>
 #include <Poco/Net/HTTPServerResponse.h>
-#include <Poco/StreamCopier.h>
 
 #include <AuthUtils.hpp>
 #include <RegistrationHandler.hpp>
 #include <UserManager.hpp>
 
 #include "Poco/JSON/Parser.h"
+#include "Poco/Net/HTTPResponse.h"
 
 //-----------------------------------------------------
 //
@@ -39,6 +39,25 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 		return;
 	}
 
+	if (declared_body_too_large(request, k_auth_body_max_bytes)) {
+		response.setStatus(Poco::Net::HTTPResponse::HTTP_REQUEST_ENTITY_TOO_LARGE);
+		responseJSON->set("status", "error");
+		responseJSON->set("message", "Request body is too large");
+		std::ostream& ostr = response.send();
+		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
+		return;
+	}
+
+	if (not registration_rate_limiter().allow(http_client_key(request))) {
+		response.setStatus(static_cast<Poco::Net::HTTPResponse::HTTPStatus>(429));
+		response.setReason("Too Many Requests");
+		responseJSON->set("status", "error");
+		responseJSON->set("message", "Too many registration attempts");
+		std::ostream& ostr = response.send();
+		Poco::JSON::Stringifier::stringify(responseJSON, ostr);
+		return;
+	}
+
 	if (request.getContentType() != "application/json") {
 		response.setStatus(Poco::Net::HTTPResponse::HTTP_UNSUPPORTED_MEDIA_TYPE);
 		Poco::JSON::Object::Ptr resp = new Poco::JSON::Object();
@@ -50,11 +69,18 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 	}
 
 	try {
-		std::string body;
-		Poco::StreamCopier::copyToString(request.stream(), body);
+		const auto body{read_limited(request.stream(), k_auth_body_max_bytes)};
+		if (not body.has_value()) {
+			response.setStatus(Poco::Net::HTTPResponse::HTTP_REQUEST_ENTITY_TOO_LARGE);
+			responseJSON->set("status", "error");
+			responseJSON->set("message", "Request body is too large");
+			std::ostream& ostr = response.send();
+			Poco::JSON::Stringifier::stringify(responseJSON, ostr);
+			return;
+		}
 
 		Poco::JSON::Parser parser;
-		Poco::Dynamic::Var result = parser.parse(body);
+		Poco::Dynamic::Var result = parser.parse(*body);
 
 		Poco::JSON::Object::Ptr json = result.extract<Poco::JSON::Object::Ptr>();
 
@@ -72,9 +98,7 @@ void RegistrationHandler::handleRequest(Poco::Net::HTTPServerRequest& request,
 		const std::string email = json->getValue<std::string>("email");
 		const std::string password = json->getValue<std::string>("password");
 
-		if (username.find('\r') != std::string::npos || username.find('\n') != std::string::npos ||
-			email.find('\r') != std::string::npos || email.find('\n') != std::string::npos ||
-			password.size() < k_password_min_length) {
+		if (not registration_fields_valid(username, email, password)) {
 			response.setStatus(Poco::Net::HTTPResponse::HTTP_BAD_REQUEST);
 			Poco::JSON::Object::Ptr resp = new Poco::JSON::Object();
 			resp->set("status", "error");
