@@ -278,3 +278,18 @@ std::string Core::strip_broadcast_mentions(std::string_view text) {
 void Core::disable_all_mentions(dpp::message& message) noexcept {
 	message.set_allowed_mentions(false, false, false, false);
 }
+
+std::optional<std::string> Core::find_text_input(const std::vector<dpp::component>& components) {
+    for (const auto& component : components) {
+        if (const auto* value =
+                std::get_if<std::string>(&component.value)) {
+            return *value;
+        }
+
+        if (auto nested = find_text_input(component.components)) {
+            return nested;
+        }
+    }
+
+    return std::nullopt;
+}

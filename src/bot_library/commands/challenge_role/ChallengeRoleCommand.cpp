@@ -181,56 +181,92 @@ void ChallengeRoleCommand::on_button_click(const dpp::button_click_t& event) {
 	return;
 }
 
-void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event) {
-	if (event.custom_id != "challenge_role_solution") {
-		return;
-	}
+//-----------------------------------------------------
+//
+//-----------------------------------------------------
+void ChallengeRoleCommand::on_form_submit(const dpp::form_submit_t& event)
+{
+    if (event.custom_id != "challenge_role_solution") {
+        return;
+    }
 
-	// get the needed data from the event
-	const auto msg_id{event.command.message_id};
-	const auto member{event.command.member};
+    const auto msg_id = event.command.message_id;
+    const auto& member = event.command.member;
+    const auto guild_id = event.command.guild_id;
 
-	if (not msg_id || not member.user_id) {
-		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
-		return;
-	}
+    if (!msg_id || !member.user_id || !guild_id) {
+        event.reply(
+            dpp::message("Can't acquire the required data. Please try again.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-	// get the correct answer and reward role from the database
-	ChallengeRoleRepository repo{db_};
-	const ChallengeRoleDTO dto = repo.get(msg_id);
+    const auto entered_opt = Core::find_text_input(event.components);
 
-	if (not dto.roleId || dto.solution.empty()) {
-		discord_.log(dpp::ll_warning,
-					 std::format("Got invalid data from Database in "
-								 "ChallengeRoleCommand::handleFormSubmits.\nData: "
-								 "roleId={}, dto.solution={}",
-								 dto.roleId,
-								 dto.solution));
-		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-								 "@erarnitox with this error code: 298364")
-						.set_flags(dpp::m_ephemeral));
-		return;
-	}
+    if (!entered_opt.has_value()) {
+        discord_.log(
+            dpp::ll_warning,
+            "ChallengeRoleCommand: modal input has an unexpected value type.");
 
-	const auto entered_variant{event.components[0].components[0].value};
-	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
-	if (not entered_ptr) {
-		discord_.log(dpp::ll_warning, "Corrupted Data occured in ChallengeRoleCommand::handleFormSubmits");
-		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-								 "@erarnitox with this error code: 298365")
-						.set_flags(dpp::m_ephemeral));
-		return;
-	}
+        event.reply(
+            dpp::message("Invalid form submission. Please try again.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-	const auto& entered{*entered_ptr};
+    const std::string entered = *entered_opt;
 
-	if (entered == dto.solution) {
-		discord_.guild_member_add_role(event.command.guild_id, member.user_id, dto.roleId);
+    ChallengeRoleRepository repo{db_};
+    const ChallengeRoleDTO dto = repo.get(msg_id);
 
-		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))
-						.set_flags(dpp::m_ephemeral));
-	} else {
-		event.reply(dpp::message(std::format("Sorry {}, this is not the right answer!", member.get_mention()))
-						.set_flags(dpp::m_ephemeral));
-	}
+    if (!dto.roleId || dto.solution.empty()) {
+        discord_.log(dpp::ll_warning, "ChallengeRoleCommand: missing or invalid challenge data");
+
+        event.reply(
+            dpp::message(
+                "Something went wrong. Please contact @erarnitox "
+                "with error code 298364.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    if (entered != dto.solution) {
+        event.reply(
+            dpp::message(
+                std::format(
+                    "Sorry {}, this is not the right answer!",
+                    member.get_mention()))
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    // Do not claim success until Discord confirms the role assignment.
+    discord_.guild_member_add_role(
+        guild_id,
+        member.user_id,
+        dto.roleId,
+        [this, event, member](const dpp::confirmation_callback_t& cb) {
+            if (cb.is_error()) {
+                discord_.log(
+                    dpp::ll_error,
+                    std::format(
+                        "ChallengeRoleCommand: failed to grant challenge role: {}",
+                        cb.get_error().message));
+
+                event.reply(
+                    dpp::message(
+                        "Your answer was correct, but the role could not "
+                        "be granted. Please contact an administrator.")
+                        .set_flags(dpp::m_ephemeral));
+                return;
+            }
+
+            event.reply(
+                dpp::message(
+                    std::format(
+                        "Well done {}, you solved this challenge and received "
+                        "the role!",
+                        member.get_mention()))
+                    .set_flags(dpp::m_ephemeral));
+        });
 }

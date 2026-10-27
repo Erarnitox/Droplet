@@ -28,7 +28,8 @@ UserRepository::UserRepository(DatabaseExecutor& executor) : executor_(executor)
 bool UserRepository::create(const UserDTO& object) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO usr(user_id, user_name, color, exp, is_subscribed) VALUES "
-		"($1::int8, $2::varchar, $3::varchar, $4::int8, $5::int8)"};
+		"($1::int8, $2::varchar, $3::varchar, $4::int8, $5::int8) "
+	    "ON CONFLICT (user_id) DO NOTHING"};
 
 	if (not executor_.hasConnection()) {
 		return false;

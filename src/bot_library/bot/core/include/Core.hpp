@@ -56,4 +56,6 @@ class Core {
 	[[nodiscard]] static std::string strip_broadcast_mentions(std::string_view text);
 
 	static void disable_all_mentions(dpp::message& message) noexcept;
+
+	[[nodiscard]] static std::optional<std::string> find_text_input(const std::vector<dpp::component>& components);
 };

@@ -202,97 +202,143 @@ void ChallengeBadgeCommand::on_button_click(const dpp::button_click_t& event) {
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
-void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event) {
-	if (event.custom_id != "challenge_badge_solution") {
-		return;
-	}
+void ChallengeBadgeCommand::on_form_submit(const dpp::form_submit_t& event)
+{
+    if (event.custom_id != "challenge_badge_solution") {
+        return;
+    }
 
-	// get the needed data from the event
-	const auto msg_id{event.command.message_id};
-	const auto member{event.command.member};
+    const auto msg_id = event.command.message_id;
+    const auto& member = event.command.member;
 
-	if (not msg_id || not member.user_id) {
-		event.reply(dpp::message("Can't aquire needed data! Try again later!").set_flags(dpp::m_ephemeral));
-		return;
-	}
+    if (!msg_id || !member.user_id) {
+        event.reply(
+            dpp::message("Can't acquire the required data. Please try again later!")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-	// get the correct answer and reward role from the database
-	ChallengeBadgeRepository badge_repo{db_};
-	const ChallengeBadgeDTO badge_dto{badge_repo.get(msg_id)};
+    const auto entered_opt = Core::find_text_input(event.components);
 
-	if (badge_dto.badge.empty() || badge_dto.solution.empty()) {
-		discord_.log(dpp::ll_warning,
-					 std::format("Got invalid data from Database in "
-								 "ChallengeBadgeCommand::handleFormSubmits.\nData: "
-								 "badge={}, dto.solution={}",
-								 badge_dto.badge,
-								 badge_dto.solution));
-		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-								 "@erarnitox with this error code: 298374")
-						.set_flags(dpp::m_ephemeral));
-		return;
-	}
+    if (!entered_opt.has_value()) {
+        discord_.log(
+            dpp::ll_warning,
+            "ChallengeBadgeCommand: modal input has an unexpected value type.");
 
-	const auto entered_variant{event.components[0].components[0].value};
-	const auto entered_ptr{std::get_if<std::string>(&entered_variant)};
-	if (!entered_ptr) {
-		discord_.log(dpp::ll_warning, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
-		event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-								 "@erarnitox with this error code: 298375")
-						.set_flags(dpp::m_ephemeral));
-		return;
-	}
+        event.reply(
+            dpp::message("Invalid form submission. Please try again.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-	const auto& entered{*entered_ptr};
+    const std::string entered = *entered_opt;
 
-	if (entered == badge_dto.solution) {
-		const dpp::user* const cached_user{member.get_user()};
-		const std::string username{cached_user != nullptr ? cached_user->username
-														  : event.command.get_issuing_user().username};
+    ChallengeBadgeRepository badge_repo{db_};
+    const ChallengeBadgeDTO badge_dto = badge_repo.get(msg_id);
 
-		UserRepository user_repo{db_};
-		UserDTO user_dto{member.user_id, username};
+    if (badge_dto.badge.empty() || badge_dto.solution.empty()) {
+        discord_.log(dpp::ll_error,"ChallengeBadgeCommand: invalid or missing challenge data");
 
-		if (user_repo.create(user_dto)) {
-			discord_.log(dpp::ll_info, "User has been created!");
-		} else {
-			discord_.log(dpp::ll_info, "User does already exist!");
-			user_dto = user_repo.get(member.user_id);
-		}
+        event.reply(
+            dpp::message(
+                "Something went wrong. Please contact @erarnitox "
+                "with error code 298374.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-		if (!user_dto.user_id) {
-			event.reply(dpp::message("Can't get user from database. Please try again!").set_flags(dpp::m_ephemeral));
-			return;
-		}
+    if (entered != badge_dto.solution) {
+        event.reply(
+            dpp::message(
+                std::format(
+                    "Sorry {}, this is not the right answer!",
+                    member.get_mention()))
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
 
-		HasBadgeRepository has_badge_repository{db_};
-		if (has_badge_repository.create(user_dto.user_id, msg_id)) {
-			const bool reward_fits{badge_dto.exp <= static_cast<size_t>(std::numeric_limits<std::int64_t>::max())};
-			const auto new_exp{reward_fits ? user_repo.try_adjust_exp(user_dto.user_id,
-																	   static_cast<std::int64_t>(badge_dto.exp),
-																	   0)
-										   : std::nullopt};
-			if (not new_exp.has_value()) {
-				(void)has_badge_repository.remove(user_dto.user_id, msg_id);
-				discord_.log(dpp::ll_error, "Corrupted Data occured in ChallengeBadgeCommand::handleFormSubmits");
+    const dpp::user* cached_user = member.get_user();
 
-				event.reply(dpp::message("OOPS! Something went wrong! Please contact "
-										 "@erarnitox with this error code: 298377")
-								.set_flags(dpp::m_ephemeral));
-				return;
-			}
+    const std::string username =
+        cached_user != nullptr
+            ? cached_user->username
+            : event.command.get_issuing_user().username;
 
-			event.reply(dpp::message(std::format("You have been awarded the Badge{} and {}🌢",
-												 badge_dto.badge,
-												 badge_dto.exp))
-							.set_flags(dpp::m_ephemeral));
-			return;
-		}
+    UserRepository user_repo{db_};
+    UserDTO user_dto{member.user_id, username};
 
-		event.reply(dpp::message(std::format("Well done {}, you solved this challenge!", member.get_mention()))
-						.set_flags(dpp::m_ephemeral));
-	} else {
-		event.reply(dpp::message(std::format("Sorry {}, this is not the right answer!", member.get_mention()))
-						.set_flags(dpp::m_ephemeral));
-	}
+    if (!user_repo.create(user_dto)) {
+        discord_.log(dpp::ll_info, "User already exists; retrieving user.");
+        user_dto = user_repo.get(member.user_id);
+    }
+
+    if (!user_dto.user_id) {
+        event.reply(
+            dpp::message(
+                "Could not retrieve your user record. Please try again.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    // Check that the XP reward can be represented by int64_t before
+    // converting it. This avoids implementation-defined narrowing.
+    if (badge_dto.exp >
+        static_cast<std::size_t>(
+            std::numeric_limits<std::int64_t>::max())) {
+        discord_.log(
+            dpp::ll_error,
+            "ChallengeBadgeCommand: XP reward exceeds int64_t range.");
+
+        event.reply(
+            dpp::message(
+                "Invalid challenge reward. Please contact an administrator.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    HasBadgeRepository has_badge_repo{db_};
+
+    if (!has_badge_repo.create(user_dto.user_id, msg_id)) {
+        event.reply(
+            dpp::message(
+                std::format(
+                    "Well done {}, you solved this challenge!",
+                    member.get_mention()))
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    const auto new_exp = user_repo.try_adjust_exp(
+        user_dto.user_id,
+        static_cast<std::int64_t>(badge_dto.exp),
+        0);
+
+    if (!new_exp.has_value()) {
+        // Best-effort rollback only. A database transaction is preferable.
+        if (!has_badge_repo.remove(user_dto.user_id, msg_id)) {
+            discord_.log(
+                dpp::ll_critical,
+                "ChallengeBadgeCommand: failed to roll back badge assignment "
+                "after XP adjustment failed.");
+        }
+
+        discord_.log(
+            dpp::ll_error,
+            "ChallengeBadgeCommand: XP adjustment failed.");
+
+        event.reply(
+            dpp::message(
+                "Something went wrong. Please contact @erarnitox "
+                "with error code 298377.")
+                .set_flags(dpp::m_ephemeral));
+        return;
+    }
+
+    event.reply(
+        dpp::message(
+            std::format(
+                "You have been awarded the Badge {} and {}🌢",
+                badge_dto.badge,
+                badge_dto.exp))
+            .set_flags(dpp::m_ephemeral));
 }

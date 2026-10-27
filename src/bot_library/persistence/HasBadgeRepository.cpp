@@ -27,15 +27,12 @@ HasBadgeRepository::HasBadgeRepository(DatabaseExecutor& executor) : executor_(e
 bool HasBadgeRepository::create(size_t user_id, size_t message_id) noexcept {
 	const static std::string sql_string{
 		"INSERT INTO has_badge(user_id, message_id) VALUES "
-		"($1::int8, $2::int8)"};
+		"($1::int8, $2::int8)"
+	};
 
-	if (not executor_.hasConnection()) {
-		return false;
-	}
-
-	if (not(user_id && message_id)) {
-		return false;
-	}
+	 if (not executor_.hasConnection() || user_id == 0 || message_id == 0) {
+        return false;
+    }
 
 	return executor_.execQuery(sql_string, user_id, message_id);
 }
