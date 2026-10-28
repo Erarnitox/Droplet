@@ -40,21 +40,34 @@ jobs:
 
       - name: Install Clang
         run: |
-          dnf install -y clang clang-devel clang-tools-extra --allowerasing
+          dnf install -y clang clang-devel clang-tools-extra ccache --allowerasing
 
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           submodules: recursive
 
-      - name: Restore build cache
-        id: build-cache
+      - name: Restore CPM source cache
         uses: actions/cache@v5
         with:
-          path: build
-          key: build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/*.cpp', '**/*.h') }}
+          path: .cpm-cache
+          # CPM downloads (poco, curl, libpqxx, cpr, Catch2) only change when a
+          # CMakeLists/CPM version changes, never because of ordinary source edits.
+          key: cpm-${{ runner.os }}-${{ hashFiles('src/**/CMakeLists.txt', 'test/CMakeLists.txt', 'cmake/CPM.cmake') }}
           restore-keys: |
-            build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}
+            cpm-${{ runner.os }}-
+
+      # Caching the build/ directory does not give incremental builds: actions/checkout
+      # gives every source file a fresh mtime, so ninja would rebuild everything anyway.
+      # ccache keys on file *content*, so it works across fresh checkouts.
+      - name: Restore ccache
+        id: ccache
+        uses: actions/cache/restore@v5
+        with:
+          path: .ccache
+          key: ccache-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            ccache-${{ runner.os }}-
 
       - name: Configure and Build with CMake
         env:
@@ -63,19 +76,30 @@ jobs:
           OPENSSL_ROOT_DIR: /usr/include/openssl
           ZLIB_LIBRARY: /usr/lib64/libz.so
           PostgreSQL_ROOT: /usr/include/pgsql
+          CCACHE_MAXSIZE: 600M
+          CCACHE_COMPILERCHECK: content
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT --preset github
+          export CCACHE_DIR="$GITHUB_WORKSPACE/.ccache"
+          export CCACHE_BASEDIR="$GITHUB_WORKSPACE"
+          export CPM_SOURCE_CACHE="$GITHUB_WORKSPACE/.cpm-cache"
+          ccache --zero-stats
+          cmake -DZLIB_LIBRARY=$ZLIB_LIBRARY -DPostgreSQL_ROOT=$PostgreSQL_ROOT \
+                -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+                --preset github
           cmake --build build
+          ccache --show-stats
           strip build/droplet
-      
-      - name: Save build cache
-        if: steps.build-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v5
+
+      # Save even when the build failed, so the objects compiled so far are kept.
+      # Only on main: PR caches would be scoped to the PR ref and just churn the 10 GB quota.
+      - name: Save ccache
+        if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
+        uses: actions/cache/save@v5
         with:
-          path: build
-          key: build-${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt') }}-${{ hashFiles('**/*.cpp', '**/*.h') }}
-  
+          path: .ccache
+          key: ccache-${{ runner.os }}-${{ github.sha }}
+
       # Deployment steps
       - name: Copy binary to server
         uses: appleboy/scp-action@v0.1.7
