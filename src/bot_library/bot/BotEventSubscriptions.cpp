@@ -12,12 +12,43 @@
 #include <dpp/utility.h>
 
 #include <cstdio>
+#include <exception>
 #include <format>
 #include <string>
 
 #include "BotSlashCommandRegistrar.hpp"
 
 namespace {
+
+/**
+ * Runs one command handler. A throwing command must neither take down the other
+ * commands registered for the same event nor (if the library does not catch it)
+ * the whole process, so every exception is logged and swallowed here.
+ *
+ * @return true if the handler completed normally
+ */
+template <typename Handler>
+bool guarded(dpp::cluster& ctx, const char* event_name, Handler&& handler) noexcept {
+	try {
+		handler();
+		return true;
+	} catch (const std::exception& ex) {
+		ctx.log(dpp::ll_error, std::format("Unhandled exception in {} handler: {}", event_name, ex.what()));
+	} catch (...) {
+		ctx.log(dpp::ll_error, std::format("Unhandled non-standard exception in {} handler", event_name));
+	}
+	return false;
+}
+
+/// best effort: tell the user the interaction failed instead of leaving it hanging
+template <typename Event>
+void reply_failure(const Event& event) noexcept {
+	try {
+		event.reply(dpp::message("Something went wrong while handling that. Please try again later.")
+						.set_flags(dpp::m_ephemeral));
+	} catch (...) {
+	}
+}
 
 void handle_on_log(dpp::cluster& ctx) {
 	ctx.on_log([](const dpp::log_t& event) {
@@ -33,74 +64,82 @@ void handle_on_log(dpp::cluster& ctx) {
 }
 
 void handle_global_slash_commands(dpp::cluster& ctx, const slash_commands_t& slash_commands) {
-	ctx.on_slashcommand([&slash_commands](const dpp::slashcommand_t& event) {
+	ctx.on_slashcommand([&ctx, &slash_commands](const dpp::slashcommand_t& event) {
 		const std::string& command_name = event.command.get_command_name();
 		if (const auto it = slash_commands.find(command_name); it != slash_commands.end()) {
-			it->second->on_slashcommand(event);
+			if (not guarded(ctx, "slash command", [&] { it->second->on_slashcommand(event); })) {
+				reply_failure(event);
+			}
 		}
 	});
 }
 
 void handle_message_create(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_create([&message_commands](const dpp::message_create_t& event) {
+	ctx.on_message_create([&ctx, &message_commands](const dpp::message_create_t& event) {
 		for (const auto& command : message_commands) {
-			command->on_message_create(event);
+			guarded(ctx, "message create", [&] { command->on_message_create(event); });
 		}
 	});
 }
 
 void handle_message_delete(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_delete([&message_commands](const dpp::message_delete_t& event) {
+	ctx.on_message_delete([&ctx, &message_commands](const dpp::message_delete_t& event) {
 		for (const auto& command : message_commands) {
-			command->on_message_delete(event);
+			guarded(ctx, "message delete", [&] { command->on_message_delete(event); });
 		}
 	});
 }
 
 void handle_message_delete_bulk(dpp::cluster& ctx, const message_commands_t& message_commands) {
-	ctx.on_message_delete_bulk([&message_commands](const dpp::message_delete_bulk_t& event) {
+	ctx.on_message_delete_bulk([&ctx, &message_commands](const dpp::message_delete_bulk_t& event) {
 		for (const auto& command : message_commands) {
-			command->on_message_delete_bulk(event);
+			guarded(ctx, "message delete bulk", [&] { command->on_message_delete_bulk(event); });
 		}
 	});
 }
 
 void handle_button_click(dpp::cluster& ctx, const button_commands_t& button_commands) {
-	ctx.on_button_click([&button_commands](const dpp::button_click_t& event) {
+	ctx.on_button_click([&ctx, &button_commands](const dpp::button_click_t& event) {
 		for (const auto& command : button_commands) {
-			command->on_button_click(event);
+			if (not guarded(ctx, "button click", [&] { command->on_button_click(event); })) {
+				reply_failure(event);
+				break;
+			}
 		}
 	});
 }
 
 void handle_form_submit(dpp::cluster& ctx, const form_commands_t& form_commands) {
-	ctx.on_form_submit([&form_commands](const dpp::form_submit_t& event) {
+	ctx.on_form_submit([&ctx, &form_commands](const dpp::form_submit_t& event) {
 		for (const auto& command : form_commands) {
-			command->on_form_submit(event);
+			if (not guarded(ctx, "form submit", [&] { command->on_form_submit(event); })) {
+				reply_failure(event);
+				break;
+			}
 		}
 	});
 }
 
 void handle_reaction_add(dpp::cluster& ctx, const reaction_commands_t& reaction_commands) {
-	ctx.on_message_reaction_add([&reaction_commands](const dpp::message_reaction_add_t& event) {
+	ctx.on_message_reaction_add([&ctx, &reaction_commands](const dpp::message_reaction_add_t& event) {
 		for (const auto& command : reaction_commands) {
-			command->on_message_reaction_add(event);
+			guarded(ctx, "reaction add", [&] { command->on_message_reaction_add(event); });
 		}
 	});
 }
 
 void handle_reaction_remove(dpp::cluster& ctx, const reaction_commands_t& reaction_commands) {
-	ctx.on_message_reaction_remove([&reaction_commands](const dpp::message_reaction_remove_t& event) {
+	ctx.on_message_reaction_remove([&ctx, &reaction_commands](const dpp::message_reaction_remove_t& event) {
 		for (const auto& command : reaction_commands) {
-			command->on_message_reaction_remove(event);
+			guarded(ctx, "reaction remove", [&] { command->on_message_reaction_remove(event); });
 		}
 	});
 }
 
 void handle_ready(dpp::cluster& ctx, const ready_commands_t& ready_commands) {
-	ctx.on_ready([&ready_commands](const dpp::ready_t& event) {
+	ctx.on_ready([&ctx, &ready_commands](const dpp::ready_t& event) {
 		for (const auto& command : ready_commands) {
-			command->on_ready(event);
+			guarded(ctx, "ready", [&] { command->on_ready(event); });
 		}
 	});
 }

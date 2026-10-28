@@ -107,8 +107,13 @@ void timed_reply_template(dpp::cluster& bot,
 						  size_t time_mills) noexcept {
 	event.reply(message);
 
+	// Timer callbacks run on the Discord library's event-loop thread: they must never
+	// throw (a throwing callback silently kills the timer or the loop iteration).
 	const dpp::timer_callback_t on_tick = [&bot, event](dpp::timer deleteTimer) {
-		event.delete_original_response();
+		try {
+			event.delete_original_response();
+		} catch (...) {
+		}
 		bot.stop_timer(deleteTimer);
 	};
 
@@ -163,8 +168,13 @@ void timed_reply_private_template(dpp::cluster& bot,
 								  size_t time_mills) noexcept {
 	event.reply(dpp::message(message).set_flags(dpp::m_ephemeral));
 
+	// Timer callbacks run on the Discord library's event-loop thread: they must never
+	// throw (a throwing callback silently kills the timer or the loop iteration).
 	const dpp::timer_callback_t on_tick = [&bot, event](dpp::timer deleteTimer) {
-		event.delete_original_response();
+		try {
+			event.delete_original_response();
+		} catch (...) {
+		}
 		bot.stop_timer(deleteTimer);
 	};
 
@@ -280,16 +290,15 @@ void Core::disable_all_mentions(dpp::message& message) noexcept {
 }
 
 std::optional<std::string> Core::find_text_input(const std::vector<dpp::component>& components) {
-    for (const auto& component : components) {
-        if (const auto* value =
-                std::get_if<std::string>(&component.value)) {
-            return *value;
-        }
+	for (const auto& component : components) {
+		if (const auto* value = std::get_if<std::string>(&component.value)) {
+			return *value;
+		}
 
-        if (auto nested = find_text_input(component.components)) {
-            return nested;
-        }
-    }
+		if (auto nested = find_text_input(component.components)) {
+			return nested;
+		}
+	}
 
-    return std::nullopt;
+	return std::nullopt;
 }

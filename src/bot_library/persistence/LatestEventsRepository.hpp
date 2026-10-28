@@ -51,4 +51,8 @@ class LatestEventsRepository {
 	std::unordered_map<std::string, std::unordered_set<std::string>> announced_videos;
 	std::unordered_map<std::string, bool> active_events;
 	std::mutex latest_events_mutex;
+	// guards active_events only. Separate from latest_events_mutex (which is held across
+	// database round-trips) so that timer callbacks on the Discord event-loop thread never
+	// wait for a database query. Lock order: latest_events_mutex, then active_mutex.
+	std::mutex active_mutex;
 };

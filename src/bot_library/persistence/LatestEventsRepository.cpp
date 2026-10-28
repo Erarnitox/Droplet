@@ -78,17 +78,16 @@ LatestEventsRepository::LatestEventsRepository(DatabaseExecutor& executor) : exe
 }
 
 bool LatestEventsRepository::is_active(const std::string& key) noexcept {
-	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
-	if (not active_events.contains(key))
-		return false;
-	return active_events.at(key);
+	const auto lock{std::lock_guard<std::mutex>(active_mutex)};
+	const auto it{active_events.find(key)};
+	return it != active_events.end() && it->second;
 }
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 void LatestEventsRepository::set_active(const std::string& key, bool active) noexcept {
-	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
+	const auto lock{std::lock_guard<std::mutex>(active_mutex)};
 	active_events[key] = active;
 }
 
@@ -135,7 +134,7 @@ bool LatestEventsRepository::remove(const std::string& key) noexcept {
 
 	latest_events.erase(key);
 	announced_videos.erase(key);
-	active_events[key] = false;
+	set_active(key, false);
 
 	const bool deleted_latest{executor_.execQuery(delete_latest_sql, key)};
 	const bool deleted_announced{executor_.execQuery(delete_announced_sql, key)};
@@ -147,7 +146,8 @@ bool LatestEventsRepository::remove(const std::string& key) noexcept {
 //-----------------------------------------------------
 bool LatestEventsRepository::exists(const std::string& key, const std::string& value) noexcept {
 	const auto lock{std::lock_guard<std::mutex>(latest_events_mutex)};
-	return latest_events.contains(key) && latest_events.at(key) == value;
+	const auto it{latest_events.find(key)};
+	return it != latest_events.end() && it->second == value;
 }
 
 //-----------------------------------------------------
@@ -162,8 +162,7 @@ YoutubeClaimResult LatestEventsRepository::record_video(const std::string& key,
 		return YoutubeClaimResult::Failed;
 	}
 
-	const auto active_it{active_events.find(key)};
-	if (active_it == active_events.end() || not active_it->second) {
+	if (not is_active(key)) {
 		return YoutubeClaimResult::Failed;
 	}
 
