@@ -6,6 +6,8 @@ add_subdirectory(restapi)
 add_library(bot_library STATIC
 	BotLibrary.cpp
 	Application.cpp
+	Supervisor.cpp
+	Watchdog.cpp
 )
 
 if(CMAKE_BUILD_TYPE STREQUAL Debug)

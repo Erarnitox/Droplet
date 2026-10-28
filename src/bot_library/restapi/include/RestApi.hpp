@@ -6,7 +6,9 @@ class DatabaseExecutor;
 
 class RestApi {
   public:
-	const static ushort port;
+	const static unsigned short port;
 	const static bool ssl_enabled;
-	static void start(DatabaseExecutor& db);
+	/// Runs the REST server until it is asked to terminate.
+	/// @return 0 on a requested shutdown, non-zero if the server could not run / stopped abnormally
+	[[nodiscard]] static int start(DatabaseExecutor& db);
 };

@@ -22,6 +22,12 @@
 auto start_bot(bool IS_TEST = false) -> void;
 
 //-----------------------------------------------------
+// Like start_bot() but reports the outcome as a process exit code:
+// 0 = clean shutdown / test run completed, non-zero = failed (config error, fatal error ...)
+//-----------------------------------------------------
+[[nodiscard]] int run_bot(bool IS_TEST = false);
+
+//-----------------------------------------------------
 //
 //-----------------------------------------------------
 [[nodiscard]] std::string read_bot_token(const std::string& file);

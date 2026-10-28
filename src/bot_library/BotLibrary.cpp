@@ -13,8 +13,12 @@
 #include "Application.hpp"
 
 void start_bot(const bool IS_TEST) {
+	(void)run_bot(IS_TEST);
+}
+
+int run_bot(const bool IS_TEST) {
 	Application app;
-	app.run(IS_TEST);
+	return app.run(IS_TEST);
 }
 
 std::string read_bot_token(const std::string& file) {
