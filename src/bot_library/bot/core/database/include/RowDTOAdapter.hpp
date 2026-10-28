@@ -41,7 +41,10 @@ class RowDTOAdapter {
 	template <typename T>
 	T get(const std::string& field_name) const {
 		try {
-			return this->row_[field_name].as<T>();
+			// at() instead of operator[]: in libpqxx 8 row::operator[](name) is marked
+			// "pure", so the compiler may hoist a throwing lookup of an unknown column out
+			// of this try block (std::terminate in optimized builds).
+			return this->row_.at(field_name).as<T>();
 		} catch (...) {
 			return T{};
 		}
