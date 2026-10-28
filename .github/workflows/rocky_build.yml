@@ -118,7 +118,7 @@ jobs:
       # Save even when the build failed, so the objects compiled so far are kept.
       # Only on main: PR caches would be scoped to the PR ref and just churn the 10 GB quota.
       - name: Save ccache
-        if: ${{ !cancelled() && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/audit/')) }}
+        if: ${{ !cancelled() && (github.ref == 'refs/heads/main') }}
         uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: .ccache
