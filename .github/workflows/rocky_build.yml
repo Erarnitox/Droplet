@@ -13,9 +13,21 @@ on:
     # are often further apart than that. Does not deploy.
     - cron: "17 3 * * 1"
 
+# Least privilege: the job only needs to read the repository. Deployment uses the
+# SSH_* secrets via the scp/ssh actions, never the GITHUB_TOKEN.
+permissions:
+  contents: read
+
+# Never run two builds of the same ref at once (a deploy must not be interrupted
+# half-way by a newer push), but also never cancel a running deploy.
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     container:
       image: rockylinux:9  # Use Rocky Linux 9 as the container environment
 
@@ -28,12 +40,18 @@ jobs:
           
       - name: Install CMake
         run: |
-          CMAKE_VERSION=$(curl -s https://api.github.com/repos/Kitware/CMake/releases/latest | jq -r ".tag_name" | sed 's/v//')
-          wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}-linux-x86_64.sh
-          chmod +x cmake-${CMAKE_VERSION}-linux-x86_64.sh
-          ./cmake-${CMAKE_VERSION}-linux-x86_64.sh --skip-license --prefix=/usr/local
-          rm cmake-${CMAKE_VERSION}-linux-x86_64.sh
-          
+          # Pinned (not "latest") and checksum-verified, so a compromised or broken
+          # upstream release cannot silently change what we build and deploy.
+          CMAKE_VERSION=4.4.4
+          BASE=https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}
+          INSTALLER=cmake-${CMAKE_VERSION}-linux-x86_64.sh
+          curl -fsSL --retry 3 -o ${INSTALLER} ${BASE}/${INSTALLER}
+          curl -fsSL --retry 3 -o cmake-SHA-256.txt ${BASE}/cmake-${CMAKE_VERSION}-SHA-256.txt
+          grep " ${INSTALLER}\$" cmake-SHA-256.txt | sha256sum -c -
+          chmod +x ${INSTALLER}
+          ./${INSTALLER} --skip-license --prefix=/usr/local
+          rm ${INSTALLER} cmake-SHA-256.txt
+
       - name: Install Ninja
         run: |
           NINJA_VERSION=1.13.0  # Specify the desired version of Ninja
@@ -48,12 +66,13 @@ jobs:
           dnf install -y clang clang-devel clang-tools-extra ccache --allowerasing
 
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           submodules: recursive
+          persist-credentials: false
 
       - name: Restore CPM source cache
-        uses: actions/cache@v5
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: .cpm-cache
           # CPM downloads (poco, curl, libpqxx, cpr, Catch2) only change when a
@@ -67,7 +86,7 @@ jobs:
       # ccache keys on file *content*, so it works across fresh checkouts.
       - name: Restore ccache
         id: ccache
-        uses: actions/cache/restore@v5
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: .ccache
           key: ccache-${{ runner.os }}-${{ github.sha }}
@@ -99,31 +118,44 @@ jobs:
       # Save even when the build failed, so the objects compiled so far are kept.
       # Only on main: PR caches would be scoped to the PR ref and just churn the 10 GB quota.
       - name: Save ccache
-        if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
-        uses: actions/cache/save@v5
+        if: ${{ !cancelled() && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/audit/')) }}
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: .ccache
           key: ccache-${{ runner.os }}-${{ github.sha }}
 
-      # Deployment steps
+      # The deploy steps below only run if the unit tests pass.
+      - name: Run unit tests
+        run: ctest --test-dir build --output-on-failure --timeout 300
+
+      # Deployment steps (push to main only; workflow_dispatch / PR / schedule never deploy)
       - name: Copy binary to server
-        if: ${{ github.event_name == 'push' }}
-        uses: appleboy/scp-action@v0.1.7
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: appleboy/scp-action@917f8b81dfc1ccd331fef9e2d61bdc6c8be94634 # v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
+          # Host key pinning. Add a repository secret SSH_FINGERPRINT (output of
+          # `ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub` on the server, "SHA256:...")
+          # to enable strict host key checking; while it is unset no check is done.
+          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
           source: "build/droplet"
           target: /services/droplet/
       
       # Restart the droplet systemd service
       - name: executing remote ssh commands using ssh key
-        if: ${{ github.event_name == 'push' }}
-        uses: appleboy/ssh-action@v1.2.0
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: appleboy/ssh-action@7eaf76671a0d7eec5d98ee897acda4f968735a17 # v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: systemctl restart droplet
+          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+          script_stop: true
+          script: |
+            systemctl restart droplet
+            sleep 10
+            systemctl is-active --quiet droplet
