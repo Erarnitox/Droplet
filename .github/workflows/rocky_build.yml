@@ -126,7 +126,7 @@ jobs:
 
       # The deploy steps below only run if the unit tests pass.
       - name: Run unit tests
-        run: ctest --test-dir build --output-on-failure --timeout 300
+        run: ctest --test-dir build/test --output-on-failure --no-tests=error --timeout 300
 
       # Deployment steps (push to main only; workflow_dispatch / PR / schedule never deploy)
       - name: Copy binary to server
