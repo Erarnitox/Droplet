@@ -68,5 +68,28 @@ void SetNotificationCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 
 void SetNotificationCommand::on_ready(const dpp::ready_t& event) {
 	(void)event;
-	youtube_.load_from_database();
+	if (youtube_.load_from_database()) {
+		return;
+	}
+
+	// The database was not reachable right now: without a retry no YouTube notification would
+	// ever be started again until the next restart. Retry every 30s; the actual work runs on the
+	// library's worker pool so that the event-loop thread never blocks on the database.
+	if (load_retry_pending_.exchange(true)) {
+		return;
+	}
+	discord_.log(dpp::ll_warning, "YouTube notifications could not be loaded (database unavailable), retrying in 30s");
+	(void)discord_.start_timer(
+		[this](dpp::timer timer_handle) {
+			discord_.queue_work(0, [this, timer_handle] {
+				try {
+					if (youtube_.load_from_database()) {
+						discord_.stop_timer(timer_handle);
+						load_retry_pending_ = false;
+					}
+				} catch (...) {
+				}
+			});
+		},
+		30);
 }

@@ -9,6 +9,7 @@
 
 #include <IGlobalSlashCommand.hpp>
 #include <IReady.hpp>
+#include <atomic>
 #include <string_view>
 
 struct AppContext;
@@ -29,4 +30,5 @@ class SetNotificationCommand : public IGlobalSlashCommand, public IReady {
 	dpp::cluster& discord_;
 	DatabaseExecutor& db_;
 	YoutubeNotificationService& youtube_;
+	std::atomic<bool> load_retry_pending_{false};
 };

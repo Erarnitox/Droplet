@@ -13,7 +13,7 @@
 
 #include <algorithm>
 #include <optional>
-#include <regex>
+#include <string_view>
 #include <utility>
 
 namespace {
@@ -62,39 +62,72 @@ namespace {
 	return candidate > frontier;
 }
 
+// Finds the first `<open ...>text</close>` in `source` where text contains no '<'.
+// With `allow_attributes` the opening tag may carry attributes (`open` is then "<title").
+[[nodiscard]] std::optional<std::string> element_text(std::string_view source,
+													  std::string_view open,
+													  std::string_view close,
+													  bool allow_attributes,
+													  bool allow_empty) {
+	for (auto pos{source.find(open)}; pos != std::string_view::npos; pos = source.find(open, pos + 1)) {
+		auto text_begin{pos + open.size()};
+		if (allow_attributes) {
+			const auto tag_end{source.find('>', text_begin)};
+			if (tag_end == std::string_view::npos) {
+				return std::nullopt;
+			}
+			if (source.substr(text_begin, tag_end - text_begin).find('<') != std::string_view::npos) {
+				continue;
+			}
+			text_begin = tag_end + 1;
+		}
+		const auto text_end{source.find('<', text_begin)};
+		if (text_end == std::string_view::npos) {
+			return std::nullopt;
+		}
+		if (source.compare(text_end, close.size(), close) == 0 && (allow_empty || text_end > text_begin)) {
+			return std::string{source.substr(text_begin, text_end - text_begin)};
+		}
+	}
+	return std::nullopt;
+}
+
 }  // namespace
 
 //-----------------------------------------------------
 //
 //-----------------------------------------------------
 std::vector<YoutubeFeedEntry> parse_youtube_feed(const std::string& atom_body) {
-	static const std::regex entry_regex{R"(<entry>([\s\S]*?)</entry>)"};
-	static const std::regex video_id_regex{R"(<yt:videoId>([^<]+)</yt:videoId>)"};
-	static const std::regex title_regex{R"(<title[^>]*>([^<]*)</title>)"};
-	static const std::regex published_regex{R"(<published>([^<]+)</published>)"};
+	// Plain string scanning instead of std::regex: libstdc++'s regex matcher recurses per
+	// input character and can overflow the stack on large or hostile bodies.
+	constexpr std::string_view entry_open{"<entry>"};
+	constexpr std::string_view entry_close{"</entry>"};
 
 	std::vector<YoutubeFeedEntry> entries;
-	for (std::sregex_iterator it{atom_body.begin(), atom_body.end(), entry_regex}, end{}; it != end; ++it) {
-		const std::string entry{(*it)[1].str()};
+	const std::string_view body{atom_body};
 
-		std::smatch video_match;
-		if (not std::regex_search(entry, video_match, video_id_regex) || video_match.size() < 2) {
+	for (auto open{body.find(entry_open)}; open != std::string_view::npos;) {
+		const auto content_begin{open + entry_open.size()};
+		const auto close{body.find(entry_close, content_begin)};
+		if (close == std::string_view::npos) {
+			break;
+		}
+		const auto entry{body.substr(content_begin, close - content_begin)};
+		open = body.find(entry_open, close + entry_close.size());
+
+		const auto video_id{element_text(entry, "<yt:videoId>", "</yt:videoId>", false, false)};
+		if (not video_id.has_value()) {
 			continue;
 		}
 
 		YoutubeFeedEntry parsed;
-		parsed.video_id = video_match[1].str();
-
-		std::smatch title_match;
-		if (std::regex_search(entry, title_match, title_regex) && title_match.size() > 1) {
-			parsed.title = decode_xml_text(title_match[1].str());
+		parsed.video_id = *video_id;
+		if (const auto title{element_text(entry, "<title", "</title>", true, true)}) {
+			parsed.title = decode_xml_text(*title);
 		}
-
-		std::smatch published_match;
-		if (std::regex_search(entry, published_match, published_regex) && published_match.size() > 1) {
-			parsed.published = published_match[1].str();
+		if (const auto published{element_text(entry, "<published>", "</published>", false, false)}) {
+			parsed.published = *published;
 		}
-
 		entries.push_back(std::move(parsed));
 	}
 

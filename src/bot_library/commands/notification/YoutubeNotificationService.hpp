@@ -29,7 +29,8 @@ class YoutubeNotificationService {
 				   std::size_t timestep_sec = 500,
 				   bool allow_broadcast = false);
 	void stop_job(const std::string& key);
-	void load_from_database();
+	/// @return false if the database was not available (caller should retry later)
+	[[nodiscard]] bool load_from_database();
 	void stop_all();
 
   private:
