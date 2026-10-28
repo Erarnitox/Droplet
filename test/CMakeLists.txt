@@ -17,6 +17,7 @@ add_executable(unit_tests
     database_test.cpp
     youtube_feed_test.cpp
     auth_test.cpp
+    hardening_test.cpp
 )
 
 # bot_library already pulls notification_command via commands; linking it again

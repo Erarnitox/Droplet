@@ -1,0 +1,51 @@
+# Example systemd unit for the Droplet Discord bot. This file is NOT installed by CI;
+# copy it to /etc/systemd/system/droplet.service on the server and adapt the paths/user.
+#
+# The binary additionally supervises itself (it restarts its own worker process with
+# exponential backoff after a crash; set DROPLET_NO_SUPERVISOR=1 to disable), but the
+# service manager is still the outer safety net, so keep Restart=always here.
+
+[Unit]
+Description=Droplet Discord bot
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+# never give up restarting, however often it fails
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=droplet
+Group=droplet
+# bot_token.txt, db_connection.txt, secrets.json, server.crt and server.key are read from here
+WorkingDirectory=/services/droplet/build
+ExecStart=/services/droplet/build/droplet
+Restart=always
+RestartSec=5
+# a clean SIGTERM is enough, the bot has nothing to flush
+TimeoutStopSec=30
+# keep logs flowing line by line
+StandardOutput=journal
+StandardError=journal
+
+# --- sandboxing (all optional, tighten as far as your layout allows) ---
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+# the bot writes its slash-command hash file ("command_hash") into WorkingDirectory
+ReadWritePaths=/services/droplet/build
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+LockPersonality=true
+SystemCallArchitectures=native
+# credentials must not be world readable: chmod 600 bot_token.txt db_connection.txt secrets.json server.key
+UMask=0077
+# memory ceiling so a leak gets the bot restarted instead of the whole host swapping
+MemoryMax=1G
+
+[Install]
+WantedBy=multi-user.target
