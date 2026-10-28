@@ -147,7 +147,7 @@ jobs:
       # Restart the droplet systemd service
       - name: executing remote ssh commands using ssh key
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: appleboy/ssh-action@7eaf76671a0d7eec5d98ee897acda4f968735a17 # v1.2.0
+        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
