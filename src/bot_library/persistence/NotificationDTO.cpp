@@ -23,7 +23,7 @@ NotificationDTO::NotificationDTO(const RowDTOAdapter& row)
 	  channel_id{row.get<size_t>("channel_id")},
 	  timestep{row.get<size_t>("timestep")},
 	  type{row.get<std::string>("type")},
-	  data{row.get<std::string>("type")},
+	  data{row.get<std::string>("data")},
 	  message{row.get<std::string>("message")},
 	  allow_broadcast{row.get<bool>("allow_broadcast")} {
 }

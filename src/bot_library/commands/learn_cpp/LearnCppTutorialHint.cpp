@@ -26,6 +26,7 @@ constexpr std::string_view kPlaylistReply =
 	"https://www.youtube.com/watch?v=2O3r5qqjyiY&list=PLTjUlazALHSBQp4jdqHTCduTSSMU-cz5P";
 
 constexpr auto kCooldown = std::chrono::minutes(10);
+constexpr std::size_t k_max_cooldown_entries = 10'000;
 
 struct CooldownKey {
 	std::uint64_t guild_id;
@@ -47,6 +48,12 @@ std::unordered_map<CooldownKey, std::chrono::steady_clock::time_point, CooldownK
 	const auto now{std::chrono::steady_clock::now()};
 
 	std::lock_guard<std::mutex> lock(g_cooldown_mutex);
+
+	// bound the table: forget entries whose cooldown has long expired once it grows large
+	if (g_last_reply_by_user_guild.size() >= k_max_cooldown_entries) {
+		std::erase_if(g_last_reply_by_user_guild, [now](const auto& entry) { return now - entry.second >= kCooldown; });
+	}
+
 	const auto it{g_last_reply_by_user_guild.find(key)};
 	if (it != g_last_reply_by_user_guild.end()) {
 		if (now - it->second < kCooldown) {

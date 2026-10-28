@@ -18,6 +18,8 @@
 #include <AppContext.hpp>
 #include <Core.hpp>
 #include <ResourceRepository.hpp>
+#include <charconv>
+#include <system_error>
 
 //-----------------------------------------------------
 //
@@ -63,7 +65,18 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 	const auto category{Core::get_parameter(discord_, event, "category")};
 	const auto description{Core::get_parameter(discord_, event, "description")};
 	const auto url{Core::get_parameter(discord_, event, "url")};
-	const auto difficulty{std::stoi(Core::get_parameter(discord_, event, "difficulty"))};
+	// the difficulty arrives as a string option: std::stoi would throw on anything unexpected
+	int difficulty{0};
+	{
+		const auto difficulty_text{Core::get_parameter(discord_, event, "difficulty")};
+		const auto [end, ec]{
+			std::from_chars(difficulty_text.data(), difficulty_text.data() + difficulty_text.size(), difficulty)};
+		if (ec != std::errc{} || end != difficulty_text.data() + difficulty_text.size() || difficulty < 1 ||
+			difficulty > 5) {
+			event.reply(dpp::message("Invalid difficulty!").set_flags(dpp::m_ephemeral));
+			return;
+		}
+	}
 	const auto tags{Core::get_parameter(discord_, event, "tags", false)};
 
 	const dpp::user* const cached_user{cmd.member.get_user()};
@@ -71,15 +84,8 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 													  : event.command.get_issuing_user().username};
 
 	ResourceRepository repo{db_};
-	const ResourceDTO data{title,
-						   category,
-						   description,
-						   url,
-						   difficulty,
-						   cmd.guild_id,
-						   username,
-						   cmd.member.user_id,
-						   tags};
+	const ResourceDTO data{
+		title, category, description, url, difficulty, cmd.guild_id, username, cmd.member.user_id, tags};
 
 	if (repo.create(data)) {
 		auto msg{
@@ -91,6 +97,9 @@ void AddResourcesCommand::on_slashcommand(const dpp::slashcommand_t& event) {
 									 tags.empty() ? "NONE" : tags))};
 
 		dpp::command_completion_event_t callback = [this, event](const dpp::confirmation_callback_t& res) {
+			if (res.is_error()) {
+				return;
+			}
 			const auto& message{res.get<dpp::message>()};
 			discord_.message_pin(message.channel_id, message.id);
 			return;

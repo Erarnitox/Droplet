@@ -14,7 +14,10 @@
 #include <appcommand.h>
 
 #include <AppContext.hpp>
+#include <charconv>
+#include <cstdint>
 #include <format>
+#include <system_error>
 
 #include "Core.hpp"
 #include "IReactionCommand.hpp"
@@ -101,7 +104,14 @@ void ReactionRoles::on_slashcommand(const dpp::slashcommand_t& event) {
 	ReactionRoleRepository repo{db_};
 
 	const size_t i_role_id{static_cast<size_t>(role_id)};
-	const size_t i_message_id{static_cast<size_t>(std::stoll(message_id))};
+	std::uint64_t parsed_message_id{0};
+	const auto [id_end,
+				id_ec]{std::from_chars(message_id.data(), message_id.data() + message_id.size(), parsed_message_id)};
+	if (message_id.empty() || id_ec != std::errc{} || id_end != message_id.data() + message_id.size()) {
+		event.reply(dpp::message("The provided link is not a valid message link!").set_flags(dpp::m_ephemeral));
+		return;
+	}
+	const size_t i_message_id{static_cast<size_t>(parsed_message_id)};
 	const size_t& guild_id{event.command.guild_id};
 
 	ReactionRoleDTO dto{i_role_id, i_message_id, guild_id, usable_emoji};
