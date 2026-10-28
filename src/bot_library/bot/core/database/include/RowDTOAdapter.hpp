@@ -25,6 +25,11 @@ class RowDTOAdapter {
 	RowDTOAdapter(const NativeDatabase::Row& row) : row_(row) {
 	}
 
+	// libpqxx >= 8 hands out non-owning row refs. Copy into an owning row, which
+	// keeps the underlying result alive (like the pre-8 result[n] did).
+	RowDTOAdapter(const NativeDatabase::RowRef& row) : row_(row) {
+	}
+
 	/**
 	 * @brief get the value of a field with the specified name
 	 *

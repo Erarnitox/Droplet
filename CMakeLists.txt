@@ -155,6 +155,11 @@ if(USE_DEBUG_TOKEN)
 endif()
 
 # tests
+# Enable CTest explicitly. This used to work only by accident: a dependency (libpqxx
+# 7.x / cpr 1.11) called enable_testing() globally, while the curl CPM options leave
+# BUILD_TESTING OFF so include(CTest) in test/ does not do it. With libpqxx 8 and
+# cpr 1.15 that accident is gone and ctest would find no tests.
+enable_testing()
 add_subdirectory(test)
 
 if(CMAKE_BUILD_TYPE STREQUAL Debug)

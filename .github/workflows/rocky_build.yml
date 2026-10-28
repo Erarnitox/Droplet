@@ -154,8 +154,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           fingerprint: ${{ secrets.SSH_FINGERPRINT }}
-          script_stop: true
+          # ssh-action >= 1.2.1 removed the `script_stop` input; `set -e` is the
+          # documented replacement (abort on the first failing command).
           script: |
+            set -e
             systemctl restart droplet
             sleep 10
             systemctl is-active --quiet droplet

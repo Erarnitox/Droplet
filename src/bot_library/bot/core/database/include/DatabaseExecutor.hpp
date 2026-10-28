@@ -64,6 +64,10 @@ template <typename... Types>
 			lease.discard();
 			++times;
 			database_detail::retry_backoff(times);
+		} catch (const NativeDatabase::ProtocolViolationException&) {
+			lease.discard();
+			++times;
+			database_detail::retry_backoff(times);
 		} catch (const std::exception& e) {
 			std::cerr << "Error: " << e.what() << "\nInvalid exec for query:\n" << query << '\n';
 			return false;
@@ -93,6 +97,10 @@ template <typename... Types>
 			}
 			return {result[0]};
 		} catch (const NativeDatabase::BrokenConnectionException&) {
+			lease.discard();
+			++times;
+			database_detail::retry_backoff(times);
+		} catch (const NativeDatabase::ProtocolViolationException&) {
 			lease.discard();
 			++times;
 			database_detail::retry_backoff(times);
@@ -127,6 +135,10 @@ template <typename... Types>
 			}
 			return selection;
 		} catch (const NativeDatabase::BrokenConnectionException&) {
+			lease.discard();
+			++times;
+			database_detail::retry_backoff(times);
+		} catch (const NativeDatabase::ProtocolViolationException&) {
 			lease.discard();
 			++times;
 			database_detail::retry_backoff(times);

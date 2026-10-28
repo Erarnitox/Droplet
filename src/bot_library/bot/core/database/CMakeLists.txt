@@ -1,4 +1,4 @@
-CPMAddPackage("gh:jtv/libpqxx#7.10.1")
+CPMAddPackage("gh:jtv/libpqxx#8.0.2")
 
 add_library(database STATIC
     ConnectionPool.cpp
