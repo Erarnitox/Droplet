@@ -148,9 +148,7 @@ bool email_address_is_plausible(std::string_view email) noexcept {
 	return domain.find('.') != std::string_view::npos;
 }
 
-bool registration_fields_valid(std::string_view username,
-							   std::string_view email,
-							   std::string_view password) noexcept {
+bool registration_fields_valid(std::string_view username, std::string_view email, std::string_view password) noexcept {
 	if (username.empty() || username.size() > k_username_max_length) {
 		return false;
 	}
@@ -200,9 +198,25 @@ RequestRateLimiter::RequestRateLimiter(std::size_t max_events, std::chrono::mill
 
 bool RequestRateLimiter::allow(std::string_view key) {
 	const auto now{std::chrono::steady_clock::now()};
-	std::lock_guard<std::mutex> lock(mutex_);
-	auto& stamps{hits_[std::string{key}]};
 	const auto cutoff{now - window_};
+	std::lock_guard<std::mutex> lock(mutex_);
+
+	// Bound the memory used for tracking clients: drop clients whose window has expired and,
+	// if the table is still full afterwards (a flood of distinct sources), refuse new keys.
+	if (hits_.size() >= k_max_tracked_keys && hits_.find(std::string{key}) == hits_.end()) {
+		for (auto it{hits_.begin()}; it != hits_.end();) {
+			if (it->second.empty() || it->second.back() <= cutoff) {
+				it = hits_.erase(it);
+			} else {
+				++it;
+			}
+		}
+		if (hits_.size() >= k_max_tracked_keys) {
+			return false;
+		}
+	}
+
+	auto& stamps{hits_[std::string{key}]};
 	while (not stamps.empty() && stamps.front() <= cutoff) {
 		stamps.pop_front();
 	}

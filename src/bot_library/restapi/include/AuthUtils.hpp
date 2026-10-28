@@ -29,6 +29,7 @@ constexpr std::size_t k_password_max_length{128};
 constexpr std::size_t k_username_max_length{64};
 constexpr std::size_t k_email_max_length{254};
 constexpr std::size_t k_auth_body_max_bytes{8 * 1024};
+constexpr std::size_t k_max_tracked_keys{10'000};  // rate limiter: max distinct clients tracked at once
 
 [[nodiscard]] bool constant_time_equal(std::string_view a, std::string_view b) noexcept;
 
@@ -46,8 +47,7 @@ constexpr std::size_t k_auth_body_max_bytes{8 * 1024};
 
 [[nodiscard]] bool jwt_grants_clearance(const std::string& jwt, const std::string& hmac_secret, int min_clearance);
 
-[[nodiscard]] bool declared_body_too_large(const Poco::Net::HTTPServerRequest& request,
-										   std::size_t max_bytes) noexcept;
+[[nodiscard]] bool declared_body_too_large(const Poco::Net::HTTPServerRequest& request, std::size_t max_bytes) noexcept;
 
 [[nodiscard]] std::optional<std::string> read_limited(std::istream& input, std::size_t max_bytes);
 
