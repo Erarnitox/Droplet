@@ -89,6 +89,25 @@ if(NOT WIN32 OR MINGW)
 	endif()
 endif()
 
+# --- security hardening --------------------------------------------------------
+# Applied before any subdirectory so that the bot and all vendored dependencies
+# (DPP, poco, curl, libpqxx, cpr) get the same flags. Skipped for sanitizer builds.
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU" AND NOT CMAKE_CXX_FLAGS MATCHES "fsanitize")
+	include(CheckPIESupported)
+	check_pie_supported()
+	set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+	add_compile_options(-fstack-protector-strong -fstack-clash-protection)
+	if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
+		add_compile_options(-fcf-protection=full)
+	endif()
+	# _FORTIFY_SOURCE needs optimisation to have any effect
+	add_compile_options("$<$<CONFIG:Release,RelWithDebInfo>:-U_FORTIFY_SOURCE;-D_FORTIFY_SOURCE=2>")
+
+	# full RELRO + non-executable stack
+	add_link_options(-Wl,-z,relro,-z,now,-z,noexecstack)
+endif()
+
 # subdirectory for third party dependencies
 add_subdirectory(extern)
 
