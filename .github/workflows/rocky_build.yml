@@ -7,6 +7,11 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
+  schedule:
+    # Weekly warm-up: GitHub evicts caches not accessed for 7 days, and pushes here
+    # are often further apart than that. Does not deploy.
+    - cron: "17 3 * * 1"
 
 jobs:
   build:
@@ -102,6 +107,7 @@ jobs:
 
       # Deployment steps
       - name: Copy binary to server
+        if: ${{ github.event_name == 'push' }}
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -113,6 +119,7 @@ jobs:
       
       # Restart the droplet systemd service
       - name: executing remote ssh commands using ssh key
+        if: ${{ github.event_name == 'push' }}
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
