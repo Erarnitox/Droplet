@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <iostream>
 #include <locale>
+#include <mutex>
 #include <sstream>
 #include <stdexcept>
 
@@ -173,6 +174,10 @@ void EmailClient::send(std::string_view from,
 
 	const std::string from_addr{from};
 	const std::string payload = build_payload(from_addr, to, subject, body);
+	// curl_global_init() is not thread-safe; REST handler threads may call send() concurrently
+	static std::once_flag curl_global_once;
+	std::call_once(curl_global_once, [] { (void)curl_global_init(CURL_GLOBAL_DEFAULT); });
+
 	std::unique_ptr<CURL, CurlEasyDeleter> curl(curl_easy_init());
 	if (not curl) {
 		throw std::runtime_error("Failed to initialize libcurl");
@@ -198,6 +203,13 @@ void EmailClient::send(std::string_view from,
 	curl_easy_setopt(curl.get(), CURLOPT_READDATA, &ctx);
 	curl_easy_setopt(curl.get(), CURLOPT_UPLOAD, 1L);
 	curl_easy_setopt(curl.get(), CURLOPT_USE_SSL, static_cast<long>(CURLUSESSL_ALL));
+
+	// never block a REST worker thread forever on a stalled SMTP server; verify the TLS peer explicitly
+	curl_easy_setopt(curl.get(), CURLOPT_CONNECTTIMEOUT, 10L);
+	curl_easy_setopt(curl.get(), CURLOPT_TIMEOUT, 30L);
+	curl_easy_setopt(curl.get(), CURLOPT_NOSIGNAL, 1L);
+	curl_easy_setopt(curl.get(), CURLOPT_SSL_VERIFYPEER, 1L);
+	curl_easy_setopt(curl.get(), CURLOPT_SSL_VERIFYHOST, 2L);
 
 	CURLcode res = curl_easy_perform(curl.get());
 	if (res != CURLE_OK) {
