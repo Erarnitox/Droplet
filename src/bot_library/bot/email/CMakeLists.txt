@@ -14,7 +14,7 @@ set(CURL_USE_LIBPSL OFF CACHE BOOL "Use libpsl" FORCE)
 CPMAddPackage(
     NAME curl
     GITHUB_REPOSITORY curl/curl
-    GIT_TAG curl-8_22_0
+    GIT_TAG curl-8_23_0
     OPTIONS
         "CURL_USE_OPENSSL ON"
         "CURL_USE_LIBSSH2 OFF"

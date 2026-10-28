@@ -9,7 +9,7 @@ target_link_libraries(secrets PUBLIC core)
 
 set("POCO_ENABLE_NETSSL" ON)
 set("POCO_ENABLE_CRYPTO" ON)
-CPMAddPackage("gh:pocoproject/poco#poco-1.15.3-release")
+CPMAddPackage("gh:pocoproject/poco#poco-1.15.4-release")
 target_link_libraries_system(secrets PUBLIC
     Poco::Foundation
     Poco::Net
