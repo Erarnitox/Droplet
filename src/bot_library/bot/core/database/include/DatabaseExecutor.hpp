@@ -1,12 +1,22 @@
 #pragma once
 
+#include <algorithm>
+#include <chrono>
 #include <iostream>
 #include <string>
+#include <thread>
 #include <utility>
 #include <vector>
 
 #include "ConnectionPool.hpp"
 #include "RowDTOAdapter.hpp"
+
+namespace database_detail {
+// short, growing pause between retries on a broken connection (50ms, 100ms, ... 500ms)
+inline void retry_backoff(int attempt) {
+	std::this_thread::sleep_for(std::chrono::milliseconds(std::min(attempt, 10) * 50));
+}
+}  // namespace database_detail
 
 /**
  * Executes queries/transactions against a leased connection from ConnectionPool.
@@ -53,8 +63,12 @@ template <typename... Types>
 		} catch (const NativeDatabase::BrokenConnectionException&) {
 			lease.discard();
 			++times;
+			database_detail::retry_backoff(times);
 		} catch (const std::exception& e) {
 			std::cerr << "Error: " << e.what() << "\nInvalid exec for query:\n" << query << '\n';
+			return false;
+		} catch (...) {
+			std::cerr << "Error: unknown exception during exec for query:\n" << query << '\n';
 			return false;
 		}
 	}
@@ -81,8 +95,12 @@ template <typename... Types>
 		} catch (const NativeDatabase::BrokenConnectionException&) {
 			lease.discard();
 			++times;
+			database_detail::retry_backoff(times);
 		} catch (const std::exception& e) {
 			std::cerr << "Error: " << e.what() << "\nInvalid selection for query:\n" << query << '\n';
+			return {NativeDatabase::Row{}};
+		} catch (...) {
+			std::cerr << "Error: unknown exception during selection for query:\n" << query << '\n';
 			return {NativeDatabase::Row{}};
 		}
 	}
@@ -111,8 +129,12 @@ template <typename... Types>
 		} catch (const NativeDatabase::BrokenConnectionException&) {
 			lease.discard();
 			++times;
+			database_detail::retry_backoff(times);
 		} catch (const std::exception& e) {
 			std::cerr << "Error: " << e.what() << "\nInvalid selection for query:\n" << query << '\n';
+			return {};
+		} catch (...) {
+			std::cerr << "Error: unknown exception during selection for query:\n" << query << '\n';
 			return {};
 		}
 	}
